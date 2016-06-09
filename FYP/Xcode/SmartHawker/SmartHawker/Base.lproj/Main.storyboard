@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--welcomePage-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="welcomePage" id="BYZ-38-t0r" customClass="ViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,22 +18,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SH Survey Letterhead" translatesAutoresizingMaskIntoConstraints="NO" id="xs3-Mu-gFz">
-                                <rect key="frame" x="142" y="42" width="316" height="175"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SH Survey Letterhead" translatesAutoresizingMaskIntoConstraints="NO" id="xs3-Mu-gFz">
+                                <rect key="frame" x="142" y="72" width="316" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="TW3-Br-ZYK"/>
+                                    <constraint firstAttribute="width" constant="316" id="UEA-in-e4d"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-Dz-8lt">
-                                <rect key="frame" x="75" y="241" width="128" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter your email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-Dz-8lt">
+                                <rect key="frame" x="75" y="261" width="128" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JUd-j5-NIh">
-                                <rect key="frame" x="252" y="238" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JUd-j5-NIh">
+                                <rect key="frame" x="252" y="258" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="PtF-BB-ApN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
-                                <rect key="frame" x="375" y="238" width="38" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
+                                <rect key="frame" x="420" y="258" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <segue destination="3E9-SL-rS2" kind="show" id="JkT-7C-FpY"/>
@@ -40,16 +48,26 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xs3-Mu-gFz" firstAttribute="trailing" secondItem="Lf1-uj-GVK" secondAttribute="trailing" id="EFJ-e6-bOl"/>
+                            <constraint firstItem="JUd-j5-NIh" firstAttribute="baseline" secondItem="qYG-Dz-8lt" secondAttribute="baseline" id="dZn-ng-whv"/>
+                            <constraint firstItem="xs3-Mu-gFz" firstAttribute="centerX" secondItem="JUd-j5-NIh" secondAttribute="centerX" id="gNl-iN-MRY"/>
+                            <constraint firstItem="Lf1-uj-GVK" firstAttribute="top" secondItem="xs3-Mu-gFz" secondAttribute="bottom" constant="11" id="iIv-4G-AzF"/>
+                            <constraint firstItem="JUd-j5-NIh" firstAttribute="leading" secondItem="qYG-Dz-8lt" secondAttribute="trailing" constant="49" id="kJE-I6-9SQ"/>
+                            <constraint firstItem="xs3-Mu-gFz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pIq-qB-1IQ"/>
+                            <constraint firstItem="JUd-j5-NIh" firstAttribute="top" secondItem="Lf1-uj-GVK" secondAttribute="top" id="qjS-xJ-osD"/>
+                            <constraint firstItem="xs3-Mu-gFz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="sus-Pa-gw2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="349"/>
         </scene>
-        <!--View Controller-->
+        <!--mainUI-->
         <scene sceneID="lVz-kk-4cu">
             <objects>
-                <viewController id="XXy-8G-mza" sceneMemberID="viewController">
+                <viewController title="mainUI" id="XXy-8G-mza" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1yY-JV-f0c"/>
                         <viewControllerLayoutGuide type="bottom" id="G2M-MJ-o28"/>
@@ -61,19 +79,178 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOe-TY-mWn">
                                 <rect key="frame" x="53" y="90" width="50" height="40"/>
                                 <state key="normal" title="FAQ"/>
+                                <connections>
+                                    <segue destination="1VL-fA-WA7" kind="show" id="cJx-az-hJz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snI-pF-G5O">
                                 <rect key="frame" x="138" y="95" width="77" height="30"/>
                                 <state key="normal" title="Contact Us"/>
+                                <connections>
+                                    <segue destination="K45-CD-Ntd" kind="show" id="oDh-2o-GW9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="djk-vS-zW9"/>
+                    <navigationItem key="navigationItem" title="Main Page" id="djk-vS-zW9">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="m8T-Lz-VV6">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="kUP-3h-xF1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAu-uZ-L2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1893" y="349"/>
+        </scene>
+        <!--faqPage-->
+        <scene sceneID="bpT-j9-o1U">
+            <objects>
+                <viewController title="faqPage" id="Vqf-2L-7Hg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mfN-M2-W9q"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Ef-NJ-Yua"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VdO-xh-K8B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-0S-NeX">
+                                <rect key="frame" x="30" y="74" width="540" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <string key="text">HERE IS SOME SAMPLE FAQ, ACTUAL ARE NOT INSERTED YET!
+
+1) What is the purpose of SmartHawker?
+
+SmartHawker is a free-to-use iOS application designed to assist hawkers to keep track of their daily sales.....
+
+2) Does it cost to use SmartHawker?
+
+No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+
+
+2) Does it cost to use SmartHawker?
+
+No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+
+
+HERE IS SOME SAMPLE FAQ, ACTUAL ARE NOT INSERTED YET!
+
+1) What is the purpose of SmartHawker?
+
+SmartHawker is a free-to-use iOS application designed to assist hawkers to keep track of their daily sales.....
+
+2) Does it cost to use SmartHawker?
+
+No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+
+
+2) Does it cost to use SmartHawker?
+
+No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+
+
+HERE IS SOME SAMPLE FAQ, ACTUAL ARE NOT INSERTED YET!
+
+1) What is the purpose of SmartHawker?
+
+SmartHawker is a free-to-use iOS application designed to assist hawkers to keep track of their daily sales.....
+
+2) Does it cost to use SmartHawker?
+
+No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+
+
+2) Does it cost to use SmartHawker?
+
+No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+
+
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0MO-0S-NeX" secondAttribute="trailing" constant="10" id="0b8-g6-s2x"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="0MO-0S-NeX" secondAttribute="bottom" constant="10" id="bQu-fO-iJ5"/>
+                            <constraint firstItem="0MO-0S-NeX" firstAttribute="leading" secondItem="VdO-xh-K8B" secondAttribute="leadingMargin" constant="10" id="ecB-fi-6sI"/>
+                            <constraint firstItem="0MO-0S-NeX" firstAttribute="top" secondItem="mfN-M2-W9q" secondAttribute="bottom" constant="10" id="fXk-ru-dfa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Frequently Asked Questions" id="tWI-0N-6Bz">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="pwX-D8-Wg2">
+                            <connections>
+                                <segue destination="3E9-SL-rS2" kind="show" id="0rk-5X-jO9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zT7-ZU-Dh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3319" y="354"/>
+        </scene>
+        <!--contactUsPage-->
+        <scene sceneID="0fP-DE-K2i">
+            <objects>
+                <viewController title="contactUsPage" id="O9n-jC-hEy" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ViB-me-oVs"/>
+                        <viewControllerLayoutGuide type="bottom" id="K97-0w-bH7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wwV-mT-1QG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
+                                <rect key="frame" x="30" y="84" width="540" height="496"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <string key="text">Have queries about SmartHawker? Feel free to contact us!
+
+
+Cheng Chingyi
+Chua Weilun
+Gao Min Mell
+Goh Gui XIang Wendy
+Kay Zong Wei</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l8E-UB-UUC" firstAttribute="top" secondItem="ViB-me-oVs" secondAttribute="bottom" constant="20" id="Gix-zZ-7Kh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l8E-UB-UUC" secondAttribute="trailing" constant="10" id="NIC-hq-MVt"/>
+                            <constraint firstItem="l8E-UB-UUC" firstAttribute="leading" secondItem="wwV-mT-1QG" secondAttribute="leadingMargin" constant="10" id="VEJ-4G-sTi"/>
+                            <constraint firstItem="l8E-UB-UUC" firstAttribute="top" secondItem="wwV-mT-1QG" secondAttribute="topMargin" constant="20" id="gWR-Fs-OQ6"/>
+                            <constraint firstItem="K97-0w-bH7" firstAttribute="top" secondItem="l8E-UB-UUC" secondAttribute="bottom" constant="20" id="siz-op-cCi"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gWR-Fs-OQ6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contact Us" id="pzf-0J-syQ">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="48b-Gi-Rgd">
+                            <connections>
+                                <segue destination="3E9-SL-rS2" kind="show" id="wGp-qH-pEt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oa6-Dm-AcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3319" y="1056"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qzx-ee-vhn">
@@ -93,8 +270,48 @@
             </objects>
             <point key="canvasLocation" x="1081" y="349"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="If6-z2-5eJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1VL-fA-WA7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ct4-uy-ecc"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fLc-y7-moh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vqf-2L-7Hg" kind="relationship" relationship="rootViewController" id="fD9-Ho-rRq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcg-bD-kBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2553" y="354"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EXc-Eu-ojL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K45-CD-Ntd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aCY-vx-ctt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="O9n-jC-hEy" kind="relationship" relationship="rootViewController" id="yJR-OZ-PbH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZD0-rz-O02" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2553" y="1056"/>
+        </scene>
     </scenes>
     <resources>
         <image name="SH Survey Letterhead" width="1499" height="1124"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0rk-5X-jO9"/>
+    </inferredMetricsTieBreakers>
 </document>
