@@ -74,7 +74,7 @@
                         <viewControllerLayoutGuide type="bottom" id="G2M-MJ-o28"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UAq-lK-b2U">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOe-TY-mWn">
@@ -114,65 +114,98 @@
                         <viewControllerLayoutGuide type="bottom" id="2Ef-NJ-Yua"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VdO-xh-K8B">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-0S-NeX">
-                                <rect key="frame" x="30" y="74" width="340" height="566"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-0S-NeX">
+                                <rect key="frame" x="30" y="74" width="540" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES"/>
                                 </accessibility>
-                                <string key="text">HERE IS SOME SAMPLE FAQ, ACTUAL ARE NOT INSERTED YET!
+                                <attributedString key="attributedText">
+                                    <fragment content="Why is it important for hawkers to have a proper record-keeping system?">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
 
-1) What is the purpose of SmartHawker?
-
-SmartHawker is a free-to-use iOS application designed to assist hawkers to keep track of their daily sales.....
-
-2) Does it cost to use SmartHawker?
-
-No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
-
-
-2) Does it cost to use SmartHawker?
-
-No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
-
-
-HERE IS SOME SAMPLE FAQ, ACTUAL ARE NOT INSERTED YET!
-
-1) What is the purpose of SmartHawker?
-
-SmartHawker is a free-to-use iOS application designed to assist hawkers to keep track of their daily sales.....
-
-2) Does it cost to use SmartHawker?
-
-No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
-
-
-2) Does it cost to use SmartHawker?
-
-No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
-
-
-HERE IS SOME SAMPLE FAQ, ACTUAL ARE NOT INSERTED YET!
-
-1) What is the purpose of SmartHawker?
-
-SmartHawker is a free-to-use iOS application designed to assist hawkers to keep track of their daily sales.....
-
-2) Does it cost to use SmartHawker?
-
-No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
-
-
-2) Does it cost to use SmartHawker?
-
-No, SmartHawker is entirely free to use, with no advertisement. This is a social project meant to help out people in need, no cost or profits will be incurred through the usage of this app.
+Apart from developing good business practices, the operating environment for hawkers has become increasingly challenging. Cost of ingredients and operating costs continue to rise amidst greater competition. If you compare the hawker industry now to what it was 50 years ago, most hawkers will agree that they now have to be more mindful about the way they manage their business, especially when it comes to cost accounting and management.
 
 
 </string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="What specific financial information does SmartHawker monitor?">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+
+SmartHawker monitors four key figures - i) Sales, ii) Food Cost (COGS), iii) Expenses (Non-Food) and iv) Profit. These are key figures relevant to most hawkers. This set of information is also required in the calculation of annual income tax as sole-proprietor, precedent partner or individual partner.
+
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="How does SmartHawker help with income tax filing?">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+
+Daily information will be recorded and compiled intoannual figures that can be used for either the 2-line or 4-line statement required to calculate and report annual business income, as specified by the Inland Revenue of Singapore (IRAS) for sole-proprietors, precedent partners or individual partners.
+
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="What other features are available on SmartHawker?">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+
+Apart from numerical records, SmartHawker also provides simple charts and spreadsheet reports for monitoring and decision-making purposes.
+
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Do I have to pay for SmartHawker?">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+
+No. SmartHawker is currently a free mobile application.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -206,23 +239,15 @@ No, SmartHawker is entirely free to use, with no advertisement. This is a social
                         <viewControllerLayoutGuide type="bottom" id="K97-0w-bH7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wwV-mT-1QG">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
-                                <rect key="frame" x="30" y="84" width="340" height="546"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="For all enquiries, please contact the SmartHawker team via email at help@smarthawker.com or phone at 96600644." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
+                                <rect key="frame" x="30" y="84" width="540" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES"/>
                                 </accessibility>
-                                <string key="text">Have queries about SmartHawker? Feel free to contact us!
-
-
-Cheng Chingyi
-Chua Weilun
-Gao Min Mell
-Goh Gui XIang Wendy
-Kay Zong Wei</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -320,6 +345,6 @@ Kay Zong Wei</string>
         <image name="loginArrow" width="84" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JkT-7C-FpY"/>
+        <segue reference="0rk-5X-jO9"/>
     </inferredMetricsTieBreakers>
 </document>
