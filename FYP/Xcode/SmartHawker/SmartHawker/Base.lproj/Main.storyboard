@@ -18,37 +18,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
-                                <rect key="frame" x="80" y="438" width="247" height="36"/>
-                                <color key="backgroundColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Login">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
+                                <rect key="frame" x="55" y="383" width="142" height="36"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Sign In">
                                     <color key="titleShadowColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="3E9-SL-rS2" kind="show" id="JkT-7C-FpY"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1t-mc-hP3">
-                                <rect key="frame" x="80" y="256" width="247" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iyw-4O-2qs">
-                                <rect key="frame" x="80" y="348" width="247" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehr-Tp-hsU">
-                                <rect key="frame" x="80" y="300" width="247" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SMARTHAWKER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCo-Gj-oDt">
-                                <rect key="frame" x="125" y="145" width="151" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="SMARTHAWKER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCo-Gj-oDt">
+                                <rect key="frame" x="125" y="325" width="151" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginArrow" translatesAutoresizingMaskIntoConstraints="NO" id="dIG-9s-LZu">
-                                <rect key="frame" x="179" y="366" width="43" height="44"/>
-                            </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rD5-Lz-iF3">
                                 <rect key="frame" x="0.0" y="0.0" width="419" height="44"/>
                                 <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,40 +42,49 @@
                                     <navigationItem id="ydc-cN-zsI"/>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tT-KC-Are">
-                                <rect key="frame" x="80" y="262" width="247" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-3i-8kB">
-                                <rect key="frame" x="80" y="309" width="247" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
-                                <rect key="frame" x="80" y="482" width="77" height="30"/>
-                                <color key="backgroundColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Resgister"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
+                                <rect key="frame" x="205" y="383" width="142" height="36"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Register"/>
                                 <connections>
                                     <segue destination="MTN-9h-fKw" kind="show" id="Q4y-X6-oRg"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="XBc-NK-IbE">
+                                <rect key="frame" x="142" y="197" width="116" height="120"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="SmartHawker © 2015" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zQ7-ef-Y5B">
+                                <rect key="frame" x="126" y="437" width="150" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="khC-MM-Dir"/>
+                                </constraints>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="D3h-hY-ACj" firstAttribute="leading" secondItem="Lf1-uj-GVK" secondAttribute="trailing" constant="3" id="GYm-2y-WsM"/>
+                            <constraint firstItem="XBc-NK-IbE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="122" id="TIK-XC-dIg"/>
+                            <constraint firstItem="eCo-Gj-oDt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="Zg1-cP-sSv"/>
+                            <constraint firstItem="XBc-NK-IbE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="at1-mg-l08"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XBc-NK-IbE" secondAttribute="trailing" constant="122" id="ebY-xM-y0f"/>
+                            <constraint firstItem="zQ7-ef-Y5B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="101" id="pzB-tW-Dad"/>
+                            <constraint firstItem="Lf1-uj-GVK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="27" id="zdu-YV-Vzs"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="650"/>
-                    <connections>
-                        <outlet property="emailTextField" destination="9tT-KC-Are" id="ata-fm-4ML"/>
-                        <outlet property="passwordTextField" destination="y1L-3i-8kB" id="uXL-S6-lOb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1667" y="947"/>
         </scene>
-        <!--Register a new account-->
+        <!--Register a New Account-->
         <scene sceneID="6Be-bI-BXW">
             <objects>
                 <viewController id="yyf-8u-gcf" sceneMemberID="viewController">
@@ -160,7 +155,7 @@
                             <constraint firstItem="L7k-3s-UUY" firstAttribute="leading" secondItem="Dwa-FV-siA" secondAttribute="leadingMargin" constant="50" id="yHB-u9-SIF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Register a new account" id="I4T-kv-70f"/>
+                    <navigationItem key="navigationItem" title="Register a New Account" id="rsY-OB-I8L"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0V-oG-1lO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,6 +219,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-0S-NeX">
                                 <rect key="frame" x="30" y="74" width="340" height="566"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES"/>
                                 </accessibility>
@@ -314,6 +310,7 @@ No. SmartHawker is currently a free mobile application.</string>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="0MO-0S-NeX" secondAttribute="trailing" constant="10" id="0b8-g6-s2x"/>
                             <constraint firstAttribute="bottomMargin" secondItem="0MO-0S-NeX" secondAttribute="bottom" constant="10" id="bQu-fO-iJ5"/>
@@ -452,6 +449,11 @@ No. SmartHawker is currently a free mobile application.</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="S60-ww-rX1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -465,9 +467,10 @@ No. SmartHawker is currently a free mobile application.</string>
     </scenes>
     <resources>
         <image name="defaultProfilePic" width="112" height="112"/>
-        <image name="loginArrow" width="84" height="84"/>
+        <image name="lightbulb" width="306" height="396"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JkT-7C-FpY"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
 </document>
