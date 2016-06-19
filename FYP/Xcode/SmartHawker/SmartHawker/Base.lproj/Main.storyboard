@@ -200,7 +200,7 @@
                         <viewControllerLayoutGuide type="bottom" id="vqE-xG-V1Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lkj-Ka-K39">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNL-Ox-GGy">
@@ -219,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nni-Ma-9fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2403" y="-1244"/>
+            <point key="canvasLocation" x="2403" y="-1177"/>
         </scene>
         <!--Reports-->
         <scene sceneID="tg6-rW-v2J">
@@ -260,22 +260,55 @@
                         <viewControllerLayoutGuide type="bottom" id="vup-It-BPC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UjE-MM-FhR">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBH-6B-X95">
-                                <rect key="frame" x="0.0" y="20" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Enquiry" id="4iB-YL-eMg"/>
+                                    <navigationItem title="Enquiry" id="4iB-YL-eMg">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="VIH-nK-Fwm">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="xvq-Kx-gUH" kind="show" id="o7u-l0-Br3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="questionBig" translatesAutoresizingMaskIntoConstraints="NO" id="4Wb-dR-vad">
+                                <rect key="frame" x="133" y="208" width="104" height="93"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ac-Gx-LhQ">
+                                <rect key="frame" x="116" y="362" width="138" height="32"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="FAQs">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vqf-2L-7Hg" kind="show" id="6I8-Rv-b07"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3z-g5-W4g">
+                                <rect key="frame" x="116" y="429" width="138" height="32"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Contact Helpdesk">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="O9n-jC-hEy" kind="show" id="cCW-US-iFG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Enquiry" image="question" id="13I-zE-Ejv">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1LM-bm-afE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,7 +333,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIs-CO-F2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="-913"/>
+            <point key="canvasLocation" x="1655" y="-1259"/>
         </scene>
         <!--Sync-->
         <scene sceneID="cHD-zM-71K">
@@ -332,90 +365,6 @@
             </objects>
             <point key="canvasLocation" x="1756" y="-179"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="kwl-W0-FnX">
-            <objects>
-                <viewController id="Ghw-PC-pnn" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8Qz-Et-ZJN"/>
-                        <viewControllerLayoutGuide type="bottom" id="b4S-Xv-ANQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Wz2-G2-tpM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ico-qL-USE">
-                                <rect key="frame" x="-8" y="0.0" width="610" height="44"/>
-                                <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <navigationItem title="Enquiry" id="7qu-R7-Pdk"/>
-                                </items>
-                            </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="question" translatesAutoresizingMaskIntoConstraints="NO" id="4Wb-dR-vad">
-                                <rect key="frame" x="241" y="201" width="113" height="93"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ac-Gx-LhQ">
-                                <rect key="frame" x="231" y="340" width="138" height="32"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="FAQs">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3z-g5-W4g">
-                                <rect key="frame" x="231" y="397" width="138" height="32"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Contact Helpdesk">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uIh-tS-V30" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3969" y="-542"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="7Wo-b1-xQG">
-            <objects>
-                <viewController id="XgR-Dj-UnH" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Fgs-Ar-liT"/>
-                        <viewControllerLayoutGuide type="bottom" id="OSp-xx-lop"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oyv-KA-a4q">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="iF5-Cw-IVt"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h0z-A0-26h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3746" y="1061"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="T5v-p9-bIp">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wbV-rV-kee" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="zyu-iE-Ky6" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="R8R-Z0-dp5"/>
-                        <viewControllerLayoutGuide type="bottom" id="R1v-fj-ym4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xbB-Ch-Hku">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="9e3-Nz-emP"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="4125" y="329"/>
-        </scene>
         <!--faqPage-->
         <scene sceneID="bpT-j9-o1U">
             <objects>
@@ -425,11 +374,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2Ef-NJ-Yua"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VdO-xh-K8B">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-0S-NeX">
-                                <rect key="frame" x="30" y="74" width="540" height="516"/>
+                                <rect key="frame" x="30" y="74" width="354" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -520,6 +469,20 @@ No. SmartHawker is currently a free mobile application.</string>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8PM-gP-ssN">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="FAQs" id="XDG-09-AC7">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bou-xS-I6b">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="V42-31-tZW" kind="show" id="BL1-nx-fst"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -533,15 +496,13 @@ No. SmartHawker is currently a free mobile application.</string>
                     <navigationItem key="navigationItem" title="Frequently Asked Questions" id="tWI-0N-6Bz">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="pwX-D8-Wg2">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="3E9-SL-rS2" kind="show" id="0rk-5X-jO9"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT7-ZU-Dh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4743" y="354"/>
+            <point key="canvasLocation" x="3069" y="-2687"/>
         </scene>
         <!--contactUsPage-->
         <scene sceneID="0fP-DE-K2i">
@@ -552,11 +513,11 @@ No. SmartHawker is currently a free mobile application.</string>
                         <viewControllerLayoutGuide type="bottom" id="K97-0w-bH7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wwV-mT-1QG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="For all enquiries, please contact the SmartHawker team via email at help@smarthawker.com or phone at 96600644." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
-                                <rect key="frame" x="30" y="84" width="540" height="496"/>
+                                <rect key="frame" x="30" y="76" width="354" height="632"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES"/>
@@ -564,14 +525,31 @@ No. SmartHawker is currently a free mobile application.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gJ-FH-WJ2">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Contact Helpdesk" id="m3s-gQ-gyH">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="p50-cf-JyO">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="V42-31-tZW" kind="show" id="iVs-6W-ZmO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="l8E-UB-UUC" firstAttribute="top" secondItem="ViB-me-oVs" secondAttribute="bottom" constant="20" id="Gix-zZ-7Kh"/>
+                            <constraint firstAttribute="trailing" secondItem="5gJ-FH-WJ2" secondAttribute="trailing" id="FLR-lX-Ny3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l8E-UB-UUC" secondAttribute="trailing" constant="10" id="NIC-hq-MVt"/>
                             <constraint firstItem="l8E-UB-UUC" firstAttribute="leading" secondItem="wwV-mT-1QG" secondAttribute="leadingMargin" constant="10" id="VEJ-4G-sTi"/>
+                            <constraint firstItem="5gJ-FH-WJ2" firstAttribute="top" secondItem="ViB-me-oVs" secondAttribute="bottom" id="Wa2-HA-rTy"/>
+                            <constraint firstItem="5gJ-FH-WJ2" firstAttribute="leading" secondItem="wwV-mT-1QG" secondAttribute="leading" id="dDw-0x-gaP"/>
+                            <constraint firstItem="l8E-UB-UUC" firstAttribute="top" secondItem="5gJ-FH-WJ2" secondAttribute="bottom" constant="12" id="fIR-eb-3rQ"/>
                             <constraint firstItem="l8E-UB-UUC" firstAttribute="top" secondItem="wwV-mT-1QG" secondAttribute="topMargin" constant="20" id="gWR-Fs-OQ6"/>
-                            <constraint firstItem="K97-0w-bH7" firstAttribute="top" secondItem="l8E-UB-UUC" secondAttribute="bottom" constant="20" id="siz-op-cCi"/>
+                            <constraint firstItem="K97-0w-bH7" firstAttribute="top" secondItem="l8E-UB-UUC" secondAttribute="bottom" constant="28" id="siz-op-cCi"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -582,36 +560,13 @@ No. SmartHawker is currently a free mobile application.</string>
                     <navigationItem key="navigationItem" title="Contact Us" id="pzf-0J-syQ">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="48b-Gi-Rgd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="3E9-SL-rS2" kind="show" id="wGp-qH-pEt"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oa6-Dm-AcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5555" y="1116"/>
-        </scene>
-        <!--welcomeToMain-->
-        <scene sceneID="qzx-ee-vhn">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3E9-SL-rS2" userLabel="welcomeToMain" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kdw-Cr-w64">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nz6-Us-S5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2413" y="989"/>
+            <point key="canvasLocation" x="3019" y="-1780"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wje-4I-vcc">
@@ -643,11 +598,13 @@ No. SmartHawker is currently a free mobile application.</string>
         <image name="lightbulb" width="306" height="396"/>
         <image name="overview" width="25" height="25"/>
         <image name="question" width="25" height="25"/>
+        <image name="questionBig" width="100" height="100"/>
         <image name="report" width="25" height="25"/>
         <image name="sync" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wGp-qH-pEt"/>
+        <segue reference="nJJ-v3-vh8"/>
+        <segue reference="o7u-l0-Br3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
