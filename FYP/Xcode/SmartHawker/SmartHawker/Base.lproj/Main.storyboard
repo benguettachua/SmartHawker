@@ -100,7 +100,65 @@
                     <view key="view" contentMode="scaleToFill" id="Dwa-FV-siA">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="defaultProfilePic" translatesAutoresizingMaskIntoConstraints="NO" id="kUb-Kz-dnX">
+                                <rect key="frame" x="100" y="78" width="200" height="200"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="L7k-3s-UUY">
+                                <rect key="frame" x="70" y="297" width="260" height="275"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gi-gY-Z1Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Reg No" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cx7-rW-eK0">
+                                        <rect key="frame" x="0.0" y="35" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-1N-XYl">
+                                        <rect key="frame" x="0.0" y="70" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mrZ-8U-sHx">
+                                        <rect key="frame" x="0.0" y="105" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ihf-eL-Iow">
+                                        <rect key="frame" x="0.0" y="140" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vwj-35-nMq">
+                                        <rect key="frame" x="0.0" y="175" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kOD-j9-66P">
+                                        <rect key="frame" x="0.0" y="210" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tM-CL-oqb">
+                                        <rect key="frame" x="0.0" y="245" width="260" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kUb-Kz-dnX" firstAttribute="top" secondItem="e1L-R7-deW" secondAttribute="bottom" constant="14" id="BH2-yQ-UJE"/>
+                            <constraint firstItem="L7k-3s-UUY" firstAttribute="top" secondItem="kUb-Kz-dnX" secondAttribute="bottom" constant="19" id="CIR-xA-HGV"/>
+                            <constraint firstItem="kUb-Kz-dnX" firstAttribute="leading" secondItem="Dwa-FV-siA" secondAttribute="leadingMargin" constant="80" id="HPb-FT-6Yn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kUb-Kz-dnX" secondAttribute="trailing" constant="80" id="cp1-Yt-fZl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L7k-3s-UUY" secondAttribute="trailing" constant="50" id="lO1-wT-NOs"/>
+                            <constraint firstItem="L7k-3s-UUY" firstAttribute="leading" secondItem="Dwa-FV-siA" secondAttribute="leadingMargin" constant="50" id="yHB-u9-SIF"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Register a new account" id="I4T-kv-70f"/>
                 </viewController>
@@ -406,6 +464,7 @@ No. SmartHawker is currently a free mobile application.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="defaultProfilePic" width="112" height="112"/>
         <image name="loginArrow" width="84" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
