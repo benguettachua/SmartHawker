@@ -19,14 +19,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
-                                <rect key="frame" x="181" y="444" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
+                                <rect key="frame" x="80" y="438" width="247" height="36"/>
+                                <color key="backgroundColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="3E9-SL-rS2" kind="show" id="JkT-7C-FpY"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1t-mc-hP3">
                                 <rect key="frame" x="80" y="256" width="247" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iyw-4O-2qs">
+                                <rect key="frame" x="80" y="348" width="247" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehr-Tp-hsU">
@@ -54,16 +61,52 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y1L-3i-8kB">
+                                <rect key="frame" x="80" y="309" width="247" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
+                                <rect key="frame" x="80" y="482" width="77" height="30"/>
+                                <color key="backgroundColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Resgister"/>
+                                <connections>
+                                    <segue destination="MTN-9h-fKw" kind="show" id="Q4y-X6-oRg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="650"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="9tT-KC-Are" id="ata-fm-4ML"/>
+                        <outlet property="passwordTextField" destination="y1L-3i-8kB" id="uXL-S6-lOb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1667" y="947"/>
+        </scene>
+        <!--Register a new account-->
+        <scene sceneID="6Be-bI-BXW">
+            <objects>
+                <viewController id="yyf-8u-gcf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e1L-R7-deW"/>
+                        <viewControllerLayoutGuide type="bottom" id="yUT-tr-ETB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dwa-FV-siA">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Register a new account" id="I4T-kv-70f"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0V-oG-1lO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2579" y="1740"/>
         </scene>
         <!--mainUI-->
         <scene sceneID="lVz-kk-4cu">
@@ -74,7 +117,7 @@
                         <viewControllerLayoutGuide type="bottom" id="G2M-MJ-o28"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UAq-lK-b2U">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOe-TY-mWn">
@@ -98,6 +141,9 @@
                     <navigationItem key="navigationItem" title="Main Page" id="djk-vS-zW9">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="m8T-Lz-VV6">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="By4-qd-AYf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -114,11 +160,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2Ef-NJ-Yua"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VdO-xh-K8B">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-0S-NeX">
-                                <rect key="frame" x="30" y="74" width="540" height="516"/>
+                                <rect key="frame" x="30" y="74" width="340" height="566"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES"/>
@@ -239,11 +285,11 @@ No. SmartHawker is currently a free mobile application.</string>
                         <viewControllerLayoutGuide type="bottom" id="K97-0w-bH7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wwV-mT-1QG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="For all enquiries, please contact the SmartHawker team via email at help@smarthawker.com or phone at 96600644." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
-                                <rect key="frame" x="30" y="84" width="540" height="496"/>
+                                <rect key="frame" x="30" y="84" width="340" height="546"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES"/>
@@ -277,7 +323,7 @@ No. SmartHawker is currently a free mobile application.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oa6-Dm-AcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4743" y="1116"/>
+            <point key="canvasLocation" x="5555" y="1116"/>
         </scene>
         <!--welcomeToMain-->
         <scene sceneID="qzx-ee-vhn">
@@ -338,13 +384,31 @@ No. SmartHawker is currently a free mobile application.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZD0-rz-O02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3627" y="1612"/>
+            <point key="canvasLocation" x="4439" y="1612"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wje-4I-vcc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MTN-9h-fKw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S60-ww-rX1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yyf-8u-gcf" kind="relationship" relationship="rootViewController" id="dGh-RS-p5g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wz9-lA-Ibi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1767" y="1740"/>
         </scene>
     </scenes>
     <resources>
         <image name="loginArrow" width="84" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0rk-5X-jO9"/>
+        <segue reference="JkT-7C-FpY"/>
     </inferredMetricsTieBreakers>
 </document>

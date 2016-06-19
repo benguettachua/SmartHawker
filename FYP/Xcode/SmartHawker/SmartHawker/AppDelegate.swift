@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         Parse.setApplicationId("p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht", clientKey: "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt")
         
         // Override point for customization after application launch.
@@ -43,7 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func showLoginScreen() {
+        
+    }
+    
 }
 
