@@ -25,24 +25,28 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     // This function currently saves to the DB without any validation.
     @IBAction func registerButton(sender: UIButton) {
-        let newUser = PFObject(className: "User")
+        let newUser = PFUser()
         newUser["businessName"] = businessName.text
-        newUser["businessRegNo"] = businessRegNo.text
+        newUser["businessNumber"] = businessRegNo.text
         newUser["businessAddress"] = businessAddress.text
-        newUser["username"] = username.text
-        newUser["email"] = email.text
+        newUser.username = username.text
+        newUser.email = email.text
         newUser["phoneNumber"] = phoneNumber.text
-        newUser["password"] = password.text
+        newUser.password = password.text
         newUser["adminPIN"] = adminPIN.text
+        newUser["isIOS"] = true
         
-        
-        newUser.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
+        if (password.isEqual(confirmPassword)){
+            newUser.signUpInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    // The object has been saved.
+                } else {
+                    // There was a problem, check error.description
+                }
             }
+        } else {
+            print("Incorrect Password")
         }
     }
     

@@ -32,7 +32,7 @@
                                     <color key="titleShadowColor" red="0.69289498559999996" green="1" blue="0.87240380819999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xvq-Kx-gUH" kind="show" id="t2X-Kp-IH3"/>
+                                    <segue destination="sbs-YZ-xBa" kind="show" id="5dX-tF-027"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMARTHAWKER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCo-Gj-oDt">
@@ -98,6 +98,63 @@
             </objects>
             <point key="canvasLocation" x="1667" y="1078"/>
         </scene>
+        <!--Login-->
+        <scene sceneID="ucU-8N-YMX">
+            <objects>
+                <viewController id="sbs-YZ-xBa" userLabel="Login" customClass="LoginViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zYe-Ku-eey"/>
+                        <viewControllerLayoutGuide type="bottom" id="VhY-Xd-9rb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4TL-pe-lDa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a1U-pK-WND">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Login" id="hf5-25-C7e">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="FyA-6L-z5x">
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="ycf-Pw-ULf"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpG-jZ-lO9">
+                                <rect key="frame" x="70" y="336" width="274" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Co-8Q-J5z">
+                                <rect key="frame" x="70" y="374" width="274" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-Gi-zcw">
+                                <rect key="frame" x="102" y="427" width="210" height="30"/>
+                                <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButton:" destination="sbs-YZ-xBa" eventType="touchUpInside" id="zqR-vU-dhW"/>
+                                    <segue destination="xvq-Kx-gUH" kind="show" id="aSk-H6-tBQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="passwordTextField" destination="4Co-8Q-J5z" id="9iL-kq-bIY"/>
+                        <outlet property="usernameOrEmailTextField" destination="rpG-jZ-lO9" id="n5w-5X-moc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ook-H2-eHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2206" y="247"/>
+        </scene>
         <!--Register a New Account-->
         <scene sceneID="6Be-bI-BXW">
             <objects>
@@ -156,12 +213,12 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kOD-j9-66P">
                                         <rect key="frame" x="0.0" y="210" width="274" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tM-CL-oqb">
                                         <rect key="frame" x="0.0" y="245" width="274" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Admin PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RtL-lA-9cu">
                                         <rect key="frame" x="0.0" y="280" width="274" height="30"/>
@@ -662,7 +719,8 @@ No. SmartHawker is currently a free mobile application.</string>
         <image name="sync" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t2X-Kp-IH3"/>
+        <segue reference="aSk-H6-tBQ"/>
+        <segue reference="ycf-Pw-ULf"/>
         <segue reference="iVs-6W-ZmO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
