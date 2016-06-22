@@ -22,6 +22,8 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     @IBOutlet weak var adminPIN: UITextField!
+    @IBOutlet weak var messageLabel: UILabel!
+    
     
     // This function currently saves to the DB without any validation.
     @IBAction func registerButton(sender: UIButton) {
@@ -36,17 +38,24 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         newUser["adminPIN"] = adminPIN.text
         newUser["isIOS"] = true
         
-        if (password.isEqual(confirmPassword)){
+        if (password.text!.isEqual(confirmPassword.text!)){
             newUser.signUpInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
                     // The object has been saved.
+                    self.messageLabel.text = "Congratulations, you have created a new Account!"
+                    self.messageLabel.hidden = false
                 } else {
                     // There was a problem, check error.description
+                    self.messageLabel.text = error?.localizedDescription
+                    self.messageLabel.hidden = false
                 }
             }
         } else {
-            print("Incorrect Password")
+            self.messageLabel.text = "Password and Confirm Password does not match, please try again."
+            //self.messageLabel.font = messageLabel.font.fontWithSize(10)
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
         }
     }
     

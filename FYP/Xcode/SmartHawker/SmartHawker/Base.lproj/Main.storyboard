@@ -117,7 +117,7 @@
                                     <navigationItem title="Login" id="hf5-25-C7e">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="FyA-6L-z5x">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="ycf-Pw-ULf"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="" id="ycf-Pw-ULf"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -139,16 +139,23 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="sbs-YZ-xBa" eventType="touchUpInside" id="zqR-vU-dhW"/>
-                                    <segue destination="xvq-Kx-gUH" kind="show" id="aSk-H6-tBQ"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Incorrect username or password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQa-6v-RiN">
+                                <rect key="frame" x="83" y="476" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="errorMessageLabel" destination="uQa-6v-RiN" id="Uu1-Hb-a0j"/>
                         <outlet property="passwordTextField" destination="4Co-8Q-J5z" id="9iL-kq-bIY"/>
                         <outlet property="usernameOrEmailTextField" destination="rpG-jZ-lO9" id="n5w-5X-moc"/>
+                        <segue destination="xvq-Kx-gUH" kind="show" identifier="loginSuccess" id="oY2-Nh-qZw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ook-H2-eHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -234,7 +241,7 @@
                                     <navigationItem title="Register a new account" id="yjc-Bx-ixa">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="ImI-SX-2EA">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="iZY-7W-stE"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="backToWelcome" id="iZY-7W-stE"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -248,6 +255,11 @@
                                     <action selector="registerButton:" destination="yyf-8u-gcf" eventType="touchUpInside" id="8ve-uD-w2i"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
+                                <rect key="frame" x="20" y="666" width="374" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -275,6 +287,7 @@
                         <outlet property="businessRegNo" destination="cx7-rW-eK0" id="j2L-0A-63r"/>
                         <outlet property="confirmPassword" destination="9tM-CL-oqb" id="Kte-C4-j6A"/>
                         <outlet property="email" destination="Ihf-eL-Iow" id="tTK-Wj-2sx"/>
+                        <outlet property="messageLabel" destination="NIe-7u-RcD" id="Z59-9S-mIL"/>
                         <outlet property="password" destination="kOD-j9-66P" id="keL-ii-w24"/>
                         <outlet property="phoneNumber" destination="Vwj-35-nMq" id="lCn-y2-urt"/>
                         <outlet property="profilePicture" destination="kUb-Kz-dnX" id="Aun-Yh-StJ"/>
@@ -446,10 +459,10 @@
             </objects>
             <point key="canvasLocation" x="2662" y="-573"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
             <objects>
-                <tabBarController id="xvq-Kx-gUH" sceneMemberID="viewController">
+                <tabBarController id="xvq-Kx-gUH" userLabel="mainUI" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QdD-xH-zlt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -719,9 +732,9 @@ No. SmartHawker is currently a free mobile application.</string>
         <image name="sync" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aSk-H6-tBQ"/>
-        <segue reference="ycf-Pw-ULf"/>
-        <segue reference="iVs-6W-ZmO"/>
+        <segue reference="oY2-Nh-qZw"/>
+        <segue reference="iZY-7W-stE"/>
+        <segue reference="nJJ-v3-vh8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
