@@ -35,8 +35,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         newUser.email = email.text
         newUser["phoneNumber"] = phoneNumber.text
         newUser.password = password.text
-        newUser["adminPIN"] = adminPIN.text
+        newUser["adminPin"] = adminPIN.text
         newUser["isIOS"] = true
+        
+        let imageData = UIImagePNGRepresentation(profilePicture.image!)
+        let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
+        newUser["profilePicture"] = imageFile
         
         if (password.text!.isEqual(confirmPassword.text!)){
             newUser.signUpInBackgroundWithBlock {
