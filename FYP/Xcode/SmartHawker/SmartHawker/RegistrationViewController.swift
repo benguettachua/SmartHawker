@@ -24,42 +24,130 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var adminPIN: UITextField!
     @IBOutlet weak var messageLabel: UILabel!
     
-    
-    // This function currently saves to the DB without any validation.
+    // Registers the user upon clicking this button.
     @IBAction func registerButton(sender: UIButton) {
-        let newUser = PFUser()
-        newUser["businessName"] = businessName.text
-        newUser["businessNumber"] = businessRegNo.text
-        newUser["businessAddress"] = businessAddress.text
-        newUser.username = username.text
-        newUser.email = email.text
-        newUser["phoneNumber"] = phoneNumber.text
-        newUser.password = password.text
-        newUser["adminPin"] = adminPIN.text
-        newUser["isIOS"] = true
         
-        let imageData = UIImagePNGRepresentation(profilePicture.image!)
-        let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
-        newUser["profilePicture"] = imageFile
-        
-        if (password.text!.isEqual(confirmPassword.text!)){
+        if (businessName.text!.isEqual("")) {
+            
+            // Validition: Ensures that Business Name field is not empty
+            self.messageLabel.text = "Please enter your Business Name."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (businessRegNo.text!.isEqual("")) {
+            
+            // Validition: Ensures that Business Registered Number field is not empty
+            self.messageLabel.text = "Please enter your Business Registered Number."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (businessAddress.text!.isEqual("")) {
+            
+            // Validition: Ensures that Business Address field is not empty
+            self.messageLabel.text = "Please enter your Business Address."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (username.text!.isEqual("")) {
+            
+            // Validition: Ensures that username field is not empty
+            self.messageLabel.text = "Please enter your username."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (email.text!.isEqual("")) {
+            
+            // Validition: Ensures that email field is not empty
+            self.messageLabel.text = "Please enter your email."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (phoneNumber.text!.isEqual("")) {
+            
+            // Validition: Ensures that phoneNumber is not empty
+            self.messageLabel.text = "Please enter your Phone Number."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (password.text!.isEqual("")) {
+            
+            // Validition: Ensures that password field is not empty
+            self.messageLabel.text = "Please enter your password."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (confirmPassword.text!.isEqual("")) {
+            
+            // Validition: Ensures that confirm password field is not empty
+            self.messageLabel.text = "Please enter confirm password."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (adminPIN.text!.isEqual("")) {
+            
+            // Validition: Ensures that adminPIN field is not empty
+            self.messageLabel.text = "Please enter your admin PIN."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else if (password.text!.isEqual(confirmPassword.text!) == false){
+            
+            // Validition: Ensures that password and confirm password is the same.
+            self.messageLabel.text = "Password and Confirm Password does not match, please try again."
+            self.messageLabel.textColor = UIColor.redColor()
+            self.messageLabel.hidden = false
+            
+        } else {
+            
+            // All validations passed, proceed to register user.
+            let newUser = PFUser()
+            newUser["businessName"] = businessName.text
+            newUser["businessNumber"] = businessRegNo.text
+            newUser["businessAddress"] = businessAddress.text
+            newUser.username = username.text
+            newUser.email = email.text
+            newUser["phoneNumber"] = phoneNumber.text
+            newUser.password = password.text
+            newUser["adminPin"] = adminPIN.text
+            newUser["isIOS"] = true
+            
+            let imageData = UIImagePNGRepresentation(profilePicture.image!)
+            let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
+            newUser["profilePicture"] = imageFile
             newUser.signUpInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
-                    // The object has been saved.
-                    self.messageLabel.text = "Congratulations, you have created a new Account!"
+                    
+                    // Register success, show success message.
+                    self.messageLabel.text = "Congratulations, you have created a new Account! Logging in, please wait..."
                     self.messageLabel.hidden = false
+                    
+                    // Login the user to main UI after 3 seconds delay.
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
+                        PFUser.logInWithUsernameInBackground(self.username.text!, password: self.password.text!) {
+                            (user: PFUser?, error: NSError?) -> Void in
+                            if user != nil {
+                                // Re-direct user to main UI if login success.
+                                self.performSegueWithIdentifier("registerSuccess", sender: self)
+                            } else {
+                                // There was a problem, show user the error message.
+                                self.messageLabel.text = error?.localizedDescription
+                                self.messageLabel.hidden = false
+
+                                
+                            }
+                        }
+                    }
+                    
                 } else {
-                    // There was a problem, check error.description
+                    // There was a problem, show user the error message.
                     self.messageLabel.text = error?.localizedDescription
+                    self.messageLabel.textColor = UIColor.redColor()
                     self.messageLabel.hidden = false
                 }
             }
-        } else {
-            self.messageLabel.text = "Password and Confirm Password does not match, please try again."
-            //self.messageLabel.font = messageLabel.font.fontWithSize(10)
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            
         }
     }
     

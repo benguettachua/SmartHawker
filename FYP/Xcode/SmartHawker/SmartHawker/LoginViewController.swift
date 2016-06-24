@@ -19,10 +19,16 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsernameInBackground(usernameOrEmailTextField.text!, password: passwordTextField.text!) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
+                
                 // Do stuff after successful login.
+                self.errorMessageLabel.text = "Logging in..."
+                self.errorMessageLabel.hidden = false
                 self.performSegueWithIdentifier("loginSuccess", sender: self)
             } else {
-                // The login failed. Check error to see why.
+                
+                // There was a problem, show user the error message.
+                self.errorMessageLabel.text = error?.localizedDescription
+                self.errorMessageLabel.textColor = UIColor.redColor()
                 self.errorMessageLabel.hidden = false
             }
         }
