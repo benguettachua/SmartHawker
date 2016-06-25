@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class AnalyticsViewController: UIViewController {
     
@@ -23,17 +24,16 @@ class AnalyticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let user = PFUser.currentUser()
         // Populate the top bar
+        businessName.text! = user!["businessName"] as! String
+        username.text! = user!["username"] as! String
         
         // Getting the profile picture
-        let user = PFUser.currentUser()
-        let profilePic = user!["profilePicture"] as! PFFile
-        profilePic.getDataInBackgroundWithBlock {
-            (imageData: NSData?, error: NSError?) -> Void in
-            if error == nil {
-                if let imageData = imageData {
-                    let image = UIImage(data:imageData)
-                    self.profilePicture = UIImageView(image: image)
+        if let userPicture = user!["profilePicture"] as? PFFile {
+            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                if (error == nil) {
+                    self.profilePicture.image = UIImage(data: imageData!)
                 }
             }
         }
