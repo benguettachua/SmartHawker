@@ -347,7 +347,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyD-NQ-8Tp">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyD-NQ-8Tp">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="VZI-Ji-HOd"/>
@@ -363,7 +363,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGm-iz-Phc" customClass="CalendarView" customModule="SmartHawker" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGm-iz-Phc" customClass="CalendarView" customModule="SmartHawker" customModuleProvider="target">
                                 <rect key="frame" x="16" y="155" width="382" height="402"/>
                                 <color key="backgroundColor" red="1" green="0.60002135616282071" blue="0.29639024807239078" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -371,13 +371,7 @@
                                     <constraint firstAttribute="width" constant="382" id="qtg-Ba-NFe"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioN-GH-l3Q">
-                                <rect key="frame" x="45" y="598" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncG-Gl-V8r">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncG-Gl-V8r">
                                 <rect key="frame" x="335" y="72" width="42" height="30"/>
                                 <state key="normal" title="Today">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -386,11 +380,23 @@
                                     <action selector="changeTodayDate:" destination="DLA-hC-hwl" eventType="touchDown" id="7iP-eB-OEw"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QHO-5l-9m9">
+                                <rect key="frame" x="16" y="565" width="240" height="89"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ncG-Gl-V8r" secondAttribute="trailing" constant="17" id="C5U-1D-SoH"/>
                             <constraint firstItem="vbc-ei-6BG" firstAttribute="top" secondItem="pGm-iz-Phc" secondAttribute="bottom" constant="130" id="Izs-Hv-yl7"/>
+                            <constraint firstItem="gyD-NQ-8Tp" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" id="Zc4-ed-uj2"/>
                             <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="b2N-m6-8OR" secondAttribute="bottom" constant="135" id="dYc-u3-gmb"/>
+                            <constraint firstItem="ncG-Gl-V8r" firstAttribute="top" secondItem="gyD-NQ-8Tp" secondAttribute="bottom" constant="8" id="ibO-ph-efl"/>
+                            <constraint firstAttribute="trailing" secondItem="gyD-NQ-8Tp" secondAttribute="trailing" id="uOV-CY-HEv"/>
+                            <constraint firstItem="gyD-NQ-8Tp" firstAttribute="centerX" secondItem="pGm-iz-Phc" secondAttribute="centerX" id="uS6-Ym-Xza"/>
+                            <constraint firstItem="gyD-NQ-8Tp" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="wXM-Hu-FJh"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Overview" image="overview" id="l3v-1S-7bV">
@@ -399,7 +405,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="calendarView" destination="pGm-iz-Phc" id="o3m-EE-Ivr"/>
-                        <outlet property="status" destination="ioN-GH-l3Q" id="xpT-Fb-1sn"/>
+                        <outlet property="status" destination="QHO-5l-9m9" id="GmR-73-VPr"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="vZj-ve-gXv"/>
                     </connections>
                 </viewController>

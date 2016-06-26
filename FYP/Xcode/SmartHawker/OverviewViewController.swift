@@ -14,7 +14,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     
     @IBOutlet weak var calendarView: CalendarView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var status: UITextView!
     
     override func viewDidLoad() {
         
