@@ -81,7 +81,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
         
         let width = self.view.frame.size.width - 16.0 * 2
         let height = width + 20.0
-        self.calendarView.frame = CGRect(x: 16.0, y: 90.0, width: width, height: height)
+        self.calendarView.frame = CGRect(x: 16.0, y: 120.0, width: width, height: height)
         
         
     }
@@ -96,7 +96,12 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
             let event : EKEvent = events[0]
             print("We have an event starting at \(event.startDate) : \(event.title)")
         }
-        self.status.text = "No information for this day yet."
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        let convertedDate = dateFormatter.stringFromDate(date)
+        
+        self.status.text = "No information for \(convertedDate)yet."
         
         
         
@@ -165,7 +170,28 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
-        PFUser.logOut()
-        self.performSegueWithIdentifier("logout", sender: self)
+        var refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { (action: UIAlertAction!) in
+            self.loggedOut()
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            
+            
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+
+
     }
+    
+        func loggedOut() {
+            PFUser.logOut()
+            print("lalala12345")
+            self.performSegueWithIdentifier("logout", sender: self)
+    }
+    
+    
 }

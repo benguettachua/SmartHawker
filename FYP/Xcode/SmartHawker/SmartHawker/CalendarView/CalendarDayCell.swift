@@ -52,7 +52,7 @@ class CalendarDayCell: UICollectionViewCell {
         didSet {
             
             if selected == true {
-                self.pBackgroundView.layer.borderWidth = 2.0
+                self.pBackgroundView.layer.borderWidth = 0.0
                 
             }
             else {
@@ -64,11 +64,11 @@ class CalendarDayCell: UICollectionViewCell {
     
      lazy var pBackgroundView : UIView = {
         
-        var vFrame = CGRectInset(self.frame, 3.0, 3.0)
+        var vFrame = CGRectInset(self.frame, 0.0, 0.0)
         
         let view = UIView(frame: vFrame)
         
-        view.layer.cornerRadius = 4.0
+        view.layer.cornerRadius = 3.0
         
         view.layer.borderColor = borderColor.CGColor
         view.layer.borderWidth = 0.0
