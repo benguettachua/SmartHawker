@@ -363,12 +363,25 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGm-iz-Phc" customClass="CalendarView" customModule="SmartHawker" customModuleProvider="target">
+                                <rect key="frame" x="16" y="155" width="382" height="402"/>
+                                <color key="backgroundColor" red="1" green="0.60002135616282071" blue="0.29639024807239078" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="402" id="nCq-fo-ooN"/>
+                                    <constraint firstAttribute="width" constant="382" id="qtg-Ba-NFe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="gyD-NQ-8Tp" secondAttribute="bottom" constant="91" id="0iW-T7-IsF"/>
+                            <constraint firstItem="pGm-iz-Phc" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leadingMargin" constant="-4" id="MTb-3b-rn3"/>
+                            <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="gyD-NQ-8Tp" secondAttribute="bottom" constant="91" id="gwD-Fx-vGn"/>
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="pFD-6w-fIk"/>
                             <constraint firstAttribute="trailing" secondItem="gyD-NQ-8Tp" secondAttribute="trailing" id="qxX-XO-0xC"/>
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="top" secondItem="b2N-m6-8OR" secondAttribute="bottom" constant="-20" id="tN5-P7-7Xk"/>
+                            <constraint firstItem="pGm-iz-Phc" firstAttribute="centerX" secondItem="gyD-NQ-8Tp" secondAttribute="centerX" id="utM-qg-yWR"/>
+                            <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="gyD-NQ-8Tp" secondAttribute="bottom" constant="91" id="vN7-GU-lTc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Overview" image="overview" id="l3v-1S-7bV">
@@ -376,6 +389,7 @@
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="calendarView" destination="pGm-iz-Phc" id="o3m-EE-Ivr"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="vZj-ve-gXv"/>
                     </connections>
                 </viewController>
@@ -910,9 +924,9 @@ No. SmartHawker is currently a free mobile application.</string>
         <image name="sync" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BL1-nx-fst"/>
-        <segue reference="o7u-l0-Br3"/>
-        <segue reference="Wmj-XA-ck7"/>
+        <segue reference="iVs-6W-ZmO"/>
+        <segue reference="yGY-of-f3a"/>
+        <segue reference="vZj-ve-gXv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
