@@ -14,7 +14,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     
     @IBOutlet weak var calendarView: CalendarView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var status: UILabel!
     
     override func viewDidLoad() {
         
@@ -35,7 +35,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
         self.loadEventsInCalendar()
         
         let dateComponents = NSDateComponents()
-        dateComponents.day = -5
+        dateComponents.day = 0
         
         let today = NSDate()
         
@@ -43,7 +43,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
             self.calendarView.selectDate(date)
             //self.calendarView.deselectDate(date)
         }
-        
+        self.calendarView.setDisplayDate(today, animated: true)
         
     }
     
@@ -52,14 +52,14 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     func startDate() -> NSDate? {
         
         let dateComponents = NSDateComponents()
-        dateComponents.month = -20
+        dateComponents.month = -15
         
         let today = NSDate()
         
-        let threeMonthsAgo = self.calendarView.calendar.dateByAddingComponents(dateComponents, toDate: today, options: NSCalendarOptions())
+        let fifteenMonthsFromNow = self.calendarView.calendar.dateByAddingComponents(dateComponents, toDate: today, options: NSCalendarOptions())
         
         
-        return threeMonthsAgo
+        return fifteenMonthsFromNow
     }
     
     func endDate() -> NSDate? {
@@ -81,7 +81,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
         
         let width = self.view.frame.size.width - 16.0 * 2
         let height = width + 20.0
-        self.calendarView.frame = CGRect(x: 16.0, y: 32.0, width: width, height: height)
+        self.calendarView.frame = CGRect(x: 16.0, y: 90.0, width: width, height: height)
         
         
     }
@@ -96,14 +96,13 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
             let event : EKEvent = events[0]
             print("We have an event starting at \(event.startDate) : \(event.title)")
         }
-        print("Did Select: \(date) with Events: \(events.count)")
+        self.status.text = "No information for this day yet."
         
         
         
     }
     
     func calendar(calendar: CalendarView, didScrollToMonth date : NSDate) {
-
     }
     
     // MARK : Events
@@ -153,6 +152,14 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     @IBAction func onValueChange(picker : UIDatePicker) {
         
         self.calendarView.setDisplayDate(picker.date, animated: true)
+        
+        
+    }
+    
+    @IBAction func changeTodayDate(sender: UIBarButtonItem) {
+        
+        let today = NSDate()
+        self.calendarView.setDisplayDate(today, animated: true)
         
         
     }
