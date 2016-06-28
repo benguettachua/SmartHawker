@@ -23,6 +23,6 @@ class ShareData {
     }
     
     
-    var dateSelected : String!
-    
+    var dateSelected: String!
+    var date: NSDate!
 }

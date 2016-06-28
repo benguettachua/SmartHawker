@@ -102,7 +102,9 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         let convertedDate = dateFormatter.stringFromDate(date)
         
+        // Sends the date selected to RecordViewController
         self.toShare.dateSelected = convertedDate
+        self.toShare.date = date
         self.performSegueWithIdentifier("toRecord", sender: self)
         
         
