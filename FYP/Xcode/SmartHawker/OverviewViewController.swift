@@ -15,6 +15,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     @IBOutlet weak var calendarView: CalendarView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var status: UITextView!
+    var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     
     override func viewDidLoad() {
         
@@ -101,6 +102,11 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         let convertedDate = dateFormatter.stringFromDate(date)
         
+        self.toShare.dateSelected = convertedDate
+        self.performSegueWithIdentifier("toRecord", sender: self)
+        
+        
+        
         self.status.text = "No information for \(convertedDate)yet."
         
         
@@ -170,7 +176,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
-        var refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { (action: UIAlertAction!) in
             self.loggedOut()

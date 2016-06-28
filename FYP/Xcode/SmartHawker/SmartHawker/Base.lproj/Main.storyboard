@@ -335,10 +335,71 @@
             </objects>
             <point key="canvasLocation" x="2206" y="1078"/>
         </scene>
-        <!--Overview-->
+        <!--Record-->
+        <scene sceneID="FbI-2E-RFy">
+            <objects>
+                <viewController id="2IV-Dn-hU7" userLabel="Record" customClass="RecordViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dv3-3Z-T7v"/>
+                        <viewControllerLayoutGuide type="bottom" id="8MP-Bi-nys"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6GC-di-fTE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bw9-ZM-6Ul">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="uMU-nt-zVo"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Record" id="D1W-wd-yju">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="29F-I3-7f1">
+                                            <connections>
+                                                <segue destination="DLA-hC-hwl" kind="show" id="AUM-HI-wEI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Date selected will show here&gt;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-7V-B81">
+                                <rect key="frame" x="20" y="79" width="374" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lOd-7V-B81" firstAttribute="centerX" secondItem="Bw9-ZM-6Ul" secondAttribute="centerX" id="BFY-tJ-R2F"/>
+                            <constraint firstAttribute="trailing" secondItem="Bw9-ZM-6Ul" secondAttribute="trailing" id="Dng-Wf-Nob"/>
+                            <constraint firstItem="8MP-Bi-nys" firstAttribute="top" secondItem="lOd-7V-B81" secondAttribute="bottom" constant="625" id="LiG-Y4-USp"/>
+                            <constraint firstItem="Bw9-ZM-6Ul" firstAttribute="top" secondItem="6GC-di-fTE" secondAttribute="top" id="brC-qu-fOR"/>
+                            <constraint firstItem="lOd-7V-B81" firstAttribute="top" secondItem="Bw9-ZM-6Ul" secondAttribute="bottom" constant="15" id="cwH-HF-Oqa"/>
+                            <constraint firstItem="Bw9-ZM-6Ul" firstAttribute="leading" secondItem="6GC-di-fTE" secondAttribute="leading" id="khT-Sn-Uea"/>
+                            <constraint firstItem="8MP-Bi-nys" firstAttribute="top" secondItem="lOd-7V-B81" secondAttribute="bottom" constant="625" id="qO1-db-URs"/>
+                            <constraint firstItem="lOd-7V-B81" firstAttribute="leading" secondItem="6GC-di-fTE" secondAttribute="leadingMargin" id="zQ0-3K-wbJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="LiG-Y4-USp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="dateSelectedLabel" destination="lOd-7V-B81" id="b0I-qL-NGU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EaX-h2-TMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="656" y="-1430"/>
+        </scene>
+        <!--Main-->
         <scene sceneID="mOw-UE-ogO">
             <objects>
-                <viewController id="DLA-hC-hwl" customClass="OverviewViewcontroller" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DLA-hC-hwl" userLabel="Main" customClass="OverviewViewcontroller" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b2N-m6-8OR"/>
                         <viewControllerLayoutGuide type="bottom" id="vbc-ei-6BG"/>
@@ -354,7 +415,7 @@
                                 </constraints>
                                 <color key="barTintColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Overview" id="qLk-0K-6KE">
+                                    <navigationItem title="Main" id="qLk-0K-6KE">
                                         <barButtonItem key="rightBarButtonItem" title="Logout" id="3Jd-lZ-be4">
                                             <connections>
                                                 <action selector="Logout:" destination="DLA-hC-hwl" id="4VL-q0-fPs"/>
@@ -390,7 +451,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ncG-Gl-V8r" secondAttribute="trailing" constant="17" id="C5U-1D-SoH"/>
-                            <constraint firstItem="vbc-ei-6BG" firstAttribute="top" secondItem="pGm-iz-Phc" secondAttribute="bottom" constant="130" id="Izs-Hv-yl7"/>
+                            <constraint firstItem="vbc-ei-6BG" firstAttribute="top" secondItem="pGm-iz-Phc" secondAttribute="bottom" constant="179" id="Izs-Hv-yl7"/>
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" id="Zc4-ed-uj2"/>
                             <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="b2N-m6-8OR" secondAttribute="bottom" constant="135" id="dYc-u3-gmb"/>
                             <constraint firstItem="ncG-Gl-V8r" firstAttribute="top" secondItem="gyD-NQ-8Tp" secondAttribute="bottom" constant="8" id="ibO-ph-efl"/>
@@ -398,8 +459,13 @@
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="centerX" secondItem="pGm-iz-Phc" secondAttribute="centerX" id="uS6-Ym-Xza"/>
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="wXM-Hu-FJh"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dYc-u3-gmb"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Overview" image="overview" id="l3v-1S-7bV">
+                    <tabBarItem key="tabBarItem" title="Main" image="overview" id="l3v-1S-7bV" userLabel="Main">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -407,6 +473,7 @@
                         <outlet property="calendarView" destination="pGm-iz-Phc" id="o3m-EE-Ivr"/>
                         <outlet property="status" destination="QHO-5l-9m9" id="GmR-73-VPr"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="vZj-ve-gXv"/>
+                        <segue destination="2IV-Dn-hU7" kind="show" identifier="toRecord" id="zip-MG-ivf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRP-m8-3Zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2030,9 +2097,10 @@ Cg
         <image name="sync" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iVs-6W-ZmO"/>
-        <segue reference="Dz4-eP-ptE"/>
         <segue reference="o7u-l0-Br3"/>
+        <segue reference="nJJ-v3-vh8"/>
+        <segue reference="AUM-HI-wEI"/>
+        <segue reference="vZj-ve-gXv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
