@@ -11,6 +11,11 @@ import UIKit
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    
+    let picker = UIImagePickerController()   //our controller.
+    //Memory will be conserved a bit if you place this in the actions.
+    // I did this to make code a bit more streamlined
+    
     // MARK: Properties
     @IBOutlet var profilePicture: UIImageView!
     @IBOutlet var businessName: UITextField!
@@ -154,7 +159,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        picker.delegate = self
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -184,15 +189,60 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     // MARK: Actions
     @IBAction func selectNewImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
+        let refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.photoLibrary()
+            
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            
+            
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func photoLibrary(){
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .Camera
-        
+
+        picker.sourceType = .PhotoLibrary
+
         // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
+        picker.delegate = self
         
-        presentViewController(imagePickerController, animated: true, completion: nil)
+        presentViewController(picker, animated: true, completion: nil)
+        
     }
+    
+    //MARK: - Delegates
+    //What to do when the picker returns with a photo
+    func imagePickerController(
+        picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        profilePicture.contentMode = .ScaleAspectFit //3
+        profilePicture.image = chosenImage //4
+        dismissViewControllerAnimated(true, completion: nil) //5
+    }
+    //What to do if the image picker cancels.
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true,
+                                      completion: nil)
+    }
+    
+    
     
 }
