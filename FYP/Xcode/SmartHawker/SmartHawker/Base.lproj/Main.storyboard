@@ -134,14 +134,6 @@
                                     <action selector="loginButton:" destination="sbs-YZ-xBa" eventType="touchUpInside" id="zqR-vU-dhW"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username or password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQa-6v-RiN">
-                                <rect key="frame" x="83" y="476" width="248" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="2WL-oC-7RQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1U-pK-WND">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                 <constraints>
@@ -158,6 +150,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username or password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQa-6v-RiN">
+                                <rect key="frame" x="83" y="307" width="248" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2WL-oC-7RQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -167,7 +167,7 @@
                             <constraint firstItem="4Co-8Q-J5z" firstAttribute="leading" secondItem="rpG-jZ-lO9" secondAttribute="leading" id="Hdp-sc-ZbV"/>
                             <constraint firstAttribute="trailing" secondItem="a1U-pK-WND" secondAttribute="trailing" id="KMS-hi-vaF"/>
                             <constraint firstItem="uQa-6v-RiN" firstAttribute="leading" secondItem="4TL-pe-lDa" secondAttribute="leadingMargin" constant="63" id="QN6-e8-4fw"/>
-                            <constraint firstItem="uQa-6v-RiN" firstAttribute="top" secondItem="VLc-Gi-zcw" secondAttribute="bottom" constant="19" id="TWz-d1-yyk"/>
+                            <constraint firstItem="uQa-6v-RiN" firstAttribute="top" secondItem="VLc-Gi-zcw" secondAttribute="bottom" constant="-150" id="TWz-d1-yyk"/>
                             <constraint firstItem="4Co-8Q-J5z" firstAttribute="leading" secondItem="4TL-pe-lDa" secondAttribute="leadingMargin" constant="50" id="cF4-F7-zIX"/>
                             <constraint firstItem="VLc-Gi-zcw" firstAttribute="top" secondItem="4Co-8Q-J5z" secondAttribute="bottom" constant="23" id="fTm-sY-JuF"/>
                             <constraint firstItem="a1U-pK-WND" firstAttribute="leading" secondItem="4TL-pe-lDa" secondAttribute="leading" id="iVb-QG-v2Q"/>
@@ -2233,10 +2233,10 @@ Cg
         <image name="sync" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AUM-HI-wEI"/>
-        <segue reference="yGY-of-f3a"/>
-        <segue reference="iZY-7W-stE"/>
+        <segue reference="ycf-Pw-ULf"/>
+        <segue reference="oY2-Nh-qZw"/>
         <segue reference="nJJ-v3-vh8"/>
+        <segue reference="AUM-HI-wEI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
