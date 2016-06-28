@@ -12,18 +12,19 @@ import UIKit
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     // MARK: Properties
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var businessName: UITextField!
-    @IBOutlet weak var businessRegNo: UITextField!
-    @IBOutlet weak var businessAddress: UITextField!
-    @IBOutlet weak var username: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var phoneNumber: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var confirmPassword: UITextField!
-    @IBOutlet weak var adminPIN: UITextField!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet var profilePicture: UIImageView!
+    @IBOutlet var businessName: UITextField!
+    @IBOutlet var businessRegNo: UITextField!
+    @IBOutlet var businessAddress: UITextField!
+    @IBOutlet var username: UITextField!
+    @IBOutlet var email: UITextField!
+    @IBOutlet var phoneNumber: UITextField!
+    @IBOutlet var password: UITextField!
+    @IBOutlet var confirmPassword: UITextField!
+    @IBOutlet var adminPIN: UITextField!
+    @IBOutlet var messageLabel: UILabel!
     
+    @IBOutlet var ScrollView: UIScrollView!
     // Registers the user upon clicking this button.
     @IBAction func registerButton(sender: UIButton) {
         
@@ -134,7 +135,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                                 // There was a problem, show user the error message.
                                 self.messageLabel.text = error?.localizedDescription
                                 self.messageLabel.hidden = false
-
+                                
                                 
                             }
                         }
@@ -154,6 +155,31 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        ScrollView.setContentOffset(CGPointMake(0, 75), animated: true)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        
+        profilePicture.resignFirstResponder()
+        businessName.resignFirstResponder()
+        businessRegNo.resignFirstResponder()
+        businessAddress.resignFirstResponder()
+        username.resignFirstResponder()
+        email.resignFirstResponder()
+        phoneNumber.resignFirstResponder()
+        password.resignFirstResponder()
+        confirmPassword.resignFirstResponder()
+        adminPIN.resignFirstResponder()
+        messageLabel.resignFirstResponder()
+        return true
     }
     
     // MARK: Actions
