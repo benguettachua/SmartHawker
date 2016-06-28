@@ -187,12 +187,50 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         return true
     }
     
+    
+    // An alert method using the new iOS 8 UIAlertController instead of the deprecated UIAlertview
+    // make the alert with the preferredstyle .Alert, make necessary actions, and then add the actions.
+    // add to the handler a closure if you want the action to do anything.
+    
+    func noCamera(){
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "Sorry, this device has no camera",
+            preferredStyle: .Alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.Default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
+    
+    //take a picture, check if we have a camera first.
+    func shootPhoto() {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker,
+                                  animated: true,
+                                  completion: nil)
+        } else {
+            noCamera()
+        }
+    }
+    
+    
+    
     // MARK: Actions
     @IBAction func selectNewImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         let refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
-            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            self.shootPhoto()
         }))
         refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
             
