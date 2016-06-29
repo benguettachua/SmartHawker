@@ -163,10 +163,14 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        ScrollView.setContentOffset(CGPointMake(0, 75), animated: true)
+        ScrollView.setContentOffset(CGPointMake(0, 175), animated: true)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    }
+    
+    func textFieldDidEndEditing() {
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
     
@@ -230,10 +234,11 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         let refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+            self.textFieldDidEndEditing()
             self.shootPhoto()
         }))
         refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
-            
+            self.textFieldDidEndEditing()
             self.photoLibrary()
             
             
