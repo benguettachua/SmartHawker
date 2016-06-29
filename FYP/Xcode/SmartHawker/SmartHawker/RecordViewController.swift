@@ -15,6 +15,10 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var sales: UILabel!
     @IBOutlet weak var COGS: UILabel!
     @IBOutlet weak var expenses: UILabel!
+    @IBOutlet weak var salesTextField: UITextField!
+    @IBOutlet weak var COGSTextField: UITextField!
+    @IBOutlet weak var expensesTextField: UITextField!
+    @IBOutlet weak var recordSuccessLabel: UILabel!
     
     @IBOutlet weak var dateSelectedLabel: UILabel!
     var shared = ShareData.sharedInstance // This is the date selected from Main Calendar.
@@ -35,29 +39,139 @@ class RecordViewController: UIViewController {
         let user = PFUser.currentUser()
         
         // Query to extract sales
-        var query = PFQuery(className: "Record")
+        var totalSales = 0
+        let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.whereKey("type", equalTo: 0)
         query.whereKey("date", equalTo: dateString)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // Query Success
-                print("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                if let objects = objects {
-                    var totalSales = 0
-                    for object in objects {
-                        totalSales += object["amount"] as! Int
-                    }
-                    self.sales.text = String(totalSales)
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+        do {
+            let salesArray = try query.findObjects()
+            for sales in salesArray {
+                totalSales += sales["amount"] as! Int
+            }
+            self.sales.text = String(totalSales)
+        } catch {
+            // Do nothing since should not get error, to add on to handle error in future
+        }
+       
+        
+        // Query to extract COGS
+        var totalCOGS = 0
+        let query2 = PFQuery(className: "Record")
+        query2.whereKey("user", equalTo: user!)
+        query2.whereKey("type", equalTo: 1)
+        query2.whereKey("date", equalTo: dateString)
+        do {
+            let COGSArray = try query2.findObjects()
+            for COGS in COGSArray {
+                totalCOGS += COGS["amount"] as! Int
+            }
+            self.COGS.text = String(totalCOGS)
+        } catch {
+            // Do nothing since should not get error, to add on to handle error in future
+        }
+        
+        // Query to extract Expenses
+        var totalExpenses = 0
+        let query3 = PFQuery(className: "Record")
+        query3.whereKey("user", equalTo: user!)
+        query3.whereKey("type", equalTo: 2)
+        query3.whereKey("date", equalTo: dateString)
+        do {
+            let expensesArray = try query3.findObjects()
+            for expenses in expensesArray {
+                totalExpenses += expenses["amount"] as! Int
+            }
+            self.expenses.text = String(totalExpenses)
+        } catch {
+            // Do nothing since should not get error, to add on to handle error in future
+        }
+        
+        // Calculate total profit.
+        let totalProfit = totalSales - totalCOGS - totalExpenses
+        self.profit.text = String(totalProfit)
+        
+    }
+    
+    // Mark: Action
+    @IBAction func SubmitRecord(sender: UIButton) {
+        let salesToRecord = Int(salesTextField.text!)
+        let COGSToRecord = Int(COGSTextField.text!)
+        let expensesToRecord = Int(expensesTextField.text!)
+        var didRecord = false
+        
+        // Get the date to save in DB.
+        let date = self.shared.date
+        let dayTimePeriodFormatter = NSDateFormatter()
+        dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dayTimePeriodFormatter.stringFromDate(date)
+        
+        let toRecord = PFObject(className: "Record")
+        let toRecord2 = PFObject(className: "Record")
+        let toRecord3 = PFObject(className: "Record")
+        
+        // Record Sales, if there is any value entered.
+        if (salesToRecord != nil) {
+            toRecord["date"] = dateString
+            toRecord["amount"] = salesToRecord
+            toRecord["user"] = PFUser.currentUser()
+            toRecord["type"] = 0
+            toRecord["subuser"] = PFUser.currentUser()?.username
+            do {
+                try toRecord.save()
+                didRecord = true
+            } catch {
+                // Currently does nothing to any exception caught. Shouldn't have any exception too.
             }
         }
         
+        // Record COGS, if there is any value entered.
+        if (COGSToRecord != nil) {
+            toRecord2["date"] = dateString
+            toRecord2["amount"] = COGSToRecord
+            toRecord2["user"] = PFUser.currentUser()
+            toRecord2["type"] = 1
+            toRecord2["subuser"] = PFUser.currentUser()?.username
+            do {
+                try toRecord2.save()
+                didRecord = true
+            } catch {
+                // Currently does nothing to any exception caught. Shouldn't have any exception too.
+            }
+
+        }
+        
+        // Record Expenses, if there is any value entered.
+        if (COGSToRecord != nil) {
+            toRecord3["date"] = dateString
+            toRecord3["amount"] = expensesToRecord
+            toRecord3["user"] = PFUser.currentUser()
+            toRecord3["type"] = 2
+            toRecord3["subuser"] = PFUser.currentUser()?.username
+            do {
+                try toRecord3.save()
+                didRecord = true
+            } catch {
+                // Currently does nothing to any exception caught. Shouldn't have any exception too.
+            }
+            
+        }
+        
+        // If there is any new record, shows success message, then refresh the view.
+        if (didRecord == true) {
+            recordSuccessLabel.hidden = false
+            // Reload the view after 2 seconds, updating the records.
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.salesTextField.text = ""
+                self.COGSTextField.text = ""
+                self.expensesTextField.text = ""
+                self.recordSuccessLabel.hidden = true
+                self.viewDidLoad()
+            }
+            
+        }
+
     }
+    
 }
