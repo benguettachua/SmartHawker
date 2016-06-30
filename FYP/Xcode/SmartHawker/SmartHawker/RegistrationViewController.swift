@@ -160,10 +160,22 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        self.view.addSubview(ScrollView)
+        
+
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.ScrollView.contentSize = CGSize(width:self.view.frame.width, height: 800)
+        
+        
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         ScrollView.setContentOffset(CGPointMake(0, 175), animated: true)
+        ScrollView.scrollEnabled = true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
