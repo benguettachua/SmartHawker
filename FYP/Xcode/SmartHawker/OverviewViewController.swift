@@ -67,7 +67,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
         
         let dateComponents = NSDateComponents()
         
-        dateComponents.year = 2;
+        dateComponents.year = 1;
         let today = NSDate()
         
         let twoYearsFromNow = self.calendarView.calendar.dateByAddingComponents(dateComponents, toDate: today, options: NSCalendarOptions())
@@ -161,13 +161,7 @@ class OverviewViewcontroller: UIViewController, CalendarViewDataSource, Calendar
     
     
     // MARK : Events
-    
-    @IBAction func onValueChange(picker : UIDatePicker) {
-        
-        self.calendarView.setDisplayDate(picker.date, animated: true)
-        
-        
-    }
+
     
     @IBAction func changeTodayDate(sender: UIBarButtonItem) {
         
