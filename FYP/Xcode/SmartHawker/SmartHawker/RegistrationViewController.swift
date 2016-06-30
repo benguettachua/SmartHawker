@@ -161,14 +161,14 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         super.viewDidLoad()
         picker.delegate = self
         self.view.addSubview(ScrollView)
-        
+        ScrollView.scrollEnabled = false
 
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.ScrollView.contentSize = CGSize(width:self.view.frame.width, height: 800)
+        self.ScrollView.contentSize = CGSize(width:self.view.frame.width, height: 900)
         
         
     }
@@ -180,10 +180,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     func textFieldDidEndEditing(textField: UITextField) {
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        ScrollView.scrollEnabled = false
     }
     
     func textFieldDidEndEditing() {
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        ScrollView.scrollEnabled = false
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
