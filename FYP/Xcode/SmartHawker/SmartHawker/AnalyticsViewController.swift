@@ -24,6 +24,7 @@ class AnalyticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Load the Top Bar
         let user = PFUser.currentUser()
         // Populate the top bar
         businessName.text! = user!["businessName"] as! String
