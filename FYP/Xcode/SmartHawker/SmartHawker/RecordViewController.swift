@@ -93,6 +93,32 @@ class RecordViewController: UIViewController {
         
     }
     
+    // MARK: Table
+    /*
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // User
+        let user = PFUser.currentUser()
+        
+        // Date
+        let date = self.shared.date
+        let dayTimePeriodFormatter = NSDateFormatter()
+        dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dayTimePeriodFormatter.stringFromDate(date)
+        
+        // Query
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("date", equalTo: dateString)
+        do {
+            let records = try query.findObjects()
+            return records.count
+        } catch {
+            // Do nothing since should not get error, to add on the handle error in future
+            return 0
+        }
+    }
+ */
+    
     // Mark: Action
     @IBAction func SubmitRecord(sender: UIButton) {
         let salesToRecord = Int(salesTextField.text!)
@@ -117,12 +143,8 @@ class RecordViewController: UIViewController {
             toRecord["user"] = PFUser.currentUser()
             toRecord["type"] = 0
             toRecord["subuser"] = PFUser.currentUser()?.username
-            do {
-                try toRecord.save()
-                didRecord = true
-            } catch {
-                // Currently does nothing to any exception caught. Shouldn't have any exception too.
-            }
+            toRecord.saveEventually()
+            didRecord = true
         }
         
         // Record COGS, if there is any value entered.
@@ -132,13 +154,8 @@ class RecordViewController: UIViewController {
             toRecord2["user"] = PFUser.currentUser()
             toRecord2["type"] = 1
             toRecord2["subuser"] = PFUser.currentUser()?.username
-            do {
-                try toRecord2.save()
-                didRecord = true
-            } catch {
-                // Currently does nothing to any exception caught. Shouldn't have any exception too.
-            }
-
+            toRecord2.saveEventually()
+            didRecord = true
         }
         
         // Record Expenses, if there is any value entered.
@@ -148,13 +165,8 @@ class RecordViewController: UIViewController {
             toRecord3["user"] = PFUser.currentUser()
             toRecord3["type"] = 2
             toRecord3["subuser"] = PFUser.currentUser()?.username
-            do {
-                try toRecord3.save()
-                didRecord = true
-            } catch {
-                // Currently does nothing to any exception caught. Shouldn't have any exception too.
-            }
-            
+            toRecord3.saveEventually()
+            didRecord = true
         }
         
         // If there is any new record, shows success message, then refresh the view.
