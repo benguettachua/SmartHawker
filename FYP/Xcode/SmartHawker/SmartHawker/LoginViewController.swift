@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameOrEmailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    var toShare = ShareData.sharedInstance
+    
     @IBAction func loginButton(sender: UIButton) {
         
         PFUser.logInWithUsernameInBackground(usernameOrEmailTextField.text!, password: passwordTextField.text!) {
@@ -21,6 +23,7 @@ class LoginViewController: UIViewController {
             if user != nil {
                 
                 // Do stuff after successful login.
+                self.toShare.password = self.passwordTextField.text!
                 self.errorMessageLabel.text = "Logging in..."
                 self.errorMessageLabel.hidden = false
                 self.performSegueWithIdentifier("loginSuccess", sender: self)
