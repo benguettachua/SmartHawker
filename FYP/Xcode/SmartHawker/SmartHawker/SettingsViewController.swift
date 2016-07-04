@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
     var updated = false
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         email.text! = user!["email"] as! String
         phoneNo.text! = user!["phoneNumber"] as! String
         
-
+        
         
     }
     
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.user?.saveInBackground()
                 let alert = UIAlertController(title: "Email", message: "Email is now updated to \(newEmail1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-
+                
                 self.presentViewController(alert, animated: true, completion: nil)
                 self.viewDidLoad()
             }else{
@@ -371,21 +371,39 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     // MARK: Actions
+    
+    
     @IBAction func selectNewImageFromPhotoLibrary(sender: UIButton) {
-        let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
-
-        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
-
-            self.shootPhoto()
-        }))
-        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
-
-                self.photoLibrary()
-
+        
+        selectNewImage({ (success) -> Void in
+            
+            // When loading completes,control flow goes here.
+            if success {
+                print("lalala")
+                
                 let alert = UIAlertController(title: "Error", message: "Chosen picture exceed size limit.", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
                 
                 self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                // loadRecordFail fail
+                print("Load fail")
+            }
+        })
+        
+    }
+    
+    func selectNewImage(completionHandler: CompletionHandler){
+        let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.shootPhoto()
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.photoLibrary()
+            
             
         }))
         
@@ -397,7 +415,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }))
         
         presentViewController(refreshAlert, animated: true, completion: nil)
-        
+        if updated==true{
+            
+            completionHandler(success: true)
+            updated = false
+        }
     }
     
     func photoLibrary(){
@@ -410,6 +432,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         picker.delegate = self
         
         presentViewController(picker, animated: true, completion: nil)
+        
+        
     }
     
     //MARK: - Delegates
@@ -419,19 +443,31 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-
-            
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        profilePicture.contentMode = .ScaleAspectFit //3
-        profilePicture.image = chosenImage //4
-        let imageData = UIImagePNGRepresentation(profilePicture.image!)
-        let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
         
-        self.user!["profilePicture"] = imageFile
-        self.updated = true
-        self.user?.saveInBackground()
-
-        self.viewDidLoad()
+        
+        
+        
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        let imageData = UIImagePNGRepresentation(chosenImage)
+        print("Size of Image: \(imageData!.length) bytes")
+        print(imageData!.length < 9999999)
+        
+        if imageData!.length < 9999999{
+            let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
+            
+            
+            
+            profilePicture.contentMode = .ScaleAspectFit //3
+            profilePicture.image = chosenImage //4
+            
+            updated = true
+            self.user!["profilePicture"] = imageFile
+            self.updated = true
+            self.user?.saveInBackground()
+        }
+        
+        
         dismissViewControllerAnimated(true, completion: nil) //5
     }
     //What to do if the image picker cancels.
@@ -443,5 +479,5 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     //
-
+    
 }
