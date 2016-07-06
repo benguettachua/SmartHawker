@@ -24,6 +24,6 @@ class ShareData {
     
     
     var dateSelected: String!
-    var date: NSDate!
+    var dateString: String!
     var password: String!
 }

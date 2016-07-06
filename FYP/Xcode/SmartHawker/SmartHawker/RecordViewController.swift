@@ -27,14 +27,13 @@ class RecordViewController: UIViewController {
         super.viewDidLoad()
         
         // Populate the date selected
-        let dateSelected = self.shared.dateSelected
-        dateSelectedLabel.text = dateSelected
-        
-        let date = self.shared.date
+        let dateString = self.shared.dateString
+        dateSelectedLabel.text = dateString
+        print(dateString)
         
         let dayTimePeriodFormatter = NSDateFormatter()
         dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
-        let dateString = dayTimePeriodFormatter.stringFromDate(date)
+        //let dateString = dayTimePeriodFormatter.stringFromDate(date)
         
         let user = PFUser.currentUser()
         
@@ -118,7 +117,7 @@ class RecordViewController: UIViewController {
         }
     }
  */
-    
+    /*
     // Mark: Action
     @IBAction func SubmitRecord(sender: UIButton) {
         let salesToRecord = Int(salesTextField.text!)
@@ -127,7 +126,7 @@ class RecordViewController: UIViewController {
         var didRecord = false
         
         // Get the date to save in DB.
-        let date = self.shared.date
+        //let date = self.shared.date
         let dayTimePeriodFormatter = NSDateFormatter()
         dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
         let dateString = dayTimePeriodFormatter.stringFromDate(date)
@@ -185,5 +184,5 @@ class RecordViewController: UIViewController {
         }
 
     }
-    
+    */
 }
