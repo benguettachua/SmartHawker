@@ -1,0 +1,1182 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0586CC4A8EB11BAB39A4F461A5AECE1D /* MomentFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A92ECA3029734DE34CD0877D357F12 /* MomentFromNow.swift */; };
+		134B250E1864D43B166253EDACB84BC7 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77467BC2BFAC9AECF5B6D1BB172A0B /* MonthView.swift */; };
+		1A5136EC9A8497C84B7D5A733142F9EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */; };
+		2038F4A4C5752D08A26AA24150E40D97 /* Pods-SmartHawker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 698AB905AE056153398C6988510123A7 /* Pods-SmartHawker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29A8059D1E03301AE6B275705F53476F /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA6F1A79334701F31D740994BAD73D2 /* DayView.swift */; };
+		3084E9B6F0C5DFE4269DE805F2C62F20 /* Pods-SmartHawkerUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB387FF70DB1D133B3E8E22F4972B679 /* Pods-SmartHawkerUITests-dummy.m */; };
+		38CA5C1A02AC17DCC99BD4BA3C3AB45B /* SwiftMoment.h in Headers */ = {isa = PBXBuildFile; fileRef = F37798D87319DC59550CB1D902244364 /* SwiftMoment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BAAA9F34A62F442CF68D4F24549175C /* EasyCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958B036558C7D9E76F533398EB668B41 /* EasyCast.swift */; };
+		47082C15955512F8DE46118A66DFB9BC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78349D45048FBEB9D1A69829823E3743 /* CalendarView.swift */; };
+		4BBAA62688253728B96ECC9C8D13C790 /* SwiftMoment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD22125E84BE8721EA3E324E3CA9857C /* SwiftMoment.framework */; };
+		4FED4E2945D481EDB91695ADE89E3FE8 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC60B626CC7DA5387F8BA26082BB953 /* Moment.swift */; };
+		52AA2906973B17C71D3E9D56558E4144 /* SwiftMoment-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0373F675B34CBAD66886DFE0166ABF7B /* SwiftMoment-dummy.m */; };
+		544AF769AF5A9AB56E7C96141AD51A6C /* Pods-SmartHawkerTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FB0AD47D567DF227A8C266B0B6A5197 /* Pods-SmartHawkerTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58184A68782A2E24D238EFD55BC757D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */; };
+		597C28F5AE6422A7E718838559A48FC0 /* CalendarView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1B7FE2FD9AD91B82EB747CA6FE9B413 /* CalendarView.bundle */; };
+		5A7ADE0B32A113CFC84F5FBFC8BDE4FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF15E32822438AEAA2ED6CDC47B3656 /* ContentView.swift */; };
+		670F2CB4A2BDF2085674F75FA1239027 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BBA300057B89892C02555FCA37D221 /* Duration.swift */; };
+		733213FDC2982E1411C8B365C54CF54A /* Pods-SmartHawkerUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 29910766A5C7275963B1A0F763578B84 /* Pods-SmartHawkerUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78EEC1CF2977B8107DBCE313BCA9DE6D /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E24280B76368B1CCB7D890EAF4357 /* WeekView.swift */; };
+		89D8FD1EB0666920C2EA196814AA7E27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */; };
+		9254D51D86F769CB80B82EFA1DFF10D5 /* CalendarView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D9377106C02EF47D15A5EEC3231843A0 /* CalendarView-dummy.m */; };
+		92D85F96D7080B7D7414614A7604C902 /* MomentFromNow.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5C2CFBF48F8235C740C3F695379AD31A /* MomentFromNow.bundle */; };
+		A24AABB5997DDE1452044D461FBD6DD9 /* SwiftMoment-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6F3B0ADCDD3A0CE39193570A77004D /* SwiftMoment-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD76AEAAAE55D08CABDF2646A33AE7D8 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943DDB35BFC4DAC16E6E87D3726BC7CD /* Operators.swift */; };
+		B1B691766BB6EEBC433A1B2EFA05DFD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */; };
+		B4D31539DA43F96EFAB534435ABED834 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6829B741F3C9A303B69D1FEBBA3D9606 /* UIKit.framework */; };
+		C1A6A3D464BE409C34604BD350A3FC6F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328883A3EB0927108C4147FD5BB0A925 /* Extensions.swift */; };
+		C917EFBA2C34565470D510C5FFD2E075 /* Pods-SmartHawkerTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ED2095718595D4290E76F2028A7392 /* Pods-SmartHawkerTests-dummy.m */; };
+		CA7C4534981D97E4DF97F5157A4C135E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */; };
+		CBC2B8681A93C10DEA424F2BD480E3EE /* Pods-SmartHawker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1707D58181B8EAC4DDF65843F61C2E89 /* Pods-SmartHawker-dummy.m */; };
+		CC1B0AB47BB3609E0961AE8470B6F191 /* CalendarView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8483FB5B8799A639FB83FA02B3F84BA8 /* CalendarView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D394B7174D39F17B7E219B920E4165EF /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59883F93CEE8104513DEF4E07A80B2AE /* TimeUnit.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E3DE4934171D3EB1BE137B9A90EDA2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A249CF9CC83EF996380469C8249B2013;
+			remoteInfo = CalendarView;
+		};
+		C212A310ED81EF7C8C983084530A575B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 41638D9B170F774D9F650F63B192526A;
+			remoteInfo = "CalendarView-CalendarView";
+		};
+		C31280AD638B80BA922321DCA86D331A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A21DCB995841FE970CCB507D94F822D9;
+			remoteInfo = SwiftMoment;
+		};
+		D1A063AF9C40FCD4CFD795752708DA1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A21DCB995841FE970CCB507D94F822D9;
+			remoteInfo = SwiftMoment;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0373F675B34CBAD66886DFE0166ABF7B /* SwiftMoment-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftMoment-dummy.m"; sourceTree = "<group>"; };
+		046294D95197830EE2AFA89E049F3108 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0512DC84ACB11A4B6238A20C7AEE0EE0 /* Pods-SmartHawkerTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SmartHawkerTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		0A051BDB41E8A941642D87F527617F67 /* Pods-SmartHawkerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmartHawkerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		151E24280B76368B1CCB7D890EAF4357 /* WeekView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeekView.swift; path = CalendarView/CalendarView/Classes/WeekView.swift; sourceTree = "<group>"; };
+		1707D58181B8EAC4DDF65843F61C2E89 /* Pods-SmartHawker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SmartHawker-dummy.m"; sourceTree = "<group>"; };
+		1D77467BC2BFAC9AECF5B6D1BB172A0B /* MonthView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonthView.swift; path = CalendarView/CalendarView/Classes/MonthView.swift; sourceTree = "<group>"; };
+		21F6BA8AD5BDFD9014828A5863C169BA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29910766A5C7275963B1A0F763578B84 /* Pods-SmartHawkerUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SmartHawkerUITests-umbrella.h"; sourceTree = "<group>"; };
+		2CF15E32822438AEAA2ED6CDC47B3656 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = CalendarView/CalendarView/Classes/ContentView.swift; sourceTree = "<group>"; };
+		2DB252E8E8E1287DCE9B209E2F756F7D /* SwiftMoment-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMoment-prefix.pch"; sourceTree = "<group>"; };
+		328883A3EB0927108C4147FD5BB0A925 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = SwiftMoment/SwiftMoment/Extensions.swift; sourceTree = "<group>"; };
+		33692A116D3CB69C7A3378DEFB7D4213 /* Pods_SmartHawker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHawker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDD807D22E735C79AB00434B2F6284D /* CalendarView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CalendarView.modulemap; sourceTree = "<group>"; };
+		4BE0B4E551B1D9A1EB345304BFCC0074 /* Pods-SmartHawker-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SmartHawker-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4CA6F1A79334701F31D740994BAD73D2 /* DayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DayView.swift; path = CalendarView/CalendarView/Classes/DayView.swift; sourceTree = "<group>"; };
+		4F5D6EF747982113197E0B1E5EF0B5A6 /* Pods-SmartHawkerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmartHawkerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FB0AD47D567DF227A8C266B0B6A5197 /* Pods-SmartHawkerTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SmartHawkerTests-umbrella.h"; sourceTree = "<group>"; };
+		5691069EE7392E03F527CA55C62F152E /* CalendarView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalendarView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59883F93CEE8104513DEF4E07A80B2AE /* TimeUnit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeUnit.swift; path = SwiftMoment/SwiftMoment/TimeUnit.swift; sourceTree = "<group>"; };
+		5C2CFBF48F8235C740C3F695379AD31A /* MomentFromNow.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MomentFromNow.bundle; path = SwiftMoment/SwiftMoment/MomentFromNow.bundle; sourceTree = "<group>"; };
+		5E3F35EF337D6F47D6BC45B2C9FC421F /* SwiftMoment.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftMoment.modulemap; sourceTree = "<group>"; };
+		5FC1937D3CBD5B23547393796D7C032A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64F19A016FAE7904C2F89B87C88BF6B4 /* Pods-SmartHawkerTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmartHawkerTests-frameworks.sh"; sourceTree = "<group>"; };
+		6829B741F3C9A303B69D1FEBBA3D9606 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		698AB905AE056153398C6988510123A7 /* Pods-SmartHawker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SmartHawker-umbrella.h"; sourceTree = "<group>"; };
+		6A66368CE6FC0E82AABD7D62C79C9954 /* ResourceBundle-CalendarView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CalendarView-Info.plist"; sourceTree = "<group>"; };
+		74AB78AD2A1CCA1420340943F2099969 /* Pods-SmartHawker-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmartHawker-resources.sh"; sourceTree = "<group>"; };
+		76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		78349D45048FBEB9D1A69829823E3743 /* CalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarView.swift; path = CalendarView/CalendarView/Classes/CalendarView.swift; sourceTree = "<group>"; };
+		7B090ECF7609C7DB4B70DCEE012B3E74 /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8483FB5B8799A639FB83FA02B3F84BA8 /* CalendarView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CalendarView-umbrella.h"; sourceTree = "<group>"; };
+		89C65F3F99FC59B650F6135CC58AEC8F /* Pods-SmartHawker-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SmartHawker-acknowledgements.plist"; sourceTree = "<group>"; };
+		8E6C2326403EBEEEE8FEB8B717534CC2 /* Pods-SmartHawker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmartHawker.debug.xcconfig"; sourceTree = "<group>"; };
+		92BBA300057B89892C02555FCA37D221 /* Duration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Duration.swift; path = SwiftMoment/SwiftMoment/Duration.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		943DDB35BFC4DAC16E6E87D3726BC7CD /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = SwiftMoment/SwiftMoment/Operators.swift; sourceTree = "<group>"; };
+		958B036558C7D9E76F533398EB668B41 /* EasyCast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCast.swift; path = CalendarView/CalendarView/Classes/EasyCast.swift; sourceTree = "<group>"; };
+		959BD3F30DF233F1831F345583A44D88 /* Pods-SmartHawkerTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmartHawkerTests-resources.sh"; sourceTree = "<group>"; };
+		A1B7FE2FD9AD91B82EB747CA6FE9B413 /* CalendarView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		A303145DACEBC16D965A05F90F830220 /* Pods-SmartHawkerUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SmartHawkerUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A64048F0431FA42A82187589BD501E8A /* Pods-SmartHawker-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmartHawker-frameworks.sh"; sourceTree = "<group>"; };
+		A78C31DC32E22D981D2F1B5DE531D7C7 /* Pods-SmartHawkerUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SmartHawkerUITests.modulemap"; sourceTree = "<group>"; };
+		AA6F3B0ADCDD3A0CE39193570A77004D /* SwiftMoment-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMoment-umbrella.h"; sourceTree = "<group>"; };
+		AC59705ECFBCDB29D753C260087620B2 /* CalendarView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CalendarView-prefix.pch"; sourceTree = "<group>"; };
+		B90B6CF905B78E21E22C6C14CDB68FC6 /* Pods-SmartHawker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SmartHawker.modulemap"; sourceTree = "<group>"; };
+		BBC60B626CC7DA5387F8BA26082BB953 /* Moment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Moment.swift; path = SwiftMoment/SwiftMoment/Moment.swift; sourceTree = "<group>"; };
+		BC940049E5EE9D4FA3E45D08BDD1B2FA /* Pods-SmartHawkerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SmartHawkerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BCE0B0E0513A69B91D645633C67E870D /* Pods-SmartHawkerUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmartHawkerUITests-frameworks.sh"; sourceTree = "<group>"; };
+		BE58B1F450388207042B396D75A9C799 /* CalendarView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CalendarView.xcconfig; sourceTree = "<group>"; };
+		C2ED2095718595D4290E76F2028A7392 /* Pods-SmartHawkerTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SmartHawkerTests-dummy.m"; sourceTree = "<group>"; };
+		C9D993ACE88D0C9367EFD8C190123862 /* Pods_SmartHawkerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHawkerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA3F8F0E1EDDEFB956F4E57100656366 /* Pods-SmartHawkerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmartHawkerTests.release.xcconfig"; sourceTree = "<group>"; };
+		CB387FF70DB1D133B3E8E22F4972B679 /* Pods-SmartHawkerUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SmartHawkerUITests-dummy.m"; sourceTree = "<group>"; };
+		D3A026BD04BAF6B882337FBD46E313BD /* SwiftMoment.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftMoment.xcconfig; sourceTree = "<group>"; };
+		D6292CC2DF95B20A879B948E9AB8F775 /* Pods-SmartHawkerUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmartHawkerUITests-resources.sh"; sourceTree = "<group>"; };
+		D80AC5A190F834E368C8D5674E9885FB /* Pods-SmartHawkerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmartHawkerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D9377106C02EF47D15A5EEC3231843A0 /* CalendarView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CalendarView-dummy.m"; sourceTree = "<group>"; };
+		DBBBF7CAB6FE38FFFD05915D54E30FF5 /* Pods-SmartHawker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmartHawker.release.xcconfig"; sourceTree = "<group>"; };
+		E12B7CB19B936B122D372663D5F6A018 /* Pods-SmartHawkerUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SmartHawkerUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E32E220BD9EDAAA35509FDC6F5613ED1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5518C4C377E43064DA7120CB3625727 /* Pods_SmartHawkerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHawkerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB1122AC10FD38307219BB4E0EBB701A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F11116E4864CBAF1D2BB9E2E0FC85B59 /* Pods-SmartHawkerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SmartHawkerTests.modulemap"; sourceTree = "<group>"; };
+		F37798D87319DC59550CB1D902244364 /* SwiftMoment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftMoment.h; path = SwiftMoment/SwiftMoment/SwiftMoment.h; sourceTree = "<group>"; };
+		F5A92ECA3029734DE34CD0877D357F12 /* MomentFromNow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MomentFromNow.swift; path = SwiftMoment/SwiftMoment/MomentFromNow.swift; sourceTree = "<group>"; };
+		FD22125E84BE8721EA3E324E3CA9857C /* SwiftMoment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMoment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50B7FC70E2112F69392EB9F97DC90D6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A5136EC9A8497C84B7D5A733142F9EC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		650A9705A5EDD59E19371EABB5A56CB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58184A68782A2E24D238EFD55BC757D6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B4167F9890413D10AA3C55CD44F51B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89D8FD1EB0666920C2EA196814AA7E27 /* Foundation.framework in Frameworks */,
+				4BBAA62688253728B96ECC9C8D13C790 /* SwiftMoment.framework in Frameworks */,
+				B4D31539DA43F96EFAB534435ABED834 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE42323B24CE4F52EAD6833C06526A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A63ECFBC7413F628EC382928D967F651 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA7C4534981D97E4DF97F5157A4C135E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0708840727C8C1D9952B765C5A83003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1B691766BB6EEBC433A1B2EFA05DFD9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B79111AD04C597286D09EB88ABD052B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F34D5B6A7ECCE30296D1B84144D319AA /* Pods-SmartHawker */,
+				BB5433B6FA9FD78A3F7BD76988F456BE /* Pods-SmartHawkerTests */,
+				D559B0F38469516906D4A258BC433137 /* Pods-SmartHawkerUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		2C72EBFE8BE311D8B7780BFDEF833241 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3FDD807D22E735C79AB00434B2F6284D /* CalendarView.modulemap */,
+				BE58B1F450388207042B396D75A9C799 /* CalendarView.xcconfig */,
+				D9377106C02EF47D15A5EEC3231843A0 /* CalendarView-dummy.m */,
+				AC59705ECFBCDB29D753C260087620B2 /* CalendarView-prefix.pch */,
+				8483FB5B8799A639FB83FA02B3F84BA8 /* CalendarView-umbrella.h */,
+				EB1122AC10FD38307219BB4E0EBB701A /* Info.plist */,
+				6A66368CE6FC0E82AABD7D62C79C9954 /* ResourceBundle-CalendarView-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CalendarView";
+			sourceTree = "<group>";
+		};
+		5DB94E79B687D96678F2AB918ABF282D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C2CFBF48F8235C740C3F695379AD31A /* MomentFromNow.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6BE6E4BE1FAB1D2B4383F6444D0081B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9BDA161E37811D953A14698DDB121C7C /* CalendarView */,
+				8862D547D3EA94FD8CE7E193E9C30E30 /* SwiftMoment */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				8AD35ED3060B1F46E89CF030D8AA3EA0 /* Frameworks */,
+				6BE6E4BE1FAB1D2B4383F6444D0081B1 /* Pods */,
+				FCF30B934E9DA144CF2D1E758B05C4FF /* Products */,
+				2B79111AD04C597286D09EB88ABD052B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8862D547D3EA94FD8CE7E193E9C30E30 /* SwiftMoment */ = {
+			isa = PBXGroup;
+			children = (
+				92BBA300057B89892C02555FCA37D221 /* Duration.swift */,
+				328883A3EB0927108C4147FD5BB0A925 /* Extensions.swift */,
+				BBC60B626CC7DA5387F8BA26082BB953 /* Moment.swift */,
+				F5A92ECA3029734DE34CD0877D357F12 /* MomentFromNow.swift */,
+				943DDB35BFC4DAC16E6E87D3726BC7CD /* Operators.swift */,
+				F37798D87319DC59550CB1D902244364 /* SwiftMoment.h */,
+				59883F93CEE8104513DEF4E07A80B2AE /* TimeUnit.swift */,
+				5DB94E79B687D96678F2AB918ABF282D /* Resources */,
+				A1183AFA64FCE655FE54A7CC1D959A55 /* Support Files */,
+			);
+			path = SwiftMoment;
+			sourceTree = "<group>";
+		};
+		8AD35ED3060B1F46E89CF030D8AA3EA0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD22125E84BE8721EA3E324E3CA9857C /* SwiftMoment.framework */,
+				BE7FD02C75F7A5D43DBC8FE47151B830 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9BDA161E37811D953A14698DDB121C7C /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				78349D45048FBEB9D1A69829823E3743 /* CalendarView.swift */,
+				2CF15E32822438AEAA2ED6CDC47B3656 /* ContentView.swift */,
+				4CA6F1A79334701F31D740994BAD73D2 /* DayView.swift */,
+				958B036558C7D9E76F533398EB668B41 /* EasyCast.swift */,
+				1D77467BC2BFAC9AECF5B6D1BB172A0B /* MonthView.swift */,
+				151E24280B76368B1CCB7D890EAF4357 /* WeekView.swift */,
+				2C72EBFE8BE311D8B7780BFDEF833241 /* Support Files */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		A1183AFA64FCE655FE54A7CC1D959A55 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5FC1937D3CBD5B23547393796D7C032A /* Info.plist */,
+				5E3F35EF337D6F47D6BC45B2C9FC421F /* SwiftMoment.modulemap */,
+				D3A026BD04BAF6B882337FBD46E313BD /* SwiftMoment.xcconfig */,
+				0373F675B34CBAD66886DFE0166ABF7B /* SwiftMoment-dummy.m */,
+				2DB252E8E8E1287DCE9B209E2F756F7D /* SwiftMoment-prefix.pch */,
+				AA6F3B0ADCDD3A0CE39193570A77004D /* SwiftMoment-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftMoment";
+			sourceTree = "<group>";
+		};
+		BB5433B6FA9FD78A3F7BD76988F456BE /* Pods-SmartHawkerTests */ = {
+			isa = PBXGroup;
+			children = (
+				E32E220BD9EDAAA35509FDC6F5613ED1 /* Info.plist */,
+				F11116E4864CBAF1D2BB9E2E0FC85B59 /* Pods-SmartHawkerTests.modulemap */,
+				BC940049E5EE9D4FA3E45D08BDD1B2FA /* Pods-SmartHawkerTests-acknowledgements.markdown */,
+				0512DC84ACB11A4B6238A20C7AEE0EE0 /* Pods-SmartHawkerTests-acknowledgements.plist */,
+				C2ED2095718595D4290E76F2028A7392 /* Pods-SmartHawkerTests-dummy.m */,
+				64F19A016FAE7904C2F89B87C88BF6B4 /* Pods-SmartHawkerTests-frameworks.sh */,
+				959BD3F30DF233F1831F345583A44D88 /* Pods-SmartHawkerTests-resources.sh */,
+				4FB0AD47D567DF227A8C266B0B6A5197 /* Pods-SmartHawkerTests-umbrella.h */,
+				0A051BDB41E8A941642D87F527617F67 /* Pods-SmartHawkerTests.debug.xcconfig */,
+				CA3F8F0E1EDDEFB956F4E57100656366 /* Pods-SmartHawkerTests.release.xcconfig */,
+			);
+			name = "Pods-SmartHawkerTests";
+			path = "Target Support Files/Pods-SmartHawkerTests";
+			sourceTree = "<group>";
+		};
+		BE7FD02C75F7A5D43DBC8FE47151B830 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				76A51C8B56CADA87610C06C382CE2B8E /* Foundation.framework */,
+				6829B741F3C9A303B69D1FEBBA3D9606 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		D559B0F38469516906D4A258BC433137 /* Pods-SmartHawkerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				046294D95197830EE2AFA89E049F3108 /* Info.plist */,
+				A78C31DC32E22D981D2F1B5DE531D7C7 /* Pods-SmartHawkerUITests.modulemap */,
+				A303145DACEBC16D965A05F90F830220 /* Pods-SmartHawkerUITests-acknowledgements.markdown */,
+				E12B7CB19B936B122D372663D5F6A018 /* Pods-SmartHawkerUITests-acknowledgements.plist */,
+				CB387FF70DB1D133B3E8E22F4972B679 /* Pods-SmartHawkerUITests-dummy.m */,
+				BCE0B0E0513A69B91D645633C67E870D /* Pods-SmartHawkerUITests-frameworks.sh */,
+				D6292CC2DF95B20A879B948E9AB8F775 /* Pods-SmartHawkerUITests-resources.sh */,
+				29910766A5C7275963B1A0F763578B84 /* Pods-SmartHawkerUITests-umbrella.h */,
+				4F5D6EF747982113197E0B1E5EF0B5A6 /* Pods-SmartHawkerUITests.debug.xcconfig */,
+				D80AC5A190F834E368C8D5674E9885FB /* Pods-SmartHawkerUITests.release.xcconfig */,
+			);
+			name = "Pods-SmartHawkerUITests";
+			path = "Target Support Files/Pods-SmartHawkerUITests";
+			sourceTree = "<group>";
+		};
+		F34D5B6A7ECCE30296D1B84144D319AA /* Pods-SmartHawker */ = {
+			isa = PBXGroup;
+			children = (
+				21F6BA8AD5BDFD9014828A5863C169BA /* Info.plist */,
+				B90B6CF905B78E21E22C6C14CDB68FC6 /* Pods-SmartHawker.modulemap */,
+				4BE0B4E551B1D9A1EB345304BFCC0074 /* Pods-SmartHawker-acknowledgements.markdown */,
+				89C65F3F99FC59B650F6135CC58AEC8F /* Pods-SmartHawker-acknowledgements.plist */,
+				1707D58181B8EAC4DDF65843F61C2E89 /* Pods-SmartHawker-dummy.m */,
+				A64048F0431FA42A82187589BD501E8A /* Pods-SmartHawker-frameworks.sh */,
+				74AB78AD2A1CCA1420340943F2099969 /* Pods-SmartHawker-resources.sh */,
+				698AB905AE056153398C6988510123A7 /* Pods-SmartHawker-umbrella.h */,
+				8E6C2326403EBEEEE8FEB8B717534CC2 /* Pods-SmartHawker.debug.xcconfig */,
+				DBBBF7CAB6FE38FFFD05915D54E30FF5 /* Pods-SmartHawker.release.xcconfig */,
+			);
+			name = "Pods-SmartHawker";
+			path = "Target Support Files/Pods-SmartHawker";
+			sourceTree = "<group>";
+		};
+		FCF30B934E9DA144CF2D1E758B05C4FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1B7FE2FD9AD91B82EB747CA6FE9B413 /* CalendarView.bundle */,
+				5691069EE7392E03F527CA55C62F152E /* CalendarView.framework */,
+				33692A116D3CB69C7A3378DEFB7D4213 /* Pods_SmartHawker.framework */,
+				E5518C4C377E43064DA7120CB3625727 /* Pods_SmartHawkerTests.framework */,
+				C9D993ACE88D0C9367EFD8C190123862 /* Pods_SmartHawkerUITests.framework */,
+				7B090ECF7609C7DB4B70DCEE012B3E74 /* SwiftMoment.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		06884171E7C8FCB609D0BA12E58204CA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				733213FDC2982E1411C8B365C54CF54A /* Pods-SmartHawkerUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D41A99ADC7830C2A46B07AE94D3743F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2038F4A4C5752D08A26AA24150E40D97 /* Pods-SmartHawker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A79D8737E4BA541C34B2B0ADA8A0D98 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A24AABB5997DDE1452044D461FBD6DD9 /* SwiftMoment-umbrella.h in Headers */,
+				38CA5C1A02AC17DCC99BD4BA3C3AB45B /* SwiftMoment.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E52F7292573130E0CA0280EB5E76CC37 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				544AF769AF5A9AB56E7C96141AD51A6C /* Pods-SmartHawkerTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9AE8BF45492E2B424DEAB1D71F6A5CE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC1B0AB47BB3609E0961AE8470B6F191 /* CalendarView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1EF35466367F020B0F80C1AC7D4A6A4B /* Pods-SmartHawkerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB35F7FD945CF19E3E0FF21CD94E3F51 /* Build configuration list for PBXNativeTarget "Pods-SmartHawkerTests" */;
+			buildPhases = (
+				CCC52887BADECF9EB9D50048AE192F6F /* Sources */,
+				650A9705A5EDD59E19371EABB5A56CB0 /* Frameworks */,
+				E52F7292573130E0CA0280EB5E76CC37 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-SmartHawkerTests";
+			productName = "Pods-SmartHawkerTests";
+			productReference = E5518C4C377E43064DA7120CB3625727 /* Pods_SmartHawkerTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		41638D9B170F774D9F650F63B192526A /* CalendarView-CalendarView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A81766E10721EFE9C8CEE1AB4E808181 /* Build configuration list for PBXNativeTarget "CalendarView-CalendarView" */;
+			buildPhases = (
+				D713B42F5761C042F36F0E585388A84E /* Sources */,
+				8CE42323B24CE4F52EAD6833C06526A6 /* Frameworks */,
+				31165A49A2A4A9363C21630FACAE5D19 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CalendarView-CalendarView";
+			productName = "CalendarView-CalendarView";
+			productReference = A1B7FE2FD9AD91B82EB747CA6FE9B413 /* CalendarView.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8CC71C09F0C41C83C9AA208834BF3702 /* Pods-SmartHawker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00929CEBB2DF99ADA4454D6988679A32 /* Build configuration list for PBXNativeTarget "Pods-SmartHawker" */;
+			buildPhases = (
+				AEF6D8A5B6806C480614D3DFCEA6E034 /* Sources */,
+				50B7FC70E2112F69392EB9F97DC90D6F /* Frameworks */,
+				1D41A99ADC7830C2A46B07AE94D3743F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD6E7FC66AE415C0BC5A76F3188E3208 /* PBXTargetDependency */,
+				398CFBBADEC9DB383BF778D92ED20991 /* PBXTargetDependency */,
+			);
+			name = "Pods-SmartHawker";
+			productName = "Pods-SmartHawker";
+			productReference = 33692A116D3CB69C7A3378DEFB7D4213 /* Pods_SmartHawker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A21DCB995841FE970CCB507D94F822D9 /* SwiftMoment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FBA9BDCB64E66A084507DA2C170257F /* Build configuration list for PBXNativeTarget "SwiftMoment" */;
+			buildPhases = (
+				0CE203842219D3E71ADE2959C5269CC9 /* Sources */,
+				B0708840727C8C1D9952B765C5A83003 /* Frameworks */,
+				6A79D8737E4BA541C34B2B0ADA8A0D98 /* Headers */,
+				1AF814F93352AAAA33B247D0D0FD42FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftMoment;
+			productName = SwiftMoment;
+			productReference = 7B090ECF7609C7DB4B70DCEE012B3E74 /* SwiftMoment.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A249CF9CC83EF996380469C8249B2013 /* CalendarView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 974339C44F3F3E4CBC7E9EEBAFAC444F /* Build configuration list for PBXNativeTarget "CalendarView" */;
+			buildPhases = (
+				E9699F5C0CE4FD13E80DB24EC21793DC /* Sources */,
+				83B4167F9890413D10AA3C55CD44F51B /* Frameworks */,
+				801261530DF1CF65E0B3D007C5066B97 /* Resources */,
+				E9AE8BF45492E2B424DEAB1D71F6A5CE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2EA9733185A9897DFD29A28783402B7 /* PBXTargetDependency */,
+				489A982E89AA89A17739AC356B3D65F7 /* PBXTargetDependency */,
+			);
+			name = CalendarView;
+			productName = CalendarView;
+			productReference = 5691069EE7392E03F527CA55C62F152E /* CalendarView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DD661D2CA307B567B2CF47A0B894CAF3 /* Pods-SmartHawkerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE754E984A5B909FCB9A773192796657 /* Build configuration list for PBXNativeTarget "Pods-SmartHawkerUITests" */;
+			buildPhases = (
+				252252024C5240A7D1567021CB92A87D /* Sources */,
+				A63ECFBC7413F628EC382928D967F651 /* Frameworks */,
+				06884171E7C8FCB609D0BA12E58204CA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-SmartHawkerUITests";
+			productName = "Pods-SmartHawkerUITests";
+			productReference = C9D993ACE88D0C9367EFD8C190123862 /* Pods_SmartHawkerUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = FCF30B934E9DA144CF2D1E758B05C4FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A249CF9CC83EF996380469C8249B2013 /* CalendarView */,
+				41638D9B170F774D9F650F63B192526A /* CalendarView-CalendarView */,
+				8CC71C09F0C41C83C9AA208834BF3702 /* Pods-SmartHawker */,
+				1EF35466367F020B0F80C1AC7D4A6A4B /* Pods-SmartHawkerTests */,
+				DD661D2CA307B567B2CF47A0B894CAF3 /* Pods-SmartHawkerUITests */,
+				A21DCB995841FE970CCB507D94F822D9 /* SwiftMoment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AF814F93352AAAA33B247D0D0FD42FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92D85F96D7080B7D7414614A7604C902 /* MomentFromNow.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31165A49A2A4A9363C21630FACAE5D19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		801261530DF1CF65E0B3D007C5066B97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				597C28F5AE6422A7E718838559A48FC0 /* CalendarView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0CE203842219D3E71ADE2959C5269CC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				670F2CB4A2BDF2085674F75FA1239027 /* Duration.swift in Sources */,
+				C1A6A3D464BE409C34604BD350A3FC6F /* Extensions.swift in Sources */,
+				4FED4E2945D481EDB91695ADE89E3FE8 /* Moment.swift in Sources */,
+				0586CC4A8EB11BAB39A4F461A5AECE1D /* MomentFromNow.swift in Sources */,
+				AD76AEAAAE55D08CABDF2646A33AE7D8 /* Operators.swift in Sources */,
+				52AA2906973B17C71D3E9D56558E4144 /* SwiftMoment-dummy.m in Sources */,
+				D394B7174D39F17B7E219B920E4165EF /* TimeUnit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		252252024C5240A7D1567021CB92A87D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3084E9B6F0C5DFE4269DE805F2C62F20 /* Pods-SmartHawkerUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEF6D8A5B6806C480614D3DFCEA6E034 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBC2B8681A93C10DEA424F2BD480E3EE /* Pods-SmartHawker-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCC52887BADECF9EB9D50048AE192F6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C917EFBA2C34565470D510C5FFD2E075 /* Pods-SmartHawkerTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D713B42F5761C042F36F0E585388A84E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9699F5C0CE4FD13E80DB24EC21793DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9254D51D86F769CB80B82EFA1DFF10D5 /* CalendarView-dummy.m in Sources */,
+				47082C15955512F8DE46118A66DFB9BC /* CalendarView.swift in Sources */,
+				5A7ADE0B32A113CFC84F5FBFC8BDE4FB /* ContentView.swift in Sources */,
+				29A8059D1E03301AE6B275705F53476F /* DayView.swift in Sources */,
+				3BAAA9F34A62F442CF68D4F24549175C /* EasyCast.swift in Sources */,
+				134B250E1864D43B166253EDACB84BC7 /* MonthView.swift in Sources */,
+				78EEC1CF2977B8107DBCE313BCA9DE6D /* WeekView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		398CFBBADEC9DB383BF778D92ED20991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftMoment;
+			target = A21DCB995841FE970CCB507D94F822D9 /* SwiftMoment */;
+			targetProxy = C31280AD638B80BA922321DCA86D331A /* PBXContainerItemProxy */;
+		};
+		489A982E89AA89A17739AC356B3D65F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftMoment;
+			target = A21DCB995841FE970CCB507D94F822D9 /* SwiftMoment */;
+			targetProxy = D1A063AF9C40FCD4CFD795752708DA1D /* PBXContainerItemProxy */;
+		};
+		B2EA9733185A9897DFD29A28783402B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CalendarView-CalendarView";
+			target = 41638D9B170F774D9F650F63B192526A /* CalendarView-CalendarView */;
+			targetProxy = C212A310ED81EF7C8C983084530A575B /* PBXContainerItemProxy */;
+		};
+		DD6E7FC66AE415C0BC5A76F3188E3208 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CalendarView;
+			target = A249CF9CC83EF996380469C8249B2013 /* CalendarView */;
+			targetProxy = 8E3DE4934171D3EB1BE137B9A90EDA2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		175367A85C0C61FD3DE151F0AC3DC6AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3A026BD04BAF6B882337FBD46E313BD /* SwiftMoment.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftMoment/SwiftMoment-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftMoment/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftMoment/SwiftMoment.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftMoment;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2BDF7B4E574316716EA598F9801021E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE58B1F450388207042B396D75A9C799 /* CalendarView.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CalendarView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/CalendarView/ResourceBundle-CalendarView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PRODUCT_NAME = CalendarView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4DB063DAAC56D44923B22422810D6A61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D80AC5A190F834E368C8D5674E9885FB /* Pods-SmartHawkerUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SmartHawkerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SmartHawkerUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		886137CB6C232CE5E500F80460D98B04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E6C2326403EBEEEE8FEB8B717534CC2 /* Pods-SmartHawker.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SmartHawker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmartHawker/Pods-SmartHawker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SmartHawker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9CC2C7B943CE6911ED7CC9B8A8CF7EB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE58B1F450388207042B396D75A9C799 /* CalendarView.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CalendarView";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/CalendarView/ResourceBundle-CalendarView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PRODUCT_NAME = CalendarView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		9D0FB222EB5B552827C113A324BFFBDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE58B1F450388207042B396D75A9C799 /* CalendarView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CalendarView/CalendarView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CalendarView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CalendarView/CalendarView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CalendarView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A034100BC5E8F3DA94DBFE406FF0DBB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3A026BD04BAF6B882337FBD46E313BD /* SwiftMoment.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftMoment/SwiftMoment-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftMoment/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftMoment/SwiftMoment.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftMoment;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A96EE541B0C7F5A30E0FC6136EA061F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F5D6EF747982113197E0B1E5EF0B5A6 /* Pods-SmartHawkerUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SmartHawkerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SmartHawkerUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BD2CE4B666E1229A1533D69107D0461E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE58B1F450388207042B396D75A9C799 /* CalendarView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CalendarView/CalendarView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CalendarView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CalendarView/CalendarView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CalendarView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C169E7FC9834C2AE6686FAEE61711BBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBBBF7CAB6FE38FFFD05915D54E30FF5 /* Pods-SmartHawker.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SmartHawker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmartHawker/Pods-SmartHawker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SmartHawker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C51455B456B4B1472539487042F6030F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A051BDB41E8A941642D87F527617F67 /* Pods-SmartHawkerTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SmartHawkerTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmartHawkerTests/Pods-SmartHawkerTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SmartHawkerTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C6ABFCE87EB7AEF659ED9B5CC15A4F60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA3F8F0E1EDDEFB956F4E57100656366 /* Pods-SmartHawkerTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SmartHawkerTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmartHawkerTests/Pods-SmartHawkerTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SmartHawkerTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00929CEBB2DF99ADA4454D6988679A32 /* Build configuration list for PBXNativeTarget "Pods-SmartHawker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				886137CB6C232CE5E500F80460D98B04 /* Debug */,
+				C169E7FC9834C2AE6686FAEE61711BBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FBA9BDCB64E66A084507DA2C170257F /* Build configuration list for PBXNativeTarget "SwiftMoment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				175367A85C0C61FD3DE151F0AC3DC6AC /* Debug */,
+				A034100BC5E8F3DA94DBFE406FF0DBB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		974339C44F3F3E4CBC7E9EEBAFAC444F /* Build configuration list for PBXNativeTarget "CalendarView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D0FB222EB5B552827C113A324BFFBDB /* Debug */,
+				BD2CE4B666E1229A1533D69107D0461E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A81766E10721EFE9C8CEE1AB4E808181 /* Build configuration list for PBXNativeTarget "CalendarView-CalendarView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CC2C7B943CE6911ED7CC9B8A8CF7EB7 /* Debug */,
+				2BDF7B4E574316716EA598F9801021E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB35F7FD945CF19E3E0FF21CD94E3F51 /* Build configuration list for PBXNativeTarget "Pods-SmartHawkerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C51455B456B4B1472539487042F6030F /* Debug */,
+				C6ABFCE87EB7AEF659ED9B5CC15A4F60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE754E984A5B909FCB9A773192796657 /* Build configuration list for PBXNativeTarget "Pods-SmartHawkerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A96EE541B0C7F5A30E0FC6136EA061F2 /* Debug */,
+				4DB063DAAC56D44923B22422810D6A61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

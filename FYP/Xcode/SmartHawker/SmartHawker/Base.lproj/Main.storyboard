@@ -706,7 +706,7 @@
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BTu-TC-Of1" id="mFw-zs-aM5">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNc-3L-G9a">
@@ -863,23 +863,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGm-iz-Phc" customClass="CalendarView" customModule="SmartHawker" customModuleProvider="target">
-                                <rect key="frame" x="16" y="155" width="382" height="402"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="402" id="nCq-fo-ooN"/>
-                                    <constraint firstAttribute="width" constant="382" id="qtg-Ba-NFe"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QHO-5l-9m9">
-                                <rect key="frame" x="16" y="565" width="240" height="89"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="FVo-D8-o5d"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEr-sh-icF" userLabel="Business Name">
                                 <rect key="frame" x="108" y="71" width="286" height="44"/>
                                 <constraints>
@@ -912,25 +895,41 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
+                                <rect key="frame" x="0.0" y="264" width="414" height="320"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="V07-KC-MWg"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
+                                <rect key="frame" x="0.0" y="212" width="414" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="CrE-c1-4av"/>
+                                    <constraint firstAttribute="height" constant="21" id="rQX-1d-XfX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Go0-K1-zJj" firstAttribute="trailing" secondItem="bEr-sh-icF" secondAttribute="trailing" id="2QC-VO-N4s"/>
-                            <constraint firstItem="vbc-ei-6BG" firstAttribute="top" secondItem="QHO-5l-9m9" secondAttribute="bottom" constant="82" id="8PJ-XH-qri"/>
-                            <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" constant="155" id="9KU-pi-pyU"/>
-                            <constraint firstItem="pGm-iz-Phc" firstAttribute="top" secondItem="Go0-K1-zJj" secondAttribute="bottom" constant="4" id="EfZ-sq-MBj"/>
-                            <constraint firstItem="pGm-iz-Phc" firstAttribute="centerX" secondItem="02D-JR-xYh" secondAttribute="centerX" id="Fk1-fb-3PL"/>
+                            <constraint firstItem="HAe-dA-aV9" firstAttribute="top" secondItem="gyD-NQ-8Tp" secondAttribute="bottom" constant="7" id="7mf-yM-co2"/>
+                            <constraint firstItem="RMy-4q-Duq" firstAttribute="trailing" secondItem="d0S-s2-d8Q" secondAttribute="trailing" id="F8v-Cn-dQf"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="baseline" secondItem="Go0-K1-zJj" secondAttribute="firstBaseline" id="Im2-qr-y1y"/>
-                            <constraint firstItem="pGm-iz-Phc" firstAttribute="centerX" secondItem="gyD-NQ-8Tp" secondAttribute="centerX" id="MfK-TJ-1xM"/>
+                            <constraint firstItem="RMy-4q-Duq" firstAttribute="leading" secondItem="d0S-s2-d8Q" secondAttribute="leading" id="Lgh-hl-VP6"/>
+                            <constraint firstItem="vbc-ei-6BG" firstAttribute="top" secondItem="RMy-4q-Duq" secondAttribute="bottom" constant="152" id="P1X-QS-HZ2"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="leading" secondItem="bEr-sh-icF" secondAttribute="leading" id="Qd0-PQ-dS7"/>
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="R8P-Ns-tAl"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="baseline" secondItem="Go0-K1-zJj" secondAttribute="baseline" id="TmB-UD-G8x"/>
-                            <constraint firstItem="pGm-iz-Phc" firstAttribute="leading" secondItem="QHO-5l-9m9" secondAttribute="leading" id="aMU-c1-cpR"/>
-                            <constraint firstItem="QHO-5l-9m9" firstAttribute="top" secondItem="pGm-iz-Phc" secondAttribute="bottom" constant="8" symbolic="YES" id="art-ik-NoY"/>
                             <constraint firstItem="gyD-NQ-8Tp" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" id="cbd-3Z-2y3"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="bottom" secondItem="HAe-dA-aV9" secondAttribute="bottom" id="e3r-WR-S9l"/>
+                            <constraint firstItem="RMy-4q-Duq" firstAttribute="trailing" secondItem="gyD-NQ-8Tp" secondAttribute="trailing" id="fDD-GJ-zBg"/>
+                            <constraint firstItem="RMy-4q-Duq" firstAttribute="leading" secondItem="gyD-NQ-8Tp" secondAttribute="leading" id="s2B-Xd-sKH"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="leading" secondItem="HAe-dA-aV9" secondAttribute="trailing" constant="8" symbolic="YES" id="sRy-oK-s9R"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" constant="108" id="snr-2L-e2X"/>
+                            <constraint firstItem="RMy-4q-Duq" firstAttribute="top" secondItem="d0S-s2-d8Q" secondAttribute="bottom" constant="31" id="tim-ON-Qm0"/>
                             <constraint firstItem="Go0-K1-zJj" firstAttribute="leading" secondItem="HAe-dA-aV9" secondAttribute="trailing" constant="53" id="wgM-zd-RPy"/>
                             <constraint firstItem="heb-lf-Juq" firstAttribute="top" secondItem="bEr-sh-icF" secondAttribute="bottom" constant="15" id="zmg-4e-QxX"/>
                         </constraints>
@@ -940,10 +939,10 @@
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="MonthAndYear" destination="d0S-s2-d8Q" id="Jzh-TD-1ij"/>
                         <outlet property="businessName" destination="bEr-sh-icF" id="FQd-pi-iW5"/>
-                        <outlet property="calendarView" destination="pGm-iz-Phc" id="o3m-EE-Ivr"/>
+                        <outlet property="calendar" destination="RMy-4q-Duq" id="Kvh-fx-5F7"/>
                         <outlet property="profilePicture" destination="HAe-dA-aV9" id="27y-T3-CGB"/>
-                        <outlet property="status" destination="QHO-5l-9m9" id="GmR-73-VPr"/>
                         <outlet property="username" destination="Go0-K1-zJj" id="WX6-VB-997"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="vZj-ve-gXv"/>
                         <segue destination="2IV-Dn-hU7" kind="show" identifier="toRecord" id="zip-MG-ivf"/>
@@ -2949,8 +2948,8 @@ Cg
     <inferredMetricsTieBreakers>
         <segue reference="v0o-o3-ikI"/>
         <segue reference="BL1-nx-fst"/>
-        <segue reference="Dz4-eP-ptE"/>
-        <segue reference="ipa-vH-qnU"/>
+        <segue reference="vZj-ve-gXv"/>
+        <segue reference="zip-MG-ivf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

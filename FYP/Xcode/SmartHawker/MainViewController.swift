@@ -7,25 +7,34 @@
 //
 
 import UIKit
-import EventKit
+import CalendarView
+import SwiftMoment
 
-class MainViewcontroller: UIViewController, CalendarViewDataSource, CalendarViewDelegate {
+class MainViewcontroller: UIViewController{
     
     // Mark: Properties
     // Top Bar
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
-    // Calendar
-    @IBOutlet weak var calendarView: CalendarView!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var status: UITextView!
+    @IBOutlet weak var calendar: CalendarView!
+
+    @IBOutlet var MonthAndYear: UILabel!
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
+    var date: Moment! {
+        didSet {
+            title = date.format("MMMM d, yyyy")
+        }
+    }//for calendar
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        //calendar
+        date = moment()
+        calendar.delegate = self
+
         // Load the Top Bar
         let user = PFUser.currentUser()
         // Populate the top bar
@@ -40,155 +49,6 @@ class MainViewcontroller: UIViewController, CalendarViewDataSource, CalendarView
                 }
             }
         }
-        
-        calendarView.dataSource = self
-        calendarView.delegate = self
-        
-        // change the code to get a vertical calender.
-        calendarView.direction = .Horizontal
-        
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        super.viewDidAppear(animated)
-        
-        self.loadEventsInCalendar()
-        
-        let dateComponents = NSDateComponents()
-        dateComponents.day = 0
-        
-        let today = NSDate()
-        
-        if let date = self.calendarView.calendar.dateByAddingComponents(dateComponents, toDate: today, options: NSCalendarOptions()) {
-            self.calendarView.selectDate(date)
-            //self.calendarView.deselectDate(date)
-        }
-        self.calendarView.setDisplayDate(today, animated: true)
-        
-    }
-    
-    // MARK : KDCalendarDataSource
-    
-    func startDate() -> NSDate? {
-        
-        let dateComponents = NSDateComponents()
-        dateComponents.month = -15
-        
-        let today = NSDate()
-        
-        let fifteenMonthsFromNow = self.calendarView.calendar.dateByAddingComponents(dateComponents, toDate: today, options: NSCalendarOptions())
-        
-        
-        return fifteenMonthsFromNow
-    }
-    
-    func endDate() -> NSDate? {
-        
-        let dateComponents = NSDateComponents()
-        
-        dateComponents.year = 1;
-        let today = NSDate()
-        
-        let twoYearsFromNow = self.calendarView.calendar.dateByAddingComponents(dateComponents, toDate: today, options: NSCalendarOptions())
-        
-        return twoYearsFromNow
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        super.viewDidLayoutSubviews()
-        
-        let width = self.view.frame.size.width - 16.0 * 2
-        let height = width + 20.0
-        self.calendarView.frame = CGRect(x: 16.0, y: 150.0, width: width, height: height)
-        
-        
-    }
-    
-    
-    
-    // MARK : KDCalendarDelegate
-    
-    func calendar(calendar: CalendarView, didSelectDate date : NSDate, withEvents events: [EKEvent]) {
-        
-        if events.count > 0 {
-            let event : EKEvent = events[0]
-            print("We have an event starting at \(event.startDate) : \(event.title)")
-        }
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        let convertedDate = dateFormatter.stringFromDate(date)
-        
-        // Sends the date selected to RecordViewController
-        self.toShare.dateSelected = convertedDate
-        self.toShare.date = date
-        self.performSegueWithIdentifier("toRecord", sender: self)
-        
-        
-        
-        self.status.text = "No information for \(convertedDate)yet."
-        
-        
-        
-    }
-    
-    func calendar(calendar: CalendarView, didScrollToMonth date : NSDate) {
-    }
-    
-    // MARK : Events
-    
-    func loadEventsInCalendar() {
-        
-        if let  startDate = self.startDate(),
-            endDate = self.endDate() {
-            
-            let store = EKEventStore()
-            
-            let fetchEvents = { () -> Void in
-                
-                let predicate = store.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
-                
-                // if can return nil for no events between these dates
-                if let eventsBetweenDates = store.eventsMatchingPredicate(predicate) as [EKEvent]? {
-                    
-                    self.calendarView.events = eventsBetweenDates
-                    
-                }
-                
-            }
-            
-            // let q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
-            
-            if EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) != EKAuthorizationStatus.Authorized {
-                
-                store.requestAccessToEntityType(EKEntityType.Event, completion: {(granted, error ) -> Void in
-                    if granted {
-                        fetchEvents()
-                    }
-                })
-                
-            }
-            else {
-                fetchEvents()
-            }
-            
-        }
-        
-    }
-    
-    
-    // MARK : Events
-
-    
-    @IBAction func changeTodayDate(sender: UIBarButtonItem) {
-        
-        let today = NSDate()
-        self.calendarView.setDisplayDate(today, animated: true)
-        
-        
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
@@ -214,6 +74,27 @@ class MainViewcontroller: UIViewController, CalendarViewDataSource, CalendarView
             print("lalala12345")
             self.performSegueWithIdentifier("logout", sender: self)
     }
+    
+    
+}
+
+
+extension MainViewcontroller: CalendarViewDelegate {
+    
+    func calendarDidSelectDate(date: Moment) {
+        self.date = date
+        
+        print(date) // this is where the date is obtained. date is in moment form.
+    }
+    
+    func calendarDidPageToDate(date: Moment) {
+        self.date = date
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.MonthAndYear.text = date.monthName + " \(date.year)"
+        })
+        
+    }
+    
     
     
 }
