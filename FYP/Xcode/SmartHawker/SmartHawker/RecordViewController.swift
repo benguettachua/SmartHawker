@@ -27,9 +27,10 @@ class RecordViewController: UIViewController {
     
     // Array to store the records
     var records = [RecordTable]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         // Populate the date selected
         let dateString = self.shared.dateString
@@ -60,6 +61,13 @@ class RecordViewController: UIViewController {
                 self.shared.records = self.records
             }
         })
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
     }
     
     func loadRecords(completionHandler: CompletionHandler) {

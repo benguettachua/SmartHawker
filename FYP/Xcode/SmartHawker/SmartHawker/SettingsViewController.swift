@@ -26,10 +26,13 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
     var updated = false
+ 
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         picker.delegate = self
         if let userPicture = user!["profilePicture"] as? PFFile {
             userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
@@ -51,7 +54,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
+    }
     
     //change email
     @IBAction func changeEmail(sender: UIButton) {

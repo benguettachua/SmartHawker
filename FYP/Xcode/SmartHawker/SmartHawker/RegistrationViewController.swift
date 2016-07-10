@@ -156,14 +156,19 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         picker.delegate = self
         self.view.addSubview(ScrollView)
         ScrollView.scrollEnabled = false
-
-        
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
     }
     
     override func viewDidLayoutSubviews() {
