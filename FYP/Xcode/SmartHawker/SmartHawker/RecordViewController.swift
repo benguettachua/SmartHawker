@@ -19,9 +19,14 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var COGSTextField: UITextField!
     @IBOutlet weak var expensesTextField: UITextField!
     @IBOutlet weak var recordSuccessLabel: UILabel!
+    let user = PFUser.currentUser()
+    typealias CompletionHandler = (success:Bool) -> Void
     
     @IBOutlet weak var dateSelectedLabel: UILabel!
     var shared = ShareData.sharedInstance // This is the date selected from Main Calendar.
+    
+    // Array to store the records
+    var records = [RecordTable]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,95 +34,73 @@ class RecordViewController: UIViewController {
         // Populate the date selected
         let dateString = self.shared.dateString
         dateSelectedLabel.text = dateString
-        print(dateString)
         
-        let dayTimePeriodFormatter = NSDateFormatter()
-        dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
-        //let dateString = dayTimePeriodFormatter.stringFromDate(date)
+        // Load records
+        loadRecords({ (success) -> Void in
+            if (success) {
+                var salesAmount = 0
+                var COGSamount = 0
+                var expensesAmount = 0
+                var profit = 0
+                for record in self.records {
+                    if (record.type == "Sales" ) {
+                        salesAmount += record.amount
+                    } else if (record.type == "COGS") {
+                        COGSamount += record.amount
+                    } else if (record.type == "Expenses") {
+                        expensesAmount += record.amount
+                    }
+                }
+                profit = salesAmount - COGSamount - expensesAmount
+                
+                self.profit.text = String(profit)
+                self.sales.text = String(salesAmount)
+                self.COGS.text = String(COGSamount)
+                self.expenses.text = String(expensesAmount)
+                self.shared.records = self.records
+            }
+        })
+    }
+    
+    func loadRecords(completionHandler: CompletionHandler) {
         
-        let user = PFUser.currentUser()
-        
-        // Query to extract sales
-        var totalSales = 0
+        let dateString = self.shared.dateString
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
-        query.whereKey("type", equalTo: 0)
         query.whereKey("date", equalTo: dateString)
-        do {
-            let salesArray = try query.findObjects()
-            for sales in salesArray {
-                totalSales += sales["amount"] as! Int
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        let date = object["date"] as! String
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        let objectIdString = object.objectId
+                        var typeString = ""
+                        if (type == 0) {
+                            typeString = "Sales"
+                        } else if (type == 1) {
+                            typeString = "COGS"
+                        } else if (type == 2) {
+                            typeString = "Expenses"
+                        }
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
+                        self.records.append(newRecord)
+                    }
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
             }
-            self.sales.text = String(totalSales)
-        } catch {
-            // Do nothing since should not get error, to add on to handle error in future
         }
-       
-        
-        // Query to extract COGS
-        var totalCOGS = 0
-        let query2 = PFQuery(className: "Record")
-        query2.whereKey("user", equalTo: user!)
-        query2.whereKey("type", equalTo: 1)
-        query2.whereKey("date", equalTo: dateString)
-        do {
-            let COGSArray = try query2.findObjects()
-            for COGS in COGSArray {
-                totalCOGS += COGS["amount"] as! Int
-            }
-            self.COGS.text = String(totalCOGS)
-        } catch {
-            // Do nothing since should not get error, to add on to handle error in future
-        }
-        
-        // Query to extract Expenses
-        var totalExpenses = 0
-        let query3 = PFQuery(className: "Record")
-        query3.whereKey("user", equalTo: user!)
-        query3.whereKey("type", equalTo: 2)
-        query3.whereKey("date", equalTo: dateString)
-        do {
-            let expensesArray = try query3.findObjects()
-            for expenses in expensesArray {
-                totalExpenses += expenses["amount"] as! Int
-            }
-            self.expenses.text = String(totalExpenses)
-        } catch {
-            // Do nothing since should not get error, to add on to handle error in future
-        }
-        
-        // Calculate total profit.
-        let totalProfit = totalSales - totalCOGS - totalExpenses
-        self.profit.text = String(totalProfit)
         
     }
     
-    // MARK: Table
-    /*
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // User
-        let user = PFUser.currentUser()
-        
-        // Date
-        let date = self.shared.date
-        let dayTimePeriodFormatter = NSDateFormatter()
-        dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
-        let dateString = dayTimePeriodFormatter.stringFromDate(date)
-        
-        // Query
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        query.whereKey("date", equalTo: dateString)
-        do {
-            let records = try query.findObjects()
-            return records.count
-        } catch {
-            // Do nothing since should not get error, to add on the handle error in future
-            return 0
-        }
-    }
- */
-    /*
     // Mark: Action
     @IBAction func SubmitRecord(sender: UIButton) {
         let salesToRecord = Int(salesTextField.text!)
@@ -126,10 +109,7 @@ class RecordViewController: UIViewController {
         var didRecord = false
         
         // Get the date to save in DB.
-        //let date = self.shared.date
-        let dayTimePeriodFormatter = NSDateFormatter()
-        dayTimePeriodFormatter.dateFormat = "dd/MM/yyyy"
-        let dateString = dayTimePeriodFormatter.stringFromDate(date)
+        let dateString = self.shared.dateString
         
         let toRecord = PFObject(className: "Record")
         let toRecord2 = PFObject(className: "Record")
@@ -184,5 +164,5 @@ class RecordViewController: UIViewController {
         }
 
     }
-    */
+    
 }

@@ -84,16 +84,17 @@ extension MainViewcontroller: CalendarViewDelegate {
     func calendarDidSelectDate(date: Moment) {
         self.date = date
         
-        print(date) // this is where the date is obtained. date is in moment form.
-        
         // Adding 8 hours due to timezone
         let duration = 8.hours
         let dateInNSDate = date.add(duration).date
-        print(dateInNSDate)
+        
+        // Formatting to format as saved in DB.
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let correctDateString = dateFormatter.stringFromDate(dateInNSDate)
         toShare.dateString = correctDateString
+        
+        // Move to Record Page.
         self.performSegueWithIdentifier("toRecord", sender: self)
     }
     

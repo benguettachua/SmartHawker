@@ -26,4 +26,6 @@ class ShareData {
     var dateSelected: String!
     var dateString: String!
     var password: String!
+    var records: [RecordTable]!
+    var rowNo: Int!
 }
