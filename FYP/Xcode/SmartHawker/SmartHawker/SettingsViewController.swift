@@ -22,6 +22,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var phoneNo: UITextView!
     @IBOutlet weak var profilePicture: UIImageView!
     typealias CompletionHandler = (success: Bool) -> Void
+    @IBOutlet var information: UILabel!
     
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
@@ -416,7 +417,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-            
+            self.information.textColor = UIColor.blackColor()
+            self.information.text = "Choose image within 10MB"
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
             
@@ -473,6 +475,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             self.user!["profilePicture"] = imageFile
             self.updated = true
             self.user?.saveInBackground()
+            self.information.textColor = UIColor.blackColor()
+            information.text = "Image Uploaded"
+        }else{
+            information.textColor = UIColor.redColor()
+            information.text = "Image Not Within 10MB"
         }
         
         
@@ -480,6 +487,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     //What to do if the image picker cancels.
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.information.textColor = UIColor.blackColor()
+        self.information.text = "Choose image within 10MB"
         dismissViewControllerAnimated(true,
                                       completion: nil)
     }
