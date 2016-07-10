@@ -43,6 +43,7 @@
 		6AF9C51A1D1D80EB000533E0 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5191D1D80EB000533E0 /* AnalyticsViewController.swift */; };
 		6AF9C51B1D1D80EB000533E0 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5191D1D80EB000533E0 /* AnalyticsViewController.swift */; };
 		AF577D001D28D7F800816782 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF577CFF1D28D7F800816782 /* SettingsViewController.swift */; };
+		AFC9FB6D1D329DBD00F7EE54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */; };
 		DC7F67FE1D1E5EC700F2C2B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F67FD1D1E5EC700F2C2B1 /* MainViewController.swift */; };
 		DC7F68001D1E604F00F2C2B1 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F67FF1D1E604F00F2C2B1 /* ReportsViewController.swift */; };
 		DC7F68021D1E612900F2C2B1 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F68011D1E612900F2C2B1 /* SyncViewController.swift */; };
@@ -110,6 +111,9 @@
 		74ECE5D979F1DE9D0C9E6132 /* Pods-SmartHawkerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHawkerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		951B5187DD3010188E4852CC /* Pods-SmartHawkerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHawkerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF577CFF1D28D7F800816782 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AFC9FB6A1D329D5200F7EE54 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		AFC9FB6E1D329DBD00F7EE54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AFC9FB701D329DC000F7EE54 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B9581DDA8A58556E6C23E869 /* Pods_SmartHawker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHawker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1AADDE60801935A52B95D8 /* Pods_SmartHawkerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHawkerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7F67FD1D1E5EC700F2C2B1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../MainViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 		6A6834A71D05C95E00E9A0AD /* SmartHawker */ = {
 			isa = PBXGroup;
 			children = (
+				AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */,
 				6ABEA1211D2D00B100945E0C /* RecordTable.swift */,
 				6A6834A81D05C95E00E9A0AD /* AppDelegate.swift */,
 				6A6834AA1D05C95E00E9A0AD /* ViewController.swift */,
@@ -359,6 +364,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6A68349C1D05C95E00E9A0AD;
 			productRefGroup = 6A6834A61D05C95E00E9A0AD /* Products */;
@@ -378,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A6834B31D05C95E00E9A0AD /* LaunchScreen.storyboard in Resources */,
+				AFC9FB6D1D329DBD00F7EE54 /* Localizable.strings in Resources */,
 				6A6834B01D05C95E00E9A0AD /* Assets.xcassets in Resources */,
 				6A6834AE1D05C95E00E9A0AD /* Main.storyboard in Resources */,
 			);
@@ -587,6 +594,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6A6834AD1D05C95E00E9A0AD /* Base */,
+				AFC9FB6A1D329D5200F7EE54 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -597,6 +605,16 @@
 				6A6834B21D05C95E00E9A0AD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFC9FB6E1D329DBD00F7EE54 /* Base */,
+				AFC9FB701D329DC000F7EE54 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
