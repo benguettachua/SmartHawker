@@ -29,7 +29,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var adminPIN: UITextField!
     @IBOutlet var messageLabel: UILabel!
     
-    @IBOutlet var information: UILabel!
     @IBOutlet var ScrollView: UIScrollView!
     // Registers the user upon clicking this button.
     @IBAction func registerButton(sender: UIButton) {
@@ -265,8 +264,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-            self.information.textColor = UIColor.blackColor()
-            self.information.text = "Choose image within 10MB"
+            
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
             
@@ -297,28 +295,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        let imageData = UIImagePNGRepresentation(chosenImage)
-        print("Size of Image: \(imageData!.length) bytes")
-        print(imageData!.length < 9999999)
-        
-            if imageData!.length < 9999999{
-                let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-                profilePicture.contentMode = .ScaleAspectFit //3
-                profilePicture.image = chosenImage //4
-                self.information.textColor = UIColor.blackColor()
-                information.text = "Image Uploaded"
-            }else{
-                information.textColor = UIColor.redColor()
-                information.text = "Image Not Within 10MB"
-
-        }
-        
+        profilePicture.contentMode = .ScaleAspectFit //3
+        profilePicture.image = chosenImage //4
         dismissViewControllerAnimated(true, completion: nil) //5
     }
     //What to do if the image picker cancels.
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.information.textColor = UIColor.blackColor()
-        self.information.text = "Choose image within 10MB"
         dismissViewControllerAnimated(true,
                                       completion: nil)
     }
