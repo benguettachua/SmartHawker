@@ -23,7 +23,7 @@ class MainViewcontroller: UIViewController{
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     var date: Moment! {
         didSet {
-            title = date.format("MMMM d, yyyy")
+            // title = date.format("MMMM d, yyyy")
         }
     }//for calendar
     

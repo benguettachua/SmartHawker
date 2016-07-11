@@ -28,4 +28,5 @@ class ShareData {
     var password: String!
     var records: [RecordTable]!
     var rowNo: Int!
+    var selectedRecord: RecordTable!
 }

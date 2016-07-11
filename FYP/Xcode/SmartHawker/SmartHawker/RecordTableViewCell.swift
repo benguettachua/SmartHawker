@@ -17,13 +17,17 @@ class RecordTableViewCell: UITableViewCell {
     var rowSelected: Int!
     var shared = ShareData.sharedInstance
     
+    // Delegate
+    var delegate: MyCustomerCellDelegator!
+    
     // MARK: Action
     @IBAction func editButton(sender: UIButton) {
         let records = shared.records
         let selectedRecord = records[rowSelected]
-        print("Edit is clicked")
-        print("Row is " + String(rowSelected))
-        print("Record is " + selectedRecord.toString())
+        if (self.delegate != nil) {
+            shared.selectedRecord = selectedRecord
+            self.delegate.callSegueFromCell(myData: selectedRecord)
+        }
         
     }
     @IBAction func deleteButton(sender: UIButton) {

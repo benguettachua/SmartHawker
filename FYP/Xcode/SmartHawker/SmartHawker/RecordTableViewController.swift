@@ -6,9 +6,13 @@
 //  Copyright © 2016 Kay Zong Wei. All rights reserved.
 //
 
+protocol MyCustomerCellDelegator {
+    func callSegueFromCell(myData dataobject: AnyObject)
+}
+
 import UIKit
 
-class RecordTableViewController: UITableViewController {
+class RecordTableViewController: UITableViewController, MyCustomerCellDelegator {
     
     // MARK: Properties
     var records = [RecordTable]()
@@ -46,6 +50,15 @@ class RecordTableViewController: UITableViewController {
         cell.typeLabel.text = record.type
         cell.amountLabel.text = String(record.amount)
         cell.rowSelected = indexPath.row
+        
+        cell.delegate = self
+        
         return cell
+    }
+    
+    func callSegueFromCell(myData dataobject: AnyObject) {
+        //try not to send self, just to avoid retain cycles(depends on how you handle the code on the next controller)
+        self.performSegueWithIdentifier("updateRecord", sender:dataobject )
+        
     }
 }
