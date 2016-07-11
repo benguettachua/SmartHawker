@@ -31,7 +31,21 @@ class RecordTableViewCell: UITableViewCell {
         
     }
     @IBAction func deleteButton(sender: UIButton) {
-        print("Delete is clicked")
+        let records = shared.records
+        let selectedRecord = records[rowSelected]
+        let objectId = selectedRecord.objectId
+        
+        let query = PFQuery(className: "Record")
+        query.getObjectInBackgroundWithId(objectId)
+        {
+            (record: PFObject?, error: NSError?) -> Void in
+            if (error != nil) {
+                print(error)
+            } else if let record = record {
+                record.deleteEventually()
+                self.delegate.backToRecordFromCell(myData: "hi")
+            }
+        }
     }
     
     

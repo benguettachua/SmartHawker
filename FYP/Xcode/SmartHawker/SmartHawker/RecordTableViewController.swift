@@ -7,7 +7,8 @@
 //
 
 protocol MyCustomerCellDelegator {
-    func callSegueFromCell(myData dataobject: AnyObject)
+    func callSegueFromCell (myData dataobject: AnyObject)
+    func backToRecordFromCell (myData dataobject: AnyObject)
 }
 
 import UIKit
@@ -58,7 +59,11 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     
     func callSegueFromCell(myData dataobject: AnyObject) {
         //try not to send self, just to avoid retain cycles(depends on how you handle the code on the next controller)
-        self.performSegueWithIdentifier("updateRecord", sender:dataobject )
+        self.performSegueWithIdentifier("updateRecord", sender: dataobject )
         
+    }
+    
+    func backToRecordFromCell(myData dataobject: AnyObject) {
+        self.performSegueWithIdentifier("backToRecord", sender: dataobject)
     }
 }
