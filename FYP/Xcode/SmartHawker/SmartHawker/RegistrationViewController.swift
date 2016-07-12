@@ -11,7 +11,7 @@ import UIKit
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    
+    var ok = Int()
     let picker = UIImagePickerController()   //our controller.
     //Memory will be conserved a bit if you place this in the actions.
     // I did this to make code a bit more streamlined
@@ -58,76 +58,114 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that Business Name field is not empty
             businessName.text = ""
-            businessName.attributedPlaceholder = NSAttributedString(string:"Please enter your Business Name.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-            self.messageLabel.hidden = false
+            businessName.attributedPlaceholder = NSAttributedString(string:"Business Name Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (businessRegNo.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (businessRegNo.text!.isEqual("")) {
             
             // Validition: Ensures that Business Registered Number field is not empty
-            self.messageLabel.text = "Please enter your Business Registered Number."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            businessRegNo.text = ""
+            businessRegNo.attributedPlaceholder = NSAttributedString(string:"Business Reg No Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (businessAddress.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (businessAddress.text!.isEqual("")) {
             
             // Validition: Ensures that Business Address field is not empty
-            self.messageLabel.text = "Please enter your Business Address."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            businessAddress.text = ""
+            businessAddress.attributedPlaceholder = NSAttributedString(string:"Business Address Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (username.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (username.text!.isEqual("")) {
             
             // Validition: Ensures that username field is not empty
-            self.messageLabel.text = "Please enter your username."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            username.text = ""
+            username.attributedPlaceholder = NSAttributedString(string:"Username Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (email.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (email.text!.isEqual("")) {
             
             // Validition: Ensures that email field is not empty
-            self.messageLabel.text = "Please enter your email."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            email.text = ""
+            email.attributedPlaceholder = NSAttributedString(string:"Email Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (phoneNumber.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (phoneNumber.text!.isEqual("")) {
             
             // Validition: Ensures that phoneNumber is not empty
-            self.messageLabel.text = "Please enter your Phone Number."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            phoneNumber.text = ""
+            phoneNumber.attributedPlaceholder = NSAttributedString(string:"Phone Number Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (password.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (password.text!.isEqual("")) {
             
             // Validition: Ensures that password field is not empty
-            self.messageLabel.text = "Please enter your password."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            password.text = ""
+            password.attributedPlaceholder = NSAttributedString(string:"Password Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (confirmPassword.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (confirmPassword.text!.isEqual("")) {
             
             // Validition: Ensures that confirm password field is not empty
-            self.messageLabel.text = "Please enter confirm password."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            confirmPassword.text = ""
+            confirmPassword.attributedPlaceholder = NSAttributedString(string:"Confirm Password Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (adminPIN.text!.isEqual("")) {
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (adminPIN.text!.isEqual("")) {
             
             // Validition: Ensures that adminPIN field is not empty
-            self.messageLabel.text = "Please enter your admin PIN."
-            self.messageLabel.textColor = UIColor.redColor()
-            self.messageLabel.hidden = false
+            adminPIN.text = ""
+            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
-        } else if (password.text!.isEqual(confirmPassword.text!) == false){
+            print(ok)
+            
+        }else{
+            ok += 1
+        }
+        if (password.text!.isEqual(confirmPassword.text!) == false){
             
             // Validition: Ensures that password and confirm password is the same.
+            
             self.messageLabel.text = "Password and Confirm Password does not match, please try again."
             self.messageLabel.textColor = UIColor.redColor()
             self.messageLabel.hidden = false
-            
-        } else {
-            
+            print(ok)
+        }else{
+            ok += 1
+        }
+        if ok == 10 {
             // All validations passed, proceed to register user.
-            print("lalalalalalalalaa")
             let newUser = PFUser()
             newUser["businessName"] = businessName.text
             newUser["businessNumber"] = businessRegNo.text
@@ -163,7 +201,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                                 self.messageLabel.text = error?.localizedDescription
                                 self.messageLabel.hidden = false
                                 
-                                
                             }
                         }
                     }
@@ -173,9 +210,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                     self.messageLabel.text = error?.localizedDescription
                     self.messageLabel.textColor = UIColor.redColor()
                     self.messageLabel.hidden = false
+                    print(self.messageLabel)
                 }
             }
             
+        }else{
+            ok = 0
         }
     }
     override func viewDidLoad() {
@@ -348,13 +388,10 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         let imageData = UIImagePNGRepresentation(chosenImage)
-        print(imageData!.length < 9999999)
         if imageData!.length < 9999999{
 
             profilePicture.contentMode = .ScaleAspectFit //3
-            print("qqqweqweqweqweqweqweqweqweqweqwe")
             profilePicture.image = chosenImage //4
-            print("qqqweqweqweqweqweqweqweqweqweqwe")
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded".localized()
         }else{

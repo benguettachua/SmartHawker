@@ -256,10 +256,10 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uMG-e4-t3E">
-                                        <rect key="frame" x="127" y="561" width="374" height="30"/>
+                                        <rect key="frame" x="127" y="561" width="160" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                                                 <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="crf-GT-pJk"/>
@@ -271,7 +271,7 @@
                                                 </connections>
                                             </button>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
-                                                <rect key="frame" x="0.0" y="30" width="374" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="30" width="160" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="374" id="3lB-1X-Ka8"/>
                                                     <constraint firstAttribute="height" constant="50" id="UUg-FG-hDs"/>
@@ -313,7 +313,7 @@
                                                     <constraint firstAttribute="width" constant="191" id="1hs-Qh-HSV"/>
                                                     <constraint firstAttribute="height" constant="30" id="7Tz-wb-uFi"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="7xF-ca-gtz"/>
@@ -326,7 +326,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="3ZS-bJ-AQM"/>
                                                     <constraint firstAttribute="width" constant="191" id="JCU-gT-nvW"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="6Od-jA-hYj"/>
@@ -339,7 +339,7 @@
                                                     <constraint firstAttribute="width" constant="191" id="Wcp-HX-HBr"/>
                                                     <constraint firstAttribute="height" constant="30" id="uGr-iL-KzD"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="kJe-1a-8dA"/>
@@ -352,7 +352,7 @@
                                                     <constraint firstAttribute="width" constant="191" id="3b8-fx-bBl"/>
                                                     <constraint firstAttribute="height" constant="30" id="Ubu-00-FUi"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="i4D-WB-jqE"/>
@@ -365,7 +365,7 @@
                                                     <constraint firstAttribute="width" constant="191" id="b9A-MA-fs8"/>
                                                     <constraint firstAttribute="height" constant="30" id="nx5-Ap-gLE"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="JJg-Gt-W9x"/>
@@ -374,7 +374,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gi-gY-Z1Y">
                                                 <rect key="frame" x="0.0" y="190" width="191" height="30"/>
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="ljx-Ib-gI6"/>
@@ -387,7 +387,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="5pi-lk-xP7"/>
                                                     <constraint firstAttribute="width" constant="191" id="jhT-GE-hgH"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="Mun-Ah-8rF"/>
@@ -400,7 +400,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="1Rv-WO-cnL"/>
                                                     <constraint firstAttribute="width" constant="191" id="RJE-Lg-Bow"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="cfB-Ih-Jo4"/>
@@ -413,7 +413,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="EAC-ux-aZB"/>
                                                     <constraint firstAttribute="width" constant="191" id="SFm-yM-vJz"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="GMA-Fr-8GI"/>
