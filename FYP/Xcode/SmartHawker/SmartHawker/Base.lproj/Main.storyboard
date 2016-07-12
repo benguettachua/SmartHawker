@@ -258,7 +258,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uMG-e4-t3E">
                                         <rect key="frame" x="127" y="561" width="374" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                                 <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -270,7 +270,7 @@
                                                     <action selector="registerButton:" destination="yyf-8u-gcf" eventType="touchUpInside" id="8ve-uD-w2i"/>
                                                 </connections>
                                             </button>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
                                                 <rect key="frame" x="0.0" y="30" width="374" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="374" id="3lB-1X-Ka8"/>
@@ -380,7 +380,7 @@
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="ljx-Ib-gI6"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-1N-XYl">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Reg No" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-1N-XYl">
                                                 <rect key="frame" x="0.0" y="228" width="191" height="30"/>
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -393,7 +393,7 @@
                                                     <outlet property="delegate" destination="yyf-8u-gcf" id="Mun-Ah-8rF"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Reg No" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cx7-rW-eK0">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cx7-rW-eK0">
                                                 <rect key="frame" x="0.0" y="266" width="191" height="30"/>
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -523,17 +523,31 @@
                     <connections>
                         <outlet property="ScrollView" destination="k4N-Cq-7vg" id="OVx-Xq-sXY"/>
                         <outlet property="adminPIN" destination="RtL-lA-9cu" id="dj2-T9-dEw"/>
-                        <outlet property="businessAddress" destination="6gC-1N-XYl" id="OfG-Ye-Gfc"/>
+                        <outlet property="adminPinLabel" destination="zOv-lg-vEo" id="G0t-9n-cYH"/>
+                        <outlet property="back" destination="vgA-k7-rPd" id="fUk-Ze-BhT"/>
+                        <outlet property="businessAddress" destination="cx7-rW-eK0" id="AEX-8Q-fc1"/>
+                        <outlet property="businessAddressLabel" destination="MqU-0R-yIu" id="XJ7-gT-y9N"/>
                         <outlet property="businessName" destination="1Gi-gY-Z1Y" id="CQ2-jj-Ltm"/>
-                        <outlet property="businessRegNo" destination="cx7-rW-eK0" id="j2L-0A-63r"/>
+                        <outlet property="businessNameLabel" destination="07x-Mh-Ik8" id="hzE-B4-UzS"/>
+                        <outlet property="businessRegNo" destination="6gC-1N-XYl" id="qgp-Dy-PtM"/>
+                        <outlet property="businessRegNoLabel" destination="8HV-Gj-o9K" id="TCe-u9-X2c"/>
                         <outlet property="confirmPassword" destination="9tM-CL-oqb" id="Kte-C4-j6A"/>
+                        <outlet property="confirmPasswordLabel" destination="vPJ-nZ-mZx" id="2Jt-GI-hf6"/>
                         <outlet property="email" destination="Ihf-eL-Iow" id="tTK-Wj-2sx"/>
+                        <outlet property="emailLabel" destination="23H-f4-BNI" id="QiR-UD-mkC"/>
                         <outlet property="information" destination="LJq-Ce-bZP" id="JZq-OJ-MQu"/>
+                        <outlet property="instructionsLabel" destination="LJq-Ce-bZP" id="Rzd-F7-Q9X"/>
                         <outlet property="messageLabel" destination="NIe-7u-RcD" id="Z59-9S-mIL"/>
                         <outlet property="password" destination="kOD-j9-66P" id="keL-ii-w24"/>
+                        <outlet property="passwordLabel" destination="xrf-TI-F8U" id="i5W-96-lZd"/>
                         <outlet property="phoneNumber" destination="Vwj-35-nMq" id="lCn-y2-urt"/>
-                        <outlet property="profilePicture" destination="kUb-Kz-dnX" id="Aun-Yh-StJ"/>
-                        <outlet property="username" destination="mrZ-8U-sHx" id="3F6-Uv-SQP"/>
+                        <outlet property="phoneNumberLabel" destination="1km-av-gGV" id="0Nk-fX-dwI"/>
+                        <outlet property="profilePicture" destination="kUb-Kz-dnX" id="cB7-6n-i15"/>
+                        <outlet property="profilePictureLabel" destination="MJm-U3-cHU" id="2QF-b6-ikr"/>
+                        <outlet property="registerButton" destination="JwK-Kb-bmT" id="myc-hp-u1p"/>
+                        <outlet property="registerNavBar" destination="j1i-dS-kb5" id="MXd-nQ-gVw"/>
+                        <outlet property="username" destination="mrZ-8U-sHx" id="2QE-jB-XcP"/>
+                        <outlet property="usernameLabel" destination="YHi-U0-cgd" id="8NP-fI-uuM"/>
                         <segue destination="xvq-Kx-gUH" kind="show" identifier="registerSuccess" id="yGY-of-f3a"/>
                     </connections>
                 </viewController>
@@ -1041,14 +1055,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
                                 <rect key="frame" x="0.0" y="264" width="414" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="V07-KC-MWg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
                                 <rect key="frame" x="0.0" y="212" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="CrE-c1-4av"/>
@@ -3106,11 +3120,11 @@ Cg
         <image name="sync" width="32" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BL1-nx-fst"/>
-        <segue reference="oY2-Nh-qZw"/>
-        <segue reference="ycf-Pw-ULf"/>
+        <segue reference="yGY-of-f3a"/>
+        <segue reference="iZY-7W-stE"/>
         <segue reference="Ssf-Vh-x3j"/>
-        <segue reference="awo-im-o7A"/>
+        <segue reference="BL1-nx-fst"/>
+        <segue reference="ipa-vH-qnU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

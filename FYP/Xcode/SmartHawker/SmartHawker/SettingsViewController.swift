@@ -383,36 +383,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     @IBAction func selectNewImageFromPhotoLibrary(sender: UIButton) {
-        
-        selectNewImage({ (success) -> Void in
-            
-            // When loading completes,control flow goes here.
-            if success {
-                print("lalala")
-                
-                let alert = UIAlertController(title: "Error", message: "Chosen picture exceed size limit.", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            } else {
-                // loadRecordFail fail
-                print("Load fail")
-            }
-        })
-        
-    }
-    
-    func selectNewImage(completionHandler: CompletionHandler){
         let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
             self.shootPhoto()
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
         }))
         refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
             
             self.photoLibrary()
-            
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
         }))
         
@@ -425,11 +406,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }))
         
         presentViewController(refreshAlert, animated: true, completion: nil)
-        if updated==true{
-            
-            completionHandler(success: true)
-            updated = false
-        }
+
     }
     
     func photoLibrary(){
@@ -477,9 +454,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             self.user?.saveInBackground()
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded"
+
         }else{
             information.textColor = UIColor.redColor()
             information.text = "Image Not Within 10MB"
+
         }
         
         

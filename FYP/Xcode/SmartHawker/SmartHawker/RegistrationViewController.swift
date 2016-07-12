@@ -16,6 +16,25 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     //Memory will be conserved a bit if you place this in the actions.
     // I did this to make code a bit more streamlined
     
+    //labels
+    @IBOutlet weak var profilePictureLabel: UILabel!
+    @IBOutlet weak var instructionsLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    @IBOutlet weak var adminPinLabel: UILabel!
+    @IBOutlet weak var businessNameLabel: UILabel!
+    @IBOutlet weak var businessAddressLabel: UILabel!
+    @IBOutlet weak var businessRegNoLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    
+    //navigation bar
+    @IBOutlet weak var registerNavBar: UINavigationBar!
+    
+    @IBOutlet weak var back: UIBarButtonItem!
+    
+    
     // MARK: Properties
     @IBOutlet var profilePicture: UIImageView!
     @IBOutlet var businessName: UITextField!
@@ -30,6 +49,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var information: UILabel!
     
+    @IBOutlet weak var registerButton: UIButton!
     @IBOutlet var ScrollView: UIScrollView!
     // Registers the user upon clicking this button.
     @IBAction func registerButton(sender: UIButton) {
@@ -37,8 +57,8 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         if (businessName.text!.isEqual("")) {
             
             // Validition: Ensures that Business Name field is not empty
-            self.messageLabel.text = "Please enter your Business Name."
-            self.messageLabel.textColor = UIColor.redColor()
+            businessName.text = ""
+            businessName.attributedPlaceholder = NSAttributedString(string:"Please enter your Business Name.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             self.messageLabel.hidden = false
             
         } else if (businessRegNo.text!.isEqual("")) {
@@ -107,6 +127,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         } else {
             
             // All validations passed, proceed to register user.
+            print("lalalalalalalalaa")
             let newUser = PFUser()
             newUser["businessName"] = businessName.text
             newUser["businessNumber"] = businessRegNo.text
@@ -163,6 +184,35 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         picker.delegate = self
         self.view.addSubview(ScrollView)
         ScrollView.scrollEnabled = false
+        
+        registerNavBar.topItem!.title = "Register a New Account".localized()
+        registerButton.setTitle("Register".localized(), forState: .Normal)
+        back.title = "Back".localized()
+    
+        profilePictureLabel.text = "Profile Picture".localized()
+        usernameLabel.text = "Username".localized()
+        emailLabel.text = "Email".localized()
+        passwordLabel.text = "Password".localized()
+        confirmPasswordLabel.text = "Confirm Password".localized()
+        adminPinLabel.text = "Admin PIN (4 Digits)".localized()
+        businessNameLabel.text = "Business Name".localized()
+        businessAddressLabel.text = "Business Address".localized()
+        businessRegNoLabel.text = "Business Reg No".localized()
+        phoneNumberLabel.text = "Phone Number".localized()
+    
+
+        businessName.placeholder = "Business Name".localized()
+        businessRegNo.placeholder = "Business Reg No".localized()
+        businessAddress.placeholder = "Business Address".localized()
+        username.placeholder = "Username".localized()
+        email.placeholder = "Email".localized()
+        phoneNumber.placeholder = "Phone Number".localized()
+        password.placeholder = "Password".localized()
+        confirmPassword.placeholder = "Confirm Password".localized()
+        adminPIN.placeholder = "Admin PIN (4 Digits)".localized()
+    
+    
+    
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -218,11 +268,11 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     func noCamera(){
         let alertVC = UIAlertController(
-            title: "No Camera",
-            message: "Sorry, this device has no camera",
+            title: "No Camera".localized(),
+            message: "This device has no camera".localized(),
             preferredStyle: .Alert)
         let okAction = UIAlertAction(
-            title: "OK",
+            title: "OK".localized(),
             style:.Default,
             handler: nil)
         alertVC.addAction(okAction)
@@ -251,24 +301,24 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     // MARK: Actions
     @IBAction func selectNewImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
-        let refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Profile Picture".localized(), message: "Please Choose a Profile Picture".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Camera".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             self.textFieldDidEndEditing()
             self.shootPhoto()
         }))
-        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Photo Library".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             self.textFieldDidEndEditing()
             self.photoLibrary()
             
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             self.information.textColor = UIColor.blackColor()
-            self.information.text = "Choose image within 10MB"
+            self.information.text = "Choose image within 10MB".localized()
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
-            
+            self.textFieldDidEndEditing()
             
         }))
         
@@ -298,18 +348,18 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         let imageData = UIImagePNGRepresentation(chosenImage)
-        print("Size of Image: \(imageData!.length) bytes")
         print(imageData!.length < 9999999)
-        
         if imageData!.length < 9999999{
-            let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+
             profilePicture.contentMode = .ScaleAspectFit //3
+            print("qqqweqweqweqweqweqweqweqweqweqwe")
             profilePicture.image = chosenImage //4
+            print("qqqweqweqweqweqweqweqweqweqweqwe")
             self.information.textColor = UIColor.blackColor()
-            information.text = "Image Uploaded"
+            information.text = "Image Uploaded".localized()
         }else{
             information.textColor = UIColor.redColor()
-            information.text = "Image Not Within 10MB"
+            information.text = "Image Not Within 10MB".localized()
             
         }
         dismissViewControllerAnimated(true, completion: nil) //5
@@ -317,7 +367,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     //What to do if the image picker cancels.
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.information.textColor = UIColor.blackColor()
-        self.information.text = "Choose image within 10MB"
+        self.information.text = "Choose image within 10MB".localized()
         dismissViewControllerAnimated(true,
                                       completion: nil)
     }
