@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var signIn: UIButton!
+    @IBOutlet weak var register: UIButton!
     
     var actionSheet: UIAlertController!
     
@@ -43,6 +45,8 @@ class ViewController: UIViewController {
     
     func setText(){
         textLabel.text = "SMARTHAWKER".localized();
+        signIn.setTitle("Sign In".localized(), forState: .Normal)
+        register.setTitle("Register".localized(), forState: .Normal)
     }
     
     // MARK: IBActions

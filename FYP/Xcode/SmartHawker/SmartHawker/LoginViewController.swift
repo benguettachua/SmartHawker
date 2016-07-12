@@ -16,6 +16,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorMessageLabel: UILabel!
     var toShare = ShareData.sharedInstance
     
+    @IBOutlet weak var back: UIBarButtonItem!
+    @IBOutlet weak var login: UIButton!
+    @IBOutlet weak var loginNavBar: UINavigationBar!
     @IBAction func loginButton(sender: UIButton) {
         
         PFUser.logInWithUsernameInBackground(usernameOrEmailTextField.text!, password: passwordTextField.text!) {
@@ -40,6 +43,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        
+        usernameOrEmailTextField.placeholder = "Username or Email".localized()
+        passwordTextField.placeholder = "Password".localized()
+        loginNavBar.topItem!.title = "Login".localized()
+        login.setTitle("Login".localized(), forState: .Normal)
+        back.title = "Back".localized()
+        
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
