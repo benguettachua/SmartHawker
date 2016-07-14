@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Charts
 
 class AnalyticsViewController: UIViewController {
     
@@ -15,6 +16,10 @@ class AnalyticsViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
+    
+    
+    var months: [String]!
+    @IBOutlet weak var barChartView: BarChartView!
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
@@ -38,6 +43,26 @@ class AnalyticsViewController: UIViewController {
                 }
             }
         }
+        
+
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+        
+        setChart(months, values: unitsSold)
        
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Units Sold")
+        let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
+        barChartView.data = chartData
     }
 }
