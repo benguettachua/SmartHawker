@@ -101,6 +101,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         if (email.text!.lowercaseString.isEqual("")) {
             
             // Validition: Ensures that email field is not empty
+            // All emails are stored as lowercase
             email.text = ""
             email.attributedPlaceholder = NSAttributedString(string:"Email Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
@@ -164,7 +165,15 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }else{
             ok += 1
         }
-        if ok == 10 {
+        if (adminPIN.text!.characters.count != 4) {
+            adminPIN.text = ""
+            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 numbers.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            
+            print(ok)
+        } else {
+            ok += 1
+        }
+        if ok == 11 {
             // All validations passed, proceed to register user.
             let newUser = PFUser()
             newUser["businessName"] = businessName.text
