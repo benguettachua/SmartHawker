@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class RecordViewController: UIViewController {
+class RecordViewController: UIViewController, UITextFieldDelegate {
     
     // Mark: Properties
     @IBOutlet weak var profit: UILabel!
@@ -18,10 +18,25 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var COGSTextField: UITextField!
     @IBOutlet weak var expensesTextField: UITextField!
     @IBOutlet weak var recordSuccessLabel: UILabel!
+    @IBOutlet weak var dateSelectedLabel: UILabel!
+    @IBOutlet weak var newRecord: UILabel!
+    @IBOutlet weak var recordedProfit: UILabel!
+    @IBOutlet weak var recordedSales: UILabel!
+    @IBOutlet weak var recordedCOGS: UILabel!
+    @IBOutlet weak var recordedExpenses: UILabel!
+    @IBOutlet weak var todaySales: UILabel!
+    @IBOutlet weak var todayCOGS: UILabel!
+    @IBOutlet weak var todayExpenses: UILabel!
+    
+    @IBOutlet weak var viewRecordsButton: UIButton!
+    @IBOutlet weak var submitRecordButton: UIButton!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
-    
-    @IBOutlet weak var dateSelectedLabel: UILabel!
+
+
     var shared = ShareData.sharedInstance // This is the date selected from Main Calendar.
     
     // Array to store the records
@@ -34,6 +49,9 @@ class RecordViewController: UIViewController {
         // Populate the date selected
         let dateString = self.shared.dateString
         dateSelectedLabel.text = dateString
+        
+        self.view.addSubview(scrollView)
+        scrollView.scrollEnabled = false
         
         // Load records
         loadRecords({ (success) -> Void in
@@ -170,6 +188,50 @@ class RecordViewController: UIViewController {
             
         }
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.scrollView.contentSize = CGSize(width:self.view.frame.width, height: 900)
+        
+        
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        scrollView.setContentOffset(CGPointMake(0, 175), animated: true)
+        scrollView.scrollEnabled = true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        scrollView.scrollEnabled = false
+    }
+    
+
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        
+        profit.resignFirstResponder()
+        sales.resignFirstResponder()
+        COGS.resignFirstResponder()
+        expenses.resignFirstResponder()
+        salesTextField.resignFirstResponder()
+        COGSTextField.resignFirstResponder()
+        expensesTextField.resignFirstResponder()
+        recordSuccessLabel.resignFirstResponder()
+        dateSelectedLabel.resignFirstResponder()
+        newRecord.resignFirstResponder()
+        recordedProfit.resignFirstResponder()
+        recordedSales.resignFirstResponder()
+        recordedCOGS.resignFirstResponder()
+        recordedExpenses.resignFirstResponder()
+        todaySales.resignFirstResponder()
+        todayCOGS.resignFirstResponder()
+        todayExpenses.resignFirstResponder()
+        viewRecordsButton.resignFirstResponder()
+        submitRecordButton.resignFirstResponder()
+        return true
     }
     
 }
