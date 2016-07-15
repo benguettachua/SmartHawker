@@ -159,6 +159,16 @@
                                     <action selector="submitPIN:" destination="JUl-IL-xm2" eventType="touchUpInside" id="adk-dX-D4n"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUT-kJ-ucc">
+                                <rect key="frame" x="156" y="342" width="103" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancel:" destination="JUl-IL-xm2" eventType="touchUpInside" id="d38-dl-6kK"/>
+                                    <action selector="submitPIN:" destination="JUl-IL-xm2" eventType="touchUpInside" id="B9q-ug-vYm"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="backToWelcome" id="e3p-rt-ncY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3208,8 +3218,8 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tPZ-ny-ePW"/>
-        <segue reference="e3B-Xc-vDw"/>
-        <segue reference="ycf-Pw-ULf"/>
+        <segue reference="eSr-Su-bbq"/>
+        <segue reference="e3p-rt-ncY"/>
         <segue reference="ipa-vH-qnU"/>
         <segue reference="GQz-hC-Yag"/>
         <segue reference="BL1-nx-fst"/>
