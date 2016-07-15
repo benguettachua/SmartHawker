@@ -27,12 +27,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         changeButton.setTitle("Language / 语言", forState: .Normal)
         self.setText()
+        
+        print(PFUser.currentUser())
+       
     }
     
     // Add an observer for LCLLanguageChangeNotification on viewWillAppear. This is posted whenever a language changes and allows the viewcontroller to make the necessary UI updated. Very useful for places in your app when a language change might happen.
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.setText), name: LCLLanguageChangeNotification, object: nil)
+        
+        // Change scene to Admin PIN Scene if there is user logged in.
+        if (PFUser.currentUser() != nil) {
+            self.performSegueWithIdentifier("toAdminPIN", sender: self)
+        }
     }
     
     // Remove the LCLLanguageChangeNotification on viewWillDisappear
