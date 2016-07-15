@@ -143,17 +143,16 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }else{
             ok += 1
         }
-        if (adminPIN.text!.isEqual("")) {
-            
-            // Validition: Ensures that adminPIN field is not empty
+        
+        if (adminPIN.text!.characters.count != 4) {
             adminPIN.text = ""
-            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 numbers.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
-            
-        }else{
+        } else {
             ok += 1
         }
+        
         if (password.text!.isEqual(confirmPassword.text!) == false){
             
             // Validition: Ensures that password and confirm password is the same.
@@ -165,15 +164,8 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }else{
             ok += 1
         }
-        if (adminPIN.text!.characters.count != 4) {
-            adminPIN.text = ""
-            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 numbers.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-            
-            print(ok)
-        } else {
-            ok += 1
-        }
-        if ok == 11 {
+        
+        if ok == 10 {
             // All validations passed, proceed to register user.
             let newUser = PFUser()
             newUser["businessName"] = businessName.text
