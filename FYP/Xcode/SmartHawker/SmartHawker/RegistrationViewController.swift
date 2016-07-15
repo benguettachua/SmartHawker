@@ -209,6 +209,13 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                     
                 } else {
                     // There was a problem, show user the error message.
+                    let errorMsg = error?.localizedDescription
+                    var msgToShow = String()
+                    if (errorMsg?.containsString("username") == true) {
+                        msgToShow = "Username is taken. Please try again."
+                    } else if (errorMsg?.containsString("email") == true) {
+                        msgToShow = "Email is taken. Please try again."
+                    }
                     self.messageLabel.text = error?.localizedDescription
                     self.messageLabel.textColor = UIColor.redColor()
                     self.messageLabel.hidden = false
