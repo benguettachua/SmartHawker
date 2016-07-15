@@ -162,6 +162,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             self.messageLabel.hidden = false
             print(ok)
         }else{
+            self.messageLabel.hidden = true
             ok += 1
         }
         
