@@ -98,7 +98,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }else{
             ok += 1
         }
-        if (email.text!.isEqual("")) {
+        if (email.text!.lowercaseString.isEqual("")) {
             
             // Validition: Ensures that email field is not empty
             email.text = ""
@@ -171,7 +171,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             newUser["businessNumber"] = businessRegNo.text
             newUser["businessAddress"] = businessAddress.text
             newUser.username = username.text
-            newUser.email = email.text
+            newUser.email = email.text?.lowercaseString
             newUser["phoneNumber"] = phoneNumber.text
             newUser.password = password.text
             newUser["adminPin"] = adminPIN.text
