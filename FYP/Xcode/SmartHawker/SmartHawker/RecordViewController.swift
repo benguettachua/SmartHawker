@@ -46,6 +46,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
+        // Clear records Array to prevent double counting
+        records.removeAll()
+        
         // Populate the date selected
         let dateString = self.shared.dateString
         dateSelectedLabel.text = dateString
