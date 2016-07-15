@@ -37,6 +37,10 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.setText), name: LCLLanguageChangeNotification, object: nil)
         
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         // Change scene to Admin PIN Scene if there is user logged in.
         if (PFUser.currentUser() != nil) {
             self.performSegueWithIdentifier("toAdminPIN", sender: self)
