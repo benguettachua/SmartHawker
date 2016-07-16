@@ -44,6 +44,7 @@ class UpdateRecordViewController: UIViewController {
                 
                 record["type"] = typeInt
                 record["amount"] = amount
+                record.pinInBackground()
                 record.saveEventually()
                 self.performSegueWithIdentifier("backToRecord", sender: self)
             }

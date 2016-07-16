@@ -42,6 +42,9 @@ class RecordTableViewCell: UITableViewCell {
             if (error != nil) {
                 print(error)
             } else if let record = record {
+                // Remove from the local datastore.
+                record.unpinInBackground()
+                // Delete from parse DB.
                 record.deleteEventually()
                 records.removeAtIndex(self.rowSelected)
                 self.shared.records = records

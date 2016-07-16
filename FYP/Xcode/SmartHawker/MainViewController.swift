@@ -18,6 +18,9 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var calendar: CalendarView!
+    
+    typealias CompletionHandler = (success:Bool) -> Void
+    let user = PFUser.currentUser()
 
     @IBOutlet var MonthAndYear: UILabel!
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
@@ -30,6 +33,15 @@ class MainViewcontroller: UIViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // Once logged in, retrieve all records from the user and pin into local datastore.
+        loadRecordsIntoLocalDatastore({ (success) -> Void in
+            if (success) {
+                // Do nothing, records are stored
+            } else {
+                print("Some error thrown.")
+            }
+        })
         
         //calendar
         date = moment()
@@ -75,6 +87,25 @@ class MainViewcontroller: UIViewController{
             self.performSegueWithIdentifier("logout", sender: self)
     }
     
+    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
+        // Part 1: Load from DB and pin into local datastore.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Pin records found into local datastore.
+                PFObject.pinAllInBackground(objects)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+        
+    }
     
 }
 

@@ -56,14 +56,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(scrollView)
         scrollView.scrollEnabled = false
         
-        // Load records into local
-        loadRecordsIntoLocalDatastore({ (success) -> Void in
-            if (success) {
-                // Do nothing, records are stored
-            } else {
-                print("Some error thrown.")
-            }
-        })
         
         // Load records from local to UI.
         loadRecordsFromLocaDatastore({ (success) -> Void in
@@ -99,28 +91,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             view.endEditing(true)
         }
         sender.cancelsTouchesInView = false
-    }
-    
-    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
-        // Part 1: Load from DB and pin into local datastore.
-        let dateString = self.shared.dateString
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        query.whereKey("date", equalTo: dateString)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // Pin records found into local datastore.
-                PFObject.pinAllInBackground(objects)
-                
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
-        }
-        
     }
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
@@ -183,7 +153,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["user"] = PFUser.currentUser()
             toRecord["type"] = 0
             toRecord["subuser"] = PFUser.currentUser()?.username
+            // Save to local datastore
             toRecord.pinInBackground()
+            // Save to db if there is connection
             toRecord.saveEventually()
             didRecord = true
         }
@@ -195,7 +167,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord2["user"] = PFUser.currentUser()
             toRecord2["type"] = 1
             toRecord2["subuser"] = PFUser.currentUser()?.username
+            // Save to local datastore
             toRecord2.pinInBackground()
+            // Save to db if there is connection
             toRecord2.saveEventually()
             didRecord = true
         }
@@ -207,7 +181,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord3["user"] = PFUser.currentUser()
             toRecord3["type"] = 2
             toRecord3["subuser"] = PFUser.currentUser()?.username
+            // Save to local datastore
             toRecord3.pinInBackground()
+            // Save to db if there is connection
             toRecord3.saveEventually()
             didRecord = true
         }
