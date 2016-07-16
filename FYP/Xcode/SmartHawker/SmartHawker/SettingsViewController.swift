@@ -436,7 +436,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        let imageData = UIImagePNGRepresentation(chosenImage)
+        let imageData = UIImageJPEGRepresentation(chosenImage, 100)
         print("Size of Image: \(imageData!.length) bytes")
         print(imageData!.length < 9999999)
         
