@@ -32,6 +32,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitRecordButton: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    var tempCounter = 0
     
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
@@ -57,7 +58,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         scrollView.scrollEnabled = false
         
         
-        // Load records from local to UI.
+        // Load records from local datastore to UI.
         loadRecordsFromLocaDatastore({ (success) -> Void in
             if (success) {
                 var salesAmount = 0
@@ -110,7 +111,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
-                        let objectIdString = object.objectId
+                        var objectIdString = object.objectId
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -118,6 +119,10 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                             typeString = "COGS"
                         } else if (type == 2) {
                             typeString = "Expenses"
+                        }
+                        
+                        if (objectIdString == nil) {
+                            objectIdString = String(self.tempCounter++)
                         }
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
                         self.records.append(newRecord)

@@ -45,6 +45,21 @@ class ReportsViewController: UIViewController {
     }
     
     @IBAction func calculateTax(sender: UIButton) {
+        // Declare the necessary variables.
+        let taxReliefAmount = Int(taxReliefAmountTextField.text!)
+        let yearToCalculate = Int(yearToCalculateTextField.text!)
+        
+        // Load records from local datastore
+        loadRecordsFromLocaDatastore(yearToCalculate!, completionHandler: { (success) -> Void in
+            if (success) {
+                // UI is populated.
+                
+            } else {
+                print("Some error thrown.")
+            }
+        })
+        
+        
     }
     
     
@@ -66,20 +81,10 @@ class ReportsViewController: UIViewController {
             }
         }
         
-        // Populate income on UI.
-        // Load records from local to UI.
-        loadRecordsFromLocaDatastore({ (success) -> Void in
-            if (success) {
-                // UI is populated.
-            } else {
-                print("Some error thrown.")
-            }
-        })
-        
     }
     
     // Populate your income on UI
-    func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
+    func loadRecordsFromLocaDatastore(year: Int, completionHandler: CompletionHandler) {
         // Part 2: Load from local datastore into UI.
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
@@ -96,6 +101,7 @@ class ReportsViewController: UIViewController {
                     var totalProfit = 0
                     
                     for object in objects {
+                        let dateString = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
                         if (type == 0) {
