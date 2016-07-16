@@ -17,7 +17,7 @@ class AnalyticsViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
-    
+    @IBOutlet var multiButton : DLRadioButton!;
     
     var months: [String]!
     @IBOutlet weak var barChartView: BarChartView!
@@ -30,8 +30,7 @@ class AnalyticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // enable multiple selection for water, beer and wine buttons.
+        self.multiButton.multipleSelectionEnabled = true;        // enable multiple selection for water, beer and wine buttons.
 
         
 
