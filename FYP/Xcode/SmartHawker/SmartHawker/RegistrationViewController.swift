@@ -146,7 +146,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         
         if (adminPIN.text!.characters.count != 4) {
             adminPIN.text = ""
-            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 numbers.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 digits.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
         } else {
