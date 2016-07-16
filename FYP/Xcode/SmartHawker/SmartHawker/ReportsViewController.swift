@@ -45,19 +45,80 @@ class ReportsViewController: UIViewController {
     }
     
     @IBAction func calculateTax(sender: UIButton) {
-        // Declare the necessary variables.
-        let taxReliefAmount = Int(taxReliefAmountTextField.text!)
-        let yearToCalculate = Int(yearToCalculateTextField.text!)
+        // Validate if the required fields are empty.
+        var ok = 0
+        if (taxReliefAmountTextField.text!.isEqual("")) {
+            
+            // Validition: Ensures that Business Address field is not empty
+            taxReliefAmountTextField.text = ""
+            taxReliefAmountTextField.attributedPlaceholder = NSAttributedString(string:"Tax Relief Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            
+        } else {
+            ok += 1
+        }
         
-        // Load records from local datastore
-        loadRecordsFromLocaDatastore(yearToCalculate!, completionHandler: { (success) -> Void in
-            if (success) {
-                // UI is populated.
-                
-            } else {
-                print("Some error thrown.")
-            }
-        })
+        if (yearToCalculateTextField.text!.isEqual("")) {
+            
+            // Validition: Ensures that Business Address field is not empty
+            yearToCalculateTextField.text = ""
+            yearToCalculateTextField.attributedPlaceholder = NSAttributedString(string:"Year Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            
+        } else {
+            ok += 1
+        }
+        
+        if (ok == 2) { // Both required fields are not empty
+            // Declare the necessary variables.
+            let taxReliefAmount = Int(taxReliefAmountTextField.text!)!
+            let yearToCalculate = Int(yearToCalculateTextField.text!)!
+            
+            // Load records from local datastore
+            loadRecordsFromLocaDatastore(yearToCalculate, completionHandler: { (success) -> Void in
+                if (success) {
+                    // Populate the UI
+                    let income = Int(self.incomeValueLabel.text!)!
+                    let taxableIncome = income - taxReliefAmount
+                    self.reliefValueLabel.text = String(taxReliefAmount)
+                    self.taxableIncomeValueLabel.text = String(taxableIncome)
+                    
+                    // Tax calculation
+                    var taxPayable = 0.0
+                    let taxableDouble = Double(taxableIncome)
+                    
+                    if (taxableIncome < 20000) {
+                        taxPayable = 0
+                    } else if (taxableIncome < 30000) {
+                        taxPayable = (taxableDouble - 20000) * 2 / 100
+                    } else if (taxableIncome < 40000) {
+                        taxPayable = (taxableDouble - 30000) * 3.50 / 100
+                        print(taxPayable)
+                        taxPayable += 200
+                    } else if (taxableIncome < 80000) {
+                        taxPayable = (taxableDouble - 40000) * 7 / 100
+                        taxPayable += 550
+                    } else if (taxableIncome < 120000) {
+                        taxPayable = (taxableDouble - 80000) * 11.5 / 100
+                        taxPayable += 3350
+                    } else if (taxableIncome < 160000) {
+                        taxPayable = (taxableDouble - 120000) * 15 / 100
+                        taxPayable += 7950
+                    } else if (taxableIncome < 200000) {
+                        taxPayable = (taxableDouble - 160000) * 17 / 100
+                        taxPayable += 13950
+                    } else if (taxableIncome < 320000) {
+                        taxPayable = (taxableDouble - 200000) * 18 / 100
+                        taxPayable += 20750
+                    } else {
+                        taxPayable = (taxableDouble - 320000) * 20 / 100
+                        taxPayable += 42350
+                    }
+                    
+                    self.taxPayableValueLabel.text = String(taxPayable)
+                } else {
+                    print("Some error thrown.")
+                }
+            })
+        }
         
         
     }
@@ -102,15 +163,19 @@ class ReportsViewController: UIViewController {
                     
                     for object in objects {
                         let dateString = object["date"] as! String
-                        let type = object["type"] as! Int
-                        let amount = object["amount"] as! Int
-                        if (type == 0) {
-                            totalSales += amount
-                        } else if (type == 1) {
-                            totalCOGS += amount
-                        } else if (type == 2) {
-                            totalExpenses += amount
+                        // Only count the records that are made in the selected year.
+                        if (dateString.containsString(self.yearToCalculateTextField.text!)){
+                            let type = object["type"] as! Int
+                            let amount = object["amount"] as! Int
+                            if (type == 0) {
+                                totalSales += amount
+                            } else if (type == 1) {
+                                totalCOGS += amount
+                            } else if (type == 2) {
+                                totalExpenses += amount
+                            }
                         }
+                        
                     }
                     
                     totalProfit = totalSales - totalCOGS - totalExpenses
