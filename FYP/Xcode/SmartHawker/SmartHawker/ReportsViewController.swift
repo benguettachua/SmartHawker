@@ -11,10 +11,31 @@ import UIKit
 class ReportsViewController: UIViewController {
     
     // Mark: Properties
+    // General Variables
+    let user = PFUser.currentUser()
+    typealias CompletionHandler = (success:Bool) -> Void
+    
     //Top Bar
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
+    
+    // Labels
+    @IBOutlet weak var yearToCalculateLabel: UILabel!
+    @IBOutlet weak var taxPayableLabel: UILabel!
+    @IBOutlet weak var incomeLabel: UILabel!
+    @IBOutlet weak var taxableIncomeLabel: UILabel!
+    @IBOutlet weak var taxReliefLabelTop: UILabel!
+    @IBOutlet weak var taxReliefLabelBtm: UILabel!
+    
+    @IBOutlet weak var taxPayableValueLabel: UILabel!
+    @IBOutlet weak var incomeValueLabel: UILabel!
+    @IBOutlet weak var reliefValueLabel: UILabel!
+    @IBOutlet weak var taxableIncomeValueLabel: UILabel!
+    
+    // Text Fields
+    @IBOutlet weak var yearToCalculateTextField: UITextField!
+    @IBOutlet weak var taxReliefAmountTextField: UITextField!
     
     
     // Mark: Action
@@ -22,6 +43,10 @@ class ReportsViewController: UIViewController {
         PFUser.logOut()
         self.performSegueWithIdentifier("logout", sender: self)
     }
+    
+    @IBAction func calculateTax(sender: UIButton) {
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +66,57 @@ class ReportsViewController: UIViewController {
             }
         }
         
+        // Populate income on UI.
+        // Load records from local to UI.
+        loadRecordsFromLocaDatastore({ (success) -> Void in
+            if (success) {
+                // UI is populated.
+            } else {
+                print("Some error thrown.")
+            }
+        })
+        
+    }
+    
+    // Populate your income on UI
+    func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
+        // Part 2: Load from local datastore into UI.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    var totalSales = 0
+                    var totalCOGS = 0
+                    var totalExpenses = 0
+                    var totalProfit = 0
+                    
+                    for object in objects {
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        if (type == 0) {
+                            totalSales += amount
+                        } else if (type == 1) {
+                            totalCOGS += amount
+                        } else if (type == 2) {
+                            totalExpenses += amount
+                        }
+                    }
+                    
+                    totalProfit = totalSales - totalCOGS - totalExpenses
+                    self.incomeValueLabel.text = String(totalProfit)
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
     }
     
     
