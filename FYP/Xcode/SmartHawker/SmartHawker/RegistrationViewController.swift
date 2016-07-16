@@ -213,6 +213,8 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                     var msgToShow = String()
                     if (errorMsg?.containsString("username") == true) {
                         msgToShow = "Username is taken. Please try again."
+                    } else if (errorMsg?.containsString("invalid") == true) {
+                        msgToShow = "Invalid email address. Please try again."
                     } else if (errorMsg?.containsString("email") == true) {
                         msgToShow = "Email is taken. Please try again."
                     }
