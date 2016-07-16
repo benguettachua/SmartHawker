@@ -179,8 +179,8 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             newUser["adminPin"] = adminPIN.text
             newUser["isIOS"] = true
             
-            let imageData = UIImagePNGRepresentation(profilePicture.image!)
-            let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
+            let imageData = UIImageJPEGRepresentation(profilePicture.image!, 100)
+            let imageFile = PFFile(name: "profilePicture.jpeg", data: imageData!)
             newUser["profilePicture"] = imageFile
             newUser.signUpInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
@@ -396,7 +396,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        let imageData = UIImagePNGRepresentation(chosenImage)
+        let imageData = UIImageJPEGRepresentation(chosenImage, 100)
         if imageData!.length < 9999999{
 
             profilePicture.contentMode = .ScaleAspectFit //3

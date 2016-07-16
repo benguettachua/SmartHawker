@@ -36,6 +36,7 @@ class RecordTableViewCell: UITableViewCell {
         let objectId = selectedRecord.objectId
         
         let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
         query.getObjectInBackgroundWithId(objectId)
         {
             (record: PFObject?, error: NSError?) -> Void in
