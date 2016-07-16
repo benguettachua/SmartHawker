@@ -91,7 +91,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that username field is between 6 characters to 12 characters.
             username.text = ""
-            username.attributedPlaceholder = NSAttributedString(string:"6 to 12 characters only", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            username.attributedPlaceholder = NSAttributedString(string:"6 to 12 characters required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
