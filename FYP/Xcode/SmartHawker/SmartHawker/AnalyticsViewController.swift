@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Charts
+import DLRadioButton
 
 class AnalyticsViewController: UIViewController {
     
@@ -29,8 +30,16 @@ class AnalyticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // enable multiple selection for water, beer and wine buttons.
+
+        
+
+        
         // Load the Top Bar
         let user = PFUser.currentUser()
+        
+        
         // Populate the top bar
         businessName.text! = user!["businessName"] as! String
         username.text! = user!["username"] as! String
@@ -64,5 +73,30 @@ class AnalyticsViewController: UIViewController {
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Units Sold")
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         barChartView.data = chartData
+    }
+    
+    
+    private func createRadioButton(frame : CGRect, title : String, color : UIColor) -> DLRadioButton {
+        let radioButton = DLRadioButton(frame: frame);
+        radioButton.titleLabel!.font = UIFont.systemFontOfSize(14);
+        radioButton.setTitle(title, forState: UIControlState.Normal);
+        radioButton.setTitleColor(color, forState: UIControlState.Normal);
+        radioButton.iconColor = color;
+        radioButton.indicatorColor = color;
+        radioButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+        radioButton.addTarget(self, action: #selector(AnalyticsViewController.logSelectedButton), forControlEvents: UIControlEvents.TouchUpInside);
+        self.view.addSubview(radioButton);
+        
+        return radioButton;
+    }
+    
+    @objc @IBAction private func logSelectedButton(radioButton : DLRadioButton) {
+        if (radioButton.multipleSelectionEnabled) {
+            for button in radioButton.selectedButtons() {
+                print(String(format: "%@ is selected.\n", button.titleLabel!.text!));
+            }
+        } else {
+            print(String(format: "%@ is selected.\n", radioButton.selectedButton()!.titleLabel!.text!));
+        }
     }
 }
