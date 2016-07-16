@@ -27,8 +27,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         changeButton.setTitle("Language / 语言", forState: .Normal)
         self.setText()
-        
-        print(PFUser.currentUser())
        
     }
     
@@ -40,6 +38,7 @@ class ViewController: UIViewController {
         
     }
     
+    // This method will prevent logged in users to log in again, directing them to the Admin PIN Page to key in the PIN before logging in.
     override func viewDidAppear(animated: Bool) {
         // Change scene to Admin PIN Scene if there is user logged in.
         if (PFUser.currentUser() != nil) {

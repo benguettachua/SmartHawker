@@ -8,7 +8,7 @@
 
 protocol MyCustomerCellDelegator {
     func callSegueFromCell (myData dataobject: AnyObject)
-    func backToRecordFromCell (myData dataobject: AnyObject)
+    func backToRecordFromCell()
 }
 
 import UIKit
@@ -63,7 +63,12 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         
     }
     
-    func backToRecordFromCell(myData dataobject: AnyObject) {
-        self.performSegueWithIdentifier("backToRecord", sender: dataobject)
+    func backToRecordFromCell() {
+        
+        
+        // Update global variable records.
+        
+        // Moves back to Record Table View Controller
+        self.performSegueWithIdentifier("backToRecord", sender: self)
     }
 }

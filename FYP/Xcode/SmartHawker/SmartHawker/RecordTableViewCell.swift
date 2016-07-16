@@ -31,7 +31,7 @@ class RecordTableViewCell: UITableViewCell {
         
     }
     @IBAction func deleteButton(sender: UIButton) {
-        let records = shared.records
+        var records = shared.records
         let selectedRecord = records[rowSelected]
         let objectId = selectedRecord.objectId
         
@@ -43,7 +43,9 @@ class RecordTableViewCell: UITableViewCell {
                 print(error)
             } else if let record = record {
                 record.deleteEventually()
-                self.delegate.backToRecordFromCell(myData: "hi")
+                records.removeAtIndex(self.rowSelected)
+                self.shared.records = records
+                self.delegate.backToRecordFromCell()
             }
         }
     }

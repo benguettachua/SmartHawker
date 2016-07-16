@@ -56,8 +56,17 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(scrollView)
         scrollView.scrollEnabled = false
         
-        // Load records
-        loadRecords({ (success) -> Void in
+        // Load records into local
+        loadRecordsIntoLocalDatastore({ (success) -> Void in
+            if (success) {
+                // Do nothing, records are stored
+            } else {
+                print("Some error thrown.")
+            }
+        })
+        
+        // Load records from local to UI.
+        loadRecordsFromLocaDatastore({ (success) -> Void in
             if (success) {
                 var salesAmount = 0
                 var COGSamount = 0
@@ -79,6 +88,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                 self.COGS.text = String(COGSamount)
                 self.expenses.text = String(expensesAmount)
                 self.shared.records = self.records
+            } else {
+                print("Some error thrown.")
             }
         })
     }
@@ -90,12 +101,35 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         sender.cancelsTouchesInView = false
     }
     
-    func loadRecords(completionHandler: CompletionHandler) {
-        
+    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
+        // Part 1: Load from DB and pin into local datastore.
         let dateString = self.shared.dateString
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.whereKey("date", equalTo: dateString)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Pin records found into local datastore.
+                PFObject.pinAllInBackground(objects)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+        
+    }
+    
+    func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
+        // Part 2: Load from local datastore into UI.
+        let dateString = self.shared.dateString
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("date", equalTo: dateString)
+        query.fromLocalDatastore()
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -126,7 +160,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                 completionHandler(success: false)
             }
         }
-        
     }
     
     // Mark: Action
@@ -150,6 +183,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["user"] = PFUser.currentUser()
             toRecord["type"] = 0
             toRecord["subuser"] = PFUser.currentUser()?.username
+            toRecord.pinInBackground()
             toRecord.saveEventually()
             didRecord = true
         }
@@ -161,17 +195,19 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord2["user"] = PFUser.currentUser()
             toRecord2["type"] = 1
             toRecord2["subuser"] = PFUser.currentUser()?.username
+            toRecord2.pinInBackground()
             toRecord2.saveEventually()
             didRecord = true
         }
         
         // Record Expenses, if there is any value entered.
-        if (COGSToRecord != nil) {
+        if (expensesToRecord != nil) {
             toRecord3["date"] = dateString
             toRecord3["amount"] = expensesToRecord
             toRecord3["user"] = PFUser.currentUser()
             toRecord3["type"] = 2
             toRecord3["subuser"] = PFUser.currentUser()?.username
+            toRecord3.pinInBackground()
             toRecord3.saveEventually()
             didRecord = true
         }
