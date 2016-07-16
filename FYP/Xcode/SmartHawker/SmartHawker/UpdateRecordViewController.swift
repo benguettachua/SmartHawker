@@ -24,7 +24,7 @@ class UpdateRecordViewController: UIViewController {
         // Updating the record
         let objectId = selectedRecord.objectId
         let query = PFQuery(className: "Record")
-        
+        query.fromLocalDatastore()
         query.getObjectInBackgroundWithId(objectId)
         {
             (record: PFObject?, error: NSError?) -> Void in
@@ -44,6 +44,7 @@ class UpdateRecordViewController: UIViewController {
                 
                 record["type"] = typeInt
                 record["amount"] = amount
+                //
                 record.pinInBackground()
                 record.saveEventually()
                 self.performSegueWithIdentifier("backToRecord", sender: self)

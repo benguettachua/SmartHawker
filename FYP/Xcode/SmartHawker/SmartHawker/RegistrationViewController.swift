@@ -216,7 +216,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                     } else if (errorMsg?.containsString("email") == true) {
                         msgToShow = "Email is taken. Please try again."
                     }
-                    self.messageLabel.text = error?.localizedDescription
+                    self.messageLabel.text = msgToShow
                     self.messageLabel.textColor = UIColor.redColor()
                     self.messageLabel.hidden = false
                     print(self.messageLabel)
