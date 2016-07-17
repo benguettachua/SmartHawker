@@ -9,6 +9,7 @@
 protocol MyCustomerCellDelegator {
     func callSegueFromCell (myData dataobject: AnyObject)
     func backToRecordFromCell()
+    func unableToDeleteOrEdit()
 }
 
 import UIKit
@@ -49,7 +50,11 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         
         cell.dateLabel.text = record.date
         cell.typeLabel.text = record.type
-        cell.amountLabel.text = String(record.amount)
+        if (record.amount > 0) {
+            cell.amountLabel.text = String(record.amount)
+        } else {
+            cell.amountLabel.text = "Deleted"
+        }
         cell.rowSelected = indexPath.row
         
         cell.delegate = self
@@ -65,10 +70,14 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     
     func backToRecordFromCell() {
         
-        
-        // Update global variable records.
-        
         // Moves back to Record Table View Controller
         self.performSegueWithIdentifier("backToRecord", sender: self)
+    }
+    
+    func unableToDeleteOrEdit() {
+        let alertController = UIAlertController(title: "Unable to edit/delete", message: "Record is not saved. Please check your network connection and try again.", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
+        alertController.addAction(cancel)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

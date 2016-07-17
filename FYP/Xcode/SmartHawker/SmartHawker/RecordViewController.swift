@@ -195,10 +195,13 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             didRecord = true
         }
         
-        // If there is any new record, shows success message, then refresh the view.
+        
         if (didRecord == true) {
+            // If there is any new record, shows success message, then refresh the view.
             recordSuccessLabel.text = "Recording success, reloading view..."
+            recordSuccessLabel.textColor = UIColor.blackColor()
             recordSuccessLabel.hidden = false
+            
             // Reload the view after 2 seconds, updating the records.
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
             dispatch_after(time, dispatch_get_main_queue()) {
@@ -211,18 +214,11 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             }
             
         } else {
+            // No record or only "0" entered. Shows error message then refresh the view.
             self.recordSuccessLabel.text = "No records submitted."
+            self.recordSuccessLabel.textColor = UIColor.redColor()
             self.recordSuccessLabel.hidden = false
-            // Reload the view after 2 seconds, updating the records.
-            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
-            dispatch_after(time, dispatch_get_main_queue()) {
-                self.salesTextField.text = ""
-                self.COGSTextField.text = ""
-                self.expensesTextField.text = ""
-                
-                self.recordSuccessLabel.hidden = true
-                self.viewDidLoad()
-            }
+            
         }
 
     }

@@ -27,9 +27,13 @@ class RecordTableViewCell: UITableViewCell {
     @IBAction func editButton(sender: UIButton) {
         let records = shared.records
         let selectedRecord = records[rowSelected]
-        if (self.delegate != nil) {
-            shared.selectedRecord = selectedRecord
-            self.delegate.callSegueFromCell(myData: selectedRecord)
+        if (Int(selectedRecord.objectId) == nil) {
+            if (self.delegate != nil) {
+                shared.selectedRecord = selectedRecord
+                self.delegate.callSegueFromCell(myData: selectedRecord)
+            }
+        } else {
+            self.delegate.unableToDeleteOrEdit()
         }
         
     }
@@ -40,8 +44,6 @@ class RecordTableViewCell: UITableViewCell {
         
         // Updating the record
         let objectId = selectedRecord.objectId
-        print("RECORD IS: " + selectedRecord.toString())
-        print("ROW SELECTED IS: " + String(rowSelected))
         let query = PFQuery(className: "Record")
         query.fromLocalDatastore()
         if (Int(selectedRecord.objectId) == nil) {
@@ -71,7 +73,7 @@ class RecordTableViewCell: UITableViewCell {
         } else {
             print("deleting records with are not in DB")
             // Records that are not stored in DB are displayed based on the order they are stored.
-            records.removeAtIndex(rowSelected)
+            self.delegate.unableToDeleteOrEdit()
         }
     }
     
