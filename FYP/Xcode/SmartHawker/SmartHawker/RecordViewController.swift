@@ -124,6 +124,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                         if (objectIdString == nil) {
                             objectIdString = String(self.tempCounter++)
                         }
+                        
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
                         self.records.append(newRecord)
                     }
@@ -152,7 +153,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         let toRecord3 = PFObject(className: "Record")
         
         // Record Sales, if there is any value entered.
-        if (salesToRecord != nil) {
+        if (salesToRecord != nil && salesToRecord != 0) {
             toRecord["date"] = dateString
             toRecord["amount"] = salesToRecord
             toRecord["user"] = PFUser.currentUser()
@@ -166,7 +167,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Record COGS, if there is any value entered.
-        if (COGSToRecord != nil) {
+        if (COGSToRecord != nil && COGSToRecord != 0) {
             toRecord2["date"] = dateString
             toRecord2["amount"] = COGSToRecord
             toRecord2["user"] = PFUser.currentUser()
@@ -180,7 +181,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Record Expenses, if there is any value entered.
-        if (expensesToRecord != nil) {
+        if (expensesToRecord != nil && expensesToRecord != 0) {
             toRecord3["date"] = dateString
             toRecord3["amount"] = expensesToRecord
             toRecord3["user"] = PFUser.currentUser()
@@ -195,6 +196,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         
         // If there is any new record, shows success message, then refresh the view.
         if (didRecord == true) {
+            recordSuccessLabel.text = "Recording success, reloading view..."
             recordSuccessLabel.hidden = false
             // Reload the view after 2 seconds, updating the records.
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
@@ -202,10 +204,24 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                 self.salesTextField.text = ""
                 self.COGSTextField.text = ""
                 self.expensesTextField.text = ""
+                
                 self.recordSuccessLabel.hidden = true
                 self.viewDidLoad()
             }
             
+        } else {
+            self.recordSuccessLabel.text = "No records submitted."
+            self.recordSuccessLabel.hidden = false
+            // Reload the view after 2 seconds, updating the records.
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.salesTextField.text = ""
+                self.COGSTextField.text = ""
+                self.expensesTextField.text = ""
+                
+                self.recordSuccessLabel.hidden = true
+                self.viewDidLoad()
+            }
         }
 
     }

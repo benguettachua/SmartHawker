@@ -14,6 +14,9 @@ class UpdateRecordViewController: UIViewController {
     @IBOutlet weak var newType: UITextField!
     @IBOutlet weak var newAmount: UITextField!
     var shared = ShareData.sharedInstance
+    let user = PFUser.currentUser()
+    var tempCounter = 0
+    typealias CompletionHandler = (success:Bool) -> Void
     
     // MARK: Action
     @IBAction func updateRecord(sender: UIButton) {
@@ -47,7 +50,59 @@ class UpdateRecordViewController: UIViewController {
                 //
                 record.pinInBackground()
                 record.saveEventually()
-                self.performSegueWithIdentifier("backToRecord", sender: self)
+                self.updateGlobalRecord({ (success) -> Void in
+                    if (success) {
+                        // Update success, go back to records
+                        self.performSegueWithIdentifier("backToRecord", sender: self)
+                    } else {
+                        print("Some error thrown.")
+                    }
+                })
+            }
+        }
+    }
+    
+    // This updates the array "records" in ShareData.
+    func updateGlobalRecord(completionHandler: CompletionHandler) {
+        var records = [RecordTable]()
+        let dateString = self.shared.dateString
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("date", equalTo: dateString)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        let date = object["date"] as! String
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        var objectIdString = object.objectId
+                        var typeString = ""
+                        if (type == 0) {
+                            typeString = "Sales"
+                        } else if (type == 1) {
+                            typeString = "COGS"
+                        } else if (type == 2) {
+                            typeString = "Expenses"
+                        }
+                        
+                        if (objectIdString == nil) {
+                            objectIdString = String(self.tempCounter += 1)
+                        }
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
+                        records.append(newRecord)
+                    }
+                    self.shared.records = records
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
             }
         }
     }

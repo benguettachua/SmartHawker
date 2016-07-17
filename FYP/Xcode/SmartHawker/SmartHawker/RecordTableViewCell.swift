@@ -16,6 +16,9 @@ class RecordTableViewCell: UITableViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     var rowSelected: Int!
     var shared = ShareData.sharedInstance
+    let user = PFUser.currentUser()
+    typealias CompletionHandler = (success:Bool) -> Void
+    var tempCounter = 0
     
     // Delegate
     var delegate: MyCustomerCellDelegator!
@@ -31,10 +34,12 @@ class RecordTableViewCell: UITableViewCell {
         
     }
     @IBAction func deleteButton(sender: UIButton) {
-        var records = shared.records
+        let records = shared.records
         let selectedRecord = records[rowSelected]
-        let objectId = selectedRecord.objectId
+        let amount = 0
         
+        // Updating the record
+        let objectId = selectedRecord.objectId
         let query = PFQuery(className: "Record")
         query.fromLocalDatastore()
         query.getObjectInBackgroundWithId(objectId)
@@ -43,13 +48,64 @@ class RecordTableViewCell: UITableViewCell {
             if (error != nil) {
                 print(error)
             } else if let record = record {
-                // Remove from the local datastore.
-                record.unpinInBackground()
-                // Delete from parse DB.
-                record.deleteEventually()
-                records.removeAtIndex(self.rowSelected)
-                self.shared.records = records
-                self.delegate.backToRecordFromCell()
+                
+                record["amount"] = amount
+                
+                record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
+                record.deleteEventually() // Deletes from the DB when there is network.
+                record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
+                self.updateGlobalRecord({ (success) -> Void in
+                    if (success) {
+                        // Update success, go back to records
+                        self.delegate.backToRecordFromCell()
+                    } else {
+                        print("Some error thrown.")
+                    }
+                })
+            }
+        }}
+    
+    // This updates the array "records" in ShareData.
+    func updateGlobalRecord(completionHandler: CompletionHandler) {
+        var records = [RecordTable]()
+        let dateString = self.shared.dateString
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("date", equalTo: dateString)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        let date = object["date"] as! String
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        var objectIdString = object.objectId
+                        var typeString = ""
+                        if (type == 0) {
+                            typeString = "Sales"
+                        } else if (type == 1) {
+                            typeString = "COGS"
+                        } else if (type == 2) {
+                            typeString = "Expenses"
+                        }
+                        
+                        if (objectIdString == nil) {
+                            objectIdString = String(self.tempCounter += 1)
+                        }
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
+                        records.append(newRecord)
+                    }
+                    self.shared.records = records
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
             }
         }
     }
