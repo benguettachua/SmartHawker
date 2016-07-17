@@ -55,7 +55,6 @@ class ViewController: UIViewController {
     // MARK: Localized Text
     
     func setText(){
-        textLabel.text = "SMARTHAWKER".localized();
         signIn.setTitle("Sign In".localized(), forState: .Normal)
         register.setTitle("Register".localized(), forState: .Normal)
     }
