@@ -76,11 +76,20 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 profit = salesAmount - COGSamount - expensesAmount
-                
                 self.profit.text = String(profit)
+                if profit > 0{
+                    self.profit.textColor = UIColor.greenColor()
+                }else if profit < 0{
+                    self.profit.textColor = UIColor.redColor()
+                }else{
+                    self.profit.textColor = UIColor.greenColor()
+                }
                 self.sales.text = String(salesAmount)
+
                 self.COGS.text = String(COGSamount)
+                self.COGS.textColor = UIColor.redColor()
                 self.expenses.text = String(expensesAmount)
+                self.expenses.textColor = UIColor.redColor()
                 self.shared.records = self.records
             } else {
                 print("Some error thrown.")

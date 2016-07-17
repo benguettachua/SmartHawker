@@ -51,11 +51,20 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         
         cell.dateLabel.text = record.date
         cell.typeLabel.text = record.type
+        if record.type == "Sales"{
+            cell.typeLabel.textColor = UIColor.greenColor()
+            cell.amountLabel.textColor = UIColor.greenColor()
+        }else{
+            cell.typeLabel.textColor = UIColor.redColor()
+            cell.amountLabel.textColor = UIColor.redColor()
+        }
         if (record.amount > 0) {
             cell.amountLabel.text = String(record.amount)
         } else {
             cell.amountLabel.text = "Deleted"
         }
+        
+        //setting color for the amount
         cell.rowSelected = indexPath.row
         
         cell.delegate = self
