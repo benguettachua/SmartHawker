@@ -14,6 +14,8 @@ class RecordTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     var rowSelected: Int!
     var shared = ShareData.sharedInstance
     let user = PFUser.currentUser()

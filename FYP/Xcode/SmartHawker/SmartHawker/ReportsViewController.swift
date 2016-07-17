@@ -76,10 +76,10 @@ class ReportsViewController: UIViewController {
             loadRecordsFromLocaDatastore(yearToCalculate, completionHandler: { (success) -> Void in
                 if (success) {
                     // Populate the UI
-                    let income = Int(self.incomeValueLabel.text!)!
-                    let taxableIncome = income - taxReliefAmount
-                    self.reliefValueLabel.text = String(taxReliefAmount)
-                    self.taxableIncomeValueLabel.text = String(taxableIncome)
+                    let income = Double(self.incomeValueLabel.text!)!
+                    let taxableIncome = income - Double(taxReliefAmount)
+                    self.reliefValueLabel.text = String(format:"%.2f", Double(taxReliefAmount))
+                        self.taxableIncomeValueLabel.text = String(format:"%.2f", Double(taxableIncome))
                     
                     // Tax calculation
                     var taxPayable = 0.0
@@ -113,7 +113,7 @@ class ReportsViewController: UIViewController {
                         taxPayable += 42350
                     }
                     
-                    self.taxPayableValueLabel.text = String(taxPayable)
+                    self.taxPayableValueLabel.text = String(format:"%.2f", taxPayable)
                 } else {
                     print("Some error thrown.")
                 }
@@ -179,7 +179,8 @@ class ReportsViewController: UIViewController {
                     }
                     
                     totalProfit = totalSales - totalCOGS - totalExpenses
-                    self.incomeValueLabel.text = String(totalProfit)
+                    self.incomeValueLabel.text = String(format:"%.2f", Double(totalProfit))
+                    print(String(format:"$.2f",Double(totalProfit)))
                     completionHandler(success: true)
                 }
             } else {

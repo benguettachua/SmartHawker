@@ -27,6 +27,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var todaySales: UILabel!
     @IBOutlet weak var todayCOGS: UILabel!
     @IBOutlet weak var todayExpenses: UILabel!
+    @IBOutlet weak var salesDescription: UITextField!
+    @IBOutlet weak var COGSdescription: UITextField!
+    @IBOutlet weak var expensesDescription: UITextField!
     
     @IBOutlet weak var viewRecordsButton: UIButton!
     @IBOutlet weak var submitRecordButton: UIButton!
@@ -131,11 +134,16 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                             typeString = "Expenses"
                         }
                         
-                        if (objectIdString == nil) {
-                            objectIdString = String(self.tempCounter++)
+                        var description = object["decription"]
+                        if (description == nil) {
+                            description = "No description" 
                         }
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
+                        if (objectIdString == nil) {
+                            objectIdString = String(self.tempCounter += 1)
+                        }
+                        
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
                         self.records.append(newRecord)
                     }
                     completionHandler(success: true)
