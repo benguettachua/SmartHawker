@@ -25,6 +25,7 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     override func viewDidLoad() {
         super.viewDidLoad()
         records = shared.records
+        records.sortInPlace({$0.amount > $1.amount})
     }
     
     override func didReceiveMemoryWarning() {
