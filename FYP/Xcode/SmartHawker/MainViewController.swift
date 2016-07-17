@@ -18,7 +18,7 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var calendar: CalendarView!
-    
+    var day: String!
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
 
@@ -83,7 +83,6 @@ class MainViewcontroller: UIViewController{
     
         func loggedOut() {
             PFUser.logOut()
-            print("lalala12345")
             self.performSegueWithIdentifier("logout", sender: self)
     }
     
@@ -118,13 +117,33 @@ extension MainViewcontroller: CalendarViewDelegate {
         // Adding 8 hours due to timezone
         let duration = 8.hours
         let dateInNSDate = date.add(duration).date
+
         
         // Formatting to format as saved in DB.
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let correctDateString = dateFormatter.stringFromDate(dateInNSDate)
-        toShare.dateString = correctDateString
         
+        
+        //for displaying date
+        if date.day == 1 || date.day == 21{
+            self.day = String(date.day) + "st"
+            
+        }else if date.day == 2 || date.day == 22{
+            self.day = String(date.day) + "nd"
+            
+        }else if date.day == 3 || date.day == 23{
+            self.day = String(date.day) + "rd"
+            
+        }else{
+            self.day = String(date.day) + "th"
+        }
+        self.MonthAndYear.text = "\(self.day) of " + date.monthName + " \(date.year), \(date.weekdayName)"
+        let toDisplayDate = MonthAndYear.text
+        print(correctDateString)
+        print(toDisplayDate)
+        toShare.dateString = correctDateString
+        toShare.toDisplayDate = toDisplayDate
         // Move to Record Page.
         self.performSegueWithIdentifier("toRecord", sender: self)
     }
@@ -132,7 +151,19 @@ extension MainViewcontroller: CalendarViewDelegate {
     func calendarDidPageToDate(date: Moment) {
         self.date = date
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.MonthAndYear.text = date.monthName + " \(date.year)"
+            if date.day == 1 || date.day == 21{
+                    self.day = String(date.day) + "st"
+                
+            }else if date.day == 2 || date.day == 22{
+                    self.day = String(date.day) + "nd"
+            
+            }else if date.day == 3 || date.day == 23{
+                    self.day = String(date.day) + "rd"
+                
+            }else{
+                self.day = String(date.day) + "th"
+            }
+                self.MonthAndYear.text = "\(self.day) of " + date.monthName + " \(date.year), \(date.weekdayName)"
         })
         
     }

@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorMessageLabel: UILabel!
     var toShare = ShareData.sharedInstance
-    
+    var errorMsg = String()
     @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var loginNavBar: UINavigationBar!
@@ -33,9 +33,13 @@ class LoginViewController: UIViewController {
             } else {
                 
                 // There was a problem, show user the error message.
+                
                 self.errorMessageLabel.text = error?.localizedDescription
-                self.errorMessageLabel.textColor = UIColor.redColor()
-                self.errorMessageLabel.hidden = false
+                if self.errorMessageLabel.text!.containsString("invalid"){
+                    self.errorMessageLabel.text = "Invalid Login Credentials"
+                }
+               self.errorMessageLabel.textColor = UIColor.redColor()
+               self.errorMessageLabel.hidden = false
             }
         }
     }

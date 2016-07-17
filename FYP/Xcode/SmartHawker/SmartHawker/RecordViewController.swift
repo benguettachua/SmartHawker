@@ -52,7 +52,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         
         // Populate the date selected
         let dateString = self.shared.dateString
-        dateSelectedLabel.text = dateString
+        let toDisplayDate = self.shared.toDisplayDate
+        dateSelectedLabel.text = toDisplayDate
         
         self.view.addSubview(scrollView)
         scrollView.scrollEnabled = false
