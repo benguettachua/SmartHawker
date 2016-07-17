@@ -34,36 +34,46 @@ class RecordTableViewCell: UITableViewCell {
         
     }
     @IBAction func deleteButton(sender: UIButton) {
-        let records = shared.records
+        var records = shared.records
         let selectedRecord = records[rowSelected]
         let amount = 0
         
         // Updating the record
         let objectId = selectedRecord.objectId
+        print("RECORD IS: " + selectedRecord.toString())
+        print("ROW SELECTED IS: " + String(rowSelected))
         let query = PFQuery(className: "Record")
         query.fromLocalDatastore()
-        query.getObjectInBackgroundWithId(objectId)
-        {
-            (record: PFObject?, error: NSError?) -> Void in
-            if (error != nil) {
-                print(error)
-            } else if let record = record {
-                
-                record["amount"] = amount
-                
-                record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
-                record.deleteEventually() // Deletes from the DB when there is network.
-                record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
-                self.updateGlobalRecord({ (success) -> Void in
-                    if (success) {
-                        // Update success, go back to records
-                        self.delegate.backToRecordFromCell()
-                    } else {
-                        print("Some error thrown.")
-                    }
-                })
+        if (Int(selectedRecord.objectId) == nil) {
+            
+            
+            query.getObjectInBackgroundWithId(objectId){
+                (record: PFObject?, error: NSError?) -> Void in
+                if (error != nil) {
+                    print(error)
+                } else if let record = record {
+                    
+                    record["amount"] = amount
+                    
+                    record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
+                    record.deleteEventually() // Deletes from the DB when there is network.
+                    record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
+                    self.updateGlobalRecord({ (success) -> Void in
+                        if (success) {
+                            // Update success, go back to records
+                            self.delegate.backToRecordFromCell()
+                        } else {
+                            print("Some error thrown.")
+                        }
+                    })
+                }
             }
-        }}
+        } else {
+            print("deleting records with are not in DB")
+            // Records that are not stored in DB are displayed based on the order they are stored.
+            records.removeAtIndex(rowSelected)
+        }
+    }
     
     // This updates the array "records" in ShareData.
     func updateGlobalRecord(completionHandler: CompletionHandler) {
