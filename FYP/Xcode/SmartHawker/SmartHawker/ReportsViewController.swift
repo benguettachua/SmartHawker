@@ -191,10 +191,10 @@ class ReportsViewController: UIViewController {
         }
     }
     
-    func handleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
-            view.endEditing(true)
-        }
-        sender.cancelsTouchesInView = false
+    /**
+     * Closes the keyboard when the user touches anywhere
+     */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
