@@ -56,7 +56,7 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         
         // Fetches the appropriate record for the data source layout.
         let record = records[indexPath.row]
-        print(record.toString())
+        
         cell.dateLabel.text = record.date
         cell.typeLabel.text = record.type
         cell.descriptionLabel.text = record.description

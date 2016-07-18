@@ -191,5 +191,10 @@ class ReportsViewController: UIViewController {
         }
     }
     
-    
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
+    }
 }

@@ -1102,16 +1102,19 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for sales" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2HS-4D-lho">
                                         <rect key="frame" x="29" y="374" width="338" height="30"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for COGS" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-94-10r">
                                         <rect key="frame" x="29" y="450" width="338" height="30"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for expenses" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wo5-ZZ-z1j">
                                         <rect key="frame" x="29" y="526" width="338" height="30"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -3490,10 +3493,74 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdd-Ki-AT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="-1430"/>
+            <point key="canvasLocation" x="1166" y="-1430"/>
+        </scene>
+        <!--Tax Calculation Info-->
+        <scene sceneID="2PQ-dp-sgY">
+            <objects>
+                <viewController title="Tax Calculation Info" id="90k-N5-aa5" customClass="TaxDetailViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="maN-Cp-vI7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hv7-cB-MM1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nRi-ai-fpe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdW-9J-egF">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Income Tax Calculation" translatesAutoresizingMaskIntoConstraints="NO" id="F2n-nE-TVh">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="F2n-nE-TVh" firstAttribute="top" secondItem="UdW-9J-egF" secondAttribute="top" id="7zi-PY-bPQ"/>
+                                    <constraint firstItem="F2n-nE-TVh" firstAttribute="leading" secondItem="UdW-9J-egF" secondAttribute="leading" id="BU1-fu-bGb"/>
+                                    <constraint firstAttribute="bottom" secondItem="F2n-nE-TVh" secondAttribute="bottom" id="bCq-L6-Kkw"/>
+                                    <constraint firstItem="F2n-nE-TVh" firstAttribute="centerY" secondItem="UdW-9J-egF" secondAttribute="centerY" id="h57-SJ-n8m"/>
+                                    <constraint firstAttribute="trailing" secondItem="F2n-nE-TVh" secondAttribute="trailing" id="kZ6-SZ-Jw2"/>
+                                    <constraint firstItem="F2n-nE-TVh" firstAttribute="centerX" secondItem="UdW-9J-egF" secondAttribute="centerX" id="lgv-7K-94M"/>
+                                </constraints>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YX1-5a-aQG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="fiL-C3-vi0"/>
+                                </constraints>
+                                <color key="barTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Tax Calculation Details" id="A2t-02-tvp">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="20i-Xn-WFM">
+                                            <connections>
+                                                <action selector="back:" destination="90k-N5-aa5" id="dnB-J9-IZ4"/>
+                                                <segue destination="OcD-sl-9qu" kind="show" id="ja6-Kf-Pgg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YX1-5a-aQG" secondAttribute="trailing" id="7aJ-g3-1nj"/>
+                            <constraint firstItem="YX1-5a-aQG" firstAttribute="bottom" secondItem="UdW-9J-egF" secondAttribute="top" id="CGV-82-EVC"/>
+                            <constraint firstItem="YX1-5a-aQG" firstAttribute="trailing" secondItem="UdW-9J-egF" secondAttribute="trailing" id="ESO-5z-M2n"/>
+                            <constraint firstItem="YX1-5a-aQG" firstAttribute="leading" secondItem="nRi-ai-fpe" secondAttribute="leading" id="F4r-Oz-6a0"/>
+                            <constraint firstItem="YX1-5a-aQG" firstAttribute="top" secondItem="nRi-ai-fpe" secondAttribute="top" id="GaZ-sf-fo0"/>
+                            <constraint firstItem="YX1-5a-aQG" firstAttribute="leading" secondItem="UdW-9J-egF" secondAttribute="leading" id="RW0-Wz-LIB"/>
+                            <constraint firstItem="UdW-9J-egF" firstAttribute="bottom" secondItem="Hv7-cB-MM1" secondAttribute="top" id="VCj-dg-O6t"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4uW-ge-FaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1667" y="-1430"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Income Tax Calculation" width="245" height="272"/>
         <image name="analytics" width="20" height="20"/>
         <image name="defaultProfilePic" width="112" height="112"/>
         <image name="left-button-2" width="40" height="40"/>
@@ -3511,11 +3578,12 @@ Cg
         <image name="sync" width="32" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e3B-Xc-vDw"/>
+        <segue reference="ja6-Kf-Pgg"/>
         <segue reference="Tdn-C7-hDv"/>
+        <segue reference="e3B-Xc-vDw"/>
+        <segue reference="GQz-hC-Yag"/>
+        <segue reference="ipa-vH-qnU"/>
         <segue reference="meh-A9-hmc"/>
-        <segue reference="awo-im-o7A"/>
-        <segue reference="Ssf-Vh-x3j"/>
         <segue reference="nJJ-v3-vh8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
