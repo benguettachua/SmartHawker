@@ -77,7 +77,10 @@ class ReportsViewController: UIViewController {
                 if (success) {
                     // Populate the UI
                     let income = Double(self.incomeValueLabel.text!)!
-                    let taxableIncome = income - Double(taxReliefAmount)
+                    var taxableIncome = income - Double(taxReliefAmount)
+                    if (taxableIncome < 0) {
+                        taxableIncome = 0.0
+                    }
                     self.reliefValueLabel.text = String(format:"%.2f", Double(taxReliefAmount))
                         self.taxableIncomeValueLabel.text = String(format:"%.2f", Double(taxableIncome))
                     

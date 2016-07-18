@@ -27,7 +27,6 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     override func viewDidLoad() {
         super.viewDidLoad()
         records = shared.records
-        records.sortInPlace({$0.amount > $1.amount}) // Sort the records in descending order of amount.
         navBarTitle.title = "Records for " + shared.dateString
         navBar.frame = CGRectMake(0, 0, 320, 64)
     }

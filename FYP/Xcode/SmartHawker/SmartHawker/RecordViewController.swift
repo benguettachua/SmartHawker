@@ -147,6 +147,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
                         self.records.append(newRecord)
                     }
+                    self.records.sortInPlace({$0.amount > $1.amount}) // Sort the records in descending order of amount.
                     completionHandler(success: true)
                 }
             } else {
