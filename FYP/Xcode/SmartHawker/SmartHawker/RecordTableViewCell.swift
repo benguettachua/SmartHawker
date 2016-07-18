@@ -97,6 +97,7 @@ class RecordTableViewCell: UITableViewCell {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
+                        var description = object["description"]
                         var objectIdString = object.objectId
                         var typeString = ""
                         if (type == 0) {
@@ -110,7 +111,11 @@ class RecordTableViewCell: UITableViewCell {
                         if (objectIdString == nil) {
                             objectIdString = String(self.tempCounter += 1)
                         }
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
+                        
+                        if (description == nil || description as! String == "") {
+                            description = "No description"
+                        }
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
                         records.append(newRecord)
                     }
                     self.shared.records = records

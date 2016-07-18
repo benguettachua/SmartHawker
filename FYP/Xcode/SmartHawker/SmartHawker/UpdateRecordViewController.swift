@@ -13,6 +13,9 @@ class UpdateRecordViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var newType: UITextField!
     @IBOutlet weak var newAmount: UITextField!
+    @IBOutlet weak var newDescription: UITextField!
+    
+    
     var shared = ShareData.sharedInstance
     let user = PFUser.currentUser()
     var tempCounter = 0
@@ -23,6 +26,7 @@ class UpdateRecordViewController: UIViewController {
         let selectedRecord = shared.selectedRecord
         var typeString = selectedRecord.type
         var amount = selectedRecord.amount
+        var description = selectedRecord.description
         
         // Updating the record
         let objectId = selectedRecord.objectId
@@ -37,6 +41,7 @@ class UpdateRecordViewController: UIViewController {
                 var typeInt = Int()
                 typeString = self.newType.text!
                 amount = Int(self.newAmount.text!)!
+                description = self.newDescription.text
                 if (typeString == "Sales") {
                     typeInt = 0
                 } else if (typeString == "COGS") {
@@ -47,6 +52,7 @@ class UpdateRecordViewController: UIViewController {
                 
                 record["type"] = typeInt
                 record["amount"] = amount
+                record["description"] = description
                 //
                 record.pinInBackground()
                 record.saveEventually()
@@ -80,6 +86,7 @@ class UpdateRecordViewController: UIViewController {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
+                        var description = object["description"]
                         var objectIdString = object.objectId
                         var typeString = ""
                         if (type == 0) {
@@ -93,7 +100,11 @@ class UpdateRecordViewController: UIViewController {
                         if (objectIdString == nil) {
                             objectIdString = String(self.tempCounter += 1)
                         }
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!)
+                        
+                        if (description == nil || description as! String == "") {
+                            description = "No description"
+                        }
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
                         records.append(newRecord)
                     }
                     self.shared.records = records

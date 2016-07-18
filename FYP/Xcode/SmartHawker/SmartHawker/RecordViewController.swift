@@ -134,9 +134,10 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                             typeString = "Expenses"
                         }
                         
-                        var description = object["decription"]
-                        if (description == nil) {
-                            description = "No description" 
+                        var description = object["description"]
+                        
+                        if (description == nil || description as! String == "") {
+                            description = "No description"
                         }
                         
                         if (objectIdString == nil) {
@@ -177,6 +178,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["user"] = PFUser.currentUser()
             toRecord["type"] = 0
             toRecord["subuser"] = PFUser.currentUser()?.username
+            toRecord["description"] = String(salesDescription.text!)
             // Save to local datastore
             toRecord.pinInBackground()
             // Save to db if there is connection
@@ -191,6 +193,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord2["user"] = PFUser.currentUser()
             toRecord2["type"] = 1
             toRecord2["subuser"] = PFUser.currentUser()?.username
+            toRecord2["description"] = String(COGSdescription.text!)
             // Save to local datastore
             toRecord2.pinInBackground()
             // Save to db if there is connection
@@ -205,6 +208,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord3["user"] = PFUser.currentUser()
             toRecord3["type"] = 2
             toRecord3["subuser"] = PFUser.currentUser()?.username
+            toRecord3["description"] = String(expensesDescription.text!)
             // Save to local datastore
             toRecord3.pinInBackground()
             // Save to db if there is connection

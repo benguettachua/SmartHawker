@@ -21,11 +21,15 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
+    @IBOutlet weak var navBarTitle: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         records = shared.records
-        records.sortInPlace({$0.amount > $1.amount})
+        records.sortInPlace({$0.amount > $1.amount}) // Sort the records in descending order of amount.
+        navBarTitle.title = "Records for " + shared.dateString
+        navBar.frame = CGRectMake(0, 0, 320, 64)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,6 +45,10 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         return records.count
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "Cell"
@@ -48,9 +56,10 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         
         // Fetches the appropriate record for the data source layout.
         let record = records[indexPath.row]
-        
+        print(record.toString())
         cell.dateLabel.text = record.date
         cell.typeLabel.text = record.type
+        cell.descriptionLabel.text = record.description
         if record.type == "Sales"{
             cell.typeLabel.textColor = UIColor.greenColor()
             cell.amountLabel.textColor = UIColor.greenColor()
@@ -62,6 +71,13 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
             cell.amountLabel.text = String(record.amount)
         } else {
             cell.amountLabel.text = "Deleted"
+        }
+        
+        // Alternate colour
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = UIColor.grayColor()
+        } else {
+            cell.backgroundColor = UIColor.whiteColor()
         }
         
         //setting color for the amount
