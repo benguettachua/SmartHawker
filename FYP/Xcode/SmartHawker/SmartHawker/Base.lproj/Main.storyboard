@@ -34,13 +34,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-page-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-Jz-pcc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-page-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-Jz-pcc">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lFO-DQ-jXC">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lFO-DQ-jXC">
                                 <rect key="frame" x="66" y="182" width="281" height="372"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-130" translatesAutoresizingMaskIntoConstraints="NO" id="EIN-Zu-vhP">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-130" translatesAutoresizingMaskIntoConstraints="NO" id="EIN-Zu-vhP">
                                         <rect key="frame" x="0.0" y="0.0" width="281" height="334"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-field-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="mtw-va-qhq">
@@ -57,19 +57,19 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="lya-ev-YDO">
                                                 <rect key="frame" x="30" y="108" width="222" height="226"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IUG-TG-K3f">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IUG-TG-K3f">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="73"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-Ug-z5Z">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-Ug-z5Z">
                                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="27"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-WI-6gP">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-WI-6gP">
                                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="21"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-username-icon-2" translatesAutoresizingMaskIntoConstraints="NO" id="6zd-f0-5QM">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-7T-wmf">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-7T-wmf">
                                                                                 <rect key="frame" x="38" y="0.0" width="184" height="21"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -77,12 +77,12 @@
                                                                             </textField>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="uy0-UR-LUr">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="uy0-UR-LUr">
                                                                         <rect key="frame" x="0.0" y="25" width="222" height="2"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="715-jC-ISf">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="715-jC-ISf">
                                                                 <rect key="frame" x="0.0" y="47" width="222" height="26"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="XhR-kr-MCJ">
@@ -115,7 +115,7 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-signup-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="C0P-BV-Ov7">
                                                                         <rect key="frame" x="0.0" y="0.0" width="212" height="42"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
+                                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
                                                                         <rect key="frame" x="0.0" y="2" width="212" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -142,7 +142,7 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="vJo-R6-LiS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="212" height="42"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
                                                                         <rect key="frame" x="0.0" y="2" width="212" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -162,7 +162,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-90-6kO">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-90-6kO">
                                         <rect key="frame" x="118" y="342" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
@@ -423,7 +423,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uMG-e4-t3E">
                                         <rect key="frame" x="127" y="561" width="374" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                                 <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -435,7 +435,7 @@
                                                     <action selector="registerButton:" destination="yyf-8u-gcf" eventType="touchUpInside" id="8ve-uD-w2i"/>
                                                 </connections>
                                             </button>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
                                                 <rect key="frame" x="0.0" y="30" width="374" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="374" id="3lB-1X-Ka8"/>
@@ -1022,7 +1022,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="205" id="EAm-ep-GWE"/>
                                         </constraints>
-                                        <state key="normal" title="Add New Record"/>
+                                        <state key="normal" title="Add Record"/>
                                         <connections>
                                             <action selector="SubmitRecord:" destination="2IV-Dn-hU7" eventType="touchUpInside" id="pvy-OQ-7oS"/>
                                         </connections>
@@ -1105,23 +1105,32 @@
                                             <outlet property="delegate" destination="2IV-Dn-hU7" id="pEW-RQ-4w8"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for sales" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2HS-4D-lho">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for sales" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2HS-4D-lho">
                                         <rect key="frame" x="29" y="374" width="338" height="30"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2IV-Dn-hU7" id="7OW-Rm-tez"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for COGS" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-94-10r">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for COGS" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-94-10r">
                                         <rect key="frame" x="29" y="450" width="338" height="30"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2IV-Dn-hU7" id="vJM-1P-FIU"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for expenses" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wo5-ZZ-z1j">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description for expenses" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wo5-ZZ-z1j">
                                         <rect key="frame" x="29" y="526" width="338" height="30"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2IV-Dn-hU7" id="ODS-Zv-kjw"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -1262,10 +1271,12 @@
                         <outlet property="COGS" destination="DW3-ua-0I5" id="fto-pA-oVA"/>
                         <outlet property="COGSTextField" destination="zsc-Yn-JLc" id="vbX-qt-l7O"/>
                         <outlet property="COGSdescription" destination="6I1-94-10r" id="rio-cG-irC"/>
+                        <outlet property="back" destination="g0x-EP-3tn" id="c4I-XK-qZN"/>
                         <outlet property="dateSelectedLabel" destination="lOd-7V-B81" id="b0I-qL-NGU"/>
                         <outlet property="expenses" destination="sta-0l-48Q" id="qmu-KY-B9J"/>
                         <outlet property="expensesDescription" destination="wo5-ZZ-z1j" id="RsE-9J-Dmc"/>
                         <outlet property="expensesTextField" destination="x6O-hq-n4A" id="Owc-Ox-Nc0"/>
+                        <outlet property="navBar" destination="D1W-wd-yju" id="dGF-GO-fgE"/>
                         <outlet property="newRecord" destination="3Fl-36-Gq0" id="uqy-9E-5WY"/>
                         <outlet property="profit" destination="Bs8-Xg-oxq" id="FgQ-N5-PpW"/>
                         <outlet property="recordSuccessLabel" destination="Oh7-CF-3sm" id="xRK-gz-eaR"/>
@@ -1277,6 +1288,7 @@
                         <outlet property="salesDescription" destination="2HS-4D-lho" id="e6m-rQ-Mtr"/>
                         <outlet property="salesTextField" destination="hQG-BT-vDE" id="py9-Vb-VBU"/>
                         <outlet property="scrollView" destination="RLA-tV-4ci" id="FVy-kb-Cba"/>
+                        <outlet property="settings" destination="ygC-bn-x5w" id="0BM-yK-4SH"/>
                         <outlet property="submitRecordButton" destination="3RU-kN-Ite" id="Ck8-ki-8uc"/>
                         <outlet property="todayCOGS" destination="lTl-Be-wRY" id="Vi3-MW-fhm"/>
                         <outlet property="todayExpenses" destination="0cl-cU-xeQ" id="0S3-Zc-Isg"/>
@@ -1348,14 +1360,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
                                 <rect key="frame" x="0.0" y="264" width="414" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="V07-KC-MWg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
                                 <rect key="frame" x="0.0" y="212" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="CrE-c1-4av"/>
@@ -2975,7 +2987,7 @@ Cgo
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
                                 <rect key="frame" x="30" y="76" width="354" height="632"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -3588,13 +3600,13 @@ Cg
         <image name="sync" width="32" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vZj-ve-gXv"/>
+        <segue reference="meh-A9-hmc"/>
         <segue reference="zip-MG-ivf"/>
-        <segue reference="tPZ-ny-ePW"/>
-        <segue reference="e3B-Xc-vDw"/>
-        <segue reference="e3p-rt-ncY"/>
-        <segue reference="nJJ-v3-vh8"/>
-        <segue reference="4HO-ch-xNf"/>
         <segue reference="GQz-hC-Yag"/>
+        <segue reference="4HO-ch-xNf"/>
+        <segue reference="nJJ-v3-vh8"/>
+        <segue reference="e3B-Xc-vDw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

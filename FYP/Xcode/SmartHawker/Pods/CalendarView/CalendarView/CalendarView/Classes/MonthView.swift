@@ -23,15 +23,16 @@ class MonthView: UIView {
     }
   }
 
+    let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
   var weeks: [WeekView] = []
   var weekLabels: [WeekLabel] = [
-    WeekLabel(day: "SUN／七"),
-    WeekLabel(day: "MON／一"),
-    WeekLabel(day: "TUE／二"),
-    WeekLabel(day: "WED／三"),
-    WeekLabel(day: "THU／四"),
-    WeekLabel(day: "FRI／五"),
-    WeekLabel(day: "SAT／六"),
+    WeekLabel(day: "SUN"),
+    WeekLabel(day: "MON"),
+    WeekLabel(day: "TUE"),
+    WeekLabel(day: "WED"),
+    WeekLabel(day: "THU"),
+    WeekLabel(day: "FRI"),
+    WeekLabel(day: "SAT"),
   ]
 
   // these values are expensive to compute so cache them
@@ -73,6 +74,23 @@ class MonthView: UIView {
     let labelHeight: CGFloat = 18
     let inset: CGFloat = 10
     for label in weekLabels {
+        if lang == "zh-Hans"{
+            if label.text == "SUN" {
+                label.text = "星期天"
+            }else if label.text == "MON" {
+                label.text = "星期一"
+            }else if label.text == "TUE" {
+                label.text = "星期二"
+            }else if label.text == "WED" {
+                label.text = "星期三"
+            }else if label.text == "THU" {
+                label.text = "星期四"
+            }else if label.text == "FRI" {
+                label.text = "星期五"
+            }else if label.text == "SAT" {
+                label.text = "星期六"
+            }
+        }
       label.frame = CGRectMake(x, inset, bounds.size.width / 7, labelHeight)
       x = CGRectGetMaxX(label.frame)
     }

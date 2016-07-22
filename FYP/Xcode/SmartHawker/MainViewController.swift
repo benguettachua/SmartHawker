@@ -27,6 +27,9 @@ class MainViewcontroller: UIViewController{
     let user = PFUser.currentUser()
 
     @IBOutlet var MonthAndYear: UILabel!
+    //for language preference
+    let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
+    
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     var date: Moment! {
         didSet {
@@ -146,8 +149,13 @@ extension MainViewcontroller: CalendarViewDelegate {
         }else{
             self.day = String(date.day) + "th".localized()
         }
-        let toDisplayDate = date.monthName.localized() + " \(self.day), " + " \(date.year), "+(date.weekdayName).localized()
-       
+
+        var toDisplayDate = date.monthName.localized() + " \(self.day), " + " \(date.year), "+(date.weekdayName).localized()
+        print(lang=="en")
+        if lang == "en" {
+            toDisplayDate = self.day + " " + date.monthName + " " + String(date.year) + " , " + date.weekdayName
+            print(toDisplayDate)
+        }
         toShare.dateString = correctDateString
         toShare.toDisplayDate = toDisplayDate
         // Move to Record Page.

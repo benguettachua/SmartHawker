@@ -31,8 +31,11 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var COGSdescription: UITextField!
     @IBOutlet weak var expensesDescription: UITextField!
     
+    @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var viewRecordsButton: UIButton!
     @IBOutlet weak var submitRecordButton: UIButton!
+    @IBOutlet weak var settings: UIBarButtonItem!
     
     @IBOutlet weak var scrollView: UIScrollView!
     var tempCounter = 0
@@ -49,6 +52,29 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        
+        //for translation
+        navBar.title = "Record".localized()
+        back.title = "Back".localized()
+        settings.title = "Settings".localized()
+        recordedSales.text = "Total Sales($):".localized()
+        recordedCOGS.text = "Total COGS($):".localized()
+        recordedExpenses.text = "Total Other Expenses($):".localized()
+        recordedProfit.text = "Total Profit($):".localized()
+        viewRecordsButton.setTitle("View All Records".localized(), forState: .Normal)
+        
+        newRecord.text = "Add New Record".localized()
+        todaySales.text = "Sales($):".localized()
+        todayCOGS.text = "COGS($):".localized()
+        todayExpenses.text = "Other Expenses($):".localized()
+        salesTextField.placeholder = "Sales($)".localized()
+        COGSTextField.placeholder = "Cost of Goods Sold($)".localized()
+        expensesTextField.placeholder = "Other Expenses($)".localized()
+        salesDescription.placeholder = "Description for sales".localized()
+        COGSdescription.placeholder = "Description for COGS".localized()
+        expensesDescription.placeholder = "Description for expenses".localized()
+        submitRecordButton.setTitle("Add Record".localized(), forState: .Normal)
+        
         
         // Clear records Array to prevent double counting
         records.removeAll()
@@ -286,6 +312,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         todayExpenses.resignFirstResponder()
         viewRecordsButton.resignFirstResponder()
         submitRecordButton.resignFirstResponder()
+        salesDescription.resignFirstResponder()
+        COGSdescription.resignFirstResponder()
+        expensesDescription.resignFirstResponder()
         return true
     }
     
