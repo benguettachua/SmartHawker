@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-page-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-Jz-pcc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-page-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-Jz-pcc">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lFO-DQ-jXC">
@@ -270,7 +270,11 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="adminPINLabel" destination="ur7-p4-muq" id="NOb-CJ-D9F"/>
                         <outlet property="adminPINTextField" destination="rAi-zC-waW" id="rpu-LU-y1r"/>
+                        <outlet property="cancelAndLogout" destination="QUT-kJ-ucc" id="S2Z-Ke-sfE"/>
+                        <outlet property="navBar" destination="B6F-P9-Kex" id="lKr-gP-zyd"/>
+                        <outlet property="submitButton" destination="ToA-rb-EoN" id="y9P-rl-JsJ"/>
                         <segue destination="xvq-Kx-gUH" kind="show" identifier="toMain" id="tPZ-ny-ePW"/>
                     </connections>
                 </viewController>
@@ -419,7 +423,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uMG-e4-t3E">
                                         <rect key="frame" x="127" y="561" width="374" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                                 <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -431,7 +435,7 @@
                                                     <action selector="registerButton:" destination="yyf-8u-gcf" eventType="touchUpInside" id="8ve-uD-w2i"/>
                                                 </connections>
                                             </button>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
                                                 <rect key="frame" x="0.0" y="30" width="374" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="374" id="3lB-1X-Ka8"/>
@@ -691,6 +695,7 @@
                         <outlet property="ScrollView" destination="k4N-Cq-7vg" id="OVx-Xq-sXY"/>
                         <outlet property="adminPIN" destination="RtL-lA-9cu" id="dj2-T9-dEw"/>
                         <outlet property="adminPinLabel" destination="zOv-lg-vEo" id="G0t-9n-cYH"/>
+                        <outlet property="allFieldsCompulsory" destination="rlQ-yT-6wu" id="n3a-aZ-tL1"/>
                         <outlet property="back" destination="vgA-k7-rPd" id="fUk-Ze-BhT"/>
                         <outlet property="businessAddress" destination="cx7-rW-eK0" id="AEX-8Q-fc1"/>
                         <outlet property="businessAddressLabel" destination="MqU-0R-yIu" id="XJ7-gT-y9N"/>
@@ -1343,14 +1348,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
                                 <rect key="frame" x="0.0" y="264" width="414" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="V07-KC-MWg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
                                 <rect key="frame" x="0.0" y="212" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="CrE-c1-4av"/>
@@ -1390,7 +1395,10 @@
                         <outlet property="MonthAndYear" destination="d0S-s2-d8Q" id="Jzh-TD-1ij"/>
                         <outlet property="businessName" destination="bEr-sh-icF" id="FQd-pi-iW5"/>
                         <outlet property="calendar" destination="RMy-4q-Duq" id="Kvh-fx-5F7"/>
+                        <outlet property="navBar" destination="qLk-0K-6KE" id="t1e-2O-1dB"/>
+                        <outlet property="navBarLogoutButton" destination="3Jd-lZ-be4" id="9qL-ja-G6B"/>
                         <outlet property="profilePicture" destination="HAe-dA-aV9" id="27y-T3-CGB"/>
+                        <outlet property="userLabel" destination="heb-lf-Juq" id="0zd-7i-7yv"/>
                         <outlet property="username" destination="Go0-K1-zJj" id="WX6-VB-997"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="vZj-ve-gXv"/>
                         <segue destination="2IV-Dn-hU7" kind="show" identifier="toRecord" id="zip-MG-ivf"/>
@@ -2967,7 +2975,7 @@ Cgo
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
                                 <rect key="frame" x="30" y="76" width="354" height="632"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -3580,13 +3588,13 @@ Cg
         <image name="sync" width="32" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="meh-A9-hmc"/>
-        <segue reference="ipa-vH-qnU"/>
-        <segue reference="GQz-hC-Yag"/>
-        <segue reference="nJJ-v3-vh8"/>
-        <segue reference="Wmj-XA-ck7"/>
+        <segue reference="zip-MG-ivf"/>
+        <segue reference="tPZ-ny-ePW"/>
         <segue reference="e3B-Xc-vDw"/>
-        <segue reference="ja6-Kf-Pgg"/>
+        <segue reference="e3p-rt-ncY"/>
+        <segue reference="nJJ-v3-vh8"/>
+        <segue reference="4HO-ch-xNf"/>
+        <segue reference="GQz-hC-Yag"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

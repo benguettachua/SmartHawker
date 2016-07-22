@@ -25,13 +25,13 @@ class MonthView: UIView {
 
   var weeks: [WeekView] = []
   var weekLabels: [WeekLabel] = [
-    WeekLabel(day: "SUN"),
-    WeekLabel(day: "MON"),
-    WeekLabel(day: "TUE"),
-    WeekLabel(day: "WED"),
-    WeekLabel(day: "THU"),
-    WeekLabel(day: "FRI"),
-    WeekLabel(day: "SAT"),
+    WeekLabel(day: "SUN／七"),
+    WeekLabel(day: "MON／一"),
+    WeekLabel(day: "TUE／二"),
+    WeekLabel(day: "WED／三"),
+    WeekLabel(day: "THU／四"),
+    WeekLabel(day: "FRI／五"),
+    WeekLabel(day: "SAT／六"),
   ]
 
   // these values are expensive to compute so cache them

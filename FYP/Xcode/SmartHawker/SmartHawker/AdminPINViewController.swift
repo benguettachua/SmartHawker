@@ -14,6 +14,21 @@ class AdminPINViewController: UIViewController {
     @IBOutlet weak var adminPINTextField: UITextField!
     let user = PFUser.currentUser()
     
+    @IBOutlet weak var cancelAndLogout: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var adminPINLabel: UILabel!
+    @IBOutlet weak var navBar: UINavigationBar!
+    //viewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navBar.topItem!.title = "Enter Admin PIN".localized()
+        submitButton.setTitle("Submit".localized(), forState: .Normal)
+        cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
+        adminPINLabel.text = "Admin PIN".localized()
+        adminPINTextField.placeholder = "Enter your PIN here".localized()
+    }
+    
     // MARK: Action
     @IBAction func submitPIN(sender: UIButton) {
         // Check if the PIN is correct
@@ -21,7 +36,7 @@ class AdminPINViewController: UIViewController {
         if ((pin as! String == adminPINTextField.text!) == false) {
             // Validate if admin pin entered is the one registered.
             adminPINTextField.text = ""
-            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         } else {
             self.performSegueWithIdentifier("toMain", sender: self)
         }

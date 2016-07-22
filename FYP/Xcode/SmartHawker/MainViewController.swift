@@ -18,6 +18,10 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var calendar: CalendarView!
+    @IBOutlet weak var userLabel: UILabel!
+    
+    @IBOutlet weak var navBarLogoutButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationItem!
     var day: String!
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
@@ -33,6 +37,9 @@ class MainViewcontroller: UIViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        userLabel.text = "User:".localized()
+        self.navigationItem.title = "Main".localized()
+        navBarLogoutButton.title = "Logout".localized()
         
         // Once logged in, retrieve all records from the user and pin into local datastore.
         loadRecordsIntoLocalDatastore({ (success) -> Void in
@@ -64,12 +71,12 @@ class MainViewcontroller: UIViewController{
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
-        let refreshAlert = UIAlertController(title: "Log Out", message: "Are You Sure to Log Out ? ", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             self.loggedOut()
         }))
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
@@ -127,21 +134,19 @@ extension MainViewcontroller: CalendarViewDelegate {
         
         //for displaying date
         if date.day == 1 || date.day == 21{
-            self.day = String(date.day) + "st"
+            self.day = String(date.day) + "st".localized()
             
         }else if date.day == 2 || date.day == 22{
-            self.day = String(date.day) + "nd"
+            self.day = String(date.day) + "nd".localized()
             
         }else if date.day == 3 || date.day == 23{
-            self.day = String(date.day) + "rd"
+            self.day = String(date.day) + "rd".localized()
             
         }else{
-            self.day = String(date.day) + "th"
+            self.day = String(date.day) + "th".localized()
         }
-        self.MonthAndYear.text = "\(self.day) of " + date.monthName + " \(date.year), \(date.weekdayName)"
-        let toDisplayDate = MonthAndYear.text
-        print(correctDateString)
-        print(toDisplayDate)
+        let toDisplayDate = date.monthName.localized() + " \(self.day), " + " \(date.year), "+(date.weekdayName).localized()
+       
         toShare.dateString = correctDateString
         toShare.toDisplayDate = toDisplayDate
         // Move to Record Page.
@@ -151,19 +156,7 @@ extension MainViewcontroller: CalendarViewDelegate {
     func calendarDidPageToDate(date: Moment) {
         self.date = date
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            if date.day == 1 || date.day == 21{
-                    self.day = String(date.day) + "st"
-                
-            }else if date.day == 2 || date.day == 22{
-                    self.day = String(date.day) + "nd"
-            
-            }else if date.day == 3 || date.day == 23{
-                    self.day = String(date.day) + "rd"
-                
-            }else{
-                self.day = String(date.day) + "th"
-            }
-                self.MonthAndYear.text = "\(self.day) of " + date.monthName + " \(date.year), \(date.weekdayName)"
+                self.MonthAndYear.text = date.monthName.localized() + " / " + String(date.year)
         })
         
     }

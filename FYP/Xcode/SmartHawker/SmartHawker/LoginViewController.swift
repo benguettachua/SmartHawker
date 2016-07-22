@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
                 
                 // Do stuff after successful login.
                 self.toShare.password = self.passwordTextField.text!
-                self.errorMessageLabel.text = "Logging in..."
+                self.errorMessageLabel.text = "Logging in...".localized()
                 self.errorMessageLabel.hidden = false
                 self.performSegueWithIdentifier("loginSuccess", sender: self)
             } else {
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
                 
                 self.errorMessageLabel.text = error?.localizedDescription
                 if self.errorMessageLabel.text!.containsString("invalid"){
-                    self.errorMessageLabel.text = "Invalid Login Credentials"
+                    self.errorMessageLabel.text = "Invalid Login Credentials".localized()
                 }
                self.errorMessageLabel.textColor = UIColor.redColor()
                self.errorMessageLabel.hidden = false

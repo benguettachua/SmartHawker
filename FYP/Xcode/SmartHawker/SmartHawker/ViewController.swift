@@ -71,7 +71,7 @@ class ViewController: UIViewController {
             })
             actionSheet.addAction(languageAction)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.Cancel, handler: {
             (alert: UIAlertAction) -> Void in
         })
         actionSheet.addAction(cancelAction)

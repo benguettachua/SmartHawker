@@ -28,6 +28,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var businessAddressLabel: UILabel!
     @IBOutlet weak var businessRegNoLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var allFieldsCompulsory: UILabel!
     
     //navigation bar
     @IBOutlet weak var registerNavBar: UINavigationBar!
@@ -58,7 +59,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that Business Name field is not empty
             businessName.text = ""
-            businessName.attributedPlaceholder = NSAttributedString(string:"Business Name Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            businessName.attributedPlaceholder = NSAttributedString(string:"Business Name Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -69,7 +70,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that Business Registered Number field is not empty
             businessRegNo.text = ""
-            businessRegNo.attributedPlaceholder = NSAttributedString(string:"Business Reg No Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            businessRegNo.attributedPlaceholder = NSAttributedString(string:"Business Reg No Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -80,7 +81,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that Business Address field is not empty
             businessAddress.text = ""
-            businessAddress.attributedPlaceholder = NSAttributedString(string:"Business Address Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            businessAddress.attributedPlaceholder = NSAttributedString(string:"Business Address Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -91,7 +92,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that username field is between 6 characters to 12 characters.
             username.text = ""
-            username.attributedPlaceholder = NSAttributedString(string:"6 to 12 characters required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            username.attributedPlaceholder = NSAttributedString(string:"6 to 12 characters required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -103,7 +104,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             // Validition: Ensures that email field is not empty
             // All emails are stored as lowercase
             email.text = ""
-            email.attributedPlaceholder = NSAttributedString(string:"Email Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            email.attributedPlaceholder = NSAttributedString(string:"Email Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -114,7 +115,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that phoneNumber is not empty
             phoneNumber.text = ""
-            phoneNumber.attributedPlaceholder = NSAttributedString(string:"Phone Number Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            phoneNumber.attributedPlaceholder = NSAttributedString(string:"Phone Number Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -125,7 +126,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that password field is not empty
             password.text = ""
-            password.attributedPlaceholder = NSAttributedString(string:"Password Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            password.attributedPlaceholder = NSAttributedString(string:"Password Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -136,7 +137,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that confirm password field is not empty
             confirmPassword.text = ""
-            confirmPassword.attributedPlaceholder = NSAttributedString(string:"Confirm Password Required", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            confirmPassword.attributedPlaceholder = NSAttributedString(string:"Confirm Password Required".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
             
@@ -146,7 +147,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         
         if (adminPIN.text!.characters.count != 4) {
             adminPIN.text = ""
-            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 digits.", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            adminPIN.attributedPlaceholder = NSAttributedString(string:"Admin PIN must be 4 digits.".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
             print(ok)
         } else {
@@ -157,7 +158,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             // Validition: Ensures that password and confirm password is the same.
             
-            self.messageLabel.text = "Password and Confirm Password does not match, please try again."
+            self.messageLabel.text = "Password and Confirm Password does not match, please try again.".localized()
             self.messageLabel.textColor = UIColor.redColor()
             self.messageLabel.hidden = false
             print(ok)
@@ -187,7 +188,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 if (success) {
                     
                     // Register success, show success message.
-                    self.messageLabel.text = "Congratulations, you have created a new Account! Logging in, please wait..."
+                    self.messageLabel.text = "Congratulations, you have created a new Account! Logging in, please wait...".localized()
                     self.messageLabel.hidden = false
                     
                     // Login the user to main UI after 3 seconds delay.
@@ -212,11 +213,11 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                     let errorMsg = error?.localizedDescription
                     var msgToShow = String()
                     if (errorMsg?.containsString("username") == true) {
-                        msgToShow = "Username is taken. Please try again."
+                        msgToShow = "Username is taken. Please try again.".localized()
                     } else if (errorMsg?.containsString("invalid") == true) {
-                        msgToShow = "Invalid email address. Please try again."
+                        msgToShow = "Invalid email address. Please try again.".localized()
                     } else if (errorMsg?.containsString("email") == true) {
-                        msgToShow = "Email is taken. Please try again."
+                        msgToShow = "Email is taken. Please try again.".localized()
                     }
                     self.messageLabel.text = msgToShow
                     self.messageLabel.textColor = UIColor.redColor()
@@ -250,8 +251,9 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         businessAddressLabel.text = "Business Address".localized()
         businessRegNoLabel.text = "Business Reg No".localized()
         phoneNumberLabel.text = "Phone Number".localized()
-    
-
+        information.text = "Choose image within 10MB".localized()
+        allFieldsCompulsory.text = "*All fields are compulsory".localized()
+        
         businessName.placeholder = "Business Name".localized()
         businessRegNo.placeholder = "Business Reg No".localized()
         businessAddress.placeholder = "Business Address".localized()
