@@ -38,7 +38,8 @@ class MainViewcontroller: UIViewController{
         
         super.viewDidLoad()
         userLabel.text = "User:".localized()
-        self.navigationItem.title = "Main".localized()
+        navBar.title = "Main".localized()
+        self.title = "Main".localized()
         navBarLogoutButton.title = "Logout".localized()
         
         // Once logged in, retrieve all records from the user and pin into local datastore.
