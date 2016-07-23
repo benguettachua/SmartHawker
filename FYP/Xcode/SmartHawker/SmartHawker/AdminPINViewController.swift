@@ -33,34 +33,6 @@ class AdminPINViewController: UIViewController {
         
         
     }
-    /*
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let firstTimeLogin = defaults.boolForKey("firstTimeLogin")
-        if (firstTimeLogin == true && correctAdminPin == true) {
-            let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
-                
-                self.loadRecordsIntoLocalDatastore({ (success) -> Void in
-                    if (success) {
-                        defaults.setBool(false, forKey: "firstTimeLogin")
-                        self.performSegueWithIdentifier("toMain", sender: self)
-                    } else {
-                        print("Retrieval failed!")
-                    }
-                })
-                
-            })
-            let cancel = UIAlertAction(title: "No", style: .Cancel) { (action) -> Void in
-                self.performSegueWithIdentifier("toMain", sender: self)
-            }
-            alertController.addAction(ok)
-            alertController.addAction(cancel)
-            presentViewController(alertController, animated: true, completion: nil)
-        }
-    }
- */
     
     // MARK: Action
     @IBAction func submitPIN(sender: UIButton) {

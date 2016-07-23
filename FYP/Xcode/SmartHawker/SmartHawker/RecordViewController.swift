@@ -27,9 +27,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var todaySales: UILabel!
     @IBOutlet weak var todayCOGS: UILabel!
     @IBOutlet weak var todayExpenses: UILabel!
-    @IBOutlet weak var salesDescription: UITextField!
-    @IBOutlet weak var COGSdescription: UITextField!
-    @IBOutlet weak var expensesDescription: UITextField!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var back: UIBarButtonItem!
@@ -70,9 +69,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         salesTextField.placeholder = "Sales($)".localized()
         COGSTextField.placeholder = "Cost of Goods Sold($)".localized()
         expensesTextField.placeholder = "Other Expenses($)".localized()
-        salesDescription.placeholder = "Description for sales".localized()
-        COGSdescription.placeholder = "Description for COGS".localized()
-        expensesDescription.placeholder = "Description for expenses".localized()
         submitRecordButton.setTitle("Add Record".localized(), forState: .Normal)
         
         
@@ -194,9 +190,10 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         // Get the date to save in DB.
         let dateString = self.shared.dateString
         var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-        let toRecord = PFObject(className: "Record")
-        let toRecord2 = PFObject(className: "Record")
-        let toRecord3 = PFObject(className: "Record")
+        
+        let toRecord = PFObject(className: "Record")  // save sales
+        let toRecord2 = PFObject(className: "Record") // save COGS
+        let toRecord3 = PFObject(className: "Record") // save expenses
         
         // Record Sales, if there is any value entered.
         if (salesToRecord != nil && salesToRecord != 0) {
@@ -205,7 +202,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["user"] = PFUser.currentUser()
             toRecord["type"] = 0
             toRecord["subuser"] = PFUser.currentUser()?.username
-            toRecord["description"] = String(salesDescription.text!)
+            toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
+            toRecord["description"] = String(descriptionTextField.text!)
             // Save to local datastore
             toRecord.pinInBackground()
             array.append(dateString)
@@ -219,7 +217,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord2["user"] = PFUser.currentUser()
             toRecord2["type"] = 1
             toRecord2["subuser"] = PFUser.currentUser()?.username
-            toRecord2["description"] = String(COGSdescription.text!)
+            toRecord2["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
+            toRecord2["description"] = String(descriptionTextField.text!)
             // Save to local datastore
             toRecord2.pinInBackground()
             array.append(dateString)
@@ -233,7 +232,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord3["user"] = PFUser.currentUser()
             toRecord3["type"] = 2
             toRecord3["subuser"] = PFUser.currentUser()?.username
-            toRecord3["description"] = String(expensesDescription.text!)
+            toRecord3["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
+            toRecord3["description"] = String(descriptionTextField.text!)
             // Save to local datastore
             toRecord3.pinInBackground()
             array.append(dateString)
@@ -310,9 +310,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         todayExpenses.resignFirstResponder()
         viewRecordsButton.resignFirstResponder()
         submitRecordButton.resignFirstResponder()
-        salesDescription.resignFirstResponder()
-        COGSdescription.resignFirstResponder()
-        expensesDescription.resignFirstResponder()
+        descriptionLabel.resignFirstResponder()
+        descriptionTextField.resignFirstResponder()
         return true
     }
     
