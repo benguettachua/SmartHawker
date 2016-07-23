@@ -118,15 +118,43 @@ class SyncViewController: UIViewController {
     }
     
     func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
-        // Save all local records into DB.
+        
+        // Remove all records in DB.
+        removeRecordsFromDB { (success) in
+            if (success) {
+                // Save all local records into DB.
+                let query = PFQuery(className: "Record")
+                query.fromLocalDatastore()
+                query.whereKey("user", equalTo: self.user!)
+                query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+                    
+                    if error == nil {
+                        for object in objects! {
+                            object.saveEventually()
+                        }
+                        completionHandler(success: true)
+                    } else {
+                        // Log details of the failure
+                        print("Error: \(error!) \(error!.userInfo)")
+                        completionHandler(success: false)
+                    }
+                }
+
+            } else {
+                print("Failed to delete records.")
+            }
+        }
+        
+    }
+    
+    func removeRecordsFromDB(completionHandler: CompletionHandler) {
         let query = PFQuery(className: "Record")
-        query.fromLocalDatastore()
         query.whereKey("user", equalTo: user!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 for object in objects! {
-                    object.saveEventually()
+                    object.deleteEventually()
                 }
                 completionHandler(success: true)
             } else {
@@ -135,6 +163,5 @@ class SyncViewController: UIViewController {
                 completionHandler(success: false)
             }
         }
-        
     }
 }

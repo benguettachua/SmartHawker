@@ -29,10 +29,48 @@ class UpdateRecordViewController: UIViewController {
         var description = selectedRecord.description
         
         // Updating the record
-        let objectId = selectedRecord.objectId
+        let localIdentifier = selectedRecord.localIdentifier
         let query = PFQuery(className: "Record")
         query.fromLocalDatastore()
-        query.getObjectInBackgroundWithId(objectId)
+        query.whereKey("subUser", equalTo: localIdentifier)
+        query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
+            if (error != nil && record != nil) {
+                // No object found or some error
+                print("No object found or some error")
+                print(error)
+                print(record)
+            } else if let record = record {
+                // Record is found, proceed to update.
+                var typeInt = Int()
+                typeString = self.newType.text!
+                amount = Int(self.newAmount.text!)!
+                description = self.newDescription.text
+                if (typeString == "Sales") {
+                    typeInt = 0
+                } else if (typeString == "COGS") {
+                    typeInt = 1
+                } else if (typeString == "Expenses") {
+                    typeInt = 2
+                }
+                
+                record["type"] = typeInt
+                record["amount"] = amount
+                record["description"] = description
+                record.pinInBackground()
+                self.updateGlobalRecord({ (success) -> Void in
+                    if (success) {
+                        // Update success, go back to records
+                        self.performSegueWithIdentifier("backToRecord", sender: self)
+                    } else {
+                        print("Some error thrown.")
+                    }
+                })
+            }
+        }
+        
+        
+        /*
+        query.getObjectInBackgroundWithId(localIdentifier)
         {
             (record: PFObject?, error: NSError?) -> Void in
             if (error != nil) {
@@ -65,7 +103,7 @@ class UpdateRecordViewController: UIViewController {
                     }
                 })
             }
-        }
+        }*/
     }
     
     // This updates the array "records" in ShareData.
@@ -87,7 +125,7 @@ class UpdateRecordViewController: UIViewController {
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
                         var description = object["description"]
-                        var objectIdString = object.objectId
+                        var localIdentifierString = object["subUser"]
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -97,14 +135,14 @@ class UpdateRecordViewController: UIViewController {
                             typeString = "Expenses"
                         }
                         
-                        if (objectIdString == nil) {
-                            objectIdString = String(self.tempCounter += 1)
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
                         }
                         
                         if (description == nil || description as! String == "") {
                             description = "No description"
                         }
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         records.append(newRecord)
                     }
                     self.shared.records = records

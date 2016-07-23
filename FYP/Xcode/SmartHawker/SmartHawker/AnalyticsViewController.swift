@@ -233,7 +233,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
-                        var objectIdString = object.objectId
+                        var localIdentifierString = object["subUser"]
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -250,7 +250,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         }
                         
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
                     }
                     completionHandler(success: true)

@@ -29,65 +29,97 @@ class RecordTableViewCell: UITableViewCell {
     @IBAction func editButton(sender: UIButton) {
         let records = shared.records
         let selectedRecord = records[rowSelected]
-        if (Int(selectedRecord.objectId) == nil) {
-            if (self.delegate != nil) {
-                shared.selectedRecord = selectedRecord
-                self.delegate.callSegueFromCell(myData: selectedRecord)
-            }
-        } else {
-            self.delegate.unableToDeleteOrEdit()
+        
+        if (self.delegate != nil) {
+            shared.selectedRecord = selectedRecord
+            self.delegate.callSegueFromCell(myData: selectedRecord)
         }
         
+        
     }
+    
     @IBAction func deleteButton(sender: UIButton) {
         var records = shared.records
         let selectedRecord = records[rowSelected]
         let amount = 0
         
         // Updating the record
-        let objectId = selectedRecord.objectId
+        let localIdentifier = selectedRecord.localIdentifier
         let query = PFQuery(className: "Record")
         query.fromLocalDatastore()
-        if (Int(selectedRecord.objectId) == nil) {
-            
-            
-            query.getObjectInBackgroundWithId(objectId){
-                (record: PFObject?, error: NSError?) -> Void in
-                if (error != nil) {
-                    print(error)
-                } else if let record = record {
-                    
-                    record["amount"] = amount
-                    var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-                    
-                    for var i in 0..<array.count{
-                        if array[i] == record["date"] as! String{
-                            array.removeAtIndex(i)
-                            i -= 1
-                            break
-                        }
-                        
+        query.whereKey("subUser", equalTo: localIdentifier)
+        query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
+            if (error != nil && record != nil) {
+                // No object found or some error
+                print("No object found or some error")
+                print(error)
+                print(record)
+            } else if let record = record {
+                // Record is found, proceed to delete.
+                record["amount"] = amount
+                var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+                
+                for var i in 0..<array.count{
+                    if array[i] == record["date"] as! String{
+                        array.removeAtIndex(i)
+                        i -= 1
+                        break
                     }
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setObject(array, forKey: "SavedDateArray")
-                    record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
-                    record.deleteEventually() // Deletes from the DB when there is network.
-                    record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
-                    self.updateGlobalRecord({ (success) -> Void in
-                        if (success) {
-                            // Update success, go back to records
-                            self.delegate.backToRecordFromCell()
-                        } else {
-                            print("Some error thrown.")
-                        }
-                    })
+                    
                 }
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(array, forKey: "SavedDateArray")
+                record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
+                //record.deleteEventually() // Deletes from the DB when there is network.
+                record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
+                self.updateGlobalRecord({ (success) -> Void in
+                    if (success) {
+                        // Update success, go back to records
+                        self.delegate.backToRecordFromCell()
+                    } else {
+                        print("Some error thrown.")
+                    }
+                })
             }
-        } else {
-            print("deleting records with are not in DB")
-            // Records that are not stored in DB are displayed based on the order they are stored.
-            self.delegate.unableToDeleteOrEdit()
         }
+        
+        /*
+         query.getObjectInBackgroundWithId(localIdentifier){
+         (record: PFObject?, error: NSError?) -> Void in
+         if (error != nil) {
+         print(error)
+         } else if let record = record {
+         
+         record["amount"] = amount
+         var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+         
+         for var i in 0..<array.count{
+         if array[i] == record["date"] as! String{
+         array.removeAtIndex(i)
+         i -= 1
+         break
+         }
+         
+         }
+         let defaults = NSUserDefaults.standardUserDefaults()
+         defaults.setObject(array, forKey: "SavedDateArray")
+         record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
+         record.deleteEventually() // Deletes from the DB when there is network.
+         record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
+         self.updateGlobalRecord({ (success) -> Void in
+         if (success) {
+         // Update success, go back to records
+         self.delegate.backToRecordFromCell()
+         } else {
+         print("Some error thrown.")
+         }
+         })
+         
+         }
+         }*/
+        
+        
+        
     }
     
     // This updates the array "records" in ShareData.
@@ -109,7 +141,7 @@ class RecordTableViewCell: UITableViewCell {
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
                         var description = object["description"]
-                        var objectIdString = object.objectId
+                        var localIdentifierString = object["subUser"]
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -119,14 +151,14 @@ class RecordTableViewCell: UITableViewCell {
                             typeString = "Expenses"
                         }
                         
-                        if (objectIdString == nil) {
-                            objectIdString = String(self.tempCounter += 1)
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
                         }
                         
                         if (description == nil || description as! String == "") {
                             description = "No description"
                         }
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         records.append(newRecord)
                     }
                     self.shared.records = records

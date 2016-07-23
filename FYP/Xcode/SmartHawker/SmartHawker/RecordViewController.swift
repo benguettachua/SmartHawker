@@ -146,7 +146,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
-                        var objectIdString = object.objectId
+                        var localIdentifierString = object["subUser"]
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -162,11 +162,11 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                             description = "No description"
                         }
                         
-                        if (objectIdString == nil) {
-                            objectIdString = String(self.tempCounter += 1)
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
                         }
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, objectId: objectIdString!, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
                     }
                     self.records.sortInPlace({$0.amount > $1.amount}) // Sort the records in descending order of amount.
