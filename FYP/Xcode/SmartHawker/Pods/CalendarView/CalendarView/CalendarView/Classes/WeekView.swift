@@ -56,11 +56,13 @@ class WeekView: UIView {
   }
 
   func setDays() {
+    let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
     if days.count > 0 {
       for i in 0..<days.count {
         let day = days[i]
         let dayDate = date.add(i, .Days)
         day.isToday = dayDate.isToday()
+        day.recordingExist = dayDate.recordingExist(array)
         day.isOtherMonth = !month.isSameMonth(dayDate)
         day.selected = false
         day.date = dayDate

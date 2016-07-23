@@ -26,50 +26,55 @@ public class CalendarView: UIView {
     static var otherMonthTextColor = UIColor.lightGrayColor()
     static var otherMonthBackgroundColor = UIColor.clearColor()
     static var weekLabelTextColor = UIColor.blackColor()
+    
+    static var dayWithRecordings = UIColor.orangeColor()
     static var dayFont = UIFont.systemFontOfSize(15)
   }
 
-  public class var dayBackgroundColor: UIColor {
-    get { return Appearance.dayBackgroundColor }
-    set { Appearance.dayBackgroundColor = newValue }
-  }
-  public class var daySelectedBackgroundColor: UIColor {
-    get { return Appearance.daySelectedBackgroundColor }
-    set { Appearance.daySelectedBackgroundColor = newValue }
-  }
-  public class var todayBackgroundColor: UIColor {
-    get { return Appearance.todayBackgroundColor }
-    set { Appearance.todayBackgroundColor = newValue }
-  }
-  public class var todayTextColor: UIColor {
-    get { return Appearance.todayTextColor }
-    set { Appearance.todayTextColor = newValue }
-  }
-  public class var dayTextColor: UIColor {
-    get { return Appearance.dayTextColor }
-    set { Appearance.dayTextColor = newValue }
-  }
-  public class var daySelectedTextColor: UIColor {
-    get { return Appearance.daySelectedTextColor }
-    set { Appearance.daySelectedTextColor = newValue }
-  }
-  public class var otherMonthTextColor: UIColor {
-    get { return Appearance.otherMonthTextColor }
-    set { Appearance.otherMonthTextColor = newValue }
-  }
-  public class var otherMonthBackgroundColor: UIColor {
-    get { return Appearance.otherMonthBackgroundColor }
-    set { Appearance.otherMonthBackgroundColor = newValue }
-  }
-  public class var weekLabelTextColor: UIColor {
-    get { return Appearance.weekLabelTextColor }
-    set { Appearance.weekLabelTextColor = newValue }
-  }
-  public class var dayFont: UIFont {
-    get { return Appearance.dayFont }
-    set { Appearance.dayFont = newValue }
-  }
-
+    public class var dayBackgroundColor: UIColor {
+        get { return Appearance.dayBackgroundColor }
+        set { Appearance.dayBackgroundColor = newValue }
+    }
+    public class var daySelectedBackgroundColor: UIColor {
+        get { return Appearance.daySelectedBackgroundColor }
+        set { Appearance.daySelectedBackgroundColor = newValue }
+    }
+    public class var todayBackgroundColor: UIColor {
+        get { return Appearance.todayBackgroundColor }
+        set { Appearance.todayBackgroundColor = newValue }
+    }
+    public class var todayTextColor: UIColor {
+        get { return Appearance.todayTextColor }
+        set { Appearance.todayTextColor = newValue }
+    }
+    public class var dayTextColor: UIColor {
+        get { return Appearance.dayTextColor }
+        set { Appearance.dayTextColor = newValue }
+    }
+    public class var daySelectedTextColor: UIColor {
+        get { return Appearance.daySelectedTextColor }
+        set { Appearance.daySelectedTextColor = newValue }
+    }
+    public class var otherMonthTextColor: UIColor {
+        get { return Appearance.otherMonthTextColor }
+        set { Appearance.otherMonthTextColor = newValue }
+    }
+    public class var otherMonthBackgroundColor: UIColor {
+        get { return Appearance.otherMonthBackgroundColor }
+        set { Appearance.otherMonthBackgroundColor = newValue }
+    }
+    public class var weekLabelTextColor: UIColor {
+        get { return Appearance.weekLabelTextColor }
+        set { Appearance.weekLabelTextColor = newValue }
+    }
+    public class var dayWithRecordings: UIColor {
+        get { return Appearance.dayWithRecordings }
+        set { Appearance.dayWithRecordings = newValue }
+    }
+    public class var dayFont: UIFont {
+        get { return Appearance.dayFont }
+        set { Appearance.dayFont = newValue }
+    }
   lazy var contentView: ContentView = {
     let cv = ContentView(frame: CGRectZero)
     cv.delegate = self

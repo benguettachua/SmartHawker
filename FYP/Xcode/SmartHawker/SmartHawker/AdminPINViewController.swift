@@ -113,10 +113,18 @@ class AdminPINViewController: UIViewController {
         query.whereKey("user", equalTo: user!)
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
+            var dates = [String]()
             if error == nil {
                 // Pin records found into local datastore.
                 PFObject.pinAllInBackground(objects)
+                for object in objects! {
+                    let dateString = object["date"] as! String
+                    dates.append(dateString)
+                    
+                }
+                print(dates)
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(dates, forKey: "SavedDateArray")
                 completionHandler(success: true)
                 
             } else {

@@ -193,7 +193,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         
         // Get the date to save in DB.
         let dateString = self.shared.dateString
-        
+        var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
         let toRecord = PFObject(className: "Record")
         let toRecord2 = PFObject(className: "Record")
         let toRecord3 = PFObject(className: "Record")
@@ -208,8 +208,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["description"] = String(salesDescription.text!)
             // Save to local datastore
             toRecord.pinInBackground()
-            // Save to db if there is connection
-            toRecord.saveEventually()
+            array.append(dateString)
             didRecord = true
         }
         
@@ -223,8 +222,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord2["description"] = String(COGSdescription.text!)
             // Save to local datastore
             toRecord2.pinInBackground()
-            // Save to db if there is connection
-            toRecord2.saveEventually()
+            array.append(dateString)
             didRecord = true
         }
         
@@ -238,8 +236,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord3["description"] = String(expensesDescription.text!)
             // Save to local datastore
             toRecord3.pinInBackground()
-            // Save to db if there is connection
-            toRecord3.saveEventually()
+            array.append(dateString)
             didRecord = true
         }
         
@@ -260,7 +257,8 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                 self.recordSuccessLabel.hidden = true
                 self.viewDidLoad()
             }
-            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(array, forKey: "SavedDateArray")
         } else {
             // No record or only "0" entered. Shows error message then refresh the view.
             self.recordSuccessLabel.text = "No records submitted."

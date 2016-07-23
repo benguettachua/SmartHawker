@@ -58,7 +58,18 @@ class RecordTableViewCell: UITableViewCell {
                 } else if let record = record {
                     
                     record["amount"] = amount
+                    var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
                     
+                    for var i in 0..<array.count{
+                        if array[i] == record["date"] as! String{
+                            array.removeAtIndex(i)
+                            i -= 1
+                            break
+                        }
+                        
+                    }
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject(array, forKey: "SavedDateArray")
                     record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
                     record.deleteEventually() // Deletes from the DB when there is network.
                     record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
