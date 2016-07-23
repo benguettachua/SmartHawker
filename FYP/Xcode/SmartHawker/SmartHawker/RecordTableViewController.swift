@@ -24,11 +24,27 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     @IBOutlet weak var navBarTitle: UINavigationItem!
     @IBOutlet weak var navBar: UINavigationBar!
     
+    let sections = ["Sales", "COGS", "Other Expenses"]
+    var items: [[RecordTable]] = [[], [], []]
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         records = shared.records
         navBarTitle.title = "Records for " + shared.dateString
         navBar.frame = CGRectMake(0, 0, 320, 64)
+        
+        for record in records {
+            if (record.type == "Sales") {
+                items[0].append(record)
+            } else if (record.type == "COGS") {
+                items[1].append(record)
+            } else if (record.type == "Expenses") {
+                items[2].append(record)
+            }
+        }
+        shared.items = items
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,11 +53,15 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.sections.count
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections[section]
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return records.count
+        return self.items[section].count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -53,37 +73,12 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
-        // Fetches the appropriate record for the data source layout.
-        let record = records[indexPath.row]
+        cell.descriptionLabel.text = self.items[indexPath.section][indexPath.row].description
+        cell.amountLabel.text = String(self.items[indexPath.section][indexPath.row].amount)
         
-        cell.dateLabel.text = record.date
-        cell.typeLabel.text = record.type
-        cell.descriptionLabel.text = record.description
-        if record.type == "Sales"{
-            cell.typeLabel.textColor = UIColor.greenColor()
-            cell.amountLabel.textColor = UIColor.greenColor()
-        }else{
-            cell.typeLabel.textColor = UIColor.redColor()
-            cell.amountLabel.textColor = UIColor.redColor()
-        }
-        if (record.amount > 0) {
-            cell.amountLabel.text = String(record.amount)
-        } else {
-            cell.amountLabel.text = "Deleted"
-        }
-        
-        // Alternate colour
-        if (indexPath.row % 2 == 0) {
-            cell.backgroundColor = UIColor.grayColor()
-        } else {
-            cell.backgroundColor = UIColor.whiteColor()
-        }
-        
-        //setting color for the amount
+        cell.sectionSelected = indexPath.section
         cell.rowSelected = indexPath.row
-        
         cell.delegate = self
-        
         return cell
     }
     

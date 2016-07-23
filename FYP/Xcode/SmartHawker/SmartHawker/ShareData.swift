@@ -30,4 +30,5 @@ class ShareData {
     var records: [RecordTable]!
     var rowNo: Int!
     var selectedRecord: RecordTable!
+    var items: [[RecordTable]] = [[], [], []]
 }

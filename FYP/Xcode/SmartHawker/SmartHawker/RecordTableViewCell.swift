@@ -16,6 +16,7 @@ class RecordTableViewCell: UITableViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    var sectionSelected: Int!
     var rowSelected: Int!
     var shared = ShareData.sharedInstance
     let user = PFUser.currentUser()
@@ -27,8 +28,8 @@ class RecordTableViewCell: UITableViewCell {
     
     // MARK: Action
     @IBAction func editButton(sender: UIButton) {
-        let records = shared.records
-        let selectedRecord = records[rowSelected]
+        let items = shared.items
+        let selectedRecord = items[sectionSelected][rowSelected]
         
         if (self.delegate != nil) {
             shared.selectedRecord = selectedRecord
@@ -39,8 +40,8 @@ class RecordTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteButton(sender: UIButton) {
-        var records = shared.records
-        let selectedRecord = records[rowSelected]
+        let items = shared.items
+        let selectedRecord = items[sectionSelected][rowSelected]
         let amount = 0
         
         // Updating the record
