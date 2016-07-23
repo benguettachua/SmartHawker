@@ -15,12 +15,46 @@ class SyncViewController: UIViewController {
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     
+    let user = PFUser.currentUser()
+    typealias CompletionHandler = (success:Bool) -> Void
+    
     // MARK: Action
     @IBAction func Logout(sender: UIBarButtonItem) {
         PFUser.logOut()
         self.performSegueWithIdentifier("logout", sender: self)
     }
     
+    @IBAction func retrievePastRecord(sender: UIButton) {
+        let alertController = UIAlertController(title: "Confirmation", message: "Are you sure you want to retrieve records?", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            
+            self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                if (success) {
+                    let alert = UIAlertController(title: "Retrieval success!", message: "You may continue to use the app.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Retrieval failed!", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            })
+            
+        })
+        let cancel = UIAlertAction(title: "No", style: .Cancel) { (action) -> Void in}
+        alertController.addAction(ok)
+        alertController.addAction(cancel)
+        presentViewController(alertController, animated: true, completion: nil)
+    
+    }
+
+    @IBAction func uploadRecordsOnline(sender: UIButton) {
+    }
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +70,27 @@ class SyncViewController: UIViewController {
                 if (error == nil) {
                     self.profilePicture.image = UIImage(data: imageData!)
                 }
+            }
+        }
+        
+    }
+    
+    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
+        // Part 1: Load from DB and pin into local datastore.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Pin records found into local datastore.
+                PFObject.pinAllInBackground(objects)
+                completionHandler(success: true)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
             }
         }
         
