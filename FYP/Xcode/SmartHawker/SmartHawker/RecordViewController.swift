@@ -27,8 +27,12 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var todaySales: UILabel!
     @IBOutlet weak var todayCOGS: UILabel!
     @IBOutlet weak var todayExpenses: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var salesDescriptionLabel: UILabel!
+    @IBOutlet weak var salesDescriptionTextField: UITextField!
+    @IBOutlet weak var COGSDescriptionLabel: UILabel!
+    @IBOutlet weak var COGSDescriptionTextField: UITextField!
+    @IBOutlet weak var expensesDescriptionLabel: UILabel!
+    @IBOutlet weak var expensesDescriptionTextField: UITextField!
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var back: UIBarButtonItem!
@@ -161,10 +165,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                         if (description == nil || description as! String == "") {
                             description = "No description"
                         }
-                        
-                        if (localIdentifierString == nil) {
-                            localIdentifierString = String(self.tempCounter += 1)
-                        }
+
                         
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
@@ -203,7 +204,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["type"] = 0
             toRecord["subuser"] = PFUser.currentUser()?.username
             toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord["description"] = String(descriptionTextField.text!)
+            toRecord["description"] = String(salesDescriptionTextField.text!)
             // Save to local datastore
             toRecord.pinInBackground()
             array.append(dateString)
@@ -218,7 +219,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord2["type"] = 1
             toRecord2["subuser"] = PFUser.currentUser()?.username
             toRecord2["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord2["description"] = String(descriptionTextField.text!)
+            toRecord2["description"] = String(COGSDescriptionTextField.text!)
             // Save to local datastore
             toRecord2.pinInBackground()
             array.append(dateString)
@@ -233,7 +234,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord3["type"] = 2
             toRecord3["subuser"] = PFUser.currentUser()?.username
             toRecord3["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord3["description"] = String(descriptionTextField.text!)
+            toRecord3["description"] = String(expensesDescriptionTextField.text!)
             // Save to local datastore
             toRecord3.pinInBackground()
             array.append(dateString)
@@ -310,8 +311,12 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         todayExpenses.resignFirstResponder()
         viewRecordsButton.resignFirstResponder()
         submitRecordButton.resignFirstResponder()
-        descriptionLabel.resignFirstResponder()
-        descriptionTextField.resignFirstResponder()
+        salesDescriptionLabel.resignFirstResponder()
+        salesDescriptionTextField.resignFirstResponder()
+        COGSDescriptionLabel.resignFirstResponder()
+        COGSDescriptionTextField.resignFirstResponder()
+        expensesDescriptionLabel.resignFirstResponder()
+        expensesDescriptionTextField.resignFirstResponder()
         return true
     }
     
