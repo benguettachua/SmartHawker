@@ -51,6 +51,28 @@ class SyncViewController: UIViewController {
     }
 
     @IBAction func uploadRecordsOnline(sender: UIButton) {
+        let alertController = UIAlertController(title: "Confirmation", message: "Are you sure you want to sync records to database?", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            
+            self.saveRecordsIntoDatabase({ (success) -> Void in
+                if (success) {
+                    let alert = UIAlertController(title: "Save success!", message: "You may continue to use the app.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Save failed!", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            })
+            
+        })
+        let cancel = UIAlertAction(title: "No", style: .Cancel) { (action) -> Void in}
+        alertController.addAction(ok)
+        alertController.addAction(cancel)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 
 
@@ -87,6 +109,26 @@ class SyncViewController: UIViewController {
                 PFObject.pinAllInBackground(objects)
                 completionHandler(success: true)
                 
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+    }
+    
+    func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
+        // Save all local records into DB.
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                for object in objects! {
+                    object.saveEventually()
+                }
+                completionHandler(success: true)
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
