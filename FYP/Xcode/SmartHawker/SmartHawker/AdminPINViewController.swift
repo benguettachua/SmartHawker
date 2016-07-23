@@ -18,6 +18,9 @@ class AdminPINViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var adminPINLabel: UILabel!
     @IBOutlet weak var navBar: UINavigationBar!
+    
+    typealias CompletionHandler = (success:Bool) -> Void
+    
     //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,37 @@ class AdminPINViewController: UIViewController {
         cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
         adminPINLabel.text = "Admin PIN".localized()
         adminPINTextField.placeholder = "Enter your PIN here".localized()
+        
+        
     }
+    /*
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let firstTimeLogin = defaults.boolForKey("firstTimeLogin")
+        if (firstTimeLogin == true && correctAdminPin == true) {
+            let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+                
+                self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                    if (success) {
+                        defaults.setBool(false, forKey: "firstTimeLogin")
+                        self.performSegueWithIdentifier("toMain", sender: self)
+                    } else {
+                        print("Retrieval failed!")
+                    }
+                })
+                
+            })
+            let cancel = UIAlertAction(title: "No", style: .Cancel) { (action) -> Void in
+                self.performSegueWithIdentifier("toMain", sender: self)
+            }
+            alertController.addAction(ok)
+            alertController.addAction(cancel)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+ */
     
     // MARK: Action
     @IBAction func submitPIN(sender: UIButton) {
@@ -38,7 +71,33 @@ class AdminPINViewController: UIViewController {
             adminPINTextField.text = ""
             adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         } else {
-            self.performSegueWithIdentifier("toMain", sender: self)
+            //self.performSegueWithIdentifier("toMain", sender: self)
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let firstTimeLogin = defaults.boolForKey("firstTimeLogin")
+            if (firstTimeLogin == true) {
+                let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
+                let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+                    
+                    self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                        if (success) {
+                            defaults.setBool(false, forKey: "firstTimeLogin")
+                            self.performSegueWithIdentifier("toMain", sender: self)
+                        } else {
+                            print("Retrieval failed!")
+                        }
+                    })
+                    
+                })
+                let cancel = UIAlertAction(title: "No", style: .Cancel) { (action) -> Void in
+                    defaults.setBool(false, forKey: "firstTimeLogin")
+                    self.performSegueWithIdentifier("toMain", sender: self)
+                }
+                alertController.addAction(ok)
+                alertController.addAction(cancel)
+                presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                self.performSegueWithIdentifier("toMain", sender: self)
+            }
         }
     }
     
@@ -46,5 +105,26 @@ class AdminPINViewController: UIViewController {
         // Logs the user out if they are click Cancel
         PFUser.logOutInBackground()
         self.performSegueWithIdentifier("backToWelcome", sender: self)
+    }
+    
+    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
+        // Part 1: Load from DB and pin into local datastore.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Pin records found into local datastore.
+                PFObject.pinAllInBackground(objects)
+                completionHandler(success: true)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+        
     }
 }

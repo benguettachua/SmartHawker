@@ -29,6 +29,11 @@ class LoginViewController: UIViewController {
                 self.toShare.password = self.passwordTextField.text!
                 self.errorMessageLabel.text = "Logging in...".localized()
                 self.errorMessageLabel.hidden = false
+                
+                // Set first log in to true, so that prompt to retrieve from DB will appear.
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setBool(true, forKey: "firstTimeLogin")
+                
                 self.performSegueWithIdentifier("loginSuccess", sender: self)
             } else {
                 
