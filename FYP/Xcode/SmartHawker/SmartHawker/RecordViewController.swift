@@ -254,6 +254,9 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                 self.salesTextField.text = ""
                 self.COGSTextField.text = ""
                 self.expensesTextField.text = ""
+                self.salesDescriptionTextField.text = ""
+                self.COGSDescriptionTextField.text = ""
+                self.expensesDescriptionTextField.text = ""
                 
                 self.recordSuccessLabel.hidden = true
                 self.viewDidLoad()
