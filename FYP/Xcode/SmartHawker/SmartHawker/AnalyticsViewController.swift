@@ -88,8 +88,12 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         print(months)
         //loads data form local database
         loadRecordsFromLocaDatastore({ (success) -> Void in
-            if (success) {
-                print(self.years)
+            var records = [RecordTable]()
+            let query = PFQuery(className: "Record")
+            query.whereKey("user", equalTo: self.user!)
+            query.fromLocalDatastore()
+            query.findObjectsInBackgroundWithBlock {
+                (objects: [PFObject]?, error: NSError?) -> Void in
                 for year in self.years{
                     for month in self.monthsInNum{
                         let yearAndMonth = String(month) + "/" + String(year)
@@ -99,16 +103,23 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         var COGSamount = 0.0
                         var expensesAmount = 0.0
                         var profit = 0.0
-                        for record in self.records {
-                            if record.date.containsString(yearAndMonth){
-                                if (record.type == "Sales" ) {
-                                    salesAmount += Double(record.amount)
-                                } else if (record.type == "COGS") {
-                                    COGSamount += Double(record.amount)
-                                } else if (record.type == "Expenses") {
-                                    expensesAmount += Double(record.amount)
+                        if let objects = objects {
+                            for object in objects {
+                            if (object["date"] as! String).containsString(yearAndMonth){
+                                let type = object["type"] as! Int
+                                let amount = object["amount"] as! Double
+                                //let subuser = object["subuser"] as? String
+                                if (type == 0) {
+                                    salesAmount += amount
+                                } else if (type == 1) {
+                                    COGSamount += amount
+                                } else if (type == 2) {
+                                    expensesAmount += amount
                                 }
+                                //print(subuser)
                             }
+
+                        }
                         }
                         self.dollars1.append(salesAmount)
                         self.dollars2.append(COGSamount)
@@ -116,18 +127,12 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         profit = salesAmount - COGSamount - expensesAmount
                         self.profits.append(Double(profit))
                         
-                    }
-                }
-            }else {
-                print("Some error thrown.")
-                
+                        self.setChartData(self.totalMonths)
             }
-            print(self.dollars1)
-            print(self.dollars2)
-            print(self.dollars3)
-            print(self.profits)
-            self.setChartData(self.totalMonths)
-        })
+                }
+            }
+            })
+        
         
         // 5
         

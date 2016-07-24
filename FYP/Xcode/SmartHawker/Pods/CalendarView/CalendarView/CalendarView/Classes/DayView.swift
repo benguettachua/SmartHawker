@@ -78,8 +78,11 @@ class DayView: UIView {
             dateLabel.textColor = CalendarView.daySelectedTextColor
             dateLabel.backgroundColor = CalendarView.daySelectedBackgroundColor
         } else if recordingExist {
-            dateLabel.textColor = CalendarView.todayTextColor
-            dateLabel.backgroundColor = CalendarView.todayBackgroundColor
+            if dateLabel.text != nil{
+                let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleDouble.rawValue]
+                let underlineAttributedString = NSAttributedString(string: dateLabel.text!, attributes: underlineAttribute)
+                dateLabel.attributedText = underlineAttributedString
+            }
         } else if isToday {
             dateLabel.textColor = CalendarView.todayTextColor
             dateLabel.backgroundColor = CalendarView.todayBackgroundColor

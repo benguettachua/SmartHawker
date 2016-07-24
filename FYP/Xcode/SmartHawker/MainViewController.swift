@@ -38,15 +38,12 @@ class MainViewcontroller: UIViewController{
     }//for calendar
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         userLabel.text = "User:".localized()
         navBar.title = "Main".localized()
         navBarLogoutButton.title = "Logout".localized()
-        
-        //calendar
-        date = moment()
-        calendar.delegate = self
+
 
         // Load the Top Bar
         let user = PFUser.currentUser()
@@ -62,6 +59,14 @@ class MainViewcontroller: UIViewController{
                 }
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //calendar
+        
+        date = moment()
+        calendar.delegate = self
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {

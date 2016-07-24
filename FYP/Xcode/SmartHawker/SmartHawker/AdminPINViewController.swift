@@ -94,7 +94,6 @@ class AdminPINViewController: UIViewController {
                     dates.append(dateString)
                     
                 }
-                print(dates)
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(dates, forKey: "SavedDateArray")
                 completionHandler(success: true)
