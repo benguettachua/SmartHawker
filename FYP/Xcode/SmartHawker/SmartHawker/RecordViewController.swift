@@ -202,8 +202,13 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
         
         let toRecord = PFObject(className: "Record")  // save sales
+        toRecord.ACL = PFACL(user: PFUser.currentUser()!)
+        
         let toRecord2 = PFObject(className: "Record") // save COGS
+        toRecord2.ACL = PFACL(user: PFUser.currentUser()!)
+        
         let toRecord3 = PFObject(className: "Record") // save expenses
+        toRecord3.ACL = PFACL(user: PFUser.currentUser()!)
         
         // Record Sales, if there is any value entered.
         if (salesToRecord != nil && salesToRecord != 0) {

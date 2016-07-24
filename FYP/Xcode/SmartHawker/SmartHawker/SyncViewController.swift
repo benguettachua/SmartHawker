@@ -120,8 +120,8 @@ class SyncViewController: UIViewController {
     func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
         
         // Remove all records in DB.
-        removeRecordsFromDB { (success) in
-            if (success) {
+       // removeRecordsFromDB { (success) in
+        //    if (success) {
                 // Save all local records into DB.
                 let query = PFQuery(className: "Record")
                 query.fromLocalDatastore()
@@ -130,7 +130,8 @@ class SyncViewController: UIViewController {
                     
                     if error == nil {
                         for object in objects! {
-                            object.saveEventually()
+                            object.pinInBackground()
+                            object.saveInBackground()
                         }
                         completionHandler(success: true)
                     } else {
@@ -140,10 +141,10 @@ class SyncViewController: UIViewController {
                     }
                 }
 
-            } else {
-                print("Failed to delete records.")
-            }
-        }
+          //  } else {
+            //    print("Failed to delete records.")
+           // }
+       // }
         
     }
     
@@ -154,7 +155,7 @@ class SyncViewController: UIViewController {
             
             if error == nil {
                 for object in objects! {
-                    object.deleteEventually()
+                    object.deleteInBackground()
                 }
                 completionHandler(success: true)
             } else {
