@@ -85,6 +85,17 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         return cell
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 38)!
+        header.textLabel?.textColor = UIColor.lightGrayColor()
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     func callSegueFromCell(myData dataobject: AnyObject) {
         //try not to send self, just to avoid retain cycles(depends on how you handle the code on the next controller)
         self.performSegueWithIdentifier("updateRecord", sender: dataobject )
