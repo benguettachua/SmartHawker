@@ -421,10 +421,10 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uMG-e4-t3E">
-                                        <rect key="frame" x="127" y="561" width="374" height="30"/>
+                                        <rect key="frame" x="127" y="561" width="160" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                                                 <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="crf-GT-pJk"/>
@@ -435,8 +435,8 @@
                                                     <action selector="registerButton:" destination="yyf-8u-gcf" eventType="touchUpInside" id="8ve-uD-w2i"/>
                                                 </connections>
                                             </button>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
-                                                <rect key="frame" x="0.0" y="30" width="374" height="0.0"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
+                                                <rect key="frame" x="0.0" y="30" width="160" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="374" id="3lB-1X-Ka8"/>
                                                     <constraint firstAttribute="height" constant="50" id="UUg-FG-hDs"/>
@@ -1382,14 +1382,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-4q-Duq" customClass="CalendarView" customModule="CalendarView">
                                 <rect key="frame" x="0.0" y="264" width="414" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="V07-KC-MWg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
                                 <rect key="frame" x="0.0" y="212" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="CrE-c1-4av"/>
@@ -1882,7 +1882,7 @@
         <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
             <objects>
-                <tabBarController id="xvq-Kx-gUH" userLabel="mainUI" sceneMemberID="viewController">
+                <tabBarController id="xvq-Kx-gUH" userLabel="mainUI" customClass="TabBarController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QdD-xH-zlt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1899,7 +1899,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIs-CO-F2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="247"/>
+            <point key="canvasLocation" x="1673" y="247"/>
         </scene>
         <!--Sync-->
         <scene sceneID="cHD-zM-71K">
@@ -3035,7 +3035,7 @@ Cgo
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-UB-UUC">
                                 <rect key="frame" x="30" y="76" width="354" height="632"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -3652,10 +3652,10 @@ Cg
         <image name="sync" width="32" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Phn-Mc-uTg"/>
-        <segue reference="Dz4-eP-ptE"/>
-        <segue reference="v0o-o3-ikI"/>
+        <segue reference="ycf-Pw-ULf"/>
         <segue reference="e3B-Xc-vDw"/>
+        <segue reference="tPZ-ny-ePW"/>
+        <segue reference="nJJ-v3-vh8"/>
         <segue reference="4HO-ch-xNf"/>
         <segue reference="awo-im-o7A"/>
         <segue reference="GQz-hC-Yag"/>

@@ -42,7 +42,6 @@ class MainViewcontroller: UIViewController{
         super.viewDidLoad()
         userLabel.text = "User:".localized()
         navBar.title = "Main".localized()
-        self.title = "Main".localized()
         navBarLogoutButton.title = "Logout".localized()
         
         //calendar

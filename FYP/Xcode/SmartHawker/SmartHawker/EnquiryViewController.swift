@@ -38,7 +38,6 @@ class EnquiryViewController: UIViewController {
         
         userLabel.text = "User:".localized()
         navBar.title = "Enquiry".localized()
-        self.title = "Enquiry".localized()
         logout.title = "Logout".localized()
         back.title = "Back".localized()
         
