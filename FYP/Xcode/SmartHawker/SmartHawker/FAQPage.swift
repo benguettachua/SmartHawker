@@ -11,12 +11,16 @@ import UIKit
 class FAQPage: UIViewController {
     
     //MARK properties
+    @IBOutlet weak var back: UIBarButtonItem!
     
+    @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navBar.topItem!.title = "FAQs".localized()
+        self.title = "FAQs".localized()
+        back.title = "Back".localized()
     }
     
     

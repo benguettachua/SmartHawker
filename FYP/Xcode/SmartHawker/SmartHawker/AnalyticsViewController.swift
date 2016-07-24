@@ -34,7 +34,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
     var records = [RecordTable]()
     // Load the Top Bar
     let user = PFUser.currentUser()
-    
+    var tempCounter = 0
     
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
@@ -249,6 +249,9 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                             description = "No description"
                         }
                         
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
+                        }
                         
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)

@@ -75,6 +75,13 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         expensesTextField.placeholder = "Other Expenses($)".localized()
         submitRecordButton.setTitle("Add Record".localized(), forState: .Normal)
         
+        expensesDescriptionLabel.text = "Description".localized()
+        COGSDescriptionLabel.text = "Description".localized()
+        salesDescriptionLabel.text = "Description".localized()
+        expensesDescriptionTextField.placeholder = "Other Expenses Description".localized()
+        COGSDescriptionTextField.placeholder = "COGS Description".localized()
+        salesDescriptionTextField.placeholder = "Sales Description".localized()
+        
         
         // Clear records Array to prevent double counting
         records.removeAll()
@@ -165,8 +172,10 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
                         if (description == nil || description as! String == "") {
                             description = "No description"
                         }
-
                         
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
+                        }
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
                     }

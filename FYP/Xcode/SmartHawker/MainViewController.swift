@@ -121,7 +121,7 @@ extension MainViewcontroller: CalendarViewDelegate {
             self.day = String(date.day) + "th".localized()
         }
 
-        var toDisplayDate = date.monthName.localized() + " \(self.day), " + " \(date.year), "+(date.weekdayName).localized()
+        var toDisplayDate = date.monthName.localized() + " \(self.day) " + " \(date.year) 年, "+(date.weekdayName).localized()
         print(lang=="en")
         if lang == "en" {
             toDisplayDate = self.day + " " + date.monthName + " " + String(date.year) + " , " + date.weekdayName

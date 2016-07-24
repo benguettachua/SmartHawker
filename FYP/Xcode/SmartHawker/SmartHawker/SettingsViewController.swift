@@ -350,7 +350,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     func noCamera(){
         let alertVC = UIAlertController(
             title: "No Camera",
-            message: "Sorry, this device has no camera",
+            message: "This device has no camera",
             preferredStyle: .Alert)
         let okAction = UIAlertAction(
             title: "OK",
@@ -437,7 +437,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         let imageData = UIImageJPEGRepresentation(chosenImage, 100)
-        print("Size of Image: \(imageData!.length) bytes")
         print(imageData!.length < 9999999)
         
         if imageData!.length < 9999999{

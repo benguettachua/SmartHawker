@@ -16,6 +16,17 @@ class EnquiryViewController: UIViewController {
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     
+    
+    @IBOutlet weak var navBar: UINavigationItem!
+    
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var back: UIBarButtonItem!
+    @IBOutlet weak var logout: UIBarButtonItem!
+    
+    @IBOutlet weak var faq: UIButton!
+    @IBOutlet weak var contactUs: UIButton!
+
+    
     //MARK: Action
     @IBAction func Logout(sender: UIBarButtonItem) {
         PFUser.logOut()
@@ -24,6 +35,15 @@ class EnquiryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userLabel.text = "User:".localized()
+        navBar.title = "Enquiry".localized()
+        self.title = "Enquiry".localized()
+        logout.title = "Logout".localized()
+        back.title = "Back".localized()
+        
+        faq.setTitle("FAQs".localized(), forState: .Normal)
+        contactUs.setTitle("Contact Helpdesk".localized(), forState: .Normal)
         
         // Load the Top Bar
         let user = PFUser.currentUser()
