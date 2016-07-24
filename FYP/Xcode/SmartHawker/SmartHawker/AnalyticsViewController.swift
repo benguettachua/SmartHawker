@@ -202,7 +202,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             let dataEntry = BarChartDataEntry(value: profits[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
-        print(profits)
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Profits")
         
         
