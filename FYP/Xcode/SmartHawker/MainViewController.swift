@@ -59,6 +59,11 @@ class MainViewcontroller: UIViewController{
                 }
             }
         }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("POPUP VC")
+        self.presentViewController(vc, animated: true, completion: nil)
+
     }
     
     override func viewWillAppear(animated: Bool) {
