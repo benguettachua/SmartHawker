@@ -89,9 +89,11 @@ class MonthView: UIView {
                 label.text = "星期五"
             }else if label.text == "SAT" {
                 label.text = "星期六"
+                
             }
         }
       label.frame = CGRectMake(x, inset, bounds.size.width / 7, labelHeight)
+    label.font = label.font.fontWithSize(14)
       x = CGRectGetMaxX(label.frame)
     }
     var y: CGFloat = labelHeight + inset

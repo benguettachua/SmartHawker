@@ -77,23 +77,28 @@ class DayView: UIView {
         if self.selected {
             dateLabel.textColor = CalendarView.daySelectedTextColor
             dateLabel.backgroundColor = CalendarView.daySelectedBackgroundColor
+            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
+        } else if isToday {
+            dateLabel.textColor = CalendarView.todayTextColor
+            dateLabel.backgroundColor = CalendarView.todayBackgroundColor
+            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
+        } else if isOtherMonth {
+            dateLabel.textColor = CalendarView.otherMonthTextColor
+            dateLabel.backgroundColor = CalendarView.otherMonthBackgroundColor
+            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
         } else if recordingExist {
             if dateLabel.text != nil{
+                print(date)
                 let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
                 let underlineAttributedString = NSAttributedString(string: dateLabel.text!, attributes: underlineAttribute)
                 dateLabel.attributedText = underlineAttributedString
                 dateLabel.textColor = UIColor.orangeColor()
                 dateLabel.font = UIFont.boldSystemFontOfSize(20.0)
             }
-        } else if isToday {
-            dateLabel.textColor = CalendarView.todayTextColor
-            dateLabel.backgroundColor = CalendarView.todayBackgroundColor
-        } else if isOtherMonth {
-            dateLabel.textColor = CalendarView.otherMonthTextColor
-            dateLabel.backgroundColor = CalendarView.otherMonthBackgroundColor
         } else {
             self.dateLabel.textColor = CalendarView.dayTextColor
             self.dateLabel.backgroundColor = CalendarView.dayBackgroundColor
+            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
         }
     }
     
@@ -120,9 +125,7 @@ public extension Moment {
     // for days with recordings
     
     func recordingExist(array: [String]) -> Bool {
-        
-        
-        
+
         let formatter = NSDateFormatter()
         formatter.timeZone = NSTimeZone.defaultTimeZone()
         formatter.dateFormat = "dd/MM/yyyy"

@@ -125,11 +125,12 @@ extension MainViewcontroller: CalendarViewDelegate {
             self.day = String(date.day) + "th".localized()
         }
 
-        var toDisplayDate = date.monthName.localized() + " \(self.day) " + " \(date.year) 年, "+(date.weekdayName).localized()
+        var toDisplayDate = ""
         print(lang=="en")
-        if lang == "en" {
+        if lang == "zh-Hans" {
+            toDisplayDate = date.monthName.localized() + " \(self.day) " + " \(date.year) 年, "+(date.weekdayName).localized()
+        }else{
             toDisplayDate = self.day + " " + date.monthName + " " + String(date.year) + " , " + date.weekdayName
-            print(toDisplayDate)
         }
         toShare.dateString = correctDateString
         toShare.toDisplayDate = toDisplayDate
