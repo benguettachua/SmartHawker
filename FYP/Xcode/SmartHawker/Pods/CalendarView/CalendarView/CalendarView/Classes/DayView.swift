@@ -75,30 +75,39 @@ class DayView: UIView {
     //where the days in the calendar are populated
     func updateView() {
         if self.selected {
+            dateLabel.bounds = CGRectMake(0.0, 0.0, 30, 30)
             dateLabel.textColor = CalendarView.daySelectedTextColor
             dateLabel.backgroundColor = CalendarView.daySelectedBackgroundColor
-            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
+            dateLabel.font = UIFont.systemFontOfSize(15)
         } else if isToday {
+            dateLabel.bounds = CGRectMake(0.0, 0.0, 30, 30)
+            dateLabel.layer.borderWidth = 2.0
+            dateLabel.layer.borderColor = UIColor.blackColor().CGColor
             dateLabel.textColor = CalendarView.todayTextColor
             dateLabel.backgroundColor = CalendarView.todayBackgroundColor
-            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
+            dateLabel.font = UIFont.systemFontOfSize(15)
         } else if isOtherMonth {
             dateLabel.textColor = CalendarView.otherMonthTextColor
             dateLabel.backgroundColor = CalendarView.otherMonthBackgroundColor
             dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
         } else if recordingExist {
             if dateLabel.text != nil{
-                print(date)
-                let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
-                let underlineAttributedString = NSAttributedString(string: dateLabel.text!, attributes: underlineAttribute)
-                dateLabel.attributedText = underlineAttributedString
+                
+                let size:CGFloat = 35.0 // 35.0 chosen arbitrarily
+                
+                dateLabel.bounds = CGRectMake(0.0, 0.0, size, size)
+                dateLabel.layer.cornerRadius = size / 2
+                dateLabel.layer.borderWidth = 3.0
+                dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
+                dateLabel.layer.borderColor = UIColor.greenColor().CGColor
+
                 dateLabel.textColor = UIColor.orangeColor()
-                dateLabel.font = UIFont.boldSystemFontOfSize(20.0)
+                dateLabel.font = UIFont.boldSystemFontOfSize(16.0)
             }
         } else {
             self.dateLabel.textColor = CalendarView.dayTextColor
             self.dateLabel.backgroundColor = CalendarView.dayBackgroundColor
-            dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
+            dateLabel.font = UIFont.systemFontOfSize(15)
         }
     }
     

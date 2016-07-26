@@ -17,8 +17,8 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var calendar: CalendarView!
     @IBOutlet weak var userLabel: UILabel!
+    var calendar = CalendarView!()
     
     @IBOutlet weak var navBarLogoutButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationItem!
@@ -39,7 +39,11 @@ class MainViewcontroller: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        date = moment()
+
+
+
         userLabel.text = "User:".localized()
         navBar.title = "Main".localized()
         navBarLogoutButton.title = "Logout".localized()
@@ -68,10 +72,12 @@ class MainViewcontroller: UIViewController{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //calendar
-        
-        date = moment()
+        if calendar != nil {
+            calendar.removeFromSuperview()
+        }
+        calendar = CalendarView(frame: CGRectMake(0, 170, CGRectGetWidth(view.frame), 250))
         calendar.delegate = self
+        view.addSubview(calendar)
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
