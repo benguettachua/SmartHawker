@@ -61,11 +61,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             }
         }
 
-        
-        
-        
-        super.viewDidLoad()
-        
         // Populate the top bar
         businessName.text! = user!["businessName"] as! String
         username.text! = user!["username"] as! String
@@ -83,17 +78,9 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         monthsInNum = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
         
-        
-        
-        print(months)
         //loads data form local database
         loadRecordsFromLocaDatastore({ (success) -> Void in
-            var records = [RecordTable]()
-            let query = PFQuery(className: "Record")
-            query.whereKey("user", equalTo: self.user!)
-            query.fromLocalDatastore()
-            query.findObjectsInBackgroundWithBlock {
-                (objects: [PFObject]?, error: NSError?) -> Void in
+
                 for year in self.years{
                     for month in self.monthsInNum{
                         let yearAndMonth = String(month) + "/" + String(year)
@@ -103,24 +90,23 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         var COGSamount = 0.0
                         var expensesAmount = 0.0
                         var profit = 0.0
-                        if let objects = objects {
-                            for object in objects {
-                            if (object["date"] as! String).containsString(yearAndMonth){
-                                let type = object["type"] as! Int
-                                let amount = object["amount"] as! Double
+                            for record in self.records {
+                            if record.date.containsString(yearAndMonth){
+                                let type = record.type
+                                let amount = Double(record.amount)
                                 //let subuser = object["subuser"] as? String
-                                if (type == 0) {
+                                if (type == "Sales") {
                                     salesAmount += amount
-                                } else if (type == 1) {
+                                } else if (type == "COGS") {
                                     COGSamount += amount
-                                } else if (type == 2) {
+                                } else if (type == "Expenses") {
                                     expensesAmount += amount
                                 }
                                 //print(subuser)
                             }
 
                         }
-                        }
+                        
                         self.dollars1.append(salesAmount)
                         self.dollars2.append(COGSamount)
                         self.dollars3.append(expensesAmount)
@@ -130,7 +116,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         self.setChartData(self.totalMonths)
             }
                 }
-            }
+            
             })
         
         
@@ -178,7 +164,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             yVals3.append(ChartDataEntry(value: dollars3[i], xIndex: i))
         }
         
-        let set3: LineChartDataSet = LineChartDataSet(yVals: yVals3, label: "Expenses")
+        let set3: LineChartDataSet = LineChartDataSet(yVals: yVals3, label: "Other Expenses")
         set3.axisDependency = .Left // Line will correlate with left axis values
         set3.setColor(UIColor.blueColor().colorWithAlphaComponent(0.5))
         set3.setCircleColor(UIColor.blueColor())
