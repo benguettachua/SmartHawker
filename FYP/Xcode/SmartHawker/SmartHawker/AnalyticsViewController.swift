@@ -13,9 +13,7 @@ import Charts
 class AnalyticsViewController: UIViewController, ChartViewDelegate {
     
     // MARK: Properties
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var businessName: UILabel!
-    @IBOutlet weak var username: UILabel!
+
     
     @IBOutlet weak var combinedChartView: CombinedChartView!
     var months: [String]!
@@ -53,24 +51,10 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
         //Now asking the calendar what year are we in today’s date:
         let currentYearInt = (calendar?.component(NSCalendarUnit.Year, fromDate: NSDate()))!
-        
         let differenceInYear = currentYearInt - beginningYear
         if differenceInYear > 0{
             for i in 0...differenceInYear {
                 years.append(beginningYear+i)
-            }
-        }
-
-        // Populate the top bar
-        businessName.text! = user!["businessName"] as! String
-        username.text! = user!["username"] as! String
-        
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                }
             }
         }
         

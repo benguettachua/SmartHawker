@@ -58,7 +58,7 @@ class DayView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        dateLabel.frame = CGRectInset(bounds, 10, 10)
+        dateLabel.frame = CGRectInset(bounds, 15, 0)
         updateView()
     }
     
@@ -74,32 +74,38 @@ class DayView: UIView {
     
     //where the days in the calendar are populated
     func updateView() {
-        if self.selected {
-            dateLabel.bounds = CGRectMake(0.0, 0.0, 30, 30)
+        if isToday {
+            
+            let size:CGFloat = 35.0 // 35.0 chosen arbitrarily
+            
+            dateLabel.bounds = CGRectMake(0.0, 0.0, size, size)
+            dateLabel.layer.cornerRadius = size / 2
+            dateLabel.layer.borderWidth = 3.0
+            dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
+            dateLabel.layer.borderColor = UIColor.orangeColor().CGColor
+            dateLabel.textColor = CalendarView.todayTextColor
+            dateLabel.font = UIFont.systemFontOfSize(15)
+        } else if self.selected {
+            dateLabel.bounds = CGRectMake(0.0, 0.0, dateLabel.frame.size.height, dateLabel.frame.size.width)
             dateLabel.textColor = CalendarView.daySelectedTextColor
             dateLabel.backgroundColor = CalendarView.daySelectedBackgroundColor
             dateLabel.font = UIFont.systemFontOfSize(15)
-        } else if isToday {
-            dateLabel.bounds = CGRectMake(0.0, 0.0, 30, 30)
-            dateLabel.layer.borderWidth = 2.0
-            dateLabel.layer.borderColor = UIColor.blackColor().CGColor
-            dateLabel.textColor = CalendarView.todayTextColor
-            dateLabel.backgroundColor = CalendarView.todayBackgroundColor
-            dateLabel.font = UIFont.systemFontOfSize(15)
-        } else if isOtherMonth {
+        }
+        else if isOtherMonth {
             dateLabel.textColor = CalendarView.otherMonthTextColor
             dateLabel.backgroundColor = CalendarView.otherMonthBackgroundColor
             dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
         } else if recordingExist {
             if dateLabel.text != nil{
                 
-                let size:CGFloat = 35.0 // 35.0 chosen arbitrarily
-                
-                dateLabel.bounds = CGRectMake(0.0, 0.0, size, size)
-                dateLabel.layer.cornerRadius = size / 2
-                dateLabel.layer.borderWidth = 3.0
-                dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
-                dateLabel.layer.borderColor = UIColor.greenColor().CGColor
+                let border = CALayer()
+                let width = CGFloat(2.0)
+                border.borderColor = UIColor.darkGrayColor().CGColor
+                border.frame = CGRect(x: 0, y: dateLabel.frame.size.height - width, width:  dateLabel.frame.size.width, height: dateLabel.frame.size.height)
+                border.borderColor = UIColor.orangeColor().CGColor
+                border.borderWidth = width
+                dateLabel.layer.addSublayer(border)
+                dateLabel.layer.masksToBounds = true
 
                 dateLabel.textColor = UIColor.orangeColor()
                 dateLabel.font = UIFont.boldSystemFontOfSize(16.0)
