@@ -23,6 +23,7 @@ class MonthlySummaryController: UIViewController {
     var dateString = String()
     var tempCounter = 0
     var records = [RecordTable]()
+    var fixRecords = [RecordTable]()
     let user = PFUser.currentUser()
     @IBOutlet weak var recurringLabel: UILabel!
     @IBOutlet weak var switcher: UISwitch!
@@ -34,13 +35,14 @@ class MonthlySummaryController: UIViewController {
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet var recordSuccessLabel: UILabel!
     
+    
     @IBOutlet weak var profitText: UILabel!
     @IBOutlet weak var expensesText: UILabel!
     @IBOutlet weak var salesText: UILabel!
     typealias CompletionHandler = (success:Bool) -> Void
-    
+
     var colors = ["Select Record Type","Rental","Electrical Bills"]
-    
+    var chosen = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,9 +91,28 @@ class MonthlySummaryController: UIViewController {
                     self.expensesText.text = String(expensesAmount)
                     self.profitText.text = String(salesAmount - expensesAmount)
 
-            
+
         })
     }
+    
+    //for switch
+    
+    @IBAction func actionTriggered(sender: AnyObject) {
+        
+        let onState = self.switcher.on
+        print(chosen)
+        // Write label text depending on UISwitch.
+        if onState {
+            print("Switch is on")
+        }
+        else {
+            print("Off")
+        }
+    }
+
+
+    //for picker
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -104,6 +125,12 @@ class MonthlySummaryController: UIViewController {
         return colors[row]
     }
     
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        chosen = colors[row]
+    }
+    
+    
+    //to record a new record
     @IBAction func previousMonth(sender: UIButton) {
         // Logs the user out if they are click Cancel
         if currentMonthInt > 1{
@@ -217,9 +244,7 @@ class MonthlySummaryController: UIViewController {
         var salesAmount = 0.0
         var expensesAmount = 0.0
         for record in self.records {
-            print(record.date.containsString(self.dateString))
-            print(record.date)
-            print(self.dateString)
+
             if record.date.containsString(self.dateString){
                 let type = record.type
                 let amount = Double(record.amount)
@@ -231,6 +256,7 @@ class MonthlySummaryController: UIViewController {
                 } else if (type == "Expenses") {
                     expensesAmount += amount
                 } else if (type == "fixMonthlyExpenses"){
+                    fixRecords.append(record)
                     expensesAmount += amount
                 }
                 //print(subuser)
@@ -265,6 +291,7 @@ class MonthlySummaryController: UIViewController {
             // Save to local datastore
             toRecord.pinInBackground()
             didRecord = true
+            print(didRecord)
         }
         
         
