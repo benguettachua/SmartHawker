@@ -17,6 +17,7 @@ class MainViewcontroller: UIViewController{
     var day: String!
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
+    var datesAndRecords = [String:[RecordTable]]()
     
     //for highest , lowest and average
     @IBOutlet weak var lowestSales: UILabel!
@@ -75,6 +76,7 @@ class MainViewcontroller: UIViewController{
             
             dateFormatter.dateFormat = "dd/MM/yyyy"
             
+
             var totalSales = 0.0
             var totalDays = 0.0
             var highSales: Double!
@@ -88,12 +90,16 @@ class MainViewcontroller: UIViewController{
             var totalProfit = 0.0
             var COGS = 0.0
             var expenses = 0.0
-            for record in self.records {
-                
-                var profit = 0.0
-                let recordDate = dateFormatter.dateFromString(record.date)
-                let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && record.date.containsString(correctDateString)
+            
+            for (myKey,myValue) in self.datesAndRecords {
+                let recordDate = dateFormatter.dateFromString(myKey)
+                let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && myKey.containsString(correctDateString)
                 let same = recordDate!.isEqualToDate(NSDate())
+                var profit = 0.0
+                var sales = 0.0
+
+            
+            for record in myValue {
                 
                 if earlier || same {
                     let type = record.type
@@ -103,24 +109,8 @@ class MainViewcontroller: UIViewController{
                         totalProfit += amount
                         totalSales += amount
                         profit += amount
-                        //to get max and min sales
-                        if highSales == nil{
-                            highSales = amount
-                            highSalesDay = record.date
-                        }else if amount > highSales{
-                            highSales = amount
-                            highSalesDay = record.date
-                        }
-                        
-                        if lowSales == nil{
-                            lowSales = amount
-                            lowSalesDay = record.date
-                        }else if amount < lowSales{
-                            lowSales = amount
-                            lowSalesDay = record.date
-                        }
-                        
-                        
+                        sales += amount
+                 
                     } else if (type == "COGS") {
                         COGS += amount
                         profit -= amount
@@ -131,25 +121,45 @@ class MainViewcontroller: UIViewController{
                         totalProfit -= amount
                     }
                     print(profit)
-                    if highProfit == nil{
-                        highProfit = profit
-                        highProfitDay = record.date
-                    }else if profit > highProfit{
-                        highProfit = profit
-                        highProfitDay = record.date
-                    }
-                    
-                    if lowProfit == nil{
-                        lowProfit = profit
-                        lowProfitDay = record.date
-                    }else if profit < lowProfit{
-                        lowProfit = profit
-                        lowProfitDay = record.date
-                    }
+
                     
                     totalDays += 1.0
                 }
-                
+                 //to get max and min sales
+                 if highSales == nil{
+                    highSales = sales
+                    highSalesDay = record.date
+                 }else if sales > highSales{
+                    highSales = sales
+                    highSalesDay = myKey
+                 }
+                 
+                 
+                 if lowSales == nil{
+                    lowSales = sales
+                    lowSalesDay = myKey
+                 }else if sales < lowSales{
+                    lowSales = sales
+                    lowSalesDay = myKey
+                 }
+                 
+                 if highProfit == nil{
+                    highProfit = profit
+                    highProfitDay = record.date
+                 }else if profit > highProfit{
+                    highProfit = profit
+                    highProfitDay = myKey
+                 }
+                 
+                 if lowProfit == nil{
+                    lowProfit = profit
+                    lowProfitDay = myKey
+                 }else if profit < lowProfit{
+                    lowProfit = profit
+                    lowProfitDay = myKey
+                 }
+            }
+            
             }
             if totalDays == 0.0 {
                 highSales = 0.0
@@ -217,7 +227,7 @@ class MainViewcontroller: UIViewController{
                 // Do something with the found objects
                 if let objects = objects {
                     for object in objects {
-                        let date = object["date"] as! String
+                        let dateString = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
                         var localIdentifierString = object["subUser"]
@@ -242,9 +252,18 @@ class MainViewcontroller: UIViewController{
                             localIdentifierString = String(self.tempCounter += 1)
                         }
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
+                        print(self.datesAndRecords[dateString] == nil)
+                        if self.datesAndRecords[dateString] == nil {
+                            var arrayForRecords = [RecordTable]()
+                            arrayForRecords.append(newRecord)
+                            self.datesAndRecords[dateString] = arrayForRecords
+                        }else{
+                            self.datesAndRecords[dateString]?.append(newRecord)
+                        }
                     }
+                    print(self.datesAndRecords)
                     completionHandler(success: true)
                 }
             } else {
