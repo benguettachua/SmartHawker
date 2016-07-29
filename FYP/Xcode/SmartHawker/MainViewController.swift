@@ -19,7 +19,12 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userLabel: UILabel!
     var calendar = CalendarView()
+    var tempCounter = 0
+    var records = [RecordTable]()
     
+    @IBOutlet weak var profitText: UILabel!
+    @IBOutlet weak var expensesText: UILabel!
+    @IBOutlet weak var salesText: UILabel!
     @IBOutlet weak var navBarLogoutButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationItem!
     var day: String!
@@ -41,28 +46,23 @@ class MainViewcontroller: UIViewController{
         super.viewDidLoad()
 
         date = moment()
-
-
-
-        userLabel.text = "User:".localized()
-        navBar.title = "Main".localized()
-        navBarLogoutButton.title = "Logout".localized()
-
-
-        // Load the Top Bar
-        let user = PFUser.currentUser()
-        // Populate the top bar
-        businessName.text! = user!["businessName"] as! String
-        username.text! = user!["username"] as! String
+        // Adding 8 hours due to timezone
+        let duration = 8.hours
+        let dateInNSDate = date.add(duration).date
         
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                }
-            }
-        }
+        
+        // Formatting to format as saved in DB.
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let correctDateString = dateFormatter.stringFromDate(dateInNSDate)
+        
+        loadRecordsFromLocaDatastore({ (success) -> Void in
+            
+            self.loadRecords(correctDateString)
+            
+            
+        })
+        
         
     }
     
@@ -98,9 +98,93 @@ class MainViewcontroller: UIViewController{
 
     }
     
+    func loadRecords(correctDateString: String){
+        var salesAmount = 0.0
+        var expensesAmount = 0.0
+        for record in self.records {
+            if record.date.containsString(correctDateString){
+                let type = record.type
+                let amount = Double(record.amount)
+                if (type == "Sales") {
+                    salesAmount += amount
+                } else if (type == "COGS") {
+                    expensesAmount += amount
+                } else if (type == "Expenses") {
+                    expensesAmount += amount
+                } else if (type == "fixMonthlyExpenses"){
+                    expensesAmount += amount
+                }
+            }
+            
+        }
+        
+        self.salesText.text = String(salesAmount)
+        self.expensesText.text = String(expensesAmount)
+        self.profitText.text = String(salesAmount - expensesAmount)
+    }
+    
         func loggedOut() {
             PFUser.logOut()
             self.performSegueWithIdentifier("logout", sender: self)
+    }
+    
+    func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
+        // Load from local datastore into UI.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        let date = object["date"] as! String
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        var localIdentifierString = object["subUser"]
+                        var typeString = ""
+                        if (type == 0) {
+                            typeString = "Sales"
+                        } else if (type == 1) {
+                            typeString = "COGS"
+                        } else if (type == 2) {
+                            typeString = "Expenses"
+                        } else if (type == 3){
+                            typeString = "fixMonthlyExpenses"
+                        }
+                        
+                        var description = object["description"]
+                        
+                        if (description == nil || description as! String == "") {
+                            description = "No description"
+                        }
+                        
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
+                        }
+                        
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        self.records.append(newRecord)
+                    }
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+    }
+    
+    @IBAction func Record(sender: UIBarButtonItem) {
+        
+        
+        // Move to Record Page.
+        self.performSegueWithIdentifier("toRecord", sender: self)
+        
+        
     }
     
 }
@@ -145,8 +229,7 @@ extension MainViewcontroller: CalendarViewDelegate {
         toShare.storeDate = date
         toShare.dateString = correctDateString
         toShare.toDisplayDate = toDisplayDate
-        // Move to Record Page.
-        //self.performSegueWithIdentifier("toRecord", sender: self)
+        loadRecords(correctDateString)
     }
     
     func calendarDidPageToDate(date: Moment) {
