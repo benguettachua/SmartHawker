@@ -91,11 +91,13 @@ class DayView: UIView {
             dateLabel.bounds = CGRectMake(0.0, 0.0, size, size)
             dateLabel.layer.cornerRadius = size / 2
             dateLabel.layer.backgroundColor = UIColor.orangeColor().CGColor
-            
+            dateLabel.layer.borderColor = UIColor.clearColor().CGColor
             dateLabel.textColor = CalendarView.daySelectedTextColor
             dateLabel.font = UIFont.systemFontOfSize(15)
         }
         else if isOtherMonth {
+            
+            dateLabel.layer.borderColor = UIColor.clearColor().CGColor
             dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
             dateLabel.textColor = CalendarView.otherMonthTextColor
             dateLabel.backgroundColor = CalendarView.otherMonthBackgroundColor
@@ -106,6 +108,7 @@ class DayView: UIView {
                 let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
                 let underlineAttributedString = NSAttributedString(string: dateLabel.text!, attributes: underlineAttribute)
                 
+                dateLabel.layer.borderColor = UIColor.clearColor().CGColor
                 dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
                 dateLabel.attributedText = underlineAttributedString
                 dateLabel.textColor = UIColor.orangeColor()
@@ -115,6 +118,7 @@ class DayView: UIView {
         } else {
             dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
             
+            dateLabel.layer.borderColor = UIColor.clearColor().CGColor
             self.dateLabel.textColor = CalendarView.dayTextColor
             self.dateLabel.backgroundColor = CalendarView.dayBackgroundColor
             dateLabel.font = UIFont.systemFontOfSize(15)

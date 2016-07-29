@@ -10,7 +10,7 @@ import UIKit
 import CalendarView
 import SwiftMoment
 
-class MainViewcontroller: UIViewController{
+class CalendarViewcontroller: UIViewController{
     
     // Mark: Properties
     // Top Bar
@@ -18,10 +18,10 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userLabel: UILabel!
-    var calendar = CalendarView()
     var tempCounter = 0
     var records = [RecordTable]()
     
+    @IBOutlet weak var calendar: CalendarView!
     @IBOutlet weak var profitText: UILabel!
     @IBOutlet weak var expensesText: UILabel!
     @IBOutlet weak var salesText: UILabel!
@@ -45,17 +45,17 @@ class MainViewcontroller: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        date = moment()
-        // Adding 8 hours due to timezone
-        let duration = 8.hours
-        let dateInNSDate = date.add(duration).date
-        
-        
+            
         // Formatting to format as saved in DB.
+        var correctDateString = ""
+        if toShare.storeDate == nil{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        let correctDateString = dateFormatter.stringFromDate(dateInNSDate)
-        
+            correctDateString = dateFormatter.stringFromDate(NSDate())
+        }else{
+            correctDateString = toShare.dateString
+        }
+        print(correctDateString)
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
             self.loadRecords(correctDateString)
@@ -68,15 +68,12 @@ class MainViewcontroller: UIViewController{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        calendar.removeFromSuperview()
-        
-        calendar = CalendarView(frame: CGRectMake(0, 170, CGRectGetWidth(view.frame), 250))
         calendar.delegate = self
+
         if toShare.storeDate != nil {
             calendar.selectDate(toShare.storeDate)
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
         }
-        view.addSubview(calendar)
 
     }
     
@@ -180,7 +177,36 @@ class MainViewcontroller: UIViewController{
     
     @IBAction func Record(sender: UIBarButtonItem) {
         
-        
+        if toShare.dateString == nil{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let correctDateString = dateFormatter.stringFromDate(NSDate())
+            
+            if date.day == 1 || date.day == 21{
+                self.day = String(date.day) + "st".localized()
+                
+            }else if date.day == 2 || date.day == 22{
+                self.day = String(date.day) + "nd".localized()
+                
+            }else if date.day == 3 || date.day == 23{
+                self.day = String(date.day) + "rd".localized()
+                
+            }else{
+                self.day = String(date.day) + "th".localized()
+            }
+            
+            var toDisplayDate = ""
+            if lang == "zh-Hans" {
+                toDisplayDate = date.monthName.localized() + " \(self.day) " + " \(date.year) 年, "+(date.weekdayName).localized()
+            }else{
+                toDisplayDate = self.day + " " + date.monthName + " " + String(date.year) + " , " + date.weekdayName
+            }
+            toShare.storeDate = date
+            toShare.dateString = correctDateString
+            toShare.toDisplayDate = toDisplayDate
+            toShare.dateString = correctDateString
+            
+        }
         // Move to Record Page.
         self.performSegueWithIdentifier("toRecord", sender: self)
         
@@ -190,7 +216,7 @@ class MainViewcontroller: UIViewController{
 }
 
 
-extension MainViewcontroller: CalendarViewDelegate {
+extension CalendarViewcontroller: CalendarViewDelegate {
     
     func calendarDidSelectDate(date: Moment) {
         self.date = date

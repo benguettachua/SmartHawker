@@ -186,7 +186,9 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             newUser.signUpInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
-                    
+                    var array = [String]()
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject(array, forKey: "SavedDateArray")
                     // Register success, show success message.
                     self.messageLabel.text = "Congratulations, you have created a new Account! Logging in, please wait...".localized()
                     self.messageLabel.hidden = false
