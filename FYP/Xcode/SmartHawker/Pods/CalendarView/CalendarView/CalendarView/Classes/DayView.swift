@@ -97,20 +97,15 @@ class DayView: UIView {
             dateLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
         } else if recordingExist {
             if dateLabel.text != nil{
-                
-                let border = CALayer()
-                let width = CGFloat(2.0)
-                border.borderColor = UIColor.darkGrayColor().CGColor
-                border.frame = CGRect(x: 0, y: dateLabel.frame.size.height - width, width:  dateLabel.frame.size.width, height: dateLabel.frame.size.height)
-                border.borderColor = UIColor.orangeColor().CGColor
-                border.borderWidth = width
-                dateLabel.layer.addSublayer(border)
-                dateLabel.layer.masksToBounds = true
-
+                let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+                let underlineAttributedString = NSAttributedString(string: dateLabel.text!, attributes: underlineAttribute)
+                dateLabel.attributedText = underlineAttributedString
                 dateLabel.textColor = UIColor.orangeColor()
                 dateLabel.font = UIFont.boldSystemFontOfSize(16.0)
             }
         } else {
+            dateLabel.layer.borderColor = UIColor.clearColor().CGColor
+            
             self.dateLabel.textColor = CalendarView.dayTextColor
             self.dateLabel.backgroundColor = CalendarView.dayBackgroundColor
             dateLabel.font = UIFont.systemFontOfSize(15)

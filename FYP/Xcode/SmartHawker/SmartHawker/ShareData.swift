@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftMoment
 
 class ShareData {
     class var sharedInstance: ShareData {
@@ -22,7 +23,7 @@ class ShareData {
         return Static.instance!
     }
     
-    
+    var storeDate: Moment!
     var dateSelected: String!
     var dateString: String!
     var toDisplayDate: String!

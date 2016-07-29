@@ -18,7 +18,7 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userLabel: UILabel!
-    var calendar = CalendarView!()
+    var calendar = CalendarView()
     
     @IBOutlet weak var navBarLogoutButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationItem!
@@ -64,20 +64,20 @@ class MainViewcontroller: UIViewController{
             }
         }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("POPUP VC")
-        self.presentViewController(vc, animated: true, completion: nil)
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if calendar != nil {
-            calendar.removeFromSuperview()
-        }
+        calendar.removeFromSuperview()
+        
         calendar = CalendarView(frame: CGRectMake(0, 170, CGRectGetWidth(view.frame), 250))
         calendar.delegate = self
+        if toShare.storeDate != nil {
+            calendar.selectDate(toShare.storeDate)
+            self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
+        }
         view.addSubview(calendar)
+
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
@@ -137,12 +137,12 @@ extension MainViewcontroller: CalendarViewDelegate {
         }
 
         var toDisplayDate = ""
-        print(lang=="en")
         if lang == "zh-Hans" {
             toDisplayDate = date.monthName.localized() + " \(self.day) " + " \(date.year) 年, "+(date.weekdayName).localized()
         }else{
             toDisplayDate = self.day + " " + date.monthName + " " + String(date.year) + " , " + date.weekdayName
         }
+        toShare.storeDate = date
         toShare.dateString = correctDateString
         toShare.toDisplayDate = toDisplayDate
         // Move to Record Page.
@@ -150,10 +150,20 @@ extension MainViewcontroller: CalendarViewDelegate {
     }
     
     func calendarDidPageToDate(date: Moment) {
+
         self.date = date
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.MonthAndYear.text = date.monthName.localized() + " / " + String(date.year)
-        })
+        if toShare.storeDate == nil {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.MonthAndYear.text = date.monthName.localized() + " / " + String    (date.year)
+            })
+        } else {
+            self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.toShare.storeDate = nil
+            })
+
+        }
+
         
     }
     
