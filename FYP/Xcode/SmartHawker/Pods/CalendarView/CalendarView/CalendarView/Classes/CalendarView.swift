@@ -18,8 +18,8 @@ public class CalendarView: UIView {
 
   private struct Appearance {
     static var dayBackgroundColor = UIColor.clearColor()
-    static var daySelectedBackgroundColor = UIColor.orangeColor()
-    static var todayBackgroundColor = UIColor.lightGrayColor()
+    static var daySelectedBackgroundColor = UIColor.brownColor()
+    static var todayBackgroundColor = UIColor.clearColor()
     static var todayTextColor = UIColor.blackColor()
     static var dayTextColor = UIColor.blackColor()
     static var daySelectedTextColor = UIColor.whiteColor()

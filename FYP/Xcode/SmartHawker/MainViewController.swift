@@ -146,7 +146,7 @@ extension MainViewcontroller: CalendarViewDelegate {
         toShare.dateString = correctDateString
         toShare.toDisplayDate = toDisplayDate
         // Move to Record Page.
-        self.performSegueWithIdentifier("toRecord", sender: self)
+        //self.performSegueWithIdentifier("toRecord", sender: self)
     }
     
     func calendarDidPageToDate(date: Moment) {
