@@ -69,7 +69,7 @@ class CalendarViewcontroller: UIViewController{
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         calendar.delegate = self
-
+        calendar.backgroundColor = UIColor.clearColor()
         if toShare.storeDate != nil {
             calendar.selectDate(toShare.storeDate)
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
