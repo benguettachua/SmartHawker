@@ -36,28 +36,7 @@ class EnquiryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userLabel.text = "User:".localized()
-        navBar.title = "Enquiry".localized()
-        logout.title = "Logout".localized()
-        back.title = "Back".localized()
         
-        faq.setTitle("FAQs".localized(), forState: .Normal)
-        contactUs.setTitle("Contact Helpdesk".localized(), forState: .Normal)
-        
-        // Load the Top Bar
-        let user = PFUser.currentUser()
-        // Populate the top bar
-        businessName.text! = user!["businessName"] as! String
-        username.text! = user!["username"] as! String
-        
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                }
-            }
-        }
         
     }
 }
