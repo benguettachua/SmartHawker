@@ -120,7 +120,6 @@ class MainViewcontroller: UIViewController{
                         profit -= amount
                         totalProfit -= amount
                     }
-                    print(profit)
 
                     
                     totalDays += 1.0
@@ -254,7 +253,6 @@ class MainViewcontroller: UIViewController{
                         
                         let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
-                        print(self.datesAndRecords[dateString] == nil)
                         if self.datesAndRecords[dateString] == nil {
                             var arrayForRecords = [RecordTable]()
                             arrayForRecords.append(newRecord)
@@ -263,7 +261,6 @@ class MainViewcontroller: UIViewController{
                             self.datesAndRecords[dateString]?.append(newRecord)
                         }
                     }
-                    print(self.datesAndRecords)
                     completionHandler(success: true)
                 }
             } else {

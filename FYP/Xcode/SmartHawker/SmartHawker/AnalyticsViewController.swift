@@ -34,6 +34,8 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
     let user = PFUser.currentUser()
     var tempCounter = 0
     
+    var datesAndRecords = [String:[RecordTable]]()
+    
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
         self.performSegueWithIdentifier("logout", sender: self)
@@ -47,6 +49,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         years.removeAll()
         beginningYear = 2016
         years.append(beginningYear)
+        
         //Here I’m creating the calendar instance that we will operate with:
         let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
         //Now asking the calendar what year are we in today’s date:
@@ -57,8 +60,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                 years.append(beginningYear+i)
             }
         }
-        
-        
+
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         monthsInNum = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
         
@@ -82,7 +84,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                                 if (type == "Sales") {
                                     salesAmount += amount
                                 } else if (type == "COGS") {
-                                    COGSamount += amount
+                                    expensesAmount += amount
                                 } else if (type == "Expenses") {
                                     expensesAmount += amount
                                 }
@@ -92,9 +94,8 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                         }
                         
                         self.dollars1.append(salesAmount)
-                        self.dollars2.append(COGSamount)
-                        self.dollars3.append(expensesAmount)
-                        profit = salesAmount - COGSamount - expensesAmount
+                        self.dollars2.append(expensesAmount)
+                        profit = salesAmount - expensesAmount
                         self.profits.append(Double(profit))
                         
                         self.setChartData(self.totalMonths)
@@ -103,8 +104,22 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             
             })
         
+        let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: NSDate())
+        let day = components.day
+        let month = components.month
+        let year = components.year
         
-        // 5
+        //how many days back
+        let periodComponents = NSDateComponents()
+        periodComponents.day = -30
+        let then = calendar!.dateByAddingComponents(
+            periodComponents,
+            toDate: NSDate(),
+            options: [])!
+        print(then)
+        
+        let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: then)
+        let numDays = range.length //days for the month
         
         
     }
@@ -118,8 +133,8 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         
         let set1: LineChartDataSet = LineChartDataSet(yVals: yVals1, label: "Sales")
         set1.axisDependency = .Left // Line will correlate with left axis values
-        set1.setColor(UIColor.redColor().colorWithAlphaComponent(0.5))
-        set1.setCircleColor(UIColor.redColor())
+        set1.setColor(UIColor.greenColor().colorWithAlphaComponent(0.5))
+        set1.setCircleColor(UIColor.greenColor())
         set1.lineWidth = 2.0
         set1.circleRadius = 6.0
         set1.fillAlpha = 65 / 255.0
@@ -132,38 +147,22 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             yVals2.append(ChartDataEntry(value: dollars2[i], xIndex: i))
         }
         
-        let set2: LineChartDataSet = LineChartDataSet(yVals: yVals2, label: "COGS")
+        let set2: LineChartDataSet = LineChartDataSet(yVals: yVals2, label: "Total Expenses")
         set2.axisDependency = .Left // Line will correlate with left axis values
-        set2.setColor(UIColor.greenColor().colorWithAlphaComponent(0.5))
-        set2.setCircleColor(UIColor.greenColor())
+        set2.setColor(UIColor.orangeColor().colorWithAlphaComponent(0.5))
+        set2.setCircleColor(UIColor.orangeColor())
         set2.lineWidth = 2.0
         set2.circleRadius = 6.0
         set2.fillAlpha = 65 / 255.0
         set2.fillColor = UIColor.greenColor()
         set2.highlightColor = UIColor.whiteColor()
         set2.drawCircleHoleEnabled = true
-        
-        var yVals3 : [ChartDataEntry] = [ChartDataEntry]()
-        for i in 0 ..< months.count {
-            yVals3.append(ChartDataEntry(value: dollars3[i], xIndex: i))
-        }
-        
-        let set3: LineChartDataSet = LineChartDataSet(yVals: yVals3, label: "Other Expenses")
-        set3.axisDependency = .Left // Line will correlate with left axis values
-        set3.setColor(UIColor.blueColor().colorWithAlphaComponent(0.5))
-        set3.setCircleColor(UIColor.blueColor())
-        set3.lineWidth = 2.0
-        set3.circleRadius = 6.0
-        set3.fillAlpha = 65 / 255.0
-        set3.fillColor = UIColor.blueColor()
-        set3.highlightColor = UIColor.whiteColor()
-        set3.drawCircleHoleEnabled = true
+
         
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(set1)
         dataSets.append(set2)
-        dataSets.append(set3)
         
         //bar chart
         
@@ -190,7 +189,9 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
     }
     
     
-    
+    func setMonthChartData(){
+
+    }
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
@@ -204,7 +205,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                 // Do something with the found objects
                 if let objects = objects {
                     for object in objects {
-                        let date = object["date"] as! String
+                        let dateString = object["date"] as! String
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Int
                         var localIdentifierString = object["subUser"]
@@ -227,8 +228,15 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                             localIdentifierString = String(self.tempCounter += 1)
                         }
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
+                        if self.datesAndRecords[dateString] == nil {
+                            var arrayForRecords = [RecordTable]()
+                            arrayForRecords.append(newRecord)
+                            self.datesAndRecords[dateString] = arrayForRecords
+                        }else{
+                            self.datesAndRecords[dateString]?.append(newRecord)
+                        }
                     }
                     completionHandler(success: true)
                 }
