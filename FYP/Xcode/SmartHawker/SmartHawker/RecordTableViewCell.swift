@@ -11,6 +11,12 @@ import UIKit
 class RecordTableViewCell: UITableViewCell {
     
     // MARK: Properties
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var recordTypeLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    /*
+    // MARK: Properties
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -172,7 +178,7 @@ class RecordTableViewCell: UITableViewCell {
             }
         }
     }
-    
+    */
     
     override func awakeFromNib() {
         super.awakeFromNib()

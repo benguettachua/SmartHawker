@@ -158,13 +158,13 @@ class UpdateRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         // Populate the text field with the previous records.
         let selectedRecord = shared.selectedRecord
         let typeString = selectedRecord.type
         let amount = selectedRecord.amount
         self.newType.text = typeString
         self.newAmount.text = String(amount)
-        
+        */
     }
 }

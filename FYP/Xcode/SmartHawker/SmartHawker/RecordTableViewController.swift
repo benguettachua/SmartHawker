@@ -78,10 +78,11 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         
         cell.backgroundColor = UIColor.lightGrayColor()
         
-        
+        /*
         cell.sectionSelected = indexPath.section
         cell.rowSelected = indexPath.row
         cell.delegate = self
+ */
         return cell
     }
     

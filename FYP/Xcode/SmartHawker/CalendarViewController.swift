@@ -208,7 +208,7 @@ class CalendarViewcontroller: UIViewController{
             
         }
         // Move to Record Page.
-        self.performSegueWithIdentifier("toRecord", sender: self)
+        self.performSegueWithIdentifier("dayRecord", sender: self)
         
         
     }
