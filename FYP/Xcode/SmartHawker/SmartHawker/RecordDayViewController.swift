@@ -17,6 +17,9 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var monthYearLabel: UILabel!
     var shared = ShareData.sharedInstance
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noRecordLabel: UILabel!
+    @IBOutlet weak var noRecordView: UIView!
+    @IBOutlet weak var buttonName: UIButton!
     
     let user = PFUser.currentUser()
     var records = [RecordTable]()
@@ -37,13 +40,22 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            for record in self.records {
-                print(record.toString())
+            if (self.records.isEmpty) {
+                self.noRecordView.hidden = false
+                self.tableView.hidden = true
+            } else {
+                self.noRecordView.hidden = true
+                self.tableView.hidden = false
+                
+                
+                for (i,num) in self.records.enumerate().reverse() {
+                    if (self.records[i].amount == 0) {
+                        self.records.removeAtIndex(i)
+                    }
+                }
             }
-            print(self.shared.storeDate)
-            print(self.shared.dateString)
-            self.viewDidAppear(true)
             
+            self.viewDidAppear(true)
         })
     }
     
@@ -86,6 +98,18 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         self.viewDidLoad()
     }
     
+    @IBAction func editTable(sender: UIButton) {
+        if (self.tableView.editing == false) {
+            self.tableView.editing = true
+            self.buttonName.setTitle("Done", forState: UIControlState.Normal)
+        } else {
+            self.tableView.editing = false
+            self.buttonName.setTitle("Edit Table", forState: UIControlState.Normal)
+        }
+    }
+    
+    @IBAction func addNewRecord(sender: UIButton) {
+    }
     
     // Below this comment are all the methods for table.
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -113,6 +137,56 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Clicked on row: " + String(indexPath.row))
         self.performSegueWithIdentifier("editRecord", sender: self)
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+            print("Deleting from row: " + String(indexPath.row))
+            // Updating the record
+            let selectedRecord = records[indexPath.row]
+            print(selectedRecord.toString())
+            let localIdentifier = selectedRecord.localIdentifier
+            let query = PFQuery(className: "Record")
+            query.fromLocalDatastore()
+            query.whereKey("subUser", equalTo: localIdentifier)
+            query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
+                if (error != nil && record != nil) {
+                    // No object found or some error
+                    print("No object found or some error")
+                    print(error)
+                    print(record)
+                } else if let record = record {
+                    // Record is found, proceed to delete.
+                    record["amount"] = 0
+                    var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+                    
+                    for var i in 0..<array.count{
+                        if array[i] == record["date"] as! String{
+                            array.removeAtIndex(i)
+                            i -= 1
+                            break
+                        }
+                        
+                    }
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject(array, forKey: "SavedDateArray")
+                    record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
+                    record.deleteEventually() // Deletes from the DB when there is network.
+                    record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
+                    self.updateGlobalRecord({ (success) -> Void in
+                        if (success) {
+                            
+                            self.records.removeAtIndex(indexPath.row)
+                            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                        } else {
+                            print("Some error thrown.")
+                        }
+                    })
+                }
+            }
+            
+        }
     }
     
     // Loading of records
@@ -158,6 +232,56 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                         let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
                         self.records.append(newRecord)
                     }
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+    }
+    
+    // This updates the array "records" in ShareData.
+    func updateGlobalRecord(completionHandler: CompletionHandler) {
+        var records = [RecordTable]()
+        let dateString = self.shared.dateString
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("date", equalTo: dateString)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        let date = object["date"] as! String
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        var description = object["description"]
+                        var localIdentifierString = object["subUser"]
+                        var typeString = ""
+                        if (type == 0) {
+                            typeString = "Sales"
+                        } else if (type == 1) {
+                            typeString = "COGS"
+                        } else if (type == 2) {
+                            typeString = "Expenses"
+                        }
+                        
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
+                        }
+                        
+                        if (description == nil || description as! String == "") {
+                            description = "No description"
+                        }
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        records.append(newRecord)
+                    }
+                    self.shared.records = records
                     completionHandler(success: true)
                 }
             } else {
