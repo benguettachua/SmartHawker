@@ -51,11 +51,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         //for translation
-        navBar.title = "Record".localized()
-        back.title = "Back".localized()
-        settings.title = "Settings".localized()
-
-        submitRecordButton.setTitle("Add Record".localized(), forState: .Normal)
 
         
         
@@ -65,8 +60,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         // Populate the date selected
         let dateString = self.shared.dateString
         
-        self.view.addSubview(scrollView)
-        scrollView.scrollEnabled = false
+
         
     }
     
@@ -161,7 +155,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.scrollView.contentSize = CGSize(width:self.view.frame.width, height: 900)
         
         
     }
