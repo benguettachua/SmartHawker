@@ -83,20 +83,33 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func selectSales(sender: UIButton) {
+        type = 0
+        saleButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        expensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        COGSBUtton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
     }
     
     @IBAction func selectExpenses(sender: UIButton) {
+        type = 2
+        saleButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        expensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        COGSBUtton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
     }
     
     @IBAction func selectCOGS(sender: UIButton) {
+        type = 1
+        saleButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        expensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        COGSBUtton.setTitleColor(UIColor.blackColor(), forState: .Normal)
     }
     
     
-    /*
+    
      
     @IBAction func SubmitRecord(sender: UIButton) {
         let descriptionToRecord = descriptionTextField.text
         let amountToRecord = Int(amountTextField.text!)
+        var didRecord = false
         
         // Get the date to save in DB.
         let dateString = self.shared.dateString
@@ -110,42 +123,12 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             toRecord["date"] = dateString
             toRecord["amount"] = amountToRecord
             toRecord["user"] = PFUser.currentUser()
-            toRecord["type"] = 0
+            toRecord["type"] = type
             toRecord["subuser"] = PFUser.currentUser()?.username
             toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord["description"] = String(salesDescriptionTextField.text!)
+            toRecord["description"] = descriptionToRecord
             // Save to local datastore
             toRecord.pinInBackground()
-            array.append(dateString)
-            didRecord = true
-        }
-        
-        // Record COGS, if there is any value entered.
-        if (COGSToRecord != nil && COGSToRecord != 0) {
-            toRecord2["date"] = dateString
-            toRecord2["amount"] = COGSToRecord
-            toRecord2["user"] = PFUser.currentUser()
-            toRecord2["type"] = 1
-            toRecord2["subuser"] = PFUser.currentUser()?.username
-            toRecord2["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord2["description"] = String(COGSDescriptionTextField.text!)
-            // Save to local datastore
-            toRecord2.pinInBackground()
-            array.append(dateString)
-            didRecord = true
-        }
-        
-        // Record Expenses, if there is any value entered.
-        if (expensesToRecord != nil && expensesToRecord != 0) {
-            toRecord3["date"] = dateString
-            toRecord3["amount"] = expensesToRecord
-            toRecord3["user"] = PFUser.currentUser()
-            toRecord3["type"] = 2
-            toRecord3["subuser"] = PFUser.currentUser()?.username
-            toRecord3["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord3["description"] = String(expensesDescriptionTextField.text!)
-            // Save to local datastore
-            toRecord3.pinInBackground()
             array.append(dateString)
             didRecord = true
         }
@@ -153,19 +136,13 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         
         if (didRecord == true) {
             // If there is any new record, shows success message, then refresh the view.
-            recordSuccessLabel.text = "Recording success, reloading view..."
+            recordSuccessLabel.text = "Recording success!"
             recordSuccessLabel.textColor = UIColor.blackColor()
             recordSuccessLabel.hidden = false
             
             // Reload the view after 2 seconds, updating the records.
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
             dispatch_after(time, dispatch_get_main_queue()) {
-                self.salesTextField.text = ""
-                self.COGSTextField.text = ""
-                self.expensesTextField.text = ""
-                self.salesDescriptionTextField.text = ""
-                self.COGSDescriptionTextField.text = ""
-                self.expensesDescriptionTextField.text = ""
                 
                 self.recordSuccessLabel.hidden = true
                 self.viewDidLoad()
@@ -174,14 +151,14 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             defaults.setObject(array, forKey: "SavedDateArray")
         } else {
             // No record or only "0" entered. Shows error message then refresh the view.
-            self.recordSuccessLabel.text = "No records submitted."
+            self.recordSuccessLabel.text = "Recording failed. Please try again."
             self.recordSuccessLabel.textColor = UIColor.redColor()
             self.recordSuccessLabel.hidden = false
             
         }
 
     }
-    */
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.scrollView.contentSize = CGSize(width:self.view.frame.width, height: 900)
