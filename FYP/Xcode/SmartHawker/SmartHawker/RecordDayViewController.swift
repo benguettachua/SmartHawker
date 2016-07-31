@@ -136,6 +136,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Clicked on row: " + String(indexPath.row))
+        shared.selectedRecord = records[indexPath.row]
         self.performSegueWithIdentifier("editRecord", sender: self)
     }
     

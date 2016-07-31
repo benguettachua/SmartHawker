@@ -60,7 +60,7 @@ class UpdateRecordViewController: UIViewController {
                 self.updateGlobalRecord({ (success) -> Void in
                     if (success) {
                         // Update success, go back to records
-                        self.performSegueWithIdentifier("backToRecord", sender: self)
+                        self.performSegueWithIdentifier("editComplete", sender: self)
                     } else {
                         print("Some error thrown.")
                     }
@@ -68,42 +68,6 @@ class UpdateRecordViewController: UIViewController {
             }
         }
         
-        
-        /*
-        query.getObjectInBackgroundWithId(localIdentifier)
-        {
-            (record: PFObject?, error: NSError?) -> Void in
-            if (error != nil) {
-                print(error)
-            } else if let record = record {
-                var typeInt = Int()
-                typeString = self.newType.text!
-                amount = Int(self.newAmount.text!)!
-                description = self.newDescription.text
-                if (typeString == "Sales") {
-                    typeInt = 0
-                } else if (typeString == "COGS") {
-                    typeInt = 1
-                } else if (typeString == "Expenses") {
-                    typeInt = 2
-                }
-                
-                record["type"] = typeInt
-                record["amount"] = amount
-                record["description"] = description
-                //
-                record.pinInBackground()
-                record.saveEventually()
-                self.updateGlobalRecord({ (success) -> Void in
-                    if (success) {
-                        // Update success, go back to records
-                        self.performSegueWithIdentifier("backToRecord", sender: self)
-                    } else {
-                        print("Some error thrown.")
-                    }
-                })
-            }
-        }*/
     }
     
     // This updates the array "records" in ShareData.
@@ -158,13 +122,17 @@ class UpdateRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
+        
         // Populate the text field with the previous records.
         let selectedRecord = shared.selectedRecord
         let typeString = selectedRecord.type
         let amount = selectedRecord.amount
+        let description = selectedRecord.description
         self.newType.text = typeString
         self.newAmount.text = String(amount)
-        */
+        if(description != "No description") {
+            self.newDescription.text = description
+        }
+        
     }
 }
