@@ -77,8 +77,13 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         sender.cancelsTouchesInView = false
     }
     
-    /*
+    
     // Mark: Action
+    @IBAction func addRecord(sender: UIButton) {
+    }
+    
+    /*
+     
     @IBAction func SubmitRecord(sender: UIButton) {
         let descriptionToRecord = descriptionTextField.text
         let amountToRecord = Int(amountTextField.text!)
