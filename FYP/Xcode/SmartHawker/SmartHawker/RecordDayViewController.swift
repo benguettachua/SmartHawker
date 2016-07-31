@@ -17,10 +17,15 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     var shared = ShareData.sharedInstance
     @IBOutlet weak var tableView: UITableView!
     
+    let user = PFUser.currentUser()
+    var records = [RecordTable]()
+    typealias CompletionHandler = (success:Bool) -> Void
+    var tempCounter = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var storeDate = shared.storeDate
+        let storeDate = shared.storeDate
         // Populate the view
         dayNumberLabel.text = String(storeDate.day)
         dayLabel.text = storeDate.weekdayName
@@ -28,6 +33,17 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         
         tableView!.delegate = self
         tableView!.dataSource = self
+        
+        loadRecordsFromLocaDatastore({ (success) -> Void in
+            
+            print(self.records)
+            self.viewDidAppear(true)
+            
+        })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +66,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.records.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -58,9 +74,9 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let cellIdentifier = "RecordCell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
-        cell.descriptionLabel.text = "Test"
-        cell.amountLabel.text = "test"
-        cell.recordTypeLabel.text = "TTT"
+        cell.descriptionLabel.text = records[indexPath.row].description
+        cell.amountLabel.text = String(records[indexPath.row].amount)
+        cell.recordTypeLabel.text = records[indexPath.row].type
         
         cell.backgroundColor = UIColor.lightGrayColor()
         
@@ -72,5 +88,56 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         self.performSegueWithIdentifier("editRecord", sender: self)
     }
     
+    // Loading of records
+    func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
+        // Load from local datastore into UI.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("date", equalTo: shared.dateString)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        let date = object["date"] as! String
+                        let type = object["type"] as! Int
+                        let amount = object["amount"] as! Int
+                        var localIdentifierString = object["subUser"]
+                        var typeString = ""
+                        if (type == 0) {
+                            typeString = "Sales"
+                        } else if (type == 1) {
+                            typeString = "COGS"
+                        } else if (type == 2) {
+                            typeString = "Expenses"
+                        } else if (type == 3){
+                            typeString = "fixMonthlyExpenses"
+                        }
+                        
+                        var description = object["description"]
+                        
+                        if (description == nil || description as! String == "") {
+                            description = "No description"
+                        }
+                        
+                        if (localIdentifierString == nil) {
+                            localIdentifierString = String(self.tempCounter += 1)
+                        }
+                        
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        self.records.append(newRecord)
+                    }
+                    completionHandler(success: true)
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+    }
     
 }

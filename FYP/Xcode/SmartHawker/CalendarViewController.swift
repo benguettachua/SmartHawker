@@ -231,7 +231,6 @@ extension CalendarViewcontroller: CalendarViewDelegate {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let correctDateString = dateFormatter.stringFromDate(dateInNSDate)
         
-        
         //for displaying date
         if date.day == 1 || date.day == 21{
             self.day = String(date.day) + "st".localized()
