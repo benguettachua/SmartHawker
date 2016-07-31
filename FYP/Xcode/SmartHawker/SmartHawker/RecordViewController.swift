@@ -82,6 +82,16 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBAction func addRecord(sender: UIButton) {
     }
     
+    @IBAction func selectSales(sender: UIButton) {
+    }
+    
+    @IBAction func selectExpenses(sender: UIButton) {
+    }
+    
+    @IBAction func selectCOGS(sender: UIButton) {
+    }
+    
+    
     /*
      
     @IBAction func SubmitRecord(sender: UIButton) {
