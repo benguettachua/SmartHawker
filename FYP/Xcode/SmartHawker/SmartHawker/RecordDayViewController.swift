@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftMoment
 
 class RecordDayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -36,7 +37,11 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            print(self.records)
+            for record in self.records {
+                print(record.toString())
+            }
+            print(self.shared.storeDate)
+            print(self.shared.dateString)
             self.viewDidAppear(true)
             
         })
@@ -53,10 +58,32 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: Action
     @IBAction func nextDay(sender: UIButton) {
-        print("Go next day")
+        let dateString = shared.dateString
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let date = dateFormatter.dateFromString(dateString)
+        let momentDate = moment(date!)
+        let addDay = 1.days
+        let nextDay = momentDate.add(addDay)
+        let nextDayNSDate = nextDay.toNSDate()
+        let nextDayString = dateFormatter.stringFromDate(nextDayNSDate!)
+        shared.storeDate = nextDay
+        shared.dateString = nextDayString
+        self.viewDidLoad()
     }
     @IBAction func previousDay(sender: UIButton) {
-        print("Go previous day")
+        let dateString = shared.dateString
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let date = dateFormatter.dateFromString(dateString)
+        let momentDate = moment(date!)
+        let minusDay = 1.days
+        let nextDay = momentDate.subtract(minusDay)
+        let nextDayNSDate = nextDay.toNSDate()
+        let nextDayString = dateFormatter.stringFromDate(nextDayNSDate!)
+        shared.storeDate = nextDay
+        shared.dateString = nextDayString
+        self.viewDidLoad()
     }
     
     
@@ -91,6 +118,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     // Loading of records
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
+        records.removeAll()
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.whereKey("date", equalTo: shared.dateString)
