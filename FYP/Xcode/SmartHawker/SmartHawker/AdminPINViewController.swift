@@ -31,6 +31,10 @@ class AdminPINViewController: UIViewController {
         adminPINLabel.text = "Admin PIN".localized()
         adminPINTextField.placeholder = "Enter your PIN here".localized()
         
+        // Getting PINS for the subuser of current logged in user.
+        let defaults = NSUserDefaults()
+        let PINS = defaults.objectForKey("allPINS") as! [String]
+        print(PINS)
         
     }
     

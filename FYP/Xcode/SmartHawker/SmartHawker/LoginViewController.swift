@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var loginNavBar: UINavigationBar!
+    typealias CompletionHandler = (success:Bool) -> Void
     @IBAction func loginButton(sender: UIButton) {
         
         PFUser.logInWithUsernameInBackground(usernameOrEmailTextField.text!, password: passwordTextField.text!) {
@@ -34,7 +35,15 @@ class LoginViewController: UIViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(true, forKey: "firstTimeLogin")
                 
-                self.performSegueWithIdentifier("loginSuccess", sender: self)
+                // Get all subusers' PIN and save into an array
+                self.getSubUserPINs(user!, completionHandler: { (success) -> Void in
+                    if(success){
+                        self.performSegueWithIdentifier("loginSuccess", sender: self)
+                    } else {
+                        print("Error")
+                    }
+                })
+                
             } else {
                 
                 // There was a problem, show user the error message.
@@ -66,6 +75,30 @@ class LoginViewController: UIViewController {
             view.endEditing(true)
         }
         sender.cancelsTouchesInView = false
+    }
+    
+    func getSubUserPINs(user: PFUser, completionHandler: CompletionHandler) {
+        let query = PFQuery(className: "SubUser")
+        query.whereKey("user", equalTo: user)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            var PINS = [String]()
+            if error == nil {
+                for object in objects! {
+                    let PIN = object["pin"] as! String
+                    PINS.append(PIN)
+                    
+                }
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(PINS, forKey: "allPINS")
+                completionHandler(success: true)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
     }
     
 }

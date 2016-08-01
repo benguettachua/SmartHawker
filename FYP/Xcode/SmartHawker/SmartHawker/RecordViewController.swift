@@ -144,7 +144,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(array, forKey: "SavedDateArray")
         } else {
-            // No record or only "0" entered. Shows error message then refresh the view.
+            // No record or only "0" entered. Shows error message.
             self.recordSuccessLabel.text = "Recording failed. Please try again."
             self.recordSuccessLabel.textColor = UIColor.redColor()
             self.recordSuccessLabel.hidden = false
