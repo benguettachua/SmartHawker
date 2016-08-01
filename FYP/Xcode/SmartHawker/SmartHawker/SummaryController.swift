@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftMoment
+import SwiftChart
 
 class SummaryController: UIViewController {
     
@@ -33,7 +34,7 @@ class SummaryController: UIViewController {
     var chosenYearDate = NSDate()
     var actualWeekDate = moment(NSDate())
     var chosenWeekDate = NSDate()
-    var daysInWeek = [NSDate()]
+    var daysInWeek = [String]()
     
     
     //1 = monthly, 2 = yearly, 0 = weekly
@@ -218,6 +219,29 @@ class SummaryController: UIViewController {
         self.profitText.text = String(salesAmount - expensesAmount)
     }
     
+    func loadRecordsWeekly(){
+        var salesAmount = 0.0
+        var expensesAmount = 0.0
+        for record in self.records {
+            if daysInWeek.contains(record.date){
+                let type = record.type
+                let amount = Double(record.amount)
+                //let subuser = object["subuser"] as? String
+                if (type == "Sales") {
+                    salesAmount += amount
+                } else if (type == "COGS") {
+                    expensesAmount += amount
+                } else if (type == "Expenses") {
+                    expensesAmount += amount
+                }
+                
+            }
+            
+        }
+        self.salesText.text = String(salesAmount)
+        self.expensesText.text = String(expensesAmount)
+        self.profitText.text = String(salesAmount - expensesAmount)
+    }
     
     
     
@@ -260,19 +284,43 @@ class SummaryController: UIViewController {
             
             
         }else if summaryType == 0 {
+            daysInWeek.removeAll()
             let periodComponents = NSDateComponents()
-            periodComponents.weekOfMonth = -1
+            periodComponents.day = -7
             let newDate = calendar!.dateByAddingComponents(
                 periodComponents,
-                toDate: chosenYearDate,
+                toDate: chosenWeekDate,
                 options: [])!
-            actualYearDate = moment(newDate)
-            chosenYearDate = newDate
+            actualWeekDate = moment(newDate)
+            chosenWeekDate = newDate
             
-            weekMonthYear.text = String(actualYearDate.year)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
             
-            dateString = String(actualYearDate.year)
-            loadRecordsYearly()
+            let dayOfWeek = actualWeekDate.weekday
+            periodComponents.day = 2 - dayOfWeek
+            let firstDayOfWeek = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenWeekDate,
+                options: [])!
+            print(firstDayOfWeek)
+            var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
+            daysInWeek.append(correctDateString)
+            weekMonthYear.text = String(correctDateString) + " - "
+            for i in 1...6 {
+                periodComponents.day = +i
+                let dayOfWeek = calendar!.dateByAddingComponents(
+                    periodComponents,
+                    toDate: chosenWeekDate,
+                    options: [])!
+                print(dayOfWeek)
+                correctDateString = dateFormatter.stringFromDate(dayOfWeek)
+                daysInWeek.append(correctDateString)
+            }
+
+            
+            weekMonthYear.text = weekMonthYear.text! + correctDateString
+            loadRecordsWeekly()
             
             
         }
@@ -317,19 +365,43 @@ class SummaryController: UIViewController {
             
             
         }else if summaryType == 0 {
+            daysInWeek.removeAll()
             let periodComponents = NSDateComponents()
-            periodComponents.weekOfMonth = +1
+            periodComponents.day = +7
             let newDate = calendar!.dateByAddingComponents(
                 periodComponents,
-                toDate: chosenYearDate,
+                toDate: chosenWeekDate,
                 options: [])!
-            actualYearDate = moment(newDate)
-            chosenYearDate = newDate
+            actualWeekDate = moment(newDate)
+            chosenWeekDate = newDate
             
-            weekMonthYear.text = String(actualYearDate.year)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
             
-            dateString = String(actualYearDate.year)
-            loadRecordsYearly()
+            let dayOfWeek = actualWeekDate.weekday
+            periodComponents.day = 2 - dayOfWeek
+            let firstDayOfWeek = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenWeekDate,
+                options: [])!
+            print(firstDayOfWeek)
+            var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
+            daysInWeek.append(correctDateString)
+            weekMonthYear.text = String(correctDateString) + " - "
+            for i in 1...6 {
+                periodComponents.day = +i
+                let dayOfWeek = calendar!.dateByAddingComponents(
+                    periodComponents,
+                    toDate: chosenWeekDate,
+                    options: [])!
+                print(dayOfWeek)
+                correctDateString = dateFormatter.stringFromDate(dayOfWeek)
+                daysInWeek.append(correctDateString)
+            }
+            
+            
+            weekMonthYear.text = weekMonthYear.text! + correctDateString
+            loadRecordsWeekly()
             
             
         }
@@ -337,9 +409,36 @@ class SummaryController: UIViewController {
     
     //to change the category to week/month/year
     @IBAction func week(sender: UIButton) {
-        
+        daysInWeek.removeAll()
         summaryType = 0
-
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let periodComponents = NSDateComponents()
+        let dayOfWeek = actualWeekDate.weekday
+        periodComponents.day = 2 - dayOfWeek
+        let firstDayOfWeek = calendar!.dateByAddingComponents(
+            periodComponents,
+            toDate: chosenWeekDate,
+            options: [])!
+        print(firstDayOfWeek)
+        var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
+        daysInWeek.append(correctDateString)
+        weekMonthYear.text = String(correctDateString) + " - "
+        for i in 1...6 {
+            periodComponents.day = +i
+            let dayOfWeek = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenWeekDate,
+                options: [])!
+            print(dayOfWeek)
+            correctDateString = dateFormatter.stringFromDate(dayOfWeek)
+            daysInWeek.append(correctDateString)
+        }
+        
+        
+        weekMonthYear.text = weekMonthYear.text! + correctDateString
+        loadRecordsWeekly()
         
         let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
         
@@ -417,26 +516,5 @@ class SummaryController: UIViewController {
         weekButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
         loadRecordsYearly()
     }
-    
-    /*
-    //to get the years with records
-    func getYearsWithRecords(){
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = ("dd/MM/yyyy")
-        
-        let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-        for dateInString in array {
-            let date = dateFormatter.dateFromString(dateInString)
-            print(date)
-            //Here I’m creating the calendar instance that we will operate with:
-            let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
-            //Now asking the calendar what year are we in today’s date:
-            let currentYearInt = (calendar?.component(NSCalendarUnit.Year, fromDate: date!))
-            if years.contains(currentYearInt!) == false {
-                years.append(currentYearInt!)
-            }
-        }
-        years = years.sort { $0 < $1 }
-    }
- */
+
 }
