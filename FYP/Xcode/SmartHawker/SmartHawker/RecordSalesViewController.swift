@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class RecordViewController: UIViewController, UITextFieldDelegate {
+class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     
     // Mark: Properties
     var type = 0
@@ -15,7 +15,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     // Categories
     @IBOutlet weak var saleButton: UIButton!
     @IBOutlet weak var expensesButton: UIButton!
-    @IBOutlet weak var COGSBUtton: UIButton!
     
     // Labels
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -35,9 +34,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var settings: UIBarButtonItem!
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    var tempCounter = 0
-    
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
 
@@ -51,13 +47,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
-        
-        //for translation
-
-        
-        
-        // Clear records Array to prevent double counting
-        records.removeAll()
         
         // Populate the date selected
         let dateString = self.shared.dateString
@@ -76,28 +65,28 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBAction func selectSales(sender: UIButton) {
         type = 0
     }
-    
+    // Clicking this button will move the user to Record-Expenses scene.
     @IBAction func selectExpenses(sender: UIButton) {
-        type = 2
+        self.performSegueWithIdentifier("toExpenses", sender: self)
+    }
+    // Clicking this button will return the user back to the previous page.
+    @IBAction func cancel(sender: UIButton) {
+        self.performSegueWithIdentifier("backToRecordDay", sender: self)
+    }
+    // Clicking this button will save the record, then return the user back to the previous page.
+    @IBAction func save(sender: UIButton) {
+        SubmitRecord({ (success) -> Void in
+            self.performSegueWithIdentifier("backToRecordDay", sender: self)
+        })
+        
+    }
+    // Clicking this button will save the record, stay at the same page for user to save another record.
+    @IBAction func add(sender: UIButton) {
+        SubmitRecord({ (success) -> Void in
+        })
     }
     
-    @IBAction func selectCOGS(sender: UIButton) {
-        type = 1
-    }
-    
-    @IBAction func saveRecord(sender: UITapGestureRecognizer) {
-        SubmitRecord()
-    }
-    
-    @IBAction func addRecord(sender: UITapGestureRecognizer) {
-        SubmitRecord()
-    }
-    
-    @IBAction func cancel(sender: UITapGestureRecognizer) {
-        performSegueWithIdentifier("backToRecordDay", sender: self)
-    }
-    
-    func SubmitRecord() {
+    func SubmitRecord(completionHandler: CompletionHandler) {
         let descriptionToRecord = descriptionTextField.text
         let amountToRecord = Int(amountTextField.text!)
         var didRecord = false
@@ -130,16 +119,10 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
             recordSuccessLabel.text = "Recording success!"
             recordSuccessLabel.textColor = UIColor.blackColor()
             recordSuccessLabel.hidden = false
-            
-            // Reload the view after 2 seconds, updating the records.
-            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
-            dispatch_after(time, dispatch_get_main_queue()) {
-                
-                self.recordSuccessLabel.hidden = true
-                self.viewDidLoad()
-            }
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(array, forKey: "SavedDateArray")
+            
+            completionHandler(success: true)
         } else {
             // No record or only "0" entered. Shows error message.
             self.recordSuccessLabel.text = "Recording failed. Please try again."
@@ -155,18 +138,6 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         
         
     }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        scrollView.setContentOffset(CGPointMake(0, 175), animated: true)
-        scrollView.scrollEnabled = true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-        scrollView.scrollEnabled = false
-    }
-    
-
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
