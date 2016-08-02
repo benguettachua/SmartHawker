@@ -9,7 +9,7 @@
 import UIKit
 import SwiftMoment
 
-class MainViewcontroller: UIViewController{
+class MainViewcontroller: UIViewController, WeatherGetterDelegate, UITextFieldDelegate{
     
     // Mark: Properties
     var tempCounter = 0
@@ -38,14 +38,25 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var COGSAmount: UILabel!
     @IBOutlet weak var salesAmount: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    //for weather
+    @IBOutlet weak var weather: UILabel!
+    @IBOutlet weak var temperature: UILabel!
+    var weather1: WeatherGetter!
+    
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
 
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let weather1 = WeatherGetter(delegate: self)
+        weather1.getWeatherByCity("Singapore")
+        
         getLatestDate()
         var toDisplayDate = "Overview as of "
         let date = moment(NSDate())
@@ -223,6 +234,9 @@ class MainViewcontroller: UIViewController{
         self.performSegueWithIdentifier("logout", sender: self)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
@@ -296,4 +310,47 @@ class MainViewcontroller: UIViewController{
         lastRecordLabel.text = "Your last record was on: " + dateStringToDisplay
     }
     
+
+    // MARK: WeatherGetterDelegate methods
+    // -----------------------------------
+    
+    func didGetWeather(weather: Weather) {
+        // This method is called asynchronously, which means it won't execute in the main queue.
+        // ALl UI code needs to execute in the main queue, which is why we're wrapping the code
+        // that updates all the labels in a dispatch_async() call.
+        dispatch_async(dispatch_get_main_queue()) {
+            self.weather.text = weather.weatherDescription
+            self.temperature.text = "\(Int(round(weather.tempCelsius)))°"
+        }
+    }
+    
+    func didNotGetWeather(error: NSError) {
+        // This method is called asynchronously, which means it won't execute in the main queue.
+        // ALl UI code needs to execute in the main queue, which is why we're wrapping the call
+        // to showSimpleAlert(title:message:) in a dispatch_async() call.
+        dispatch_async(dispatch_get_main_queue()) {
+            self.showSimpleAlert(title: "Can't get the weather",
+                                 message: "The weather service isn't responding.")
+        }
+        print("didNotGetWeather error: \(error)")
+    }
+    
+    func showSimpleAlert(title title: String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .Alert
+        )
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:  .Default,
+            handler: nil
+        )
+        alert.addAction(okAction)
+        presentViewController(
+            alert,
+            animated: true,
+            completion: nil
+        )
+    }
 }
