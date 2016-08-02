@@ -12,19 +12,26 @@ import SwiftMoment
 class RecordDayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
-    @IBOutlet weak var dayNumberLabel: UILabel!
-    @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var monthYearLabel: UILabel!
+    // Variable
     var shared = ShareData.sharedInstance
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var noRecordLabel: UILabel!
-    @IBOutlet weak var noRecordView: UIView!
-    @IBOutlet weak var buttonName: UIButton!
-    
     let user = PFUser.currentUser()
     var records = [RecordTable]()
     typealias CompletionHandler = (success:Bool) -> Void
     var tempCounter = 0
+    
+    // Labels
+    @IBOutlet weak var dayNumberLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var monthYearLabel: UILabel!
+    @IBOutlet weak var noRecordLabel: UILabel!
+    
+    // Views
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noRecordView: UIView!
+    
+    // Buttons
+    @IBOutlet weak var buttonName: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,8 +115,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    @IBAction func addNewRecord(sender: UIButton) {
-    }
+    
     
     // Below this comment are all the methods for table.
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -143,7 +149,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
-            print("Deleting from row: " + String(indexPath.row))
             // Updating the record
             let selectedRecord = records[indexPath.row]
             print(selectedRecord.toString())
