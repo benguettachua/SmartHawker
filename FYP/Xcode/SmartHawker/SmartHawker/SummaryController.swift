@@ -510,7 +510,7 @@ class SummaryController: UIViewController {
         weekButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         monthButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
         yearButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
-        loadRecords()
+        loadRecordsWeekly()
     }
 
     
@@ -593,7 +593,7 @@ class SummaryController: UIViewController {
         lineChartDataSet1.drawCubicEnabled = true
         
         let gradientColors = [UIColor.greenColor().CGColor, UIColor.clearColor().CGColor] // Colors of the gradient
-        let colorLocations:[CGFloat] = [0.1, 0.0] // Positioning of the gradient
+        let colorLocations:[CGFloat] = [0.5, 0.0] // Positioning of the gradient
         let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations) // Gradient Object
         lineChartDataSet1.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
         lineChartDataSet1.drawFilledEnabled = true // Draw the Gradient
@@ -614,11 +614,8 @@ class SummaryController: UIViewController {
         lineChartDataSet2.circleRadius = 0
         lineChartDataSet2.drawValuesEnabled = false
         lineChartDataSet2.drawCubicEnabled = true
-        
-        let gradientColors2 = [UIColor.redColor().CGColor, UIColor.clearColor().CGColor] // Colors of the gradient
-        let colorLocations2:[CGFloat] = [0.1, 0.0] // Positioning of the gradient
-        let gradient2 = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors2, colorLocations2) // Gradient Object
-        lineChartDataSet2.fill = ChartFill.fillWithLinearGradient(gradient2!, angle: 90.0) // Set the Gradient
+
+        lineChartDataSet2.fill = ChartFill.fillWithColor(UIColor.redColor())
         lineChartDataSet2.drawFilledEnabled = true // Draw the Gradient
         
         //3 - create an array to store our LineChartDataSets
