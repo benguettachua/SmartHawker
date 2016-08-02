@@ -27,7 +27,7 @@ class TabBarController: UITabBarController {
             tabBar.items?[2].enabled = false
             tabBar.items?[3].enabled = true
             tabBar.items?[4].enabled = false
-            //tabBar.selectedItem = tabBar.items?[3]
+            self.selectedViewController = self.viewControllers![3]
         }
         
     }
