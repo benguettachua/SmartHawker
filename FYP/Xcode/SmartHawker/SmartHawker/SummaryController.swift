@@ -585,18 +585,18 @@ class SummaryController: UIViewController {
         lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet1.setColor(UIColor.greenColor())
         lineChartDataSet1.highlightColor = UIColor.clearColor()
-        lineChartDataSet1.lineWidth = 5
+        lineChartDataSet1.lineWidth = 4
         lineChartDataSet1.drawFilledEnabled = true
         lineChartDataSet1.drawCircleHoleEnabled = false
         lineChartDataSet1.circleRadius = 0
         lineChartDataSet1.drawValuesEnabled = false
-        lineChartDataSet1.drawCubicEnabled = true
+        lineChartDataSet1.drawSteppedEnabled = true
+        lineChartDataSet1.mode = .HorizontalBezier
         
         let gradientColors = [UIColor.greenColor().CGColor, UIColor.clearColor().CGColor] // Colors of the gradient
-        let colorLocations:[CGFloat] = [0.5, 0.0] // Positioning of the gradient
+        let colorLocations:[CGFloat] = [0.15, 0.0] // Positioning of the gradient
         let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations) // Gradient Object
-        lineChartDataSet1.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
-        lineChartDataSet1.drawFilledEnabled = true // Draw the Gradient
+        lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
         var dataEntries2: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
@@ -608,15 +608,14 @@ class SummaryController: UIViewController {
         lineChartDataSet2.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet2.setColor(UIColor.redColor())
         lineChartDataSet2.highlightColor = UIColor.clearColor()
-        lineChartDataSet2.lineWidth = 5
-        lineChartDataSet2.drawFilledEnabled = true
+        lineChartDataSet2.lineWidth = 2
         lineChartDataSet2.drawCircleHoleEnabled = false
         lineChartDataSet2.circleRadius = 0
         lineChartDataSet2.drawValuesEnabled = false
-        lineChartDataSet2.drawCubicEnabled = true
+        lineChartDataSet2.mode = .HorizontalBezier
 
         lineChartDataSet2.fill = ChartFill.fillWithColor(UIColor.redColor())
-        lineChartDataSet2.drawFilledEnabled = true // Draw the Gradient
+        lineChartDataSet2.drawFilledEnabled = true
         
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
@@ -636,7 +635,7 @@ class SummaryController: UIViewController {
         chart.rightAxis.drawGridLinesEnabled = false
         chart.leftAxis.drawGridLinesEnabled = false
         
-        chart.xAxis.drawAxisLineEnabled = true
+        chart.xAxis.drawAxisLineEnabled = false
         chart.rightAxis.drawAxisLineEnabled = false
         chart.leftAxis.drawAxisLineEnabled = false
         
@@ -645,9 +644,9 @@ class SummaryController: UIViewController {
         chart.leftAxis.drawLabelsEnabled = false
         
         chart.leftAxis.drawLimitLinesBehindDataEnabled = false
-        chart.xAxis.drawLimitLinesBehindDataEnabled = false
+        chart.xAxis.drawLimitLinesBehindDataEnabled = true
         chart.rightAxis.drawLimitLinesBehindDataEnabled = false
-        chart.leftAxis.axisMinValue = 0;
+        chart.leftAxis.axisMinValue = 1
         chart.descriptionText = ""
         
         chart.legend.enabled = false
