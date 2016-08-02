@@ -91,9 +91,10 @@ class SummaryController: UIViewController {
             
 
             self.loadRecords()
-            
+
+
         })
-        
+
     }
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
@@ -219,7 +220,6 @@ class SummaryController: UIViewController {
                 text = String(i)
             }
             let stringOfMonth = text + "/" + self.dateString
-            print(stringOfMonth)
             for record in self.records {
                 
                 if record.date.containsString(stringOfMonth){
@@ -236,7 +236,6 @@ class SummaryController: UIViewController {
                         expensesAmount += amount
                         totalExpensesAmount += amount
                     }
-                    //print(subuser)
                 }
                 
             }
@@ -246,8 +245,6 @@ class SummaryController: UIViewController {
         }
         series1.append(0)
         series2.append(0)
-        let series3 = [0.0,19,13,10,9,4,11,13,14,15,16,17,18,0]
-        let series4 = [0.0,1,2,3,4,5,6,7,8,9,10,11,12,0]
         setData(months, values1: series1, values2: series2)
         self.salesText.text = String(totalSalesAmount)
         self.expensesText.text = String(totalExpensesAmount)
@@ -266,7 +263,9 @@ class SummaryController: UIViewController {
             var salesAmount = 0.0
             var expensesAmount = 0.0
             dataPoints.append(stringToCheck)
-            
+            print(daysInWeek)
+            print("seperator")
+            print(stringToCheck)
             for record in self.records {
                 if record.date.containsString(stringToCheck){
                     let type = record.type
@@ -358,17 +357,15 @@ class SummaryController: UIViewController {
                 periodComponents,
                 toDate: chosenWeekDate,
                 options: [])!
-            print(firstDayOfWeek)
             var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
             daysInWeek.append(correctDateString)
             weekMonthYear.text = String(correctDateString) + " - "
-            for i in 1...6 {
+            for i in 0...5 {
                 periodComponents.day = +i
                 let dayOfWeek = calendar!.dateByAddingComponents(
                     periodComponents,
                     toDate: chosenWeekDate,
                     options: [])!
-                print(dayOfWeek)
                 correctDateString = dateFormatter.stringFromDate(dayOfWeek)
                 daysInWeek.append(correctDateString)
             }
@@ -439,17 +436,15 @@ class SummaryController: UIViewController {
                 periodComponents,
                 toDate: chosenWeekDate,
                 options: [])!
-            print(firstDayOfWeek)
             var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
             daysInWeek.append(correctDateString)
             weekMonthYear.text = String(correctDateString) + " - "
-            for i in 1...6 {
+            for i in 0...5 {
                 periodComponents.day = +i
                 let dayOfWeek = calendar!.dateByAddingComponents(
                     periodComponents,
                     toDate: chosenWeekDate,
                     options: [])!
-                print(dayOfWeek)
                 correctDateString = dateFormatter.stringFromDate(dayOfWeek)
                 daysInWeek.append(correctDateString)
             }
@@ -476,17 +471,15 @@ class SummaryController: UIViewController {
             periodComponents,
             toDate: chosenWeekDate,
             options: [])!
-        print(firstDayOfWeek)
         var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
         daysInWeek.append(correctDateString)
         weekMonthYear.text = String(correctDateString) + " - "
-        for i in 1...6 {
+        for i in 0...5 {
             periodComponents.day = +i
             let dayOfWeek = calendar!.dateByAddingComponents(
                 periodComponents,
                 toDate: chosenWeekDate,
                 options: [])!
-            print(dayOfWeek)
             correctDateString = dateFormatter.stringFromDate(dayOfWeek)
             daysInWeek.append(correctDateString)
         }
@@ -590,12 +583,8 @@ class SummaryController: UIViewController {
         lineChartDataSet1.drawCircleHoleEnabled = false
         lineChartDataSet1.circleRadius = 0
         lineChartDataSet1.drawValuesEnabled = false
-        lineChartDataSet1.drawSteppedEnabled = true
         lineChartDataSet1.mode = .HorizontalBezier
-        
-        let gradientColors = [UIColor.greenColor().CGColor, UIColor.clearColor().CGColor] // Colors of the gradient
-        let colorLocations:[CGFloat] = [0.15, 0.0] // Positioning of the gradient
-        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations) // Gradient Object
+
         lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
         var dataEntries2: [ChartDataEntry] = []
         
