@@ -253,9 +253,9 @@ class SummaryController: UIViewController {
         }
         series1.append(0)
         series2.append(0)
-        let series3 = [0.0,12,13,10,9,4,11,13,14,15,16,17,18,0]
+        let series3 = [0.0,19,13,10,9,4,11,13,14,15,16,17,18,0]
         let series4 = [0.0,1,2,3,4,5,6,7,8,9,10,11,12,0]
-        setYearlyData(months, values1: series3, values2: series4)
+        setYearlyData(months, values1: series1, values2: series2)
         self.salesText.text = String(totalSalesAmount)
         self.expensesText.text = String(totalExpensesAmount)
         self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
@@ -622,11 +622,11 @@ class SummaryController: UIViewController {
         
         chart.backgroundColor = UIColor.clearColor()
         chart.drawGridBackgroundEnabled = false
-        chart.xAxis.drawGridLinesEnabled = false
+        chart.xAxis.drawGridLinesEnabled = true
         chart.rightAxis.drawGridLinesEnabled = false
         chart.leftAxis.drawGridLinesEnabled = false
         
-        chart.xAxis.drawAxisLineEnabled = false
+        chart.xAxis.drawAxisLineEnabled = true
         chart.rightAxis.drawAxisLineEnabled = false
         chart.leftAxis.drawAxisLineEnabled = false
         
