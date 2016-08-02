@@ -14,13 +14,7 @@ class CalendarViewcontroller: UIViewController{
     
     // Mark: Properties
     // Top Bar
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var businessName: UILabel!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var userLabel: UILabel!
-    var tempCounter = 0
-    var records = [RecordTable]()
-    
+
     @IBOutlet weak var calendar: CalendarView!
     @IBOutlet weak var profitText: UILabel!
     @IBOutlet weak var expensesText: UILabel!
@@ -28,6 +22,12 @@ class CalendarViewcontroller: UIViewController{
     @IBOutlet weak var navBarLogoutButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationItem!
     var day: String!
+    var actualMonthDate = moment(NSDate())
+    var chosenMonthDate = NSDate()
+    var calendarForChangeMonth = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
+    var tempCounter = 0
+    var records = [RecordTable]()
+    
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
 
@@ -75,6 +75,36 @@ class CalendarViewcontroller: UIViewController{
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
         }
 
+    }
+    
+    @IBAction func nextMonth(sender: UIBarButtonItem) {
+        
+        let periodComponents = NSDateComponents()
+        periodComponents.month = +1
+        let newDate = calendarForChangeMonth!.dateByAddingComponents(
+            periodComponents,
+            toDate: chosenMonthDate,
+            options: [])!
+        actualMonthDate = moment(newDate)
+        chosenMonthDate = newDate
+        
+        calendar.selectDate(actualMonthDate)
+        MonthAndYear.text = actualMonthDate.monthName + "/" + String(actualMonthDate.year)
+    }
+    
+    @IBAction func previousMonth(sender: UIBarButtonItem) {
+        
+        let periodComponents = NSDateComponents()
+        periodComponents.month = -1
+        let newDate = calendarForChangeMonth!.dateByAddingComponents(
+            periodComponents,
+            toDate: chosenMonthDate,
+            options: [])!
+        actualMonthDate = moment(newDate)
+        chosenMonthDate = newDate
+        
+        calendar.selectDate(actualMonthDate)
+        MonthAndYear.text = actualMonthDate.monthName + "/" + String(actualMonthDate.year)
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {

@@ -32,6 +32,8 @@ class MainViewcontroller: UIViewController{
     @IBOutlet weak var lowestProfitDay: UILabel!
     @IBOutlet weak var highestProfitDay: UILabel!
     
+    @IBOutlet weak var lastRecordLabel: UILabel!
+    
     @IBOutlet weak var otherExpensesAmount: UILabel!
     @IBOutlet weak var COGSAmount: UILabel!
     @IBOutlet weak var salesAmount: UILabel!
@@ -44,7 +46,7 @@ class MainViewcontroller: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getLatestDate()
         var toDisplayDate = "Overview as of "
         let date = moment(NSDate())
         var dayString = ""
@@ -175,10 +177,18 @@ class MainViewcontroller: UIViewController{
             self.otherExpensesAmount.text = String(expenses)
             self.highestProfit.text = String(highProfit)
             self.lowestProfit.text = String(lowProfit)
-            self.averageProfit.text = String((totalProfit/totalDays))
+            if totalProfit == 0{
+                self.averageProfit.text = "0"
+            }else{
+                self.averageProfit.text = String((totalProfit/totalDays))
+            }
             self.highestSales.text = String(highSales)
             self.lowestSales.text = String(lowSales)
-            self.averageSales.text = String((totalSales/totalDays))
+            if totalSales == 0{
+                self.averageSales.text = "0"
+            }else{
+                self.averageSales.text = String((totalSales/totalDays))
+            }
             self.highestProfitDay.text = highProfitDay
             self.lowestProfitDay.text = lowProfitDay
             self.highestSalesDay.text = highSalesDay
@@ -271,6 +281,19 @@ class MainViewcontroller: UIViewController{
         }
     }
  
-    
+    func getLatestDate(){
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+        var dateArray = [NSDate]()
+        for stringDate in array{
+
+            let correctDate = dateFormatter.dateFromString(stringDate)
+            dateArray.append(correctDate!)
+        }
+        dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
+        let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
+        lastRecordLabel.text = "Your last record was on: " + dateStringToDisplay
+    }
     
 }
