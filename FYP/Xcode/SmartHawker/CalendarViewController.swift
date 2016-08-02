@@ -89,7 +89,7 @@ class CalendarViewcontroller: UIViewController{
         chosenMonthDate = newDate
         
         calendar.selectDate(actualMonthDate)
-        MonthAndYear.text = actualMonthDate.monthName + "/" + String(actualMonthDate.year)
+        MonthAndYear.text = actualMonthDate.monthName + " / " + String(actualMonthDate.year)
     }
     
     @IBAction func previousMonth(sender: UIBarButtonItem) {
@@ -104,7 +104,7 @@ class CalendarViewcontroller: UIViewController{
         chosenMonthDate = newDate
         
         calendar.selectDate(actualMonthDate)
-        MonthAndYear.text = actualMonthDate.monthName + "/" + String(actualMonthDate.year)
+        MonthAndYear.text = actualMonthDate.monthName + " / " + String(actualMonthDate.year)
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {

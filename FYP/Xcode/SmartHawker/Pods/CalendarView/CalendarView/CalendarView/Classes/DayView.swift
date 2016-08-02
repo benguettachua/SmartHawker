@@ -111,7 +111,7 @@ class DayView: UIView {
                 dateLabel.layer.borderColor = UIColor.clearColor().CGColor
                 dateLabel.layer.backgroundColor = UIColor.clearColor().CGColor
                 dateLabel.attributedText = underlineAttributedString
-                dateLabel.textColor = UIColor.orangeColor()
+                dateLabel.textColor = UIColor.blueColor()
                 self.dateLabel.backgroundColor = CalendarView.dayBackgroundColor
                 dateLabel.font = UIFont.boldSystemFontOfSize(16.0)
             }
