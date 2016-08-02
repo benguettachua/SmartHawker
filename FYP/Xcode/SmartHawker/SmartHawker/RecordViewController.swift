@@ -21,6 +21,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var recordSuccessLabel: UILabel!
+    @IBOutlet weak var todayDateLabel: UILabel!
     
     // Text Fields
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -48,6 +49,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         //for translation
@@ -59,9 +61,7 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
         
         // Populate the date selected
         let dateString = self.shared.dateString
-        
-
-        
+        todayDateLabel.text = dateString
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -73,34 +73,31 @@ class RecordViewController: UIViewController, UITextFieldDelegate {
     
     
     // Mark: Action
-    @IBAction func addRecord(sender: UIButton) {
-    }
-    
     @IBAction func selectSales(sender: UIButton) {
         type = 0
-        saleButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        expensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        COGSBUtton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
     }
     
     @IBAction func selectExpenses(sender: UIButton) {
         type = 2
-        saleButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        expensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        COGSBUtton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
     }
     
     @IBAction func selectCOGS(sender: UIButton) {
         type = 1
-        saleButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        expensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        COGSBUtton.setTitleColor(UIColor.blackColor(), forState: .Normal)
     }
     
+    @IBAction func saveRecord(sender: UITapGestureRecognizer) {
+        SubmitRecord()
+    }
     
+    @IBAction func addRecord(sender: UITapGestureRecognizer) {
+        SubmitRecord()
+    }
     
-     
-    @IBAction func SubmitRecord(sender: UIButton) {
+    @IBAction func cancel(sender: UITapGestureRecognizer) {
+        performSegueWithIdentifier("backToRecordDay", sender: self)
+    }
+    
+    func SubmitRecord() {
         let descriptionToRecord = descriptionTextField.text
         let amountToRecord = Int(amountTextField.text!)
         var didRecord = false
