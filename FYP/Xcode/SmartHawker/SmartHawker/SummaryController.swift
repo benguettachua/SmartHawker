@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftMoment
-import SwiftChart
+import Charts
 
 class SummaryController: UIViewController {
     
@@ -35,7 +35,9 @@ class SummaryController: UIViewController {
     var actualWeekDate = moment(NSDate())
     var chosenWeekDate = NSDate()
     var daysInWeek = [String]()
+    var months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""]
     
+    @IBOutlet weak var chart: LineChartView!
     
     //1 = monthly, 2 = yearly, 0 = weekly
     var summaryType = 1
@@ -168,6 +170,17 @@ class SummaryController: UIViewController {
     }
     
     func loadRecords(){
+        
+        // Swift 2:
+        let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: chosenMonthDate)
+        
+        let numDays = range.length
+        var dataPoints = [Int]()
+        var values = [Double]()
+        for i in 1...numDays {
+            dataPoints.append(i)
+        }
+        
         var salesAmount = 0.0
         var expensesAmount = 0.0
         for record in self.records {
@@ -197,26 +210,55 @@ class SummaryController: UIViewController {
     func loadRecordsYearly(){
         var salesAmount = 0.0
         var expensesAmount = 0.0
-        for record in self.records {
-            
-            if record.date.containsString(self.dateString){
-                let type = record.type
-                let amount = Double(record.amount)
-                //let subuser = object["subuser"] as? String
-                if (type == "Sales") {
-                    salesAmount += amount
-                } else if (type == "COGS") {
-                    expensesAmount += amount
-                } else if (type == "Expenses") {
-                    expensesAmount += amount
+        var totalSalesAmount = 0.0
+        var totalExpensesAmount = 0.0
+        var series1 = [0.0]
+        var series2 = [0.0]
+        for i in 1...12 {
+            salesAmount = 0.0
+            expensesAmount = 0.0
+            var text = ""
+            if i == 1{
+                text = "0" + String(i)
+            }else if i == 2 {
+                text = "0" + String(i)
+            }else{
+                text = String(i)
+            }
+            let stringOfMonth = text + "/" + self.dateString
+            print(stringOfMonth)
+            for record in self.records {
+                
+                if record.date.containsString(stringOfMonth){
+                    let type = record.type
+                    let amount = Double(record.amount)
+                    //let subuser = object["subuser"] as? String
+                    if (type == "Sales") {
+                        salesAmount += amount
+                        totalSalesAmount += amount
+                    } else if (type == "COGS") {
+                        expensesAmount += amount
+                        totalExpensesAmount += amount
+                    } else if (type == "Expenses") {
+                        expensesAmount += amount
+                        totalExpensesAmount += amount
+                    }
+                    //print(subuser)
                 }
-                //print(subuser)
+                
             }
             
+            series1.append(salesAmount)
+            series2.append(expensesAmount)
         }
-        self.salesText.text = String(salesAmount)
-        self.expensesText.text = String(expensesAmount)
-        self.profitText.text = String(salesAmount - expensesAmount)
+        series1.append(0)
+        series2.append(0)
+        let series3 = [0.0,12,13,10,9,4,11,13,14,15,16,17,18,0]
+        let series4 = [0.0,1,2,3,4,5,6,7,8,9,10,11,12,0]
+        setYearlyData(months, values1: series3, values2: series4)
+        self.salesText.text = String(totalSalesAmount)
+        self.expensesText.text = String(totalExpensesAmount)
+        self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
     }
     
     func loadRecordsWeekly(){
@@ -515,6 +557,141 @@ class SummaryController: UIViewController {
         monthButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
         weekButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
         loadRecordsYearly()
+    }
+    
+    func setYearlyData(dataPoints : [String], values1 : [Double], values2 : [Double]) {
+        
+        var dataEntries1: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values1[i], xIndex: i)
+            dataEntries1.append(dataEntry)
+        }
+        
+        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Sales")
+        lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet1.setColor(UIColor.greenColor())
+        lineChartDataSet1.highlightColor = UIColor.clearColor()
+        lineChartDataSet1.lineWidth = 5
+        lineChartDataSet1.drawFilledEnabled = true
+        lineChartDataSet1.drawCircleHoleEnabled = false
+        lineChartDataSet1.circleRadius = 0
+        lineChartDataSet1.drawValuesEnabled = false
+        lineChartDataSet1.drawCubicEnabled = true
+        
+        let gradientColors = [UIColor.greenColor().CGColor, UIColor.clearColor().CGColor] // Colors of the gradient
+        let colorLocations:[CGFloat] = [0.1, 0.0] // Positioning of the gradient
+        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations) // Gradient Object
+        lineChartDataSet1.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+        lineChartDataSet1.drawFilledEnabled = true // Draw the Gradient
+        var dataEntries2: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values2[i], xIndex: i)
+            dataEntries2.append(dataEntry)
+        }
+        
+        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Expenses")
+        lineChartDataSet2.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet2.setColor(UIColor.redColor())
+        lineChartDataSet2.highlightColor = UIColor.clearColor()
+        lineChartDataSet2.lineWidth = 5
+        lineChartDataSet2.drawFilledEnabled = true
+        lineChartDataSet2.drawCircleHoleEnabled = false
+        lineChartDataSet2.circleRadius = 0
+        lineChartDataSet2.drawValuesEnabled = false
+        lineChartDataSet2.drawCubicEnabled = true
+        
+        let gradientColors2 = [UIColor.redColor().CGColor, UIColor.clearColor().CGColor] // Colors of the gradient
+        let colorLocations2:[CGFloat] = [0.1, 0.0] // Positioning of the gradient
+        let gradient2 = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors2, colorLocations2) // Gradient Object
+        lineChartDataSet2.fill = ChartFill.fillWithLinearGradient(gradient2!, angle: 90.0) // Set the Gradient
+        lineChartDataSet2.drawFilledEnabled = true // Draw the Gradient
+        
+        //3 - create an array to store our LineChartDataSets
+        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
+        dataSets.append(lineChartDataSet1)
+        dataSets.append(lineChartDataSet2)
+        
+        //4 - pass our months in for our x-axis label value along with our dataSets
+        let data: LineChartData = LineChartData(xVals: months, dataSets: dataSets)
+        data.setValueTextColor(UIColor.whiteColor())
+        
+        //5 - finally set our data
+        self.chart.data = data
+        
+        chart.backgroundColor = UIColor.clearColor()
+        chart.drawGridBackgroundEnabled = false
+        chart.xAxis.drawGridLinesEnabled = false
+        chart.rightAxis.drawGridLinesEnabled = false
+        chart.leftAxis.drawGridLinesEnabled = false
+        
+        chart.xAxis.drawAxisLineEnabled = false
+        chart.rightAxis.drawAxisLineEnabled = false
+        chart.leftAxis.drawAxisLineEnabled = false
+        
+        chart.xAxis.drawLabelsEnabled = true
+        chart.rightAxis.drawLabelsEnabled = false
+        chart.leftAxis.drawLabelsEnabled = false
+        
+        chart.leftAxis.drawLimitLinesBehindDataEnabled = false
+        chart.xAxis.drawLimitLinesBehindDataEnabled = false
+        chart.rightAxis.drawLimitLinesBehindDataEnabled = false
+        chart.leftAxis.axisMinValue = 0;
+        chart.descriptionText = ""
+        
+        chart.legend.enabled = false
+    }
+    
+    func setMonthlyData(dataPoints: [String], values : [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Sales")
+        lineChartDataSet.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet.setColor(UIColor.greenColor())
+        lineChartDataSet.highlightColor = UIColor.whiteColor()
+        lineChartDataSet.drawFilledEnabled = true
+        lineChartDataSet.fillColor = UIColor.greenColor()
+        lineChartDataSet.drawCircleHoleEnabled = false
+        lineChartDataSet.circleRadius = 0
+        
+        //3 - create an array to store our LineChartDataSets
+        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
+        dataSets.append(lineChartDataSet)
+        
+        //4 - pass our months in for our x-axis label value along with our dataSets
+        let data: LineChartData = LineChartData(xVals: months, dataSets: dataSets)
+        data.setValueTextColor(UIColor.whiteColor())
+        
+        //5 - finally set our data
+        self.chart.data = data
+        
+        chart.backgroundColor = UIColor.clearColor()
+        chart.drawGridBackgroundEnabled = false
+        chart.xAxis.drawGridLinesEnabled = false
+        chart.rightAxis.drawGridLinesEnabled = false
+        chart.leftAxis.drawGridLinesEnabled = false
+        
+        chart.xAxis.drawAxisLineEnabled = false
+        chart.rightAxis.drawAxisLineEnabled = false
+        chart.leftAxis.drawAxisLineEnabled = false
+        
+        chart.xAxis.drawLabelsEnabled = true
+        chart.rightAxis.drawLabelsEnabled = false
+        chart.leftAxis.drawLabelsEnabled = false
+        
+        chart.leftAxis.drawLimitLinesBehindDataEnabled = false
+        chart.xAxis.drawLimitLinesBehindDataEnabled = false
+        chart.rightAxis.drawLimitLinesBehindDataEnabled = false
+        chart.sizeToFit()
     }
 
 }
