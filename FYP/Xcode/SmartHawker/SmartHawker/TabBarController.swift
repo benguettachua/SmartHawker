@@ -19,7 +19,7 @@ class TabBarController: UITabBarController {
         tabBar.items?[2].title = "Home".localized()
         tabBar.items?[3].title = "Calendar".localized()
         tabBar.items?[4].title = "Profile".localized()
-        
+        self.selectedViewController = self.viewControllers![2]
         let isSubUser = shared.isSubUser
         if (isSubUser) {
             tabBar.items?[0].enabled = false
