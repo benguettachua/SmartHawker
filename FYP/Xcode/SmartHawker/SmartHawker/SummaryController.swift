@@ -89,31 +89,8 @@ class SummaryController: UIViewController {
         
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            
-            
-            var salesAmount = 0.0
-            var expensesAmount = 0.0
-            for record in self.records {
-                if record.date.containsString(self.dateString){
-                    let type = record.type
-                    let amount = Double(record.amount)
-                    //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
-                        salesAmount += amount
-                    } else if (type == "COGS") {
-                        expensesAmount += amount
-                    } else if (type == "Expenses") {
-                        expensesAmount += amount
-                    }
-                    //print(subuser)
-                }
-                
-            }
-            
-            self.salesText.text = String(salesAmount)
-            self.expensesText.text = String(expensesAmount)
-            self.profitText.text = String(salesAmount - expensesAmount)
-            
+
+            self.loadRecords()
             
         })
         
@@ -171,39 +148,55 @@ class SummaryController: UIViewController {
     
     func loadRecords(){
         
+        var totalSalesAmount = 0.0
+        var totalExpensesAmount = 0.0
         // Swift 2:
         let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: chosenMonthDate)
         
         let numDays = range.length
-        var dataPoints = [Int]()
-        var values = [Double]()
-        for i in 1...numDays {
-            dataPoints.append(i)
-        }
-        
-        var salesAmount = 0.0
-        var expensesAmount = 0.0
-        for record in self.records {
+        var series1 = [0.0]
+        var series2 = [0.0]
+        var days = [""]
+
+        for i in 1...numDays{
             
-            if record.date.containsString(self.dateString){
-                let type = record.type
-                let amount = Double(record.amount)
-                //let subuser = object["subuser"] as? String
-                if (type == "Sales") {
-                    salesAmount += amount
-                } else if (type == "COGS") {
-                    expensesAmount += amount
-                } else if (type == "Expenses") {
-                    expensesAmount += amount
-                }
-                //print(subuser)
+            var salesAmount = 0.0
+            var expensesAmount = 0.0
+            
+            var stringToCheck = String(i) + "/" + self.dateString
+            if i < 10 {
+                stringToCheck = "0" + stringToCheck
             }
-            
+            days.append(stringToCheck)
+            for record in self.records {
+                
+                if record.date.containsString(stringToCheck){
+                    let type = record.type
+                    let amount = Double(record.amount)
+                    //let subuser = object["subuser"] as? String
+                    if (type == "Sales") {
+                        salesAmount += amount
+                        totalSalesAmount += amount
+                    } else if (type == "COGS") {
+                        expensesAmount += amount
+                        totalExpensesAmount += amount
+                    } else if (type == "Expenses") {
+                        expensesAmount += amount
+                        totalExpensesAmount += amount
+                    }
+                }
+                
+            }
+            series1.append(salesAmount)
+            series2.append(expensesAmount)
         }
-        
-        self.salesText.text = String(salesAmount)
-        self.expensesText.text = String(expensesAmount)
-        self.profitText.text = String(salesAmount - expensesAmount)
+        days.append("")
+        series1.append(0.0)
+        series2.append(0.0)
+        setData(days, values1: series1, values2: series2)
+        self.salesText.text = String(totalSalesAmount)
+        self.expensesText.text = String(totalExpensesAmount)
+        self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
     }
     
     
@@ -255,34 +248,54 @@ class SummaryController: UIViewController {
         series2.append(0)
         let series3 = [0.0,19,13,10,9,4,11,13,14,15,16,17,18,0]
         let series4 = [0.0,1,2,3,4,5,6,7,8,9,10,11,12,0]
-        setYearlyData(months, values1: series1, values2: series2)
+        setData(months, values1: series1, values2: series2)
         self.salesText.text = String(totalSalesAmount)
         self.expensesText.text = String(totalExpensesAmount)
         self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
     }
     
     func loadRecordsWeekly(){
-        var salesAmount = 0.0
-        var expensesAmount = 0.0
-        for record in self.records {
-            if daysInWeek.contains(record.date){
-                let type = record.type
-                let amount = Double(record.amount)
-                //let subuser = object["subuser"] as? String
-                if (type == "Sales") {
-                    salesAmount += amount
-                } else if (type == "COGS") {
-                    expensesAmount += amount
-                } else if (type == "Expenses") {
-                    expensesAmount += amount
+        
+        var series1 = [0.0]
+        var series2 = [0.0]
+        var dataPoints = [""]
+        var totalSalesAmount = 0.0
+        var totalExpensesAmount = 0.0
+
+        for stringToCheck in daysInWeek{
+            var salesAmount = 0.0
+            var expensesAmount = 0.0
+            dataPoints.append(stringToCheck)
+            
+            for record in self.records {
+                if record.date.containsString(stringToCheck){
+                    let type = record.type
+                    let amount = Double(record.amount)
+                    //let subuser = object["subuser"] as? String
+                    if (type == "Sales") {
+                        salesAmount += amount
+                        totalSalesAmount += amount
+                    } else if (type == "COGS") {
+                        expensesAmount += amount
+                        totalExpensesAmount += amount
+                    } else if (type == "Expenses") {
+                        expensesAmount += amount
+                        totalExpensesAmount += amount
+                    }
+                    
                 }
                 
             }
-            
+            series1.append(salesAmount)
+            series2.append(expensesAmount)
         }
-        self.salesText.text = String(salesAmount)
-        self.expensesText.text = String(expensesAmount)
-        self.profitText.text = String(salesAmount - expensesAmount)
+        series1.append(0.0)
+        series2.append(0.0)
+        dataPoints.append("")
+        setData(dataPoints, values1: series1, values2: series2)
+        self.salesText.text = String(totalSalesAmount)
+        self.expensesText.text = String(totalExpensesAmount)
+        self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
     }
     
     
@@ -559,7 +572,7 @@ class SummaryController: UIViewController {
         loadRecordsYearly()
     }
     
-    func setYearlyData(dataPoints : [String], values1 : [Double], values2 : [Double]) {
+    func setData(dataPoints : [String], values1 : [Double], values2 : [Double]) {
         
         var dataEntries1: [ChartDataEntry] = []
         
@@ -614,7 +627,7 @@ class SummaryController: UIViewController {
         dataSets.append(lineChartDataSet2)
         
         //4 - pass our months in for our x-axis label value along with our dataSets
-        let data: LineChartData = LineChartData(xVals: months, dataSets: dataSets)
+        let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
         data.setValueTextColor(UIColor.whiteColor())
         
         //5 - finally set our data
@@ -641,57 +654,6 @@ class SummaryController: UIViewController {
         chart.descriptionText = ""
         
         chart.legend.enabled = false
-    }
-    
-    func setMonthlyData(dataPoints: [String], values : [Double]) {
-        
-        var dataEntries: [ChartDataEntry] = []
-        
-        
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-            dataEntries.append(dataEntry)
-        }
-        
-        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Sales")
-        lineChartDataSet.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet.setColor(UIColor.greenColor())
-        lineChartDataSet.highlightColor = UIColor.whiteColor()
-        lineChartDataSet.drawFilledEnabled = true
-        lineChartDataSet.fillColor = UIColor.greenColor()
-        lineChartDataSet.drawCircleHoleEnabled = false
-        lineChartDataSet.circleRadius = 0
-        
-        //3 - create an array to store our LineChartDataSets
-        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
-        dataSets.append(lineChartDataSet)
-        
-        //4 - pass our months in for our x-axis label value along with our dataSets
-        let data: LineChartData = LineChartData(xVals: months, dataSets: dataSets)
-        data.setValueTextColor(UIColor.whiteColor())
-        
-        //5 - finally set our data
-        self.chart.data = data
-        
-        chart.backgroundColor = UIColor.clearColor()
-        chart.drawGridBackgroundEnabled = false
-        chart.xAxis.drawGridLinesEnabled = false
-        chart.rightAxis.drawGridLinesEnabled = false
-        chart.leftAxis.drawGridLinesEnabled = false
-        
-        chart.xAxis.drawAxisLineEnabled = false
-        chart.rightAxis.drawAxisLineEnabled = false
-        chart.leftAxis.drawAxisLineEnabled = false
-        
-        chart.xAxis.drawLabelsEnabled = true
-        chart.rightAxis.drawLabelsEnabled = false
-        chart.leftAxis.drawLabelsEnabled = false
-        
-        chart.leftAxis.drawLimitLinesBehindDataEnabled = false
-        chart.xAxis.drawLimitLinesBehindDataEnabled = false
-        chart.rightAxis.drawLimitLinesBehindDataEnabled = false
-        chart.sizeToFit()
     }
 
 }
