@@ -9,6 +9,8 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    
+    var shared = ShareData.sharedInstance
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +19,16 @@ class TabBarController: UITabBarController {
         tabBar.items?[2].title = "Home".localized()
         tabBar.items?[3].title = "Calendar".localized()
         tabBar.items?[4].title = "Profile".localized()
+        
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            tabBar.items?[0].enabled = false
+            tabBar.items?[1].enabled = false
+            tabBar.items?[2].enabled = false
+            tabBar.items?[3].enabled = true
+            tabBar.items?[4].enabled = false
+            //tabBar.selectedItem = tabBar.items?[3]
+        }
         
     }
 

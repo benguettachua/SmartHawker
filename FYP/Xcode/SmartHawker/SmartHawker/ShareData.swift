@@ -23,6 +23,7 @@ class ShareData {
         return Static.instance!
     }
     
+    var isSubUser = false
     var storeDate: Moment!
     var dateSelected: String!
     var dateString: String!
