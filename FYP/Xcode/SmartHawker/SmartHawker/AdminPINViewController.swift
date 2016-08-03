@@ -16,6 +16,7 @@ class AdminPINViewController: UIViewController {
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
     var PINS = [String]()
+    var subuser = "subsub"
     
     // Text Fields
     @IBOutlet weak var adminPINTextField: UITextField!
@@ -53,9 +54,10 @@ class AdminPINViewController: UIViewController {
         // Check if the PIN is correct
         let pin = user!["adminPin"]
         if ((pin as! String == adminPINTextField.text!) == true) {
-            
+            // Admin logs in
             let defaults = NSUserDefaults.standardUserDefaults()
             let firstTimeLogin = defaults.boolForKey("firstTimeLogin")
+            // First time logging in, ask if user wants to retrieve records from DB
             if (firstTimeLogin == true) {
                 let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
                 let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
@@ -83,7 +85,21 @@ class AdminPINViewController: UIViewController {
         } else if (PINS.contains(adminPINTextField.text!)) {
             // Sub User logging-in
             self.shared.isSubUser = true
-            self.performSegueWithIdentifier("toMain", sender: self)
+            getSubuser(adminPINTextField.text!, completionHandler: { (success) in
+                if (success) {
+                    
+                    self.filterBySubuser(self.subuser, completionHandler: { (success) in
+                        if (success) {
+                            print("filtered")
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            defaults.setBool(true, forKey: "firstTimeLogin")
+                            self.performSegueWithIdentifier("toMain", sender: self)
+                        }
+                    })
+                    
+                }
+            })
+            
         } else {
             // Validate if admin pin entered is the one registered.
             adminPINTextField.text = ""
@@ -123,6 +139,42 @@ class AdminPINViewController: UIViewController {
                 completionHandler(success: false)
             }
         }
-        
+    }
+    
+    func filterBySubuser(subuser: String, completionHandler: CompletionHandler) {
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let objectSubuser = object["subuser"] as? String
+                    if (objectSubuser != subuser) {
+                        object.unpinInBackground()
+                    }
+                }
+                completionHandler(success: true)
+            } else {
+                print("Error encountered at clearing local datastore")
+                completionHandler(success: false)
+            }
+        }
+    }
+    
+    func getSubuser(pin: String, completionHandler: CompletionHandler){
+        let query = PFQuery(className: "SubUser")
+        query.whereKey("pin", equalTo: pin)
+        query.whereKey("user", equalTo: user!)
+        query.fromLocalDatastore()
+        query.getFirstObjectInBackgroundWithBlock {
+            (object: PFObject?, error: NSError?) in
+            if error == nil {
+                self.subuser = String(object!["name"])
+                completionHandler(success: true)
+            } else {
+                print("retrieval failed")
+            }
+        }
     }
 }

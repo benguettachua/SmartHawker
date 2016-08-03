@@ -84,6 +84,7 @@ class LoginViewController: UIViewController {
             (objects: [PFObject]?, error: NSError?) -> Void in
             var PINS = [String]()
             if error == nil {
+                PFObject.pinAllInBackground(objects)
                 for object in objects! {
                     let PIN = object["pin"] as! String
                     PINS.append(PIN)
