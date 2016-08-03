@@ -10,7 +10,7 @@ import UIKit
 import SwiftMoment
 import CoreLocation;
 
-class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationManagerDelegate{
+class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     // Mark: Properties
     var tempCounter = 0
@@ -44,7 +44,8 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
     //for weather
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    var weather: WeatherGetter!
+    private let openWeatherMapBaseURL = "http://api.openweathermap.org/data/2.5/weather"
+    private let openWeatherMapAPIKey = "54a57adb6525a2526f2a33daeec9a28f"
     
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
@@ -312,31 +313,7 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
             lastRecordLabel.text = "Your have yet to make any records."
         }
     }
-    
 
-    // MARK: WeatherGetterDelegate methods
-    // -----------------------------------
-    
-    func didGetWeather(weather: Weather) {
-        // This method is called asynchronously, which means it won't execute in the main queue.
-        // ALl UI code needs to execute in the main queue, which is why we're wrapping the code
-        // that updates all the labels in a dispatch_async() call.
-        dispatch_async(dispatch_get_main_queue()) {
-            self.weatherLabel.text = weather.weatherDescription
-            self.temperatureLabel.text = "\(Int(round(weather.tempCelsius)))°"
-        }
-    }
-    
-    func didNotGetWeather(error: NSError) {
-        // This method is called asynchronously, which means it won't execute in the main queue.
-        // ALl UI code needs to execute in the main queue, which is why we're wrapping the call
-        // to showSimpleAlert(title:message:) in a dispatch_async() call.
-        dispatch_async(dispatch_get_main_queue()) {
-            self.showSimpleAlert(title: "Can't get the weather",
-                                 message: "The weather service isn't responding.")
-        }
-        print("didNotGetWeather error: \(error)")
-    }
     
     func showSimpleAlert(title title: String, message: String) {
         let alert = UIAlertController(
@@ -408,13 +385,8 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
-        let weather = WeatherGetter(delegate: self)
-        print("lat")
-        print(newLocation.coordinate.latitude)
-        print("lon")
-        print(newLocation.coordinate.longitude)
-        weather.getWeatherByCoordinates(latitude: newLocation.coordinate.latitude,
-                                        longitude: newLocation.coordinate.longitude)
+        let weatherRequestURL = NSURL(string: "\(openWeatherMapBaseURL)?APPID=\(openWeatherMapAPIKey)&lat=\(newLocation.coordinate.latitude)&lon=\(newLocation.coordinate.longitude)")!
+        getWeather(weatherRequestURL)
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -428,5 +400,57 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
             self.temperatureLabel.text = ""
         }
         print("locationManager didFailWithError: \(error)")
+    }
+
+    
+    private func getWeather(weatherRequestURL: NSURL) {
+        
+        // This is a pretty simple networking task, so the shared session will do.
+        let session = NSURLSession.sharedSession()
+        session.configuration.timeoutIntervalForRequest = 3
+        
+        // The data task retrieves the data.
+        let dataTask = session.dataTaskWithURL(weatherRequestURL) {
+            (data: NSData?, response: NSURLResponse?, error: NSError?) in
+            if let networkError = error {
+                // Case 1: Error
+                // An error occurred while trying to get data from the server.
+                //self.delegate.didNotGetWeather(networkError)
+            }
+            else {
+                // Case 2: Success
+                // We got data from the server!
+                do {
+                    // Try to convert that data into a Swift dictionary
+                    let weatherData = try NSJSONSerialization.JSONObjectWithData(
+                        data!,
+                        options: .MutableContainers) as! [String: AnyObject]
+                    
+                    // If we made it to this point, we've successfully converted the
+                    // JSON-formatted weather data into a Swift dictionary.
+                    // Let's now used that dictionary to initialize a Weather struct.
+                    print("Weather ID: \(weatherData["weather"]![0]!["id"]!!)")
+                    let weather = weatherData["weather"]![0]!["description"]!! as? String
+                    
+                    let temperature = String(weatherData["main"]!["temp"]!! as! Double - 273.15)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.temperatureLabel.text = String(weatherData["main"]!["temp"]!! as! Double - 273.15)
+                        self.weatherLabel.text = weather
+                    }
+                    print(weather)
+                    print(temperature)
+                  // Now that we have the Weather struct, let's notify the view controller,
+                    // which will use it to display the weather to the user.
+                }
+                catch let jsonError as NSError {
+                    // An error occurred while trying to convert the data into a Swift dictionary.
+                    //self.delegate.didNotGetWeather(jsonError)
+                }
+            }
+        }
+        
+        // The data task is set up...launch it!
+        dataTask.resume()
     }
 }

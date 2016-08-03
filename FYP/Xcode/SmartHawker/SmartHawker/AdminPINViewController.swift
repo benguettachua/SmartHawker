@@ -46,6 +46,11 @@ class AdminPINViewController: UIViewController {
         
         // Getting PINS for the subuser of current logged in user.
         let defaults = NSUserDefaults()
+        if defaults.objectForKey("allPINS") == nil{
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let adminPins = [String]()
+            defaults.setObject(adminPins, forKey: "allPINS")
+        }
         PINS = (defaults.objectForKey("allPINS") as? [String])!
         print(PINS)
         
