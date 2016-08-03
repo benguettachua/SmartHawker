@@ -28,6 +28,13 @@ class RecordExpensesViewController: UIViewController{
     // Buttons
     @IBOutlet weak var COGSButton: UIButton!
     @IBOutlet weak var OTHERSButton: UIButton!
+    @IBOutlet weak var recurringButton: UIButton!
+    
+    // Image View
+    @IBOutlet weak var recurringCheckbox: UIImageView!
+    @IBOutlet weak var COGSCheckbox: UIImageView!
+    @IBOutlet weak var expensesCheckbok: UIImageView!
+    
     
     
     // MARK: Action
@@ -54,12 +61,30 @@ class RecordExpensesViewController: UIViewController{
         type = 2
         COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         OTHERSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        recurringButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        recurringCheckbox.image = UIImage(named: "record-blue-fade")
+        expensesCheckbok.image = UIImage(named: "record-blue")
+        COGSCheckbox.image = UIImage(named: "record-blue-fade")
     }
     
     @IBAction func selectCOGSType(sender: UIButton) {
         type = 1
         COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         OTHERSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        recurringButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        recurringCheckbox.image = UIImage(named: "record-blue-fade")
+        expensesCheckbok.image = UIImage(named: "record-blue-fade")
+        COGSCheckbox.image = UIImage(named: "record-blue")
+    }
+    
+    @IBAction func selectRecurring(sender: UIButton) {
+        type = 3
+        COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        OTHERSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        recurringButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        recurringCheckbox.image = UIImage(named: "record-blue")
+        expensesCheckbok.image = UIImage(named: "record-blue-fade")
+        COGSCheckbox.image = UIImage(named: "record-blue-fade")
     }
     
     func SubmitRecord(completionHandler: CompletionHandler) {

@@ -226,7 +226,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                         } else if (type == 2) {
                             typeString = "Expenses"
                         } else if (type == 3){
-                            typeString = "fixMonthlyExpenses"
+                            typeString = "Fixed Monthly Expenses"
                         }
                         
                         var description = object["description"]
