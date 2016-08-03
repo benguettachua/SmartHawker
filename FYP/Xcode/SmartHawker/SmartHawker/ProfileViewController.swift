@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController {
         }
         
         
-        2
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
         self.profilePicture.clipsToBounds = true;
         self.profilePicture.layer.borderWidth = 3.0;
