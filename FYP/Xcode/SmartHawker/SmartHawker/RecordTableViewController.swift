@@ -77,12 +77,6 @@ class RecordTableViewController: UITableViewController, MyCustomerCellDelegator 
         cell.amountLabel.text = String(self.items[indexPath.section][indexPath.row].amount)
         
         cell.backgroundColor = UIColor.lightGrayColor()
-        
-        /*
-        cell.sectionSelected = indexPath.section
-        cell.rowSelected = indexPath.row
-        cell.delegate = self
- */
         return cell
     }
     

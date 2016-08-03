@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
                 
                 // Set first log in to true, so that prompt to retrieve from DB will appear.
                 let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setBool(true, forKey: "firstTimeLogin")
+                defaults.setBool(true, forKey: "justLoggedIn")
                 
                 // Get all subusers' PIN and save into an array
                 self.getSubUserPINs(user!, completionHandler: { (success) -> Void in

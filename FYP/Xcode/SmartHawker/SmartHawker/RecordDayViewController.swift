@@ -199,7 +199,11 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
         records.removeAll()
+        let isSubUser = shared.isSubUser
         let query = PFQuery(className: "Record")
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
         query.whereKey("user", equalTo: user!)
         query.whereKey("date", equalTo: shared.dateString)
         query.fromLocalDatastore()
@@ -253,6 +257,10 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         var records = [RecordTable]()
         let dateString = self.shared.dateString
         let query = PFQuery(className: "Record")
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
         query.whereKey("user", equalTo: user!)
         query.whereKey("date", equalTo: dateString)
         query.fromLocalDatastore()

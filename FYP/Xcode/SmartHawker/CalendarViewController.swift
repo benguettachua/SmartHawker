@@ -158,6 +158,10 @@ class CalendarViewcontroller: UIViewController{
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
         let query = PFQuery(className: "Record")
+        let isSubUser = toShare.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: toShare.subuser)
+        }
         query.whereKey("user", equalTo: user!)
         query.fromLocalDatastore()
         query.findObjectsInBackgroundWithBlock {

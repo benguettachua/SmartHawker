@@ -17,6 +17,7 @@ class SyncViewController: UIViewController {
     
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
+    var shared = ShareData.sharedInstance
     
     // MARK: Action
     @IBAction func Logout(sender: UIBarButtonItem) {
@@ -47,9 +48,9 @@ class SyncViewController: UIViewController {
         alertController.addAction(ok)
         alertController.addAction(cancel)
         presentViewController(alertController, animated: true, completion: nil)
-    
+        
     }
-
+    
     @IBAction func uploadRecordsOnline(sender: UIButton) {
         let alertController = UIAlertController(title: "Confirmation", message: "Are you sure you want to sync records to database?", preferredStyle: .Alert)
         let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
@@ -74,9 +75,9 @@ class SyncViewController: UIViewController {
         alertController.addAction(cancel)
         presentViewController(alertController, animated: true, completion: nil)
     }
-
-
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,6 +101,10 @@ class SyncViewController: UIViewController {
     func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
         // Part 1: Load from DB and pin into local datastore.
         let query = PFQuery(className: "Record")
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
         query.whereKey("user", equalTo: user!)
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -127,37 +132,45 @@ class SyncViewController: UIViewController {
     func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
         
         // Remove all records in DB.
-       // removeRecordsFromDB { (success) in
+        // removeRecordsFromDB { (success) in
         //    if (success) {
-                // Save all local records into DB.
-                let query = PFQuery(className: "Record")
-                query.fromLocalDatastore()
-                query.whereKey("user", equalTo: self.user!)
-                query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-                    
-                    if error == nil {
-                        for object in objects! {
-                            object.pinInBackground()
-                            object.saveInBackground()
-                        }
-                        completionHandler(success: true)
-                    } else {
-                        // Log details of the failure
-                        print("Error: \(error!) \(error!.userInfo)")
-                        completionHandler(success: false)
-                    }
+        // Save all local records into DB.
+        let query = PFQuery(className: "Record")
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: self.user!)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                for object in objects! {
+                    object.pinInBackground()
+                    object.saveInBackground()
                 }
-
-          //  } else {
-            //    print("Failed to delete records.")
-           // }
-       // }
+                completionHandler(success: true)
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+        
+        //  } else {
+        //    print("Failed to delete records.")
+        // }
+        // }
         
     }
     
     func removeRecordsFromDB(completionHandler: CompletionHandler) {
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {

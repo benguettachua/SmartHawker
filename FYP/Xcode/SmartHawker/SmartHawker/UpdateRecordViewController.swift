@@ -118,6 +118,10 @@ class UpdateRecordViewController: UIViewController {
         var records = [RecordTable]()
         let dateString = self.shared.dateString
         let query = PFQuery(className: "Record")
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
         query.whereKey("user", equalTo: user!)
         query.whereKey("date", equalTo: dateString)
         query.fromLocalDatastore()

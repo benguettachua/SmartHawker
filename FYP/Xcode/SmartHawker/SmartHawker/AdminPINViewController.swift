@@ -17,7 +17,6 @@ class AdminPINViewController: UIViewController {
     var shared = ShareData.sharedInstance
     var PINS = [String]()
     var subuser = "Standard Sub User"
-    var numOfRecordsInLocal = 0
     
     // Text Fields
     @IBOutlet weak var adminPINTextField: UITextField!
@@ -53,22 +52,21 @@ class AdminPINViewController: UIViewController {
         }
         PINS = (defaults.objectForKey("allPINS") as? [String])!
         print(PINS)
-        
-        // check number of records in local
-        checkNumOfRecordsInLocal()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
-        print(numOfRecordsInLocal)
-        if (numOfRecordsInLocal == 0) {
-            let alertController = UIAlertController(title: "Welcome", message: "There is no record on your phone. Do you want to retrieve past records online?", preferredStyle: .Alert)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let justLoggedIn = defaults.boolForKey("justLoggedIn")
+        if (justLoggedIn == true) {
+            let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
             let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
                 
                 self.loadRecordsIntoLocalDatastore({ (success) -> Void in
                     if (success) {
                         let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: {(action) -> Void in
+                            defaults.setBool(false, forKey: "justLoggedIn")
+                        })
                         alertController.addAction(ok)
                         self.presentViewController(alertController, animated: true,completion: nil)
                     } else {
@@ -96,17 +94,10 @@ class AdminPINViewController: UIViewController {
             // Sub User logging-in
             self.shared.isSubUser = true
             getSubuser(adminPINTextField.text!, completionHandler: { (success) in
-                if (success) {
-                    self.filterBySubuser(self.subuser, completionHandler: { (success) in
-                        if (success) {
-                            self.shared.subuser = self.subuser
-                            self.performSegueWithIdentifier("toMain", sender: self)
-                        }
-                    })
-                    
-                }
+                self.shared.subuser = self.subuser
+                self.performSegueWithIdentifier("toMain", sender: self)
             })
-            
+
         } else {
             // Validate if admin pin entered is the one registered.
             adminPINTextField.text = ""
@@ -148,27 +139,6 @@ class AdminPINViewController: UIViewController {
         }
     }
     
-    func filterBySubuser(subuser: String, completionHandler: CompletionHandler) {
-        let query = PFQuery(className: "Record")
-        query.fromLocalDatastore()
-        query.whereKey("user", equalTo: user!)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                for object in objects! {
-                    let objectSubuser = object["subuser"] as? String
-                    if (objectSubuser != subuser) {
-                        do{try object.unpin()} catch {} // Remove records that do not belong to this user
-                    }
-                }
-                completionHandler(success: true)
-            } else {
-                print("Error encountered at clearing local datastore")
-                completionHandler(success: false)
-            }
-        }
-    }
-    
     func getSubuser(pin: String, completionHandler: CompletionHandler){
         let query = PFQuery(className: "SubUser")
         query.whereKey("pin", equalTo: pin)
@@ -185,20 +155,4 @@ class AdminPINViewController: UIViewController {
         }
     }
     
-    func checkNumOfRecordsInLocal() {
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        query.fromLocalDatastore()
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) in
-            if (error == nil) {
-                if (objects != nil) {
-                    self.numOfRecordsInLocal = objects!.count
-                    for object in objects! {
-                        print(object)
-                    }
-                }
-            }
-        }
-    }
 }

@@ -21,7 +21,6 @@ class RecordExpensesViewController: UIViewController{
     @IBOutlet weak var todayDateLabel: UILabel!
     @IBOutlet weak var recordSuccessLabel: UILabel!
     
-    
     // Text Fields
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
