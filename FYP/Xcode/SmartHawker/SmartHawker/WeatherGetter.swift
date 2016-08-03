@@ -36,12 +36,12 @@ class WeatherGetter {
     
     func getWeatherByCity(city: String) {
         let weatherRequestURL = NSURL(string: "\(openWeatherMapBaseURL)?APPID=\(openWeatherMapAPIKey)&q=\(city)")!
-        print(weatherRequestURL)
         getWeather(weatherRequestURL)
     }
     
     func getWeatherByCoordinates(latitude latitude: Double, longitude: Double) {
         let weatherRequestURL = NSURL(string: "\(openWeatherMapBaseURL)?APPID=\(openWeatherMapAPIKey)&lat=\(latitude)&lon=\(longitude)")!
+        
         getWeather(weatherRequestURL)
     }
     
@@ -87,5 +87,6 @@ class WeatherGetter {
         // The data task is set up...launch it!
         dataTask.resume()
     }
+
     
 }

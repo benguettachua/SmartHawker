@@ -305,8 +305,12 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
             dateArray.append(correctDate!)
         }
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
+        if dateArray.count != 0{
         let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
         lastRecordLabel.text = "Your last record was on: " + dateStringToDisplay
+        }else{
+            lastRecordLabel.text = "Your have yet to make any records."
+        }
     }
     
 
@@ -405,6 +409,10 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
         let weather = WeatherGetter(delegate: self)
+        print("lat")
+        print(newLocation.coordinate.latitude)
+        print("lon")
+        print(newLocation.coordinate.longitude)
         weather.getWeatherByCoordinates(latitude: newLocation.coordinate.latitude,
                                         longitude: newLocation.coordinate.longitude)
     }
@@ -416,6 +424,8 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
         dispatch_async(dispatch_get_main_queue()) {
             self.showSimpleAlert(title: "Can't determine your location",
                                  message: "The GPS and other location services aren't responding.")
+            self.weatherLabel.text = "Please connect to the internet"
+            self.temperatureLabel.text = ""
         }
         print("locationManager didFailWithError: \(error)")
     }
