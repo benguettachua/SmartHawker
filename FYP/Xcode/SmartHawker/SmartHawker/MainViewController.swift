@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftMoment
+import CoreLocation;
 
-class MainViewcontroller: UIViewController, WeatherGetterDelegate, UITextFieldDelegate{
+class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationManagerDelegate{
     
     // Mark: Properties
     var tempCounter = 0
@@ -18,6 +19,7 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, UITextFieldDe
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
     var datesAndRecords = [String:[RecordTable]]()
+    let locationManager = CLLocationManager()
     
     //for highest , lowest and average
     @IBOutlet weak var lowestSales: UILabel!
@@ -53,9 +55,7 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, UITextFieldDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let weather1 = WeatherGetter(delegate: self)
-        weather1.getWeatherByCity("Singapore")
         
         getLatestDate()
         var toDisplayDate = "Overview as of "
@@ -86,7 +86,7 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, UITextFieldDe
         let correctDateString = dateFormatter.stringFromDate(NSDate())
         
         loadRecordsFromLocaDatastore({ (success) -> Void in
-            
+            self.getLocation()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             
 
@@ -352,5 +352,73 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, UITextFieldDe
             animated: true,
             completion: nil
         )
+    }
+    
+    // MARK: - CLLocationManagerDelegate and related methods
+    
+    func getLocation() {
+        guard CLLocationManager.locationServicesEnabled() else {
+            showSimpleAlert(
+                title: "Please turn on location services",
+                message: "This app needs location services in order to report the weather " +
+                    "for your current location.\n" +
+                "Go to Settings → Privacy → Location Services and turn location services on."
+            )
+            return
+        }
+        
+        let authStatus = CLLocationManager.authorizationStatus()
+        guard authStatus == .AuthorizedWhenInUse else {
+            switch authStatus {
+            case .Denied, .Restricted:
+                let alert = UIAlertController(
+                    title: "Location services for this app are disabled",
+                    message: "In order to get your current location, please open Settings for this app, choose \"Location\"  and set \"Allow location access\" to \"While Using the App\".",
+                    preferredStyle: .Alert
+                )
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                let openSettingsAction = UIAlertAction(title: "Open Settings", style: .Default) {
+                    action in
+                    if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
+                }
+                alert.addAction(cancelAction)
+                alert.addAction(openSettingsAction)
+                presentViewController(alert, animated: true, completion: nil)
+                return
+                
+            case .NotDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                
+            default:
+                print("Oops! Shouldn't have come this far.")
+            }
+            
+            return
+        }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.requestLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let newLocation = locations.last!
+        print(newLocation.coordinate.latitude)
+        print(newLocation.coordinate.longitude)
+        weather1.getWeatherByCoordinates(latitude: newLocation.coordinate.latitude,
+                                        longitude: newLocation.coordinate.longitude)
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        // This method is called asynchronously, which means it won't execute in the main queue.
+        // All UI code needs to execute in the main queue, which is why we're wrapping the call
+        // to showSimpleAlert(title:message:) in a dispatch_async() call.
+        dispatch_async(dispatch_get_main_queue()) {
+            self.showSimpleAlert(title: "Can't determine your location",
+                                 message: "The GPS and other location services aren't responding.")
+        }
+        print("locationManager didFailWithError: \(error)")
     }
 }
