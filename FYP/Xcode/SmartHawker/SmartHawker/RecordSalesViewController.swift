@@ -112,7 +112,7 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
             toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
             toRecord["description"] = descriptionToRecord
             // Save to local datastore
-            toRecord.pinInBackground()
+            do{ try toRecord.pin() } catch {}
             array.append(dateString)
             didRecord = true
         }
