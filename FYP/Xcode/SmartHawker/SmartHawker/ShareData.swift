@@ -24,6 +24,7 @@ class ShareData {
     }
     
     var isSubUser = false
+    var subuser: String!
     var storeDate: Moment!
     var dateSelected: String!
     var dateString: String!

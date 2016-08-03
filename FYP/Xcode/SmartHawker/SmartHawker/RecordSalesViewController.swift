@@ -34,10 +34,9 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var settings: UIBarButtonItem!
     
+    // Variables
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
-
-
     var shared = ShareData.sharedInstance // This is the date selected from Main Calendar.
     
     // Array to store the records
@@ -90,6 +89,7 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
         let descriptionToRecord = descriptionTextField.text
         let amountToRecord = Int(amountTextField.text!)
         var didRecord = false
+        let isSubUser = shared.isSubUser
         
         // Get the date to save in DB.
         let dateString = self.shared.dateString
@@ -104,7 +104,11 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
             toRecord["amount"] = amountToRecord
             toRecord["user"] = PFUser.currentUser()
             toRecord["type"] = type
-            toRecord["subuser"] = PFUser.currentUser()?.username
+            if (isSubUser) {
+                toRecord["subuser"] = shared.subuser
+            } else {
+                toRecord["subuser"] = PFUser.currentUser()?.username
+            }
             toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
             toRecord["description"] = descriptionToRecord
             // Save to local datastore

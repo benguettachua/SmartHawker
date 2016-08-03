@@ -92,9 +92,9 @@ class AdminPINViewController: UIViewController {
             self.shared.isSubUser = true
             getSubuser(adminPINTextField.text!, completionHandler: { (success) in
                 if (success) {
-                    
                     self.filterBySubuser(self.subuser, completionHandler: { (success) in
                         if (success) {
+                            self.shared.subuser = self.subuser
                             self.performSegueWithIdentifier("toMain", sender: self)
                         }
                     })
@@ -153,7 +153,7 @@ class AdminPINViewController: UIViewController {
                 for object in objects! {
                     let objectSubuser = object["subuser"] as? String
                     if (objectSubuser != subuser) {
-                        do{try object.unpin()} catch {}
+                        do{try object.unpin()} catch {} // Remove records that do not belong to this user
                     }
                 }
                 completionHandler(success: true)
