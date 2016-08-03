@@ -16,7 +16,8 @@ class AdminPINViewController: UIViewController {
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
     var PINS = [String]()
-    var subuser = "subsub"
+    var subuser = "Standard Sub User"
+    var numOfRecordsInLocal = 0
     
     // Text Fields
     @IBOutlet weak var adminPINTextField: UITextField!
@@ -31,10 +32,11 @@ class AdminPINViewController: UIViewController {
     // Nav Bar
     @IBOutlet weak var navBar: UINavigationBar!
     
-    
     //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Activity Indicator
         
         navBar.topItem!.title = "Enter Admin PIN".localized()
         submitButton.setTitle("Submit".localized(), forState: .Normal)
@@ -47,6 +49,34 @@ class AdminPINViewController: UIViewController {
         PINS = (defaults.objectForKey("allPINS") as? [String])!
         print(PINS)
         
+        // check number of records in local
+        checkNumOfRecordsInLocal()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print(numOfRecordsInLocal)
+        if (numOfRecordsInLocal == 0) {
+            let alertController = UIAlertController(title: "Welcome", message: "There is no record on your phone. Do you want to retrieve past records online?", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+                
+                self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                    if (success) {
+                        let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    } else {
+                        print("Retrieval failed!")
+                    }
+                })
+                
+            })
+            let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+            alertController.addAction(ok)
+            alertController.addAction(no)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     // MARK: Action
@@ -55,33 +85,8 @@ class AdminPINViewController: UIViewController {
         let pin = user!["adminPin"]
         if ((pin as! String == adminPINTextField.text!) == true) {
             // Admin logs in
-            let defaults = NSUserDefaults.standardUserDefaults()
-            let firstTimeLogin = defaults.boolForKey("firstTimeLogin")
-            // First time logging in, ask if user wants to retrieve records from DB
-            if (firstTimeLogin == true) {
-                let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
-                let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
-                    
-                    self.loadRecordsIntoLocalDatastore({ (success) -> Void in
-                        if (success) {
-                            defaults.setBool(false, forKey: "firstTimeLogin")
-                            self.performSegueWithIdentifier("toMain", sender: self)
-                        } else {
-                            print("Retrieval failed!")
-                        }
-                    })
-                    
-                })
-                let cancel = UIAlertAction(title: "No", style: .Cancel) { (action) -> Void in
-                    defaults.setBool(false, forKey: "firstTimeLogin")
-                    self.performSegueWithIdentifier("toMain", sender: self)
-                }
-                alertController.addAction(ok)
-                alertController.addAction(cancel)
-                presentViewController(alertController, animated: true, completion: nil)
-            } else {
-                self.performSegueWithIdentifier("toMain", sender: self)
-            }
+            self.performSegueWithIdentifier("toMain", sender: self)
+            
         } else if (PINS.contains(adminPINTextField.text!)) {
             // Sub User logging-in
             self.shared.isSubUser = true
@@ -90,9 +95,6 @@ class AdminPINViewController: UIViewController {
                     
                     self.filterBySubuser(self.subuser, completionHandler: { (success) in
                         if (success) {
-                            print("filtered")
-                            let defaults = NSUserDefaults.standardUserDefaults()
-                            defaults.setBool(true, forKey: "firstTimeLogin")
                             self.performSegueWithIdentifier("toMain", sender: self)
                         }
                     })
@@ -151,7 +153,7 @@ class AdminPINViewController: UIViewController {
                 for object in objects! {
                     let objectSubuser = object["subuser"] as? String
                     if (objectSubuser != subuser) {
-                        object.unpinInBackground()
+                        do{try object.unpin()} catch {}
                     }
                 }
                 completionHandler(success: true)
@@ -174,6 +176,23 @@ class AdminPINViewController: UIViewController {
                 completionHandler(success: true)
             } else {
                 print("retrieval failed")
+            }
+        }
+    }
+    
+    func checkNumOfRecordsInLocal() {
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) in
+            if (error == nil) {
+                if (objects != nil) {
+                    self.numOfRecordsInLocal = objects!.count
+                    for object in objects! {
+                        print(object)
+                    }
+                }
             }
         }
     }
