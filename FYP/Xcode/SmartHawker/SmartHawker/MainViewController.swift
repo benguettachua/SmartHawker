@@ -42,9 +42,9 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
     @IBOutlet weak var overviewLabel: UILabel!
     
     //for weather
-    @IBOutlet weak var weather: UILabel!
-    @IBOutlet weak var temperature: UILabel!
-    var weather1: WeatherGetter!
+    @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    var weather: WeatherGetter!
     
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
@@ -55,7 +55,6 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let weather1 = WeatherGetter(delegate: self)
         
         getLatestDate()
         var toDisplayDate = "Overview as of "
@@ -319,8 +318,8 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
         // ALl UI code needs to execute in the main queue, which is why we're wrapping the code
         // that updates all the labels in a dispatch_async() call.
         dispatch_async(dispatch_get_main_queue()) {
-            self.weather.text = weather.weatherDescription
-            self.temperature.text = "\(Int(round(weather.tempCelsius)))°"
+            self.weatherLabel.text = weather.weatherDescription
+            self.temperatureLabel.text = "\(Int(round(weather.tempCelsius)))°"
         }
     }
     
@@ -405,9 +404,8 @@ class MainViewcontroller: UIViewController, WeatherGetterDelegate, CLLocationMan
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
-        print(newLocation.coordinate.latitude)
-        print(newLocation.coordinate.longitude)
-        weather1.getWeatherByCoordinates(latitude: newLocation.coordinate.latitude,
+        let weather = WeatherGetter(delegate: self)
+        weather.getWeatherByCoordinates(latitude: newLocation.coordinate.latitude,
                                         longitude: newLocation.coordinate.longitude)
     }
     
