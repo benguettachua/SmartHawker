@@ -209,6 +209,10 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         
     }
 
+    @IBAction func refreshWeather(sender: UIButton) {
+        self.getLocation()
+    }
+    
     
     @IBAction func Logout(sender: UIBarButtonItem) {
         let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
@@ -415,7 +419,10 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             if let networkError = error {
                 // Case 1: Error
                 // An error occurred while trying to get data from the server.
-                //self.delegate.didNotGetWeather(networkError)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.showSimpleAlert(title: "Can't get the weather",
+                                         message: "The weather service isn't responding.")
+                }
             }
             else {
                 // Case 2: Success
@@ -435,7 +442,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     let temperature = String(weatherData["main"]!["temp"]!! as! Double - 273.15)
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.temperatureLabel.text = String(weatherData["main"]!["temp"]!! as! Double - 273.15)
+                        self.temperatureLabel.text = temperature
                         self.weatherLabel.text = weather
                     }
                     print(weather)
