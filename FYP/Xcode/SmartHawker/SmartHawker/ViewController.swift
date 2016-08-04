@@ -70,6 +70,7 @@ class ViewController: UIViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
+                print(language)
             })
             actionSheet.addAction(languageAction)
         }
