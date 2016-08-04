@@ -6,7 +6,6 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("lalala")
     }
     
     @IBAction func showComponent(sender: UISegmentedControl) {

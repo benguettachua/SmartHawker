@@ -70,14 +70,19 @@ class SettingsViewController: UIViewController {
         self.profilePicture.layer.borderWidth = 3.0;
         self.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor;
         
-        let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String!
-        if lang == "zh-Hans"{
-            languageLabel.text = "华语"
+        if NSUserDefaults.standardUserDefaults().objectForKey("langPref") == nil{
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject("en", forKey: "langPref")
+            displayNotificationStatus.text = "English"
         }else{
-            languageLabel.text = "English"
+            let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String!
+            if lang == "zh-Hans"{
+                languageLabel.text = "华语"
+            }else{
+                languageLabel.text = "English"
         
         }
-
+        }
         if NSUserDefaults.standardUserDefaults().objectForKey("notification") == nil{
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject("Off", forKey: "notification")

@@ -2654,9 +2654,6 @@
                                 <rect key="frame" x="91" y="243" width="232" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="TEMP BUTTON TO GO SETTINGS"/>
-                                <connections>
-                                    <segue destination="BmK-Yc-z8G" kind="modal" id="WVe-kO-IBD"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4082,11 +4079,7 @@ Cg
                                 <color key="barTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="My Sub Users" id="L37-8E-orT">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="TdB-Dp-pdK">
-                                            <connections>
-                                                <segue destination="BmK-Yc-z8G" kind="modal" id="Jg2-k5-eAs"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="TdB-Dp-pdK"/>
                                         <barButtonItem key="rightBarButtonItem" title="New" id="9Wn-P5-VqJ">
                                             <connections>
                                                 <segue destination="Uyj-lj-A04" kind="modal" id="yqG-OE-sKK"/>
@@ -4244,10 +4237,10 @@ Cg
             </objects>
             <point key="canvasLocation" x="1240" y="-1383"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Edit View Controller-->
         <scene sceneID="uL3-j9-qGT">
             <objects>
-                <viewController id="BmK-Yc-z8G" customClass="SettingsViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BmK-Yc-z8G" userLabel="Edit View Controller" customClass="EditViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="so7-wG-n00"/>
                         <viewControllerLayoutGuide type="bottom" id="aom-Zc-DRN"/>
@@ -4273,7 +4266,7 @@ Cg
                                             </barButtonItem>
                                             <barButtonItem title="Back" id="kWe-KZ-kyJ">
                                                 <connections>
-                                                    <segue destination="2IV-Dn-hU7" kind="modal" id="6m0-ge-DH6"/>
+                                                    <segue destination="E1d-M1-Oi5" kind="modal" id="H9W-cM-7uq"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -4480,7 +4473,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdd-Ki-AT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2357" y="346"/>
+            <point key="canvasLocation" x="3051" y="-499"/>
         </scene>
         <!--Tax Calculation Info-->
         <scene sceneID="2PQ-dp-sgY">
@@ -5148,14 +5141,14 @@ Cg
                                     <action selector="switchOnOrOff:" destination="s28-q7-ZIN" eventType="touchUpInside" id="gaV-p9-9U1"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIk-4X-eqF">
-                                <rect key="frame" x="13" y="311" width="101" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On/Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plh-Bx-CTF">
+                                <rect key="frame" x="231" y="311" width="53" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On/Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plh-Bx-CTF">
-                                <rect key="frame" x="231" y="311" width="53" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9b-yl-zsj">
+                                <rect key="frame" x="41" y="357" width="85" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -5178,31 +5171,31 @@ Cg
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-GR-jzc">
                                 <rect key="frame" x="356" y="33" width="30" height="30"/>
                                 <state key="normal" title="Edit"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdB-xZ-6c9">
-                                <rect key="frame" x="13" y="547" width="200" height="30"/>
-                                <state key="normal" title="TEMP BUTTON TO GO SYNC"/>
                                 <connections>
-                                    <segue destination="qVh-6G-M6I" kind="modal" id="3iK-vC-RZN"/>
+                                    <segue destination="BmK-Yc-z8G" kind="modal" id="ACy-5X-86w"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdB-xZ-6c9">
+                                <rect key="frame" x="39" y="544" width="200" height="30"/>
+                                <state key="normal" title="TEMP BUTTON TO GO SYNC"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pl8-4B-x0I">
-                                <rect key="frame" x="13" y="263" width="349" height="30"/>
+                                <rect key="frame" x="39" y="268" width="349" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Password"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2M6-Qq-L4Y">
-                                <rect key="frame" x="13" y="400" width="347" height="30"/>
+                                <rect key="frame" x="41" y="489" width="347" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Frequently Asked Questions"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-OI-rlw">
-                                <rect key="frame" x="13" y="445" width="373" height="30"/>
+                                <rect key="frame" x="39" y="398" width="321" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Privacy"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0j-Kc-o53">
-                                <rect key="frame" x="13" y="488" width="381" height="30"/>
+                                <rect key="frame" x="39" y="441" width="329" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Contact Us"/>
                             </button>
@@ -5212,8 +5205,8 @@ Cg
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9b-yl-zsj">
-                                <rect key="frame" x="13" y="357" width="85" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIk-4X-eqF">
+                                <rect key="frame" x="39" y="311" width="101" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -5338,13 +5331,13 @@ Cg
         <image name="third-box" width="339" height="140"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V3i-Up-iFk"/>
+        <segue reference="zCT-4x-zu5"/>
+        <segue reference="e3B-Xc-vDw"/>
+        <segue reference="ipa-vH-qnU"/>
+        <segue reference="H9W-cM-7uq"/>
+        <segue reference="lLw-bV-MvR"/>
         <segue reference="z5J-Aa-r0o"/>
         <segue reference="kRA-ns-zPH"/>
-        <segue reference="WVe-kO-IBD"/>
-        <segue reference="zCT-4x-zu5"/>
-        <segue reference="lLw-bV-MvR"/>
-        <segue reference="e3B-Xc-vDw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

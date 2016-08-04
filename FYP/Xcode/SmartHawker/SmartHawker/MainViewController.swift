@@ -436,7 +436,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     // If we made it to this point, we've successfully converted the
                     // JSON-formatted weather data into a Swift dictionary.
                     // Let's now used that dictionary to initialize a Weather struct.
-                    print("Weather ID: \(weatherData["weather"]![0]!["id"]!!)")
                     let weather = weatherData["weather"]![0]!["description"]!! as? String
                     
                     let temperature = String(weatherData["main"]!["temp"]!! as! Double - 273.15)
@@ -445,8 +444,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                         self.temperatureLabel.text = temperature
                         self.weatherLabel.text = weather
                     }
-                    print(weather)
-                    print(temperature)
                   // Now that we have the Weather struct, let's notify the view controller,
                     // which will use it to display the weather to the user.
                 }

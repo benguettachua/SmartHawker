@@ -263,9 +263,6 @@ class SummaryController: UIViewController {
             var salesAmount = 0.0
             var expensesAmount = 0.0
             dataPoints.append(stringToCheck)
-            print(daysInWeek)
-            print("seperator")
-            print(stringToCheck)
             for record in self.records {
                 if record.date.containsString(stringToCheck){
                     let type = record.type

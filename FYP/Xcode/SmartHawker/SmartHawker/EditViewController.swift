@@ -437,7 +437,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         let imageData = UIImageJPEGRepresentation(chosenImage, 100)
-        print(imageData!.length < 9999999)
         
         if imageData!.length < 9999999{
             let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
