@@ -23,6 +23,10 @@ class ContactUsPage: UIViewController {
         self.title = "Contact Helpdesk".localized()
         back.title = "Back".localized()
     }
+    
+    @IBAction func back(sender: UIBarButtonItem){
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
 
     
 }

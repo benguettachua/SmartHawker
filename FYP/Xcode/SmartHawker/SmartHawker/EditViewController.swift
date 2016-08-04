@@ -24,7 +24,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var profilePicture: UIImageView!
     typealias CompletionHandler = (success: Bool) -> Void
     @IBOutlet var information: UILabel!
-    @IBOutlet weak var back: UIBarButtonItem!
+    @IBOutlet weak var back: UIButton!
     
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance

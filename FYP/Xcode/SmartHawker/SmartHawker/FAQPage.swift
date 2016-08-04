@@ -23,5 +23,8 @@ class FAQPage: UIViewController {
         back.title = "Back".localized()
     }
     
+    @IBAction func back(sender: UIBarButtonItem){
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
     
 }

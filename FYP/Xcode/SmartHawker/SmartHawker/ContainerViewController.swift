@@ -3,9 +3,19 @@ import UIKit
 class ContainerViewController: UIViewController {
     @IBOutlet weak var containerViewA: UIView!
     @IBOutlet weak var containerViewB: UIView!
+    @IBOutlet weak var selector: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.containerViewA.alpha = 1
+        self.containerViewB.alpha = 0
+        
+        selector.selectedSegmentIndex = 0
+        
     }
     
     @IBAction func showComponent(sender: UISegmentedControl) {
