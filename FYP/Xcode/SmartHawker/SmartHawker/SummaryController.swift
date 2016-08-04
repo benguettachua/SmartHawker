@@ -125,7 +125,7 @@ class SummaryController: UIViewController {
                         } else if (type == 2) {
                             typeString = "Expenses"
                         } else if (type == 3){
-                            typeString = "fixMonthlyExpenses"
+                            typeString = "Expenses"
                         }
                         
                         var description = object["description"]
@@ -281,6 +281,8 @@ class SummaryController: UIViewController {
                     } else if (type == "Expenses") {
                         expensesAmount += amount
                         totalExpensesAmount += amount
+                        print(record.date)
+                        print(amount)
                     }
                     
                 }

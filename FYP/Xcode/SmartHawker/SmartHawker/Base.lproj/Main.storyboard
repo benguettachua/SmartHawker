@@ -1771,18 +1771,14 @@
                                 <color key="barTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Analytics" id="GLG-jb-NFd">
-                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="WtM-ny-g3i">
-                                            <connections>
-                                                <action selector="logout:" destination="0cL-cQ-vI3" id="J9W-Wp-SN7"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="WtM-ny-g3i"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4c-DP-f4Y">
                                 <rect key="frame" x="-6" y="64" width="414" height="750"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFF-zg-Gwp" customClass="CombinedChartView" customModule="Charts">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFF-zg-Gwp" customClass="LineChartView" customModule="Charts">
                                         <rect key="frame" x="0.0" y="78" width="414" height="340"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1831,7 +1827,7 @@
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="combinedChartView" destination="LFF-zg-Gwp" id="wXP-j7-QJ7"/>
+                        <outlet property="chart" destination="LFF-zg-Gwp" id="Gac-dw-VdG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nni-Ma-9fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
