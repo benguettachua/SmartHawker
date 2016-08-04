@@ -422,10 +422,10 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uMG-e4-t3E">
-                                        <rect key="frame" x="127" y="561" width="374" height="30"/>
+                                        <rect key="frame" x="127" y="561" width="160" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-Kb-bmT">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                                                 <color key="backgroundColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="crf-GT-pJk"/>
@@ -437,7 +437,7 @@
                                                 </connections>
                                             </button>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-7u-RcD">
-                                                <rect key="frame" x="0.0" y="30" width="374" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="30" width="160" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="374" id="3lB-1X-Ka8"/>
                                                     <constraint firstAttribute="height" constant="50" id="UUg-FG-hDs"/>
@@ -2686,7 +2686,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w13-qH-iCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="351"/>
+            <point key="canvasLocation" x="1893" y="326"/>
         </scene>
         <!--faqPage-->
         <scene sceneID="bpT-j9-o1U">
@@ -3668,7 +3668,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT7-ZU-Dh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2136" y="-2232"/>
+            <point key="canvasLocation" x="2579" y="428"/>
         </scene>
         <!--contactUsPage-->
         <scene sceneID="0fP-DE-K2i">
@@ -3996,7 +3996,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oa6-Dm-AcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677" y="-2241"/>
+            <point key="canvasLocation" x="3109" y="428"/>
         </scene>
         <!--Sub User View Controller-->
         <scene sceneID="rth-Of-ba0">
@@ -4261,12 +4261,12 @@ Cg
                                             <barButtonItem image="left-button-2" id="SV2-JV-KdG">
                                                 <inset key="imageInsets" minX="-20" minY="-5" maxX="-65" maxY="0.0"/>
                                                 <connections>
-                                                    <segue destination="2IV-Dn-hU7" kind="modal" id="ipa-vH-qnU"/>
+                                                    <action selector="back:" destination="BmK-Yc-z8G" id="9LQ-v7-p1C"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Back" id="kWe-KZ-kyJ">
                                                 <connections>
-                                                    <segue destination="E1d-M1-Oi5" kind="modal" id="H9W-cM-7uq"/>
+                                                    <action selector="back:" destination="BmK-Yc-z8G" id="Qhc-CE-Bx3"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -4461,6 +4461,7 @@ Cg
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="adminPin" destination="XUA-Uc-RdF" id="pSg-Qx-fm7"/>
+                        <outlet property="back" destination="kWe-KZ-kyJ" id="70v-T0-DoH"/>
                         <outlet property="businessAddress" destination="O9d-I6-TKg" id="mjb-dO-TdB"/>
                         <outlet property="businessName" destination="iHI-BV-Gsi" id="9TB-1E-OYJ"/>
                         <outlet property="businessRegNo" destination="9uE-aW-6dT" id="fX3-qk-AP1"/>
@@ -4473,7 +4474,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdd-Ki-AT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3051" y="-499"/>
+            <point key="canvasLocation" x="3026" y="-484"/>
         </scene>
         <!--Tax Calculation Info-->
         <scene sceneID="2PQ-dp-sgY">
@@ -5231,7 +5232,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yve-Hz-1af" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568" y="-492"/>
+            <point key="canvasLocation" x="2571" y="-492"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bvM-qP-ASN">
@@ -5333,11 +5334,10 @@ Cg
     <inferredMetricsTieBreakers>
         <segue reference="zCT-4x-zu5"/>
         <segue reference="e3B-Xc-vDw"/>
-        <segue reference="ipa-vH-qnU"/>
-        <segue reference="H9W-cM-7uq"/>
-        <segue reference="lLw-bV-MvR"/>
-        <segue reference="z5J-Aa-r0o"/>
+        <segue reference="V3i-Up-iFk"/>
+        <segue reference="HIF-vH-vss"/>
         <segue reference="kRA-ns-zPH"/>
+        <segue reference="lLw-bV-MvR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

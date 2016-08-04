@@ -13,6 +13,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     // MARK: Properties
     let picker = UIImagePickerController()
+    
     @IBOutlet weak var username: UITextView!
     @IBOutlet weak var businessName: UITextView!
     @IBOutlet weak var businessRegNo: UITextView!
@@ -23,6 +24,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var profilePicture: UIImageView!
     typealias CompletionHandler = (success: Bool) -> Void
     @IBOutlet var information: UILabel!
+    @IBOutlet weak var back: UIBarButtonItem!
     
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
@@ -33,6 +35,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         picker.delegate = self
         if let userPicture = user!["profilePicture"] as? PFFile {
@@ -53,6 +56,10 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         
         
+    }
+    
+    @IBAction func back(sender: UIBarButtonItem){
+        self.dismissViewControllerAnimated(true, completion: {})
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
