@@ -14,6 +14,7 @@ class CalendarViewcontroller: UIViewController{
     
     // Mark: Properties
     // Top Bar
+    @IBOutlet weak var todayRecordView: UIView!
 
     @IBOutlet weak var calendar: CalendarView!
     @IBOutlet weak var profitText: UILabel!
@@ -74,6 +75,7 @@ class CalendarViewcontroller: UIViewController{
             calendar.selectDate(toShare.storeDate)
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
         }
+        todayRecordView.backgroundColor = UIColor(white: 1, alpha: 0.3)
 
     }
     
@@ -144,10 +146,21 @@ class CalendarViewcontroller: UIViewController{
             }
             
         }
+
+        // Sales Label
+        let salesString2dp = "$" + String(format:"%.2f", salesAmount)
+        self.salesText.text = salesString2dp
+        self.salesText.font = UIFont(name: salesText.font.fontName, size: 24)
         
-        self.salesText.text = String(salesAmount)
-        self.expensesText.text = String(expensesAmount)
-        self.profitText.text = String(salesAmount - expensesAmount)
+        // Expenses Label
+        let expensesString2dp = "$" + String(format:"%.2f", expensesAmount)
+        self.expensesText.text = expensesString2dp
+        self.expensesText.font = UIFont(name: expensesText.font.fontName, size: 24)
+        
+        // Profit Label
+        let profitString2dp = "$" + String(format:"%.2f", (salesAmount-expensesAmount))
+        self.profitText.text = profitString2dp
+        self.profitText.font = UIFont(name: profitText.font.fontName, size: 24)
     }
     
         func loggedOut() {
