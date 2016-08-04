@@ -187,6 +187,10 @@ class CalendarViewcontroller: UIViewController{
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Double
                         var localIdentifierString = object["subUser"]
+                        var recordedBy = object["subuser"]
+                        if (recordedBy == nil) {
+                            recordedBy = ""
+                        }
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -208,7 +212,7 @@ class CalendarViewcontroller: UIViewController{
                             localIdentifierString = String(self.tempCounter += 1)
                         }
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
                         self.records.append(newRecord)
                     }
                     completionHandler(success: true)

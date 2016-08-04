@@ -160,6 +160,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         // Recorded by
+        cell.recordedByLabel.text = records[indexPath.row].recordedUser
         
         // Cell background
         cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
@@ -248,6 +249,10 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                         let type = object["type"] as! Int
                         let amount = object["amount"] as! Double
                         var localIdentifierString = object["subUser"]
+                        var recordedBy = object["subuser"]
+                        if (recordedBy == nil) {
+                            recordedBy = ""
+                        }
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -269,7 +274,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                             localIdentifierString = String(self.tempCounter += 1)
                         }
                         
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
                         self.records.append(newRecord)
                     }
                     completionHandler(success: true)
@@ -306,6 +311,10 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                         let amount = object["amount"] as! Double
                         var description = object["description"]
                         var localIdentifierString = object["subUser"]
+                        var recordedBy = object["subuser"]
+                        if (recordedBy == nil) {
+                            recordedBy = ""
+                        }
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -322,7 +331,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                         if (description == nil || description as! String == "") {
                             description = "No description"
                         }
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
                         records.append(newRecord)
                     }
                     self.shared.records = records

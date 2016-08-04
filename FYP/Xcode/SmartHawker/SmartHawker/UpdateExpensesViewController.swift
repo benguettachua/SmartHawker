@@ -137,6 +137,10 @@ class UpdateExpensesViewController: UIViewController {
                         let amount = object["amount"] as! Double
                         var description = object["description"]
                         var localIdentifierString = object["subUser"]
+                        var recordedBy = object["subuser"]
+                        if (recordedBy == nil) {
+                            recordedBy = ""
+                        }
                         var typeString = ""
                         if (type == 0) {
                             typeString = "Sales"
@@ -153,7 +157,7 @@ class UpdateExpensesViewController: UIViewController {
                         if (description == nil || description as! String == "") {
                             description = "No description"
                         }
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String)
+                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
                         records.append(newRecord)
                     }
                     self.shared.records = records

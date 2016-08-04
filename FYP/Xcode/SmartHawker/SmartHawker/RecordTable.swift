@@ -16,14 +16,16 @@ class RecordTable {
     var amount: Double
     var localIdentifier: String!
     var description: String!
+    var recordedUser: String!
     
     // MARK: Initialisation
-    init (date: String, type: String, amount: Double, localIdentifier: String, description: String) {
+    init (date: String, type: String, amount: Double, localIdentifier: String, description: String, recordedUser: String) {
         self.date = date
         self.type = type
         self.amount = amount
         self.localIdentifier = localIdentifier
         self.description = description
+        self.recordedUser = recordedUser
     }
     
     func toString() -> String {
