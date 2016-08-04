@@ -45,7 +45,7 @@ class UpdateRecordViewController: UIViewController {
                 // Record is found, proceed to update.
                 var typeInt = Int()
                 typeString = self.newType.text!
-                amount = Int(self.newAmount.text!)!
+                amount = Double(self.newAmount.text!)!
                 description = self.newDescription.text
                 if (typeString == "Sales") {
                     typeInt = 0
@@ -134,7 +134,7 @@ class UpdateRecordViewController: UIViewController {
                     for object in objects {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
-                        let amount = object["amount"] as! Int
+                        let amount = object["amount"] as! Double
                         var description = object["description"]
                         var localIdentifierString = object["subUser"]
                         var typeString = ""

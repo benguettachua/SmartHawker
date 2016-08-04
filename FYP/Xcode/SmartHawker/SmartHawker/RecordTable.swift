@@ -13,12 +13,12 @@ class RecordTable {
     // MARK: Properties
     var date: String
     var type: String
-    var amount: Int
+    var amount: Double
     var localIdentifier: String!
     var description: String!
     
     // MARK: Initialisation
-    init (date: String, type: String, amount: Int, localIdentifier: String, description: String) {
+    init (date: String, type: String, amount: Double, localIdentifier: String, description: String) {
         self.date = date
         self.type = type
         self.amount = amount

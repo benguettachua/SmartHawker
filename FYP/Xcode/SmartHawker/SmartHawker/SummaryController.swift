@@ -111,7 +111,7 @@ class SummaryController: UIViewController {
                     for object in objects {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
-                        let amount = object["amount"] as! Int
+                        let amount = object["amount"] as! Double
                         var localIdentifierString = object["subUser"]
                         var typeString = ""
                         if (type == 0) {

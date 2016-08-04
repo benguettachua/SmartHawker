@@ -89,7 +89,7 @@ class RecordExpensesViewController: UIViewController{
     
     func SubmitRecord(completionHandler: CompletionHandler) {
         let descriptionToRecord = descriptionTextField.text
-        let amountToRecord = Int(amountTextField.text!)
+        let amountToRecord = Double(amountTextField.text!)
         var didRecord = false
         let isSubUser = shared.isSubUser
         

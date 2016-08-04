@@ -52,6 +52,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.tableView.hidden = true
             } else {
                 self.noRecordView.hidden = true
+                self.tableView.backgroundView = UIImageView(image: UIImage(named: "main-bg"))
                 self.tableView.hidden = false
                 
                 
@@ -131,12 +132,23 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let cellIdentifier = "RecordCell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
+        // Description Label
         cell.descriptionLabel.text = records[indexPath.row].description
-        cell.amountLabel.text = String(records[indexPath.row].amount)
+        cell.descriptionLabel.font = UIFont(name: cell.descriptionLabel.font.fontName, size: 12)
+        
+        // Amount Label
+        let amount = records[indexPath.row].amount
+        let amountString2dp = "$" + String(format:"%.2f", amount)
+        cell.amountLabel.text = amountString2dp
+        cell.amountLabel.font = UIFont(name: cell.amountLabel.font.fontName, size: 12)
+
+        
+        // Type Label
         cell.recordTypeLabel.text = records[indexPath.row].type
+        cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
         
-        cell.backgroundColor = UIColor.lightGrayColor()
-        
+        // Cell background
+        cell.backgroundView = UIImageView(image: UIImage(named: "main-bg"))
         return cell
     }
     
@@ -216,7 +228,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                     for object in objects {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
-                        let amount = object["amount"] as! Int
+                        let amount = object["amount"] as! Double
                         var localIdentifierString = object["subUser"]
                         var typeString = ""
                         if (type == 0) {
@@ -273,7 +285,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                     for object in objects {
                         let date = object["date"] as! String
                         let type = object["type"] as! Int
-                        let amount = object["amount"] as! Int
+                        let amount = object["amount"] as! Double
                         var description = object["description"]
                         var localIdentifierString = object["subUser"]
                         var typeString = ""
