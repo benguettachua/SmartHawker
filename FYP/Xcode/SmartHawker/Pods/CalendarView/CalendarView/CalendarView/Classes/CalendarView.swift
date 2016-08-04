@@ -144,7 +144,7 @@ extension CalendarView: UIScrollViewDelegate {
     contentView.paged = false
     let ratio = contentView.contentOffset.x / CGRectGetWidth(contentView.frame)
     if ratio.isNaN { return }
-    if ratio >= 2.0 || ratio <= 0.0 {
+    if ratio >= 0.0 || ratio <= 0.0 {
       contentView.selectPage(Int(ratio))
     }
   }

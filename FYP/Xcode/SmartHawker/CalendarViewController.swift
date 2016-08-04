@@ -56,7 +56,6 @@ class CalendarViewcontroller: UIViewController{
         }else{
             correctDateString = toShare.dateString
         }
-        print(correctDateString)
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
             self.loadRecords(correctDateString)
