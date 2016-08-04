@@ -55,21 +55,6 @@ class SettingsViewController: UIViewController {
         let user = PFUser.currentUser()
         // Populate the top bar
         
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                }
-            }
-        }
-        
-        
-        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-        self.profilePicture.clipsToBounds = true;
-        self.profilePicture.layer.borderWidth = 3.0;
-        self.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor;
-        
         if NSUserDefaults.standardUserDefaults().objectForKey("langPref") == nil{
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject("en", forKey: "langPref")

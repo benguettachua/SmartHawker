@@ -43,11 +43,6 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        
-        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-        self.profilePicture.clipsToBounds = true;
-        self.profilePicture.layer.borderWidth = 3.0;
-        self.profilePicture.layer.borderColor = UIColor.whiteColor().CGColor;
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
