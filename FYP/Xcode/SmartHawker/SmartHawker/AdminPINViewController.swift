@@ -56,15 +56,15 @@ class AdminPINViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         let justLoggedIn = defaults.boolForKey("justLoggedIn")
         if (justLoggedIn == true) {
+            // Set first time logged in to False, so this popup appears only once, when you just logged in.
+            defaults.setBool(false, forKey: "justLoggedIn")
             let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
             let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
                 
                 self.loadRecordsIntoLocalDatastore({ (success) -> Void in
                     if (success) {
                         let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: {(action) -> Void in
-                            defaults.setBool(false, forKey: "justLoggedIn")
-                        })
+                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
                         alertController.addAction(ok)
                         self.presentViewController(alertController, animated: true,completion: nil)
                     } else {

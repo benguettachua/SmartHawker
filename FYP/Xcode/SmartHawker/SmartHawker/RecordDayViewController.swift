@@ -149,7 +149,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
         
         // Image Button Colour
-        print(type)
         if (type == "Sales") {
             cell.buttonImageView.image = UIImage(named: "record-green")
         } else if (type == "COGS") {
@@ -183,7 +182,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
             
             // Updating the record
             let selectedRecord = records[indexPath.row]
-            print(selectedRecord.toString())
             let localIdentifier = selectedRecord.localIdentifier
             let query = PFQuery(className: "Record")
             query.fromLocalDatastore()
