@@ -61,11 +61,10 @@ class LoginViewController: UIViewController {
         passwordTextField.placeholder = "Password".localized()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        if (PFUser.currentUser() != nil) {
-            print("I AM INSIDE")
-            self.performSegueWithIdentifier("loginSuccess", sender: self)
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        usernameTextField.placeholder = "Username or Email"
+        passwordTextField.placeholder = "Password"
     }
     
     func handleTap(sender: UITapGestureRecognizer) {

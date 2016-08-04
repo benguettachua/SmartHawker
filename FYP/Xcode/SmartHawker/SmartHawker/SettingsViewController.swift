@@ -44,7 +44,8 @@ class SettingsViewController: UIViewController {
     // MARK: Action
     func logout() {
         PFUser.logOut()
-        self.performSegueWithIdentifier("logout", sender: self)
+        self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
+
     }
     
     
@@ -143,5 +144,7 @@ class SettingsViewController: UIViewController {
         
     }
     
-    
+    @IBAction func back(sender: UIBarButtonItem){
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
 }

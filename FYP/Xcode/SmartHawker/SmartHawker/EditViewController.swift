@@ -14,13 +14,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: Properties
     let picker = UIImagePickerController()
     
-    @IBOutlet weak var username: UITextView!
-    @IBOutlet weak var businessName: UITextView!
-    @IBOutlet weak var businessRegNo: UITextView!
-    @IBOutlet weak var businessAddress: UITextView!
-    @IBOutlet weak var adminPin: UITextView!
-    @IBOutlet weak var email: UITextView!
-    @IBOutlet weak var phoneNo: UITextView!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var businessName: UITextField!
+    @IBOutlet weak var businessRegNo: UITextField!
+    @IBOutlet weak var businessAddress: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var phoneNo: UITextField!
     @IBOutlet weak var profilePicture: UIImageView!
     typealias CompletionHandler = (success: Bool) -> Void
     @IBOutlet var information: UILabel!
@@ -35,7 +34,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         picker.delegate = self
         if let userPicture = user!["profilePicture"] as? PFFile {
@@ -45,12 +44,13 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 }
             }
         }
+         */
         // Populate the top bar
-        username.text! = user!["username"] as! String
+        name.text! = user!["name"] as! String
         businessName.text! = user!["businessName"] as! String
         businessRegNo.text! = user!["businessNumber"] as! String
         businessAddress.text! = user!["businessAddress"] as! String
-        adminPin.text! = user!["adminPin"] as! String
+        //adminPin.text! = user!["adminPin"] as! String
         email.text! = user!["email"] as! String
         phoneNo.text! = user!["phoneNumber"] as! String
         
@@ -70,49 +70,21 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     //change email
-    @IBAction func changeEmail(sender: UIButton) {
-        var newEmail1: UITextField?
-        var newEmail2: UITextField?
-        var oldPassword: UITextField?
+    @IBAction func change(sender: UIButton) {
+        var newEmail = email.text
+        var newBusinessName = businessName.text
+        var newBusinessAddress = businessAddress.text
+        var newBusinessRegNo = businessRegNo.text
+        var newName = name.text
+        var phoneNumber = phoneNo.text
         let password = self.shared.password
-        let alertController = UIAlertController(title: "Update Email", message: "Please enter your new email", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            if newEmail1!.text!.isEmpty == false && newEmail2!.text!.isEmpty == false && newEmail1!.text! == newEmail2!.text! && oldPassword!.text == password{
-                self.user!["email"] = newEmail1!.text
-                self.user?.saveInBackground()
-                let alert = UIAlertController(title: "Email", message: "Email is now updated to \(newEmail1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                self.viewDidLoad()
-            }else{
-                let alert = UIAlertController(title: "Email not updated", message: "1) Password is wrong. \n2) Email is invalid", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
-        alertController.addAction(ok)
-        alertController.addAction(cancel)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newEmail1 = textField
-            newEmail1?.placeholder = "Enter your new Email"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newEmail2 = textField
-            newEmail2?.placeholder = "Enter your new Email again"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            oldPassword = textField
-            oldPassword?.placeholder = "Enter your password for confirmation"
-        }
-        presentViewController(alertController, animated: true, completion: nil)
-        
+        print(newEmail)
+        print(newBusinessName)
+        print(newBusinessAddress)
+        print(newBusinessRegNo)
+        print(phoneNumber)
+        print(newName)
+
     }
     
     //Change business name

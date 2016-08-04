@@ -48,7 +48,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lFO-DQ-jXC">
                                 <rect key="frame" x="66" y="182" width="281" height="370"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-130" translatesAutoresizingMaskIntoConstraints="NO" id="EIN-Zu-vhP">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-130" translatesAutoresizingMaskIntoConstraints="NO" id="EIN-Zu-vhP">
                                         <rect key="frame" x="0.0" y="0.0" width="281" height="332"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-field-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="mtw-va-qhq">
@@ -57,19 +57,19 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="lya-ev-YDO">
                                                 <rect key="frame" x="30" y="108" width="222" height="224"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IUG-TG-K3f">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IUG-TG-K3f">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="73"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-Ug-z5Z">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-Ug-z5Z">
                                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="27"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-WI-6gP">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-WI-6gP">
                                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="21"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-username-icon-2" translatesAutoresizingMaskIntoConstraints="NO" id="6zd-f0-5QM">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-7T-wmf">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-7T-wmf">
                                                                                 <rect key="frame" x="38" y="0.0" width="184" height="21"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -77,12 +77,12 @@
                                                                             </textField>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="uy0-UR-LUr">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="uy0-UR-LUr">
                                                                         <rect key="frame" x="0.0" y="25" width="222" height="2"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="715-jC-ISf">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="715-jC-ISf">
                                                                 <rect key="frame" x="0.0" y="47" width="222" height="26"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="XhR-kr-MCJ">
@@ -95,7 +95,7 @@
                                                                                 <rect key="frame" x="38" y="0.0" width="61" height="20"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                             </textField>
                                                                         </subviews>
                                                                     </stackView>
@@ -112,7 +112,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-40" translatesAutoresizingMaskIntoConstraints="NO" id="HRF-FH-kzo">
                                                                 <rect key="frame" x="87" y="0.0" width="48" height="35"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-uj-GVK">
                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
                                                                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -139,7 +139,7 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="vJo-R6-LiS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="212" height="42"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3h-hY-ACj">
                                                                         <rect key="frame" x="0.0" y="2" width="212" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -156,7 +156,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-90-6kO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4J-90-6kO">
                                         <rect key="frame" x="118" y="340" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                     </button>
@@ -342,16 +342,16 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="220"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="158"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="V43-JN-8om">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="V43-JN-8om">
                                                                 <rect key="frame" x="0.0" y="0.0" width="105" height="21"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-username-icon-2" translatesAutoresizingMaskIntoConstraints="NO" id="FH5-D5-8yf">
                                                                         <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-OB-LSk">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-OB-LSk">
                                                                         <rect key="frame" x="41" y="0.0" width="64" height="21"/>
                                                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -379,13 +379,13 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="uJp-bD-VIl">
                                                                 <rect key="frame" x="0.0" y="73" width="222" height="2"/>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="zu9-1S-gdK">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="zu9-1S-gdK">
                                                                 <rect key="frame" x="0.0" y="85" width="76" height="19"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message-icon" translatesAutoresizingMaskIntoConstraints="NO" id="BCY-tw-pYL">
                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="19"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-OR-Y8o">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-OR-Y8o">
                                                                         <rect key="frame" x="40" y="0.0" width="36" height="19"/>
                                                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -396,13 +396,13 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="wVn-Af-uNk">
                                                                 <rect key="frame" x="0.0" y="114" width="222" height="2"/>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="THg-jR-ybc">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="THg-jR-ybc">
                                                                 <rect key="frame" x="0.0" y="126" width="81" height="20"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone-icon" translatesAutoresizingMaskIntoConstraints="NO" id="WPb-yQ-vu8">
                                                                         <rect key="frame" x="0.0" y="0.0" width="12" height="20"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8V0-XH-wlT">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8V0-XH-wlT">
                                                                         <rect key="frame" x="40" y="0.0" width="41" height="20"/>
                                                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -418,7 +418,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
                                                         <rect key="frame" x="0.0" y="178" width="222" height="42"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
                                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="42"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
@@ -489,7 +489,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-198" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-wP-sxr">
                                 <rect key="frame" x="68" y="170" width="278" height="346"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reg-bg" translatesAutoresizingMaskIntoConstraints="NO" id="lXV-6U-53W">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="reg-bg" translatesAutoresizingMaskIntoConstraints="NO" id="lXV-6U-53W">
                                         <rect key="frame" x="0.0" y="0.0" width="278" height="310"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SyD-ya-qQI">
@@ -498,7 +498,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="den-mx-Tc9">
                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="216"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dUh-7m-4wA">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dUh-7m-4wA">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="146"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fuq-MB-BkF">
@@ -518,13 +518,13 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="q31-In-0hg">
                                                                 <rect key="frame" x="0.0" y="27" width="222" height="2"/>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="eCV-dC-5fZ">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="eCV-dC-5fZ">
                                                                 <rect key="frame" x="0.0" y="37" width="132" height="20"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="business-name-icon" translatesAutoresizingMaskIntoConstraints="NO" id="YZa-B0-W8x">
                                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TC3-DC-HR9">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TC3-DC-HR9">
                                                                         <rect key="frame" x="38" y="0.0" width="94" height="20"/>
                                                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -535,13 +535,13 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="50N-Rg-Q0b">
                                                                 <rect key="frame" x="0.0" y="65" width="222" height="2"/>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eot-Sb-pz4">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eot-Sb-pz4">
                                                                 <rect key="frame" x="0.0" y="75" width="169" height="19"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reg-no-icon" translatesAutoresizingMaskIntoConstraints="NO" id="osL-Ng-BXL">
                                                                         <rect key="frame" x="0.0" y="0.0" width="19" height="19"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Register No." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-73-mdx">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Register No." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-73-mdx">
                                                                         <rect key="frame" x="39" y="0.0" width="130" height="19"/>
                                                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -552,13 +552,13 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="Xom-o7-LCn">
                                                                 <rect key="frame" x="0.0" y="102" width="222" height="2"/>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-D0-nc9">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-D0-nc9">
                                                                 <rect key="frame" x="0.0" y="112" width="144" height="24"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-icon" translatesAutoresizingMaskIntoConstraints="NO" id="1aK-D0-4hA">
                                                                         <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qzo-Eh-JQt">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qzo-Eh-JQt">
                                                                         <rect key="frame" x="38" y="0.0" width="106" height="24"/>
                                                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -574,7 +574,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="6D9-0a-kNa">
                                                         <rect key="frame" x="0.0" y="174" width="222" height="42"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="BAI-Oe-oF9">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="BAI-Oe-oF9">
                                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="42"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwj-WA-9c5">
@@ -1197,7 +1197,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" spacing="-373" translatesAutoresizingMaskIntoConstraints="NO" id="n6p-pT-goN">
                                         <rect key="frame" x="0.0" y="0.0" width="369" height="99"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="profile-main-firstbox" translatesAutoresizingMaskIntoConstraints="NO" id="3II-Rd-E9p">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profile-main-firstbox" translatesAutoresizingMaskIntoConstraints="NO" id="3II-Rd-E9p">
                                                 <rect key="frame" x="0.0" y="4" width="375" height="91"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="Qkn-cH-iXB">
@@ -1206,8 +1206,12 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zFN-QQ-hQm">
                                                         <rect key="frame" x="0.0" y="0.0" width="260" height="99"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqW-vA-uFM">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqW-vA-uFM">
                                                                 <rect key="frame" x="0.0" y="0.0" width="99" height="99"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="99" id="PL3-g8-JrI"/>
+                                                                    <constraint firstAttribute="height" constant="99" id="okD-WL-bAY"/>
+                                                                </constraints>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n3E-PF-gHo">
                                                                 <rect key="frame" x="119" y="23" width="141" height="54"/>
@@ -1232,7 +1236,7 @@
                                                         <rect key="frame" x="355" y="38" width="12" height="24"/>
                                                         <state key="normal" image="profile-arrow"/>
                                                         <connections>
-                                                            <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="NMA-ky-Dju"/>
+                                                            <segue destination="ICK-4p-FeB" kind="modal" id="DMQ-aJ-NyQ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1268,9 +1272,6 @@
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEI-SB-fn6">
                                                                 <rect key="frame" x="353" y="0.0" width="13" height="24"/>
                                                                 <state key="normal" image="profile-arrow"/>
-                                                                <connections>
-                                                                    <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="l9r-jo-q4q"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -1295,7 +1296,7 @@
                                                                 <rect key="frame" x="353" y="0.0" width="12" height="24"/>
                                                                 <state key="normal" image="profile-arrow"/>
                                                                 <connections>
-                                                                    <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="Wc5-7R-uMN"/>
+                                                                    <segue destination="s28-q7-ZIN" kind="modal" id="Gzm-ZV-OKt"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1312,17 +1313,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEa-TA-Z7a">
-                                <rect key="frame" x="215" y="397" width="34" height="30"/>
-                                <state key="normal" title="Sync"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UM-YF-1VZ">
-                                <rect key="frame" x="208" y="444" width="49" height="30"/>
-                                <state key="normal" title="Setting"/>
-                                <connections>
-                                    <segue destination="s28-q7-ZIN" kind="modal" id="VeO-Sa-5GQ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVW-0C-b5r">
                                 <rect key="frame" x="223" y="482" width="75" height="30"/>
                                 <state key="normal" title="Edit Profile"/>
@@ -3257,7 +3247,7 @@ Cgo
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="s28-q7-ZIN" kind="push" id="p4D-lJ-Fob"/>
+                                    <action selector="back:" destination="Vqf-2L-7Hg" eventType="touchUpInside" id="8BY-MK-BjQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3628,7 +3618,7 @@ Cg
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="s28-q7-ZIN" kind="push" id="lo4-AV-nfL"/>
+                                    <action selector="back:" destination="O9n-jC-hEy" eventType="touchUpInside" id="sVL-0K-uIf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -4137,15 +4127,30 @@ Cg
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66t-0N-voW">
+                                <rect key="frame" x="231" y="523" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="change:" destination="ICK-4p-FeB" eventType="touchUpInside" id="mMt-oS-Qsy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="tab-bottom-profile" id="dZh-I1-L4E"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="businessAddress" destination="RMu-4i-Vtp" id="98l-1f-cms"/>
+                        <outlet property="businessName" destination="hPr-0q-DVm" id="SsC-SE-ttx"/>
+                        <outlet property="businessRegNo" destination="WyP-Mz-RsB" id="ibz-B7-PpA"/>
+                        <outlet property="email" destination="kdy-C9-qbH" id="hFq-S6-H1a"/>
+                        <outlet property="name" destination="L1W-wm-7KE" id="FBC-6j-BwA"/>
+                        <outlet property="phoneNo" destination="iaW-xY-ZbB" id="xNT-zQ-Q6a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxY-YN-Sfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029" y="-492"/>
+            <point key="canvasLocation" x="3055" y="-499"/>
         </scene>
         <!--Record-Expenses-->
         <scene sceneID="eSb-Sr-Uov">
@@ -4443,6 +4448,16 @@ Cg
                                 <rect key="frame" x="20" y="33" width="46" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="back:" destination="s28-q7-ZIN" eventType="touchUpInside" id="rLM-av-oBq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6g-QV-s59">
+                                <rect key="frame" x="346" y="33" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="Logout:" destination="s28-q7-ZIN" eventType="touchUpInside" id="r6Y-MW-xmW"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="24a-XM-QoI">
                                 <rect key="frame" x="24" y="96" width="368" height="387"/>
@@ -4467,9 +4482,6 @@ Cg
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reo-Ji-bJi">
                                                                 <rect key="frame" x="353" y="0.0" width="12" height="36"/>
                                                                 <state key="normal" image="profile-arrow"/>
-                                                                <connections>
-                                                                    <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="FWR-oN-oSh"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -4523,7 +4535,7 @@ Cg
                                                                         <rect key="frame" x="81" y="0.0" width="13" height="24"/>
                                                                         <state key="normal" image="profile-arrow"/>
                                                                         <connections>
-                                                                            <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="xjK-wT-cFG"/>
+                                                                            <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="1tC-dX-OU6"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -4541,9 +4553,6 @@ Cg
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z69-kr-feV">
                                                                 <rect key="frame" x="353" y="0.0" width="12" height="36"/>
                                                                 <state key="normal" image="profile-arrow"/>
-                                                                <connections>
-                                                                    <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="0Vc-aI-EXs"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -4567,16 +4576,12 @@ Cg
                                                                 <rect key="frame" x="0.0" y="0.0" width="215" height="36"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                                 <state key="normal" title="Frequently Asked Questions"/>
-                                                                <connections>
-                                                                    <segue destination="Vqf-2L-7Hg" kind="modal" id="loC-yN-1vJ"/>
-                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPk-ZP-76k">
                                                                 <rect key="frame" x="355" y="0.0" width="12" height="36"/>
                                                                 <state key="normal" image="profile-arrow"/>
                                                                 <connections>
-                                                                    <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="JCc-zI-Hqc"/>
-                                                                    <segue destination="Vqf-2L-7Hg" kind="push" id="anT-dZ-mT3"/>
+                                                                    <segue destination="Vqf-2L-7Hg" kind="modal" id="qWy-xG-cey"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -4588,16 +4593,12 @@ Cg
                                                                 <rect key="frame" x="0.0" y="0.0" width="85" height="36"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                                 <state key="normal" title="Contact Us"/>
-                                                                <connections>
-                                                                    <segue destination="O9n-jC-hEy" kind="modal" id="OsF-Ma-dMg"/>
-                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VP5-5m-D9p">
                                                                 <rect key="frame" x="355" y="0.0" width="12" height="36"/>
                                                                 <state key="normal" image="profile-arrow"/>
                                                                 <connections>
-                                                                    <action selector="doChangeLanguage:" destination="s28-q7-ZIN" eventType="touchUpInside" id="LOk-Ns-Slv"/>
-                                                                    <segue destination="O9n-jC-hEy" kind="push" id="dW3-MQ-1bT"/>
+                                                                    <segue destination="O9n-jC-hEy" kind="modal" id="6q1-D7-RFp"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -5123,11 +5124,9 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tPZ-ny-ePW"/>
+        <segue reference="wJH-Mb-vo1"/>
         <segue reference="Zkl-ky-SCt"/>
         <segue reference="C6R-XM-b45"/>
-        <segue reference="VeO-Sa-5GQ"/>
-        <segue reference="loC-yN-1vJ"/>
-        <segue reference="dW3-MQ-1bT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
