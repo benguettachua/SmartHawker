@@ -847,7 +847,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ks-ly-dZo">
-                                                    <rect key="frame" x="52" y="24" width="72" height="21"/>
+                                                    <rect key="frame" x="52" y="14" width="72" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -858,19 +858,33 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="record-green" translatesAutoresizingMaskIntoConstraints="NO" id="pAy-be-C5I" userLabel="image button ">
+                                                    <rect key="frame" x="27" y="16" width="17" height="17"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pD-ZX-tHJ">
                                                     <rect key="frame" x="132" y="40" width="274" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFn-Z7-Vy5" userLabel="recorded by label">
+                                                    <rect key="frame" x="8" y="43" width="116" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="record-orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="qfT-po-b62" userLabel="line separation">
+                                                    <rect key="frame" x="0.0" y="65" width="414" height="2"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="RecordCell"/>
                                         <connections>
                                             <outlet property="amountLabel" destination="8ks-ly-dZo" id="s8G-Sj-Gjr"/>
+                                            <outlet property="buttonImageView" destination="pAy-be-C5I" id="kaC-9y-3pu"/>
                                             <outlet property="descriptionLabel" destination="3pD-ZX-tHJ" id="7HO-Ea-2ka"/>
                                             <outlet property="recordTypeLabel" destination="QnG-XG-rLd" id="Qaj-U8-ATD"/>
+                                            <outlet property="recordedByLabel" destination="NFn-Z7-Vy5" id="1og-VL-hle"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -971,6 +985,8 @@
                         <outlet property="noRecordLabel" destination="UIs-EQ-ko1" id="Y0b-27-hFb"/>
                         <outlet property="noRecordView" destination="owM-XO-trf" id="WyU-if-nJq"/>
                         <outlet property="tableView" destination="hFy-fM-ZBa" id="6V9-Sq-EZe"/>
+                        <segue destination="dCC-sn-11l" kind="modal" identifier="editExpenses" id="iv5-cq-n8I"/>
+                        <segue destination="ysJ-xq-dP6" kind="modal" identifier="editSales" id="mJ5-u4-3fV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hms-CT-p5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4660,10 +4676,10 @@ Cg
             </objects>
             <point key="canvasLocation" x="2571" y="-492"/>
         </scene>
-        <!--Record-sales-->
+        <!--Update-Sales-->
         <scene sceneID="0hV-JM-oWH">
             <objects>
-                <viewController id="ysJ-xq-dP6" userLabel="Record-sales" customClass="UpdateRecordViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ysJ-xq-dP6" userLabel="Update-Sales" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UTI-YX-1Q1"/>
                         <viewControllerLayoutGuide type="bottom" id="eoC-5G-q7a"/>
@@ -4711,9 +4727,6 @@ Cg
                                                                                 <state key="normal" title="SALES">
                                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
-                                                                                <connections>
-                                                                                    <action selector="selectSales:" destination="ysJ-xq-dP6" eventType="touchUpInside" id="Qm3-OO-gdl"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -4737,9 +4750,6 @@ Cg
                                                                                 <state key="normal" title="EXPENSES">
                                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
-                                                                                <connections>
-                                                                                    <action selector="selectExpenses:" destination="ysJ-xq-dP6" eventType="touchUpInside" id="Hyr-al-V1B"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -4807,23 +4817,14 @@ Cg
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkg-gv-VjS" userLabel="record-cancel">
                                                 <rect key="frame" x="0.0" y="2" width="42" height="43"/>
                                                 <state key="normal" image="record-cancel"/>
-                                                <connections>
-                                                    <action selector="cancel:" destination="ysJ-xq-dP6" eventType="touchUpInside" id="VT0-Vg-4En"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbE-Oa-uzg" userLabel="record-save">
                                                 <rect key="frame" x="72" y="0.0" width="47" height="47"/>
                                                 <state key="normal" image="record-save"/>
-                                                <connections>
-                                                    <action selector="save:" destination="ysJ-xq-dP6" eventType="touchUpInside" id="xA1-6h-BgQ"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUe-AE-djz">
                                                 <rect key="frame" x="149" y="2" width="42" height="43"/>
                                                 <state key="normal" image="record-add"/>
-                                                <connections>
-                                                    <action selector="add:" destination="ysJ-xq-dP6" eventType="touchUpInside" id="hNV-Q9-PbJ"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -4843,25 +4844,15 @@ Cg
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <outlet property="amountLabel" destination="408-kM-gJe" id="NNg-o4-7O4"/>
-                        <outlet property="amountTextField" destination="IIX-wg-Yni" id="6Do-Qt-Ym0"/>
-                        <outlet property="descriptionLabel" destination="ucu-e8-f10" id="sT7-ct-wNK"/>
-                        <outlet property="descriptionTextField" destination="JWZ-VP-v8o" id="eRO-Qz-f13"/>
-                        <outlet property="expensesButton" destination="B9g-Ii-C2z" id="l6V-LK-R0o"/>
-                        <outlet property="recordSuccessLabel" destination="4Pp-wc-fLW" id="fT0-bV-MBC"/>
-                        <outlet property="saleButton" destination="o1S-a3-35O" id="zI7-v8-DP2"/>
-                        <outlet property="todayDateLabel" destination="Ayx-w8-0z1" id="u8n-OQ-96B"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaL-hq-WyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1782" y="-2259"/>
         </scene>
-        <!--Record-Expenses-->
+        <!--Update- Expenses-->
         <scene sceneID="1e8-WR-7rc">
             <objects>
-                <viewController id="dCC-sn-11l" userLabel="Record-Expenses" customClass="UpdateRecordViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dCC-sn-11l" userLabel="Update- Expenses" customClass="UpdateExpensesViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oJA-2C-6e7"/>
                         <viewControllerLayoutGuide type="bottom" id="Zpa-76-KlI"/>
@@ -4903,9 +4894,6 @@ Cg
                                                                                 <state key="normal" title="SALES">
                                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
-                                                                                <connections>
-                                                                                    <action selector="selectSales:" destination="dCC-sn-11l" eventType="touchUpInside" id="bkE-wI-cVd"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -5007,9 +4995,6 @@ Cg
                                                                                         <state key="normal" title="COGS">
                                                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         </state>
-                                                                                        <connections>
-                                                                                            <action selector="selectCOGSType:" destination="dCC-sn-11l" eventType="touchUpInside" id="B8F-hJ-xh0"/>
-                                                                                        </connections>
                                                                                     </button>
                                                                                 </subviews>
                                                                             </stackView>
@@ -5024,9 +5009,6 @@ Cg
                                                                                         <state key="normal" title="OTHERS">
                                                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         </state>
-                                                                                        <connections>
-                                                                                            <action selector="selectOthersType:" destination="dCC-sn-11l" eventType="touchUpInside" id="w8k-oS-olZ"/>
-                                                                                        </connections>
                                                                                     </button>
                                                                                 </subviews>
                                                                             </stackView>
@@ -5045,9 +5027,6 @@ Cg
                                                                         <state key="normal" title="Fixed Monthly Expense">
                                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <connections>
-                                                                            <action selector="selectRecurring:" destination="dCC-sn-11l" eventType="touchUpInside" id="dLC-2r-9WS"/>
-                                                                        </connections>
                                                                     </button>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="record-blue-fade" translatesAutoresizingMaskIntoConstraints="NO" id="KN4-gB-TVX" userLabel="Recurring Checkbox">
                                                                         <rect key="frame" x="0.0" y="35" width="8" height="8"/>
@@ -5069,23 +5048,14 @@ Cg
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Sl-e1-OSx" userLabel="record-cancel">
                                                 <rect key="frame" x="0.0" y="2" width="42" height="43"/>
                                                 <state key="normal" image="record-cancel"/>
-                                                <connections>
-                                                    <action selector="cancel:" destination="dCC-sn-11l" eventType="touchUpInside" id="DZJ-6R-9y9"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIh-3a-XEO" userLabel="record-save">
                                                 <rect key="frame" x="72" y="0.0" width="47" height="47"/>
                                                 <state key="normal" image="record-save"/>
-                                                <connections>
-                                                    <action selector="save:" destination="dCC-sn-11l" eventType="touchUpInside" id="LFf-Hh-sm4"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-2x-OOK" userLabel="record-add">
                                                 <rect key="frame" x="149" y="2" width="42" height="43"/>
                                                 <state key="normal" image="record-add"/>
-                                                <connections>
-                                                    <action selector="add:" destination="dCC-sn-11l" eventType="touchUpInside" id="YRV-UV-zht"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -5112,18 +5082,6 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="Vib-uc-Rxk"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <outlet property="COGSButton" destination="smZ-6F-mEJ" id="zWx-lu-hsO"/>
-                        <outlet property="COGSCheckbox" destination="GGa-7t-dFS" id="adD-A2-Vqb"/>
-                        <outlet property="OTHERSButton" destination="o5P-y7-luH" id="9VY-9k-vTm"/>
-                        <outlet property="amountTextField" destination="Wwd-lf-3gO" id="nWc-t1-6x3"/>
-                        <outlet property="descriptionTextField" destination="nMj-yv-cAm" id="7Pr-Pw-Yjk"/>
-                        <outlet property="expensesCheckbok" destination="ab2-FS-Muu" id="aRp-DR-ht8"/>
-                        <outlet property="recordSuccessLabel" destination="Kea-Nc-ZMw" id="Q6V-oI-Hzi"/>
-                        <outlet property="recurringButton" destination="IlP-A9-Prn" id="pyX-MK-H2A"/>
-                        <outlet property="recurringCheckbox" destination="KN4-gB-TVX" id="VCI-jc-Wal"/>
-                        <outlet property="todayDateLabel" destination="79p-EX-GjN" id="7uG-T6-5rN"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEr-w8-CYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5198,13 +5156,13 @@ Cg
         <image name="third-box" width="339" height="140"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vZj-ve-gXv"/>
+        <segue reference="kRA-ns-zPH"/>
         <segue reference="z5J-Aa-r0o"/>
         <segue reference="C6R-XM-b45"/>
-        <segue reference="dW3-MQ-1bT"/>
-        <segue reference="p4D-lJ-Fob"/>
         <segue reference="loC-yN-1vJ"/>
-        <segue reference="vZj-ve-gXv"/>
-        <segue reference="tPZ-ny-ePW"/>
+        <segue reference="p4D-lJ-Fob"/>
+        <segue reference="dW3-MQ-1bT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

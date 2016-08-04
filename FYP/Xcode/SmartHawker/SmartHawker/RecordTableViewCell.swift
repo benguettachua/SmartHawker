@@ -11,9 +11,14 @@ import UIKit
 class RecordTableViewCell: UITableViewCell {
     
     // MARK: Properties
+    // Labels
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var recordTypeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var recordedByLabel: UILabel!
+    
+    //Image Views
+    @IBOutlet weak var buttonImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

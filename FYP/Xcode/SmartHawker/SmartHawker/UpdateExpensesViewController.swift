@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateRecordViewController: UIViewController {
+class UpdateExpensesViewController: UIViewController {
     
     // MARK: Properties
     // Variables
@@ -18,9 +18,7 @@ class UpdateRecordViewController: UIViewController {
     typealias CompletionHandler = (success:Bool) -> Void
     
     // Text Fields
-    @IBOutlet weak var newType: UITextField!
-    @IBOutlet weak var newAmount: UITextField!
-    @IBOutlet weak var newDescription: UITextField!
+    
     
     
     // MARK: Action
@@ -44,9 +42,11 @@ class UpdateRecordViewController: UIViewController {
             } else if let record = record {
                 // Record is found, proceed to update.
                 var typeInt = Int()
+                /*
                 typeString = self.newType.text!
                 amount = Double(self.newAmount.text!)!
                 description = self.newDescription.text
+ */
                 if (typeString == "Sales") {
                     typeInt = 0
                 } else if (typeString == "COGS") {
@@ -169,7 +169,7 @@ class UpdateRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         // Populate the text field with the previous records.
         let selectedRecord = shared.selectedRecord
         let typeString = selectedRecord.type
@@ -180,6 +180,6 @@ class UpdateRecordViewController: UIViewController {
         if(description != "No description") {
             self.newDescription.text = description
         }
-        
+        */
     }
 }

@@ -144,18 +144,38 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
 
         
         // Type Label
-        cell.recordTypeLabel.text = records[indexPath.row].type
+        let type = records[indexPath.row].type
+        cell.recordTypeLabel.text = type
         cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
         
+        // Image Button Colour
+        print(type)
+        if (type == "Sales") {
+            cell.buttonImageView.image = UIImage(named: "record-green")
+        } else if (type == "COGS") {
+            cell.buttonImageView.image = UIImage(named: "record-red")
+        } else if (type == "Expenses") {
+            cell.buttonImageView.image = UIImage(named: "record-red")
+        } else {
+            cell.buttonImageView.hidden = true
+        }
+        
+        // Recorded by
+        
         // Cell background
-        cell.backgroundView = UIImageView(image: UIImage(named: "main-bg"))
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Clicked on row: " + String(indexPath.row))
         shared.selectedRecord = records[indexPath.row]
-        self.performSegueWithIdentifier("editRecord", sender: self)
+        if (records[indexPath.row].type == "Sales") {
+            self.performSegueWithIdentifier("editSales", sender: self)
+        } else {
+            self.performSegueWithIdentifier("editExpenses", sender: self)
+        }
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
