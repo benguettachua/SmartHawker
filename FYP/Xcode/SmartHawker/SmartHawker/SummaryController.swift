@@ -262,7 +262,7 @@ class SummaryController: UIViewController {
         var dataPoints = [""]
         var totalSalesAmount = 0.0
         var totalExpensesAmount = 0.0
-
+        print(daysInWeek)
         for stringToCheck in daysInWeek{
             var salesAmount = 0.0
             var expensesAmount = 0.0
@@ -363,7 +363,7 @@ class SummaryController: UIViewController {
             var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
             daysInWeek.append(correctDateString)
             weekMonthYear.text = String(correctDateString) + " - "
-            for i in 0...5 {
+            for i in 1...6 {
                 periodComponents.day = +i
                 let dayOfWeek = calendar!.dateByAddingComponents(
                     periodComponents,
@@ -442,7 +442,7 @@ class SummaryController: UIViewController {
             var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
             daysInWeek.append(correctDateString)
             weekMonthYear.text = String(correctDateString) + " - "
-            for i in 0...5 {
+            for i in 1...6 {
                 periodComponents.day = +i
                 let dayOfWeek = calendar!.dateByAddingComponents(
                     periodComponents,
@@ -477,7 +477,8 @@ class SummaryController: UIViewController {
         var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
         daysInWeek.append(correctDateString)
         weekMonthYear.text = String(correctDateString) + " - "
-        for i in 0...5 {
+        chosenWeekDate = firstDayOfWeek
+        for i in 1...6 {
             periodComponents.day = +i
             let dayOfWeek = calendar!.dateByAddingComponents(
                 periodComponents,
