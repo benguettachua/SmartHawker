@@ -107,7 +107,7 @@ class AdminPINViewController: UIViewController {
     @IBAction func cancel(sender: UIButton) {
         // Logs the user out if they are click Cancel
         PFUser.logOutInBackground()
-        self.performSegueWithIdentifier("backToWelcome", sender: self)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {

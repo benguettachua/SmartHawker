@@ -11,23 +11,23 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: Properties
-    @IBOutlet weak var usernameOrEmailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var errorMessageLabel: UILabel!
+    // Variables
     var toShare = ShareData.sharedInstance
     var errorMsg = String()
-    @IBOutlet weak var login: UIButton!
     typealias CompletionHandler = (success:Bool) -> Void
-    @IBAction func loginButton(sender: UIButton) {
-        
-        PFUser.logInWithUsernameInBackground(usernameOrEmailTextField.text!, password: passwordTextField.text!) {
+    
+    // Text Fields
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    // MARK: Action
+    @IBAction func login(sender: UIButton) {
+        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 
                 // Do stuff after successful login.
                 self.toShare.password = self.passwordTextField.text!
-                self.errorMessageLabel.text = "Logging in...".localized()
-                self.errorMessageLabel.hidden = false
                 
                 // Set first log in to true, so that prompt to retrieve from DB will appear.
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -45,13 +45,11 @@ class LoginViewController: UIViewController {
             } else {
                 
                 // There was a problem, show user the error message.
+                let alertController = UIAlertController(title: "Login Failed", message: "Username or password is incorrect!", preferredStyle: .Alert)
+                let no = UIAlertAction(title: "Try again", style: .Cancel, handler: nil)
+                alertController.addAction(no)
+                self.presentViewController(alertController, animated: true, completion: nil)
                 
-                self.errorMessageLabel.text = error?.localizedDescription
-                if self.errorMessageLabel.text!.containsString("invalid"){
-                    self.errorMessageLabel.text = "Invalid Login Credentials".localized()
-                }
-               self.errorMessageLabel.textColor = UIColor.redColor()
-               self.errorMessageLabel.hidden = false
             }
         }
     }
@@ -59,11 +57,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
-        
-        usernameOrEmailTextField.placeholder = "Username or Email".localized()
+        usernameTextField.placeholder = "Username or Email".localized()
         passwordTextField.placeholder = "Password".localized()
-        login.setTitle("Login".localized(), forState: .Normal)
-        
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
