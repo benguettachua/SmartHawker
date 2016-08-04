@@ -16,9 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorMessageLabel: UILabel!
     var toShare = ShareData.sharedInstance
     var errorMsg = String()
-    @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var login: UIButton!
-    @IBOutlet weak var loginNavBar: UINavigationBar!
     typealias CompletionHandler = (success:Bool) -> Void
     @IBAction func loginButton(sender: UIButton) {
         
@@ -64,9 +62,7 @@ class LoginViewController: UIViewController {
         
         usernameOrEmailTextField.placeholder = "Username or Email".localized()
         passwordTextField.placeholder = "Password".localized()
-        loginNavBar.topItem!.title = "Login".localized()
         login.setTitle("Login".localized(), forState: .Normal)
-        back.title = "Back".localized()
         
     }
     

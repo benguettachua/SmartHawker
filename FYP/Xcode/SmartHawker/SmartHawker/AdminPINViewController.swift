@@ -38,7 +38,7 @@ class AdminPINViewController: UIViewController {
         // Activity Indicator
         
         submitButton.setTitle("Submit".localized(), forState: .Normal)
-        //cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
+        cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
         adminPINTextField.placeholder = "Enter your PIN here".localized()
         
         // Getting PINS for the subuser of current logged in user.
