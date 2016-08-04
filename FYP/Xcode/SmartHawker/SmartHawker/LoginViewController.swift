@@ -67,6 +67,12 @@ class LoginViewController: UIViewController {
         passwordTextField.placeholder = "Password"
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if (PFUser.currentUser() != nil) {
+            self.performSegueWithIdentifier("loginSuccess", sender: self)
+        }
+    }
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             view.endEditing(true)
