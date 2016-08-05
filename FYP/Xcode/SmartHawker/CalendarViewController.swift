@@ -255,7 +255,6 @@ class CalendarViewcontroller: UIViewController{
             toShare.dateString = correctDateString
             toShare.toDisplayDate = toDisplayDate
             toShare.dateString = correctDateString
-            
         }
         // Move to Record Page.
         self.performSegueWithIdentifier("dayRecord", sender: self)
@@ -316,9 +315,7 @@ extension CalendarViewcontroller: CalendarViewDelegate {
             })
         } else {
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.toShare.storeDate = nil
-            })
+
 
         }
 
