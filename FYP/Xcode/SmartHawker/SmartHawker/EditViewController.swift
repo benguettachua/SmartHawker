@@ -28,22 +28,22 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
     var updated = false
- 
     
-
+    var errorMsg = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         /*
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
-        picker.delegate = self
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                }
-            }
-        }
+         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+         picker.delegate = self
+         if let userPicture = user!["profilePicture"] as? PFFile {
+         userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+         if (error == nil) {
+         self.profilePicture.image = UIImage(data: imageData!)
+         }
+         }
+         }
          */
         // Populate the top bar
         name.text! = user!["name"] as! String
@@ -71,254 +71,137 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     //change email
     @IBAction func change(sender: UIButton) {
-        var newEmail = email.text
-        var newBusinessName = businessName.text
-        var newBusinessAddress = businessAddress.text
-        var newBusinessRegNo = businessRegNo.text
-        var newName = name.text
-        var phoneNumber = phoneNo.text
-        let password = self.shared.password
-        print(newEmail)
-        print(newBusinessName)
-        print(newBusinessAddress)
-        print(newBusinessRegNo)
-        print(phoneNumber)
-        print(newName)
-
-    }
-    
-    //Change business name
-    @IBAction func changeBusinessName(sender: UIButton) {
-        var newBusinessName1: UITextField?
-        var newBusinessName2: UITextField?
-        var oldPassword: UITextField?
-        let password = self.shared.password
-        let alertController = UIAlertController(title: "Update Business Name", message: "Please enter your new Business Name", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            if newBusinessName1!.text!.isEmpty == false && newBusinessName2!.text!.isEmpty == false && newBusinessName1!.text! == newBusinessName2!.text! && oldPassword!.text == password{
-                self.user!["businessName"] = newBusinessName1!.text
-                self.user?.saveInBackground()
-                let alert = UIAlertController(title: "Business Name", message: "Business Name is now updated to \(newBusinessName1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                self.viewDidLoad()
-            }else{
-                let alert = UIAlertController(title: "Business Name", message: "1) Password is wrong. \n2) Field is empty. ", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
-        alertController.addAction(ok)
-        alertController.addAction(cancel)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newBusinessName1 = textField
-            newBusinessName1?.placeholder = "Enter your new Business Name"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newBusinessName2 = textField
-            newBusinessName2?.placeholder = "Enter your new Business Name again"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            oldPassword = textField
-            oldPassword?.placeholder = "Enter your password for confirmation"
-        }
-        presentViewController(alertController, animated: true, completion: nil)
         
-    }
-    
-    //Change business address
-    @IBAction func changeBusinessAddress(sender: UIButton) {
-        var newBusinessAddress1: UITextField?
-        var newBusinessAddress2: UITextField?
-        var oldPassword: UITextField?
+        var error = 0
+        var newName = ""
+        var newEmail = ""
+        var newPhoneNumber = 0
+        var newBusinessName = ""
+        var newBusinessAddress = ""
+        var newBusinessRegNo = ""
         let password = self.shared.password
-        let alertController = UIAlertController(title: "Update Business Address", message: "Please enter your new Business Address", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            if newBusinessAddress1!.text!.isEmpty == false && newBusinessAddress2!.text!.isEmpty == false && newBusinessAddress1!.text! == newBusinessAddress2!.text! && oldPassword!.text == password{
-                self.user!["businessAddress"] = newBusinessAddress1!.text
-                self.user?.saveInBackground()
-                let alert = UIAlertController(title: "Business Address", message: "Business Address is now updated to \(newBusinessAddress1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                self.viewDidLoad()
-            }else{
-                let alert = UIAlertController(title: "Business Address", message: "1) Password is wrong. \n2) Field is empty. ", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
-        alertController.addAction(ok)
-        alertController.addAction(cancel)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newBusinessAddress1 = textField
-            newBusinessAddress1?.placeholder = "Enter your new Business Address"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newBusinessAddress2 = textField
-            newBusinessAddress2?.placeholder = "Enter your new Business Address again"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            oldPassword = textField
-            oldPassword?.placeholder = "Enter your password for confirmation"
-        }
-        presentViewController(alertController, animated: true, completion: nil)
         
-    }
-    
-    //Change phone number
-    @IBAction func changePhoneNumber(sender: UIButton) {
-        var newPhoneNumber1: UITextField?
-        var newPhoneNumber2: UITextField?
-        var oldPassword: UITextField?
-        let password = self.shared.password
-        let alertController = UIAlertController(title: "Update Phone Number", message: "Please enter your new Phone Number", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            if newPhoneNumber1!.text!.isEmpty == false && newPhoneNumber2!.text!.isEmpty == false && newPhoneNumber1!.text! == newPhoneNumber2!.text! && oldPassword!.text == password{
-                self.user!["phoneNumber"] = newPhoneNumber1!.text
-                self.user?.saveInBackground()
-                let alert = UIAlertController(title: "Phone Number", message: "Phone Number is now updated to \(newPhoneNumber1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                self.viewDidLoad()
-            }else{
-                let alert = UIAlertController(title: "Phone Number", message: "1) Field is empty. \n2) Password is incorrect/empty. ", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
+        //checks for name
+        if name.text!.isEmpty == false{
+            newName = name.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newName.isEmpty{
+                let errorString = "Invalid Name field."
+                name.backgroundColor = UIColor.redColor()
+                errorMsg.append(errorString)
+                error += 1
             }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
-        alertController.addAction(ok)
-        alertController.addAction(cancel)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newPhoneNumber1 = textField
-            newPhoneNumber1?.placeholder = "Enter your new phone number"
+        }else{
+            let errorString = "Invalid Name field."
+            name.backgroundColor = UIColor.redColor()
+            errorMsg.append(errorString)
+            error += 1
         }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newPhoneNumber2 = textField
-            newPhoneNumber2?.placeholder = "Enter your new phone number again"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            oldPassword = textField
-            oldPassword?.placeholder = "Enter your password for confirmation"
-        }
-        presentViewController(alertController, animated: true, completion: nil)
         
-    }
-    
-    //Change Admin Pin
-    @IBAction func changeAdminPin(sender: UIButton) {
-        var newAdminPin1: UITextField?
-        var newAdminPin2: UITextField?
-        var oldPassword: UITextField?
-        let password = self.shared.password
-        let alertController = UIAlertController(title: "Update Admin Pin", message: "Please enter your new Admin Pin", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        //checks for phone number
+        if phoneNo.text!.isEmpty == false{
             
-            if newAdminPin1!.text!.isEmpty == false && newAdminPin2!.text!.isEmpty == false && newAdminPin1!.text! == newAdminPin2!.text! && oldPassword!.text == password{
-                self.user!["adminPin"] = newAdminPin1!.text
-                self.user?.saveInBackground()
-                let alert = UIAlertController(title: "Admin Pin", message: "Admin Pin is now updated to \(newAdminPin1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                self.viewDidLoad()
-            }else{
-                let alert = UIAlertController(title: "Admin Pin", message: "1) Field is empty. \n2) Password is incorrect/empty. ", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
+            if Int(phoneNo.text!) != nil {
+                if Int(phoneNo.text!) >= 80000000 && Int(phoneNo.text!) < 100000000{
+                    newPhoneNumber = Int(phoneNo.text!)!
+                }else{
+                    let error = "Invalid Phone Number field."
+                    name.backgroundColor = UIColor.redColor()
+                    errorMsg.append(error)
+                }
+            } else {
+                let error = "Invalid Phone Number field."
+                name.backgroundColor = UIColor.redColor()
+                errorMsg.append(error)
             }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
-        alertController.addAction(ok)
-        alertController.addAction(cancel)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newAdminPin1 = textField
-            newAdminPin1?.placeholder = "Enter your new Admin Pin"
+        }else {
+            let error = "Invalid Phone Number field."
+            name.backgroundColor = UIColor.redColor()
+            errorMsg.append(error)
         }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newAdminPin2 = textField
-            newAdminPin2?.placeholder = "Enter your new Admin Pin again"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            oldPassword = textField
-            oldPassword?.placeholder = "Enter your password for confirmation"
-        }
-        presentViewController(alertController, animated: true, completion: nil)
         
-    }
-    
-    
-    //Change Business Reg No
-    @IBAction func changeBusinessRegNo(sender: UIButton) {
-        var newBusinessRegNo1: UITextField?
-        var newBusinessRegNo2: UITextField?
-        var oldPassword: UITextField?
-        let password = self.shared.password
-        let alertController = UIAlertController(title: "Update Admin Pin", message: "Please enter your new Admin Pin", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        //checks for email
+        if email.text!.isEmpty == false{
+            if isValidEmail(email.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())) {
+                newEmail = email.text!
+            }else{
+                let error = "Invalid Email field."
+                name.backgroundColor = UIColor.redColor()
+                errorMsg.append(error)
+            }
+        }else{
+            let error = "Invalid Email field."
+            name.backgroundColor = UIColor.redColor()
+            errorMsg.append(error)
+        }
+        
+        //checks for business name
+        if businessName.text!.isEmpty == false{
+            newBusinessName = businessName.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessName.isEmpty{
+                let errorString = "Invalid Business Name field."
+                name.backgroundColor = UIColor.redColor()
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else{
+            let errorString = "Invalid Business Name field."
+            name.backgroundColor = UIColor.redColor()
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        //Change business Reg No
+        if businessRegNo.text!.isEmpty == false{
+            newBusinessRegNo = businessRegNo.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessRegNo.isEmpty{
+                let errorString = "Invalid Business Reg No field."
+                name.backgroundColor = UIColor.redColor()
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else{
+            let errorString = "Invalid Business Reg No field."
+            name.backgroundColor = UIColor.redColor()
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        //Change business Address
+        if businessAddress.text!.isEmpty == false{
+            newBusinessAddress = businessAddress.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessAddress.isEmpty{
+                let errorString = "Invalid Business Address field."
+                name.backgroundColor = UIColor.redColor()
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else{
+            let errorString = "Invalid Business Address field."
+            name.backgroundColor = UIColor.redColor()
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        
+        
+        if error == 0 {
+            self.user!["name"] = newName
+            self.user!["phoneNumber"] = newPhoneNumber
+            self.user!["email"] = newEmail
+            self.user!["businessAddress"] = newBusinessAddress
+            self.user!["businessName"] = newBusinessName
+            self.user!["businessNumber"] = newBusinessRegNo
             
-            if newBusinessRegNo1!.text!.isEmpty == false && newBusinessRegNo2!.text!.isEmpty == false && newBusinessRegNo1!.text! == newBusinessRegNo2!.text! && oldPassword!.text == password{
-                self.user!["businessNumber"] = newBusinessRegNo1!.text
-                self.user?.saveInBackground()
-                let alert = UIAlertController(title: "Admin Pin", message: "Admin Pin is now updated to \(newBusinessRegNo1!.text!)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                self.viewDidLoad()
-            }else{
-                let alert = UIAlertController(title: "Admin Pin", message: "1) Field is empty. \n2) Password is incorrect/empty. ", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in}
-        alertController.addAction(ok)
-        alertController.addAction(cancel)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newBusinessRegNo1 = textField
-            newBusinessRegNo1?.placeholder = "Enter your new Admin Pin"
+            self.user?.saveInBackground()
+            
+            
         }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            newBusinessRegNo2 = textField
-            newBusinessRegNo2?.placeholder = "Enter your new Admin Pin again"
-        }
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            oldPassword = textField
-            oldPassword?.placeholder = "Enter your password for confirmation"
-        }
-        presentViewController(alertController, animated: true, completion: nil)
-        
     }
-    
-    
     //////Changing profile picture
     
     
@@ -385,7 +268,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }))
         
         presentViewController(refreshAlert, animated: true, completion: nil)
-
+        
     }
     
     func photoLibrary(){
@@ -431,11 +314,11 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.user?.saveInBackground()
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded"
-
+            
         }else{
             information.textColor = UIColor.redColor()
             information.text = "Image Not Within 10MB"
-
+            
         }
         
         
@@ -450,7 +333,13 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-    
-    //
+    //checks for valid email
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
     
 }
