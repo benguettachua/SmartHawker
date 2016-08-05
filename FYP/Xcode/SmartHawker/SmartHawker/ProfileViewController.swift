@@ -48,7 +48,6 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Load the Top Bar
         let user = PFUser.currentUser()
         // Populate the top bar

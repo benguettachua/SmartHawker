@@ -26,6 +26,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet var information: UILabel!
     @IBOutlet weak var back: UIButton!
     
+    var imageFile: PFFile!
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
     var updated = false
@@ -55,7 +56,13 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         email.text! = user!["email"] as! String
         phoneNo.text! = user!["phoneNumber"] as! String
         
-        
+        if let userPicture = user!["profilePicture"] as? PFFile {
+            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                if (error == nil) {
+                    self.profilePicture.image = UIImage(data: imageData!)
+                }
+            }
+        }
         
     }
     
@@ -239,7 +246,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.user!["businessAddress"] = newBusinessAddress
             self.user!["businessName"] = newBusinessName
             self.user!["businessNumber"] = newBusinessRegNo
-            
+            self.user!["profilePicture"] = imageFile
             self.user?.saveInBackground()
             
             let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
@@ -357,7 +364,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let imageData = UIImageJPEGRepresentation(chosenImage, 100)
         
         if imageData!.length < 9999999{
-            let imageFile = PFFile(name: "profilePicture.png", data: imageData!)
+            imageFile = PFFile(name: "profilePicture.png", data: imageData!)
             
             
             
@@ -365,9 +372,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             profilePicture.image = chosenImage //4
             
             updated = true
-            self.user!["profilePicture"] = imageFile
-            self.updated = true
-            self.user?.saveInBackground()
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded"
             
