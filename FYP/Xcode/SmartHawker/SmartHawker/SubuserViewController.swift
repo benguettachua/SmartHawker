@@ -82,15 +82,99 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Clicked on row: " + String(indexPath.row))
         let alert = UIAlertController(title: "Edit subuser", message: "What would you like to do with " + (subusers[indexPath.row]["name"] as! String) + "?", preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: "Edit PIN", style: .Default, handler: { Void in
             let editPINAlert = UIAlertController(title: "Edit PIN", message: "Please enter old PIN and new PIN.", preferredStyle: .Alert)
-            editPINAlert.addAction(UIAlertAction(title: "Nothing!", style: .Default, handler: nil))
+            
+            // Save the edit of PIN.
+            let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.Default, handler: { Void in
+                
+                let firstTextField = editPINAlert.textFields![0] as UITextField
+                let secondTextField = editPINAlert.textFields![1] as UITextField
+                let thirdTextField = editPINAlert.textFields![2] as UITextField
+                
+                let currentPIN = self.subusers[indexPath.row]["pin"] as! String
+                print(currentPIN)
+                if (firstTextField.text != currentPIN) {
+                    let error = UIAlertController(title: "Error", message: "Old PIN is incorrect!", preferredStyle: .Alert)
+                    error.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { Void in
+                        self.viewWillAppear(true)
+                    }))
+                    self.presentViewController(error, animated: true, completion: nil)
+                } else if (secondTextField.text != thirdTextField.text) {
+                    let error = UIAlertController(title: "Error", message: "Confirmation PIN is incorrect!", preferredStyle: .Alert)
+                    error.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { Void in
+                        self.viewWillAppear(true)
+                    }))
+                    self.presentViewController(error, animated: true, completion: nil)
+                } else if (secondTextField.text?.characters.count != 4) {
+                    let error = UIAlertController(title: "Error", message: "PIN must be 4 digits!", preferredStyle: .Alert)
+                    error.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { Void in
+                        self.viewWillAppear(true)
+                    }))
+                    self.presentViewController(error, animated: true, completion: nil)
+                } else {
+                    // All validation passed, proceed to change PIN
+                    let query = PFQuery(className: "SubUser")
+                    query.whereKey("pin", equalTo: currentPIN)
+                    do{
+                        let subuser = try query.getFirstObject()
+                        // subuser is found, proceed to update.
+                        subuser["pin"] = secondTextField.text
+                        do {try subuser.pin()} catch {}
+                        do {try subuser.save()} catch {}
+                        let success = UIAlertController(title: "Success", message: "PIN has been changed!", preferredStyle: .Alert)
+                        success.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
+                            self.viewWillAppear(true)
+                        }))
+                        self.presentViewController(success, animated: true, completion: nil)
+                    } catch {}
+                }
+                
+                
+            })
+            editPINAlert.addTextFieldWithConfigurationHandler({ (firstTextField) in
+                firstTextField.placeholder = "Enter Old PIN"
+            })
+            editPINAlert.addTextFieldWithConfigurationHandler({ (secondTextField) in
+                secondTextField.placeholder = "Enter New PIN"
+            })
+            editPINAlert.addTextFieldWithConfigurationHandler({ (thirdTextField) in
+                thirdTextField.placeholder = "Confirm New PIN"
+            })
+            editPINAlert.addAction(saveAction)
+            editPINAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { Void in
+                self.viewWillAppear(true)
+            }))
             self.presentViewController(editPINAlert, animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: "Nothing!", style: UIAlertActionStyle.Default, handler: { Void in
+        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { Void in
+            let confirmation = UIAlertController(title: "Are you sure?", message: (self.subusers[indexPath.row]["name"] as! String) + " will be permanently deleted.", preferredStyle: .Alert)
+            confirmation.addAction(UIAlertAction(title: "Yes, delete", style: .Default, handler: { Void in
+                let query = PFQuery(className: "SubUser")
+                let currentPIN = self.subusers[indexPath.row]["pin"] as! String
+                query.whereKey("pin", equalTo: currentPIN)
+                do{
+                    let subuser = try query.getFirstObject()
+                    // subuser is found, proceed to delete.
+                    do {try subuser.unpin()} catch {}
+                    do {try subuser.delete()} catch {}
+                    let success = UIAlertController(title: "Success", message: "Subuser is deleted!", preferredStyle: .Alert)
+                    success.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
+                        self.subusers.removeAtIndex(indexPath.row)
+                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                        self.viewWillAppear(true)
+                    }))
+                    self.presentViewController(success, animated: true, completion: nil)
+                } catch {}
+            }))
+            confirmation.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { Void in
+                self.viewWillAppear(true)
+            }))
+            self.presentViewController(confirmation, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Nothing", style: UIAlertActionStyle.Default, handler: { Void in
             self.viewWillAppear(true)
         }))
         self.presentViewController(alert, animated: true, completion: nil)
