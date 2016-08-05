@@ -141,8 +141,11 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                         expenses += amount
                         profit -= amount
                         totalProfit -= amount
+                    }else if (type == "fixMonthlyExpenses") {
+                        expenses += amount
+                        profit -= amount
+                        totalProfit -= amount
                     }
-
                     
                     totalDays += 1.0
                 }
