@@ -76,12 +76,14 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         }else{
             stringOfDayMonthYear = String(today.month) + "/" + String(today.year)
         }
+        /*
         //loads data form local database
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            let totalProfitForYear = self.yearlyCalculation()
-            let totalProfitForMonth = self.monthlyCalculation(numDays)
+            let totalProfitForYear = self.yearlyCalculation(String(self.today.month), year: String(self.today.year))
+            let totalProfitForMonth = self.monthlyCalculation(numDays, month: String(self.today.month), year: String(self.today.year))
             //for average profit per day
+            salesListForDay = (totalProfitForMonth[0])
             
             
             //for average profit per month
@@ -101,7 +103,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             
         })
 
-        
+        */
     }
 
     
@@ -319,7 +321,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         var profitsMonthly = [Double]()
         for month in self.monthsInNum{
             
-            let yearAndMonth = String(month) + "/" + String(self.today.year)
+            let yearAndMonth = String(month) + "/" + String(year)
             var salesAmount = 0.0
             var expensesAmount = 0.0
             var profit = 0.0
