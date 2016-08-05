@@ -79,8 +79,8 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         //loads data form local database
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            var totalProfitForYear = self.yearlyCalculation()
-            var totalProfitForMonth = self.monthlyCalculation(numDays)
+            let totalProfitForYear = self.yearlyCalculation()
+            let totalProfitForMonth = self.monthlyCalculation(numDays)
             //for average profit per day
             
             
@@ -245,19 +245,24 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         chart.leftAxis.axisMinValue = 1
     }
     
-    func monthlyCalculation(numDays: Int) -> Double!{
+    func monthlyCalculation(numDays: Int, month: String, year: String) -> [[AnyObject]]!{
 
         var totalProfitForMonth = 0.0
+        var salesListForDay = [Double]()
+        var expensesListForDay = [Double]()
+        var profitDaily = [Double]()
+        var days = [String]()
+        
         var stringOfDayMonthYear = ""
         if today.month < 10{
-            stringOfDayMonthYear = "0" + String(today.month) + "/" + String(today.year)
+            stringOfDayMonthYear = "0" + month + "/" + year
         }else{
-            stringOfDayMonthYear = String(today.month) + "/" + String(today.year)
+            stringOfDayMonthYear = month + "/" + year
         }
         
         for month in self.monthsInNum{
             
-            let yearAndMonth = String(month) + "/" + String(today.year)
+            let yearAndMonth = String(month) + "/" + year
             var yearMonthDay = ""
 
             if stringOfDayMonthYear == yearAndMonth{
@@ -271,7 +276,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
                     }else{
                         yearMonthDay = String(day) + "/" + yearAndMonth
                     }
-                    self.days.append(yearMonthDay)
+                    days.append(yearMonthDay)
                     for record in self.records {
                         if record.date.containsString(yearMonthDay){
                             let type = record.type
@@ -290,25 +295,28 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
                         
                     }
                     //for month
-                    self.salesListForDay.append(salesAmountForDay)
-                    self.expensesListForDay.append(expensesAmountForDay)
+                    salesListForDay.append(salesAmountForDay)
+                    expensesListForDay.append(expensesAmountForDay)
                     profitForDay = salesAmountForDay - expensesAmountForDay
                     totalProfitForMonth += profitForDay
                     if profitForDay > self.maxProfitForDay{
                         self.maxProfitForDay = profitForDay
                         self.maxProfitDay = yearMonthDay
                     }
-                    self.salesDaily.append(Double(profitForDay))
+                    profitDaily.append(Double(profitForDay))
                 }
             }
             
         }
-        return totalProfitForMonth
+        return [salesListForDay, expensesListForDay, profitDaily, days]
     }
-    func yearlyCalculation() -> Double!{
+    func yearlyCalculation(month: String, year: String) -> [[AnyObject]]!{
         
         var i = 0
         var totalProfitForYear = 0.0
+        var salesList = [Double]()
+        var expensesList = [Double]()
+        var profitsMonthly = [Double]()
         for month in self.monthsInNum{
             
             let yearAndMonth = String(month) + "/" + String(self.today.year)
@@ -335,21 +343,21 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             }
             
             //for year
-            self.salesList.append(salesAmount)
-            self.expensesList.append(expensesAmount)
+            salesList.append(salesAmount)
+            expensesList.append(expensesAmount)
             profit = salesAmount - expensesAmount
             totalProfitForYear += profit
             if profit > self.maxProfit{
                 self.maxProfit = profit
                 self.maxProfitMonth = self.months[i]
             }
-            self.profitsMonthly.append(Double(profit))
+            profitsMonthly.append(Double(profit))
             
             
             
             i += 1
         }
-        return totalProfitForYear
+        return [salesList, expensesList, profitsMonthly]
     }
     
     
