@@ -254,6 +254,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
         self.records.removeAll()
+        self.datesAndRecords.removeAll()
         var array = [String]()
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
