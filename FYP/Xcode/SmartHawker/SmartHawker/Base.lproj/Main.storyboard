@@ -3818,7 +3818,11 @@ Cg
                                 <color key="barTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="My Sub Users" id="L37-8E-orT">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="TdB-Dp-pdK"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="TdB-Dp-pdK">
+                                            <connections>
+                                                <action selector="back:" destination="fib-yY-458" id="1JE-Jc-k9O"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="New" id="9Wn-P5-VqJ">
                                             <connections>
                                                 <segue destination="Uyj-lj-A04" kind="modal" id="yqG-OE-sKK"/>
@@ -3867,7 +3871,11 @@ Cg
                                 </constraints>
                                 <items>
                                     <navigationItem title="Add Sub User" id="1Wm-dD-M5S">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="byo-5K-s5a"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="byo-5K-s5a">
+                                            <connections>
+                                                <action selector="back:" destination="Uyj-lj-A04" id="IDH-8r-PmF"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

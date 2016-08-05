@@ -27,11 +27,17 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("Reloading")
         tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         self.viewDidLoad()
+    }
+    
+    //  Back
+    @IBAction func back(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Retrieve all subusers.
@@ -77,6 +83,17 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Clicked on row: " + String(indexPath.row))
+        let alert = UIAlertController(title: "Edit subuser", message: "What would you like to do with " + (subusers[indexPath.row]["name"] as! String) + "?", preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: "Edit PIN", style: .Default, handler: { Void in
+            let editPINAlert = UIAlertController(title: "Edit PIN", message: "Please enter old PIN and new PIN.", preferredStyle: .Alert)
+            editPINAlert.addAction(UIAlertAction(title: "Nothing!", style: .Default, handler: nil))
+            self.presentViewController(editPINAlert, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Nothing!", style: UIAlertActionStyle.Default, handler: { Void in
+            self.viewWillAppear(true)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
