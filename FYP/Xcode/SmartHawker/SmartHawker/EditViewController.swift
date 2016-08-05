@@ -60,10 +60,10 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
                 if (error == nil) {
                     self.profilePicture.image = UIImage(data: imageData!)
+                    self.imageFile = self.user!["profilePicture"] as? PFFile
                 }
             }
         }
-        
     }
     
     @IBAction func back(sender: UIBarButtonItem){
