@@ -65,8 +65,8 @@ class SummaryController: UIViewController {
     @IBOutlet weak var salesText: UILabel!
     typealias CompletionHandler = (success:Bool) -> Void
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
         let underlineAttributedString = NSAttributedString(string: "Month", attributes: underlineAttribute)
@@ -99,6 +99,7 @@ class SummaryController: UIViewController {
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
+        self.records.removeAll()
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.fromLocalDatastore()

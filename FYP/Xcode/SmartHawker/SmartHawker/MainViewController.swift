@@ -63,8 +63,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         self.performSegueWithIdentifier("addRecord", sender: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         getLatestDate()
         var toDisplayDate = "Overview as of "
@@ -253,6 +253,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
+        self.records.removeAll()
+        var array = [String]()
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.fromLocalDatastore()
@@ -294,6 +296,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                         
                         let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
                         self.records.append(newRecord)
+                        array.append(dateString)
                         if self.datesAndRecords[dateString] == nil {
                             var arrayForRecords = [RecordTable]()
                             arrayForRecords.append(newRecord)
@@ -302,6 +305,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             self.datesAndRecords[dateString]?.append(newRecord)
                         }
                     }
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject(array, forKey: "SavedDateArray")
                     completionHandler(success: true)
                 }
             } else {

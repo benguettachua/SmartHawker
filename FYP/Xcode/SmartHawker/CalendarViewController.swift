@@ -35,18 +35,16 @@ class CalendarViewcontroller: UIViewController{
     @IBOutlet var MonthAndYear: UILabel!
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
-    
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     var date: Moment! {
         didSet {
             // title = date.format("MMMM d, yyyy")
         }
     }//for calendar
-    
+    /*
     override func viewDidLoad() {
         super.viewDidLoad()
 
-            
         // Formatting to format as saved in DB.
         var correctDateString = ""
         if toShare.storeDate == nil{
@@ -65,14 +63,34 @@ class CalendarViewcontroller: UIViewController{
         
         
     }
-    
+    */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Formatting to format as saved in DB.
+        var correctDateString = ""
+        if toShare.storeDate == nil{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            correctDateString = dateFormatter.stringFromDate(NSDate())
+        }else{
+            correctDateString = toShare.dateString
+        }
+        loadRecordsFromLocaDatastore({ (success) -> Void in
+            
+            self.loadRecords(correctDateString)
+            
+            
+        })
+        
+        
+        
         calendar.delegate = self
         calendar.backgroundColor = UIColor.clearColor()
         if toShare.storeDate != nil {
             calendar.selectDate(toShare.storeDate)
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
+            loadRecords(toShare.dateString)
         }
         todayRecordView.backgroundColor = UIColor(white: 1, alpha: 0.3)
 
@@ -129,7 +147,9 @@ class CalendarViewcontroller: UIViewController{
     func loadRecords(correctDateString: String){
         var salesAmount = 0.0
         var expensesAmount = 0.0
+        var dates = [String]()
         for record in self.records {
+            dates.append(record.date)
             if record.date.containsString(correctDateString){
                 let type = record.type
                 let amount = Double(record.amount)
@@ -145,7 +165,8 @@ class CalendarViewcontroller: UIViewController{
             }
             
         }
-
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(dates, forKey: "SavedDateArray")
         // Sales Label
         let salesString2dp = "$" + String(format:"%.2f", salesAmount)
         self.salesText.text = salesString2dp
