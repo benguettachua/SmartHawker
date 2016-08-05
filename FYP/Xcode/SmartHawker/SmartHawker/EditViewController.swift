@@ -139,18 +139,21 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     newPhoneNumber = Int(adminPin.text!)!
                 }else{
                     let errorString = "Invalid Admin PIN field."
+                    adminPin.text = ""
                     adminPin.placeholder = "Invalid Admin PIN field."
                     errorMsg.append(errorString)
                     error += 1
                 }
             } else {
                 let errorString = "Invalid Admin PIN field."
+                adminPin.text = ""
                 adminPin.placeholder = "Invalid Admin PIN field."
                 errorMsg.append(errorString)
                 error += 1
             }
         }else {
             let errorString = "Invalid Admin PIN field."
+            adminPin.text = ""
             adminPin.placeholder = "Invalid Admin PIN field."
             errorMsg.append(errorString)
             error += 1
@@ -163,12 +166,14 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 newEmail = email.text!
             }else{
                 let error = "Invalid Email field."
+                email.text = ""
                 email.placeholder = "Invalid Email field."
                 errorMsg.append(error)
             }
         }else{
-            let error = "Invalid Email field."
-            email.placeholder = "Invalid Email field."
+            let error = "Empty Email field."
+            email.text = ""
+            email.placeholder = "Empty Email field."
             errorMsg.append(error)
         }
         
@@ -177,13 +182,15 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             newBusinessName = businessName.text!.stringByTrimmingCharactersInSet(
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newBusinessName.isEmpty{
-                let errorString = "Invalid Business Name field."
-                businessName.placeholder = "Invalid Business Name field."
+                let errorString = "Empty Business Name field."
+                businessName.text = ""
+                businessName.placeholder = "Empty Business Name field."
                 errorMsg.append(errorString)
             }
         }else{
-            let errorString = "Invalid Business Name field."
-            businessName.placeholder = "Invalid Business Name field."
+            let errorString = "Empty Business Name field."
+            businessName.text = ""
+            businessName.placeholder = "Empty Business Name field."
             errorMsg.append(errorString)
         }
         
@@ -192,13 +199,15 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             newBusinessRegNo = businessRegNo.text!.stringByTrimmingCharactersInSet(
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newBusinessRegNo.isEmpty{
-                let errorString = "Invalid Business Reg No field."
-                businessRegNo.placeholder = "Invalid Business Reg No field."
+                let errorString = "Empty Business Reg No field."
+                businessRegNo.text = ""
+                businessRegNo.placeholder = "Empty Business Reg No field."
                 errorMsg.append(errorString)
             }
         }else{
-            let errorString = "Invalid Business Reg No field."
-            businessRegNo.placeholder = "Invalid Business Reg No field."
+            let errorString = "Empty Business Reg No field."
+            businessRegNo.text = ""
+            businessRegNo.placeholder = "Empty Business Reg No field."
             errorMsg.append(errorString)
         }
         
@@ -207,32 +216,18 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             newBusinessAddress = businessAddress.text!.stringByTrimmingCharactersInSet(
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newBusinessAddress.isEmpty{
-                let errorString = "Invalid Business Address field."
-                businessAddress.placeholder = "Invalid Business Address field."
+                let errorString = "Empty Business Address field."
+                businessAddress.text = ""
+                businessAddress.placeholder = "Empty Business Address field."
                 errorMsg.append(errorString)
             }
         }else{
-            let errorString = "Invalid Business Address field."
-            businessAddress.placeholder = "Invalid Business Address field."
+            let errorString = "Empty Business Address field."
+            businessAddress.text = ""
+            businessAddress.placeholder = "Empty Business Address field."
             errorMsg.append(errorString)
         }
-        
-        //Change Admin PIN
-        if businessAddress.text!.isEmpty == false{
-            newBusinessAddress = businessAddress.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            if newBusinessAddress.isEmpty{
-                let errorString = "Invalid Business Address field."
-                businessAddress.placeholder = "Invalid Business Address field."
-                errorMsg.append(errorString)
-            }
-        }else{
-            let errorString = "Invalid Business Address field."
-            businessAddress.placeholder = "Invalid Business Address field."
-            errorMsg.append(errorString)
-        }
-        print(errorMsg)
-        print(error)
+
         /*
         
         if error == 0 {
