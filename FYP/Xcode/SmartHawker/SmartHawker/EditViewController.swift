@@ -16,6 +16,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var businessName: UITextField!
+    @IBOutlet weak var adminPin: UITextField!
     @IBOutlet weak var businessRegNo: UITextField!
     @IBOutlet weak var businessAddress: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -50,7 +51,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         businessName.text! = user!["businessName"] as! String
         businessRegNo.text! = user!["businessNumber"] as! String
         businessAddress.text! = user!["businessAddress"] as! String
-        //adminPin.text! = user!["adminPin"] as! String
+        adminPin.text! = user!["adminPin"] as! String
         email.text! = user!["email"] as! String
         phoneNo.text! = user!["phoneNumber"] as! String
         
@@ -72,6 +73,8 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //change email
     @IBAction func change(sender: UIButton) {
         
+        errorMsg.removeAll()
+        
         var error = 0
         var newName = ""
         var newEmail = ""
@@ -87,13 +90,15 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newName.isEmpty{
                 let errorString = "Invalid Name field."
-                name.backgroundColor = UIColor.redColor()
+                name.text = ""
+                name.placeholder = "Invalid Name field."
                 errorMsg.append(errorString)
                 error += 1
             }
         }else{
             let errorString = "Invalid Name field."
-            name.backgroundColor = UIColor.redColor()
+            name.text = ""
+            name.placeholder = "Invalid Name field."
             errorMsg.append(errorString)
             error += 1
         }
@@ -105,19 +110,50 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 if Int(phoneNo.text!) >= 80000000 && Int(phoneNo.text!) < 100000000{
                     newPhoneNumber = Int(phoneNo.text!)!
                 }else{
-                    let error = "Invalid Phone Number field."
-                    name.backgroundColor = UIColor.redColor()
-                    errorMsg.append(error)
+                    let errorString = "Invalid Phone Number field."
+                    phoneNo.text = ""
+                    phoneNo.placeholder = "Invalid Phone Number field."
+                    errorMsg.append(errorString)
+                    error += 1
                 }
             } else {
-                let error = "Invalid Phone Number field."
-                name.backgroundColor = UIColor.redColor()
-                errorMsg.append(error)
+                let errorString = "Invalid Phone Number field."
+                phoneNo.text = ""
+                phoneNo.placeholder = "Invalid Phone Number field."
+                errorMsg.append(errorString)
+                error += 1
             }
         }else {
-            let error = "Invalid Phone Number field."
-            name.backgroundColor = UIColor.redColor()
-            errorMsg.append(error)
+            let errorString = "Invalid Phone Number field."
+            phoneNo.text = ""
+            phoneNo.placeholder = "Invalid Phone Number field."
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        //checks for AdminPIN Number
+        if adminPin.text!.isEmpty == false{
+            
+            if Int(adminPin.text!) != nil {
+                if Int(adminPin.text!) >= 1000 && Int(adminPin.text!) < 10000{
+                    newPhoneNumber = Int(adminPin.text!)!
+                }else{
+                    let errorString = "Invalid Admin PIN field."
+                    adminPin.placeholder = "Invalid Admin PIN field."
+                    errorMsg.append(errorString)
+                    error += 1
+                }
+            } else {
+                let errorString = "Invalid Admin PIN field."
+                adminPin.placeholder = "Invalid Admin PIN field."
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else {
+            let errorString = "Invalid Admin PIN field."
+            adminPin.placeholder = "Invalid Admin PIN field."
+            errorMsg.append(errorString)
+            error += 1
         }
         
         //checks for email
@@ -127,12 +163,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 newEmail = email.text!
             }else{
                 let error = "Invalid Email field."
-                name.backgroundColor = UIColor.redColor()
+                email.placeholder = "Invalid Email field."
                 errorMsg.append(error)
             }
         }else{
             let error = "Invalid Email field."
-            name.backgroundColor = UIColor.redColor()
+            email.placeholder = "Invalid Email field."
             errorMsg.append(error)
         }
         
@@ -142,15 +178,13 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newBusinessName.isEmpty{
                 let errorString = "Invalid Business Name field."
-                name.backgroundColor = UIColor.redColor()
+                businessName.placeholder = "Invalid Business Name field."
                 errorMsg.append(errorString)
-                error += 1
             }
         }else{
             let errorString = "Invalid Business Name field."
-            name.backgroundColor = UIColor.redColor()
+            businessName.placeholder = "Invalid Business Name field."
             errorMsg.append(errorString)
-            error += 1
         }
         
         //Change business Reg No
@@ -159,15 +193,13 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newBusinessRegNo.isEmpty{
                 let errorString = "Invalid Business Reg No field."
-                name.backgroundColor = UIColor.redColor()
+                businessRegNo.placeholder = "Invalid Business Reg No field."
                 errorMsg.append(errorString)
-                error += 1
             }
         }else{
             let errorString = "Invalid Business Reg No field."
-            name.backgroundColor = UIColor.redColor()
+            businessRegNo.placeholder = "Invalid Business Reg No field."
             errorMsg.append(errorString)
-            error += 1
         }
         
         //Change business Address
@@ -176,18 +208,32 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 NSCharacterSet.whitespaceAndNewlineCharacterSet())
             if newBusinessAddress.isEmpty{
                 let errorString = "Invalid Business Address field."
-                name.backgroundColor = UIColor.redColor()
+                businessAddress.placeholder = "Invalid Business Address field."
                 errorMsg.append(errorString)
-                error += 1
             }
         }else{
             let errorString = "Invalid Business Address field."
-            name.backgroundColor = UIColor.redColor()
+            businessAddress.placeholder = "Invalid Business Address field."
             errorMsg.append(errorString)
-            error += 1
         }
         
-        
+        //Change Admin PIN
+        if businessAddress.text!.isEmpty == false{
+            newBusinessAddress = businessAddress.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessAddress.isEmpty{
+                let errorString = "Invalid Business Address field."
+                businessAddress.placeholder = "Invalid Business Address field."
+                errorMsg.append(errorString)
+            }
+        }else{
+            let errorString = "Invalid Business Address field."
+            businessAddress.placeholder = "Invalid Business Address field."
+            errorMsg.append(errorString)
+        }
+        print(errorMsg)
+        print(error)
+        /*
         
         if error == 0 {
             self.user!["name"] = newName
@@ -200,7 +246,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.user?.saveInBackground()
             
             
-        }
+        }*/
     }
     //////Changing profile picture
     
