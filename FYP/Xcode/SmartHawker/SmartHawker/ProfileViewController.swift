@@ -46,6 +46,27 @@ class ProfileViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Load the Top Bar
+        let user = PFUser.currentUser()
+        // Populate the top bar
+        profileName.text! = user!["name"] as! String
+        phoneNumber.text! = user!["phoneNumber"] as! String
+        
+        // Getting the profile picture
+        if let userPicture = user!["profilePicture"] as? PFFile {
+            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                if (error == nil) {
+                    self.profilePicture.image = UIImage(data: imageData!)
+                }
+            }
+        }
+        
+        
+    }
+    
     @IBAction func Logout(sender: UIBarButtonItem) {
         let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         

@@ -78,10 +78,11 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         var error = 0
         var newName = ""
         var newEmail = ""
-        var newPhoneNumber = 0
+        var newPhoneNumber = ""
         var newBusinessName = ""
         var newBusinessAddress = ""
         var newBusinessRegNo = ""
+        var newPINNumber = ""
         let password = self.shared.password
         
         //checks for name
@@ -108,7 +109,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             if Int(phoneNo.text!) != nil {
                 if Int(phoneNo.text!) >= 80000000 && Int(phoneNo.text!) < 100000000{
-                    newPhoneNumber = Int(phoneNo.text!)!
+                    newPhoneNumber = phoneNo.text!
                 }else{
                     let errorString = "Invalid Phone Number field."
                     phoneNo.text = ""
@@ -136,7 +137,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             if Int(adminPin.text!) != nil {
                 if Int(adminPin.text!) >= 1000 && Int(adminPin.text!) < 10000{
-                    newPhoneNumber = Int(adminPin.text!)!
+                    newPINNumber = adminPin.text!
                 }else{
                     let errorString = "Invalid Admin PIN field."
                     adminPin.text = ""
@@ -228,20 +229,34 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             errorMsg.append(errorString)
         }
 
-        /*
+        
         
         if error == 0 {
             self.user!["name"] = newName
             self.user!["phoneNumber"] = newPhoneNumber
             self.user!["email"] = newEmail
+            self.user!["adminPin"] = newPINNumber
             self.user!["businessAddress"] = newBusinessAddress
             self.user!["businessName"] = newBusinessName
             self.user!["businessNumber"] = newBusinessRegNo
             
             self.user?.saveInBackground()
             
+            let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
             
-        }*/
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+
+
+            
+            
+        }else{
+            let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     //////Changing profile picture
     
