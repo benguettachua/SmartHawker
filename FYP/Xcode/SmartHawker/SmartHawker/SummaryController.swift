@@ -153,20 +153,20 @@ class SummaryController: UIViewController {
     
     func loadRecords(){
         
-        var totalSalesAmount = 0.0
-        var totalExpensesAmount = 0.0
+        var totalSalesAmount = 0.00
+        var totalExpensesAmount = 0.00
         // Swift 2:
         let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: chosenMonthDate)
         
         let numDays = range.length
-        var series1 = [0.0]
-        var series2 = [0.0]
+        var series1 = [0.00]
+        var series2 = [0.00]
         var days = [""]
 
         for i in 1...numDays{
             
-            var salesAmount = 0.0
-            var expensesAmount = 0.0
+            var salesAmount = 0.00
+            var expensesAmount = 0.00
             
             var stringToCheck = String(i) + "/" + self.dateString
             if i < 10 {
@@ -196,25 +196,25 @@ class SummaryController: UIViewController {
             series2.append(expensesAmount)
         }
         days.append("")
-        series1.append(0.0)
-        series2.append(0.0)
+        series1.append(0.00)
+        series2.append(0.00)
         setData(days, values1: series1, values2: series2)
-        self.salesText.text = String(totalSalesAmount)
-        self.expensesText.text = String(totalExpensesAmount)
-        self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
+        self.salesText.text = String.localizedStringWithFormat("%.2f", totalSalesAmount)
+        self.expensesText.text = String.localizedStringWithFormat("%.2f", totalExpensesAmount)
+        self.profitText.text = String.localizedStringWithFormat("%.2f", (totalSalesAmount - totalExpensesAmount))
     }
     
     
     func loadRecordsYearly(){
-        var salesAmount = 0.0
-        var expensesAmount = 0.0
-        var totalSalesAmount = 0.0
-        var totalExpensesAmount = 0.0
-        var series1 = [0.0]
-        var series2 = [0.0]
+        var salesAmount = 0.00
+        var expensesAmount = 0.00
+        var totalSalesAmount = 0.00
+        var totalExpensesAmount = 0.00
+        var series1 = [0.00]
+        var series2 = [0.00]
         for i in 1...12 {
-            salesAmount = 0.0
-            expensesAmount = 0.0
+            salesAmount = 0.00
+            expensesAmount = 0.00
             var text = ""
             if i == 1{
                 text = "0" + String(i)
@@ -250,21 +250,21 @@ class SummaryController: UIViewController {
         series1.append(0)
         series2.append(0)
         setData(months, values1: series1, values2: series2)
-        self.salesText.text = String(totalSalesAmount)
-        self.expensesText.text = String(totalExpensesAmount)
-        self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
+        self.salesText.text = String.localizedStringWithFormat("%.2f", totalSalesAmount)
+        self.expensesText.text = String.localizedStringWithFormat("%.2f", totalExpensesAmount)
+        self.profitText.text = String.localizedStringWithFormat("%.2f", (totalSalesAmount - totalExpensesAmount))
     }
     
     func loadRecordsWeekly(){
         
-        var series1 = [0.0]
-        var series2 = [0.0]
+        var series1 = [0.00]
+        var series2 = [0.00]
         var dataPoints = [""]
-        var totalSalesAmount = 0.0
-        var totalExpensesAmount = 0.0
+        var totalSalesAmount = 0.00
+        var totalExpensesAmount = 0.00
         for stringToCheck in daysInWeek{
-            var salesAmount = 0.0
-            var expensesAmount = 0.0
+            var salesAmount = 0.00
+            var expensesAmount = 0.00
             dataPoints.append(stringToCheck)
             for record in self.records {
                 if record.date.containsString(stringToCheck){
@@ -288,13 +288,13 @@ class SummaryController: UIViewController {
             series1.append(salesAmount)
             series2.append(expensesAmount)
         }
-        series1.append(0.0)
-        series2.append(0.0)
+        series1.append(0.00)
+        series2.append(0.00)
         dataPoints.append("")
         setData(dataPoints, values1: series1, values2: series2)
-        self.salesText.text = String(totalSalesAmount)
-        self.expensesText.text = String(totalExpensesAmount)
-        self.profitText.text = String(totalSalesAmount - totalExpensesAmount)
+        self.salesText.text = String.localizedStringWithFormat("%.2f", totalSalesAmount)
+        self.expensesText.text = String.localizedStringWithFormat("%.2f", totalExpensesAmount)
+        self.profitText.text = String.localizedStringWithFormat("%.2f", (totalSalesAmount - totalExpensesAmount))
     }
     
     
@@ -642,4 +642,10 @@ class SummaryController: UIViewController {
         chart.legend.enabled = false
     }
 
+}
+
+extension Double {
+    func format(f: String) -> String {
+        return String(format: "%\(f)f", self)
+    }
 }
