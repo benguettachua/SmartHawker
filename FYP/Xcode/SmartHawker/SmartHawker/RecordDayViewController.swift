@@ -81,6 +81,10 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // MARK: Action
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func nextDay(sender: UIButton) {
         let dateString = shared.dateString
         let dateFormatter = NSDateFormatter()
@@ -120,6 +124,9 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    @IBAction func addRecord(sender: UIButton) {
+        self.performSegueWithIdentifier("addRecord", sender: self)
+    }
     
     
     // Below this comment are all the methods for table.

@@ -205,7 +205,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="938" y="2045"/>
+            <point key="canvasLocation" x="216" y="1180"/>
         </scene>
         <!--AdminPIN View Controller-->
         <scene sceneID="TFq-ct-rBu">
@@ -312,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c22-yS-Ua9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="1180"/>
+            <point key="canvasLocation" x="706" y="1180"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h1a-Hd-syf">
@@ -468,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMs-Om-CsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="2045"/>
+            <point key="canvasLocation" x="686" y="2093"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hUr-li-z3t">
@@ -621,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YQ3-kt-Swh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2011" y="2045"/>
+            <point key="canvasLocation" x="1177" y="2093"/>
         </scene>
         <!--Record-sales-->
         <scene sceneID="FbI-2E-RFy">
@@ -674,9 +674,6 @@
                                                                                 <state key="normal" title="SALES">
                                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
-                                                                                <connections>
-                                                                                    <action selector="selectSales:" destination="2IV-Dn-hU7" eventType="touchUpInside" id="gn2-3a-Led"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -700,9 +697,6 @@
                                                                                 <state key="normal" title="EXPENSES">
                                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
-                                                                                <connections>
-                                                                                    <action selector="selectExpenses:" destination="2IV-Dn-hU7" eventType="touchUpInside" id="5HB-fz-UKy"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -815,13 +809,11 @@
                         <outlet property="recordSuccessLabel" destination="Oh7-CF-3sm" id="xRK-gz-eaR"/>
                         <outlet property="saleButton" destination="FTI-s9-h2t" id="Fg0-5T-UaQ"/>
                         <outlet property="todayDateLabel" destination="sZ1-z0-6E2" id="TfQ-Hr-ssm"/>
-                        <segue destination="w0u-9P-jUc" kind="modal" identifier="backToRecordDay" id="z5J-Aa-r0o"/>
-                        <segue destination="seI-bn-sOf" kind="modal" identifier="toExpenses" animates="NO" id="a3P-v7-Tjq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaX-h2-TMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="-1383"/>
+            <point key="canvasLocation" x="3338" y="2093"/>
         </scene>
         <!--Record Day View Controller-->
         <scene sceneID="ZM5-kO-09c">
@@ -925,7 +917,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2IV-Dn-hU7" kind="modal" id="C6R-XM-b45"/>
+                                            <action selector="addRecord:" destination="w0u-9P-jUc" eventType="touchUpInside" id="Uqb-n7-Qc9"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="dayNo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bw-YPT">
@@ -970,7 +962,7 @@
                                         <rect key="frame" x="14" y="-1" width="34" height="30"/>
                                         <state key="normal" title="Back"/>
                                         <connections>
-                                            <segue destination="xvq-Kx-gUH" kind="modal" id="kRA-ns-zPH"/>
+                                            <action selector="back:" destination="w0u-9P-jUc" eventType="touchUpInside" id="4Cm-dp-8Ob"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -992,11 +984,12 @@
                         <outlet property="noRecordView" destination="owM-XO-trf" id="WyU-if-nJq"/>
                         <outlet property="tableView" destination="hFy-fM-ZBa" id="6V9-Sq-EZe"/>
                         <segue destination="efc-LM-mxg" kind="modal" identifier="updateRecord" id="5xY-Qe-Prb"/>
+                        <segue destination="OM1-N0-jK9" kind="modal" identifier="addRecord" id="TpA-R2-xdH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hms-CT-p5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2950" y="-2259"/>
+            <point key="canvasLocation" x="2254" y="2093"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="mOw-UE-ogO">
@@ -1167,7 +1160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRP-m8-3Zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="-492"/>
+            <point key="canvasLocation" x="1732" y="2093"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Ied-Rr-Slb">
@@ -1391,6 +1384,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwz-4h-M86">
+                                <rect key="frame" x="91" y="403" width="232" height="30"/>
+                                <state key="normal" title="TEMP BUTTON TO GO SUB USER"/>
+                                <connections>
+                                    <segue destination="fib-yY-458" kind="modal" id="Gfm-lI-UCw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1408,7 +1408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIe-Kj-bVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2052" y="-138"/>
+            <point key="canvasLocation" x="1732" y="2998"/>
         </scene>
         <!--Home-->
         <scene sceneID="9f0-zr-LK6">
@@ -1671,7 +1671,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SW-ED-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="-492"/>
+            <point key="canvasLocation" x="1732" y="1180"/>
         </scene>
         <!--Reports-->
         <scene sceneID="k3s-Pt-nhI">
@@ -1820,7 +1820,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G78-zV-yTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-232" y="-478"/>
+            <point key="canvasLocation" x="1732" y="-768"/>
         </scene>
         <!--Analytics-->
         <scene sceneID="6pd-u3-9GW">
@@ -1841,7 +1841,7 @@
                                     <constraint firstAttribute="width" constant="414" id="EhK-i1-shO"/>
                                 </constraints>
                             </imageView>
-                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9V-f8-wk0">
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9V-f8-wk0">
                                 <rect key="frame" x="-5" y="0.0" width="419" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cse-PI-Cgj">
@@ -1921,7 +1921,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nni-Ma-9fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="395" y="-484"/>
+            <point key="canvasLocation" x="1732" y="231"/>
         </scene>
         <!--Reports-->
         <scene sceneID="tg6-rW-v2J">
@@ -2110,7 +2110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Br7-n4-asq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="-2232"/>
+            <point key="canvasLocation" x="2304" y="-768"/>
         </scene>
         <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
@@ -2132,7 +2132,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIs-CO-F2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="351"/>
+            <point key="canvasLocation" x="1208" y="1180"/>
         </scene>
         <!--faqPage-->
         <scene sceneID="bpT-j9-o1U">
@@ -3349,7 +3349,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT7-ZU-Dh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2455" y="1026"/>
+            <point key="canvasLocation" x="2287" y="3868"/>
         </scene>
         <!--contactUsPage-->
         <scene sceneID="0fP-DE-K2i">
@@ -3721,7 +3721,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oa6-Dm-AcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="1026"/>
+            <point key="canvasLocation" x="2803" y="3868"/>
         </scene>
         <!--Sub User View Controller-->
         <scene sceneID="rth-Of-ba0">
@@ -3834,7 +3834,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZu-1f-JJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="677" y="-1383"/>
+            <point key="canvasLocation" x="2803" y="2998"/>
         </scene>
         <!--Add Sub User View Controller-->
         <scene sceneID="yMV-kV-8WG">
@@ -3855,11 +3855,7 @@ Cg
                                 </constraints>
                                 <items>
                                     <navigationItem title="Add Sub User" id="1Wm-dD-M5S">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="byo-5K-s5a">
-                                            <connections>
-                                                <segue destination="fib-yY-458" kind="modal" id="uGS-89-08i"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="byo-5K-s5a"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -3965,7 +3961,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cen-GM-JP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240" y="-1383"/>
+            <point key="canvasLocation" x="3338" y="2998"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Qj0-Fc-1KG">
@@ -4283,7 +4279,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxY-YN-Sfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2567" y="-539"/>
+            <point key="canvasLocation" x="1732" y="3868"/>
         </scene>
         <!--Record-Expenses-->
         <scene sceneID="eSb-Sr-Uov">
@@ -4330,9 +4326,6 @@ Cg
                                                                                 <state key="normal" title="SALES">
                                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
-                                                                                <connections>
-                                                                                    <action selector="selectSales:" destination="seI-bn-sOf" eventType="touchUpInside" id="eD6-d8-TAF"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -4550,13 +4543,11 @@ Cg
                         <outlet property="recurringButton" destination="lx5-ub-7OW" id="Og8-P2-ET2"/>
                         <outlet property="recurringCheckbox" destination="muq-7d-pEl" id="x8V-76-JI4"/>
                         <outlet property="todayDateLabel" destination="UsI-8W-J1m" id="MGu-Ix-RIe"/>
-                        <segue destination="2IV-Dn-hU7" kind="modal" identifier="toSales" animates="NO" id="V3i-Up-iFk"/>
-                        <segue destination="w0u-9P-jUc" kind="modal" identifier="backToRecordDay" id="HIF-vH-vss"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIj-Zi-TTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320" y="-1375"/>
+            <point key="canvasLocation" x="3886" y="2093"/>
         </scene>
         <!--Profile-->
         <scene sceneID="IsB-NE-YxR">
@@ -4780,7 +4771,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yve-Hz-1af" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2567" y="272"/>
+            <point key="canvasLocation" x="2287" y="2998"/>
         </scene>
         <!--Update View Controller-->
         <scene sceneID="Rd2-Fz-vEL">
@@ -4808,7 +4799,6 @@ Cg
                             </containerView>
                             <segmentedControl opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RMZ-w7-Y01">
                                 <rect key="frame" x="59" y="105" width="296" height="48"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="Sales"/>
                                     <segment title="Expenses"/>
@@ -4837,7 +4827,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hEC-c9-44S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2511" y="-3157"/>
+            <point key="canvasLocation" x="2811" y="1213"/>
         </scene>
         <!--Update-Sales-->
         <scene sceneID="0hV-JM-oWH">
@@ -5024,7 +5014,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaL-hq-WyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1524" y="-3157"/>
+            <point key="canvasLocation" x="3338" y="1213"/>
         </scene>
         <!--Update- Expenses-->
         <scene sceneID="1e8-WR-7rc">
@@ -5293,7 +5283,62 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEr-w8-CYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2052" y="-3157"/>
+            <point key="canvasLocation" x="3886" y="1213"/>
+        </scene>
+        <!--Add Record View Controller-->
+        <scene sceneID="KUl-1F-PPY">
+            <objects>
+                <viewController id="OM1-N0-jK9" userLabel="Add Record View Controller" customClass="AddRecordViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TDP-V0-eLc"/>
+                        <viewControllerLayoutGuide type="bottom" id="tmI-u8-hWY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SYt-GU-ubr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2i-F4-tr0" userLabel="Sales Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <segue destination="2IV-Dn-hU7" kind="embed" id="6Co-7h-tty"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcK-oy-R1I" userLabel="Expenses Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <segue destination="seI-bn-sOf" kind="embed" id="sDl-EQ-kMC"/>
+                                </connections>
+                            </containerView>
+                            <segmentedControl opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-Dl-s3Z">
+                                <rect key="frame" x="59" y="105" width="296" height="48"/>
+                                <segments>
+                                    <segment title="Sales"/>
+                                    <segment title="Expenses"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentCtrl:" destination="OM1-N0-jK9" eventType="valueChanged" id="sU9-ZL-myF"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hca-Dl-s3Z" firstAttribute="centerX" secondItem="dcK-oy-R1I" secondAttribute="centerX" id="Byj-UB-ZI9"/>
+                            <constraint firstItem="Hca-Dl-s3Z" firstAttribute="centerX" secondItem="SYt-GU-ubr" secondAttribute="centerX" id="L81-gQ-KBb"/>
+                            <constraint firstItem="Hca-Dl-s3Z" firstAttribute="centerX" secondItem="Z2i-F4-tr0" secondAttribute="centerX" id="i9H-aq-8PD"/>
+                            <constraint firstItem="Hca-Dl-s3Z" firstAttribute="leading" secondItem="SYt-GU-ubr" secondAttribute="leadingMargin" constant="39" id="kQ2-FJ-O3S"/>
+                            <constraint firstItem="Hca-Dl-s3Z" firstAttribute="top" secondItem="TDP-V0-eLc" secondAttribute="bottom" constant="100" id="oIh-lJ-bhV"/>
+                            <constraint firstItem="tmI-u8-hWY" firstAttribute="top" secondItem="Hca-Dl-s3Z" secondAttribute="bottom" constant="569" id="oNr-3c-ici"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="expensesView" destination="dcK-oy-R1I" id="P0M-eP-V6h"/>
+                        <outlet property="saleView" destination="Z2i-F4-tr0" id="ici-Rb-T2I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LC5-hv-6Mo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2811" y="2093"/>
         </scene>
     </scenes>
     <resources>
@@ -5362,10 +5407,8 @@ Cg
         <image name="third-box" width="339" height="140"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="6Co-7h-tty"/>
         <segue reference="ay2-CF-7hT"/>
-        <segue reference="Zkl-ky-SCt"/>
-        <segue reference="kRA-ns-zPH"/>
-        <segue reference="C6R-XM-b45"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

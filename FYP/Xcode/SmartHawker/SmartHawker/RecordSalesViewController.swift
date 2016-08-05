@@ -64,18 +64,14 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     @IBAction func selectSales(sender: UIButton) {
         type = 0
     }
-    // Clicking this button will move the user to Record-Expenses scene.
-    @IBAction func selectExpenses(sender: UIButton) {
-        self.performSegueWithIdentifier("toExpenses", sender: self)
-    }
     // Clicking this button will return the user back to the previous page.
     @IBAction func cancel(sender: UIButton) {
-        self.performSegueWithIdentifier("backToRecordDay", sender: self)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     // Clicking this button will save the record, then return the user back to the previous page.
     @IBAction func save(sender: UIButton) {
         SubmitRecord({ (success) -> Void in
-            self.performSegueWithIdentifier("backToRecordDay", sender: self)
+            self.dismissViewControllerAnimated(true, completion: nil)
         })
         
     }

@@ -37,18 +37,13 @@ class RecordExpensesViewController: UIViewController{
     
     
     
-    // MARK: Action
-    @IBAction func selectSales(sender: UIButton) {
-        self.performSegueWithIdentifier("toSales", sender: self)
-    }
-    
     @IBAction func cancel(sender: UIButton) {
-        self.performSegueWithIdentifier("backToRecordDay", sender: self)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func save(sender: UIButton) {
         SubmitRecord({ (success) -> Void in
-            self.performSegueWithIdentifier("backToRecordDay", sender: self)
+            self.dismissViewControllerAnimated(true, completion: nil)
         })
     }
     

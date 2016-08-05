@@ -38,11 +38,15 @@ class UpdateRecordViewController: UIViewController{
     
     @IBAction func changeType(sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {
-            self.expensesView.alpha = 0
-            self.salesView.alpha = 1
+            UIView.animateWithDuration(0.5, animations: {
+                self.expensesView.alpha = 0
+                self.salesView.alpha = 1
+            })
         } else {
-            self.expensesView.alpha = 1
-            self.salesView.alpha = 0
+            UIView.animateWithDuration(0.5, animations: {
+                self.expensesView.alpha = 1
+                self.salesView.alpha = 0
+            })
         }
     }
     

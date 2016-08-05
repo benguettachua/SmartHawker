@@ -43,6 +43,7 @@
 		6ABEA12C1D3173E100945E0C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABEA12B1D3173E100945E0C /* RecordTableViewCell.swift */; };
 		6AC9A62C1D544D1200DF3DF3 /* UpdateSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC9A62B1D544D1200DF3DF3 /* UpdateSalesViewController.swift */; };
 		6AC9A62E1D5452D400DF3DF3 /* UpdateRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC9A62D1D5452D400DF3DF3 /* UpdateRecordViewController.swift */; };
+		6AC9A6311D54757100DF3DF3 /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC9A6301D54757100DF3DF3 /* AddRecordViewController.swift */; };
 		6AF9C5111D1693EE000533E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5101D1693EE000533E0 /* User.swift */; };
 		6AF9C5121D1693EE000533E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5101D1693EE000533E0 /* User.swift */; };
 		6AF9C5141D16BC68000533E0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5131D16BC68000533E0 /* RegistrationViewController.swift */; };
@@ -136,6 +137,7 @@
 		6ABEA12B1D3173E100945E0C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		6AC9A62B1D544D1200DF3DF3 /* UpdateSalesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateSalesViewController.swift; sourceTree = "<group>"; };
 		6AC9A62D1D5452D400DF3DF3 /* UpdateRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRecordViewController.swift; sourceTree = "<group>"; };
+		6AC9A6301D54757100DF3DF3 /* AddRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
 		6AF9C5101D1693EE000533E0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6AF9C5131D16BC68000533E0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		6AF9C5161D1840A7000533E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -250,11 +252,10 @@
 				6A6834AC1D05C95E00E9A0AD /* Main.storyboard */,
 				6A016B851D53931F007C38E4 /* SubuserTableViewCell.swift */,
 				6A016B871D53A8A7007C38E4 /* SubuserViewController.swift */,
-				6A016B831D505BFA007C38E4 /* RecordExpensesViewController.swift */,
-				6A096BFC1D21714C007BF9EB /* RecordSalesViewController.swift */,
 				6A016B771D4CECAC007C38E4 /* RecordDayViewController.swift */,
 				6A61FF461D394FB600996C65 /* AdminPINViewController.swift */,
-				6AC9A62F1D5452E600DF3DF3 /* UpdateRecordViewControllers */,
+				6AC9A6321D54758300DF3DF3 /* Add Record View Controllers */,
+				6AC9A62F1D5452E600DF3DF3 /* Update Record View Controllers */,
 				6ABEA12B1D3173E100945E0C /* RecordTableViewCell.swift */,
 				6ABEA1291D3173AE00945E0C /* RecordTableViewController.swift */,
 				DC7F67FF1D1E604F00F2C2B1 /* ReportsViewController.swift */,
@@ -323,14 +324,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6AC9A62F1D5452E600DF3DF3 /* UpdateRecordViewControllers */ = {
+		6AC9A62F1D5452E600DF3DF3 /* Update Record View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6AC9A62D1D5452D400DF3DF3 /* UpdateRecordViewController.swift */,
 				6A61FF441D33E40F00996C65 /* UpdateExpensesViewController.swift */,
 				6AC9A62B1D544D1200DF3DF3 /* UpdateSalesViewController.swift */,
 			);
-			name = UpdateRecordViewControllers;
+			name = "Update Record View Controllers";
+			sourceTree = "<group>";
+		};
+		6AC9A6321D54758300DF3DF3 /* Add Record View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6AC9A6301D54757100DF3DF3 /* AddRecordViewController.swift */,
+				6A016B831D505BFA007C38E4 /* RecordExpensesViewController.swift */,
+				6A096BFC1D21714C007BF9EB /* RecordSalesViewController.swift */,
+			);
+			name = "Add Record View Controllers";
 			sourceTree = "<group>";
 		};
 		A6FDA9C09DE1D95F33242D92 /* Pods */ = {
@@ -640,6 +651,7 @@
 				AFA0447A1D47338C00E9236F /* SummaryController.swift in Sources */,
 				6A61FF451D33E40F00996C65 /* UpdateExpensesViewController.swift in Sources */,
 				DC7F67FE1D1E5EC700F2C2B1 /* CalendarViewController.swift in Sources */,
+				6AC9A6311D54757100DF3DF3 /* AddRecordViewController.swift in Sources */,
 				6A6834A91D05C95E00E9A0AD /* AppDelegate.swift in Sources */,
 				AF9AF5241D51CC310057935F /* ContainerViewController.swift in Sources */,
 				6AF9C5141D16BC68000533E0 /* RegistrationViewController.swift in Sources */,
