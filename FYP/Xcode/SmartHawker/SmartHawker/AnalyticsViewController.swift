@@ -44,6 +44,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     var maxProfitForDay = 0.0
     var maxProfitDay = ""
     var datesAndRecords = [String:[RecordTable]]()
+    var today = moment(NSDate())
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBAction func logout(sender: UIBarButtonItem) {
@@ -55,7 +56,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var today = moment(NSDate())
         //Here I’m creating the calendar instance that we will operate with:
         let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
         //Now asking the calendar what year are we in today’s date:
@@ -79,101 +79,14 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         //loads data form local database
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            var i = 0
-            var totalProfitForYear = 0.0
-            var totalProfitForMonth = 0.0
-            for month in self.monthsInNum{
-                
-                let yearAndMonth = String(month) + "/" + String(today.year)
-                var yearMonthDay = ""
-                
-                var salesAmount = 0.0
-                var expensesAmount = 0.0
-                var profit = 0.0
-                
-                for record in self.records {
-                    if record.date.containsString(yearAndMonth){
-                        let type = record.type
-                        let amount = Double(record.amount)
-                        //let subuser = object["subuser"] as? String
-                        if (type == "Sales") {
-                            salesAmount += amount
-                        } else if (type == "COGS") {
-                            expensesAmount += amount
-                        } else if (type == "Expenses") {
-                            expensesAmount += amount
-                        } else if (type == "Recurring Expenses"){
-                            expensesAmount += amount
-                        }
-                    }
-                    
-                }
-                
-
-                if stringOfDayMonthYear == yearAndMonth{
-                    for day in 1...numDays{
-                        var salesAmountForDay = 0.0
-                        var expensesAmountForDay = 0.0
-                        var profitForDay = 0.0
-                        
-                        if day < 10 {
-                            yearMonthDay = "0" + String(day) + "/" + yearAndMonth
-                        }else{
-                            yearMonthDay = String(day) + "/" + yearAndMonth
-                        }
-                        self.days.append(yearMonthDay)
-                        for record in self.records {
-                            if record.date.containsString(yearMonthDay){
-                                let type = record.type
-                                let amount = Double(record.amount)
-                                //let subuser = object["subuser"] as? String
-                                if (type == "Sales") {
-                                    salesAmountForDay += amount
-                                } else if (type == "COGS") {
-                                    expensesAmountForDay += amount
-                                } else if (type == "Expenses") {
-                                    expensesAmountForDay += amount
-                                } else if (type == "Recurring Expenses"){
-                                    expensesAmountForDay += amount
-                                }
-                            }
-                            
-                        }
-                        //for month
-                        self.salesListForDay.append(salesAmountForDay)
-                        self.expensesListForDay.append(expensesAmountForDay)
-                        profitForDay = salesAmountForDay - expensesAmountForDay
-                        totalProfitForMonth += profitForDay
-                        if profitForDay > self.maxProfitForDay{
-                            self.maxProfitForDay = profitForDay
-                            self.maxProfitDay = yearMonthDay
-                        }
-                        self.salesDaily.append(Double(profitForDay))
-                    }
-                }
-
-                
-                
-                //for year
-                self.salesList.append(salesAmount)
-                self.expensesList.append(expensesAmount)
-                profit = salesAmount - expensesAmount
-                totalProfitForYear += profit
-                if profit > self.maxProfit{
-                    self.maxProfit = profit
-                    self.maxProfitMonth = self.months[i]
-                }
-                self.profitsMonthly.append(Double(profit))
-                
-                
-                
-                i += 1
-            }
+            var totalProfitForYear = self.yearlyCalculation()
+            var totalProfitForMonth = self.monthlyCalculation(numDays)
             //for average profit per day
             
             
             //for average profit per month
-            print(totalProfitForYear / Double(today.month))
+            print(totalProfitForMonth / Double(self.today.month))
+            print(totalProfitForYear / Double(self.today.month))
             print(self.days.count)
             print("for max profit day")
             print(self.maxProfitForDay)
@@ -182,9 +95,9 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             print(self.maxProfit)
             print(self.maxProfitMonth)
             //for monthly
-            self.setDataMonth(self.days, values1: self.salesListForDay, values2: self.expensesListForDay)
+            self.setData(self.days, values1: self.salesListForDay, values2: self.expensesListForDay, values3: [], chart: self.monthChart)
             //for yearly
-            self.setDataYear(self.months, values1: self.salesList, values2: self.expensesList, values3: self.profitsMonthly)
+            self.setData(self.months, values1: self.salesList, values2: self.expensesList, values3: self.profitsMonthly, chart: self.yearChart)
             
         })
 
@@ -253,8 +166,8 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         }
     }
     
-    func setDataMonth(dataPoints : [String], values1 : [Double], values2 : [Double]) {
-        
+    func setData(dataPoints : [String], values1 : [Double], values2 : [Double], values3: [Double], chart: LineChartView!) {
+        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         var dataEntries1: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
@@ -275,6 +188,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         
         lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
         var dataEntries2: [ChartDataEntry] = []
+        dataSets.append(lineChartDataSet1)
         
         for i in 0..<dataPoints.count {
             let dataEntry = ChartDataEntry(value: values2[i], xIndex: i)
@@ -293,96 +207,150 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         
         lineChartDataSet2.fill = ChartFill.fillWithColor(UIColor.redColor())
         lineChartDataSet2.drawFilledEnabled = true
-        
-        //3 - create an array to store our LineChartDataSets
-        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
-        dataSets.append(lineChartDataSet1)
         dataSets.append(lineChartDataSet2)
+        
+        if values3.count != 0{
+            var dataEntries3: [ChartDataEntry] = []
+            
+            for i in 0..<dataPoints.count {
+                let dataEntry = ChartDataEntry(value: values3[i], xIndex: i)
+                dataEntries3.append(dataEntry)
+            }
+            
+            let lineChartDataSet3 = LineChartDataSet(yVals: dataEntries3, label: "Profit")
+            lineChartDataSet3.axisDependency = .Left // Line will correlate with left axis values
+            lineChartDataSet3.setColor(UIColor.purpleColor())
+            lineChartDataSet3.highlightColor = UIColor.clearColor()
+            lineChartDataSet3.lineWidth = 2
+            lineChartDataSet3.drawCircleHoleEnabled = false
+            lineChartDataSet3.circleRadius = 0
+            lineChartDataSet3.drawValuesEnabled = false
+            lineChartDataSet3.mode = .HorizontalBezier
+            
+            lineChartDataSet3.fill = ChartFill.fillWithColor(UIColor.purpleColor())
+            lineChartDataSet3.drawFilledEnabled = true
+            dataSets.append(lineChartDataSet3)
+        }
+        //3 - create an array to store our LineChartDataSets
+        
+        
+        
         
         //4 - pass our months in for our x-axis label value along with our dataSets
         let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
         data.setValueTextColor(UIColor.whiteColor())
         
         //5 - finally set our data
-        self.monthChart.data = data
-        monthChart.leftAxis.axisMinValue = 1
+        chart.data = data
+        chart.leftAxis.axisMinValue = 1
     }
     
-    func setDataYear(dataPoints : [String], values1 : [Double], values2 : [Double], values3 : [Double]) {
-        
-        var dataEntries1: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values1[i], xIndex: i)
-            dataEntries1.append(dataEntry)
+    func monthlyCalculation(numDays: Int) -> Double!{
+
+        var totalProfitForMonth = 0.0
+        var stringOfDayMonthYear = ""
+        if today.month < 10{
+            stringOfDayMonthYear = "0" + String(today.month) + "/" + String(today.year)
+        }else{
+            stringOfDayMonthYear = String(today.month) + "/" + String(today.year)
         }
         
-        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Sales")
-        lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet1.setColor(UIColor.greenColor())
-        lineChartDataSet1.highlightColor = UIColor.clearColor()
-        lineChartDataSet1.lineWidth = 4
-        lineChartDataSet1.drawFilledEnabled = true
-        lineChartDataSet1.drawCircleHoleEnabled = false
-        lineChartDataSet1.circleRadius = 0
-        lineChartDataSet1.drawValuesEnabled = false
-        lineChartDataSet1.mode = .HorizontalBezier
-        
-        lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
-        lineChartDataSet1.drawFilledEnabled = true
-        
-        var dataEntries2: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values2[i], xIndex: i)
-            dataEntries2.append(dataEntry)
+        for month in self.monthsInNum{
+            
+            let yearAndMonth = String(month) + "/" + String(today.year)
+            var yearMonthDay = ""
+
+            if stringOfDayMonthYear == yearAndMonth{
+                for day in 1...numDays{
+                    var salesAmountForDay = 0.0
+                    var expensesAmountForDay = 0.0
+                    var profitForDay = 0.0
+                    
+                    if day < 10 {
+                        yearMonthDay = "0" + String(day) + "/" + yearAndMonth
+                    }else{
+                        yearMonthDay = String(day) + "/" + yearAndMonth
+                    }
+                    self.days.append(yearMonthDay)
+                    for record in self.records {
+                        if record.date.containsString(yearMonthDay){
+                            let type = record.type
+                            let amount = Double(record.amount)
+                            //let subuser = object["subuser"] as? String
+                            if (type == "Sales") {
+                                salesAmountForDay += amount
+                            } else if (type == "COGS") {
+                                expensesAmountForDay += amount
+                            } else if (type == "Expenses") {
+                                expensesAmountForDay += amount
+                            } else if (type == "Recurring Expenses"){
+                                expensesAmountForDay += amount
+                            }
+                        }
+                        
+                    }
+                    //for month
+                    self.salesListForDay.append(salesAmountForDay)
+                    self.expensesListForDay.append(expensesAmountForDay)
+                    profitForDay = salesAmountForDay - expensesAmountForDay
+                    totalProfitForMonth += profitForDay
+                    if profitForDay > self.maxProfitForDay{
+                        self.maxProfitForDay = profitForDay
+                        self.maxProfitDay = yearMonthDay
+                    }
+                    self.salesDaily.append(Double(profitForDay))
+                }
+            }
+            
         }
-        
-        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Total Expenses")
-        lineChartDataSet2.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet2.setColor(UIColor.redColor())
-        lineChartDataSet2.highlightColor = UIColor.clearColor()
-        lineChartDataSet2.lineWidth = 2
-        lineChartDataSet2.drawCircleHoleEnabled = false
-        lineChartDataSet2.circleRadius = 0
-        lineChartDataSet2.drawValuesEnabled = false
-        lineChartDataSet2.mode = .HorizontalBezier
-        
-        lineChartDataSet2.fill = ChartFill.fillWithColor(UIColor.redColor())
-        lineChartDataSet2.drawFilledEnabled = true
-        
-        var dataEntries3: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values3[i], xIndex: i)
-            dataEntries3.append(dataEntry)
-        }
-        
-        let lineChartDataSet3 = LineChartDataSet(yVals: dataEntries3, label: "Profit")
-        lineChartDataSet3.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet3.setColor(UIColor.purpleColor())
-        lineChartDataSet3.highlightColor = UIColor.clearColor()
-        lineChartDataSet3.lineWidth = 2
-        lineChartDataSet3.drawCircleHoleEnabled = false
-        lineChartDataSet3.circleRadius = 0
-        lineChartDataSet3.drawValuesEnabled = false
-        lineChartDataSet3.mode = .HorizontalBezier
-        
-        lineChartDataSet3.fill = ChartFill.fillWithColor(UIColor.purpleColor())
-        lineChartDataSet3.drawFilledEnabled = true
-        
-        //3 - create an array to store our LineChartDataSets
-        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
-        dataSets.append(lineChartDataSet1)
-        dataSets.append(lineChartDataSet2)
-        dataSets.append(lineChartDataSet3)
-        
-        //4 - pass our months in for our x-axis label value along with our dataSets
-        let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
-        data.setValueTextColor(UIColor.whiteColor())
-        
-        //5 - finally set our data
-        self.yearChart.data = data
-        yearChart.leftAxis.axisMinValue = 1
+        return totalProfitForMonth
     }
+    func yearlyCalculation() -> Double!{
+        
+        var i = 0
+        var totalProfitForYear = 0.0
+        for month in self.monthsInNum{
+            
+            let yearAndMonth = String(month) + "/" + String(self.today.year)
+            var salesAmount = 0.0
+            var expensesAmount = 0.0
+            var profit = 0.0
+            
+            for record in self.records {
+                if record.date.containsString(yearAndMonth){
+                    let type = record.type
+                    let amount = Double(record.amount)
+                    //let subuser = object["subuser"] as? String
+                    if (type == "Sales") {
+                        salesAmount += amount
+                    } else if (type == "COGS") {
+                        expensesAmount += amount
+                    } else if (type == "Expenses") {
+                        expensesAmount += amount
+                    } else if (type == "Recurring Expenses"){
+                        expensesAmount += amount
+                    }
+                }
+                
+            }
+            
+            //for year
+            self.salesList.append(salesAmount)
+            self.expensesList.append(expensesAmount)
+            profit = salesAmount - expensesAmount
+            totalProfitForYear += profit
+            if profit > self.maxProfit{
+                self.maxProfit = profit
+                self.maxProfitMonth = self.months[i]
+            }
+            self.profitsMonthly.append(Double(profit))
+            
+            
+            
+            i += 1
+        }
+        return totalProfitForYear
+    }
+    
+    
 }

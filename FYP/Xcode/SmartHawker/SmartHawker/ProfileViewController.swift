@@ -31,14 +31,16 @@ class ProfileViewController: UIViewController {
         // Load the Top Bar
         let user = PFUser.currentUser()
         // Populate the top bar
-        profileName.text! = user!["name"] as! String
-        phoneNumber.text! = user!["phoneNumber"] as! String
-        
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
+        if user != nil{
+            profileName.text! = user!["name"] as! String
+            phoneNumber.text! = user!["phoneNumber"] as! String
+            
+            // Getting the profile picture
+            if let userPicture = user!["profilePicture"] as? PFFile {
+                userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                    if (error == nil) {
+                        self.profilePicture.image = UIImage(data: imageData!)
+                    }
                 }
             }
         }
@@ -51,18 +53,19 @@ class ProfileViewController: UIViewController {
         // Load the Top Bar
         let user = PFUser.currentUser()
         // Populate the top bar
-        profileName.text! = user!["name"] as! String
-        phoneNumber.text! = user!["phoneNumber"] as! String
-        
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
+        if user != nil{
+            profileName.text! = user!["name"] as! String
+            phoneNumber.text! = user!["phoneNumber"] as! String
+            
+            // Getting the profile picture
+            if let userPicture = user!["profilePicture"] as? PFFile {
+                userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                    if (error == nil) {
+                        self.profilePicture.image = UIImage(data: imageData!)
+                    }
                 }
             }
         }
-        
         
     }
     
