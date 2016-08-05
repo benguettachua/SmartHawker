@@ -21,19 +21,20 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     var monthsInNum = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     var days = [String]()
+    var monthsString: [String]!
     var years = [Int]()
     var beginningYear: Int!
     var sales: [Double]!
     var cogs: [Double]!
     var expenses: [Double]!
-    var profitsMonthly = [Double]()
-    var salesDaily = [Double]()
-    var totalMonths = [String]()
-    var salesList = [Double]()
-    var expensesList = [Double]()
-    var salesListForDay = [Double]()
-    var expensesListForDay = [Double]()
-    var dollars3 = [Double]()
+    var profitsMonthly: [Double]!
+    var profitDaily: [Double]!
+    var salesDaily: [Double]!
+    var totalMonths: [String]!
+    var salesList: [Double]!
+    var expensesList: [Double]!
+    var salesListForDay: [Double]!
+    var expensesListForDay: [Double]!
     typealias CompletionHandler = (success:Bool) -> Void
     var records = [RecordTable]()
     // Load the Top Bar
@@ -69,26 +70,17 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         
         let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: then)
         let numDays = range.length //days for the month
+
         
-        var stringOfDayMonthYear = ""
-        if today.month < 10{
-            stringOfDayMonthYear = "0" + String(today.month) + "/" + String(today.year)
-        }else{
-            stringOfDayMonthYear = String(today.month) + "/" + String(today.year)
-        }
-        /*
         //loads data form local database
         loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            let totalProfitForYear = self.yearlyCalculation(String(self.today.month), year: String(self.today.year))
-            let totalProfitForMonth = self.monthlyCalculation(numDays, month: String(self.today.month), year: String(self.today.year))
+            let (salesList, expensesList, profitsMonthly) = self.yearlyCalculation(String(self.today.year))
+            //let totalProfitForMonth = self.monthlyCalculation(numDays, month: String(self.today.month), year: String(self.today.year))
             //for average profit per day
-            salesListForDay = (totalProfitForMonth[0])
-            
             
             //for average profit per month
-            print(totalProfitForMonth / Double(self.today.month))
-            print(totalProfitForYear / Double(self.today.month))
+            
             print(self.days.count)
             print("for max profit day")
             print(self.maxProfitForDay)
@@ -97,13 +89,13 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             print(self.maxProfit)
             print(self.maxProfitMonth)
             //for monthly
-            self.setData(self.days, values1: self.salesListForDay, values2: self.expensesListForDay, values3: [], chart: self.monthChart)
+            //self.setData(self.days, values1: self.salesListForDay, values2: self.expensesListForDay, values3: [], chart: self.monthChart)
             //for yearly
-            self.setData(self.months, values1: self.salesList, values2: self.expensesList, values3: self.profitsMonthly, chart: self.yearChart)
+            self.setData(self.months, values1: salesList, values2: expensesList, values3: profitsMonthly, chart: self.yearChart)
             
         })
 
-        */
+        
     }
 
     
@@ -170,10 +162,17 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     
     func setData(dataPoints : [String], values1 : [Double], values2 : [Double], values3: [Double], chart: LineChartView!) {
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
+        var stringData : [String] = [String]()
+        
         var dataEntries1: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values1[i], xIndex: i)
+            print(dataPoints[i])
+            stringData.append(dataPoints[i] as! String)
+        }
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: (Double)(values1[i] as! NSNumber), xIndex: i)
             dataEntries1.append(dataEntry)
         }
         
@@ -193,7 +192,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         dataSets.append(lineChartDataSet1)
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values2[i], xIndex: i)
+            let dataEntry = ChartDataEntry(value: (Double)(values2[i] as! NSNumber), xIndex: i)
             dataEntries2.append(dataEntry)
         }
         
@@ -215,7 +214,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             var dataEntries3: [ChartDataEntry] = []
             
             for i in 0..<dataPoints.count {
-                let dataEntry = ChartDataEntry(value: values3[i], xIndex: i)
+                let dataEntry = ChartDataEntry(value: (Double)(values3[i] as! NSNumber), xIndex: i)
                 dataEntries3.append(dataEntry)
             }
             
@@ -239,7 +238,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         
         
         //4 - pass our months in for our x-axis label value along with our dataSets
-        let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
+        let data: LineChartData = LineChartData(xVals: stringData, dataSets: dataSets)
         data.setValueTextColor(UIColor.whiteColor())
         
         //5 - finally set our data
@@ -247,7 +246,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         chart.leftAxis.axisMinValue = 1
     }
     
-    func monthlyCalculation(numDays: Int, month: String, year: String) -> [[AnyObject]]!{
+    func monthlyCalculation(numDays: Int, month: String, year: String) -> ([Double]! , [Double]!, [Double]!, [String]!) {
 
         var totalProfitForMonth = 0.0
         var salesListForDay = [Double]()
@@ -310,22 +309,23 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             }
             
         }
-        return [salesListForDay, expensesListForDay, profitDaily, days]
+        return (salesListForDay, expensesListForDay, profitDaily, days)
     }
-    func yearlyCalculation(month: String, year: String) -> [[AnyObject]]!{
+    func yearlyCalculation(year: String) -> ([Double]! , [Double]!, [Double]!){
         
         var i = 0
         var totalProfitForYear = 0.0
         var salesList = [Double]()
         var expensesList = [Double]()
         var profitsMonthly = [Double]()
+        var stringMonths = [String]()
         for month in self.monthsInNum{
             
             let yearAndMonth = String(month) + "/" + String(year)
             var salesAmount = 0.0
             var expensesAmount = 0.0
             var profit = 0.0
-            
+            stringMonths.append(yearAndMonth)
             for record in self.records {
                 if record.date.containsString(yearAndMonth){
                     let type = record.type
@@ -359,7 +359,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             
             i += 1
         }
-        return [salesList, expensesList, profitsMonthly]
+        return (salesList, expensesList, profitsMonthly)
     }
     
     
