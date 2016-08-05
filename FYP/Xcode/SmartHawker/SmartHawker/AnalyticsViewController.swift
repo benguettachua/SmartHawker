@@ -11,12 +11,13 @@ import Parse
 import Charts
 import SwiftMoment
 
-class AnalyticsViewController: UIViewController, ChartViewDelegate {
+class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollViewDelegate {
     
     // MARK: Properties
 
     
-    @IBOutlet weak var chart: LineChartView!
+    @IBOutlet weak var monthChart: LineChartView!
+    @IBOutlet weak var yearChart: LineChartView!
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     var monthsInNum = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     var days = [String]()
@@ -25,7 +26,8 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
     var sales: [Double]!
     var cogs: [Double]!
     var expenses: [Double]!
-    var profits = [Double]()
+    var profitsMonthly = [Double]()
+    var salesDaily = [Double]()
     var totalMonths = [String]()
     var salesList = [Double]()
     var expensesList = [Double]()
@@ -43,6 +45,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
     var maxProfitDay = ""
     var datesAndRecords = [String:[RecordTable]]()
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBAction func logout(sender: UIBarButtonItem) {
         PFUser.logOut()
         self.performSegueWithIdentifier("logout", sender: self)
@@ -53,8 +56,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         var today = moment(NSDate())
-            let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-        print(array)
         //Here I’m creating the calendar instance that we will operate with:
         let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
         //Now asking the calendar what year are we in today’s date:
@@ -65,7 +66,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             periodComponents,
             toDate: NSDate(),
             options: [])!
-        print(then)
         
         let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: then)
         let numDays = range.length //days for the month
@@ -148,7 +148,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                             self.maxProfitForDay = profitForDay
                             self.maxProfitDay = yearMonthDay
                         }
-                        self.profits.append(Double(profit))
+                        self.salesDaily.append(Double(profitForDay))
                     }
                 }
 
@@ -163,13 +163,16 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
                     self.maxProfit = profit
                     self.maxProfitMonth = self.months[i]
                 }
-                self.profits.append(Double(profit))
+                self.profitsMonthly.append(Double(profit))
                 
                 
                 
                 i += 1
             }
+            //for average profit per day
             
+            
+            //for average profit per month
             print(totalProfitForYear / Double(today.month))
             print(self.days.count)
             print("for max profit day")
@@ -179,31 +182,12 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
             print(self.maxProfit)
             print(self.maxProfitMonth)
             //for monthly
-            self.setData(self.days, values1: self.salesListForDay, values2: self.expensesListForDay)
+            self.setDataMonth(self.days, values1: self.salesListForDay, values2: self.expensesListForDay)
             //for yearly
-            //self.setData(self.months, values1: self.salesList, values2: self.expensesList)
+            self.setDataYear(self.months, values1: self.salesList, values2: self.expensesList, values3: self.profitsMonthly)
             
         })
-        
-        /*
-        let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: NSDate())
-        
-        let day = components.day
-        let month = components.month
-        let year = components.year
-        
-        //how many days back
-        let periodComponents = NSDateComponents()
-        periodComponents.day = -30
-        let then = calendar!.dateByAddingComponents(
-            periodComponents,
-            toDate: NSDate(),
-            options: [])!
-        print(then)
-        
-        let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: then)
-        let numDays = range.length //days for the month
-        */
+
         
     }
 
@@ -269,7 +253,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    func setData(dataPoints : [String], values1 : [Double], values2 : [Double]) {
+    func setDataMonth(dataPoints : [String], values1 : [Double], values2 : [Double]) {
         
         var dataEntries1: [ChartDataEntry] = []
         
@@ -320,8 +304,85 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate {
         data.setValueTextColor(UIColor.whiteColor())
         
         //5 - finally set our data
-        self.chart.data = data
-        chart.leftAxis.axisMinValue = 1
+        self.monthChart.data = data
+        monthChart.leftAxis.axisMinValue = 1
     }
     
+    func setDataYear(dataPoints : [String], values1 : [Double], values2 : [Double], values3 : [Double]) {
+        
+        var dataEntries1: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values1[i], xIndex: i)
+            dataEntries1.append(dataEntry)
+        }
+        
+        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Sales")
+        lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet1.setColor(UIColor.greenColor())
+        lineChartDataSet1.highlightColor = UIColor.clearColor()
+        lineChartDataSet1.lineWidth = 4
+        lineChartDataSet1.drawFilledEnabled = true
+        lineChartDataSet1.drawCircleHoleEnabled = false
+        lineChartDataSet1.circleRadius = 0
+        lineChartDataSet1.drawValuesEnabled = false
+        lineChartDataSet1.mode = .HorizontalBezier
+        
+        lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
+        lineChartDataSet1.drawFilledEnabled = true
+        
+        var dataEntries2: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values2[i], xIndex: i)
+            dataEntries2.append(dataEntry)
+        }
+        
+        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Total Expenses")
+        lineChartDataSet2.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet2.setColor(UIColor.redColor())
+        lineChartDataSet2.highlightColor = UIColor.clearColor()
+        lineChartDataSet2.lineWidth = 2
+        lineChartDataSet2.drawCircleHoleEnabled = false
+        lineChartDataSet2.circleRadius = 0
+        lineChartDataSet2.drawValuesEnabled = false
+        lineChartDataSet2.mode = .HorizontalBezier
+        
+        lineChartDataSet2.fill = ChartFill.fillWithColor(UIColor.redColor())
+        lineChartDataSet2.drawFilledEnabled = true
+        
+        var dataEntries3: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values3[i], xIndex: i)
+            dataEntries3.append(dataEntry)
+        }
+        
+        let lineChartDataSet3 = LineChartDataSet(yVals: dataEntries3, label: "Profit")
+        lineChartDataSet3.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet3.setColor(UIColor.purpleColor())
+        lineChartDataSet3.highlightColor = UIColor.clearColor()
+        lineChartDataSet3.lineWidth = 2
+        lineChartDataSet3.drawCircleHoleEnabled = false
+        lineChartDataSet3.circleRadius = 0
+        lineChartDataSet3.drawValuesEnabled = false
+        lineChartDataSet3.mode = .HorizontalBezier
+        
+        lineChartDataSet3.fill = ChartFill.fillWithColor(UIColor.purpleColor())
+        lineChartDataSet3.drawFilledEnabled = true
+        
+        //3 - create an array to store our LineChartDataSets
+        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
+        dataSets.append(lineChartDataSet1)
+        dataSets.append(lineChartDataSet2)
+        dataSets.append(lineChartDataSet3)
+        
+        //4 - pass our months in for our x-axis label value along with our dataSets
+        let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
+        data.setValueTextColor(UIColor.whiteColor())
+        
+        //5 - finally set our data
+        self.yearChart.data = data
+        yearChart.leftAxis.axisMinValue = 1
+    }
 }

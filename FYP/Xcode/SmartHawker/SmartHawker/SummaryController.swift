@@ -262,7 +262,6 @@ class SummaryController: UIViewController {
         var dataPoints = [""]
         var totalSalesAmount = 0.0
         var totalExpensesAmount = 0.0
-        print(daysInWeek)
         for stringToCheck in daysInWeek{
             var salesAmount = 0.0
             var expensesAmount = 0.0
@@ -281,8 +280,6 @@ class SummaryController: UIViewController {
                     } else if (type == "Expenses") {
                         expensesAmount += amount
                         totalExpensesAmount += amount
-                        print(record.date)
-                        print(amount)
                     }
                     
                 }
