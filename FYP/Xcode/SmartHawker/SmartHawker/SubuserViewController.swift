@@ -10,17 +10,49 @@ import UIKit
 
 class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: Properties
+    let user = PFUser.currentUser()
+    var subusers = [PFObject]()
+    
+    // Table View
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        retrieveSubuser()
+        tableView!.delegate = self
+        tableView!.dataSource = self
+        self.viewWillAppear(true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.viewDidLoad()
+    }
+    
+    // Retrieve all subusers.
+    func retrieveSubuser() {
+        
+        let query = PFQuery(className: "SubUser")
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: user!)
+        do{
+            subusers = try query.findObjects()
+        } catch {
+            print("Something wrong")
+        }
+    }
     // Below this comment are all the methods for table.
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 90
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return subusers.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -28,7 +60,16 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cellIdentifier = "SubuserCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SubuserTableViewCell
         
-        // Cell background
+        // Address
+        let address = subusers[indexPath.row]["address"]
+        cell.businessAddressLabel.text = address as? String
+        // Name
+        let name = subusers[indexPath.row]["name"]
+        cell.subuserNameLabel.text = name as? String
+        // Profile Pic
+        cell.userProfilePicImageView.image = UIImage(named: "defaultProfilePic")
+        
+        // Cell background transparent
         cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
         
         return cell

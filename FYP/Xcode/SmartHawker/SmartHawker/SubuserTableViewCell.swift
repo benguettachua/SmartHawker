@@ -14,6 +14,7 @@ class SubuserTableViewCell: UITableViewCell {
     // Labels
     @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var subuserNameLabel: UILabel!
+    @IBOutlet weak var businessAddressLabel: UILabel!
     
     // Image View
     @IBOutlet weak var userProfilePicImageView: UIImageView!

@@ -38,7 +38,16 @@ class AddNewSubUserViewController: UIViewController {
         }
         subUser["address"] = addressTextField.text
         if (uniquePin) {
-            subUser.saveEventually()
+            do{
+                try subUser.save()
+                updateLocalSubuserList()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } catch {
+                // do something to show save failed.
+                let alert = UIAlertController(title: "Save failed", message: "PIN entered is used for another user, PIN must be unique!", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         } else {
             // do something to show save failed.
             let alert = UIAlertController(title: "Save failed", message: "PIN entered is used for another user, PIN must be unique!", preferredStyle: UIAlertControllerStyle.Alert)
@@ -53,5 +62,26 @@ class AddNewSubUserViewController: UIViewController {
         // Get all PINS that are used
         let defaults = NSUserDefaults.standardUserDefaults()
         PINS = defaults.objectForKey("allPINS") as! [String]
+    }
+    
+    func updateLocalSubuserList() {
+        let query = PFQuery(className: "SubUser")
+        var objects = [PFObject]()
+        query.whereKey("user", equalTo: user!)
+        do {
+            objects = try query.findObjects()
+            try PFObject.pinAll(objects)
+            for object in objects {
+                let PIN = object["pin"] as! String
+                PINS.append(PIN)
+                
+            }
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(PINS, forKey: "allPINS")
+
+        } catch {
+            print("Error")
+        }
+
     }
 }

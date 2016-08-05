@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -3730,7 +3731,7 @@ Cg
         <!--Sub User View Controller-->
         <scene sceneID="rth-Of-ba0">
             <objects>
-                <viewController id="fib-yY-458" userLabel="Sub User View Controller" sceneMemberID="viewController">
+                <viewController id="fib-yY-458" userLabel="Sub User View Controller" customClass="SubuserViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B8L-oj-Ees"/>
                         <viewControllerLayoutGuide type="bottom" id="aj4-tJ-65u"/>
@@ -3752,49 +3753,53 @@ Cg
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubuserCell" rowHeight="60" id="uSV-0Z-N34" customClass="SubuserTableViewCell" customModule="SmartHawker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubuserCell" rowHeight="90" id="uSV-0Z-N34" customClass="SubuserTableViewCell" customModule="SmartHawker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uSV-0Z-N34" id="6ba-Ya-VS6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sub user business address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xn-wj-xN2">
-                                                            <rect key="frame" x="76" y="0.0" width="330" height="30"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f5L-af-Cgg">
+                                                            <rect key="frame" x="8" y="15" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="f5L-af-Cgg" secondAttribute="height" multiplier="1:1" id="BjG-rS-b2g"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="GU3-hw-46v"/>
+                                                                <constraint firstAttribute="width" constant="60" id="bIO-f0-OWD"/>
+                                                                <constraint firstAttribute="height" constant="60" id="pgO-Be-yJ9"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sub user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDw-RY-REq">
+                                                            <rect key="frame" x="76" y="54" width="330" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="NHv-Zy-TKI"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f5L-af-Cgg">
-                                                            <rect key="frame" x="8" y="0.0" width="60" height="60"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="bIO-f0-OWD"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sub user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDw-RY-REq">
-                                                            <rect key="frame" x="76" y="38" width="330" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="yri-XH-bLp"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sub user business address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xn-wj-xN2">
+                                                            <rect key="frame" x="76" y="15" width="330" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="f5L-af-Cgg" firstAttribute="centerY" secondItem="6ba-Ya-VS6" secondAttribute="centerY" id="C4l-ru-N95"/>
+                                                        <constraint firstItem="f5L-af-Cgg" firstAttribute="centerY" secondItem="6ba-Ya-VS6" secondAttribute="centerY" id="1ck-Um-omT"/>
+                                                        <constraint firstItem="f5L-af-Cgg" firstAttribute="bottom" secondItem="eDw-RY-REq" secondAttribute="bottom" id="21Z-gW-EVf"/>
+                                                        <constraint firstItem="eDw-RY-REq" firstAttribute="leading" secondItem="4xn-wj-xN2" secondAttribute="leading" id="IyT-Xr-U30"/>
                                                         <constraint firstItem="4xn-wj-xN2" firstAttribute="leading" secondItem="f5L-af-Cgg" secondAttribute="trailing" constant="8" symbolic="YES" id="QK1-aw-pUa"/>
-                                                        <constraint firstItem="f5L-af-Cgg" firstAttribute="top" secondItem="6ba-Ya-VS6" secondAttribute="top" id="Rhf-W2-96g"/>
                                                         <constraint firstItem="f5L-af-Cgg" firstAttribute="top" secondItem="4xn-wj-xN2" secondAttribute="top" id="U9Z-2h-byt"/>
-                                                        <constraint firstItem="4xn-wj-xN2" firstAttribute="trailing" secondItem="eDw-RY-REq" secondAttribute="trailing" id="h8i-7C-AwP"/>
                                                         <constraint firstItem="f5L-af-Cgg" firstAttribute="leading" secondItem="6ba-Ya-VS6" secondAttribute="leadingMargin" id="hgG-l8-wDB"/>
+                                                        <constraint firstItem="eDw-RY-REq" firstAttribute="trailing" secondItem="4xn-wj-xN2" secondAttribute="trailing" id="m2q-lZ-qsU"/>
                                                         <constraint firstItem="4xn-wj-xN2" firstAttribute="trailing" secondItem="6ba-Ya-VS6" secondAttribute="trailingMargin" id="n3R-S8-afx"/>
-                                                        <constraint firstItem="eDw-RY-REq" firstAttribute="top" secondItem="4xn-wj-xN2" secondAttribute="bottom" constant="8" symbolic="YES" id="q6Z-pZ-deV"/>
-                                                        <constraint firstAttribute="bottom" secondItem="eDw-RY-REq" secondAttribute="bottom" id="ru0-Od-fr9"/>
-                                                        <constraint firstItem="4xn-wj-xN2" firstAttribute="leading" secondItem="eDw-RY-REq" secondAttribute="leading" id="uhw-Ls-pnT"/>
+                                                        <constraint firstItem="eDw-RY-REq" firstAttribute="top" secondItem="4xn-wj-xN2" secondAttribute="bottom" constant="9" id="wge-e4-jYU"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <accessibility key="accessibilityConfiguration" identifier="SubuserCell"/>
                                                 <connections>
+                                                    <outlet property="businessAddressLabel" destination="4xn-wj-xN2" id="4tL-g4-xbt"/>
                                                     <outlet property="businessNameLabel" destination="4xn-wj-xN2" id="eDW-PF-t0N"/>
                                                     <outlet property="subuserNameLabel" destination="eDw-RY-REq" id="r5I-no-1E4"/>
                                                     <outlet property="userProfilePicImageView" destination="f5L-af-Cgg" id="gFO-rp-ob4"/>
@@ -3835,6 +3840,9 @@ Cg
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="tableView" destination="RfG-eB-yhr" id="RgF-Vu-xQ3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZu-1f-JJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
