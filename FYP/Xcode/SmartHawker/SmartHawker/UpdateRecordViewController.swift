@@ -17,6 +17,9 @@ class UpdateRecordViewController: UIViewController{
     @IBOutlet weak var expensesView: UIView!
     @IBOutlet weak var salesView: UIView!
     
+    // Segment Control
+    @IBOutlet weak var segmentCtrl: UISegmentedControl!
+    
     // View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +31,19 @@ class UpdateRecordViewController: UIViewController{
         } else {
             self.expensesView.alpha = 1
             self.salesView.alpha = 0
+            self.segmentCtrl.selectedSegmentIndex = 1
         }
     }
     
     
     @IBAction func changeType(sender: UISegmentedControl) {
-        print(sender.selectedSegmentIndex)
+        if (sender.selectedSegmentIndex == 0) {
+            self.expensesView.alpha = 0
+            self.salesView.alpha = 1
+        } else {
+            self.expensesView.alpha = 1
+            self.salesView.alpha = 0
+        }
     }
     
 }
