@@ -41,6 +41,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var salesAmount: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
+    @IBOutlet weak var totalProfit: UILabel!
     //for weather
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -198,6 +199,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             self.salesAmount.text = String(totalSales)
             self.COGSAmount.text = String(COGS)
             self.otherExpensesAmount.text = String(expenses)
+            self.totalProfit.text = String(totalProfit)
             //self.highestProfit.text = String(highProfit)
             //self.lowestProfit.text = String(lowProfit)
             //if totalProfit == 0{
@@ -216,7 +218,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             //self.lowestProfitDay.text = lowProfitDay
             self.highestSalesDay.text = highSalesDay
             self.lowestSalesDay.text = lowSalesDay
-            
+            print(self.lowestSalesDay.text)
         })
         
     }
