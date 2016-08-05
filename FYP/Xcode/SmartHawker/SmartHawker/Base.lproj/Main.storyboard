@@ -1464,6 +1464,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLH-lE-igp">
                                                         <rect key="frame" x="53" y="25" width="36" height="36"/>
                                                         <state key="normal" image="add-button"/>
+                                                        <connections>
+                                                            <action selector="addTodayRecord:" destination="GfR-DB-bth" eventType="touchUpInside" id="PgH-AB-7q4"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -1667,6 +1670,7 @@
                         <outlet property="salesAmount" destination="b9X-78-mER" id="Cuk-4u-qX4"/>
                         <outlet property="temperatureLabel" destination="SJI-WM-IpN" id="FEc-8Y-OaP"/>
                         <outlet property="weatherLabel" destination="Gme-0a-ynF" id="mto-Aj-veM"/>
+                        <segue destination="OM1-N0-jK9" kind="modal" identifier="addRecord" id="nvg-Q7-gDK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SW-ED-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5407,8 +5411,9 @@ Cg
         <image name="third-box" width="339" height="140"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Co-7h-tty"/>
         <segue reference="ay2-CF-7hT"/>
+        <segue reference="nvg-Q7-gDK"/>
+        <segue reference="6Co-7h-tty"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

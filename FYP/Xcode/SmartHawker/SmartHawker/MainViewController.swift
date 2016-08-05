@@ -53,6 +53,15 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
 
 
+    @IBAction func addTodayRecord(sender: UIButton) {
+        if toShare.dateString == nil{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let correctDateString = dateFormatter.stringFromDate(NSDate())
+            toShare.dateString = correctDateString            
+        }
+        self.performSegueWithIdentifier("addRecord", sender: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
