@@ -16,15 +16,75 @@ class UpdateExpensesViewController: UIViewController {
     let user = PFUser.currentUser()
     var tempCounter = 0
     typealias CompletionHandler = (success:Bool) -> Void
+    var type = 1
     
     // Text Fields
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
+    
+    // Image Views
+    @IBOutlet weak var COGSButtonImage: UIImageView!
+    @IBOutlet weak var otherExpensesButtonImage: UIImageView!
+    @IBOutlet weak var fixedExpensesButtonImage: UIImageView!
+    
+    // Button
+    @IBOutlet weak var COGSButton: UIButton!
+    @IBOutlet weak var othersButton: UIButton!
+    @IBOutlet weak var fixedExpensesButton: UIButton!
     
     
     
     // MARK: Action
-    @IBAction func updateRecord(sender: UIButton) {
+    // Stop editing
+    @IBAction func cancel(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    // Save changes and go back
+    @IBAction func save(sender: UIButton) {
+        updateRecord()
+    }
+    // Save changes and add new record
+    @IBAction func add(sender: UIButton) {
+    }
+    // Edit this record to be COGS
+    @IBAction func selectCOGS(sender: UIButton) {
+        type = 1
+        COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        othersButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        fixedExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        fixedExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+        otherExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+        COGSButtonImage.image = UIImage(named: "record-blue")
+    }
+    // Edit this record to be Other Expenses
+    @IBAction func selectOthers(sender: UIButton) {
+        type = 2
+        COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        othersButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        fixedExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        fixedExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+        otherExpensesButtonImage.image = UIImage(named: "record-blue")
+        COGSButtonImage.image = UIImage(named: "record-blue-fade")
+    }
+    // Edit this record to be Monthly Expenses
+    @IBAction func selectMonthlyExpenses(sender: UIButton) {
+        type = 3
+        COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        othersButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        fixedExpensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        fixedExpensesButtonImage.image = UIImage(named: "record-blue")
+        otherExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+        COGSButtonImage.image = UIImage(named: "record-blue-fade")
+    }
+    
+    @IBAction func selectSales(sender: UIButton) {
+        
+    }
+    
+    
+    
+    func updateRecord() {
         let selectedRecord = shared.selectedRecord
-        var typeString = selectedRecord.type
         var amount = selectedRecord.amount
         var description = selectedRecord.description
         
@@ -41,36 +101,26 @@ class UpdateExpensesViewController: UIViewController {
                 print(record)
             } else if let record = record {
                 // Record is found, proceed to update.
-                var typeInt = Int()
-                /*
-                typeString = self.newType.text!
-                amount = Double(self.newAmount.text!)!
-                description = self.newDescription.text
- */
-                if (typeString == "Sales") {
-                    typeInt = 0
-                } else if (typeString == "COGS") {
-                    typeInt = 1
-                } else if (typeString == "Expenses") {
-                    typeInt = 2
-                }
+                amount = Double(self.amountTextField.text!)!
+                description = self.descriptionTextField.text
                 
-                record["type"] = typeInt
+                record["type"] = self.type
                 record["amount"] = amount
                 record["description"] = description
-                record.pinInBackground()
-                self.updateGlobalRecord({ (success) -> Void in
+                do {try record.pin()} catch {}
+                self.updateGlobalRecord( { (success) -> Void in
+                    
                     if (success) {
-                        // Update success, go back to records
-                        self.performSegueWithIdentifier("editComplete", sender: self)
-                    } else {
-                        print("Some error thrown.")
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
-                })
+                    }
+                )
+                
             }
         }
         
     }
+    /*
     @IBAction func deleteRecord(sender: UIButton) {
         // Updating the record
         let selectedRecord = shared.selectedRecord
@@ -112,7 +162,7 @@ class UpdateExpensesViewController: UIViewController {
             }
         }
     }
-    
+    */
     // This updates the array "records" in ShareData.
     func updateGlobalRecord(completionHandler: CompletionHandler) {
         var records = [RecordTable]()
@@ -125,9 +175,46 @@ class UpdateExpensesViewController: UIViewController {
         query.whereKey("user", equalTo: user!)
         query.whereKey("date", equalTo: dateString)
         query.fromLocalDatastore()
+        do {
+            let objects = try query.findObjects()
+            for object in objects {
+                let date = object["date"] as! String
+                let type = object["type"] as! Int
+                let amount = object["amount"] as! Double
+                var description = object["description"]
+                var localIdentifierString = object["subUser"]
+                var recordedBy = object["subuser"]
+                if (recordedBy == nil) {
+                    recordedBy = ""
+                }
+                var typeString = ""
+                if (type == 0) {
+                    typeString = "Sales"
+                } else if (type == 1) {
+                    typeString = "COGS"
+                } else if (type == 2) {
+                    typeString = "Expenses"
+                }
+                
+                if (localIdentifierString == nil) {
+                    localIdentifierString = String(self.tempCounter += 1)
+                }
+                
+                if (description == nil || description as! String == "") {
+                    description = "No description"
+                }
+                let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
+                records.append(newRecord)
+            }
+            self.shared.records = records
+            completionHandler(success: true)
+        } catch {
+            print("Error caught")
+        }
+        /*
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
+    
             if error == nil {
                 // Do something with the found objects
                 if let objects = objects {
@@ -168,22 +255,47 @@ class UpdateExpensesViewController: UIViewController {
                 print("Error: \(error!) \(error!.userInfo)")
                 completionHandler(success: false)
             }
-        }
+ 
+        }*/
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
+        
         // Populate the text field with the previous records.
         let selectedRecord = shared.selectedRecord
         let typeString = selectedRecord.type
         let amount = selectedRecord.amount
         let description = selectedRecord.description
-        self.newType.text = typeString
-        self.newAmount.text = String(amount)
+        self.amountTextField.text = String(amount)
         if(description != "No description") {
-            self.newDescription.text = description
+            self.descriptionTextField.text = description
         }
-        */
+        if (typeString == "COGS") {
+            type = 1
+            COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            othersButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            fixedExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            fixedExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+            otherExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+            COGSButtonImage.image = UIImage(named: "record-blue")
+        } else if (typeString == "Expenses") {
+            type = 2
+            COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            othersButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            fixedExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            fixedExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+            otherExpensesButtonImage.image = UIImage(named: "record-blue")
+            COGSButtonImage.image = UIImage(named: "record-blue-fade")
+        } else if (typeString == "Fixed Monthly Expenses") {
+            type = 3
+            COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            othersButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            fixedExpensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            fixedExpensesButtonImage.image = UIImage(named: "record-blue")
+            otherExpensesButtonImage.image = UIImage(named: "record-blue-fade")
+            COGSButtonImage.image = UIImage(named: "record-blue-fade")
+        }
+        
     }
 }

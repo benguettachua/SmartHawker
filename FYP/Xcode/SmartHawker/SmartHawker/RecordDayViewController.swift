@@ -63,12 +63,16 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             
-            self.viewDidAppear(true)
+            self.viewWillAppear(true)
         })
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
@@ -171,11 +175,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Clicked on row: " + String(indexPath.row))
         shared.selectedRecord = records[indexPath.row]
-        if (records[indexPath.row].type == "Sales") {
-            self.performSegueWithIdentifier("editSales", sender: self)
-        } else {
-            self.performSegueWithIdentifier("editExpenses", sender: self)
-        }
+        self.performSegueWithIdentifier("updateRecord", sender: self)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
