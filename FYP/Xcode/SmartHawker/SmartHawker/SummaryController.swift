@@ -199,9 +199,9 @@ class SummaryController: UIViewController {
         series1.append(0.00)
         series2.append(0.00)
         setData(days, values1: series1, values2: series2)
-        self.salesText.text = String.localizedStringWithFormat("%.2f", totalSalesAmount)
-        self.expensesText.text = String.localizedStringWithFormat("%.2f", totalExpensesAmount)
-        self.profitText.text = String.localizedStringWithFormat("%.2f", (totalSalesAmount - totalExpensesAmount))
+        self.salesText.text = String(format: "%.2f", totalSalesAmount)
+        self.expensesText.text = String(format: "%.2f", totalExpensesAmount)
+        self.profitText.text = String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
     }
     
     
@@ -250,9 +250,9 @@ class SummaryController: UIViewController {
         series1.append(0)
         series2.append(0)
         setData(months, values1: series1, values2: series2)
-        self.salesText.text = String.localizedStringWithFormat("%.2f", totalSalesAmount)
-        self.expensesText.text = String.localizedStringWithFormat("%.2f", totalExpensesAmount)
-        self.profitText.text = String.localizedStringWithFormat("%.2f", (totalSalesAmount - totalExpensesAmount))
+        self.salesText.text = String(format: "%.2f", totalSalesAmount)
+        self.expensesText.text = String(format: "%.2f", totalExpensesAmount)
+        self.profitText.text = String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
     }
     
     func loadRecordsWeekly(){
@@ -292,9 +292,9 @@ class SummaryController: UIViewController {
         series2.append(0.00)
         dataPoints.append("")
         setData(dataPoints, values1: series1, values2: series2)
-        self.salesText.text = String.localizedStringWithFormat("%.2f", totalSalesAmount)
-        self.expensesText.text = String.localizedStringWithFormat("%.2f", totalExpensesAmount)
-        self.profitText.text = String.localizedStringWithFormat("%.2f", (totalSalesAmount - totalExpensesAmount))
+        self.salesText.text = String(format: "%.2f", totalSalesAmount)
+        self.expensesText.text = String(format: "%.2f", totalExpensesAmount)
+        self.profitText.text = String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
     }
     
     
