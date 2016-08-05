@@ -61,17 +61,20 @@ class AdminPINViewController: UIViewController {
             let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
             let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
                 
-                self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                self.saveRecordsIntoDatabase({ (success) -> Void in
                     if (success) {
-                        let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-                        alertController.addAction(ok)
-                        self.presentViewController(alertController, animated: true,completion: nil)
-                    } else {
-                        print("Retrieval failed!")
+                        self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                            if (success) {
+                                let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                                let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                                alertController.addAction(ok)
+                                self.presentViewController(alertController, animated: true,completion: nil)
+                            } else {
+                                print("Retrieval failed!")
+                            }
+                        })
                     }
                 })
-                
             })
             let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
             alertController.addAction(ok)
@@ -149,6 +152,31 @@ class AdminPINViewController: UIViewController {
                 completionHandler(success: true)
             } else {
                 print("retrieval failed")
+            }
+        }
+    }
+    
+    
+    func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
+        let query = PFQuery(className: "Record")
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: self.user!)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                for object in objects! {
+                    object.pinInBackground()
+                    object.saveInBackground()
+                }
+                completionHandler(success: true)
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
             }
         }
     }
