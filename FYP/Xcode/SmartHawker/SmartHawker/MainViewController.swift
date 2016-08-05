@@ -87,7 +87,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         }else{
             toDisplayDate += dayString + " " + date.monthName + " " + String(date.year)
         }
-        overviewLabel.text = toDisplayDate
+        //overviewLabel.text = toDisplayDate
         
         // Formatting to format as saved in DB.
         let dateFormatter = NSDateFormatter()
@@ -195,13 +195,13 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             self.salesAmount.text = String(totalSales)
             self.COGSAmount.text = String(COGS)
             self.otherExpensesAmount.text = String(expenses)
-            self.highestProfit.text = String(highProfit)
-            self.lowestProfit.text = String(lowProfit)
-            if totalProfit == 0{
-                self.averageProfit.text = "0"
-            }else{
-                self.averageProfit.text = String((totalProfit/totalDays))
-            }
+            //self.highestProfit.text = String(highProfit)
+            //self.lowestProfit.text = String(lowProfit)
+            //if totalProfit == 0{
+                //self.averageProfit.text = "0"
+            //}else{
+                //self.averageProfit.text = String((totalProfit/totalDays))
+            //}
             self.highestSales.text = String(highSales)
             self.lowestSales.text = String(lowSales)
             if totalSales == 0{
@@ -209,8 +209,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             }else{
                 self.averageSales.text = String((totalSales/totalDays))
             }
-            self.highestProfitDay.text = highProfitDay
-            self.lowestProfitDay.text = lowProfitDay
+            //self.highestProfitDay.text = highProfitDay
+            //self.lowestProfitDay.text = lowProfitDay
             self.highestSalesDay.text = highSalesDay
             self.lowestSalesDay.text = lowSalesDay
             
