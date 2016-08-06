@@ -136,12 +136,18 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
             })
             editPINAlert.addTextFieldWithConfigurationHandler({ (firstTextField) in
                 firstTextField.placeholder = "Enter Old PIN"
+                firstTextField.secureTextEntry = true
+                firstTextField.keyboardType = UIKeyboardType.NumberPad
             })
             editPINAlert.addTextFieldWithConfigurationHandler({ (secondTextField) in
                 secondTextField.placeholder = "Enter New PIN"
+                secondTextField.secureTextEntry = true
+                secondTextField.keyboardType = UIKeyboardType.NumberPad
             })
             editPINAlert.addTextFieldWithConfigurationHandler({ (thirdTextField) in
                 thirdTextField.placeholder = "Confirm New PIN"
+                thirdTextField.secureTextEntry = true
+                thirdTextField.keyboardType = UIKeyboardType.NumberPad
             })
             editPINAlert.addAction(saveAction)
             editPINAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { Void in
