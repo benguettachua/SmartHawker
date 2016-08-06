@@ -24,23 +24,23 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Action
     @IBAction func registerAccount(sender: UIButton) {
-        if (usernameTextField.text!.isEqual("")) {
+        if (usernameTextField.text!.isEqual("") || usernameTextField.text!.length <= 4) {
             usernameTextField.text = ""
-            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Enter Username(5 or more letters)".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         } else {
             ok += 1
         }
         
         if (passwordTextField.text!.isEqual("")) {
             passwordTextField.text = ""
-            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Enter Password".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         } else {
             ok += 1
         }
         
         if (emailTextField.text!.isEqual("")) {
             emailTextField.text = ""
-            emailTextField.attributedPlaceholder = NSAttributedString(string:"Email Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            emailTextField.attributedPlaceholder = NSAttributedString(string:"Enter Email".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         } else {
             ok += 1
         }
@@ -48,16 +48,92 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let phoneNumber = Int(phoneNumberTextField.text!)
         if (phoneNumber <= 79999999 || phoneNumber >= 100000000) {
             phoneNumberTextField.text = ""
-            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Phone Number Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Enter Phone Number".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }else{
+            ok += 1
         }
         
         if (adminPINTextField.text!.characters.count != 4) {
             adminPINTextField.text = ""
-            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Admin PIN Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Enter Admin PIN(4 digits)".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         } else {
             ok += 1
         }
         
+        if ok == 5 {
+            // All validations passed, proceed to register user.
+            let newUser = PFUser()
+            newUser.username = usernameTextField.text
+            newUser.email = emailTextField.text?.lowercaseString
+            newUser["phoneNumber"] = phoneNumberTextField.text
+            newUser.password = passwordTextField.text
+            newUser["adminPin"] = adminPINTextField.text
+            newUser["isIOS"] = true
+            
+            newUser.signUpInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    let array = [String]()
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject(array, forKey: "SavedDateArray")
+                    // Register success, show success message.
+                    let alert = UIAlertController(title: "Registration Unsuccessful", message: "Congratulations, you have created a new Account! Logging in, please wait...", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    // Login the user to main UI after 3 seconds delay.
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
+                        PFUser.logInWithUsernameInBackground(self.usernameTextField.text!, password: self.passwordTextField.text!) {
+                            (user: PFUser?, error: NSError?) -> Void in
+                            if user != nil {
+                                // Re-direct user to main UI if login success.
+                                self.performSegueWithIdentifier("registerSuccess", sender: self)
+                            } else {
+                                // There was a problem, show user the error message.
+                                let alert = UIAlertController(title: "Registration Unsuccessful", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                                
+                                self.presentViewController(alert, animated: true, completion: nil)
+
+                                
+                            }
+                        }
+                    }
+                    
+                } else {
+                    // There was a problem, show user the error message.
+                    let errorMsg = error?.localizedDescription
+                    var msgToShow = String()
+                    if (errorMsg?.containsString("username") == true) {
+                        msgToShow = "Username is taken. Please try again.".localized()
+                        self.usernameTextField.text = ""
+                        self.usernameTextField.attributedPlaceholder = NSAttributedString(string:"Enter new Username".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+                        
+                    } else if (errorMsg?.containsString("invalid") == true) {
+                        msgToShow = "Invalid email address. Please try again.".localized()
+                        self.emailTextField.text = ""
+                        self.emailTextField.attributedPlaceholder = NSAttributedString(string:"Enter new Email".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+                        
+                    } else if (errorMsg?.containsString("email") == true) {
+                        msgToShow = "Email is taken. Please try again.".localized()
+                        self.emailTextField.text = ""
+                        self.emailTextField.attributedPlaceholder = NSAttributedString(string:"Enter new Email".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+                    }
+                    let alert = UIAlertController(title: "Edit Unsuccessful", message: msgToShow, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }else{
+            ok = 0
+        }
+    }
+
+    
     }
     /*
     @IBAction func registerButton(sender: UIButton) {
@@ -432,6 +508,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                                       completion: nil)
     }
     
-    */
+ 
     
+} */
+
+extension String {
+    var length: Int {
+        return characters.count
+    }
 }
