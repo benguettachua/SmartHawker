@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         Parse.setApplicationId("p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht", clientKey: "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt")
         // Override point for customization after application launch.
+        IQKeyboardManager.sharedManager().enable = true
+        
         return true
     }
 
