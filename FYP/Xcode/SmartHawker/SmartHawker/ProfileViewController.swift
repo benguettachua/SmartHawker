@@ -33,7 +33,11 @@ class ProfileViewController: UIViewController {
         let user = PFUser.currentUser()
         // Populate the top bar
         if user != nil{
-            profileName.text! = user!["name"] as! String
+            var name = user!["name"]
+            if (name == nil) {
+                name = "No name"
+            }
+            profileName.text! = name as! String
             phoneNumber.text! = user!["phoneNumber"] as! String
             
             // Getting the profile picture
@@ -55,7 +59,11 @@ class ProfileViewController: UIViewController {
         let user = PFUser.currentUser()
         // Populate the top bar
         if user != nil{
-            profileName.text! = user!["name"] as! String
+            var name = user!["name"]
+            if (name == nil) {
+                name = "No name"
+            }
+            profileName.text! = name as! String
             phoneNumber.text! = user!["phoneNumber"] as! String
             
             // Getting the profile picture
