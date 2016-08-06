@@ -312,10 +312,10 @@
             </objects>
             <point key="canvasLocation" x="706" y="1180"/>
         </scene>
-        <!--View Controller-->
+        <!--Registration View Controller-->
         <scene sceneID="h1a-Hd-syf">
             <objects>
-                <viewController id="tmR-p1-Jn7" sceneMemberID="viewController">
+                <viewController id="tmR-p1-Jn7" customClass="RegistrationViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="THD-ZD-7is"/>
                         <viewControllerLayoutGuide type="bottom" id="44d-ga-ZzO"/>
@@ -447,6 +447,9 @@
                                                                 <state key="normal" title="REGISTER">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="registerAccount:" destination="tmR-p1-Jn7" eventType="touchUpInside" id="rFF-Uc-5Nx"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -466,10 +469,17 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="adminPINTextField" destination="XVu-HA-72M" id="hBr-Kx-SCn"/>
+                        <outlet property="emailTextField" destination="KPu-OR-Y8o" id="gWE-5b-iE2"/>
+                        <outlet property="passwordTextField" destination="db7-FZ-uQw" id="p8n-2D-TRG"/>
+                        <outlet property="phoneNumberTextField" destination="8V0-XH-wlT" id="Ne2-sq-DNn"/>
+                        <outlet property="usernameTextField" destination="cgc-OB-LSk" id="VHE-ag-LFv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMs-Om-CsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="2093"/>
+            <point key="canvasLocation" x="216" y="2073"/>
         </scene>
         <!--Record-sales-->
         <scene sceneID="FbI-2E-RFy">

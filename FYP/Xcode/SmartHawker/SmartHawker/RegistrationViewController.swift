@@ -9,50 +9,57 @@
 import UIKit
 
 
-class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-    
-    var ok = Int()
-    let picker = UIImagePickerController()   //our controller.
-    //Memory will be conserved a bit if you place this in the actions.
-    // I did this to make code a bit more streamlined
-    
-    //labels
-    @IBOutlet weak var profilePictureLabel: UILabel!
-    @IBOutlet weak var instructionsLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var confirmPasswordLabel: UILabel!
-    @IBOutlet weak var adminPinLabel: UILabel!
-    @IBOutlet weak var businessNameLabel: UILabel!
-    @IBOutlet weak var businessAddressLabel: UILabel!
-    @IBOutlet weak var businessRegNoLabel: UILabel!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
-    @IBOutlet weak var allFieldsCompulsory: UILabel!
-    
-    //navigation bar
-    @IBOutlet weak var registerNavBar: UINavigationBar!
-    
-    @IBOutlet weak var back: UIBarButtonItem!
-    
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
-    @IBOutlet var profilePicture: UIImageView!
-    @IBOutlet var businessName: UITextField!
-    @IBOutlet var businessRegNo: UITextField!
-    @IBOutlet var businessAddress: UITextField!
-    @IBOutlet var username: UITextField!
-    @IBOutlet var email: UITextField!
-    @IBOutlet var phoneNumber: UITextField!
-    @IBOutlet var password: UITextField!
-    @IBOutlet var confirmPassword: UITextField!
-    @IBOutlet var adminPIN: UITextField!
-    @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var information: UILabel!
+    // Variables
+    var ok = 0
     
-    @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet var ScrollView: UIScrollView!
-    // Registers the user upon clicking this button.
+    // Text Fields
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var adminPINTextField: UITextField!
+    
+    // MARK: Action
+    @IBAction func registerAccount(sender: UIButton) {
+        if (usernameTextField.text!.isEqual("")) {
+            usernameTextField.text = ""
+            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        } else {
+            ok += 1
+        }
+        
+        if (passwordTextField.text!.isEqual("")) {
+            passwordTextField.text = ""
+            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        } else {
+            ok += 1
+        }
+        
+        if (emailTextField.text!.isEqual("")) {
+            emailTextField.text = ""
+            emailTextField.attributedPlaceholder = NSAttributedString(string:"Email Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        } else {
+            ok += 1
+        }
+        
+        let phoneNumber = Int(phoneNumberTextField.text!)
+        if (phoneNumber <= 79999999 || phoneNumber >= 100000000) {
+            phoneNumberTextField.text = ""
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Phone Number Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if (adminPINTextField.text!.characters.count != 4) {
+            adminPINTextField.text = ""
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Admin PIN Error".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        } else {
+            ok += 1
+        }
+        
+    }
+    /*
     @IBAction func registerButton(sender: UIButton) {
         
         if (businessName.text!.isEqual("")) {
@@ -232,6 +239,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             ok = 0
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
@@ -269,7 +277,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     
     }
-    
+ 
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             view.endEditing(true)
@@ -424,6 +432,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                                       completion: nil)
     }
     
-    
+    */
     
 }
