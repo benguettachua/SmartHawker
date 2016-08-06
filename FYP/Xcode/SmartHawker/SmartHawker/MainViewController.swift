@@ -54,6 +54,11 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
 
 
+    @IBAction func addTarget(sender: UIButton) {
+        let alert = UIAlertController(title: "Coming soon", message: "This function will be available soon.", preferredStyle: .Alert)
+        alert.addAction((UIAlertAction(title: "Ok", style: .Default, handler: nil)))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     @IBAction func addTodayRecord(sender: UIButton) {
         if toShare.dateString == nil{
             let dateFormatter = NSDateFormatter()
