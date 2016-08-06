@@ -48,10 +48,33 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
          }
          */
         // Populate the top bar
-        name.text! = user!["name"] as! String
-        businessName.text! = user!["businessName"] as! String
-        businessRegNo.text! = user!["businessNumber"] as! String
-        businessAddress.text! = user!["businessAddress"] as! String
+        // Name
+        var name2 = user!["name"]
+        if (name2 == nil) {
+            name2 = "No name"
+        }
+        name.text! = name2 as! String
+        
+        // Business name
+        var businessName2 = user!["businessName"]
+        if (businessName2 == nil) {
+            businessName2 = "No business name"
+        }
+        businessName.text! = businessName2 as! String
+        
+        // Business number
+        var businessNum2 = user!["businessNumber"]
+        if (businessNum2 == nil) {
+            businessNum2 = "No business number"
+        }
+        businessRegNo.text! = businessNum2 as! String
+        
+        // Business address
+        var businessAddress2 = user!["businessAddress"]
+        if (businessAddress2 == nil) {
+            businessAddress2 = "No business address"
+        }
+        businessAddress.text! = businessAddress2 as! String
         adminPin.text! = user!["adminPin"] as! String
         email.text! = user!["email"] as! String
         phoneNo.text! = user!["phoneNumber"] as! String
