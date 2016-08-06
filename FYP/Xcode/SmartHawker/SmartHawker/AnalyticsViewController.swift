@@ -44,7 +44,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     var maxProfitMonth = ""
     var maxProfitForDay = 0.0
     var maxProfitDay = ""
-    var datesAndRecords = [String:[RecordTable]]()
     var today = moment(NSDate())
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -102,6 +101,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     
     func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
         // Load from local datastore into UI.
+        self.records.removeAll()
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.fromLocalDatastore()
@@ -143,13 +143,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
                         
                         let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
                         self.records.append(newRecord)
-                        if self.datesAndRecords[dateString] == nil {
-                            var arrayForRecords = [RecordTable]()
-                            arrayForRecords.append(newRecord)
-                            self.datesAndRecords[dateString] = arrayForRecords
-                        }else{
-                            self.datesAndRecords[dateString]?.append(newRecord)
-                        }
                     }
                     completionHandler(success: true)
                 }
