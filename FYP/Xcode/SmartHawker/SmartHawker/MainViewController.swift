@@ -149,7 +149,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     }
                     
                     totalDays += 1.0
-                }
+                
                  //to get max and min sales
                  if highSales == nil{
                     highSales = sales
@@ -183,6 +183,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     lowProfit = profit
                     lowProfitDay = myKey
                  }
+                }
             }
             
             }
@@ -196,10 +197,9 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 highSalesDay = "None"
                 lowSalesDay = "None"
             }
-            self.salesAmount.text = "$" + String(format: "%.2f", String(totalSales))
-            self.COGSAmount.text = "$" + String(format: "%.2f", String(COGS))
-            self.otherExpensesAmount.text = "$" + String(format: "%.2f", String(expenses))
-           // self.totalProfit.text = String(totalProfit)
+            self.salesAmount.text = "$" + String(totalSales)
+            self.otherExpensesAmount.text = "$" + String(expenses)
+            self.totalProfit.text = "$" + String(totalProfit)
             //self.highestProfit.text = String(highProfit)
             //self.lowestProfit.text = String(lowProfit)
             //if totalProfit == 0{
@@ -207,18 +207,17 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             //}else{
                 //self.averageProfit.text = String((totalProfit/totalDays))
             //}
-            self.highestSales.text = "$" + String(format: "%.2f", String(highSales))
-            self.lowestSales.text = "$" + String(format: "%.2f", String(lowSales))
+            self.highestSales.text = "$" + String(highSales)
+            self.lowestSales.text = "$" + String(lowSales)
             if totalSales == 0{
                 self.averageSales.text = "0"
             }else{
-                self.averageSales.text = "$" + String(format: "%.2f", String((totalSales/totalDays)))
+                self.averageSales.text = "$" + String((totalSales/totalDays))
             }
             //self.highestProfitDay.text = highProfitDay
             //self.lowestProfitDay.text = lowProfitDay
             self.highestSalesDay.text = highSalesDay
             self.lowestSalesDay.text = lowSalesDay
-            print(self.lowestSalesDay.text)
         })
         
     }
@@ -324,6 +323,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     }
  
     func getLatestDate(){
+        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
