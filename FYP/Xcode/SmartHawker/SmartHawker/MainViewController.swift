@@ -196,10 +196,10 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 highSalesDay = "None"
                 lowSalesDay = "None"
             }
-            self.salesAmount.text = String(totalSales)
-            self.COGSAmount.text = String(COGS)
-            self.otherExpensesAmount.text = String(expenses)
-            self.totalProfit.text = String(totalProfit)
+            self.salesAmount.text = "$" + String(format: "%.2f", String(totalSales))
+            self.COGSAmount.text = "$" + String(format: "%.2f", String(COGS))
+            self.otherExpensesAmount.text = "$" + String(format: "%.2f", String(expenses))
+           // self.totalProfit.text = String(totalProfit)
             //self.highestProfit.text = String(highProfit)
             //self.lowestProfit.text = String(lowProfit)
             //if totalProfit == 0{
@@ -207,12 +207,12 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             //}else{
                 //self.averageProfit.text = String((totalProfit/totalDays))
             //}
-            self.highestSales.text = String(highSales)
-            self.lowestSales.text = String(lowSales)
+            self.highestSales.text = "$" + String(format: "%.2f", String(highSales))
+            self.lowestSales.text = "$" + String(format: "%.2f", String(lowSales))
             if totalSales == 0{
                 self.averageSales.text = "0"
             }else{
-                self.averageSales.text = String((totalSales/totalDays))
+                self.averageSales.text = "$" + String(format: "%.2f", String((totalSales/totalDays)))
             }
             //self.highestProfitDay.text = highProfitDay
             //self.lowestProfitDay.text = lowProfitDay
@@ -480,5 +480,81 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         
         // The data task is set up...launch it!
         dataTask.resume()
+    }
+    
+    @IBAction func syncData(sender: UIButton) {
+        let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            
+            self.saveRecordsIntoDatabase({ (success) -> Void in
+                if (success) {
+                    self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                        if (success) {
+                            let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            alertController.addAction(ok)
+                            self.presentViewController(alertController, animated: true,completion: nil)
+                        } else {
+                            print("Retrieval failed!")
+                        }
+                    })
+                }
+            })
+        })
+        let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+        alertController.addAction(ok)
+        alertController.addAction(no)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
+        // Part 1: Load from DB and pin into local datastore.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            var dates = [String]()
+            if error == nil {
+                // Pin records found into local datastore.
+                PFObject.pinAllInBackground(objects)
+                for object in objects! {
+                    let dateString = object["date"] as! String
+                    dates.append(dateString)
+                    
+                }
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(dates, forKey: "SavedDateArray")
+                completionHandler(success: true)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+    }
+    
+    func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
+        let query = PFQuery(className: "Record")
+        let isSubUser = toShare.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: toShare.subuser)
+        }
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: self.user!)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                for object in objects! {
+                    object.pinInBackground()
+                    object.saveInBackground()
+                }
+                completionHandler(success: true)
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
     }
 }

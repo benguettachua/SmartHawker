@@ -16,34 +16,20 @@ class ReportsViewController: UIViewController {
     typealias CompletionHandler = (success:Bool) -> Void
     
     //Top Bar
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var businessName: UILabel!
-    @IBOutlet weak var username: UILabel!
     
     // Labels
-    @IBOutlet weak var yearToCalculateLabel: UILabel!
-    @IBOutlet weak var taxPayableLabel: UILabel!
-    @IBOutlet weak var incomeLabel: UILabel!
-    @IBOutlet weak var taxableIncomeLabel: UILabel!
-    @IBOutlet weak var taxReliefLabelTop: UILabel!
-    @IBOutlet weak var taxReliefLabelBtm: UILabel!
     
-    @IBOutlet weak var taxPayableValueLabel: UILabel!
-    @IBOutlet weak var incomeValueLabel: UILabel!
-    @IBOutlet weak var reliefValueLabel: UILabel!
-    @IBOutlet weak var taxableIncomeValueLabel: UILabel!
     
     // Text Fields
-    @IBOutlet weak var yearToCalculateTextField: UITextField!
-    @IBOutlet weak var taxReliefAmountTextField: UITextField!
+    
     
     
     // Mark: Action
-    @IBAction func Logout(sender: UIBarButtonItem) {
-        PFUser.logOut()
-        self.performSegueWithIdentifier("logout", sender: self)
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /*
     @IBAction func calculateTax(sender: UIButton) {
         // Validate if the required fields are empty.
         var ok = 0
@@ -126,27 +112,12 @@ class ReportsViewController: UIViewController {
         
     }
     
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load the Top Bar
-        let user = PFUser.currentUser()
-        // Populate the top bar
-        businessName.text! = user!["businessName"] as! String
-        username.text! = user!["username"] as! String
-        
-        // Getting the profile picture
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                }
-            }
-        }
-        
     }
-    
+    /*
     // Populate your income on UI
     func loadRecordsFromLocaDatastore(year: Int, completionHandler: CompletionHandler) {
         // Part 2: Load from local datastore into UI.
@@ -193,11 +164,12 @@ class ReportsViewController: UIViewController {
             }
         }
     }
-    
+    */
     /**
      * Closes the keyboard when the user touches anywhere
      */
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+ 
 }

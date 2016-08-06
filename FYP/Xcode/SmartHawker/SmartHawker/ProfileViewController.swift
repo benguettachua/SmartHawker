@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
+    var shared = ShareData.sharedInstance
     
     // MARK: Action
     func logout() {
@@ -68,6 +69,30 @@ class ProfileViewController: UIViewController {
         }
         
     }
+    @IBAction func syncData(sender: UIButton) {
+        let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            
+            self.saveRecordsIntoDatabase({ (success) -> Void in
+                if (success) {
+                    self.loadRecordsIntoLocalDatastore({ (success) -> Void in
+                        if (success) {
+                            let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            alertController.addAction(ok)
+                            self.presentViewController(alertController, animated: true,completion: nil)
+                        } else {
+                            print("Retrieval failed!")
+                        }
+                    })
+                }
+            })
+        })
+        let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+        alertController.addAction(ok)
+        alertController.addAction(no)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
         let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
@@ -85,6 +110,57 @@ class ProfileViewController: UIViewController {
         presentViewController(refreshAlert, animated: true, completion: nil)
         
         
+    }
+    
+    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
+        // Part 1: Load from DB and pin into local datastore.
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            var dates = [String]()
+            if error == nil {
+                // Pin records found into local datastore.
+                PFObject.pinAllInBackground(objects)
+                for object in objects! {
+                    let dateString = object["date"] as! String
+                    dates.append(dateString)
+                    
+                }
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(dates, forKey: "SavedDateArray")
+                completionHandler(success: true)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
+    }
+    
+    func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
+        let query = PFQuery(className: "Record")
+        let isSubUser = shared.isSubUser
+        if (isSubUser) {
+            query.whereKey("subuser", equalTo: shared.subuser)
+        }
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: self.user!)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                for object in objects! {
+                    object.pinInBackground()
+                    object.saveInBackground()
+                }
+                completionHandler(success: true)
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                completionHandler(success: false)
+            }
+        }
     }
 
 
