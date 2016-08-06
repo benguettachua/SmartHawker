@@ -202,9 +202,9 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 highSalesDay = "None"
                 lowSalesDay = "None"
             }
-            self.salesAmount.text = "$" + String(totalSales)
-            self.otherExpensesAmount.text = "$" + String(expenses)
-            self.totalProfit.text = "$" + String(totalProfit)
+            self.salesAmount.text = "$" + String(format: "%.0f", totalSales)
+            self.otherExpensesAmount.text = "$" + String(format: "%.0f", expenses)
+            self.totalProfit.text = "$" + String(format: "%.0f", totalProfit)
             //self.highestProfit.text = String(highProfit)
             //self.lowestProfit.text = String(lowProfit)
             //if totalProfit == 0{
@@ -212,12 +212,12 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             //}else{
                 //self.averageProfit.text = String((totalProfit/totalDays))
             //}
-            self.highestSales.text = "$" + String(highSales)
-            self.lowestSales.text = "$" + String(lowSales)
+            self.highestSales.text = "$" + String(format: "%.0f", highSales)
+            self.lowestSales.text = "$" + String(format: "%.0f", lowSales)
             if totalSales == 0{
                 self.averageSales.text = "0"
             }else{
-                self.averageSales.text = "$" + String((totalSales/totalDays))
+                self.averageSales.text = "$" + String(format: "%.0f", (totalSales/totalDays))
             }
             //self.highestProfitDay.text = highProfitDay
             //self.lowestProfitDay.text = lowProfitDay
