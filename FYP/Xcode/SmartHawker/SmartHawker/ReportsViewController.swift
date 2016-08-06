@@ -140,7 +140,7 @@ class ReportsViewController: UIViewController, UITextFieldDelegate {
                         COGS += record["amount"] as! Double
                     } else if (record["type"] as! Int == 2) {
                         expenses += record["amount"] as! Double
-                    } else if (record["type"] as! Int == 2) {
+                    } else if (record["type"] as! Int == 3) {
                         expenses += record["amount"] as! Double
                     }
                 }
