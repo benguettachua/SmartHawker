@@ -21,18 +21,15 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     var datesAndRecords = [String:[RecordTable]]()
     let locationManager = CLLocationManager()
     
+    @IBOutlet weak var weatherPicture: UIImageView!
+    @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
     //for highest , lowest and average
     @IBOutlet weak var lowestSales: UILabel!
     @IBOutlet weak var highestSales: UILabel!
     @IBOutlet weak var averageSales: UILabel!
     @IBOutlet weak var lowestSalesDay: UILabel!
     @IBOutlet weak var highestSalesDay: UILabel!
-    
-    @IBOutlet weak var lowestProfit: UILabel!
-    @IBOutlet weak var highestProfit: UILabel!
-    @IBOutlet weak var averageProfit: UILabel!
-    @IBOutlet weak var lowestProfitDay: UILabel!
-    @IBOutlet weak var highestProfitDay: UILabel!
     
     @IBOutlet weak var lastRecordLabel: UILabel!
     
@@ -43,8 +40,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     @IBOutlet weak var totalProfit: UILabel!
     //for weather
-    @IBOutlet weak var weatherLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
+
     private let openWeatherMapBaseURL = "http://api.openweathermap.org/data/2.5/weather"
     private let openWeatherMapAPIKey = "54a57adb6525a2526f2a33daeec9a28f"
     
@@ -109,12 +105,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             var totalDays = 0.0
             var highSales: Double!
             var highSalesDay: String!
-            var highProfit: Double!
-            var highProfitDay: String!
             var lowSales: Double!
             var lowSalesDay: String!
-            var lowProfit: Double!
-            var lowProfitDay: String!
             var totalProfit = 0.0
             var COGS = 0.0
             var expenses = 0.0
@@ -173,45 +165,20 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     lowSalesDay = myKey
                  }
                  
-                 if highProfit == nil{
-                    highProfit = profit
-                    highProfitDay = record.date
-                 }else if profit > highProfit{
-                    highProfit = profit
-                    highProfitDay = myKey
-                 }
-                 
-                 if lowProfit == nil{
-                    lowProfit = profit
-                    lowProfitDay = myKey
-                 }else if profit < lowProfit{
-                    lowProfit = profit
-                    lowProfitDay = myKey
-                 }
                 }
             }
             
             }
             if totalDays == 0.0 {
                 highSales = 0.0
-                highProfit = 0.0
                 lowSales = 0.0
-                lowProfit = 0.0
-                highProfitDay = "None"
-                lowProfitDay = "None"
                 highSalesDay = "None"
                 lowSalesDay = "None"
             }
             self.salesAmount.text = "$" + String(format: "%.0f", totalSales)
             self.otherExpensesAmount.text = "$" + String(format: "%.0f", expenses)
             self.totalProfit.text = "$" + String(format: "%.0f", totalProfit)
-            //self.highestProfit.text = String(highProfit)
-            //self.lowestProfit.text = String(lowProfit)
-            //if totalProfit == 0{
-                //self.averageProfit.text = "0"
-            //}else{
-                //self.averageProfit.text = String((totalProfit/totalDays))
-            //}
+
             self.highestSales.text = "$" + String(format: "%.0f", highSales)
             self.lowestSales.text = "$" + String(format: "%.0f", lowSales)
             if totalSales == 0{
@@ -219,8 +186,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             }else{
                 self.averageSales.text = "$" + String(format: "%.0f", (totalSales/totalDays))
             }
-            //self.highestProfitDay.text = highProfitDay
-            //self.lowestProfitDay.text = lowProfitDay
             self.highestSalesDay.text = highSalesDay
             self.lowestSalesDay.text = lowSalesDay
         })
@@ -466,12 +431,27 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     // JSON-formatted weather data into a Swift dictionary.
                     // Let's now used that dictionary to initialize a Weather struct.
                     let weather = weatherData["weather"]![0]!["description"]!! as? String
-                    
+                    let weatherPicCode = weatherData["weather"]![0]["icon"]!!
                     let temperature = String(weatherData["main"]!["temp"]!! as! Double - 273.15)
-                    
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.temperatureLabel.text = temperature
-                        self.weatherLabel.text = weather
+                        
+                        if weatherPicCode.containsString("01d") || weatherPicCode.containsString("02d"){
+                            self.weatherPicture.image = UIImage(named: "weather-sunny")
+                        }
+                        else if weatherPicCode.containsString("01n") || weatherPicCode.containsString("02n"){
+                            self.weatherPicture.image = UIImage(named: "weather-moon")
+                        }
+                        else if weatherPicCode.containsString("03") || weatherPicCode.containsString("04") || weatherPicCode.containsString("50"){
+                            self.weatherPicture.image = UIImage(named: "weather-cloudly")
+                        }
+                        else if weatherPicCode.containsString("09") || weatherPicCode.containsString("10"){
+                            self.weatherPicture.image = UIImage(named: "weather-raining")
+                        }
+                        else if weatherPicCode.containsString("11") || weatherPicCode.containsString("10"){
+                            self.weatherPicture.image = UIImage(named: "weather-thunderstorm")
+                        }
+                        self.temperatureLabel.text = temperature + "°C"
+                        self.weatherLabel.text = weather!.uppercaseFirst
                     }
                   // Now that we have the Weather struct, let's notify the view controller,
                     // which will use it to display the weather to the user.
@@ -561,5 +541,17 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 completionHandler(success: false)
             }
         }
+    }
+}
+
+extension String {
+    var first: String {
+        return String(characters.prefix(1))
+    }
+    var last: String {
+        return String(characters.suffix(1))
+    }
+    var uppercaseFirst: String {
+        return first.uppercaseString + String(characters.dropFirst())
     }
 }

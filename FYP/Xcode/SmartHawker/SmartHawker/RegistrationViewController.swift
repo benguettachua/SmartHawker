@@ -16,6 +16,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     var ok = 0
     
     // Text Fields
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -24,6 +25,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Action
     @IBAction func registerAccount(sender: UIButton) {
+        if (nameTextField.text!.isEqual("")) {
+            nameTextField.text = ""
+            nameTextField.attributedPlaceholder = NSAttributedString(string:"Enter your name".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        } else {
+            ok += 1
+        }
+        
         if (usernameTextField.text!.isEqual("") || usernameTextField.text!.length <= 4) {
             usernameTextField.text = ""
             usernameTextField.attributedPlaceholder = NSAttributedString(string:"Enter Username(5 or more letters)".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
@@ -60,9 +68,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             ok += 1
         }
         
-        if ok == 5 {
+        if ok == 6 {
             // All validations passed, proceed to register user.
             let newUser = PFUser()
+            newUser["name"] = nameTextField.text
             newUser.username = usernameTextField.text
             newUser.email = emailTextField.text?.lowercaseString
             newUser["phoneNumber"] = phoneNumberTextField.text
