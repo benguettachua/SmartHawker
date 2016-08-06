@@ -77,7 +77,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setObject(array, forKey: "SavedDateArray")
                     // Register success, show success message.
-                    let alert = UIAlertController(title: "Registration Unsuccessful", message: "Congratulations, you have created a new Account! Logging in, please wait...", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Registration Successful", message: "Congratulations, you have created a new Account! Logging in, please wait...", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
                     
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -89,7 +89,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                             (user: PFUser?, error: NSError?) -> Void in
                             if user != nil {
                                 // Re-direct user to main UI if login success.
-                                self.performSegueWithIdentifier("registerSuccess", sender: self)
+                                alert.dismissViewControllerAnimated(true, completion: { 
+                                    self.performSegueWithIdentifier("registerSuccess", sender: self)
+                                })
+                                
                             } else {
                                 // There was a problem, show user the error message.
                                 let alert = UIAlertController(title: "Registration Unsuccessful", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
