@@ -352,8 +352,24 @@ class SummaryController: UIViewController {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             
-            let dayOfWeek = actualWeekDate.weekday
-            periodComponents.day = 2 - dayOfWeek
+            let stringDayOfWeek = actualWeekDate.weekdayName
+            var dayOfWeek = 0
+            if stringDayOfWeek.containsString("Sunday"){
+                dayOfWeek = 7
+            }else if stringDayOfWeek.containsString("Monday"){
+                dayOfWeek = 1
+            }else if stringDayOfWeek.containsString("Tuesday"){
+                dayOfWeek = 2
+            }else if stringDayOfWeek.containsString("Wednesday"){
+                dayOfWeek = 3
+            }else if stringDayOfWeek.containsString("Thursday"){
+                dayOfWeek = 4
+            }else if stringDayOfWeek.containsString("Friday"){
+                dayOfWeek = 5
+            }else if stringDayOfWeek.containsString("Saturday"){
+                dayOfWeek = 6
+            }
+            periodComponents.day = 1 - dayOfWeek
             let firstDayOfWeek = calendar!.dateByAddingComponents(
                 periodComponents,
                 toDate: chosenWeekDate,
@@ -365,7 +381,7 @@ class SummaryController: UIViewController {
                 periodComponents.day = +i
                 let dayOfWeek = calendar!.dateByAddingComponents(
                     periodComponents,
-                    toDate: chosenWeekDate,
+                    toDate: firstDayOfWeek,
                     options: [])!
                 correctDateString = dateFormatter.stringFromDate(dayOfWeek)
                 daysInWeek.append(correctDateString)
@@ -431,8 +447,24 @@ class SummaryController: UIViewController {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             
-            let dayOfWeek = actualWeekDate.weekday
-            periodComponents.day = 2 - dayOfWeek
+            let stringDayOfWeek = actualWeekDate.weekdayName
+            var dayOfWeek = 0
+            if stringDayOfWeek.containsString("Sunday"){
+                dayOfWeek = 7
+            }else if stringDayOfWeek.containsString("Monday"){
+                dayOfWeek = 1
+            }else if stringDayOfWeek.containsString("Tuesday"){
+                dayOfWeek = 2
+            }else if stringDayOfWeek.containsString("Wednesday"){
+                dayOfWeek = 3
+            }else if stringDayOfWeek.containsString("Thursday"){
+                dayOfWeek = 4
+            }else if stringDayOfWeek.containsString("Friday"){
+                dayOfWeek = 5
+            }else if stringDayOfWeek.containsString("Saturday"){
+                dayOfWeek = 6
+            }
+            periodComponents.day = 1 - dayOfWeek
             let firstDayOfWeek = calendar!.dateByAddingComponents(
                 periodComponents,
                 toDate: chosenWeekDate,
@@ -444,7 +476,7 @@ class SummaryController: UIViewController {
                 periodComponents.day = +i
                 let dayOfWeek = calendar!.dateByAddingComponents(
                     periodComponents,
-                    toDate: chosenWeekDate,
+                    toDate: firstDayOfWeek,
                     options: [])!
                 correctDateString = dateFormatter.stringFromDate(dayOfWeek)
                 daysInWeek.append(correctDateString)
@@ -466,21 +498,38 @@ class SummaryController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let periodComponents = NSDateComponents()
-        let dayOfWeek = actualWeekDate.weekday
-        periodComponents.day = 2 - dayOfWeek
+        let stringDayOfWeek = actualWeekDate.weekdayName
+        var dayOfWeek = 0
+        if stringDayOfWeek.containsString("Sunday"){
+            dayOfWeek = 7
+        }else if stringDayOfWeek.containsString("Monday"){
+            dayOfWeek = 1
+        }else if stringDayOfWeek.containsString("Tuesday"){
+            dayOfWeek = 2
+        }else if stringDayOfWeek.containsString("Wednesday"){
+            dayOfWeek = 3
+        }else if stringDayOfWeek.containsString("Thursday"){
+            dayOfWeek = 4
+        }else if stringDayOfWeek.containsString("Friday"){
+            dayOfWeek = 5
+        }else if stringDayOfWeek.containsString("Saturday"){
+            dayOfWeek = 6
+        }
+        periodComponents.day = 1 - dayOfWeek
+        print(1 - dayOfWeek)
         let firstDayOfWeek = calendar!.dateByAddingComponents(
             periodComponents,
             toDate: chosenWeekDate,
             options: [])!
+        print(firstDayOfWeek)
         var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
         daysInWeek.append(correctDateString)
         weekMonthYear.text = String(correctDateString) + " - "
-        chosenWeekDate = firstDayOfWeek
         for i in 1...6 {
             periodComponents.day = +i
             let dayOfWeek = calendar!.dateByAddingComponents(
                 periodComponents,
-                toDate: chosenWeekDate,
+                toDate: firstDayOfWeek,
                 options: [])!
             correctDateString = dateFormatter.stringFromDate(dayOfWeek)
             daysInWeek.append(correctDateString)
