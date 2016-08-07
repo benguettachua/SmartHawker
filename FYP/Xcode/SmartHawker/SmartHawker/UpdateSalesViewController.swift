@@ -30,8 +30,48 @@ class UpdateSalesViewController: UIViewController{
     @IBAction func save(sender: UIButton) {
         updateRecord()
     }
-    
-    @IBAction func add(sender: UIButton) {
+   
+    @IBAction func deleteRecord(sender: UIButton) {
+        // Updating the record
+        let selectedRecord = shared.selectedRecord
+        let localIdentifier = selectedRecord.localIdentifier
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        query.whereKey("subUser", equalTo: localIdentifier)
+        query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
+            if (error != nil && record != nil) {
+                // No object found or some error
+                print("No object found or some error")
+                print(error)
+                print(record)
+            } else if let record = record {
+                // Record is found, proceed to delete.
+                record["amount"] = 0
+                var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+                
+                for var i in 0..<array.count{
+                    if array[i] == record["date"] as! String{
+                        array.removeAtIndex(i)
+                        i -= 1
+                        break
+                    }
+                    
+                }
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(array, forKey: "SavedDateArray")
+                record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
+                record.deleteEventually() // Deletes from the DB when there is network.
+                record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
+                self.updateGlobalRecord({ (success) -> Void in
+                    if (success) {
+                        print("Delete success")
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        print("Delete failed")
+                    }
+                })
+            }
+        }
     }
     
     func updateRecord() {
