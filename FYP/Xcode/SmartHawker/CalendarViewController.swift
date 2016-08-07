@@ -91,6 +91,8 @@ class CalendarViewcontroller: UIViewController{
             calendar.selectDate(toShare.storeDate)
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
             loadRecords(toShare.dateString)
+        }else{
+            calendar.selectDate(moment(NSDate()))
         }
         todayRecordView.backgroundColor = UIColor(white: 1, alpha: 0.3)
 
