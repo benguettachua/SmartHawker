@@ -22,6 +22,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     let locationManager = CLLocationManager()
     var targetAvailable = false
     var targetAmount = 0.0
+    var datesWithRecords = [String]()
     @IBOutlet weak var targetButton: UIButton!
     
     @IBOutlet weak var weatherPicture: UIImageView!
@@ -158,6 +159,10 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 for record in myValue {
                     
                     if earlier || same {
+                        if self.datesWithRecords.contains(record.date) == false{
+                            self.datesWithRecords.append(record.date)
+                            totalDays += 1.0
+                        }
                         let type = record.type
                         let amount = Double(record.amount)
                         //let subuser = object["subuser"] as? String
@@ -181,8 +186,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             totalProfit -= amount
                         }
                         
-                        totalDays += 1.0
-                        
                         //to get max and min sales
                         if highSales == nil{
                             highSales = sales
@@ -202,6 +205,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                         }
                         
                     }
+                    
+                    
                 }
                 
             }
