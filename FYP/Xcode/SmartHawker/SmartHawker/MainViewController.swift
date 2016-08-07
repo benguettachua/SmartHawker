@@ -394,7 +394,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         dispatch_async(dispatch_get_main_queue()) {
             self.showSimpleAlert(title: "Can't determine your location",
                                  message: "The GPS and other location services aren't responding.")
-            self.weatherLabel.text = "Please connect to the internet"
+            self.weatherLabel.text = "Please Refresh"
             self.temperatureLabel.text = ""
         }
         print("locationManager didFailWithError: \(error)")
