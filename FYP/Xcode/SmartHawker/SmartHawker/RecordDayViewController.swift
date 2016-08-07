@@ -57,7 +57,11 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 
                 for (i,num) in self.records.enumerate().reverse() {
+                    print(self.records[i].type)
                     if (self.records[i].amount == 0) {
+                        self.records.removeAtIndex(i)
+                    } else if (self.records[i].type == ""){
+                        
                         self.records.removeAtIndex(i)
                     }
                 }
