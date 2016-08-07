@@ -105,6 +105,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             targetButton.titleLabel!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
             targetButton.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
         }
+        datesWithRecords.removeAll()
         var toDisplayDate = "Overview as of "
         let date = moment(NSDate())
         var dayString = ""
