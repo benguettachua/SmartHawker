@@ -19,6 +19,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var adminPINTextField: UITextField!
@@ -39,10 +40,26 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             ok += 1
         }
         
-        if (passwordTextField.text!.isEqual("")) {
+        if (passwordTextField.text!.isEqual("")){
             passwordTextField.text = ""
             passwordTextField.attributedPlaceholder = NSAttributedString(string:"Enter Password".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-        } else {
+        }else {
+            ok += 1
+        }
+        
+        if (confirmPasswordTextField.text!.isEqual("")){
+            confirmPasswordTextField.text = ""
+            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Enter Password".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }else {
+            ok += 1
+        }
+        
+        if confirmPasswordTextField.text! != passwordTextField.text!{
+            passwordTextField.text = ""
+            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Enter Password".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            confirmPasswordTextField.text = ""
+            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Enter Password".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }else {
             ok += 1
         }
         
@@ -68,7 +85,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             ok += 1
         }
         
-        if ok == 6 {
+        if ok == 8 {
             // All validations passed, proceed to register user.
             let newUser = PFUser()
             newUser["name"] = nameTextField.text
