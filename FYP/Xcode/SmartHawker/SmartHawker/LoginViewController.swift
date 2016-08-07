@@ -57,13 +57,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
-        usernameTextField.placeholder = "Username or Email".localized()
+        usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        usernameTextField.placeholder = "Username or Email"
+        usernameTextField.placeholder = "Username"
         passwordTextField.placeholder = "Password"
     }
     
