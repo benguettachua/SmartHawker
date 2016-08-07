@@ -168,7 +168,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             sales += amount
                             
                         } else if (type == "COGS") {
-                            COGS += amount
+                            expenses += amount
                             profit -= amount
                             totalProfit -= amount
                         } else if (type == "Expenses") {
