@@ -57,6 +57,15 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     @IBAction func addTarget(sender: UIButton) {
         let alert = UIAlertController(title: "Monthly Target", message: "What is this month's target?", preferredStyle: .Alert)
         let saveAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
+            if (self.targetAvailable) {
+                let query = PFQuery(className: "Record")
+                query.fromLocalDatastore()
+                query.whereKey("user", equalTo: self.user!)
+                query.whereKey("type", equalTo: 4)
+                var targets = [PFObject]()
+                do {targets = try query.findObjects()}catch{}
+                do{try PFObject.unpinAll(targets)}catch{}
+            }
             let targetTextField = alert.textFields![0] as UITextField
             let toRecord = PFObject(className: "Record")
             toRecord.ACL = PFACL(user: PFUser.currentUser()!)
@@ -89,7 +98,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let correctDateString = dateFormatter.stringFromDate(NSDate())
         toShare.dateString = correctDateString
-        
         self.performSegueWithIdentifier("addRecord", sender: self)
     }
     
@@ -603,6 +611,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             if (targetDateMonth == todayMonth) {
                 targetAvailable = true
                 targetAmount = target["amount"] as! Double
+                print(targetAmount)
             }
         }
         
