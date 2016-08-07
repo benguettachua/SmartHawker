@@ -17,7 +17,9 @@ class AdminPINViewController: UIViewController {
     var shared = ShareData.sharedInstance
     var PINS = [String]()
     var subuser = "Standard Sub User"
-    
+    var records = []
+    var dates = [String:[String]]()
+    var objectRecords = [PFObject]()
     // Text Fields
     @IBOutlet weak var adminPINTextField: UITextField!
     
@@ -93,9 +95,12 @@ class AdminPINViewController: UIViewController {
             
         } else if (PINS.contains(adminPINTextField.text!)) {
             // Sub User logging-in
+            
             self.shared.isSubUser = true
             getSubuser(adminPINTextField.text!, completionHandler: { (success) in
                 self.shared.subuser = self.subuser
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(self.subuser, forKey: "subUser")
                 self.performSegueWithIdentifier("toMain", sender: self)
             })
 
@@ -113,23 +118,36 @@ class AdminPINViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func loadDatesToCalendar(){
+        
+        let array = self.dates[subuser]
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(array, forKey: "SavedDateArray")
+        
+    }
     func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
         // Part 1: Load from DB and pin into local datastore.
         let query = PFQuery(className: "Record")
         query.whereKey("user", equalTo: user!)
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            var dates = [String]()
+            
             if error == nil {
                 // Pin records found into local datastore.
                 PFObject.pinAllInBackground(objects)
                 for object in objects! {
                     let dateString = object["date"] as! String
-                    dates.append(dateString)
+                    let subuserName = object["subuser"] as! String
+                    if self.dates[subuserName] == nil{
+                        let array = [dateString]
+                        self.dates.updateValue(array, forKey: subuserName)
+                    }else{
+                        var array = self.dates[subuserName]
+                        array?.append(dateString)
+                        self.dates.updateValue(array!, forKey: subuserName)
+                    }
                     
                 }
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(dates, forKey: "SavedDateArray")
                 completionHandler(success: true)
                 
             } else {
