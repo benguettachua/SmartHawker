@@ -148,8 +148,9 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             
             for (myKey,myValue) in self.datesAndRecords {
                 let recordDate = dateFormatter.dateFromString(myKey)
+                let todayDate = dateFormatter.stringFromDate(NSDate())
                 let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && myKey.containsString(correctDateString)
-                let same = recordDate!.isEqualToDate(NSDate())
+                let same = myKey.containsString(todayDate)
                 var profit = 0.0
                 var sales = 0.0
                 
