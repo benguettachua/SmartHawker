@@ -40,7 +40,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     @IBOutlet weak var totalProfit: UILabel!
     //for weather
-
+    
     private let openWeatherMapBaseURL = "http://api.openweathermap.org/data/2.5/weather"
     private let openWeatherMapAPIKey = "54a57adb6525a2526f2a33daeec9a28f"
     
@@ -48,20 +48,19 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
-
-
+    
+    
     @IBAction func addTarget(sender: UIButton) {
         let alert = UIAlertController(title: "Coming soon", message: "This function will be available soon.", preferredStyle: .Alert)
         alert.addAction((UIAlertAction(title: "Ok", style: .Default, handler: nil)))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     @IBAction func addTodayRecord(sender: UIButton) {
-        if toShare.dateString == nil{
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let correctDateString = dateFormatter.stringFromDate(NSDate())
-            toShare.dateString = correctDateString            
-        }
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let correctDateString = dateFormatter.stringFromDate(NSDate())
+        toShare.dateString = correctDateString
+        
         self.performSegueWithIdentifier("addRecord", sender: self)
     }
     
@@ -100,7 +99,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             self.getLocation()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             
-
+            
             var totalSales = 0.0
             var totalDays = 0.0
             var highSales: Double!
@@ -117,57 +116,57 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 let same = recordDate!.isEqualToDate(NSDate())
                 var profit = 0.0
                 var sales = 0.0
-
-            
-            for record in myValue {
                 
-                if earlier || same {
-                    let type = record.type
-                    let amount = Double(record.amount)
-                    //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
-                        totalProfit += amount
-                        totalSales += amount
-                        profit += amount
-                        sales += amount
-                 
-                    } else if (type == "COGS") {
-                        COGS += amount
-                        profit -= amount
-                        totalProfit -= amount
-                    } else if (type == "Expenses") {
-                        expenses += amount
-                        profit -= amount
-                        totalProfit -= amount
-                    }else if (type == "fixMonthlyExpenses") {
-                        expenses += amount
-                        profit -= amount
-                        totalProfit -= amount
-                    }
+                
+                for record in myValue {
                     
-                    totalDays += 1.0
-                
-                 //to get max and min sales
-                 if highSales == nil{
-                    highSales = sales
-                    highSalesDay = record.date
-                 }else if sales > highSales{
-                    highSales = sales
-                    highSalesDay = myKey
-                 }
-                 
-                 
-                 if lowSales == nil{
-                    lowSales = sales
-                    lowSalesDay = myKey
-                 }else if sales < lowSales{
-                    lowSales = sales
-                    lowSalesDay = myKey
-                 }
-                 
+                    if earlier || same {
+                        let type = record.type
+                        let amount = Double(record.amount)
+                        //let subuser = object["subuser"] as? String
+                        if (type == "Sales") {
+                            totalProfit += amount
+                            totalSales += amount
+                            profit += amount
+                            sales += amount
+                            
+                        } else if (type == "COGS") {
+                            COGS += amount
+                            profit -= amount
+                            totalProfit -= amount
+                        } else if (type == "Expenses") {
+                            expenses += amount
+                            profit -= amount
+                            totalProfit -= amount
+                        }else if (type == "fixMonthlyExpenses") {
+                            expenses += amount
+                            profit -= amount
+                            totalProfit -= amount
+                        }
+                        
+                        totalDays += 1.0
+                        
+                        //to get max and min sales
+                        if highSales == nil{
+                            highSales = sales
+                            highSalesDay = record.date
+                        }else if sales > highSales{
+                            highSales = sales
+                            highSalesDay = myKey
+                        }
+                        
+                        
+                        if lowSales == nil{
+                            lowSales = sales
+                            lowSalesDay = myKey
+                        }else if sales < lowSales{
+                            lowSales = sales
+                            lowSalesDay = myKey
+                        }
+                        
+                    }
                 }
-            }
-            
+                
             }
             if totalDays == 0.0 {
                 highSales = 0.0
@@ -178,7 +177,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             self.salesAmount.text = "$" + String(format: "%.0f", totalSales)
             self.otherExpensesAmount.text = "$" + String(format: "%.0f", expenses)
             self.totalProfit.text = "$" + String(format: "%.0f", totalProfit)
-
+            
             self.highestSales.text = "$" + String(format: "%.0f", highSales)
             self.lowestSales.text = "$" + String(format: "%.0f", lowSales)
             if totalSales == 0{
@@ -191,7 +190,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         })
         
     }
-
+    
     @IBAction func refreshWeather(sender: UIButton) {
         self.getLocation()
     }
@@ -214,7 +213,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         
         
     }
-
+    
     
     func loggedOut() {
         PFUser.logOut()
@@ -291,7 +290,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             }
         }
     }
- 
+    
     func getLatestDate(){
         
         let dateFormatter = NSDateFormatter()
@@ -299,19 +298,19 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
         var dateArray = [NSDate]()
         for stringDate in array{
-
+            
             let correctDate = dateFormatter.dateFromString(stringDate)
             dateArray.append(correctDate!)
         }
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
         if dateArray.count != 0{
-        let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
-        lastRecordLabel.text = "Your last record was on: " + dateStringToDisplay
+            let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
+            lastRecordLabel.text = "Your last record was on: " + dateStringToDisplay
         }else{
             lastRecordLabel.text = "Your have yet to make any records."
         }
     }
-
+    
     
     func showSimpleAlert(title title: String, message: String) {
         let alert = UIAlertController(
@@ -399,7 +398,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         }
         print("locationManager didFailWithError: \(error)")
     }
-
+    
     
     private func getWeather(weatherRequestURL: NSURL) {
         
@@ -453,7 +452,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                         self.temperatureLabel.text = temperature + "°C"
                         self.weatherLabel.text = weather!.uppercaseFirst
                     }
-                  // Now that we have the Weather struct, let's notify the view controller,
+                    // Now that we have the Weather struct, let's notify the view controller,
                     // which will use it to display the weather to the user.
                 }
                 catch let jsonError as NSError {
