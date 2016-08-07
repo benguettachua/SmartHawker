@@ -20,6 +20,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     let user = PFUser.currentUser()
     var datesAndRecords = [String:[RecordTable]]()
     let locationManager = CLLocationManager()
+    var targetAvailable = false
     
     @IBOutlet weak var weatherPicture: UIImageView!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -51,8 +52,33 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     
     @IBAction func addTarget(sender: UIButton) {
-        let alert = UIAlertController(title: "Coming soon", message: "This function will be available soon.", preferredStyle: .Alert)
-        alert.addAction((UIAlertAction(title: "Ok", style: .Default, handler: nil)))
+        let alert = UIAlertController(title: "Monthly Target", message: "What is this month's target?", preferredStyle: .Alert)
+        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
+            let targetTextField = alert.textFields![0] as UITextField
+            let toRecord = PFObject(className: "Record")
+            toRecord.ACL = PFACL(user: PFUser.currentUser()!)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let correctDateString = dateFormatter.stringFromDate(NSDate())
+            toRecord["amount"] = Double(targetTextField.text!)
+            toRecord["user"] = self.user!
+            toRecord["type"] = 4
+            toRecord["date"] = correctDateString
+            toRecord["subuser"] = self.user?.username
+            toRecord["subUser"] = NSUUID().UUIDString
+            toRecord["description"] = "Monthly Target"
+            do{try toRecord.pin()} catch {}
+            self.viewWillAppear(true)
+        })
+        alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
+            targetTextField.placeholder = "Enter Old PIN"
+            targetTextField.keyboardType = UIKeyboardType.DecimalPad
+        })
+        alert.addAction(saveAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { Void in
+            self.viewWillAppear(true)
+        }))
+        
         self.presentViewController(alert, animated: true, completion: nil)
     }
     @IBAction func addTodayRecord(sender: UIButton) {
@@ -68,6 +94,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         super.viewWillAppear(animated)
         
         getLatestDate()
+        getMonthlyTarget()
+        print(targetAvailable)
         var toDisplayDate = "Overview as of "
         let date = moment(NSDate())
         var dayString = ""
@@ -540,6 +568,29 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 completionHandler(success: false)
             }
         }
+    }
+    
+    func getMonthlyTarget() {
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        let todayMonth = moment(NSDate()).month
+        query.whereKey("user", equalTo: user!)
+        query.whereKey("type", equalTo: 4)
+        var targets = [PFObject]()
+        do {targets = try query.findObjects()}catch{}
+        for target in targets {
+            let targetDate = target["date"] as! String
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            let targetDateDate = formatter.dateFromString(targetDate)
+            let targetDateMoment = moment(targetDateDate!)
+            let targetDateMonth = targetDateMoment.month
+            if (targetDateMonth == todayMonth) {
+                targetAvailable = true
+            }
+        }
+        
+        
     }
 }
 
