@@ -21,6 +21,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     var datesAndRecords = [String:[RecordTable]]()
     let locationManager = CLLocationManager()
     var targetAvailable = false
+    var targetAmount = 0.0
+    @IBOutlet weak var targetButton: UIButton!
     
     @IBOutlet weak var weatherPicture: UIImageView!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -71,7 +73,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             self.viewWillAppear(true)
         })
         alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
-            targetTextField.placeholder = "Enter Old PIN"
+            targetTextField.placeholder = "This month's target"
             targetTextField.keyboardType = UIKeyboardType.DecimalPad
         })
         alert.addAction(saveAction)
@@ -95,7 +97,13 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         
         getLatestDate()
         getMonthlyTarget()
-        print(targetAvailable)
+        if(targetAvailable) {
+            targetButton.setImage(UIImage(named: "profile-edit-button"), forState: .Normal)
+            targetButton.setTitle("$" + String(format: "%.0f", targetAmount), forState: .Normal)
+            targetButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+            targetButton.titleLabel!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+            targetButton.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+        }
         var toDisplayDate = "Overview as of "
         let date = moment(NSDate())
         var dayString = ""
@@ -587,6 +595,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             let targetDateMonth = targetDateMoment.month
             if (targetDateMonth == todayMonth) {
                 targetAvailable = true
+                targetAmount = target["amount"] as! Double
             }
         }
         
