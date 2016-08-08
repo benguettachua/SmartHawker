@@ -108,26 +108,22 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     
                     self.presentViewController(alert, animated: true, completion: nil)
                     
-                    // Login the user to main UI after 3 seconds delay.
-                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
-                    dispatch_after(time, dispatch_get_main_queue()) {
-                        PFUser.logInWithUsernameInBackground(self.usernameTextField.text!, password: self.passwordTextField.text!) {
-                            (user: PFUser?, error: NSError?) -> Void in
-                            if user != nil {
-                                // Re-direct user to main UI if login success.
-                                alert.dismissViewControllerAnimated(true, completion: { 
-                                    self.performSegueWithIdentifier("registerSuccess", sender: self)
-                                })
-                                
-                            } else {
-                                // There was a problem, show user the error message.
-                                let alert = UIAlertController(title: "Registration Unsuccessful", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-                                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                                
-                                self.presentViewController(alert, animated: true, completion: nil)
-
-                                
-                            }
+                    PFUser.logInWithUsernameInBackground(self.usernameTextField.text!, password: self.passwordTextField.text!) {
+                        (user: PFUser?, error: NSError?) -> Void in
+                        if user != nil {
+                            // Re-direct user to main UI if login success.
+                            alert.dismissViewControllerAnimated(true, completion: {
+                                self.performSegueWithIdentifier("registerSuccess", sender: self)
+                            })
+                            
+                        } else {
+                            // There was a problem, show user the error message.
+                            let alert = UIAlertController(title: "Registration Unsuccessful", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                            
+                            self.presentViewController(alert, animated: true, completion: nil)
+                            
+                            
                         }
                     }
                     

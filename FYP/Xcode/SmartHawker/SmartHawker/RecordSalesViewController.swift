@@ -80,6 +80,9 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
         SubmitRecord({ (success) -> Void in
         })
     }
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func SubmitRecord(completionHandler: CompletionHandler) {
         let descriptionToRecord = descriptionTextField.text

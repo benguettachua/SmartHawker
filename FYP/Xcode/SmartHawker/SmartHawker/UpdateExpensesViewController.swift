@@ -77,9 +77,10 @@ class UpdateExpensesViewController: UIViewController {
         COGSButtonImage.image = UIImage(named: "record-blue-fade")
     }
     
-    @IBAction func selectSales(sender: UIButton) {
-        
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
+   
     
     @IBAction func deleteRecord(sender: UIButton) {
         // Updating the record

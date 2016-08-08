@@ -111,6 +111,9 @@ class UpdateSalesViewController: UIViewController{
         }
         
     }
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func updateGlobalRecord(completionHandler: CompletionHandler) {
         var records = [RecordTable]()

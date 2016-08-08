@@ -81,6 +81,9 @@ class RecordExpensesViewController: UIViewController{
         expensesCheckbok.image = UIImage(named: "record-blue-fade")
         COGSCheckbox.image = UIImage(named: "record-blue-fade")
     }
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func SubmitRecord(completionHandler: CompletionHandler) {
         let descriptionToRecord = descriptionTextField.text
