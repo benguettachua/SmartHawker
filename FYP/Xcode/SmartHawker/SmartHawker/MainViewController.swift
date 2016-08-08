@@ -41,7 +41,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var COGSAmount: UILabel!
     @IBOutlet weak var salesAmount: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
-    
+    @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var totalProfit: UILabel!
     //for weather
     
@@ -114,7 +114,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             targetButton.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
         }
         datesWithRecords.removeAll()
-        var toDisplayDate = "Overview as of "
+        var toDisplayDate = ""
         let date = moment(NSDate())
         var dayString = ""
         if date.day == 1 || date.day == 21{
@@ -134,8 +134,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         }else{
             toDisplayDate += dayString + " " + date.monthName + " " + String(date.year)
         }
-        //overviewLabel.text = toDisplayDate
-        
+        overviewLabel.text = toDisplayDate
+        dayLabel.text = date.weekdayName
         // Formatting to format as saved in DB.
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/yyyy"
@@ -153,7 +153,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             var lowSales: Double!
             var lowSalesDay: String!
             var totalProfit = 0.0
-            var COGS = 0.0
             var expenses = 0.0
             
             for (myKey,myValue) in self.datesAndRecords {
@@ -168,7 +167,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 for record in myValue {
                     
                     if earlier || same {
-                        if self.datesWithRecords.contains(record.date) == false{
+                        if self.datesWithRecords.contains(record.date) == false {
                             self.datesWithRecords.append(record.date)
                             totalDays += 1.0
                         }
@@ -186,10 +185,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             profit -= amount
                             totalProfit -= amount
                         } else if (type == "Expenses") {
-                            expenses += amount
-                            profit -= amount
-                            totalProfit -= amount
-                        }else if (type == "fixMonthlyExpenses") {
                             expenses += amount
                             profit -= amount
                             totalProfit -= amount
