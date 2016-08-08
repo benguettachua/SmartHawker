@@ -184,7 +184,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Clicked on row: " + String(indexPath.row))
         shared.selectedRecord = records[indexPath.row]
         self.performSegueWithIdentifier("updateRecord", sender: self)
     }
@@ -200,8 +199,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
             query.whereKey("subUser", equalTo: localIdentifier)
             query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
                 if (error != nil && record != nil) {
-                    // No object found or some error
-                    print("No object found or some error")
                     print(error)
                     print(record)
                 } else if let record = record {

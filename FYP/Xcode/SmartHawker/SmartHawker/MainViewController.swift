@@ -606,7 +606,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             if (targetDateMonth == todayMonth) {
                 targetAvailable = true
                 targetAmount = target["amount"] as! Double
-                print(targetAmount)
+                
             }
         }
         
