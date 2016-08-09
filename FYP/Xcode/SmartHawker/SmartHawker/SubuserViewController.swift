@@ -186,4 +186,9 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+        }
+    }
 }
