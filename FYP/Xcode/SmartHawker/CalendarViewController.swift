@@ -142,24 +142,6 @@ class CalendarViewcontroller: UIViewController{
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    @IBAction func Logout(sender: UIBarButtonItem) {
-        let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            self.loggedOut()
-        }))
-        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            
-            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
-            
-            
-        }))
-        
-        presentViewController(refreshAlert, animated: true, completion: nil)
-
-
-    }
-    
     func loadRecords(correctDateString: String){
         var salesAmount = 0.0
         var expensesAmount = 0.0

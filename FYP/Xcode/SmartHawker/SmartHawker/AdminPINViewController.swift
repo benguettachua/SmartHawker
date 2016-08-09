@@ -91,6 +91,7 @@ class AdminPINViewController: UIViewController {
         let pin = user!["adminPin"]
         if ((pin as! String == adminPINTextField.text!) == true) {
             // Admin logs in
+            self.shared.isSubUser = false
             self.performSegueWithIdentifier("toMain", sender: self)
             
         } else if (PINS.contains(adminPINTextField.text!)) {
