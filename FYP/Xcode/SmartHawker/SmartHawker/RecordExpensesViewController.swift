@@ -155,6 +155,7 @@ class RecordExpensesViewController: UIViewController{
     override func viewWillAppear(animated: Bool) {
         amountTextField.text = ""
         descriptionTextField.text = ""
+        recordSuccessLabel.text = ""
     }
     
 }

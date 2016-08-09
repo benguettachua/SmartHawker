@@ -157,6 +157,7 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         descriptionTextField.text = ""
         amountTextField.text = ""
+        recordSuccessLabel.text = ""
     }
     
 }
