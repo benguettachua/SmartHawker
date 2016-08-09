@@ -22,37 +22,36 @@ class LoginViewController: UIViewController {
     
     // MARK: Action
     @IBAction func login(sender: UIButton) {
-        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) {
-            (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                
-                // Do stuff after successful login.
-                self.toShare.password = self.passwordTextField.text!
-                
-                // Set first log in to true, so that prompt to retrieve from DB will appear.
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setBool(true, forKey: "justLoggedIn")
-                
-                // Get all subusers' PIN and save into an array
-                self.getSubUserPINs(user!, completionHandler: { (success) -> Void in
-                    if(success){
-                        self.performSegueWithIdentifier("loginSuccess", sender: self)
-                    } else {
-                        print("Error")
-                    }
-                })
-                
-            } else {
-                
-                // There was a problem, show user the error message.
-                let alertController = UIAlertController(title: "Login Failed", message: "Username or password is incorrect!", preferredStyle: .Alert)
-                let no = UIAlertAction(title: "Try again", style: .Cancel, handler: nil)
-                alertController.addAction(no)
-                self.presentViewController(alertController, animated: true, completion: nil)
-                
-            }
+        do {
+            // Log in
+            try PFUser.logInWithUsername(self.usernameTextField.text!, password: self.passwordTextField.text!)
+            
+            // Set just logged in to get prompt to load from DB
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setBool(true, forKey: "justLoggedIn")
+            
+            // Get all subusers' PIN and save into an array
+            self.getSubUserPINs(PFUser.currentUser()!, completionHandler: { (success) -> Void in
+                if(success){
+                    self.performSegueWithIdentifier("loginSuccess", sender: self)
+                } else {
+                    print("Error")
+                }
+            })
+            let loginAlert = UIAlertController(title: "Logging in", message: "Please wait.", preferredStyle: .Alert)
+            self.presentViewController(loginAlert, animated: true, completion: nil)
+            loginAlert.dismissViewControllerAnimated(false, completion: {
+                self.performSegueWithIdentifier("loginSuccess", sender: self)
+            })
+            
+        } catch {
+            let alert = UIAlertController(title: "Error", message: "Login not successful, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
+    
     @IBAction func forgetPassword(sender: UIButton) {
         let alert = UIAlertController(title: "Forget password", message: "Enter your email", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (Void) in
