@@ -182,8 +182,7 @@ class UpdateExpensesViewController: UIViewController {
                 // Record is found, proceed to delete.
                 record["amount"] = 0
                 var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-                
-                for var i in 0..<array.count{
+                f                for var i in 0..<array.count{
                     if array[i] == record["date"] as! String{
                         array.removeAtIndex(i)
                         i -= 1

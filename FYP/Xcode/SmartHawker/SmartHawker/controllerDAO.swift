@@ -128,7 +128,60 @@ class connectionDAO{
     }
     
     // Edit user's information
-    func edit(){
+    func edit(name: String, email: String, phoneNumber: String, adminPIN: String, businessAddress: String, businessName: String, businessNumber: String, profilePicture: PFFile) -> Bool {
+        let user = PFUser.currentUser()
+        user!["name"] = name
+        user!["phoneNumber"] = phoneNumber
+        user!["email"] = email
+        user!["adminPin"] = adminPIN
+        user!["businessAddress"] = businessAddress
+        user!["businessName"] = businessName
+        user!["businessNumber"] = businessNumber
+        user!["profilePicture"] = profilePicture
+        do {
+            try user!.save()
+            return true
+        } catch {
+            return false
+        }
+    }
+    
+    // Save record to local datastore
+    func addRecord(date: String, amount: Double, type: Int, subuser: String, description: String) -> Bool {
+        let toRecord = PFObject(className: "Record")
+        toRecord.ACL = PFACL(user: PFUser.currentUser()!)
+        toRecord["user"] = PFUser.currentUser()
+        toRecord["date"] = date
+        toRecord["amount"] = amount
+        toRecord["type"] = type
+        toRecord["subuser"] = subuser
+        toRecord["description"] = description
+        toRecord["subUser"] = NSUUID().UUIDString
+        do{
+            try toRecord.pin()
+            return true
+        } catch {
+            return false
+        }
         
+    }
+    
+    // Update record in local datastore
+    func updateRecord(localIdentifier: String, type: Int, amount: Double, description: String) -> Bool {
+        let query = PFQuery(className: "Record")
+        var recordToUpdate = PFObject()
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("subUser", equalTo: localIdentifier)
+        do{
+            recordToUpdate = try query.getFirstObject()
+            recordToUpdate["amount"] = amount
+            recordToUpdate["type"] = type
+            recordToUpdate["description"] = description
+            try recordToUpdate.pin()
+            return true
+        } catch {
+            return false
+        }
     }
 }

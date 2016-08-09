@@ -157,8 +157,6 @@ class CalendarViewcontroller: UIViewController{
                     expensesAmount += amount
                 } else if (type == "Expenses") {
                     expensesAmount += amount
-                } else if (type == "fixMonthlyExpenses"){
-                    expensesAmount += amount
                 }
             }
             
