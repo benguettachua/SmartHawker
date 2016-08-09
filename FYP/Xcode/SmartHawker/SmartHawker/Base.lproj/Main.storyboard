@@ -1093,6 +1093,13 @@
                                     <constraint firstItem="tVx-W2-kDr" firstAttribute="centerX" secondItem="7SR-9I-OqT" secondAttribute="centerX" id="hUN-Ga-2VI"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s1-zw-Kt6">
+                                <rect key="frame" x="333" y="28" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logout:" destination="DLA-hC-hwl" eventType="touchUpInside" id="fzl-Vx-yoR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1115,6 +1122,7 @@
                         <outlet property="MonthAndYear" destination="d0S-s2-d8Q" id="Jzh-TD-1ij"/>
                         <outlet property="calendar" destination="hu3-mK-unU" id="0Lu-EL-3i2"/>
                         <outlet property="expensesText" destination="igJ-0T-0Vb" id="QEQ-30-X8F"/>
+                        <outlet property="logoutButton" destination="5s1-zw-Kt6" id="pcr-qk-311"/>
                         <outlet property="profitText" destination="mTA-TM-Qyg" id="DN1-rW-CGv"/>
                         <outlet property="salesText" destination="T0P-0f-6hP" id="cMr-CR-BEL"/>
                         <outlet property="todayRecordView" destination="ErP-9t-tgB" id="FPe-s1-x8o"/>

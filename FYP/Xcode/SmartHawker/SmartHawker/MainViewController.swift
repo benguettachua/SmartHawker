@@ -65,6 +65,13 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 var targets = [PFObject]()
                 do {targets = try query.findObjects()}catch{}
                 do{try PFObject.unpinAll(targets)}catch{}
+                for target in targets {
+                    do {
+                        try target.delete()
+                    } catch {
+                        target.deleteEventually()
+                    }
+                }
             }
             let targetTextField = alert.textFields![0] as UITextField
             let toRecord = PFObject(className: "Record")

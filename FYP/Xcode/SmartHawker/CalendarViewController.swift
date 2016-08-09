@@ -15,6 +15,7 @@ class CalendarViewcontroller: UIViewController{
     // Mark: Properties
     // Top Bar
     @IBOutlet weak var todayRecordView: UIView!
+    @IBOutlet weak var logoutButton: UIButton!
 
     @IBOutlet weak var calendar: CalendarView!
     @IBOutlet weak var profitText: UILabel!
@@ -83,6 +84,10 @@ class CalendarViewcontroller: UIViewController{
             
         })
         
+        let isSubuser = toShare.isSubUser
+        if (isSubuser) {
+            self.logoutButton.hidden = false
+        }
         
         
         calendar.delegate = self
@@ -126,6 +131,15 @@ class CalendarViewcontroller: UIViewController{
         
         calendar.selectDate(actualMonthDate)
         MonthAndYear.text = actualMonthDate.monthName + " / " + String(actualMonthDate.year)
+    }
+    @IBAction func logout(sender: UIButton) {
+        let alert = UIAlertController(title: "Are you sure?", message: "Once logged out, you will have to log in again.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { Void in
+            PFUser.logOut()
+            self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func Logout(sender: UIBarButtonItem) {
