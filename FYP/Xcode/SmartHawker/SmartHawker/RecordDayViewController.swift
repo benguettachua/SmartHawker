@@ -65,7 +65,14 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                         self.records.removeAtIndex(i)
                     }
                 }
+                
+                if (self.records.isEmpty) {
+                    self.noRecordView.hidden = false
+                    self.tableView.hidden = true
+                }
             }
+            
+            
             
             self.viewWillAppear(true)
         })
