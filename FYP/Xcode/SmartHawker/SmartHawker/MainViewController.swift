@@ -74,20 +74,26 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 }
             }
             let targetTextField = alert.textFields![0] as UITextField
-            let toRecord = PFObject(className: "Record")
-            toRecord.ACL = PFACL(user: PFUser.currentUser()!)
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let correctDateString = dateFormatter.stringFromDate(NSDate())
-            toRecord["amount"] = Double(targetTextField.text!)
-            toRecord["user"] = self.user!
-            toRecord["type"] = 4
-            toRecord["date"] = correctDateString
-            toRecord["subuser"] = self.user?.username
-            toRecord["subUser"] = NSUUID().UUIDString
-            toRecord["description"] = "Monthly Target"
-            do{try toRecord.pin()} catch {}
-            self.viewWillAppear(true)
+            if (targetTextField.text != nil && targetTextField.text != "") {
+                let toRecord = PFObject(className: "Record")
+                toRecord.ACL = PFACL(user: PFUser.currentUser()!)
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                let correctDateString = dateFormatter.stringFromDate(NSDate())
+                toRecord["amount"] = Double(targetTextField.text!)
+                toRecord["user"] = self.user!
+                toRecord["type"] = 4
+                toRecord["date"] = correctDateString
+                toRecord["subuser"] = self.user?.username
+                toRecord["subUser"] = NSUUID().UUIDString
+                toRecord["description"] = "Monthly Target"
+                do{try toRecord.pin()} catch {}
+                self.viewWillAppear(true)
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Target cannot be empty.", preferredStyle: .Alert)
+                alert.addAction((UIAlertAction(title: "Try again", style: .Default, handler: nil)))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         })
         alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
             targetTextField.placeholder = "This month's target"

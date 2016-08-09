@@ -95,6 +95,11 @@ class connectionDAO{
         }
     }
     
+    // Log out the current user
+    func logout() {
+        PFUser.logOut()
+    }
+    
     // Sends an email to reset password.
     func forgetPassword(email: String) -> Bool {
         do{
@@ -105,5 +110,25 @@ class connectionDAO{
         }
     }
     
+    // Register a new acount
+    func register(username:String, password: String, name: String, email: String, phoneNumber: String, adminPIN: String) -> Bool{
+        let newUser = PFUser()
+        newUser.username = username
+        newUser.password = password
+        newUser.email = email
+        newUser["name"] = name
+        newUser["phoneNumber"] = phoneNumber
+        newUser["adminPin"] = adminPIN
+        do {
+            try newUser.signUp()
+            return true
+        } catch {
+            return false
+        }
+    }
     
+    // Edit user's information
+    func edit(){
+        
+    }
 }
