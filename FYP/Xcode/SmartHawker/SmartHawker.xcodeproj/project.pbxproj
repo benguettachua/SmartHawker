@@ -60,6 +60,9 @@
 		AF9AF52A1D52602B0057935F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9AF5291D52602B0057935F /* SettingsViewController.swift */; };
 		AFA0447A1D47338C00E9236F /* SummaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA044791D47338C00E9236F /* SummaryController.swift */; };
 		AFB167961D4B2F1B005315FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB167951D4B2F1B005315FC /* MainViewController.swift */; };
+		AFBA17CB1D59D04700B65EB9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17C91D59D04700B65EB9 /* Profile.storyboard */; };
+		AFBA17CD1D59D07F00B65EB9 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17CC1D59D07F00B65EB9 /* Report.storyboard */; };
+		AFBA17D01D59D0A900B65EB9 /* UpdateRecord.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17CE1D59D0A900B65EB9 /* UpdateRecord.storyboard */; };
 		AFC9FB6D1D329DBD00F7EE54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */; };
 		DC7F67FE1D1E5EC700F2C2B1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F67FD1D1E5EC700F2C2B1 /* CalendarViewController.swift */; };
 		DC7F68001D1E604F00F2C2B1 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F67FF1D1E604F00F2C2B1 /* ReportsViewController.swift */; };
@@ -151,6 +154,9 @@
 		AF9AF5291D52602B0057935F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AFA044791D47338C00E9236F /* SummaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryController.swift; sourceTree = "<group>"; };
 		AFB167951D4B2F1B005315FC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AFBA17CA1D59D04700B65EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		AFBA17CC1D59D07F00B65EB9 /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
+		AFBA17CF1D59D0A900B65EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UpdateRecord.storyboard; sourceTree = "<group>"; };
 		AFC9FB6A1D329D5200F7EE54 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		AFC9FB6E1D329DBD00F7EE54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AFC9FB701D329DC000F7EE54 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -248,6 +254,9 @@
 				6A6834A81D05C95E00E9A0AD /* AppDelegate.swift */,
 				6A6834AA1D05C95E00E9A0AD /* ViewController.swift */,
 				6A6834AC1D05C95E00E9A0AD /* Main.storyboard */,
+				AFBA17CE1D59D0A900B65EB9 /* UpdateRecord.storyboard */,
+				AFBA17CC1D59D07F00B65EB9 /* Report.storyboard */,
+				AFBA17C91D59D04700B65EB9 /* Profile.storyboard */,
 				6A016B771D4CECAC007C38E4 /* RecordDayViewController.swift */,
 				6A61FF461D394FB600996C65 /* AdminPINViewController.swift */,
 				6A8999511D548E6E003866BC /* Subuser View Controllers */,
@@ -477,12 +486,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC93F6701D3B5B0400AD55B2 /* NoveoSans-Book.otf in Resources */,
+				AFBA17CB1D59D04700B65EB9 /* Profile.storyboard in Resources */,
+				AFBA17D01D59D0A900B65EB9 /* UpdateRecord.storyboard in Resources */,
 				DC93F66E1D3B5B0400AD55B2 /* NoveoSans-BlackXtraCond.otf in Resources */,
 				DC93F66D1D3B5B0400AD55B2 /* NoveoSans-BlackCond.otf in Resources */,
 				DC93F66C1D3B5B0400AD55B2 /* NoveoSans-Black.otf in Resources */,
 				DC93F66F1D3B5B0400AD55B2 /* NoveoSans-Bold.otf in Resources */,
 				6A6834B31D05C95E00E9A0AD /* LaunchScreen.storyboard in Resources */,
 				AFC9FB6D1D329DBD00F7EE54 /* Localizable.strings in Resources */,
+				AFBA17CD1D59D07F00B65EB9 /* Report.storyboard in Resources */,
 				6A6834B01D05C95E00E9A0AD /* Assets.xcassets in Resources */,
 				6A6834AE1D05C95E00E9A0AD /* Main.storyboard in Resources */,
 				DC93F6711D3B5B0400AD55B2 /* NoveoSans-Light.otf in Resources */,
@@ -721,6 +733,22 @@
 				6A6834B21D05C95E00E9A0AD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AFBA17C91D59D04700B65EB9 /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFBA17CA1D59D04700B65EB9 /* Base */,
+			);
+			name = Profile.storyboard;
+			sourceTree = "<group>";
+		};
+		AFBA17CE1D59D0A900B65EB9 /* UpdateRecord.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFBA17CF1D59D0A900B65EB9 /* Base */,
+			);
+			name = UpdateRecord.storyboard;
 			sourceTree = "<group>";
 		};
 		AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */ = {
