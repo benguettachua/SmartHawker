@@ -53,6 +53,29 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    @IBAction func forgetPassword(sender: UIButton) {
+        let alert = UIAlertController(title: "Forget password", message: "Enter your email", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (Void) in
+            let emailTextField = alert.textFields![0] as UITextField
+            do{
+                try PFUser.requestPasswordResetForEmail(emailTextField.text!)
+                let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
+                successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(successAlert, animated: true, completion: nil)
+            } catch {
+                let failAlert = UIAlertController(title: "Failed", message: "Invalid email, please try again later.", preferredStyle: .Alert)
+                failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(failAlert, animated: true, completion: nil)
+            }
+        }))
+        alert.addTextFieldWithConfigurationHandler({ (emailTextField) in
+            emailTextField.placeholder = "Enter your email"
+            emailTextField.keyboardType = UIKeyboardType.EmailAddress
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
