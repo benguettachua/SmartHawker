@@ -984,135 +984,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="main-bg" translatesAutoresizingMaskIntoConstraints="NO" id="GgP-Xp-A6N">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="main-bg" translatesAutoresizingMaskIntoConstraints="NO" id="GgP-Xp-A6N">
+                                <rect key="frame" x="0.0" y="-7" width="414" height="736"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hu3-mK-unU" customClass="CalendarView" customModule="CalendarView">
-                                <rect key="frame" x="0.0" y="155" width="414" height="220"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header-box" translatesAutoresizingMaskIntoConstraints="NO" id="C40-Pd-KSj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="header-box" translatesAutoresizingMaskIntoConstraints="NO" id="C40-Pd-KSj">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CALENDAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrv-EW-mqC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CALENDAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrv-EW-mqC">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QFx-mc-hOH">
-                                <rect key="frame" x="93" y="82" width="228" height="57"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-Kx-eYz">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="57"/>
-                                        <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="31"/>
-                                        <state key="normal" title="&lt;">
-                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="previousMonth:" destination="DLA-hC-hwl" eventType="touchUpInside" id="wrJ-KR-rdP"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
-                                        <rect key="frame" x="86" y="13" width="56" height="32"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-vd-inZ">
-                                        <rect key="frame" x="172" y="0.0" width="56" height="57"/>
-                                        <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="31"/>
-                                        <state key="normal" title="&gt;">
-                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="nextMonth:" destination="DLA-hC-hwl" eventType="touchUpInside" id="Krb-Gl-TD6"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErP-9t-tgB" userLabel="Today's Record View">
-                                <rect key="frame" x="19" y="396" width="376" height="215"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syD-Cn-fWT">
-                                        <rect key="frame" x="0.0" y="97" width="120" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKm-j3-gQi">
-                                        <rect key="frame" x="128" y="97" width="120" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfM-3E-7R0">
-                                        <rect key="frame" x="256" y="97" width="120" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="cHU-Hu-etH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTA-TM-Qyg">
-                                        <rect key="frame" x="256" y="29" width="120" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igJ-0T-0Vb">
-                                        <rect key="frame" x="128" y="29" width="120" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="abp-hI-Q3z"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0P-0f-6hP">
-                                        <rect key="frame" x="0.0" y="29" width="120" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="record-green" translatesAutoresizingMaskIntoConstraints="NO" id="6xP-g0-IPw" userLabel="sales colour button">
-                                        <rect key="frame" x="52" y="126" width="17" height="17"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="record-red" translatesAutoresizingMaskIntoConstraints="NO" id="7SR-9I-OqT" userLabel="expenses colour button">
-                                        <rect key="frame" x="179" y="126" width="17" height="17"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="record-blue" translatesAutoresizingMaskIntoConstraints="NO" id="bt4-HG-S2V" userLabel="expenses colour button">
-                                        <rect key="frame" x="307" y="126" width="17" height="17"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tVx-W2-kDr">
-                                        <rect key="frame" x="163" y="-40" width="50" height="82"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="82" id="WbJ-4G-WP7"/>
-                                            <constraint firstAttribute="width" constant="86" id="d6m-xl-OOK"/>
-                                        </constraints>
-                                        <inset key="contentEdgeInsets" minX="-5" minY="5" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="profile-edit-button">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="Record:" destination="DLA-hC-hwl" eventType="touchUpInside" id="PIs-oI-eSY"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="tVx-W2-kDr" firstAttribute="centerX" secondItem="ErP-9t-tgB" secondAttribute="centerX" id="1la-CD-gT9"/>
-                                    <constraint firstItem="tVx-W2-kDr" firstAttribute="centerX" secondItem="xKm-j3-gQi" secondAttribute="centerX" id="2c2-01-HoY"/>
-                                    <constraint firstItem="xKm-j3-gQi" firstAttribute="top" secondItem="tVx-W2-kDr" secondAttribute="bottom" constant="55" id="3NM-Zx-NDE"/>
-                                    <constraint firstItem="tVx-W2-kDr" firstAttribute="leading" secondItem="T0P-0f-6hP" secondAttribute="trailing" constant="43" id="B9B-2L-eAl"/>
-                                    <constraint firstItem="tVx-W2-kDr" firstAttribute="top" secondItem="ErP-9t-tgB" secondAttribute="top" constant="-40" id="FM3-9q-KBr"/>
-                                    <constraint firstItem="tVx-W2-kDr" firstAttribute="centerX" secondItem="igJ-0T-0Vb" secondAttribute="centerX" id="Y4L-2I-1ck"/>
-                                    <constraint firstItem="mTA-TM-Qyg" firstAttribute="leading" secondItem="tVx-W2-kDr" secondAttribute="trailing" constant="43" id="b6w-Lk-fS3"/>
-                                    <constraint firstItem="tVx-W2-kDr" firstAttribute="centerX" secondItem="7SR-9I-OqT" secondAttribute="centerX" id="hUN-Ga-2VI"/>
-                                </constraints>
-                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s1-zw-Kt6">
                                 <rect key="frame" x="333" y="28" width="55" height="30"/>
                                 <state key="normal" title="Log Out"/>
@@ -1120,18 +1004,148 @@
                                     <action selector="logout:" destination="DLA-hC-hwl" eventType="touchUpInside" id="fzl-Vx-yoR"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mMa-d2-E7F">
+                                <rect key="frame" x="0.0" y="91" width="414" height="586"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="QFx-mc-hOH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-Kx-eYz">
+                                                <rect key="frame" x="0.0" y="0.0" width="137" height="57"/>
+                                                <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="31"/>
+                                                <state key="normal" title="&lt;">
+                                                    <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="previousMonth:" destination="DLA-hC-hwl" eventType="touchUpInside" id="wrJ-KR-rdP"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ewQ-Mu-eVy">
+                                                <rect key="frame" x="139" y="0.0" width="137" height="57"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-s2-d8Q">
+                                                        <rect key="frame" x="0.0" y="0.0" width="137" height="57"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-vd-inZ">
+                                                <rect key="frame" x="278" y="0.0" width="137" height="57"/>
+                                                <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="31"/>
+                                                <state key="normal" title="&gt;">
+                                                    <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="nextMonth:" destination="DLA-hC-hwl" eventType="touchUpInside" id="Krb-Gl-TD6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sk7-KG-SHg">
+                                        <rect key="frame" x="0.0" y="57" width="414" height="275"/>
+                                        <subviews>
+                                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hu3-mK-unU" customClass="CalendarView" customModule="CalendarView">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErP-9t-tgB" userLabel="Today's Record View">
+                                        <rect key="frame" x="0.0" y="332" width="414" height="254"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tVx-W2-kDr">
+                                                <rect key="frame" x="173" y="-17" width="30" height="40"/>
+                                                <inset key="contentEdgeInsets" minX="-5" minY="5" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" image="17662C56-4266-4D98-9E3B-397308C84860">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="Record:" destination="DLA-hC-hwl" eventType="touchUpInside" id="PIs-oI-eSY"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-dv-Vun">
+                                                <rect key="frame" x="0.0" y="93" width="197" height="69"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1hg-gZ-B1W">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="69"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0P-0f-6hP">
+                                                                <rect key="frame" x="16" y="0.0" width="11" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syD-Cn-fWT">
+                                                                <rect key="frame" x="0.0" y="31" width="42" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="record-green" translatesAutoresizingMaskIntoConstraints="NO" id="6xP-g0-IPw" userLabel="sales colour button">
+                                                                <rect key="frame" x="17" y="61" width="8" height="8"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Aa-XB-MIu">
+                                                        <rect key="frame" x="62" y="0.0" width="74" height="69"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igJ-0T-0Vb">
+                                                                <rect key="frame" x="32" y="0.0" width="11" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKm-j3-gQi">
+                                                                <rect key="frame" x="0.0" y="31" width="74" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="record-red" translatesAutoresizingMaskIntoConstraints="NO" id="7SR-9I-OqT" userLabel="expenses colour button">
+                                                                <rect key="frame" x="33" y="61" width="8" height="8"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kYh-R1-7pe">
+                                                        <rect key="frame" x="155" y="0.0" width="42" height="69"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTA-TM-Qyg">
+                                                                <rect key="frame" x="16" y="0.0" width="11" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfM-3E-7R0">
+                                                                <rect key="frame" x="0.0" y="31" width="42" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="record-blue" translatesAutoresizingMaskIntoConstraints="NO" id="bt4-HG-S2V" userLabel="Profit colour button">
+                                                                <rect key="frame" x="17" y="61" width="8" height="8"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="leading" secondItem="yrv-EW-mqC" secondAttribute="leading" id="CtD-D6-ZDa"/>
-                            <constraint firstItem="QFx-mc-hOH" firstAttribute="centerX" secondItem="02D-JR-xYh" secondAttribute="centerX" id="QAT-jW-TgJ"/>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" constant="155" id="VLh-pF-rUN"/>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="top" secondItem="QFx-mc-hOH" secondAttribute="bottom" constant="16" id="fpn-bF-zUK"/>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="jx1-BP-OeP"/>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="trailing" secondItem="GgP-Xp-A6N" secondAttribute="trailing" id="nDt-vl-D4z"/>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="trailing" secondItem="yrv-EW-mqC" secondAttribute="trailing" id="oZ7-UA-9jd"/>
-                            <constraint firstAttribute="bottom" secondItem="hu3-mK-unU" secondAttribute="bottom" constant="361" id="xdl-ek-RLr"/>
-                            <constraint firstItem="hu3-mK-unU" firstAttribute="leading" secondItem="GgP-Xp-A6N" secondAttribute="leading" id="xnw-TT-9mH"/>
+                            <constraint firstAttribute="bottom" secondItem="mMa-d2-E7F" secondAttribute="bottom" id="644-cP-0c5"/>
+                            <constraint firstAttribute="trailing" secondItem="C40-Pd-KSj" secondAttribute="trailing" id="Ah8-6f-6gp"/>
+                            <constraint firstItem="mMa-d2-E7F" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="FdL-DK-L1F"/>
+                            <constraint firstItem="C40-Pd-KSj" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" id="K2f-3D-QnE"/>
+                            <constraint firstAttribute="trailing" secondItem="mMa-d2-E7F" secondAttribute="trailing" id="TvZ-oZ-WLW"/>
+                            <constraint firstItem="mMa-d2-E7F" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="dPL-XB-WzS"/>
+                            <constraint firstItem="C40-Pd-KSj" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="hHX-tl-etT"/>
+                            <constraint firstItem="mMa-d2-E7F" firstAttribute="top" secondItem="C40-Pd-KSj" secondAttribute="bottom" constant="29" id="wJu-ut-c7i"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calendar" image="tab-buttom-calendar" id="l3v-1S-7bV" userLabel="Main">
@@ -1931,6 +1945,139 @@
         </scene>
     </scenes>
     <resources>
+        <image name="17662C56-4266-4D98-9E3B-397308C84860" width="35" height="35">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1h7MzUsIDM1fdIVChYYWk5TLm9iamVjdHOhF4AEgArSFQoaHaIb
+HIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPERvCTU0AKgAAEywAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPBQAQKw8BLFUfAlh3KwN7jTIE
+kpQ2BJmNMgSSdysDe1UfAlgrDwEsDgUAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAIoDwEqYCID
+YoUwBImWNgSblzcEnJU2BJqUNgSZlDYEmZQ2BJmVNgSalzcEnJY2BJuDMASIYCIDYigPASoBAAACAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAiCwEkbSYDcJQ2BJmZNwSeljYEm5Q2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZY2BJuZNwSelDYEmW0mA3EiCwEkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAFAQAGSxsCTpA0BJWZNwSelTUEmpQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmVNQSamTcEnpA0BJVMGwJPBQEABgAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwQADWglA2uaNwSfljYEm5Q2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZljYE
+m5o3BJ9oJQNrCwQADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsEAAxxKQN1mjgE
+n5Q2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZo4BJ9xKQN1CwQADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAFAgAGaSYDbJo4BJ+UNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZo4BJ9pJgNsBQIA
+BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE0bAlCaOASflDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZM0BJiTNQSYlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZo4BJ9NGwJQAAAAAAAAAAAAAAAAAAAAAAAAAAAhDQEjkDQElZU2BJqUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmSMgSXnUQP
+oZc7CJyTNASYlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlTYEmpA0BJYiDQEjAAAAAAAAAAAAAAAAAgAA
+A20nA3GZNwSelDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZkTEElqJOGqbt2svt1a6M15Q2BpmTNASYlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZmTcE
+nm0nA3ECAAADAAAAAAAAAAApDgEqlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZExBJahSxil59C+6MGIXcTYs5TZ1KyL1pM1BZiTNASYlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmSkOASoAAAAAAAAAAGIkA2SaNwSflDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmRMQSWn0gVo+PLtOW/hVjCjy4E
+lJY6CZvbuZ3d0aSD0pQ2BpmUNQSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmaNwSfYSMDZQAAAAAOBQAQhTAE
+ipY2BJuUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZkjIE
+l55FEqHly7nm9Org9KFOF6WRMASWkjQEl5Y5CJvmz73oyJZvy5IxBJeUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZY2BJuFMASKDgUAECwPAS+WNgSblDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZIyBJecQxCg48iy5MSOZse9gFLA59C+6aJMGaWNKgSTsWk3tOrVwuqtYjCwkjME
+l5Q2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZY2BJssDwEvVx8CW5c3BJyUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmSMgSXm0EOn+HGsOPIlnDLkTEElpAuBJXAh1zD48iy
+5Lp7Tr3r1sXrrGIxsZAvBJWUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlzcEnFkfAlt6KwN9lTYE
+mpQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZkjMEl5k9DJ7gw6rhy5t1
+zpIyBJeTNQSYlDYEmY4rBJPQo4HS+vTv+q5jM7GQLwSVlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmVNgSaeisDfYwyBJGUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZIzBJeZPQqc3r6n386ffNCSMgSXkzUEmJQ2BJmQMASVql4rr+nUwemwZze0kC8ElZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmMMgSRlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmTMwSYlzsJm927od7RpILSkzQFmJM1BJiUNgSZkTAElqhaKK3s2MbstG89
+t5AvBJWUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmMMgSRlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZkzQEmJY6CZvbt5vc06iI1JM1BpmTNQSYlDYE
+mZEwBJamWCSr69bF67ZzQrmQLwSVlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZjDIEkXorA32VNgSalDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZM0BJiVOAia2LWY
+2tStjtaUNgaZkzQEmJQ2BJmRMASWpVQgqenUxOu3d0e8kC8ElZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZU2BJp6KwN9Vx8CW5c3BJyUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmTNASYlDYHmdewktjWsZLZlDcGmZM0BJiUNgSZkTAElqRQHafq1cLquXtNvpAvBJWUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlzcEnFkfAlssDwEvljYE
+m5Q2BJmUNgSZlDYEmZQ2BJmUNgSZkzUEmJM1BpnVrYzW2bWY2pU4B5qTNASYlDYEmZExBJaiThmm6NLB
+6b2AUsCQLwSVlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmWNgSbLA8BLg4FABCFMASKljYEm5Q2BJmUNgSZlDYEmZQ2BJmTNQaZzp980Nu3nNyWOgmbkjME
+l5Q2BJmRMQSWoEoWpOfRvum/hVnCkC8ElpQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZljYEm4UwBIoPBQAQAAAAAGEjA2WaNwSflDYEmZQ2BJmUNgSZkzUE
+mJxBDaDr1cbsnUIOoZIyBJeUNgSZkjIEl55HE6LmzrrnwYhfxZEwBJaUNQSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmaNwSfYSMDZQAAAAAAAAAAKQ4B
+KpQ2BJmUNgSZlDYEmZQ2BJmTNQSYnEMOoOXKt+aYPQmdkjQEl5IxBJedRRKh5My25cSOZsiRMASWlDUE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJkpDgEqAAAAAAAAAAACAAADbScDcZk3BJ6UNgSZlDYEmZM1BJicQw6g59C96J9IEqOXPAqcoEkX
+o+LHseTHlGzKkTAElpQ1BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmZNwSebScDcQIAAAMAAAAAAAAAAAAAAAAiDQEjkDQElpU2BJqUNgSZkzUE
+mJk/C57t2svt5s+76OXKt+br2crtx5BpyJExBJaUNQSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlTYEmpA0BJYiDAEkAAAAAAAAAAAAAAAAAAAA
+AAAAAABNGwJQmjgEn5Q2BJmUNgSZlDYEmZk/C56cQQ6gnEMOoJtBDZ+TNASYlDUEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmaOASfTRwC
+UQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUCAAZpJgNsmjgEn5Q2BJmUNgSZkzUEmJM1BJiTNQSYkzUE
+mJQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZmjgEn2kmA2wFAgAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsEAAxxKQN1mjgE
+n5Q2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZo4BJ9xKQN1CwQADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAsEAA1oJQNrmjcEn5Y2BJuUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZY2BJuaNwSfaCUDawsEAA0AAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUBAAZMGwJPkjQElZk3BJ6VNQSalDYE
+mZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZU1BJqZNwSekjQE
+lUwbAk8FAQAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAiDAEkbScDcZQ2BJmZNwSeljYEm5Q2BJmUNgSZlDYEmZQ2BJmUNgSZlDYEmZQ2BJmUNgSZlDYE
+mZY2BJuZNwSelDYEmW0nA3EiDAEkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACKA8BKl8iA2OFMASJljYEm5c3BJyVNgSalDYE
+mZQ2BJmUNgSZlTYEmpc3BJyWNgSbhTAEiV8iA2MoDwEqAQAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AA8FABArDwEtVR8CWHcrA3uLMQSPkjUEl4sxBI93KwN7VR8CWCsPAS0PBQAQAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4BAAADAAAAAQAjAAABAQADAAAAAQAjAAAB
+AgADAAAABAAAE9oBAwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAAB
+FQADAAAAAQAEAAABFgADAAAAAQAjAAABFwAEAAAAAQAAEyQBHAADAAAAAQABAAABUgADAAAAAQABAAAB
+UwADAAAABAAAE+KHcwAHAAAH2AAAE+oAAAAAAAgACAAIAAgAAQABAAEAAQAAB9hhcHBsAiAAAG1udHJS
+R0IgWFlaIAfZAAIAGQALABoAC2Fjc3BBUFBMAAAAAGFwcGwAAAAAAAAAAAAAAAAAAAAAAAD21gABAAAA
+ANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2Rlc2MA
+AAEIAAAAb2RzY20AAAF4AAAFnGNwcnQAAAcUAAAAOHd0cHQAAAdMAAAAFHJYWVoAAAdgAAAAFGdYWVoA
+AAd0AAAAFGJYWVoAAAeIAAAAFHJUUkMAAAecAAAADmNoYWQAAAesAAAALGJUUkMAAAecAAAADmdUUkMA
+AAecAAAADmRlc2MAAAAAAAAAFEdlbmVyaWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAABRHZW5lcmljIFJH
+QiBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABt
+bHVjAAAAAAAAAB8AAAAMc2tTSwAAACgAAAGEZGFESwAAAC4AAAGsY2FFUwAAACQAAAHadmlWTgAAACQA
+AAH+cHRCUgAAACYAAAIidWtVQQAAACoAAAJIZnJGVQAAACgAAAJyaHVIVQAAACgAAAKaemhUVwAAABYA
+AALCbmJOTwAAACYAAALYY3NDWgAAACIAAAL+aGVJTAAAAB4AAAMgaXRJVAAAACgAAAM+cm9STwAAACQA
+AANmZGVERQAAACwAAAOKa29LUgAAABYAAAO2c3ZTRQAAACYAAALYemhDTgAAABYAAAPMamFKUAAAABoA
+AAPiZWxHUgAAACIAAAP8cHRQTwAAACYAAAQebmxOTAAAACgAAAREZXNFUwAAACYAAAQedGhUSAAAACQA
+AARsdHJUUgAAACIAAASQZmlGSQAAACgAAASyaHJIUgAAACgAAATacGxQTAAAACwAAAUCcnVSVQAAACIA
+AAUuYXJFRwAAACYAAAVQZW5VUwAAACYAAAV2AFYBYQBlAG8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIA
+bwBmAGkAbABHAGUAbgBlAHIAZQBsACAAUgBHAEIALQBiAGUAcwBrAHIAaQB2AGUAbABzAGUAUABlAHIA
+ZgBpAGwAIABSAEcAQgAgAGcAZQBuAOgAcgBpAGMAQx6lAHUAIABoAOwAbgBoACAAUgBHAEIAIABDAGgA
+dQBuAGcAUABlAHIAZgBpAGwAIABSAEcAQgAgAEcAZQBuAOkAcgBpAGMAbwQXBDAEMwQwBDsETAQ9BDgE
+OQAgBD8EQAQ+BEQEMAQ5BDsAIABSAEcAQgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEAdQBlACAA
+UgBWAEIAwQBsAHQAYQBsAOEAbgBvAHMAIABSAEcAQgAgAHAAcgBvAGYAaQBskBp1KAAgAFIARwBCACCC
+cl9pY8+P8ABHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsAE8AYgBlAGMAbgD9ACAA
+UgBHAEIAIABwAHIAbwBmAGkAbAXkBegF1QXkBdkF3AAgAFIARwBCACAF2wXcBdwF2QBQAHIAbwBmAGkA
+bABvACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjAG8AUAByAG8AZgBpAGwAIABSAEcAQgAgAGcAZQBuAGUA
+cgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbMd8vBgAIABSAEcA
+QgAg1QS4XNMMx3xmbpAaACAAUgBHAEIAIGPPj/Blh072TgCCLAAgAFIARwBCACAw1zDtMNUwoTCkMOsD
+kwO1A70DuQO6A8wAIAPAA8EDvwPGA68DuwAgAFIARwBCAFAAZQByAGYAaQBsACAAUgBHAEIAIABnAGUA
+bgDpAHIAaQBjAG8AQQBsAGcAZQBtAGUAZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAZQBsDkIOGw4jDkQO
+Hw4lDkwAIABSAEcAQgAgDhcOMQ5IDicORA4bAEcAZQBuAGUAbAAgAFIARwBCACAAUAByAG8AZgBpAGwA
+aQBZAGwAZQBpAG4AZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAaQBsAGkARwBlAG4AZQByAGkBDQBrAGkA
+IABSAEcAQgAgAHAAcgBvAGYAaQBsAFUAbgBpAHcAZQByAHMAYQBsAG4AeQAgAHAAcgBvAGYAaQBsACAA
+UgBHAEIEHgQxBEkEOAQ5ACAEPwRABD4ERAQ4BDsETAAgAFIARwBCBkUGRAZBACAGKgY5BjEGSgZBACAA
+UgBHAEIAIAYnBkQGOQYnBkUARwBlAG4AZQByAGkAYwAgAFIARwBCACAAUAByAG8AZgBpAGwAZXRleHQA
+AAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAA
+APNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAA
+ACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF3v//8yYAAAeSAAD9kf//+6L/
+//2jAAAD3AAAwGzSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpa
+TlNJbWFnZVJlcFhOU09iamVjdNIlJiwtV05TQXJyYXmiLCrSJSYvMF5OU011dGFibGVBcnJheaMvLCrT
+MjMKNDU2V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AM0iUmODlXTlNDb2xvcqI4KtIlJjs8V05T
+SW1hZ2WiOypfEA9OU0tleWVkQXJjaGl2ZXLRP0BUcm9vdIABAAgAEQAaACMALQAyADcARgBMAFcAXgBl
+AHIAeQCBAIMAhQCKAIwAjgCXAJwApwCpAKsArQCyALUAtwC5ALsAvQDCANkA2wDdHKMcqByzHLwczxzT
+HN4c5xzsHPQc9xz8HQsdDx0WHR4dKx0wHTIdNB05HUEdRB1JHVEdVB1mHWkdbgAAAAAAAAIBAAAAAAAA
+AEEAAAAAAAAAAAAAAAAAAB1wA
+</mutableData>
+        </image>
         <image name="add-button" width="36" height="36"/>
         <image name="admin-button" width="325" height="55"/>
         <image name="admin-fieldbg" width="325" height="76"/>
@@ -1954,7 +2101,6 @@
         <image name="name-icon" width="20" height="19"/>
         <image name="password-icon" width="20" height="22"/>
         <image name="phone-icon-1" width="15" height="19"/>
-        <image name="profile-edit-button" width="35" height="35"/>
         <image name="record-add" width="42" height="43"/>
         <image name="record-blue" width="8" height="8"/>
         <image name="record-blue-fade" width="8" height="8"/>
@@ -1975,9 +2121,9 @@
         <image name="username-icon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tPZ-ny-ePW"/>
         <segue reference="nvg-Q7-gDK"/>
-        <segue reference="6Co-7h-tty"/>
+        <segue reference="tPZ-ny-ePW"/>
+        <segue reference="zip-MG-ivf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
