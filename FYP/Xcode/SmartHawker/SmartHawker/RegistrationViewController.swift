@@ -103,29 +103,25 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setObject(array, forKey: "SavedDateArray")
                     // Register success, show success message.
-                    let alert = UIAlertController(title: "Registration Successful", message: "Congratulations, you have created a new Account! Logging in, please wait...", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                    
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    
-                    PFUser.logInWithUsernameInBackground(self.usernameTextField.text!, password: self.passwordTextField.text!) {
-                        (user: PFUser?, error: NSError?) -> Void in
-                        if user != nil {
-                            // Re-direct user to main UI if login success.
-                            alert.dismissViewControllerAnimated(true, completion: {
+                    let alert = UIAlertController(title: "Registration Successful", message: "Congratulations, you have created a new Account!", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { Void in
+                        do {
+                            try PFUser.logInWithUsername(self.usernameTextField.text!, password: self.passwordTextField.text!)
+                            let loginAlert = UIAlertController(title: "Logging in", message: "Please wait.", preferredStyle: .Alert)
+                            self.presentViewController(loginAlert, animated: true, completion: nil)
+                            loginAlert.dismissViewControllerAnimated(false, completion: { 
                                 self.performSegueWithIdentifier("registerSuccess", sender: self)
                             })
                             
-                        } else {
-                            // There was a problem, show user the error message.
-                            let alert = UIAlertController(title: "Registration Unsuccessful", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                        } catch {
+                            let alert = UIAlertController(title: "Error", message: "Registration not successful", preferredStyle: UIAlertControllerStyle.Alert)
                             alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
                             
                             self.presentViewController(alert, animated: true, completion: nil)
-                            
-                            
                         }
-                    }
+                    }))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
                     
                 } else {
                     // There was a problem, show user the error message.
