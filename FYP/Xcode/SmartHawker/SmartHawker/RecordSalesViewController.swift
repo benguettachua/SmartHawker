@@ -78,6 +78,11 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     // Clicking this button will save the record, stay at the same page for user to save another record.
     @IBAction func add(sender: UIButton) {
         SubmitRecord({ (success) -> Void in
+            let alert = UIAlertController(title: "Success", message: "You may enter another record.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+                self.viewWillAppear(true)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
         })
     }
     @IBAction func back(sender: UIButton) {
@@ -147,6 +152,11 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
         recordSuccessLabel.resignFirstResponder()
         submitRecordButton.resignFirstResponder()
         return true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        descriptionTextField.text = ""
+        amountTextField.text = ""
     }
     
 }

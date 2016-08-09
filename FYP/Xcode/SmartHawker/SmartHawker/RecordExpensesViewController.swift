@@ -49,6 +49,11 @@ class RecordExpensesViewController: UIViewController{
     
     @IBAction func add(sender: UIButton) {
         SubmitRecord({ (success) -> Void in
+            let alert = UIAlertController(title: "Success", message: "You may enter another record.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+                self.viewWillAppear(true)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
         })
     }
     
@@ -144,6 +149,12 @@ class RecordExpensesViewController: UIViewController{
         // Populate the date selected
         let dateString = self.shared.dateString
         todayDateLabel.text = dateString
+    }
+    
+    // View will appear
+    override func viewWillAppear(animated: Bool) {
+        amountTextField.text = ""
+        descriptionTextField.text = ""
     }
     
 }
