@@ -178,7 +178,6 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 
                 
                 for record in myValue {
-                    
                     if earlier || same {
                         if self.datesWithRecords.contains(record.date) == false {
                             self.datesWithRecords.append(record.date)
@@ -193,6 +192,25 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             profit += amount
                             sales += amount
                             
+                            
+                            //to get max and min sales
+                            if highSales == nil{
+                                highSales = sales
+                                highSalesDay = record.date
+                            }else if sales > highSales{
+                                highSales = sales
+                                highSalesDay = myKey
+                            }
+                            
+                            
+                            if lowSales == nil{
+                                lowSales = sales
+                                lowSalesDay = myKey
+                            }else if sales < lowSales && sales > 0{
+                                lowSales = sales
+                                lowSalesDay = myKey
+                            }
+                            
                         } else if (type == "COGS") {
                             expenses += amount
                             profit -= amount
@@ -202,24 +220,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             profit -= amount
                             totalProfit -= amount
                         }
-                        
-                        //to get max and min sales
-                        if highSales == nil{
-                            highSales = sales
-                            highSalesDay = record.date
-                        }else if sales > highSales{
-                            highSales = sales
-                            highSalesDay = myKey
-                        }
-                        
-                        
-                        if lowSales == nil{
-                            lowSales = sales
-                            lowSalesDay = myKey
-                        }else if sales < lowSales{
-                            lowSales = sales
-                            lowSalesDay = myKey
-                        }
+
                         
                     }
                     
@@ -244,6 +245,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
             }else{
                 self.averageSales.text = "$" + String(format: "%.0f", (totalSales/totalDays))
             }
+            print(lowSalesDay)
             self.highestSalesDay.text = highSalesDay
             self.lowestSalesDay.text = lowSalesDay
         })
