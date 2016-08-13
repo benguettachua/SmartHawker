@@ -11,6 +11,9 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: Properties
+    // DAO
+    let dao = connectionDAO()
+    
     // Variables
     var toShare = ShareData.sharedInstance
     var errorMsg = String()
@@ -22,33 +25,23 @@ class LoginViewController: UIViewController {
     
     // MARK: Action
     @IBAction func login(sender: UIButton) {
-        do {
-            // Log in
-            try PFUser.logInWithUsername(self.usernameTextField.text!, password: self.passwordTextField.text!)
-            
-            // Set just logged in to get prompt to load from DB
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setBool(true, forKey: "justLoggedIn")
-            
-            // Get all subusers' PIN and save into an array
-            self.getSubUserPINs(PFUser.currentUser()!, completionHandler: { (success) -> Void in
-                if(success){
+        
+        let username = usernameTextField.text
+        let password = passwordTextField.text
+        if (username != nil && password != nil) {
+            let loginSuccess = dao.login(username!, password: password!)
+            if (loginSuccess) {
+                let loginAlert = UIAlertController(title: "Logging in", message: "Please wait.", preferredStyle: .Alert)
+                self.presentViewController(loginAlert, animated: true, completion: nil)
+                loginAlert.dismissViewControllerAnimated(false, completion: {
                     self.performSegueWithIdentifier("loginSuccess", sender: self)
-                } else {
-                    print("Error")
-                }
-            })
-            let loginAlert = UIAlertController(title: "Logging in", message: "Please wait.", preferredStyle: .Alert)
-            self.presentViewController(loginAlert, animated: true, completion: nil)
-            loginAlert.dismissViewControllerAnimated(false, completion: {
-                self.performSegueWithIdentifier("loginSuccess", sender: self)
-            })
-            
-        } catch {
-            let alert = UIAlertController(title: "Error", message: "Login not successful, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+                })
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Login not successful, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
     
