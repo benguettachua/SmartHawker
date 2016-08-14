@@ -11,8 +11,8 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: Properties
-    // DAO
-    let dao = connectionDAO()
+    // Controller
+    let loginController = LoginController()
     
     // Variables
     var toShare = ShareData.sharedInstance
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         let username = usernameTextField.text
         let password = passwordTextField.text
         if (username != nil && password != nil) {
-            let loginSuccess = dao.login(username!, password: password!)
+            let loginSuccess = loginController.login(username!, password: password!)
             if (loginSuccess) {
                 let loginAlert = UIAlertController(title: "Logging in", message: "Please wait.", preferredStyle: .Alert)
                 self.presentViewController(loginAlert, animated: true, completion: nil)
@@ -49,15 +49,18 @@ class LoginViewController: UIViewController {
         let alert = UIAlertController(title: "Forget password", message: "Enter your email", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (Void) in
             let emailTextField = alert.textFields![0] as UITextField
-            do{
-                try PFUser.requestPasswordResetForEmail(emailTextField.text!)
-                let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
-                successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                self.presentViewController(successAlert, animated: true, completion: nil)
-            } catch {
-                let failAlert = UIAlertController(title: "Failed", message: "Invalid email, please try again later.", preferredStyle: .Alert)
-                failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                self.presentViewController(failAlert, animated: true, completion: nil)
+            let email = emailTextField.text
+            if (email != nil) {
+                let emailSent = self.loginController.forgetPassword(email!)
+                if (emailSent) {
+                    let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
+                    successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    self.presentViewController(successAlert, animated: true, completion: nil)
+                } else {
+                    let failAlert = UIAlertController(title: "Failed", message: "Invalid email, please try again later.", preferredStyle: .Alert)
+                    failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    self.presentViewController(failAlert, animated: true, completion: nil)
+                }
             }
         }))
         alert.addTextFieldWithConfigurationHandler({ (emailTextField) in
