@@ -36,7 +36,7 @@ class RegistrationController {
             return 4
         }
         
-        // Phone is does not starts with 8 or 9
+        // Phone does not starts with 8 or 9
         let phoneInt = Int(phone)
         if (phoneInt < 80000000 || phoneInt > 99999999) {
             return 5
@@ -62,7 +62,7 @@ class RegistrationController {
             return 9
         }
         
-        // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.eA
+        // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.
         return dao.register(username, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
     }
 }

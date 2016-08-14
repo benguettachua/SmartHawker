@@ -103,6 +103,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     errorMsg = "Admin PIN must be 4 digits long."
                     break
                     
+                case 100:
+                    errorMsg = "No network detected."
+                    
                 case 202:
                     errorMsg = "Username is taken."
                     break
