@@ -24,44 +24,69 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     // MARK: Action
+    // This function is called when the user clicks log in at the login page.
     @IBAction func login(sender: UIButton) {
         
-        let username = usernameTextField.text
-        let password = passwordTextField.text
-        if (username != nil && password != nil) {
-            let loginSuccess = loginController.login(username!, password: password!)
+        // There is an alert to inform the user that it is currently logging in.
+        let loggingInAlert = UIAlertController(title: "Logging In", message: "Please wait.", preferredStyle: .Alert)
+        self.presentViewController(loggingInAlert, animated: true, completion: {
+            let username = self.usernameTextField.text
+            let password = self.passwordTextField.text
+            
+            // Calls controller to log in using the entered parameters.
+            let loginSuccess = self.loginController.login(username!, password: password!)
             if (loginSuccess) {
-                let loginAlert = UIAlertController(title: "Logging in", message: "Please wait.", preferredStyle: .Alert)
-                self.presentViewController(loginAlert, animated: true, completion: nil)
-                loginAlert.dismissViewControllerAnimated(false, completion: {
+                
+                // Logging in success, logging in alert is dissmissed, scene is moved to admin page.
+                loggingInAlert.dismissViewControllerAnimated(false, completion: {
                     self.performSegueWithIdentifier("loginSuccess", sender: self)
                 })
             } else {
-                let alert = UIAlertController(title: "Error", message: "Login not successful, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
                 
-                self.presentViewController(alert, animated: true, completion: nil)
+                // Logging in failed, logging in alert is dismissed, login failed alert is shown
+                loggingInAlert.dismissViewControllerAnimated(false, completion: {
+                    let alert = UIAlertController(title: "Error", message: "Login not successful, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                })
             }
-        }
+        })
     }
     
+    // This function is called when the user clicks on forget password at the login page.
     @IBAction func forgetPassword(sender: UIButton) {
+        
+        // An alert window will pop up asking the user to enter their email.
         let alert = UIAlertController(title: "Forget password", message: "Enter your email", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (Void) in
             let emailTextField = alert.textFields![0] as UITextField
             let email = emailTextField.text
-            if (email != nil) {
+            
+            // Upon clicking "Send" from the pop up, this alert will show to inform the user that the server is now sending mail to their email.
+            let sendingMailAlert = UIAlertController(title: "Sending mail", message: "Please wait.", preferredStyle: .Alert)
+            self.presentViewController(sendingMailAlert, animated: true, completion: {
+                
                 let emailSent = self.loginController.forgetPassword(email!)
                 if (emailSent) {
-                    let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
-                    successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                    self.presentViewController(successAlert, animated: true, completion: nil)
+                    
+                    // Sending mail success, the user will receive an email to change their password.
+                    sendingMailAlert.dismissViewControllerAnimated(true, completion: {
+                        let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
+                        successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        self.presentViewController(successAlert, animated: true, completion: nil)
+                    })
                 } else {
-                    let failAlert = UIAlertController(title: "Failed", message: "Invalid email, please try again later.", preferredStyle: .Alert)
-                    failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                    self.presentViewController(failAlert, animated: true, completion: nil)
+                    
+                    // Sending mail failed, the user will see this pop up notifying them to try again later.
+                    sendingMailAlert.dismissViewControllerAnimated(true, completion: {
+                        let failAlert = UIAlertController(title: "Failed", message: "An error has occured, please try again later.", preferredStyle: .Alert)
+                        failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        self.presentViewController(failAlert, animated: true, completion: nil)
+                    })
+                    
                 }
-            }
+            })
         }))
         alert.addTextFieldWithConfigurationHandler({ (emailTextField) in
             emailTextField.placeholder = "Enter your email"
