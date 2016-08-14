@@ -63,37 +63,65 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 })
                 
             } else {
-                print(registerSuccess)
-                // Registration failed
+                
+                // Registration failed, show the respective error message in a popup to notify user.
+                var errorMsg = ""
+                switch registerSuccess {
+                case 1:
+                    errorMsg = "Name cannot be empty."
+                    break
+                    
+                case 2:
+                    errorMsg = "Username cannot be empty."
+                    break
+                    
+                case 3:
+                    errorMsg = "Email cannot be empty."
+                    break
+                    
+                case 4:
+                    errorMsg = "Phone number cannot be empty."
+                    break
+                    
+                case 5:
+                    errorMsg = "Please enter a valid Singapore phone number."
+                    break
+                    
+                case 6:
+                    errorMsg = "Password cannot be empty."
+                    break
+                    
+                case 7:
+                    errorMsg = "Password does not match confirm password."
+                    break
+                    
+                case 8:
+                    errorMsg = "Admin PIN cannot be empty."
+                    break
+                    
+                case 9:
+                    errorMsg = "Admin PIN must be 4 digits long."
+                    break
+                    
+                case 202:
+                    errorMsg = "Username is taken."
+                    break
+                    
+                case 203:
+                    errorMsg = "Email is taken."
+                    break
+                    
+                default:
+                    errorMsg = "Unknown error, please try again."
+                    break
+                }
+                
                 registeringAlert.dismissViewControllerAnimated(true, completion: {
-                    let failAlert = UIAlertController(title: "Registration Failed", message: "Please ensure all fields are entered. \r\n and \r\n Username must be unique. \r\n and \r\n Email must be unique.", preferredStyle: .Alert)
-                    failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    let failAlert = UIAlertController(title: "Registration Failed", message: errorMsg, preferredStyle: .Alert)
+                    failAlert.addAction(UIAlertAction(title: "Try again.", style: .Default, handler: nil))
                     self.presentViewController(failAlert, animated: true, completion: nil)
                 })
-                // There was a problem, show user the error message.
-                /*let errorMsg = error?.localizedDescription
-                 var msgToShow = String()
-                 if (errorMsg?.containsString("username") == true) {
-                 msgToShow = "Username is taken. Please try again.".localized()
-                 self.usernameTextField.text = ""
-                 self.usernameTextField.attributedPlaceholder = NSAttributedString(string:"Enter new Username".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-                 
-                 } else if (errorMsg?.containsString("invalid") == true) {
-                 msgToShow = "Invalid email address. Please try again.".localized()
-                 self.emailTextField.text = ""
-                 self.emailTextField.attributedPlaceholder = NSAttributedString(string:"Enter new Email".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-                 
-                 } else if (errorMsg?.containsString("email") == true) {
-                 msgToShow = "Email is taken. Please try again.".localized()
-                 self.emailTextField.text = ""
-                 self.emailTextField.attributedPlaceholder = NSAttributedString(string:"Enter new Email".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-                 }
-                 let alert = UIAlertController(title: "Edit Unsuccessful", message: msgToShow, preferredStyle: UIAlertControllerStyle.Alert)
-                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-                 
-                 self.presentViewController(alert, animated: true, completion: nil)*/
             }
         }
-        
     }
 }

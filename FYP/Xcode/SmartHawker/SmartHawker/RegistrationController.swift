@@ -62,7 +62,7 @@ class RegistrationController {
             return 9
         }
         
-        // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.
+        // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.eA
         return dao.register(username, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
     }
 }
