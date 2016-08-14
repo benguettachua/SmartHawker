@@ -111,7 +111,7 @@ class connectionDAO{
     }
     
     // Register a new acount
-    func register(username:String, password: String, name: String, email: String, phoneNumber: String, adminPIN: String) -> Bool{
+    func register(username:String, password: String, name: String, email: String, phoneNumber: String, adminPIN: String) -> Int{
         let newUser = PFUser()
         newUser.username = username
         newUser.password = password
@@ -121,9 +121,12 @@ class connectionDAO{
         newUser["adminPin"] = adminPIN
         do {
             try newUser.signUp()
-            return true
+            return 0
         } catch {
-            return false
+            let errorCode = error as NSError!
+            // 202 = username taken
+            // 203 = email taken
+            return errorCode.code
         }
     }
     

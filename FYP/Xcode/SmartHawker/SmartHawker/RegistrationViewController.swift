@@ -35,13 +35,14 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let email = emailTextField.text?.lowercaseString
         let phone = phoneNumberTextField.text
         let password = passwordTextField.text
+        let confirmPassword = confirmPasswordTextField.text
         let adminPIN = adminPINTextField.text
         
         // Shows a popup to inform the user that the registration is currently being processed.
         let registeringAlert = UIAlertController(title: "Registration", message: "Processing your registration, please wait.", preferredStyle: .Alert)
         self.presentViewController(registeringAlert, animated: true) {
-            let registerSuccess = self.registrationController.register(name!, username: username!, email: email!, phone: phone!, password: password!, adminPIN: adminPIN!)
-            if (registerSuccess) {
+            let registerSuccess = self.registrationController.register(name!, username: username!, email: email!, phone: phone!, password: password!, confirmPassword: confirmPassword!, adminPIN: adminPIN!)
+            if (registerSuccess == 0) {
                 
                 // Register success, dismiss the processing registration popup and show a popup to inform user that registration succeeded.
                 registeringAlert.dismissViewControllerAnimated(true, completion: {
@@ -62,7 +63,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 })
                 
             } else {
-                
+                print(registerSuccess)
                 // Registration failed
                 registeringAlert.dismissViewControllerAnimated(true, completion: {
                     let failAlert = UIAlertController(title: "Registration Failed", message: "Please ensure all fields are entered. \r\n and \r\n Username must be unique. \r\n and \r\n Email must be unique.", preferredStyle: .Alert)
