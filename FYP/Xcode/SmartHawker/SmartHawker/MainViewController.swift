@@ -194,7 +194,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             
                             
                             //to get max and min sales
-                            if highSales == nil{
+                            if highSales == nil && sales > 0{
                                 highSales = sales
                                 highSalesDay = record.date
                             }else if sales > highSales{
@@ -203,7 +203,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             }
                             
                             
-                            if lowSales == nil{
+                            if lowSales == nil  && sales > 0{
                                 lowSales = sales
                                 lowSalesDay = myKey
                             }else if sales < lowSales && sales > 0{
