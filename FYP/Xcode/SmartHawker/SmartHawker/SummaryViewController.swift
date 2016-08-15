@@ -91,93 +91,29 @@ class SummaryViewController: UIViewController {
         
     }
     
-    
+    func loadRecordsMonthly(){
+        let loadedData = SummaryControllerNew().loadRecordsMonthly(chosenMonthDate, dateString: dateString)
+        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
+        self.salesText.text = loadedData.3
+        self.expensesText.text = loadedData.4
+        self.profitText.text = loadedData.5
+    }
     func loadRecordsYearly(){
-        var salesAmount = 0.00
-        var expensesAmount = 0.00
-        var totalSalesAmount = 0.00
-        var totalExpensesAmount = 0.00
-        var series1 = [0.00]
-        var series2 = [0.00]
-        for i in 1...12 {
-            salesAmount = 0.00
-            expensesAmount = 0.00
-            var text = ""
-            if i == 1{
-                text = "0" + String(i)
-            }else if i == 2 {
-                text = "0" + String(i)
-            }else{
-                text = String(i)
-            }
-            let stringOfMonth = text + "/" + self.dateString
-            for record in self.records {
-                
-                if record.date.containsString(stringOfMonth){
-                    let type = record.type
-                    let amount = Double(record.amount)
-                    //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
-                        salesAmount += amount
-                        totalSalesAmount += amount
-                    } else if (type == "COGS") {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
-                    } else if (type == "Expenses") {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
-                    }
-                }
-                
-            }
-            
-            series1.append(salesAmount)
-            series2.append(expensesAmount)
-        }
-        series1.append(0)
-        series2.append(0)
+        let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
+        
+        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
+        self.salesText.text = loadedData.3
+        self.expensesText.text = loadedData.4
+        self.profitText.text = loadedData.5
     }
     
     func loadRecordsWeekly(){
+        let loadedData = SummaryControllerNew().loadRecordsWeekly(daysInWeek)
         
-        var series1 = [0.00]
-        var series2 = [0.00]
-        var dataPoints = [""]
-        var totalSalesAmount = 0.00
-        var totalExpensesAmount = 0.00
-        for stringToCheck in daysInWeek{
-            var salesAmount = 0.00
-            var expensesAmount = 0.00
-            dataPoints.append(stringToCheck)
-            for record in self.records {
-                if record.date.containsString(stringToCheck){
-                    let type = record.type
-                    let amount = Double(record.amount)
-                    //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
-                        salesAmount += amount
-                        totalSalesAmount += amount
-                    } else if (type == "COGS") {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
-                    } else if (type == "Expenses") {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
-                    }
-                    
-                }
-                
-            }
-            series1.append(salesAmount)
-            series2.append(expensesAmount)
-        }
-        series1.append(0.00)
-        series2.append(0.00)
-        dataPoints.append("")
-        setData(dataPoints, values1: series1, values2: series2)
-        self.salesText.text = "$" + String(format: "%.2f", totalSalesAmount)
-        self.expensesText.text = "$" + String(format: "%.2f", totalExpensesAmount)
-        self.profitText.text = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
+        setData(daysInWeek, values1: loadedData.0, values2: loadedData.1)
+        self.salesText.text = loadedData.2
+        self.expensesText.text = loadedData.3
+        self.profitText.text = loadedData.4
     }
     
     
@@ -204,15 +140,108 @@ class SummaryViewController: UIViewController {
             
             dateString = currentMonthString + "/" + String(actualMonthDate.year)
             
-            let loadedData = SummaryControllerNew().loadRecordsMonthly(chosenMonthDate, dateString: dateString)
-            setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
-            self.salesText.text = loadedData.3
-            self.expensesText.text = loadedData.4
-            self.profitText.text = loadedData.5
+            loadRecordsMonthly()
             
         }else if summaryType == 2 {
             let periodComponents = NSDateComponents()
             periodComponents.year = -1
+            let newDate = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenYearDate,
+                options: [])!
+            actualYearDate = moment(newDate)
+            chosenYearDate = newDate
+            
+            weekMonthYear.text = String(actualYearDate.year)
+            
+            dateString = String(actualYearDate.year)
+            
+            loadRecordsYearly()
+            
+            
+        }else if summaryType == 0 {
+            daysInWeek.removeAll()
+            let periodComponents = NSDateComponents()
+            periodComponents.day = -7
+            let newDate = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenWeekDate,
+                options: [])!
+            actualWeekDate = moment(newDate)
+            chosenWeekDate = newDate
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            
+            let stringDayOfWeek = actualWeekDate.weekdayName
+            var dayOfWeek = 0
+            if stringDayOfWeek.containsString("Sunday"){
+                dayOfWeek = 7
+            }else if stringDayOfWeek.containsString("Monday"){
+                dayOfWeek = 1
+            }else if stringDayOfWeek.containsString("Tuesday"){
+                dayOfWeek = 2
+            }else if stringDayOfWeek.containsString("Wednesday"){
+                dayOfWeek = 3
+            }else if stringDayOfWeek.containsString("Thursday"){
+                dayOfWeek = 4
+            }else if stringDayOfWeek.containsString("Friday"){
+                dayOfWeek = 5
+            }else if stringDayOfWeek.containsString("Saturday"){
+                dayOfWeek = 6
+            }
+            periodComponents.day = 1 - dayOfWeek
+            let firstDayOfWeek = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenWeekDate,
+                options: [])!
+            var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
+            daysInWeek.append(correctDateString)
+            weekMonthYear.text = String(correctDateString) + " - "
+            for i in 1...6 {
+                periodComponents.day = +i
+                let dayOfWeek = calendar!.dateByAddingComponents(
+                    periodComponents,
+                    toDate: firstDayOfWeek,
+                    options: [])!
+                correctDateString = dateFormatter.stringFromDate(dayOfWeek)
+                daysInWeek.append(correctDateString)
+            }
+            
+            
+            weekMonthYear.text = weekMonthYear.text! + correctDateString
+
+            loadRecordsWeekly()
+            
+        }
+        
+    }
+    @IBAction func next(sender: UIButton) {
+        if summaryType == 1 {
+            let periodComponents = NSDateComponents()
+            periodComponents.month = +1
+            let newDate = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: chosenMonthDate,
+                options: [])!
+            actualMonthDate = moment(newDate)
+            chosenMonthDate = newDate
+            
+            weekMonthYear.text = actualMonthDate.monthName + " " + String(actualMonthDate.year)
+            
+            if actualMonthDate.month < 10 {
+                currentMonthString = "0"+String(actualMonthDate.month)
+            }else{
+                currentMonthString = String(actualMonthDate.month)
+            }
+            
+            dateString = currentMonthString + "/" + String(actualMonthDate.year)
+            
+            loadRecordsMonthly()
+            
+        }else if summaryType == 2 {
+            let periodComponents = NSDateComponents()
+            periodComponents.year = +1
             let newDate = calendar!.dateByAddingComponents(
                 periodComponents,
                 toDate: chosenYearDate,
@@ -231,11 +260,12 @@ class SummaryViewController: UIViewController {
             self.expensesText.text = loadedData.4
             self.profitText.text = loadedData.5
             
+            loadRecordsYearly()
             
         }else if summaryType == 0 {
             daysInWeek.removeAll()
             let periodComponents = NSDateComponents()
-            periodComponents.day = -7
+            periodComponents.day = +7
             let newDate = calendar!.dateByAddingComponents(
                 periodComponents,
                 toDate: chosenWeekDate,
@@ -291,100 +321,7 @@ class SummaryViewController: UIViewController {
             self.expensesText.text = loadedData.3
             self.profitText.text = loadedData.4
             
-        }
-        
-    }
-    @IBAction func next(sender: UIButton) {
-        if summaryType == 1 {
-            let periodComponents = NSDateComponents()
-            periodComponents.month = +1
-            let newDate = calendar!.dateByAddingComponents(
-                periodComponents,
-                toDate: chosenMonthDate,
-                options: [])!
-            actualMonthDate = moment(newDate)
-            chosenMonthDate = newDate
-            
-            weekMonthYear.text = actualMonthDate.monthName + " " + String(actualMonthDate.year)
-            
-            if actualMonthDate.month < 10 {
-                currentMonthString = "0"+String(actualMonthDate.month)
-            }else{
-                currentMonthString = String(actualMonthDate.month)
-            }
-            
-            dateString = currentMonthString + "/" + String(actualMonthDate.year)
-            
-            loadRecordsMonthly()
-        }else if summaryType == 2 {
-            let periodComponents = NSDateComponents()
-            periodComponents.year = +1
-            let newDate = calendar!.dateByAddingComponents(
-                periodComponents,
-                toDate: chosenYearDate,
-                options: [])!
-            actualYearDate = moment(newDate)
-            chosenYearDate = newDate
-            
-            weekMonthYear.text = String(actualYearDate.year)
-            
-            dateString = String(actualYearDate.year)
-            loadRecordsYearly()
-            
-            
-        }else if summaryType == 0 {
-            daysInWeek.removeAll()
-            let periodComponents = NSDateComponents()
-            periodComponents.day = +7
-            let newDate = calendar!.dateByAddingComponents(
-                periodComponents,
-                toDate: chosenWeekDate,
-                options: [])!
-            actualWeekDate = moment(newDate)
-            chosenWeekDate = newDate
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            let stringDayOfWeek = actualWeekDate.weekdayName
-            var dayOfWeek = 0
-            if stringDayOfWeek.containsString("Sunday"){
-                dayOfWeek = 7
-            }else if stringDayOfWeek.containsString("Monday"){
-                dayOfWeek = 1
-            }else if stringDayOfWeek.containsString("Tuesday"){
-                dayOfWeek = 2
-            }else if stringDayOfWeek.containsString("Wednesday"){
-                dayOfWeek = 3
-            }else if stringDayOfWeek.containsString("Thursday"){
-                dayOfWeek = 4
-            }else if stringDayOfWeek.containsString("Friday"){
-                dayOfWeek = 5
-            }else if stringDayOfWeek.containsString("Saturday"){
-                dayOfWeek = 6
-            }
-            periodComponents.day = 1 - dayOfWeek
-            let firstDayOfWeek = calendar!.dateByAddingComponents(
-                periodComponents,
-                toDate: chosenWeekDate,
-                options: [])!
-            var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
-            daysInWeek.append(correctDateString)
-            weekMonthYear.text = String(correctDateString) + " - "
-            for i in 1...6 {
-                periodComponents.day = +i
-                let dayOfWeek = calendar!.dateByAddingComponents(
-                    periodComponents,
-                    toDate: firstDayOfWeek,
-                    options: [])!
-                correctDateString = dateFormatter.stringFromDate(dayOfWeek)
-                daysInWeek.append(correctDateString)
-            }
-            
-            
-            weekMonthYear.text = weekMonthYear.text! + correctDateString
             loadRecordsWeekly()
-            
             
         }
     }
