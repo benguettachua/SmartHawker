@@ -20,4 +20,8 @@ class LoginController {
     func forgetPassword(email: String) -> Bool {
         return dao.forgetPassword(email)
     }
+    
+    func pinSubusers() {
+        dao.getSubuserFromDatabase()
+    }
 }

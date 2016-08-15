@@ -51,7 +51,7 @@ class connectionDAO{
         } catch {
             subuser = nil
         }
-        return subuser!
+        return subuser
     }
     
     // Find all subuser and load into local datastore

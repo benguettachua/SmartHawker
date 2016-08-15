@@ -102,32 +102,17 @@ class AdminPINViewController: UIViewController {
         
         let pinType = adminPINController.submitPIN(pinEntered!, adminPIN: adminPin)
         if (pinType == 2) {
-            // Invalid PIN, inform the user that the PIN entered is incorrect.
             
+            // Invalid PIN, inform the user that the PIN entered is incorrect.
+            adminPINTextField.text = ""
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            
+        } else {
+            
+            // Load dates with records into calendar.
+            adminPINController.loadDatesToCalendar()
+            self.performSegueWithIdentifier("toMain", sender: self)
         }
-//        if ((pin as! String == adminPINTextField.text!) == true) {
-//            
-//            // Admin logs in
-//            self.shared.isSubUser = false
-//            self.loadDatesToCalendar()
-//            self.performSegueWithIdentifier("toMain", sender: self)
-//            
-//        } else if (PINS.contains(adminPINTextField.text!)) {
-//            
-//            // Sub User logging-in
-//            self.shared.isSubUser = true
-//            getSubuser(adminPINTextField.text!, completionHandler: { (success) in
-//                self.shared.subuser = self.subuser
-//                self.loadDatesToCalendar()
-//                self.performSegueWithIdentifier("toMain", sender: self)
-//            })
-//            
-//        } else {
-//            // Validate if admin pin entered is the one registered.
-//            adminPINTextField.text = ""
-//            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-//            
-//        }
     }
     
     @IBAction func cancel(sender: UIButton) {
@@ -135,106 +120,4 @@ class AdminPINViewController: UIViewController {
         PFUser.logOutInBackground()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    func loadDatesToCalendar(){
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        do{
-            let array = try query.findObjects()
-            var arrayForAllDates = [String]()
-            var dates = [String:[String]]()
-            // subuser is found, proceed to delete.
-            for object in array {
-                let dateString = object["date"] as! String
-                let subuserName = object["subuser"] as! String
-                if dates[subuserName] == nil{
-                    let arrayForDates = [dateString]
-                    dates.updateValue(arrayForDates, forKey: subuserName)
-                }else{
-                    var arrayForDates = dates[subuserName]
-                    arrayForDates?.append(dateString)
-                    dates.updateValue(arrayForDates!, forKey: subuserName)
-                }
-                arrayForAllDates.append(dateString)
-            }
-            
-            if self.shared.isSubUser == true{
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(dates[subuser], forKey: "SavedDateArray")
-            }else{
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(arrayForAllDates, forKey: "SavedDateArray")
-            }
-        } catch {}
-        
-        
-    }
-    
-    
-    
-    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
-        // Part 1: Load from DB and pin into local datastore.
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // Pin records found into local datastore.
-                PFObject.pinAllInBackground(objects)
-                for object in objects! {
-                    self.objectRecords.append(object)
-                    
-                }
-                completionHandler(success: true)
-                
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
-        }
-    }
-    
-    func getSubuser(pin: String, completionHandler: CompletionHandler){
-        let query = PFQuery(className: "SubUser")
-        query.whereKey("pin", equalTo: pin)
-        query.whereKey("user", equalTo: user!)
-        query.fromLocalDatastore()
-        query.getFirstObjectInBackgroundWithBlock {
-            (object: PFObject?, error: NSError?) in
-            if error == nil {
-                self.subuser = String(object!["name"])
-                completionHandler(success: true)
-            } else {
-                print("retrieval failed")
-            }
-        }
-    }
-    
-    
-    func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
-        let query = PFQuery(className: "Record")
-        let isSubUser = shared.isSubUser
-        if (isSubUser) {
-            query.whereKey("subuser", equalTo: shared.subuser)
-        }
-        query.fromLocalDatastore()
-        query.whereKey("user", equalTo: self.user!)
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                for object in objects! {
-                    object.pinInBackground()
-                    object.saveInBackground()
-                }
-                completionHandler(success: true)
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
-        }
-    }
-    
 }
