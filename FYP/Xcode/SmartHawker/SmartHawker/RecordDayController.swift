@@ -11,22 +11,21 @@ class RecordDayController {
     // Variables
     let dao = connectionDAO()
     let shared = ShareData.sharedInstance
-    var records = [RecordTable]()
     
     // Loads all records made on the day and return an array of RecordTable
     func loadRecord() -> [RecordTable]{
         
+        var records = [RecordTable]()
         var PFRecords: [PFObject]?
         let isSubuser = shared.isSubUser
         let dateToLoad = shared.dateString
         let subuser = shared.subuser
         
+        // Load records of the day.
         PFRecords = dao.loadRecordOfTheDay(isSubuser, date: dateToLoad, subuser: subuser)
         
+        // There are records found.
         if (PFRecords != nil) {
-            
-            // Remove all records to prevent duplicates
-            records.removeAll()
             
             // Process all records found into [RecordTable] array.
             for record in PFRecords! {
@@ -64,5 +63,17 @@ class RecordDayController {
             }
         }
         return records
+    }
+    
+    // This function deletes the selected record.
+    func deleteRecord(record: RecordTable) -> Bool {
+        
+        let localIdentifier = record.localIdentifier
+        let deletesuccess = dao.deleteRecord(localIdentifier)
+        
+        if(deletesuccess) {
+            return true
+        }
+        return false
     }
 }

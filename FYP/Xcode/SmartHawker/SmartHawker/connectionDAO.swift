@@ -209,13 +209,34 @@ class connectionDAO{
     // Delete record
     func deleteRecord(localIdentifier: String) -> Bool {
         let query = PFQuery(className: "Record")
-        var recordToDelete = PFObject()
+        var recordToDelete = PFObject(className: "Record")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("subUser", equalTo: localIdentifier)
         do {
+            
             recordToDelete = try query.getFirstObject()
+            
+            //Remove it from calendar.
+            var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+            for var i in 0..<array.count{
+                if array[i] == recordToDelete["date"] as! String{
+                    array.removeAtIndex(i)
+                    i -= 1
+                    break
+                }
+            }
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(array, forKey: "SavedDateArray")
+            
+            // Set the amount to 0 to "unpin" it.
+            recordToDelete["amount"] = 0
+            try recordToDelete.pin()
+            
+            // This method may not work, a defect from Parse.
             try recordToDelete.unpin()
+            
+            // Delete it eventually.
             recordToDelete.deleteEventually()
             return true
         } catch {
