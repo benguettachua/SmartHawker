@@ -126,30 +126,4 @@ class LoginViewController: UIViewController {
         }
         sender.cancelsTouchesInView = false
     }
-    
-    func getSubUserPINs(user: PFUser, completionHandler: CompletionHandler) {
-        let query = PFQuery(className: "SubUser")
-        query.whereKey("user", equalTo: user)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            var PINS = [String]()
-            if error == nil {
-                PFObject.pinAllInBackground(objects)
-                for object in objects! {
-                    let PIN = object["pin"] as! String
-                    PINS.append(PIN)
-                    
-                }
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(PINS, forKey: "allPINS")
-                completionHandler(success: true)
-                
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
-        }
-    }
-    
 }

@@ -40,18 +40,18 @@ class connectionDAO{
     }
     
     // Find subuser from local datastore with a specific pin
-    func getSubuserFromLocalDatastore(pin: String) -> PFObject{
+    func getSubuserFromLocalDatastore(pin: String) -> PFObject?{
         let query = PFQuery(className: "SubUser")
-        var subuser = PFObject()
+        var subuser: PFObject?
         query.whereKey("pin", equalTo: pin)
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.fromLocalDatastore()
         do {
             subuser = try query.getFirstObject()
         } catch {
-            
+            subuser = nil
         }
-        return subuser
+        return subuser!
     }
     
     // Find all subuser and load into local datastore

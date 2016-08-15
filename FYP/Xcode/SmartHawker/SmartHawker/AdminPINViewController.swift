@@ -48,15 +48,6 @@ class AdminPINViewController: UIViewController {
         cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
         adminPINTextField.placeholder = "Enter your PIN here".localized()
         
-        // Getting PINS for the subuser of current logged in user.
-        let defaults = NSUserDefaults()
-        if defaults.objectForKey("allPINS") == nil{
-            let defaults = NSUserDefaults.standardUserDefaults()
-            let adminPins = [String]()
-            defaults.setObject(adminPins, forKey: "allPINS")
-        }
-        PINS = (defaults.objectForKey("allPINS") as? [String])!
-        print(PINS)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -105,29 +96,37 @@ class AdminPINViewController: UIViewController {
     
     // MARK: Action
     @IBAction func submitPIN(sender: UIButton) {
-        // Check if the PIN is correct
-        let pin = user!["adminPin"]
-        if ((pin as! String == adminPINTextField.text!) == true) {
-            // Admin logs in
-            self.shared.isSubUser = false
-            self.performSegueWithIdentifier("toMain", sender: self)
-            
-        } else if (PINS.contains(adminPINTextField.text!)) {
-            // Sub User logging-in
-            
-            self.shared.isSubUser = true
-            getSubuser(adminPINTextField.text!, completionHandler: { (success) in
-                self.shared.subuser = self.subuser
-                self.loadDatesToCalendar()
-                self.performSegueWithIdentifier("toMain", sender: self)
-            })
-            
-        } else {
-            // Validate if admin pin entered is the one registered.
-            adminPINTextField.text = ""
-            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        
+        let adminPin = user!["adminPin"] as! String
+        let pinEntered = adminPINTextField.text
+        
+        let pinType = adminPINController.submitPIN(pinEntered!, adminPIN: adminPin)
+        if (pinType == 2) {
+            // Invalid PIN, inform the user that the PIN entered is incorrect.
             
         }
+//        if ((pin as! String == adminPINTextField.text!) == true) {
+//            
+//            // Admin logs in
+//            self.shared.isSubUser = false
+//            self.performSegueWithIdentifier("toMain", sender: self)
+//            
+//        } else if (PINS.contains(adminPINTextField.text!)) {
+//            
+//            // Sub User logging-in
+//            self.shared.isSubUser = true
+//            getSubuser(adminPINTextField.text!, completionHandler: { (success) in
+//                self.shared.subuser = self.subuser
+//                self.loadDatesToCalendar()
+//                self.performSegueWithIdentifier("toMain", sender: self)
+//            })
+//            
+//        } else {
+//            // Validate if admin pin entered is the one registered.
+//            adminPINTextField.text = ""
+//            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+//            
+//        }
     }
     
     @IBAction func cancel(sender: UIButton) {
