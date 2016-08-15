@@ -109,6 +109,7 @@ class AdminPINViewController: UIViewController {
 //            
 //            // Admin logs in
 //            self.shared.isSubUser = false
+//            self.loadDatesToCalendar()
 //            self.performSegueWithIdentifier("toMain", sender: self)
 //            
 //        } else if (PINS.contains(adminPINTextField.text!)) {
@@ -140,23 +141,30 @@ class AdminPINViewController: UIViewController {
         query.whereKey("user", equalTo: user!)
         do{
             let array = try query.findObjects()
+            var arrayForAllDates = [String]()
+            var dates = [String:[String]]()
             // subuser is found, proceed to delete.
             for object in array {
                 let dateString = object["date"] as! String
                 let subuserName = object["subuser"] as! String
-                if self.dates[subuserName] == nil{
-                    let array = [dateString]
-                    self.dates.updateValue(array, forKey: subuserName)
+                if dates[subuserName] == nil{
+                    let arrayForDates = [dateString]
+                    dates.updateValue(arrayForDates, forKey: subuserName)
                 }else{
-                    var array = self.dates[subuserName]
-                    array?.append(dateString)
-                    self.dates.updateValue(array!, forKey: subuserName)
+                    var arrayForDates = dates[subuserName]
+                    arrayForDates?.append(dateString)
+                    dates.updateValue(arrayForDates!, forKey: subuserName)
                 }
-                
+                arrayForAllDates.append(dateString)
             }
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(self.dates[subuser], forKey: "SavedDateArray")
             
+            if self.shared.isSubUser == true{
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(dates[subuser], forKey: "SavedDateArray")
+            }else{
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(arrayForAllDates, forKey: "SavedDateArray")
+            }
         } catch {}
         
         
