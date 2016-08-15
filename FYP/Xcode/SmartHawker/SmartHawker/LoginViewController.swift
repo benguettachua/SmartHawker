@@ -14,11 +14,6 @@ class LoginViewController: UIViewController {
     // Controller
     let loginController = LoginController()
     
-    // Variables
-    var toShare = ShareData.sharedInstance
-    var errorMsg = String()
-    typealias CompletionHandler = (success:Bool) -> Void
-    
     // Text Fields
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!

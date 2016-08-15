@@ -16,14 +16,8 @@ class AdminPINViewController: UIViewController {
     let adminPINController = AdminPINController()
     
     // Variables
-    typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
     var shared = ShareData.sharedInstance
-    var PINS = [String]()
-    var subuser = "Standard Sub User"
-    var records = []
-    var dates = [String:[String]]()
-    var objectRecords = [PFObject]()
     
     // Text Fields
     @IBOutlet weak var adminPINTextField: UITextField!

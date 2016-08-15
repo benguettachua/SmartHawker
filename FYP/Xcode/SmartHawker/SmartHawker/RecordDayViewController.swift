@@ -18,6 +18,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     var records = [RecordTable]()
     typealias CompletionHandler = (success:Bool) -> Void
     var tempCounter = 0
+    let recordDayController = RecordDayController()
     
     // Labels
     @IBOutlet weak var dayNumberLabel: UILabel!
@@ -36,54 +37,59 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        // Remove all records to prevent duplicates.
+        records.removeAll()
+        
+        // Load records from local datastore into an array.
+        records = recordDayController.loadRecord()
+        
+        if (records.isEmpty) {
+            
+            // No records are found, inform user that they have not made a record for the day.
+            noRecordView.hidden = false
+            tableView.hidden = true
+        } else {
+            
+            // There are records found, show the records in a table form.
+            noRecordView.hidden = true
+            tableView.backgroundView = UIImageView(image: UIImage(named: "main-bg"))
+            tableView.hidden = false
+            
+            // Loop through the records, removing all elements that should not be shown.
+            for (i,num) in records.enumerate().reverse() {
+                
+                // Removing records that have amount $0.00 as it means that the record is deleted.
+                if (records[i].amount == 0) {
+                    records.removeAtIndex(i)
+                    
+                // Removing records that have type "" as it should not be shown.
+                } else if (records[i].type == ""){
+                    records.removeAtIndex(i)
+                }
+            }
+            
+            // After removing unnecessary elements, check if there is any records left, if there is not, inform the user that they do not have any records.
+            if (records.isEmpty) {
+                noRecordView.hidden = false
+                tableView.hidden = true
+            }
+        }
+        
+        // Reload the table to show any ammendments made to the data.
+        tableView.reloadData()
+        
+        // Populate the UI, showing the date currently selected.
         let storeDate = shared.storeDate
-        // Populate the view
         dayNumberLabel.text = String(storeDate.day)
         dayLabel.text = storeDate.weekdayName
         monthYearLabel.text = (storeDate.monthName + ", " + String(storeDate.year))
         
         tableView!.delegate = self
         tableView!.dataSource = self
-        
-        loadRecordsFromLocaDatastore({ (success) -> Void in
-            
-            if (self.records.isEmpty) {
-                self.noRecordView.hidden = false
-                self.tableView.hidden = true
-            } else {
-                self.noRecordView.hidden = true
-                self.tableView.backgroundView = UIImageView(image: UIImage(named: "main-bg"))
-                self.tableView.hidden = false
-                
-                
-                for (i,num) in self.records.enumerate().reverse() {
-                    print(self.records[i].type)
-                    if (self.records[i].amount == 0) {
-                        self.records.removeAtIndex(i)
-                    } else if (self.records[i].type == ""){
-                        
-                        self.records.removeAtIndex(i)
-                    }
-                }
-                
-                if (self.records.isEmpty) {
-                    self.noRecordView.hidden = false
-                    self.tableView.hidden = true
-                }
-            }
-            
-            
-            
-            self.viewWillAppear(true)
-        })
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,7 +114,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let nextDayString = dateFormatter.stringFromDate(nextDayNSDate!)
         shared.storeDate = nextDay
         shared.dateString = nextDayString
-        self.viewDidLoad()
+        self.viewWillAppear(true)
     }
     @IBAction func previousDay(sender: UIButton) {
         let dateString = shared.dateString
@@ -122,7 +128,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let nextDayString = dateFormatter.stringFromDate(nextDayNSDate!)
         shared.storeDate = nextDay
         shared.dateString = nextDayString
-        self.viewDidLoad()
+        self.viewWillAppear(true)
     }
     
     @IBAction func editTable(sender: UIButton) {
@@ -150,6 +156,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "RecordCell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
@@ -164,7 +171,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.amountLabel.text = amountString2dp
         cell.amountLabel.font = UIFont(name: cell.amountLabel.font.fontName, size: 12)
 
-        
         // Type Label
         let type = records[indexPath.row].type
         cell.recordTypeLabel.text = type

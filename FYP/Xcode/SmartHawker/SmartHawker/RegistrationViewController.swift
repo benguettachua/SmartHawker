@@ -13,7 +13,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     // Variables
-    var ok = 0
     let registrationController = RegistrationController()
     let loginController = LoginController()
     

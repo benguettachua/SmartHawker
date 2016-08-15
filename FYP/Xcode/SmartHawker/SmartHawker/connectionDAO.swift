@@ -85,6 +85,24 @@ class connectionDAO{
         }
     }
     
+    // Loads all record from a day to an array
+    func loadRecordOfTheDay(isSubuser: Bool, date: String, subuser: String?) -> [PFObject]?{
+        var records: [PFObject]?
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("date", equalTo: date)
+        if (isSubuser) {
+            query.whereKey("subuser", equalTo: subuser!)
+        }
+        do {
+            records = try query.findObjects()
+        } catch {
+            records = nil
+        }
+        return records
+    }
+    
     // Log in using username and password input, return true if login successful.
     func login(username: String, password: String) -> Bool {
         do {
