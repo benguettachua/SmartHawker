@@ -6,8 +6,6 @@
 //  Copyright © 2016 Kay Zong Wei. All rights reserved.
 //
 
-import UIKit
-
 class RegistrationController {
     
     // Import DAO to connect to database.

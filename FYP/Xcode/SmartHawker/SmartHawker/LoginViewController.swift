@@ -37,6 +37,9 @@ class LoginViewController: UIViewController {
             let loginSuccess = self.loginController.login(username!, password: password!)
             if (loginSuccess) {
                 
+                // Set just logged in to true to prompt to retrieve record
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "justLoggedIn")
+                
                 // Logging in success, logging in alert is dissmissed, scene is moved to admin page.
                 loggingInAlert.dismissViewControllerAnimated(false, completion: {
                     self.performSegueWithIdentifier("loginSuccess", sender: self)
@@ -95,6 +98,7 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
     
     
     override func viewDidLoad() {

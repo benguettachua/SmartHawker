@@ -11,6 +11,10 @@ import UIKit
 class AdminPINViewController: UIViewController {
     
     // MARK: Properties
+    
+    // Controllers
+    let adminPINController = AdminPINController()
+    
     // Variables
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
@@ -20,6 +24,7 @@ class AdminPINViewController: UIViewController {
     var records = []
     var dates = [String:[String]]()
     var objectRecords = [PFObject]()
+    
     // Text Fields
     @IBOutlet weak var adminPINTextField: UITextField!
     
@@ -58,25 +63,38 @@ class AdminPINViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         let justLoggedIn = defaults.boolForKey("justLoggedIn")
         if (justLoggedIn == true) {
+            
             // Set first time logged in to False, so this popup appears only once, when you just logged in.
             defaults.setBool(false, forKey: "justLoggedIn")
             let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
             let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
                 
-                self.saveRecordsIntoDatabase({ (success) -> Void in
-                    if (success) {
-                        self.loadRecordsIntoLocalDatastore({ (success) -> Void in
-                            if (success) {
-                                let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                                let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-                                alertController.addAction(ok)
-                                self.presentViewController(alertController, animated: true,completion: nil)
-                            } else {
-                                print("Retrieval failed!")
-                            }
+                // Pop up telling the user that you are currently syncing
+                let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
+                self.presentViewController(popup, animated: true, completion: {
+                    let syncSucceed = self.adminPINController.sync()
+                    if (syncSucceed) {
+                        
+                        // Retrieval succeed, inform the user that records are synced.
+                        popup.dismissViewControllerAnimated(true, completion: {
+                            let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            alertController.addAction(ok)
+                            self.presentViewController(alertController, animated: true,completion: nil)
+                        })
+                        
+                    } else {
+                        
+                        // Retrieval failed, inform user that he can sync again after he log in.
+                        popup.dismissViewControllerAnimated(true, completion: {
+                            let alertController = UIAlertController(title: "Retrieval Failed!", message: "You may sync your data again at settings page.", preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            alertController.addAction(ok)
+                            self.presentViewController(alertController, animated: true,completion: nil)
                         })
                     }
                 })
+                
             })
             let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
             alertController.addAction(ok)
@@ -103,7 +121,7 @@ class AdminPINViewController: UIViewController {
                 self.loadDatesToCalendar()
                 self.performSegueWithIdentifier("toMain", sender: self)
             })
-
+            
         } else {
             // Validate if admin pin entered is the one registered.
             adminPINTextField.text = ""
@@ -139,14 +157,14 @@ class AdminPINViewController: UIViewController {
             }
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(self.dates[subuser], forKey: "SavedDateArray")
-        
+            
         } catch {}
-
+        
         
     }
     
-
-
+    
+    
     func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
         // Part 1: Load from DB and pin into local datastore.
         let query = PFQuery(className: "Record")

@@ -105,6 +105,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     
                 case 100:
                     errorMsg = "No network detected."
+                    break
                     
                 case 202:
                     errorMsg = "Username is taken."
@@ -127,4 +128,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    @IBAction func cancel(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
