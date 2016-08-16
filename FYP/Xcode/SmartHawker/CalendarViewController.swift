@@ -70,7 +70,7 @@ class CalendarViewcontroller: UIViewController{
         
         // Formatting to format as saved in DB.
         var correctDateString = ""
-        if toShare.storeDate == nil{
+        if toShare.dateString == nil{
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             correctDateString = dateFormatter.stringFromDate(NSDate())
@@ -92,7 +92,7 @@ class CalendarViewcontroller: UIViewController{
         
         calendar.delegate = self
         calendar.backgroundColor = UIColor.clearColor()
-        if toShare.storeDate != nil {
+        if toShare.dateString != nil {
             calendar.selectDate(toShare.storeDate)
             self.MonthAndYear.text = self.toShare.storeDate.monthName.localized() + " / " + String(self.toShare.storeDate.year)
             loadRecords(toShare.dateString)

@@ -53,38 +53,10 @@ class AdminPINController {
         return 2
     }
     
+    // This function loads dates with record into calendar, so that calendar will show.
     func loadDatesToCalendar(){
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do{
-            let array = try query.findObjects()
-            var arrayForAllDates = [String]()
-            var dates = [String:[String]]()
-            // subuser is found, proceed to delete.
-            for object in array {
-                let dateString = object["date"] as! String
-                let subuserName = object["subuser"] as! String
-                if dates[subuserName] == nil{
-                    let arrayForDates = [dateString]
-                    dates.updateValue(arrayForDates, forKey: subuserName)
-                }else{
-                    var arrayForDates = dates[subuserName]
-                    arrayForDates?.append(dateString)
-                    dates.updateValue(arrayForDates!, forKey: subuserName)
-                }
-                arrayForAllDates.append(dateString)
-            }
-            
-            if shared.isSubUser == true{
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(dates[shared.subuser], forKey: "SavedDateArray")
-            }else{
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(arrayForAllDates, forKey: "SavedDateArray")
-            }
-        } catch {
-        }
-        
-        
+        let isSubuser = shared.isSubUser
+        let subuser = shared.subuser
+        dao.loadDatesIntoCalendar(isSubuser, subuser: subuser)
     }
 }

@@ -66,6 +66,9 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
         
         if (recordSuccess) {
             
+            // Updates controller
+            recordController.loadDatesToCalendar()
+            
             // Record is sucessful, return to Record Day page.
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {
@@ -90,6 +93,9 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
         let recordSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
         
         if (recordSuccess) {
+            
+            // Updates controller
+            recordController.loadDatesToCalendar()
             
             // Recording successful, inform the user that they can enter another record.
             let alert = UIAlertController(title: "Success", message: "You may enter another record.", preferredStyle: .Alert)

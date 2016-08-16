@@ -24,6 +24,42 @@ class connectionDAO{
         return records
     }
     
+    // Load dates with records into Calendar
+    func loadDatesIntoCalendar(isSubuser: Bool, subuser: String?) {
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        do{
+            let array = try query.findObjects()
+            var arrayForAllDates = [String]()
+            var dates = [String:[String]]()
+            
+            for object in array {
+                let dateString = object["date"] as! String
+                let subuserName = object["subuser"] as! String
+                if dates[subuserName] == nil{
+                    let arrayForDates = [dateString]
+                    dates.updateValue(arrayForDates, forKey: subuserName)
+                }else{
+                    var arrayForDates = dates[subuserName]
+                    arrayForDates?.append(dateString)
+                    dates.updateValue(arrayForDates!, forKey: subuserName)
+                }
+                arrayForAllDates.append(dateString)
+            }
+            
+            if isSubuser == true{
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(dates[subuser!], forKey: "SavedDateArray")
+            }else{
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(arrayForAllDates, forKey: "SavedDateArray")
+            }
+        } catch {
+            
+        }
+    }
+    
     //load records into local datastore
     func loadRecordsIntoLocalDatastore() -> Bool{
         // Part 1: Load from DB and pin into local datastore.

@@ -67,4 +67,11 @@ class RecordController {
         }
         return false
     }
+    
+    // This function loads dates with record into calendar, so that calendar will show.
+    func loadDatesToCalendar(){
+        let isSubuser = shared.isSubUser
+        let subuser = shared.subuser
+        dao.loadDatesIntoCalendar(isSubuser, subuser: subuser)
+    }
 }
