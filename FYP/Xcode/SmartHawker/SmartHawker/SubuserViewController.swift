@@ -11,6 +11,9 @@ import UIKit
 class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
+    // Controllers
+    let subuserController = SubuserController()
+    
     let user = PFUser.currentUser()
     var subusers = [PFObject]()
     
@@ -20,15 +23,20 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        retrieveSubuser()
-        tableView!.delegate = self
-        tableView!.dataSource = self
-        self.viewWillAppear(true)
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("Reloading")
+        
+        // Remove all subusers to prevent duplication
+        subusers.removeAll()
+        
+        // Load subusers into array, which will be used to populate table.
+        subusers = subuserController.retrieveSubusers()
+        
+        // Reload the data to show any ammendments made
         tableView.reloadData()
+        tableView!.delegate = self
+        tableView!.dataSource = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -40,18 +48,6 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Retrieve all subusers.
-    func retrieveSubuser() {
-        
-        let query = PFQuery(className: "SubUser")
-        query.fromLocalDatastore()
-        query.whereKey("user", equalTo: user!)
-        do{
-            subusers = try query.findObjects()
-        } catch {
-            print("Something wrong")
-        }
-    }
     // Below this comment are all the methods for table.
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 90
@@ -82,8 +78,14 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // When user clicks on a subuser, a popup will ask user what he would like to do with the subuser.
         let alert = UIAlertController(title: "Edit subuser", message: "What would you like to do with " + (subusers[indexPath.row]["name"] as! String) + "?", preferredStyle: .Alert)
         
+        // Declare the subuser selected to be used later on.
+        let subuser = self.subusers[indexPath.row]
+        
+        // Action 1: Edit PIN
         alert.addAction(UIAlertAction(title: "Edit PIN", style: .Default, handler: { Void in
             let editPINAlert = UIAlertController(title: "Edit PIN", message: "Please enter old PIN and new PIN.", preferredStyle: .Alert)
             
@@ -94,46 +96,35 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let secondTextField = editPINAlert.textFields![1] as UITextField
                 let thirdTextField = editPINAlert.textFields![2] as UITextField
                 
-                let currentPIN = self.subusers[indexPath.row]["pin"] as! String
-                print(currentPIN)
-                if (firstTextField.text != currentPIN) {
-                    let error = UIAlertController(title: "Error", message: "Old PIN is incorrect!", preferredStyle: .Alert)
-                    error.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { Void in
+                let enteredOldPIN = firstTextField.text
+                let enteredNewPIN = secondTextField.text
+                let enteredConfirmPIN = thirdTextField.text
+                
+                // Hand over to controller to validate the inputs and see if edit is successful.
+                let successEdit = self.subuserController.editPIN(subuser, oldPIN: enteredOldPIN!, newPIN: enteredNewPIN!, confirmPIN: enteredConfirmPIN!)
+                
+                if (successEdit) {
+                    
+                    // Edit successful, popup to show user that the PIN has been changed.
+                    editPINAlert.dismissViewControllerAnimated(true, completion: nil)
+                    let successAlert = UIAlertController(title: "Success", message: "PIN has been changed!", preferredStyle: .Alert)
+                    successAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
                         self.viewWillAppear(true)
                     }))
-                    self.presentViewController(error, animated: true, completion: nil)
-                } else if (secondTextField.text != thirdTextField.text) {
-                    let error = UIAlertController(title: "Error", message: "Confirmation PIN is incorrect!", preferredStyle: .Alert)
-                    error.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { Void in
-                        self.viewWillAppear(true)
-                    }))
-                    self.presentViewController(error, animated: true, completion: nil)
-                } else if (secondTextField.text?.characters.count != 4) {
-                    let error = UIAlertController(title: "Error", message: "PIN must be 4 digits!", preferredStyle: .Alert)
-                    error.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { Void in
-                        self.viewWillAppear(true)
-                    }))
-                    self.presentViewController(error, animated: true, completion: nil)
+                    self.presentViewController(successAlert, animated: true, completion: nil)
+                    
                 } else {
-                    // All validation passed, proceed to change PIN
-                    let query = PFQuery(className: "SubUser")
-                    query.whereKey("pin", equalTo: currentPIN)
-                    do{
-                        let subuser = try query.getFirstObject()
-                        // subuser is found, proceed to update.
-                        subuser["pin"] = secondTextField.text
-                        do {try subuser.pin()} catch {}
-                        do {try subuser.save()} catch {}
-                        let success = UIAlertController(title: "Success", message: "PIN has been changed!", preferredStyle: .Alert)
-                        success.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
-                            self.viewWillAppear(true)
-                        }))
-                        self.presentViewController(success, animated: true, completion: nil)
-                    } catch {}
+                    
+                    // Edit failed, popup to tell user to try again.
+                    editPINAlert.dismissViewControllerAnimated(true, completion: nil)
+                    let failedAlert = UIAlertController(title: "Failed", message: "PIN is not changed. Please try again.", preferredStyle: .Alert)
+                    failedAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: { Void in
+                        self.viewWillAppear(true)
+                    }))
+                    self.presentViewController(failedAlert, animated: true, completion: nil)
                 }
-                
-                
             })
+            
             editPINAlert.addTextFieldWithConfigurationHandler({ (firstTextField) in
                 firstTextField.placeholder = "Enter Old PIN"
                 firstTextField.secureTextEntry = true
@@ -155,35 +146,50 @@ class SubuserViewController: UIViewController, UITableViewDelegate, UITableViewD
             }))
             self.presentViewController(editPINAlert, animated: true, completion: nil)
         }))
+        
+        // Action 2: Delete the subuser.
         alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { Void in
+            
+            // Popup to warn user that once deleted, the action cannot be undone.
             let confirmation = UIAlertController(title: "Are you sure?", message: (self.subusers[indexPath.row]["name"] as! String) + " will be permanently deleted.", preferredStyle: .Alert)
             confirmation.addAction(UIAlertAction(title: "Yes, delete", style: .Default, handler: { Void in
-                let query = PFQuery(className: "SubUser")
-                let currentPIN = self.subusers[indexPath.row]["pin"] as! String
-                query.whereKey("pin", equalTo: currentPIN)
-                do{
-                    let subuser = try query.getFirstObject()
-                    // subuser is found, proceed to delete.
-                    do {try subuser.unpin()} catch {}
-                    do {try subuser.delete()} catch {}
-                    let success = UIAlertController(title: "Success", message: "Subuser is deleted!", preferredStyle: .Alert)
-                    success.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
-                        self.subusers.removeAtIndex(indexPath.row)
-                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                
+                // Deletes the subuser selected.
+                let deleteSuccess = self.subuserController.deleteSubuser(subuser)
+                
+                if (deleteSuccess) {
+                    
+                    // Delete success, inform the user that the subuser is deleted.
+                    confirmation.dismissViewControllerAnimated(true, completion: nil)
+                    let successAlert = UIAlertController(title: "Success", message: "Subuser has been deleted!", preferredStyle: .Alert)
+                    successAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
                         self.viewWillAppear(true)
                     }))
-                    self.presentViewController(success, animated: true, completion: nil)
-                } catch {}
+                    self.presentViewController(successAlert, animated: true, completion: nil)
+                } else {
+                    
+                    // Delete failed, inform the user to try again.
+                    confirmation.dismissViewControllerAnimated(true, completion: nil)
+                    let failedAlert = UIAlertController(title: "Failed", message: "An error has occured, please try again later.", preferredStyle: .Alert)
+                    failedAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: { Void in
+                        self.viewWillAppear(true)
+                    }))
+                    self.presentViewController(failedAlert, animated: true, completion: nil)
+                }
             }))
+            
+            
+            // User choose not to delete the subuser.
             confirmation.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { Void in
                 self.viewWillAppear(true)
             }))
             self.presentViewController(confirmation, animated: true, completion: nil)
         }))
+        
+        // Action 3: Do nothing to the subuser.
         alert.addAction(UIAlertAction(title: "Nothing", style: UIAlertActionStyle.Default, handler: { Void in
             self.viewWillAppear(true)
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
 }

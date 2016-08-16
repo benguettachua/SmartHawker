@@ -78,6 +78,8 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Reload the table to show any ammendments made to the data.
         tableView.reloadData()
+        tableView!.delegate = self
+        tableView!.dataSource = self
         
         // Populate the UI, showing the date currently selected.
         let storeDate = shared.storeDate
@@ -85,8 +87,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         dayLabel.text = storeDate.weekdayName
         monthYearLabel.text = (storeDate.monthName + ", " + String(storeDate.year))
         
-        tableView!.delegate = self
-        tableView!.dataSource = self
+        
     }
     
     override func didReceiveMemoryWarning() {

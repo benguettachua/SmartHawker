@@ -103,6 +103,20 @@ class connectionDAO{
         }
     }
     
+    // Find all subusers in local datastore and return.
+    func retrieveSubusers() -> [PFObject]{
+        let query = PFQuery(className: "SubUser")
+        query.fromLocalDatastore()
+        var subusers = [PFObject]()
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        do {
+            subusers = try query.findObjects()
+        } catch {
+            
+        }
+        return subusers
+    }
+    
     // Saves Records into Database
     func saveRecordsIntoDatabase() -> Bool{
         let query = PFQuery(className: "Record")
@@ -283,7 +297,7 @@ class connectionDAO{
     // Delete subuser
     func deleteSubuser(PIN: String) -> Bool {
         let query = PFQuery(className: "SubUser")
-        var subuser = PFObject()
+        var subuser = PFObject(className: "SubUser")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("pin", equalTo: PIN)
@@ -300,7 +314,7 @@ class connectionDAO{
     // Edit subuser's PIN
     func editPIN(currentPIN: String, newPIN: String) -> Bool{
         let query = PFQuery(className: "SubUser")
-        var subuser = PFObject()
+        var subuser = PFObject(className: "SubUser")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("pin", equalTo: currentPIN)

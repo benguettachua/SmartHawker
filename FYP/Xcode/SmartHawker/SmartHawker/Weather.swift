@@ -42,7 +42,7 @@ struct Weather {
     }
     let humidity: Int
     let pressure: Int
-    let cloudCover: Int
+    //let cloudCover: Int
     let windSpeed: Double
     
     // These properties are optionals because OpenWeatherMap doesn't provide:
@@ -73,7 +73,7 @@ struct Weather {
         humidity = mainDict["humidity"] as! Int
         pressure = mainDict["pressure"] as! Int
         
-        cloudCover = weatherData["clouds"]!["all"] as! Int
+        //cloudCover = weatherData["clouds"]!["all"] as! Int
         
         let windDict = weatherData["wind"] as! [String: AnyObject]
         windSpeed = windDict["speed"] as! Double
