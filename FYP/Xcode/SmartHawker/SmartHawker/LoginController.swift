@@ -21,6 +21,7 @@ class LoginController {
         return dao.forgetPassword(email)
     }
     
+    // This function pins all subusers of the logging in user.
     func pinSubusers() {
         dao.getSubuserFromDatabase()
     }
