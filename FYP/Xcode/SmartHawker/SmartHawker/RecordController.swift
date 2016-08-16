@@ -36,4 +36,35 @@ class RecordController {
         
         return dao.addRecord(shared.dateString, amount: amount!, type: type, subuser: subuser!, description: description)
     }
+    
+    // This function updates the selected record, based on localIdentifier.
+    func update(localIdentifier: String, type: Int, description: String, amount: Double?) -> Bool {
+        
+        // Make description mutable.
+        var description = description
+        
+        // If user did not input any description, save the record as "No description"
+        if (description == "") {
+            description = "No description"
+        }
+        
+        // Records must have positive value
+        if (amount == nil || amount <= 0) {
+            return false
+        }
+        
+        return dao.updateRecord(localIdentifier, type: type, amount: amount!, description: description)
+    }
+    
+    // This function deletes the selected record.
+    func deleteRecord(record: RecordTable) -> Bool {
+        
+        let localIdentifier = record.localIdentifier
+        let deletesuccess = dao.deleteRecord(localIdentifier)
+        
+        if(deletesuccess) {
+            return true
+        }
+        return false
+    }
 }

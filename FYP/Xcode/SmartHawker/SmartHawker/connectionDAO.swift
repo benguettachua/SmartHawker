@@ -190,7 +190,7 @@ class connectionDAO{
     // Update record in local datastore
     func updateRecord(localIdentifier: String, type: Int, amount: Double, description: String) -> Bool {
         let query = PFQuery(className: "Record")
-        var recordToUpdate = PFObject()
+        var recordToUpdate = PFObject(className: "Record")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("subUser", equalTo: localIdentifier)

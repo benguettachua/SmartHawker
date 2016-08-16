@@ -11,12 +11,13 @@ import UIKit
 class UpdateSalesViewController: UIViewController{
     
     // Properties
+    
+    // Controllers
+    let recordController = RecordController()
+    
     // Variables
     var type = 0
     var shared = ShareData.sharedInstance
-    var tempCounter = 0
-    typealias CompletionHandler = (success:Bool) -> Void
-    let user = PFUser.currentUser()
     
     // Text Fields
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -28,140 +29,33 @@ class UpdateSalesViewController: UIViewController{
     }
     
     @IBAction func save(sender: UIButton) {
-        updateRecord()
+        
+        let localIdentifier = shared.selectedRecord.localIdentifier
+        let amount = Double(amountTextField.text!)
+        let description = descriptionTextField.text
+        
+        let updateSuccess = recordController.update(localIdentifier, type: type, description: description!, amount: amount)
+        if (updateSuccess) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            print("Update error!")
+        }
     }
    
     @IBAction func deleteRecord(sender: UIButton) {
-        // Updating the record
+        
         let selectedRecord = shared.selectedRecord
-        let localIdentifier = selectedRecord.localIdentifier
-        let query = PFQuery(className: "Record")
-        query.fromLocalDatastore()
-        query.whereKey("subUser", equalTo: localIdentifier)
-        query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
-            if (error != nil && record != nil) {
-                // No object found or some error
-                print("No object found or some error")
-                print(error)
-                print(record)
-            } else if let record = record {
-                // Record is found, proceed to delete.
-                record["amount"] = 0
-                var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-                
-                for var i in 0..<array.count{
-                    if array[i] == record["date"] as! String{
-                        array.removeAtIndex(i)
-                        i -= 1
-                        break
-                    }
-                    
-                }
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(array, forKey: "SavedDateArray")
-                record.pinInBackground() // Updates the local store to $0. (Work-around step 1)
-                record.deleteEventually() // Deletes from the DB when there is network.
-                record.unpinInBackground() // Deletes from the local store when there is network. (Work-around step 2)
-                self.updateGlobalRecord({ (success) -> Void in
-                    if (success) {
-                        print("Delete success")
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } else {
-                        print("Delete failed")
-                    }
-                })
-            }
+        let deleteSuccess = recordController.deleteRecord(selectedRecord)
+        
+        if (deleteSuccess) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            print("Delete failed")
         }
     }
     
-    func updateRecord() {
-        let selectedRecord = shared.selectedRecord
-        var amount = selectedRecord.amount
-        var description = selectedRecord.description
-        
-        // Updating the record
-        let localIdentifier = selectedRecord.localIdentifier
-        let query = PFQuery(className: "Record")
-        query.fromLocalDatastore()
-        query.whereKey("subUser", equalTo: localIdentifier)
-        query.getFirstObjectInBackgroundWithBlock { (record: PFObject?, error: NSError?) -> Void in
-            if (error != nil && record != nil) {
-                // No object found or some error
-                print("No object found or some error")
-                print(error)
-                print(record)
-            } else if let record = record {
-                // Record is found, proceed to update.
-                amount = Double(self.amountTextField.text!)!
-                description = self.descriptionTextField.text
-                
-                record["type"] = self.type
-                record["amount"] = amount
-                record["description"] = description
-                do {try record.pin()} catch {}
-                self.updateGlobalRecord( { (success) -> Void in
-                    
-                    if (success) {
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                    }
-                )
-                
-            }
-        }
-        
-    }
     @IBAction func back(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func updateGlobalRecord(completionHandler: CompletionHandler) {
-        var records = [RecordTable]()
-        let dateString = self.shared.dateString
-        let query = PFQuery(className: "Record")
-        let isSubUser = shared.isSubUser
-        if (isSubUser) {
-            query.whereKey("subuser", equalTo: shared.subuser)
-        }
-        query.whereKey("user", equalTo: user!)
-        query.whereKey("date", equalTo: dateString)
-        query.fromLocalDatastore()
-        do {
-            let objects = try query.findObjects()
-            for object in objects {
-                let date = object["date"] as! String
-                let type = object["type"] as! Int
-                let amount = object["amount"] as! Double
-                var description = object["description"]
-                var localIdentifierString = object["subUser"]
-                var recordedBy = object["subuser"]
-                if (recordedBy == nil) {
-                    recordedBy = ""
-                }
-                var typeString = ""
-                if (type == 0) {
-                    typeString = "Sales"
-                } else if (type == 1) {
-                    typeString = "COGS"
-                } else if (type == 2) {
-                    typeString = "Expenses"
-                }
-                
-                if (localIdentifierString == nil) {
-                    localIdentifierString = String(self.tempCounter += 1)
-                }
-                
-                if (description == nil || description as! String == "") {
-                    description = "No description"
-                }
-                let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
-                records.append(newRecord)
-            }
-            self.shared.records = records
-            completionHandler(success: true)
-        } catch {
-            print("Error caught")
-        }
     }
     
     // View Did Load
