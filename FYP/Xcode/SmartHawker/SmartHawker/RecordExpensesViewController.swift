@@ -13,13 +13,13 @@ class RecordExpensesViewController: UIViewController{
     // MARK: Properties
     // Variables
     var type = 1
-    let user = PFUser.currentUser()
-    typealias CompletionHandler = (success:Bool) -> Void
     var shared = ShareData.sharedInstance
+    
+    // Controller
+    let recordController = RecordController()
     
     // Labels
     @IBOutlet weak var todayDateLabel: UILabel!
-    @IBOutlet weak var recordSuccessLabel: UILabel!
     
     // Text Fields
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -42,19 +42,57 @@ class RecordExpensesViewController: UIViewController{
     }
     
     @IBAction func save(sender: UIButton) {
-        SubmitRecord({ (success) -> Void in
+        
+        // Properties of the new record
+        let description = descriptionTextField.text
+        let amount = Double(amountTextField.text!)
+        let isSubuser = shared.isSubUser
+        let subuser = shared.subuser
+        
+        // Check if recording is suceesful.
+        let recordSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        
+        if (recordSuccess) {
+            
+            // Record is sucessful, return to Record Day page.
             self.dismissViewControllerAnimated(true, completion: nil)
-        })
+        } else {
+            
+            // Record failed, popup to inform the user.
+            let errorAlert = UIAlertController(title: "Error", message: "Recording failed. Please try again.", preferredStyle: .Alert)
+            errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+            self.presentViewController(errorAlert, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func add(sender: UIButton) {
-        SubmitRecord({ (success) -> Void in
+        
+        // Properties of the new record
+        let description = descriptionTextField.text
+        let amount = Double(amountTextField.text!)
+        let isSubuser = shared.isSubUser
+        let subuser = shared.subuser
+        
+        // Check if recording is successful.
+        let recordSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        
+        if (recordSuccess) {
+            
+            // Recording successful, inform the user that they can enter another record.
             let alert = UIAlertController(title: "Success", message: "You may enter another record.", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
                 self.viewWillAppear(true)
             }))
             self.presentViewController(alert, animated: true, completion: nil)
-        })
+
+        } else {
+            
+            // Recording failed, popup to inform the user.
+            let errorAlert = UIAlertController(title: "Error", message: "Recording failed. Please try again.", preferredStyle: .Alert)
+            errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+            self.presentViewController(errorAlert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func selectOthersType(sender: UIButton) {
@@ -86,60 +124,9 @@ class RecordExpensesViewController: UIViewController{
         expensesCheckbok.image = UIImage(named: "record-blue-fade")
         COGSCheckbox.image = UIImage(named: "record-blue-fade")
     }
+    
     @IBAction func back(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func SubmitRecord(completionHandler: CompletionHandler) {
-        let descriptionToRecord = descriptionTextField.text
-        let amountToRecord = Double(amountTextField.text!)
-        var didRecord = false
-        let isSubUser = shared.isSubUser
-        
-        // Get the date to save in DB.
-        let dateString = self.shared.dateString
-        var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-        
-        let toRecord = PFObject(className: "Record")  // save sales
-        toRecord.ACL = PFACL(user: PFUser.currentUser()!)
-        
-        // Record Sales, if there is any value entered.
-        if (amountToRecord != nil && amountToRecord != 0) {
-            toRecord["date"] = dateString
-            toRecord["amount"] = amountToRecord
-            toRecord["user"] = PFUser.currentUser()
-            toRecord["type"] = type
-            if (isSubUser) {
-                toRecord["subuser"] = shared.subuser
-            } else {
-                toRecord["subuser"] = PFUser.currentUser()?.username
-            }
-            toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord["description"] = descriptionToRecord
-            // Save to local datastore
-            do{ try toRecord.pin() } catch {}
-            array.append(dateString)
-            didRecord = true
-        }
-        
-        
-        if (didRecord == true) {
-            // If there is any new record, shows success message, then refresh the view.
-            recordSuccessLabel.text = "Recording success!"
-            recordSuccessLabel.textColor = UIColor.blackColor()
-            recordSuccessLabel.hidden = false
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(array, forKey: "SavedDateArray")
-            
-            completionHandler(success: true)
-        } else {
-            // No record or only "0" entered. Shows error message.
-            self.recordSuccessLabel.text = "Recording failed. Please try again."
-            self.recordSuccessLabel.textColor = UIColor.redColor()
-            self.recordSuccessLabel.hidden = false
-            
-        }
-        
     }
     
     // View did load
@@ -155,7 +142,6 @@ class RecordExpensesViewController: UIViewController{
     override func viewWillAppear(animated: Bool) {
         amountTextField.text = ""
         descriptionTextField.text = ""
-        recordSuccessLabel.text = ""
     }
     
 }

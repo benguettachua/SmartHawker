@@ -10,7 +10,9 @@ import UIKit
 class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     
     // Mark: Properties
-    var type = 0
+    
+    // Controllers
+    let recordController = RecordController()
     
     // Categories
     @IBOutlet weak var saleButton: UIButton!
@@ -19,7 +21,6 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     // Labels
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var recordSuccessLabel: UILabel!
     @IBOutlet weak var todayDateLabel: UILabel!
     
     // Text Fields
@@ -29,135 +30,90 @@ class RecordSalesViewController: UIViewController, UITextFieldDelegate {
     // Button
     @IBOutlet weak var submitRecordButton: UIButton!
     
-    // Navigation Bar
-    @IBOutlet weak var navBar: UINavigationItem!
-    @IBOutlet weak var back: UIBarButtonItem!
-    @IBOutlet weak var settings: UIBarButtonItem!
-    
     // Variables
-    let user = PFUser.currentUser()
-    typealias CompletionHandler = (success:Bool) -> Void
-    var shared = ShareData.sharedInstance // This is the date selected from Main Calendar.
-    
-    // Array to store the records
-    var records = [RecordTable]()
+    var type = 0
+    var shared = ShareData.sharedInstance 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         // Populate the date selected
         let dateString = self.shared.dateString
         todayDateLabel.text = dateString
     }
     
-    func handleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
-            view.endEditing(true)
-        }
-        sender.cancelsTouchesInView = false
-    }
-    
-    
     // Mark: Action
     @IBAction func selectSales(sender: UIButton) {
         type = 0
     }
+    
     // Clicking this button will return the user back to the previous page.
     @IBAction func cancel(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     // Clicking this button will save the record, then return the user back to the previous page.
     @IBAction func save(sender: UIButton) {
-        SubmitRecord({ (success) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
         
+        // Properties of the new record
+        let description = descriptionTextField.text
+        let amount = Double(amountTextField.text!)
+        let isSubuser = shared.isSubUser
+        let subuser = shared.subuser
+        
+        // Check if recording is suceesful.
+        let recordSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        
+        if (recordSuccess) {
+            
+            // Record is sucessful, return to Record Day page.
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            
+            // Record failed, popup to inform the user.
+            let errorAlert = UIAlertController(title: "Error", message: "Recording failed. Please try again.", preferredStyle: .Alert)
+            errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+            self.presentViewController(errorAlert, animated: true, completion: nil)
+        }
     }
+    
     // Clicking this button will save the record, stay at the same page for user to save another record.
     @IBAction func add(sender: UIButton) {
-        SubmitRecord({ (success) -> Void in
+        
+        // Properties of the new record
+        let description = descriptionTextField.text
+        let amount = Double(amountTextField.text!)
+        let isSubuser = shared.isSubUser
+        let subuser = shared.subuser
+        
+        // Check if recording is successful.
+        let recordSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        
+        if (recordSuccess) {
+            
+            // Recording successful, inform the user that they can enter another record.
             let alert = UIAlertController(title: "Success", message: "You may enter another record.", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
                 self.viewWillAppear(true)
             }))
             self.presentViewController(alert, animated: true, completion: nil)
-        })
+            
+        } else {
+            
+            // Recording failed, popup to inform the user.
+            let errorAlert = UIAlertController(title: "Error", message: "Recording failed. Please try again.", preferredStyle: .Alert)
+            errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+            self.presentViewController(errorAlert, animated: true, completion: nil)
+        }
     }
+    
     @IBAction func back(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func SubmitRecord(completionHandler: CompletionHandler) {
-        let descriptionToRecord = descriptionTextField.text
-        let amountToRecord = Double(amountTextField.text!)
-        var didRecord = false
-        let isSubUser = shared.isSubUser
-        
-        // Get the date to save in DB.
-        let dateString = self.shared.dateString
-        var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
-        
-        let toRecord = PFObject(className: "Record")  // save sales
-        toRecord.ACL = PFACL(user: PFUser.currentUser()!)
-        
-        // Record Sales, if there is any value entered.
-        if (amountToRecord != nil && amountToRecord != 0) {
-            toRecord["date"] = dateString
-            toRecord["amount"] = amountToRecord
-            toRecord["user"] = PFUser.currentUser()
-            toRecord["type"] = type
-            if (isSubUser) {
-                toRecord["subuser"] = shared.subuser
-            } else {
-                toRecord["subuser"] = PFUser.currentUser()?.username
-            }
-            toRecord["subUser"] = NSUUID().UUIDString // This creates a unique identifier for this particular record.
-            toRecord["description"] = descriptionToRecord
-            // Save to local datastore
-            do{ try toRecord.pin() } catch {}
-            array.append(dateString)
-            didRecord = true
-        }
-        
-        
-        if (didRecord == true) {
-            // If there is any new record, shows success message, then refresh the view.
-            recordSuccessLabel.text = "Recording success!"
-            recordSuccessLabel.textColor = UIColor.blackColor()
-            recordSuccessLabel.hidden = false
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(array, forKey: "SavedDateArray")
-            
-            completionHandler(success: true)
-        } else {
-            // No record or only "0" entered. Shows error message.
-            self.recordSuccessLabel.text = "Recording failed. Please try again."
-            self.recordSuccessLabel.textColor = UIColor.redColor()
-            self.recordSuccessLabel.hidden = false
-            
-        }
-
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        recordSuccessLabel.resignFirstResponder()
-        submitRecordButton.resignFirstResponder()
-        return true
     }
     
     override func viewWillAppear(animated: Bool) {
         descriptionTextField.text = ""
         amountTextField.text = ""
-        recordSuccessLabel.text = ""
     }
     
 }
