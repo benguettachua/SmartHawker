@@ -235,15 +235,15 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
     // MARK: - WeatherGetterDelegate methods
     // -----------------------------------
     
-    func didGetWeather(weather: Weather) {
+    func didGetWeather(weather: [String: AnyObject]) {
         // This method is called asynchronously, which means it won't execute in the main queue.
         // All UI code needs to execute in the main queue, which is why we're wrapping the code
         // that updates all the labels in a dispatch_async() call.
         dispatch_async(dispatch_get_main_queue()) {
             
-            self.temperatureLabel.text = "\(Int(round(weather.tempCelsius)))°"
-            self.weatherLabel.text = weather.weatherDescription
-            let weatherID = String(weather.weatherID)
+            self.temperatureLabel.text = "\(String(weather["main"]!["temp"]!! as! Double - 273.15))°C"
+            self.weatherLabel.text = weather["weather"]![0]!["description"]!! as? String
+            let weatherID = String(weather["weather"]![0]["icon"]!!)
             if weatherID.containsString("01d") || weatherID.containsString("02d"){
                 self.weatherPicture.image = UIImage(named: "weather-sunny")
             }

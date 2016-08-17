@@ -24,7 +24,7 @@ import Foundation
 // - The weather was not acquired from OpenWeatherMap.org, or
 // - The received weather data could not be converted from JSON into a dictionary.
 protocol WeatherGetterDelegate {
-    func didGetWeather(weather: Weather)
+    func didGetWeather(weather: [String: AnyObject])
     func didNotGetWeather(error: NSError)
 }
 
@@ -77,11 +77,10 @@ class WeatherGetter {
                     // If we made it to this point, we've successfully converted the
                     // JSON-formatted weather data into a Swift dictionary.
                     // Let's now used that dictionary to initialize a Weather struct.
-                    let weather = Weather(weatherData: weatherData)
                     
                     // Now that we have the Weather struct, let's notify the view controller,
                     // which will use it to display the weather to the user.
-                    self.delegate.didGetWeather(weather)
+                    self.delegate.didGetWeather(weatherData)
                 }
                 catch let jsonError as NSError {
                     // An error occurred while trying to convert the data into a Swift dictionary.

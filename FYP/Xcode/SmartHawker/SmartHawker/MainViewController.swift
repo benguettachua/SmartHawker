@@ -461,7 +461,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     }
     
     
-    private func getWeather(weatherRequestURL: NSURL) {
+    private func getWeather(weatherRequestURL: NSURL){
         
         // This is a pretty simple networking task, so the shared session will do.
         let session = NSURLSession.sharedSession()
