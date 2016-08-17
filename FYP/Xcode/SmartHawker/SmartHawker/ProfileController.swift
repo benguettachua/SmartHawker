@@ -33,4 +33,20 @@ class ProfileController{
         self.user?.saveInBackground()
         
     }
+    
+    // Sync records to ensure local datastore and database are the same.
+    func sync() -> Bool {
+        
+        // Sync part 1: Save records from local datastore into database.
+        let saveSucceed = connectionDAO().saveRecordsIntoDatabase()
+        if (saveSucceed == false) {
+            return false
+        }
+        // Sync part 2: Retrieve all records from database and pin into local datastore
+        let loadSucceed = connectionDAO().loadRecordsIntoLocalDatastore()
+        if (loadSucceed == false) {
+            return false
+        }
+        return true
+    }
 }
