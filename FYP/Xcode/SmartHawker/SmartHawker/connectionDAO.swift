@@ -328,4 +328,24 @@ class connectionDAO{
             return false
         }
     }
+    
+    func checkEmail(newEmail: String) -> Bool{
+        // Part 1: Load from DB and pin into local datastore.
+        
+        let query = PFQuery(className: "User")
+        var emails = [PFObject]()
+        query.whereKey("email", equalTo: newEmail)
+        do{
+            emails = try query.findObjects()
+            if emails.count == 1{
+                // false means email is taken
+                return false
+            }
+            // true means ready to change
+            return true
+        } catch {
+            // false means theres some connection proble,
+            return false
+        }
+    }
 }

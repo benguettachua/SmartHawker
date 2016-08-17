@@ -20,38 +20,6 @@ class ProfileViewController: UIViewController {
     var shared = ShareData.sharedInstance
     
     // MARK: Action
-    func logout() {
-        PFUser.logOut()
-        self.performSegueWithIdentifier("logout", sender: self)
-    }
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Load the Top Bar
-        let user = PFUser.currentUser()
-        // Populate the top bar
-        if user != nil{
-            var name = user!["name"]
-            if (name == nil) {
-                name = "No name"
-            }
-            profileName.text! = name as! String
-            phoneNumber.text! = user!["phoneNumber"] as! String
-            
-            // Getting the profile picture
-            if let userPicture = user!["profilePicture"] as? PFFile {
-                userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                    if (error == nil) {
-                        self.profilePicture.image = UIImage(data: imageData!)
-                    }
-                }
-            }
-        }
-        
-        
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -106,7 +74,7 @@ class ProfileViewController: UIViewController {
         let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            self.logout()
+            ProfileController().logout()
         }))
         refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             

@@ -113,8 +113,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         var newBusinessAddress = ""
         var newBusinessRegNo = ""
         var newPINNumber = ""
-        let password = self.shared.password
-        
         //checks for name
         if name.text!.isEmpty == false{
             newName = name.text!.stringByTrimmingCharactersInSet(
@@ -193,7 +191,8 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //checks for email
         if email.text!.isEmpty == false{
             if isValidEmail(email.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())) {
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(email.text!.stringByTrimmingCharactersInSet(
+                    NSCharacterSet.whitespaceAndNewlineCharacterSet())){
                 newEmail = email.text!
             }else{
                 let error = "Invalid Email field."
@@ -422,7 +421,11 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(testStr)
+        
+        if emailTest.evaluateWithObject(testStr) && testStr != user!["email"] as! String{
+            return true
+        }
+        return false
     }
     
 }
