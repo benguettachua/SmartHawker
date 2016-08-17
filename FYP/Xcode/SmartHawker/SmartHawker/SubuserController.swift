@@ -45,4 +45,22 @@ class SubuserController {
         let currentPIN = subuser["pin"] as! String
         return dao.deleteSubuser(currentPIN)
     }
+    
+    // This method adds a new subuser.
+    func addNewSubuser(name: String, address: String, pin: String) -> Bool{
+        
+        // Validate that the field are not empty
+        if (name == "" || address == "" || pin == "") {
+            return false
+        }
+        
+        // Check if pin is taken
+        let subuserWithPIN = dao.getSubuserFromLocalDatastore(pin)
+        if (subuserWithPIN != nil) {
+            return false
+        }
+        
+        // Add new subuser and return if it is successful.
+        return dao.addNewSubuser(name, address: address, pin: pin)
+    }
 }

@@ -11,106 +11,55 @@ import UIKit
 class AddNewSubUserViewController: UIViewController {
     
     // MARK: Properties
+    
+    // Controllers
+    let subuserController = SubuserController()
+    
     // Text Field
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var PINTextField: UITextField!
     
-    // Variables
-    let user = PFUser.currentUser()
-    var PINS = [String]()
-    
     // MARK: Action
     @IBAction func addSubUser(sender: UIButton) {
-        let subUser = PFObject(className: "SubUser")
-        subUser.ACL = PFACL(user: user!)
-        var uniquePin = false
-        var validationCounter = 0
         
-        if (nameTextField.text?.characters.count > 0) {
-            // Validation to see if name is entered.
-            validationCounter += 1
-        }
+        let name = nameTextField.text
+        let address = addressTextField.text
+        let pin = PINTextField.text
         
-        if (addressTextField.text?.characters.count > 0) {
-            // Validation to see if address is entered.
-            validationCounter += 1
-        }
-        
-        if (PINTextField.text?.characters.count == 4) {
-            // Validation to insist 4 character for PIN
-            validationCounter++
-        }
-        
-        if (validationCounter == 3) {
-            // All validation pass
-            let pinToRecord = PINTextField.text
-            // Sub User Properties
-            subUser["user"] = user
-            subUser["name"] = nameTextField.text
-            if (PINS.contains(pinToRecord!) == false) {
-                subUser["pin"] = PINTextField.text
-                uniquePin = true
+        let processingAlert = UIAlertController(title: "Processing", message: "Adding subuser, please wait.", preferredStyle: .Alert)
+        self.presentViewController(processingAlert, animated: true) {
+            let addSucess = self.subuserController.addNewSubuser(name!, address: address!, pin: pin!)
+            
+            if (addSucess) {
+                
+                // Dismiss the processing alert and inform success.
+                processingAlert.dismissViewControllerAnimated(true, completion: {
+                    
+                    // Subuser is added successfully, popup to inform success.
+                    let successAlert = UIAlertController(title: "Success", message: "Subuser has been added.", preferredStyle: .Alert)
+                    successAlert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { Void in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }))
+                    self.presentViewController(successAlert, animated: true, completion: nil)
+                })
+                
             } else {
-                uniquePin = false
+                
+                // Dismiss the processing alert and inform fail.
+                processingAlert.dismissViewControllerAnimated(true, completion: {
+                    
+                    // Subuser is added failed, popup to inform fail.
+                    let successAlert = UIAlertController(title: "Failed", message: "Please try again later.", preferredStyle: .Alert)
+                    successAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+                    self.presentViewController(successAlert, animated: true, completion: nil)
+                })
             }
-            subUser["address"] = addressTextField.text
-            if (uniquePin) {
-                do{
-                    try subUser.save()
-                    updateLocalSubuserList()
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                } catch {
-                    // do something to show save failed.
-                    let alert = UIAlertController(title: "Save failed", message: "PIN entered is used for another user, PIN must be unique!", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Got it!", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                }
-            } else {
-                // do something to show save failed.
-                let alert = UIAlertController(title: "Save failed", message: "PIN entered is used for another user, PIN must be unique!", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Got it!", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        } else {
-            let alert = UIAlertController(title: "Save failed", message: "All fields are required. PIN must be 4 digits, please try again!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
     // Back
     @IBAction func back(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Get all PINS that are used
-        let defaults = NSUserDefaults.standardUserDefaults()
-        PINS = defaults.objectForKey("allPINS") as! [String]
-    }
-    
-    func updateLocalSubuserList() {
-        let query = PFQuery(className: "SubUser")
-        var objects = [PFObject]()
-        query.whereKey("user", equalTo: user!)
-        do {
-            objects = try query.findObjects()
-            try PFObject.pinAll(objects)
-            for object in objects {
-                let PIN = object["pin"] as! String
-                PINS.append(PIN)
-                
-            }
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(PINS, forKey: "allPINS")
-            
-        } catch {
-            print("Error")
-        }
-        
     }
 }

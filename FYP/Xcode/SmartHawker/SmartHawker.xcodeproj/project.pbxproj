@@ -290,7 +290,6 @@
 				6A6834AA1D05C95E00E9A0AD /* ViewController.swift */,
 				AF3C0EB01D618231008E5FAB /* View */,
 				AF3C0EAF1D6181BD008E5FAB /* Controllers */,
-				6A8999511D548E6E003866BC /* Subuser View Controllers */,
 				6AC9A6321D54758300DF3DF3 /* Collection View Controllers (Needs update) */,
 				DC7F67FF1D1E604F00F2C2B1 /* ReportsViewController.swift */,
 				6A475E811D6332BB008E8D0A /* Table View Cells */,
@@ -332,14 +331,6 @@
 				6A6834CA1D05C95F00E9A0AD /* Info.plist */,
 			);
 			path = SmartHawkerUITests;
-			sourceTree = "<group>";
-		};
-		6A8999511D548E6E003866BC /* Subuser View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				6A016B811D4F798F007C38E4 /* AddNewSubUserViewController.swift */,
-			);
-			name = "Subuser View Controllers";
 			sourceTree = "<group>";
 		};
 		6AB7542E1D10591100DFB0B2 /* Frameworks */ = {
@@ -389,9 +380,9 @@
 		AF3C0EAF1D6181BD008E5FAB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AF8F72781D61DEE3009A149E /* MainController.swift */,
 				6A0E199E1D61854A00564FF3 /* AdminPINController.swift */,
 				6A1434991D5F0AC800D19A7A /* LoginController.swift */,
+				AF8F72781D61DEE3009A149E /* MainController.swift */,
 				6A475E7B1D61C053008E8D0A /* RecordDayController.swift */,
 				6A475E7D1D62B6FD008E8D0A /* RecordController.swift */,
 				6A0E199C1D60376F00564FF3 /* RegistrationController.swift */,
@@ -404,11 +395,12 @@
 		AF3C0EB01D618231008E5FAB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AF8F72711D61B760009A149E /* MainViewControllerNew.swift */,
+				6A016B811D4F798F007C38E4 /* AddNewSubUserViewController.swift */,
 				6A61FF461D394FB600996C65 /* AdminPINViewController.swift */,
 				AF8F726C1D61B162009A149E /* ContactUsPageView.swift */,
 				AF8F726E1D61B16B009A149E /* FAQPageView.swift */,
 				6AF9C5161D1840A7000533E0 /* LoginViewController.swift */,
+				AF8F72711D61B760009A149E /* MainViewControllerNew.swift */,
 				6A016B771D4CECAC007C38E4 /* RecordDayViewController.swift */,
 				6A016B831D505BFA007C38E4 /* RecordExpensesViewController.swift */,
 				6A096BFC1D21714C007BF9EB /* RecordSalesViewController.swift */,

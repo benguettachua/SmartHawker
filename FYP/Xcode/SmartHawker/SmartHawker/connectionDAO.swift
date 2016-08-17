@@ -304,7 +304,7 @@ class connectionDAO{
         do {
             subuser = try query.getFirstObject()
             try subuser.unpin()
-            subuser.deleteEventually()
+            try subuser.delete()
             return true
         } catch {
             return false
@@ -322,7 +322,7 @@ class connectionDAO{
             subuser = try query.getFirstObject()
             subuser["pin"] = newPIN
             try subuser.pin()
-            subuser.saveEventually()
+            try subuser.save()
             return true
         } catch {
             return false
@@ -345,6 +345,24 @@ class connectionDAO{
             return true
         } catch {
             // false means theres some connection proble,
+            return false
+        }
+    }
+    
+    // Adds a new subuser
+    func addNewSubuser(name: String, address: String, pin: String) -> Bool {
+        let subuser = PFObject(className: "SubUser")
+        subuser.ACL = PFACL(user: PFUser.currentUser()!)
+        subuser["user"] = PFUser.currentUser()
+        subuser["name"] = name
+        subuser["address"] = address
+        subuser["pin"] = pin
+        
+        do {
+            try subuser.save()
+            try subuser.pin()
+            return true
+        } catch {
             return false
         }
     }
