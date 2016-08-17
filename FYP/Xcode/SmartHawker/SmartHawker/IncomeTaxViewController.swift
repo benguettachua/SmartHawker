@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReportsViewController: UIViewController, UITextFieldDelegate {
+class IncomeTaxViewController: UIViewController, UITextFieldDelegate {
     
     // Mark: Properties
     // General Variables
