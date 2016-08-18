@@ -28,7 +28,7 @@ public class CalendarView: UIView {
     static var weekLabelTextColor = UIColor.blackColor()
     
     static var dayWithRecordings = UIColor.orangeColor()
-    static var dayFont = UIFont.systemFontOfSize(15)
+    static var dayFont = UIFont.systemFontOfSize(16)
   }
 
     public class var dayBackgroundColor: UIColor {
@@ -165,3 +165,4 @@ extension CalendarView: UIScrollViewDelegate {
   }
 
 }
+
