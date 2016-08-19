@@ -73,6 +73,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                     }
                 }
             }
+            
             let targetTextField = alert.textFields![0] as UITextField
             if (targetTextField.text != nil && targetTextField.text != "") {
                 let toRecord = PFObject(className: "Record")
