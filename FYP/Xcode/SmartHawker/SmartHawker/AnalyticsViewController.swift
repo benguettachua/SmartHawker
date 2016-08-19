@@ -72,87 +72,24 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
 
         
         //loads data form local database
-        loadRecordsFromLocaDatastore({ (success) -> Void in
             
-            let (salesList, expensesList, profitsMonthly) = self.yearlyCalculation(String(self.today.year))
-            let (salesListForDay, expensesListForDay, days) = self.monthlyCalculation(numDays)
+            let (salesList, expensesList, profitsMonthly) = AnalyticsController().yearlyCalculation(String(self.today.year))
+            let (salesListForDay, expensesListForDay, days) = AnalyticsController().monthlyCalculation(numDays)
             //let totalProfitForMonth = self.monthlyCalculation(numDays, month: String(self.today.month), year: String(self.today.year))
             //for average profit per day
             
             //for average profit per month
-            
-            print(self.days.count)
-            print("for max profit day")
-            print(self.maxProfitForDay)
-            print(self.maxProfitDay)
-            print("for max profit month")
-            print(self.maxProfit)
-            print(self.maxProfitMonth)
+        
             //for monthly
             self.setData(days, values1: salesListForDay, values2: expensesListForDay, values3: [], chart: self.monthChart)
             //for yearly
             self.setData(self.months, values1: salesList, values2: expensesList, values3: profitsMonthly, chart: self.yearChart)
             
-        })
+        
 
         
     }
 
-    
-    func loadRecordsFromLocaDatastore(completionHandler: CompletionHandler) {
-        // Load from local datastore into UI.
-        self.records.removeAll()
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        query.fromLocalDatastore()
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // Do something with the found objects
-                if let objects = objects {
-                    for object in objects {
-                        let dateString = object["date"] as! String
-                        let type = object["type"] as! Int
-                        let amount = object["amount"] as! Double
-                        var localIdentifierString = object["subUser"]
-                        var recordedBy = object["subuser"]
-                        if (recordedBy == nil) {
-                            recordedBy = ""
-                        }
-                        var typeString = ""
-                        if (type == 0) {
-                            typeString = "Sales"
-                        } else if (type == 1) {
-                            typeString = "COGS"
-                        } else if (type == 2) {
-                            typeString = "Expenses"
-                        } else if (type == 3) {
-                            typeString = "Recurring Expenses"
-                        }
-                        
-                        var description = object["description"]
-                        
-                        if (description == nil || description as! String == "") {
-                            description = "No description"
-                        }
-                        
-                        if (localIdentifierString == nil) {
-                            localIdentifierString = String(self.tempCounter += 1)
-                        }
-                        
-                        let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
-                        self.records.append(newRecord)
-                    }
-                    completionHandler(success: true)
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
-        }
-    }
     
     func setData(dataPoints : [String], values1 : [Double], values2 : [Double], values3: [Double], chart: LineChartView!) {
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
@@ -162,11 +99,11 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         
         for i in 0..<dataPoints.count {
             print(dataPoints[i])
-            stringData.append(dataPoints[i] as! String)
+            stringData.append(dataPoints[i])
         }
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: (Double)(values1[i] as! NSNumber), xIndex: i)
+            let dataEntry = ChartDataEntry(value: (Double)(values1[i] as NSNumber), xIndex: i)
             dataEntries1.append(dataEntry)
         }
         
@@ -186,7 +123,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         dataSets.append(lineChartDataSet1)
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: (Double)(values2[i] as! NSNumber), xIndex: i)
+            let dataEntry = ChartDataEntry(value: (Double)(values2[i] as NSNumber), xIndex: i)
             dataEntries2.append(dataEntry)
         }
         
@@ -208,7 +145,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
             var dataEntries3: [ChartDataEntry] = []
             
             for i in 0..<dataPoints.count {
-                let dataEntry = ChartDataEntry(value: (Double)(values3[i] as! NSNumber), xIndex: i)
+                let dataEntry = ChartDataEntry(value: (Double)(values3[i] as NSNumber), xIndex: i)
                 dataEntries3.append(dataEntry)
             }
             
@@ -239,115 +176,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         chart.data = data
         chart.leftAxis.axisMinValue = 1
     }
-    
-    func monthlyCalculation(numDays: Int) -> ([Double]! , [Double]!, [String]!) {
 
-        var totalProfitForMonth = 0.0
-        var salesListForDay = [Double]()
-        var expensesListForDay = [Double]()
-        var profitDaily = [Double]()
-        var days = [String]()
-        
-        var stringOfDayMonthYear = ""
-        if today.month < 10{
-            stringOfDayMonthYear = "0" + String(today.month) + "/" + String(today.year)
-        }else{
-            stringOfDayMonthYear = String(today.month) + "/" + String(today.year)
-        }
-            for day in 1...numDays{
-                    var salesAmountForDay = 0.0
-                    var expensesAmountForDay = 0.0
-                    var profitForDay = 0.0
-                    var yearMonthDay = ""
-                    if day < 10 {
-                        yearMonthDay = "0" + String(day) + "/" + stringOfDayMonthYear
-                    }else{
-                        yearMonthDay = String(day) + "/" + stringOfDayMonthYear
-                    }
-                    days.append(yearMonthDay)
-                    for record in self.records {
-                        if record.date.containsString(yearMonthDay){
-                            let type = record.type
-                            let amount = Double(record.amount)
-                            //let subuser = object["subuser"] as? String
-                            if (type == "Sales") {
-                                salesAmountForDay += amount
-                            } else if (type == "COGS") {
-                                expensesAmountForDay += amount
-                            } else if (type == "Expenses") {
-                                expensesAmountForDay += amount
-                            } else if (type == "Recurring Expenses"){
-                                expensesAmountForDay += amount
-                            }
-                        }
-                        
-                    }
-                    //for month
-                    salesListForDay.append(salesAmountForDay)
-                    expensesListForDay.append(expensesAmountForDay)
-                    profitForDay = salesAmountForDay - expensesAmountForDay
-                    totalProfitForMonth += profitForDay
-                    if profitForDay > self.maxProfitForDay{
-                        self.maxProfitForDay = profitForDay
-                        self.maxProfitDay = yearMonthDay
-                    }
-                    profitDaily.append(Double(profitForDay))
-                }
-            
-            
-        
-        return (salesListForDay, expensesListForDay, days)
-    }
-    func yearlyCalculation(year: String) -> ([Double]! , [Double]!, [Double]!){
-        
-        var i = 0
-        var totalProfitForYear = 0.0
-        var salesList = [Double]()
-        var expensesList = [Double]()
-        var profitsMonthly = [Double]()
-        var stringMonths = [String]()
-        for month in self.monthsInNum{
-            
-            let yearAndMonth = String(month) + "/" + String(year)
-            var salesAmount = 0.0
-            var expensesAmount = 0.0
-            var profit = 0.0
-            stringMonths.append(yearAndMonth)
-            for record in self.records {
-                if record.date.containsString(yearAndMonth){
-                    let type = record.type
-                    let amount = Double(record.amount)
-                    //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
-                        salesAmount += amount
-                    } else if (type == "COGS") {
-                        expensesAmount += amount
-                    } else if (type == "Expenses") {
-                        expensesAmount += amount
-                    } else if (type == "Recurring Expenses"){
-                        expensesAmount += amount
-                    }
-                }
-                
-            }
-            
-            //for year
-            salesList.append(salesAmount)
-            expensesList.append(expensesAmount)
-            profit = salesAmount - expensesAmount
-            totalProfitForYear += profit
-            if profit > self.maxProfit{
-                self.maxProfit = profit
-                self.maxProfitMonth = self.months[i]
-            }
-            profitsMonthly.append(Double(profit))
-            
-            
-            
-            i += 1
-        }
-        return (salesList, expensesList, profitsMonthly)
-    }
     
     
 }
