@@ -215,6 +215,7 @@ class connectionDAO{
         } catch {
             return false
         }
+        return false
     }
     
     // Save record to local datastore

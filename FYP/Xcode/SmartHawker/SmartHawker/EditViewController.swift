@@ -261,21 +261,27 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         
         if error == 0 {
-            self.user!["name"] = newName
-            self.user!["phoneNumber"] = newPhoneNumber
-            self.user!["email"] = newEmail
-            self.user!["adminPin"] = newPINNumber
-            self.user!["businessAddress"] = newBusinessAddress
-            self.user!["businessName"] = newBusinessName
-            self.user!["businessNumber"] = newBusinessRegNo
-            self.user!["profilePicture"] = imageFile
-            self.user?.saveInBackground()
             
+            print(newName)
+            print(newEmail)
+            print(newPhoneNumber)
+            print(newPINNumber)
+            print(newBusinessAddress)
+            print(newBusinessRegNo)
+            print(imageFile)
+            let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: imageFile)
+            if edited == true{
             let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
             
             self.presentViewController(alert, animated: true, completion: nil)
-            
+                
+            }else{
+                let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
 
 
             
