@@ -30,7 +30,7 @@ class UpdateSalesViewController: UIViewController{
     
     @IBAction func save(sender: UIButton) {
         
-        let localIdentifier = shared.selectedRecord.localIdentifier
+        let localIdentifier = shared.selectedRecord["subUser"] as! String
         let amount = Double(amountTextField.text!)
         let description = descriptionTextField.text
         
@@ -63,7 +63,7 @@ class UpdateSalesViewController: UIViewController{
         super.viewDidLoad()
         
         let selectedRecord = shared.selectedRecord
-        let amount = selectedRecord.amount
+        let amount = selectedRecord["amount"] as! Double
         let description = selectedRecord.description
         self.amountTextField.text = String(amount)
         self.descriptionTextField.text = description

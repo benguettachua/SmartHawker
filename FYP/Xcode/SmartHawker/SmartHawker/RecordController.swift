@@ -57,9 +57,9 @@ class RecordController {
     }
     
     // This function deletes the selected record.
-    func deleteRecord(record: RecordTable) -> Bool {
+    func deleteRecord(record: PFObject) -> Bool {
         
-        let localIdentifier = record.localIdentifier
+        let localIdentifier = record["subUser"] as! String
         let deletesuccess = dao.deleteRecord(localIdentifier)
         
         if(deletesuccess) {

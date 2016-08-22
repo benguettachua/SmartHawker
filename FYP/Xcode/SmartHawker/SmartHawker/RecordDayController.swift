@@ -13,9 +13,9 @@ class RecordDayController {
     let shared = ShareData.sharedInstance
     
     // Loads all records made on the day and return an array of RecordTable
-    func loadRecord() -> [RecordTable]{
+    func loadRecord() -> [PFObject]{
         
-        var records = [RecordTable]()
+        var records = [PFObject]()
         var PFRecords: [PFObject]?
         let isSubuser = shared.isSubUser
         let dateToLoad = shared.dateString
@@ -29,46 +29,48 @@ class RecordDayController {
             
             // Process all records found into [RecordTable] array.
             for record in PFRecords! {
-                let date = record["date"] as! String
-                let type = record["type"] as! Int
-                let amount = record["amount"] as! Double
-                var localIdentifierString = record["subUser"]
-                var recordedBy = record["subuser"]
-                if (recordedBy == nil) {
-                    recordedBy = ""
-                }
-                var typeString = ""
-                if (type == 0) {
-                    typeString = "Sales"
-                } else if (type == 1) {
-                    typeString = "COGS"
-                } else if (type == 2) {
-                    typeString = "Expenses"
-                } else if (type == 3){
-                    typeString = "Fixed Monthly Expenses"
-                }
                 
-                var description = record["description"]
-                
-                if (description == nil || description as! String == "") {
-                    description = "No description"
-                }
-                
-                if (localIdentifierString == nil) {
-                    localIdentifierString = NSUUID().UUIDString
-                }
-                
-                let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
-                records.append(newRecord)
+                records.append(record)
+//                let date = record["date"] as! String
+//                let type = record["type"] as! Int
+//                let amount = record["amount"] as! Double
+//                var localIdentifierString = record["subUser"]
+//                var recordedBy = record["subuser"]
+//                if (recordedBy == nil) {
+//                    recordedBy = ""
+//                }
+//                var typeString = ""
+//                if (type == 0) {
+//                    typeString = "Sales"
+//                } else if (type == 1) {
+//                    typeString = "COGS"
+//                } else if (type == 2) {
+//                    typeString = "Expenses"
+//                } else if (type == 3){
+//                    typeString = "Fixed Monthly Expenses"
+//                }
+//                
+//                var description = record["description"]
+//                
+//                if (description == nil || description as! String == "") {
+//                    description = "No description"
+//                }
+//                
+//                if (localIdentifierString == nil) {
+//                    localIdentifierString = NSUUID().UUIDString
+//                }
+//                
+//                let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
+//                records.append(newRecord)
             }
         }
         return records
     }
     
     // This function deletes the selected record.
-    func deleteRecord(record: RecordTable) -> Bool {
+    func deleteRecord(record: PFObject) -> Bool {
         
-        let localIdentifier = record.localIdentifier
+        let localIdentifier = record["subUser"] as! String
         let deletesuccess = dao.deleteRecord(localIdentifier)
         
         if(deletesuccess) {

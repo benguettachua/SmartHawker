@@ -14,7 +14,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: Properties
     // Variable
     var shared = ShareData.sharedInstance
-    var records = [RecordTable]()
+    var records = [PFObject]()
     let recordDayController = RecordDayController()
     
     // Labels
@@ -60,11 +60,11 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
             for (i,num) in records.enumerate().reverse() {
                 
                 // Removing records that have amount $0.00 as it means that the record is deleted.
-                if (records[i].amount == 0) {
+                if (records[i]["amount"] as! Double == 0) {
                     records.removeAtIndex(i)
                     
                 // Removing records that have type "" as it should not be shown.
-                } else if (records[i].type == ""){
+                } else if (records[i]["type"] as! Int == 3){
                     records.removeAtIndex(i)
                 }
             }
@@ -160,33 +160,41 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
         // Description Label
-        cell.descriptionLabel.text = records[indexPath.row].description
+        cell.descriptionLabel.text = records[indexPath.row]["description"] as! String
         cell.descriptionLabel.font = UIFont(name: cell.descriptionLabel.font.fontName, size: 12)
         
         // Amount Label
-        let amount = records[indexPath.row].amount
+        let amount = records[indexPath.row]["amount"] as! Double
         let amountString2dp = "$" + String(format:"%.2f", amount)
         cell.amountLabel.text = amountString2dp
         cell.amountLabel.font = UIFont(name: cell.amountLabel.font.fontName, size: 12)
 
         // Type Label
-        let type = records[indexPath.row].type
-        cell.recordTypeLabel.text = type
+        let type = records[indexPath.row]["type"] as! Int
+        var typeString = ""
+        if (type == 0) {
+            typeString = "Sales"
+        } else if (type == 1) {
+            typeString = "COGS"
+        } else if (type == 2) {
+            typeString = "Expenses"
+        }
+        cell.recordTypeLabel.text = typeString
         cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
         
         // Image Button Colour
-        if (type == "Sales") {
+        if (type == 0) {
             cell.buttonImageView.image = UIImage(named: "record-green")
-        } else if (type == "COGS") {
+        } else if (type == 1) {
             cell.buttonImageView.image = UIImage(named: "record-red")
-        } else if (type == "Expenses") {
+        } else if (type == 2) {
             cell.buttonImageView.image = UIImage(named: "record-red")
         } else {
             cell.buttonImageView.hidden = true
         }
         
         // Recorded by
-        cell.recordedByLabel.text = records[indexPath.row].recordedUser
+        cell.recordedByLabel.text = records[indexPath.row]["subuser"] as! String
         
         // Cell background
         cell.backgroundColor = UIColor(white: 1, alpha: 0.0)

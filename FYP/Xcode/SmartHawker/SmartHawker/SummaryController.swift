@@ -24,8 +24,8 @@ class SummaryController: UIViewController {
     var monthAndYear = String()
     var dateString = String()
     var tempCounter = 0
-    var records = [RecordTable]()
-    var fixRecords = [RecordTable]()
+    var records = [PFObject]()
+    var fixRecords = [PFObject]()
     var years = [Int]()
     var year = Int()
     var actualMonthDate = moment(NSDate())
@@ -110,37 +110,37 @@ class SummaryController: UIViewController {
                 // Do something with the found objects
                 if let objects = objects {
                     for object in objects {
-                        let date = object["date"] as! String
-                        let type = object["type"] as! Int
-                        let amount = object["amount"] as! Double
-                        var localIdentifierString = object["subUser"]
-                        var recordedBy = object["subuser"]
-                        if (recordedBy == nil) {
-                            recordedBy = ""
-                        }
-                        var typeString = ""
-                        if (type == 0) {
-                            typeString = "Sales"
-                        } else if (type == 1) {
-                            typeString = "COGS"
-                        } else if (type == 2) {
-                            typeString = "Expenses"
-                        } else if (type == 3){
-                            typeString = "Expenses"
-                        }
-                        
-                        var description = object["description"]
-                        
-                        if (description == nil || description as! String == "") {
-                            description = "No description"
-                        }
-                        
-                        if (localIdentifierString == nil) {
-                            localIdentifierString = String(self.tempCounter += 1)
-                        }
-                        
-                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
-                        self.records.append(newRecord)
+//                        let date = object["date"] as! String
+//                        let type = object["type"] as! Int
+//                        let amount = object["amount"] as! Double
+//                        var localIdentifierString = object["subUser"]
+//                        var recordedBy = object["subuser"]
+//                        if (recordedBy == nil) {
+//                            recordedBy = ""
+//                        }
+//                        var typeString = ""
+//                        if (type == 0) {
+//                            typeString = "Sales"
+//                        } else if (type == 1) {
+//                            typeString = "COGS"
+//                        } else if (type == 2) {
+//                            typeString = "Expenses"
+//                        } else if (type == 3){
+//                            typeString = "Expenses"
+//                        }
+//                        
+//                        var description = object["description"]
+//                        
+//                        if (description == nil || description as! String == "") {
+//                            description = "No description"
+//                        }
+//                        
+//                        if (localIdentifierString == nil) {
+//                            localIdentifierString = String(self.tempCounter += 1)
+//                        }
+//                        
+//                        let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
+                        self.records.append(object)
                     }
                     completionHandler(success: true)
                 }
@@ -175,18 +175,18 @@ class SummaryController: UIViewController {
             }
             days.append(stringToCheck)
             for record in self.records {
-                
-                if record.date.containsString(stringToCheck){
-                    let type = record.type
-                    let amount = Double(record.amount)
+                let date = record["date"] as! String
+                if date.containsString(stringToCheck){
+                    let type = record["type"] as! Int
+                    let amount = record["amount"] as! Double
                     //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
+                    if (type == 0) {
                         salesAmount += amount
                         totalSalesAmount += amount
-                    } else if (type == "COGS") {
+                    } else if (type == 1) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
-                    } else if (type == "Expenses") {
+                    } else if (type == 2) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
                     }
@@ -226,18 +226,18 @@ class SummaryController: UIViewController {
             }
             let stringOfMonth = text + "/" + self.dateString
             for record in self.records {
-                
-                if record.date.containsString(stringOfMonth){
-                    let type = record.type
-                    let amount = Double(record.amount)
+                let date = record["date"] as! String
+                if date.containsString(stringOfMonth){
+                    let type = record["type"] as! Int
+                    let amount = record["amount"] as! Double
                     //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
+                    if (type == 0) {
                         salesAmount += amount
                         totalSalesAmount += amount
-                    } else if (type == "COGS") {
+                    } else if (type == 1) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
-                    } else if (type == "Expenses") {
+                    } else if (type == 2) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
                     }
@@ -268,17 +268,18 @@ class SummaryController: UIViewController {
             var expensesAmount = 0.00
             dataPoints.append(stringToCheck)
             for record in self.records {
-                if record.date.containsString(stringToCheck){
-                    let type = record.type
-                    let amount = Double(record.amount)
+                let date = record["date"] as! String
+                if date.containsString(stringToCheck){
+                    let type = record["type"] as! Int
+                    let amount = record["amount"] as! Double
                     //let subuser = object["subuser"] as? String
-                    if (type == "Sales") {
+                    if (type == 0) {
                         salesAmount += amount
                         totalSalesAmount += amount
-                    } else if (type == "COGS") {
+                    } else if (type == 1) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
-                    } else if (type == "Expenses") {
+                    } else if (type == 2) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
                     }

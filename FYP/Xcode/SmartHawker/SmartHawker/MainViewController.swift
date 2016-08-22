@@ -14,11 +14,11 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     // Mark: Properties
     var tempCounter = 0
-    var records = [RecordTable]()
+    var records = [PFObject]()
     var day: String!
     typealias CompletionHandler = (success:Bool) -> Void
     let user = PFUser.currentUser()
-    var datesAndRecords = [String:[RecordTable]]()
+    var datesAndRecords = [String:[PFObject]]()
     let locationManager = CLLocationManager()
     var targetAvailable = false
     var targetAmount = 0.0
@@ -180,14 +180,14 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 
                 for record in myValue {
                     if earlier || same {
-                        if self.datesWithRecords.contains(record.date) == false {
-                            self.datesWithRecords.append(record.date)
+                        if self.datesWithRecords.contains(record["date"] as! String) == false {
+                            self.datesWithRecords.append(record["date"] as! String)
                             totalDays += 1.0
                         }
-                        let type = record.type
-                        let amount = Double(record.amount)
+                        let type = record["type"] as! Int
+                        let amount = record["amount"] as! Double
                         //let subuser = object["subuser"] as? String
-                        if (type == "Sales") {
+                        if (type == 0) {
                             totalProfit += amount
                             totalSales += amount
                             profit += amount
@@ -197,7 +197,7 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                             //to get max and min sales
                             if highSales == nil && sales > 0{
                                 highSales = sales
-                                highSalesDay = record.date
+                                highSalesDay = record["date"] as! String
                             }else if sales > highSales{
                                 highSales = sales
                                 highSalesDay = myKey
@@ -212,11 +212,11 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                                 lowSalesDay = myKey
                             }
                             
-                        } else if (type == "COGS") {
+                        } else if (type == 1) {
                             expenses += amount
                             profit -= amount
                             totalProfit -= amount
-                        } else if (type == "Expenses") {
+                        } else if (type == 2) {
                             expenses += amount
                             profit -= amount
                             totalProfit -= amount
@@ -302,43 +302,43 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
                 if let objects = objects {
                     for object in objects {
                         let dateString = object["date"] as! String
-                        let type = object["type"] as! Int
-                        let amount = object["amount"] as! Double
-                        var localIdentifierString = object["subUser"]
-                        var recordedBy = object["subuser"]
-                        if (recordedBy == nil) {
-                            recordedBy = ""
-                        }
-                        var typeString = ""
-                        if (type == 0) {
-                            typeString = "Sales"
-                        } else if (type == 1) {
-                            typeString = "COGS"
-                        } else if (type == 2) {
-                            typeString = "Expenses"
-                        } else if (type == 3){
-                            typeString = "fixMonthlyExpenses"
-                        }
-                        
-                        var description = object["description"]
-                        
-                        if (description == nil || description as! String == "") {
-                            description = "No description"
-                        }
-                        
-                        if (localIdentifierString == nil) {
-                            localIdentifierString = String(self.tempCounter += 1)
-                        }
-                        
-                        let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
-                        self.records.append(newRecord)
+//                        let type = object["type"] as! Int
+//                        let amount = object["amount"] as! Double
+//                        var localIdentifierString = object["subUser"]
+//                        var recordedBy = object["subuser"]
+//                        if (recordedBy == nil) {
+//                            recordedBy = ""
+//                        }
+//                        var typeString = ""
+//                        if (type == 0) {
+//                            typeString = "Sales"
+//                        } else if (type == 1) {
+//                            typeString = "COGS"
+//                        } else if (type == 2) {
+//                            typeString = "Expenses"
+//                        } else if (type == 3){
+//                            typeString = "fixMonthlyExpenses"
+//                        }
+//                        
+//                        var description = object["description"]
+//                        
+//                        if (description == nil || description as! String == "") {
+//                            description = "No description"
+//                        }
+//                        
+//                        if (localIdentifierString == nil) {
+//                            localIdentifierString = String(self.tempCounter += 1)
+//                        }
+//                        
+//                        let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
+                        self.records.append(object)
                         array.append(dateString)
                         if self.datesAndRecords[dateString] == nil {
-                            var arrayForRecords = [RecordTable]()
-                            arrayForRecords.append(newRecord)
+                            var arrayForRecords = [PFObject]()
+                            arrayForRecords.append(object)
                             self.datesAndRecords[dateString] = arrayForRecords
                         }else{
-                            self.datesAndRecords[dateString]?.append(newRecord)
+                            self.datesAndRecords[dateString]?.append(object)
                         }
                     }
                     let defaults = NSUserDefaults.standardUserDefaults()

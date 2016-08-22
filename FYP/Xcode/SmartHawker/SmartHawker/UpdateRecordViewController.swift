@@ -24,7 +24,7 @@ class UpdateRecordViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let editType = shared.selectedRecord.type
+        let editType = shared.selectedRecord["type"] as! String
         if (editType == "Sales") {
             self.expensesView.alpha = 0
             self.salesView.alpha = 1

@@ -30,8 +30,7 @@ class ShareData {
     var dateString: String!
     var toDisplayDate: String!
     var password: String!
-    var records: [RecordTable]!
+    var records: [PFObject]!
     var rowNo: Int!
-    var selectedRecord: RecordTable!
-    var items: [[RecordTable]] = [[], [], []]
+    var selectedRecord: PFObject!
 }

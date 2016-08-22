@@ -24,8 +24,8 @@ class SummaryViewController: UIViewController {
     var monthAndYear = String()
     var dateString = String()
     var tempCounter = 0
-    var records = [RecordTable]()
-    var fixRecords = [RecordTable]()
+    var records = [PFObject]()
+    var fixRecords = [PFObject]()
     var years = [Int]()
     var year = Int()
     var actualMonthDate = moment(NSDate())

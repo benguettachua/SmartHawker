@@ -36,7 +36,7 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
     var salesListForDay: [Double]!
     var expensesListForDay: [Double]!
     typealias CompletionHandler = (success:Bool) -> Void
-    var records = [RecordTable]()
+    var records = [PFObject]()
     // Load the Top Bar
     let user = PFUser.currentUser()
     var tempCounter = 0
