@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class AdminPINViewController: UIViewController {
     
     // MARK: Properties
@@ -41,6 +40,7 @@ class AdminPINViewController: UIViewController {
         submitButton.setTitle("Submit".localized(), forState: .Normal)
         cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
         adminPINTextField.placeholder = "Enter your PIN here".localized()
+        
         
     }
     
