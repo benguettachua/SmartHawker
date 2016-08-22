@@ -63,8 +63,8 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                 if (records[i]["amount"] as! Double == 0) {
                     records.removeAtIndex(i)
                     
-                // Removing records that have type "" as it should not be shown.
-                } else if (records[i]["type"] as! Int == 3){
+                // Removing records that have type 3 or 4 as it should not be shown, Monthly Fixed Expenses and Monthly Target.
+                } else if (records[i]["type"] as! Int == 3 || records[i]["type"] as! Int == 4){
                     records.removeAtIndex(i)
                 }
             }
