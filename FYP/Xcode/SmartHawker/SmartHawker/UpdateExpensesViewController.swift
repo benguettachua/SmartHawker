@@ -108,7 +108,7 @@ class UpdateExpensesViewController: UIViewController {
         let selectedRecord = shared.selectedRecord
         let typeString = selectedRecord["type"] as! Int
         let amount = selectedRecord["amount"] as! Double
-        let description = selectedRecord.description
+        let description = selectedRecord["description"] as! String
         self.amountTextField.text = String(amount)
         if(description != "No description") {
             self.descriptionTextField.text = description

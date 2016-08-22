@@ -64,7 +64,7 @@ class UpdateSalesViewController: UIViewController{
         
         let selectedRecord = shared.selectedRecord
         let amount = selectedRecord["amount"] as! Double
-        let description = selectedRecord.description
+        let description = selectedRecord["description"] as! String
         self.amountTextField.text = String(amount)
         self.descriptionTextField.text = description
     }
