@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Material
+import FontAwesome_iOS
+
 class AdminPINViewController: UIViewController {
     
     // MARK: Properties
@@ -31,16 +34,23 @@ class AdminPINViewController: UIViewController {
     // Nav Bar
     @IBOutlet weak var navBar: UINavigationBar!
     
+    @IBOutlet weak var adminpinicon: UILabel!
     //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         // Activity Indicator
         shared.dateString = nil
-        submitButton.setTitle("Submit".localized(), forState: .Normal)
-        cancelAndLogout.setTitle("Cancel and logout".localized(), forState: .Normal)
+        submitButton.setTitle("ENTER".localized(), forState: .Normal)
+        cancelAndLogout.setTitle("Cancel".localized(), forState: .Normal)
         adminPINTextField.placeholder = "Enter your PIN here".localized()
         
+        var faicon = [String: UniChar]()
+        faicon["faadminpin"] = 0xf00a
+        
+        adminpinicon.font = UIFont(name: "FontAwesome", size: 40)
+        
+        adminpinicon.text = String(format: "%C", faicon["faadminpin"]!)
         
     }
     
@@ -113,5 +123,12 @@ class AdminPINViewController: UIViewController {
         // Logs the user out if they are click Cancel
         PFUser.logOutInBackground()
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
     }
 }
