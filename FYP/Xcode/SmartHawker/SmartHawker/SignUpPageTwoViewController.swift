@@ -23,7 +23,7 @@ class SignUpPageTwoViewController: UIViewController {
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
         
-        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 25)
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
         
         backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
         
@@ -32,12 +32,19 @@ class SignUpPageTwoViewController: UIViewController {
         
         verCode.detail = ""
         
-        //if phone number format wrong then show this
-        //phoneNumber.detail = "Error. Please enter correct phone number format."
+        //if verCode entered wrongly then show this
+        //verCode.detail = "Error. Verification code is invalid."
         //
         
         view.layout(verCode).top(175).horizontally(left: 20, right: 20)
+        
     }
     
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
+    }
     
 }

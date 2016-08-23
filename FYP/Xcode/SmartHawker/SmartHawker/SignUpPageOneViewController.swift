@@ -23,7 +23,7 @@ class SignUpPageOneViewController: UIViewController {
         var faicon = [String: UniChar]()
         faicon["facross"] = 0xf00d
         
-        cancelbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 25)
+        cancelbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
         
         cancelbtn.setTitle(String(format: "%C", faicon["facross"]!), forState: .Normal)
         
@@ -38,6 +38,13 @@ class SignUpPageOneViewController: UIViewController {
     //
         
     view.layout(phoneNumber).top(100).horizontally(left: 20, right: 20)
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
     }
 
 
