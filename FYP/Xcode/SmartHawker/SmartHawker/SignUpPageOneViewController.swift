@@ -15,14 +15,18 @@ import UIKit
 class SignUpPageOneViewController: UIViewController {
 
     
-    var faicon = [String: UniChar]()
-    @IBOutlet weak var cancel: UILabel!
     @IBOutlet weak var phoneNumber: UITextField!
-    
+    @IBOutlet weak var cancelbtn: UIButton!
     override func viewDidLoad() {
         
-        faicon["fatimes"] = 0xf00d
-        cancel.text = String(format: "%C", faicon["fatimes"]!)
+    super.viewDidLoad()
+        var faicon = [String: UniChar]()
+        faicon["facross"] = 0xf00d
+        
+        cancelbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 25)
+        
+        cancelbtn.setTitle(String(format: "%C", faicon["facross"]!), forState: .Normal)
+        
         
     let phoneNumber = TextField()
     phoneNumber.placeholder = "Enter your phone number"
