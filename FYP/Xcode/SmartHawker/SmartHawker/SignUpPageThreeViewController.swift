@@ -18,6 +18,7 @@ class SignUpPageThreeViewController: UIViewController {
     @IBOutlet weak var backbtn: UIButton!
     
     override func viewDidLoad() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053

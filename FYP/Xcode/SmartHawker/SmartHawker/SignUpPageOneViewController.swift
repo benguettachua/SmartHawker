@@ -20,6 +20,9 @@ class SignUpPageOneViewController: UIViewController {
     override func viewDidLoad() {
         
     super.viewDidLoad()
+        
+         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        
         var faicon = [String: UniChar]()
         faicon["facross"] = 0xf00d
         

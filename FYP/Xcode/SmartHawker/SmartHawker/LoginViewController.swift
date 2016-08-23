@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Material
+import FontAwesome_iOS
 
 class LoginViewController: UIViewController {
     
@@ -17,6 +19,9 @@ class LoginViewController: UIViewController {
     // Text Fields
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var mobileicon: UILabel!
+    @IBOutlet weak var passwordicon: UILabel!
     
     // MARK: Action
     // This function is called when the user clicks log in at the login page.
@@ -104,6 +109,18 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
+        
+        var faicon = [String: UniChar]()
+        faicon["famobilephone"] = 0xf10b
+        faicon["fapassword"] = 0xf023
+        
+        mobileicon.font = UIFont(name: "FontAwesome", size: 40)
+        
+        mobileicon.text = String(format: "%C", faicon["famobilephone"]!)
+        
+        passwordicon.font = UIFont(name: "FontAwesome", size: 40)
+        
+        passwordicon.text = String(format: "%C", faicon["fapassword"]!)
     }
     
     override func viewWillAppear(animated: Bool) {
