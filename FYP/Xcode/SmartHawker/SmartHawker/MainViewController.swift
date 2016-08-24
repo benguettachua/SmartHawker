@@ -9,6 +9,8 @@
 import UIKit
 import SwiftMoment
 import CoreLocation;
+import Material
+import FontAwesome_iOS
 
 class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
@@ -43,6 +45,10 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var totalProfit: UILabel!
+    
+    
+    @IBOutlet weak var syncbtn: UIButton!
+    @IBOutlet weak var infobtn: UIButton!
     //for weather
     
     private let openWeatherMapBaseURL = "http://api.openweathermap.org/data/2.5/weather"
@@ -117,6 +123,34 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+  
+        var faicon = [String: UniChar]()
+        faicon["fasync"] = 0xf021
+        faicon["fainfo"] = 0xf129
+
+        syncbtn.titleLabel?.lineBreakMode
+        syncbtn.titleLabel?.numberOfLines = 2
+        syncbtn.titleLabel!.textAlignment = .Center
+        
+        var sync = String(format: "%C", faicon["fasync"]!)
+        
+        sync += "\nSync"
+        
+        syncbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        syncbtn.setTitle(String(sync), forState: .Normal);
+        
+        infobtn.titleLabel?.lineBreakMode
+        infobtn.titleLabel?.numberOfLines = 2
+        infobtn.titleLabel!.textAlignment = .Center
+        
+        var info = String(format: "%C", faicon["fainfo"]!)
+        
+        info += "\nInfo"
+        
+        infobtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        infobtn.setTitle(String(info), forState: .Normal)
         
         getLatestDate()
         getMonthlyTarget()

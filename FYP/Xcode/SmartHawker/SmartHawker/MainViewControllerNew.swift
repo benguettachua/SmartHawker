@@ -41,10 +41,18 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
     @IBOutlet weak var salesAmount: UILabel!
     @IBOutlet weak var totalProfit: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getLocation()
         getTodayDate()
+        
+        var faicon = [String: UniChar]()
+        faicon["faleftback"] = 0xf053
+        
+        //backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        
+        //backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
