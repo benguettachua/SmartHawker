@@ -482,18 +482,18 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         getWeather(weatherRequestURL)
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    //func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         // This method is called asynchronously, which means it won't execute in the main queue.
         // All UI code needs to execute in the main queue, which is why we're wrapping the call
         // to showSimpleAlert(title:message:) in a dispatch_async() call.
-        dispatch_async(dispatch_get_main_queue()) {
-            self.showSimpleAlert(title: "Can't determine your location",
-                                 message: "The GPS and other location services aren't responding.")
-            self.weatherLabel.text = "Please Refresh"
-            self.temperatureLabel.text = ""
-        }
-        print("locationManager didFailWithError: \(error)")
-    }
+        //dispatch_async(dispatch_get_main_queue()) {
+            //self.showSimpleAlert(title: "Can't determine your location",
+                                 //message: "The GPS and other location services aren't responding.")
+            //self.weatherLabel.text = "Please Refresh"
+            //self.temperatureLabel.text = ""
+        //}
+        //print("locationManager didFailWithError: \(error)")
+    //}
     
     
     private func getWeather(weatherRequestURL: NSURL){
