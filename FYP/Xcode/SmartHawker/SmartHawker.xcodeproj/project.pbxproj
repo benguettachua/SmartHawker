@@ -55,6 +55,8 @@
 		6AF9C5181D1840A7000533E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5161D1840A7000533E0 /* LoginViewController.swift */; };
 		6AF9C51A1D1D80EB000533E0 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5191D1D80EB000533E0 /* AnalyticsViewController.swift */; };
 		6AF9C51B1D1D80EB000533E0 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5191D1D80EB000533E0 /* AnalyticsViewController.swift */; };
+		A293FC771D6D80F50032A037 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293FC761D6D80F50032A037 /* TransactionViewController.swift */; };
+		A293FC791D6D81410032A037 /* TransactionFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293FC781D6D81410032A037 /* TransactionFinalViewController.swift */; };
 		AF194A3E1D61A8B4005F3B29 /* SummaryControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF194A3D1D61A8B4005F3B29 /* SummaryControllerNew.swift */; };
 		AF194A401D61A8C3005F3B29 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF194A3F1D61A8C3005F3B29 /* SummaryViewController.swift */; };
 		AF577D001D28D7F800816782 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF577CFF1D28D7F800816782 /* EditViewController.swift */; };
@@ -167,6 +169,8 @@
 		6AF9C5191D1D80EB000533E0 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		74ECE5D979F1DE9D0C9E6132 /* Pods-SmartHawkerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHawkerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		951B5187DD3010188E4852CC /* Pods-SmartHawkerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHawkerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A293FC761D6D80F50032A037 /* TransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		A293FC781D6D81410032A037 /* TransactionFinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFinalViewController.swift; sourceTree = "<group>"; };
 		AF194A3D1D61A8B4005F3B29 /* SummaryControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryControllerNew.swift; sourceTree = "<group>"; };
 		AF194A3F1D61A8C3005F3B29 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		AF577CFF1D28D7F800816782 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 		AF3C0EB01D618231008E5FAB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A293FC761D6D80F50032A037 /* TransactionViewController.swift */,
+				A293FC781D6D81410032A037 /* TransactionFinalViewController.swift */,
 				6AF9C5191D1D80EB000533E0 /* AnalyticsViewController.swift */,
 				DC7F68031D1E61D400F2C2B1 /* EnquiryViewController.swift */,
 				DC7F67FD1D1E5EC700F2C2B1 /* CalendarViewController.swift */,
@@ -532,7 +538,7 @@
 				TargetAttributes = {
 					6A6834A41D05C95E00E9A0AD = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YQ2R4CCYLS;
+						DevelopmentTeam = JGW2AH82P5;
 					};
 					6A6834B81D05C95F00E9A0AD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -754,6 +760,7 @@
 				AF9AF5261D51CDFB0057935F /* ProfileViewController.swift in Sources */,
 				6A016B821D4F798F007C38E4 /* AddNewSubUserViewController.swift in Sources */,
 				AFBA17D31D59D2AC00B65EB9 /* connectionDAO.swift in Sources */,
+				A293FC791D6D81410032A037 /* TransactionFinalViewController.swift in Sources */,
 				DC7F68041D1E61D400F2C2B1 /* EnquiryViewController.swift in Sources */,
 				6A475E831D633306008E8D0A /* SubuserController.swift in Sources */,
 				AFD07A171D64371000AC55D6 /* CalendarController.swift in Sources */,
@@ -763,6 +770,7 @@
 				AF194A401D61A8C3005F3B29 /* SummaryViewController.swift in Sources */,
 				AFB167961D4B2F1B005315FC /* MainViewController.swift in Sources */,
 				AF194A3E1D61A8B4005F3B29 /* SummaryControllerNew.swift in Sources */,
+				A293FC771D6D80F50032A037 /* TransactionViewController.swift in Sources */,
 				6A016B861D53931F007C38E4 /* SubuserTableViewCell.swift in Sources */,
 				6A0E199F1D61854A00564FF3 /* AdminPINController.swift in Sources */,
 				AFA0447A1D47338C00E9236F /* SummaryController.swift in Sources */,
