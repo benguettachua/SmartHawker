@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1455,7 +1455,6 @@ this password and admin pin</string>
                             <constraint firstItem="mMa-d2-E7F" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="FdL-DK-L1F"/>
                             <constraint firstItem="C40-Pd-KSj" firstAttribute="top" secondItem="02D-JR-xYh" secondAttribute="top" id="K2f-3D-QnE"/>
                             <constraint firstAttribute="trailing" secondItem="mMa-d2-E7F" secondAttribute="trailing" id="TvZ-oZ-WLW"/>
-                            <constraint firstItem="mMa-d2-E7F" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="dPL-XB-WzS"/>
                             <constraint firstItem="C40-Pd-KSj" firstAttribute="leading" secondItem="02D-JR-xYh" secondAttribute="leading" id="hHX-tl-etT"/>
                             <constraint firstItem="mMa-d2-E7F" firstAttribute="top" secondItem="C40-Pd-KSj" secondAttribute="bottom" constant="5" id="wJu-ut-c7i"/>
                         </constraints>
@@ -2178,6 +2177,7 @@ this password and admin pin</string>
         <!--Calendar-->
         <scene sceneID="0xZ-Cg-vkW">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-mW-yGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="juk-2W-KVC" customClass="CalendarViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1vn-kv-ARl"/>
@@ -2218,79 +2218,79 @@ this password and admin pin</string>
                                     <constraint firstAttribute="width" secondItem="2p6-6L-AWC" secondAttribute="height" multiplier="97:28" id="zgF-jn-yCQ"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MDs-e6-brZ">
-                                <rect key="frame" x="0.0" y="192" width="414" height="479"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2tt-jX-Koh">
+                                <rect key="frame" x="25" y="192" width="364" height="21"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2tt-jX-Koh">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIA-n6-e0U">
-                                                <rect key="frame" x="0.0" y="0.0" width="59" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaJ-un-WQo">
-                                                <rect key="frame" x="59" y="0.0" width="60" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wux-FY-PwB">
-                                                <rect key="frame" x="119" y="0.0" width="59" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWx-Qb-hBz">
-                                                <rect key="frame" x="178" y="0.0" width="59" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDB-jQ-yyd">
-                                                <rect key="frame" x="237" y="0.0" width="59" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA0-xz-LOy">
-                                                <rect key="frame" x="296" y="0.0" width="60" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YJ-9B-aOm">
-                                                <rect key="frame" x="355" y="0.0" width="59" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="2tt-jX-Koh" secondAttribute="height" multiplier="14:1" id="coa-YF-YOV"/>
-                                        </constraints>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIA-n6-e0U">
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaJ-un-WQo">
+                                        <rect key="frame" x="52" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wux-FY-PwB">
+                                        <rect key="frame" x="104" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWx-Qb-hBz">
+                                        <rect key="frame" x="156" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDB-jQ-yyd">
+                                        <rect key="frame" x="208" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA0-xz-LOy">
+                                        <rect key="frame" x="260" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YJ-9B-aOm">
+                                        <rect key="frame" x="312" y="0.0" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="udK-lj-p20">
+                                <rect key="frame" x="0.0" y="228" width="414" height="395"/>
+                                <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="757-N2-gEd" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                        <rect key="frame" x="0.0" y="30" width="414" height="450"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="395"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="MDs-e6-brZ" secondAttribute="height" multiplier="320:371" id="v8V-Lv-6t5"/>
+                                    <constraint firstAttribute="height" constant="395" id="cNi-vz-qBr"/>
+                                    <constraint firstAttribute="width" constant="414" id="vEN-UG-bmQ"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="MDs-e6-brZ" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="-20" id="0Ra-jb-GVB"/>
-                            <constraint firstItem="MDs-e6-brZ" firstAttribute="top" secondItem="2p6-6L-AWC" secondAttribute="bottom" constant="8" id="2JK-0E-ZEN"/>
+                            <constraint firstItem="2tt-jX-Koh" firstAttribute="top" secondItem="2p6-6L-AWC" secondAttribute="bottom" constant="8" id="4pY-y4-JaM"/>
                             <constraint firstItem="2p6-6L-AWC" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="-20" id="63c-mM-ykL"/>
+                            <constraint firstItem="2tt-jX-Koh" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="5" id="6D8-eQ-9GW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2tt-jX-Koh" secondAttribute="trailing" constant="5" id="8iC-AR-C7O"/>
                             <constraint firstItem="5A2-nC-biN" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="-20" id="KwV-l8-PLe"/>
                             <constraint firstItem="5A2-nC-biN" firstAttribute="top" secondItem="1vn-kv-ARl" secondAttribute="bottom" id="NAU-da-azh"/>
                             <constraint firstItem="2p6-6L-AWC" firstAttribute="top" secondItem="5A2-nC-biN" secondAttribute="bottom" id="RVV-mA-bNa"/>
+                            <constraint firstItem="udK-lj-p20" firstAttribute="top" secondItem="2tt-jX-Koh" secondAttribute="bottom" constant="15" id="Y7S-mR-Rek"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5A2-nC-biN" secondAttribute="trailing" constant="-20" id="ZGl-V0-co1"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MDs-e6-brZ" secondAttribute="trailing" constant="-20" id="ga2-3d-Olm"/>
+                            <constraint firstItem="udK-lj-p20" firstAttribute="leading" secondItem="2p6-6L-AWC" secondAttribute="leading" id="rwA-sO-CfX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2p6-6L-AWC" secondAttribute="trailing" constant="-20" id="whI-ZW-0mZ"/>
                         </constraints>
                     </view>
@@ -2300,7 +2300,6 @@ this password and admin pin</string>
                         <outlet property="navBar" destination="5lm-F2-ezc" id="rjf-Ec-qDe"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-mW-yGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1131" y="2211"/>
         </scene>
