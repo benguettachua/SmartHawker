@@ -78,7 +78,7 @@
 		AFB167961D4B2F1B005315FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB167951D4B2F1B005315FC /* MainViewController.swift */; };
 		AFBA17CB1D59D04700B65EB9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17C91D59D04700B65EB9 /* Profile.storyboard */; };
 		AFBA17CD1D59D07F00B65EB9 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17CC1D59D07F00B65EB9 /* Report.storyboard */; };
-		AFBA17D01D59D0A900B65EB9 /* UpdateRecord.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17CE1D59D0A900B65EB9 /* UpdateRecord.storyboard */; };
+		AFBA17D01D59D0A900B65EB9 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBA17CE1D59D0A900B65EB9 /* Recording.storyboard */; };
 		AFBA17D31D59D2AC00B65EB9 /* connectionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBA17D21D59D2AC00B65EB9 /* connectionDAO.swift */; };
 		AFC9FB6D1D329DBD00F7EE54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */; };
 		AFD07A151D6416A200AC55D6 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD07A141D6416A200AC55D6 /* ProfileController.swift */; };
@@ -195,7 +195,7 @@
 		AFB167951D4B2F1B005315FC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AFBA17CA1D59D04700B65EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		AFBA17CC1D59D07F00B65EB9 /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
-		AFBA17CF1D59D0A900B65EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UpdateRecord.storyboard; sourceTree = "<group>"; };
+		AFBA17CF1D59D0A900B65EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Recording.storyboard; sourceTree = "<group>"; };
 		AFBA17D21D59D2AC00B65EB9 /* connectionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = connectionDAO.swift; sourceTree = "<group>"; };
 		AFC9FB6A1D329D5200F7EE54 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		AFC9FB6E1D329DBD00F7EE54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -457,7 +457,7 @@
 				6A6834B11D05C95E00E9A0AD /* LaunchScreen.storyboard */,
 				6A6834AC1D05C95E00E9A0AD /* Main.storyboard */,
 				AF99B04F1D59D4B300685285 /* Analytics.storyboard */,
-				AFBA17CE1D59D0A900B65EB9 /* UpdateRecord.storyboard */,
+				AFBA17CE1D59D0A900B65EB9 /* Recording.storyboard */,
 				AFBA17CC1D59D07F00B65EB9 /* Report.storyboard */,
 				AFBA17C91D59D04700B65EB9 /* Profile.storyboard */,
 			);
@@ -596,7 +596,7 @@
 			files = (
 				DC93F6701D3B5B0400AD55B2 /* NoveoSans-Book.otf in Resources */,
 				AFBA17CB1D59D04700B65EB9 /* Profile.storyboard in Resources */,
-				AFBA17D01D59D0A900B65EB9 /* UpdateRecord.storyboard in Resources */,
+				AFBA17D01D59D0A900B65EB9 /* Recording.storyboard in Resources */,
 				DC93F66E1D3B5B0400AD55B2 /* NoveoSans-BlackXtraCond.otf in Resources */,
 				DC93F66D1D3B5B0400AD55B2 /* NoveoSans-BlackCond.otf in Resources */,
 				DC93F66C1D3B5B0400AD55B2 /* NoveoSans-Black.otf in Resources */,
@@ -874,12 +874,12 @@
 			name = Profile.storyboard;
 			sourceTree = "<group>";
 		};
-		AFBA17CE1D59D0A900B65EB9 /* UpdateRecord.storyboard */ = {
+		AFBA17CE1D59D0A900B65EB9 /* Recording.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AFBA17CF1D59D0A900B65EB9 /* Base */,
 			);
-			name = UpdateRecord.storyboard;
+			name = Recording.storyboard;
 			sourceTree = "<group>";
 		};
 		AFC9FB6F1D329DBD00F7EE54 /* Localizable.strings */ = {
