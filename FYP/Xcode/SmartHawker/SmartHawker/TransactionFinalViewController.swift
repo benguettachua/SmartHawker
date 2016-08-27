@@ -68,4 +68,9 @@ class TransactionFinalViewController: UIViewController {
         }
         sender.cancelsTouchesInView = false
     }
+    
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

@@ -29,7 +29,7 @@ class TransactionViewController: UIViewController {
     
     // Variables
     let shared = ShareData.sharedInstance
-    
+    var type = 0
     
     // View Did Load
     override func viewDidLoad() {
@@ -40,6 +40,15 @@ class TransactionViewController: UIViewController {
         // Add new record
         if (record == nil) {
             selectSales(salesBarButtonItem)
+        } else {
+            type = record["type"] as! Int
+            let amount = Double(amountTextField.text!)
+            amountTextField.text = String(amount)
+            if (type == 0) {
+                selectSales(salesBarButtonItem)
+            } else {
+                selectExpenses(expensesBarButtonItem)
+            }
         }
     }
     
