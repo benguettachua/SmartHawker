@@ -9,7 +9,7 @@
 import UIKit
 import FontAwesome_iOS
 
-class TransactionViewController: UIViewController {
+class TransactionViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     // UI Bar Button Item
@@ -30,6 +30,7 @@ class TransactionViewController: UIViewController {
     // Variables
     let shared = ShareData.sharedInstance
     var type = 0
+    var isNewRecord = false
     
     // View Did Load
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ class TransactionViewController: UIViewController {
         // Add new record
         if (record == nil) {
             selectSales(salesBarButtonItem)
+            isNewRecord = true
         } else {
             type = record["type"] as! Int
             let amount = Double(amountTextField.text!)
@@ -49,6 +51,14 @@ class TransactionViewController: UIViewController {
             } else {
                 selectExpenses(expensesBarButtonItem)
             }
+        }
+        
+        // Delegate for textfield
+        amountTextField.delegate = self
+        
+        // Disable next button is no amount is entered.
+        if (amountTextField.text!.isEmpty) {
+            nextBarButtonItem.enabled = false
         }
     }
     
@@ -72,6 +82,9 @@ class TransactionViewController: UIViewController {
         // SGD Label Change
         SGDLabel.textColor = hexStringToUIColor("006cff")
         
+        // Change type
+        type = 0
+        
     }
     
     // Select Expenses
@@ -86,6 +99,9 @@ class TransactionViewController: UIViewController {
         
         // SGD Label Change
         SGDLabel.textColor = hexStringToUIColor("ff0000")
+        
+        // Change type
+        type = 1
     }
     
     // Changing colour based on colour code
@@ -111,23 +127,42 @@ class TransactionViewController: UIViewController {
         )
     }
     
+    // Moves the the next page to add or update Record.
     @IBAction func nextPage(sender: UIButton) {
         self.performSegueWithIdentifier("nextPage", sender: self)
     }
     
-    
+    // Dismiss the current view and go back to the previous page.
     @IBAction func back(sender: AnyObject) {
-        print("Am I here")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Move to page two of transaction
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        print("BYE")
         // Set the destination view controller
         let destinationVC : TransactionFinalViewController = segue.destinationViewController as! TransactionFinalViewController
         
         destinationVC.amount = Double(amountTextField.text!)!
+        destinationVC.type = type
+        destinationVC.isNewRecord = isNewRecord
     }
+    
+    //Need to have the ViewController extend UITextFieldDelegate for using this feature
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        // Find out what the text field will be after adding the current edit
+        let text = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+        if !text.isEmpty{//Checking if the input field is not empty
+            nextBarButtonItem.enabled = true //Enabling the button
+        } else {
+            nextBarButtonItem.enabled = false //Disabling the button
+        }
+        
+        // Return true so the text field will be changed
+        return true
+    }
+    
+    
 }

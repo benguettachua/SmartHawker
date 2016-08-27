@@ -88,10 +88,10 @@
                                                     <rect key="frame" x="16" y="7" width="72" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Back"/>
+                                                    <connections>
+                                                        <action selector="back:" destination="rQR-fd-37j" eventType="touchUpInside" id="NIG-jc-qrk"/>
+                                                    </connections>
                                                 </button>
-                                                <connections>
-                                                    <action selector="back:" destination="rQR-fd-37j" id="cea-yg-VM3"/>
-                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Sales" id="KbR-KC-uMo">
                                                 <connections>
@@ -216,6 +216,9 @@
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" red="0.42352941176470588" green="0.42745098039215684" blue="0.47843137254901957" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="save:" destination="FpJ-W3-Gje" eventType="touchUpInside" id="gdv-i5-MFZ"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -279,6 +282,28 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5P-Cr-geE">
                                                 <rect key="frame" x="161" y="0.0" width="159" height="70"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vk-zL-3Qr">
+                                                        <rect key="frame" x="58" y="8" width="43" height="20"/>
+                                                        <state key="normal" title="COGS">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectCOGS:" destination="FpJ-W3-Gje" eventType="touchUpInside" id="Pu6-eA-svx"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luS-0f-fJY">
+                                                        <rect key="frame" x="25" y="33" width="109" height="29"/>
+                                                        <state key="normal">
+                                                            <string key="title">Other expenses
+</string>
+                                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="seelctExpenses:" destination="FpJ-W3-Gje" eventType="touchUpInside" id="p53-2T-rFl"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                         </subviews>
@@ -337,6 +362,9 @@
                                                 <state key="normal" image="transaction-addbtn">
                                                     <color key="titleColor" red="0.5490196078431373" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="attachedReceipt:" destination="FpJ-W3-Gje" eventType="touchUpInside" id="ziV-ZZ-hu6"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -376,12 +404,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="COGSButton" destination="7Vk-zL-3Qr" id="h0X-YM-gcg"/>
                         <outlet property="addbtn" destination="QTJ-7h-xr2" id="Irh-n4-Pnc"/>
                         <outlet property="amountLabel" destination="Kwa-Pm-a8F" id="xRR-ET-j8O"/>
+                        <outlet property="amountView" destination="pmy-38-CMr" id="aNR-Kb-j10"/>
                         <outlet property="backbtn" destination="dVK-K9-92z" id="RJW-en-bjq"/>
                         <outlet property="descicon" destination="nTB-u1-6JW" id="zI3-xB-pO1"/>
+                        <outlet property="descriptionTextField" destination="NnM-yS-hUC" id="WbE-4Z-XxE"/>
                         <outlet property="donebtn" destination="cnX-9m-Mz3" id="I3y-a4-Au6"/>
                         <outlet property="imageicon" destination="ptp-vU-mnw" id="JXV-lw-TM6"/>
+                        <outlet property="otherExpensesButton" destination="luS-0f-fJY" id="KOQ-3C-Blu"/>
+                        <outlet property="todayLabel" destination="AXD-kQ-6wa" id="K0y-jp-XQ4"/>
                         <outlet property="todaybtn" destination="TxV-LJ-KhY" id="5tO-HB-6B2"/>
                     </connections>
                 </viewController>
