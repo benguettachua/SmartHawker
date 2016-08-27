@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
+    @IBOutlet weak var navBar: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.dateFormat = "yyyy MM dd"
@@ -61,6 +62,7 @@ class CalendarViewController: UIViewController {
         // After reloading. Scroll to your selected date, and setup your calendar
         calendarView.scrollToDate(NSDate(), triggerScrollToDateDelegate: false, animateScroll: false) {
             let currentDate = self.calendarView.currentCalendarDateSegment()
+            print(currentDate)
             self.setupViewsOfCalendar(currentDate.dateRange.start, endDate: currentDate.dateRange.end)
         }
     }
@@ -97,10 +99,10 @@ class CalendarViewController: UIViewController {
     }
     
     func setupViewsOfCalendar(startDate: NSDate, endDate: NSDate) {
-        let month = testCalendar.component(NSCalendarUnit.Month, fromDate: startDate)
-        let monthName = NSDateFormatter().monthSymbols[(month) % 12] // 0 indexed array
+        let month = testCalendar.component(NSCalendarUnit.Month, fromDate: endDate)
+        let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
-        self.navigationItem.title = monthName + " " + String(year)
+        navBar.title = monthName + " " + String(year)
     }
 }
 
