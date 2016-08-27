@@ -1,20 +1,14 @@
 //
 //  ViewController.swift
-//  KDCalendar
+//  JTAppleCalendar iOS Example
 //
-//  Created by Michael Michailidis on 01/04/2015.
-//  Copyright (c) 2015 Karmadust. All rights reserved.
+//  Created by JayT on 2016-08-10.
+//
 //
 
-import UIKit
 import JTAppleCalendar
-import SwiftMoment
 
-class CalendarViewcontroller: UIViewController{
-    
-    // Mark: Properties
-    // Top Bar
-
+class CalendarViewController: UIViewController {
     var numberOfRows = 6
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
@@ -22,30 +16,8 @@ class CalendarViewcontroller: UIViewController{
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
-    @IBOutlet weak var profitText: UILabel!
-    @IBOutlet weak var expensesText: UILabel!
-    @IBOutlet weak var salesText: UILabel!
-    @IBOutlet weak var navBar: UINavigationItem!
-    var day: String!
-    var actualMonthDate = moment(NSDate())
-    var chosenMonthDate = NSDate()
-    var calendarForChangeMonth = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
-    var tempCounter = 0
-    
-    typealias CompletionHandler = (success:Bool) -> Void
-    let user = PFUser.currentUser()
-
-    @IBOutlet var MonthAndYear: UILabel!
-    //for language preference
-    let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
-    var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
-    var date: Moment! {
-        didSet {
-            // title = date.format("MMMM d, yyyy")
-        }
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         formatter.dateFormat = "yyyy MM dd"
         testCalendar.timeZone = NSTimeZone(abbreviation: "GMT")!
         
@@ -91,84 +63,6 @@ class CalendarViewcontroller: UIViewController{
             let currentDate = self.calendarView.currentCalendarDateSegment()
             self.setupViewsOfCalendar(currentDate.dateRange.start, endDate: currentDate.dateRange.end)
         }
-        // Formatting to format as saved in DB.
-        var correctDateString = ""
-        if toShare.dateString == nil{
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            correctDateString = dateFormatter.stringFromDate(NSDate())
-        }else{
-            correctDateString = toShare.dateString
-        }
-        
-
-        
-        loadRecords(correctDateString)
-
-
-    }
-    
-    func loadRecords(correctDateString: String){
-        var salesAmount = 0.0
-        var expensesAmount = 0.0
-        
-        let values = CalendarController().values(correctDateString)
-
-        salesAmount = values.0
-        expensesAmount = values.1
-        
-        // Sales Label
-        let salesString2dp = "$" + String(format:"%.2f", salesAmount)
-        self.salesText.text = salesString2dp
-        self.salesText.font = UIFont(name: salesText.font.fontName, size: 24)
-        
-        // Expenses Label
-        let expensesString2dp = "$" + String(format:"%.2f", expensesAmount)
-        self.expensesText.text = expensesString2dp
-        self.expensesText.font = UIFont(name: expensesText.font.fontName, size: 24)
-        
-        // Profit Label
-        let profitString2dp = "$" + String(format:"%.2f", (salesAmount-expensesAmount))
-        self.profitText.text = profitString2dp
-        self.profitText.font = UIFont(name: profitText.font.fontName, size: 24)
-    }
-    
-    
-    @IBAction func Record(sender: UIBarButtonItem) {
-        
-        if toShare.dateString == nil{
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let correctDateString = dateFormatter.stringFromDate(NSDate())
-            
-            if date.day == 1 || date.day == 21{
-                self.day = String(date.day) + "st".localized()
-                
-            }else if date.day == 2 || date.day == 22{
-                self.day = String(date.day) + "nd".localized()
-                
-            }else if date.day == 3 || date.day == 23{
-                self.day = String(date.day) + "rd".localized()
-                
-            }else{
-                self.day = String(date.day) + "th".localized()
-            }
-            
-            var toDisplayDate = ""
-            if lang == "zh-Hans" {
-                toDisplayDate = date.monthName.localized() + " \(self.day) " + " \(date.year) 年, "+(date.weekdayName).localized()
-            }else{
-                toDisplayDate = self.day + " " + date.monthName + " " + String(date.year) + " , " + date.weekdayName
-            }
-            toShare.storeDate = date
-            toShare.dateString = correctDateString
-            toShare.toDisplayDate = toDisplayDate
-            toShare.dateString = correctDateString
-        }
-        // Move to Record Page.
-        self.performSegueWithIdentifier("dayRecord", sender: self)
-        
-        
     }
     
     @IBAction func printSelectedDates() {
@@ -205,15 +99,13 @@ class CalendarViewcontroller: UIViewController{
     func setupViewsOfCalendar(startDate: NSDate, endDate: NSDate) {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: startDate)
         let monthName = NSDateFormatter().monthSymbols[(month) % 12] // 0 indexed array
-        print(month)
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
-        monthLabel.text = monthName + " " + String(year)
+        self.navigationItem.title = monthName + " " + String(year)
     }
-    
 }
 
 // MARK : JTAppleCalendarDelegate
-extension CalendarViewcontroller: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
+extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     func configureCalendar(calendar: JTAppleCalendarView) -> (startDate: NSDate, endDate: NSDate, numberOfRows: Int, calendar: NSCalendar) {
         
         let todayDateString = formatter.stringFromDate(NSDate())

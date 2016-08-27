@@ -108,8 +108,8 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let momentDate = moment(date!)
         let addDay = 1.days
         let nextDay = momentDate.add(addDay)
-        let nextDayNSDate = nextDay.toNSDate()
-        let nextDayString = dateFormatter.stringFromDate(nextDayNSDate!)
+        let nextDayNSDate = nextDay.date
+        let nextDayString = dateFormatter.stringFromDate(nextDayNSDate)
         shared.storeDate = nextDay
         shared.dateString = nextDayString
         self.viewWillAppear(true)
@@ -122,8 +122,8 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let momentDate = moment(date!)
         let minusDay = 1.days
         let nextDay = momentDate.subtract(minusDay)
-        let nextDayNSDate = nextDay.toNSDate()
-        let nextDayString = dateFormatter.stringFromDate(nextDayNSDate!)
+        let nextDayNSDate = nextDay.date
+        let nextDayString = dateFormatter.stringFromDate(nextDayNSDate)
         shared.storeDate = nextDay
         shared.dateString = nextDayString
         self.viewWillAppear(true)
