@@ -205,6 +205,7 @@ class CalendarViewcontroller: UIViewController{
     func setupViewsOfCalendar(startDate: NSDate, endDate: NSDate) {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: startDate)
         let monthName = NSDateFormatter().monthSymbols[(month) % 12] // 0 indexed array
+        print(month)
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
         monthLabel.text = monthName + " " + String(year)
     }
