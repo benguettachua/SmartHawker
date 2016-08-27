@@ -89,8 +89,15 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Back"/>
                                                 </button>
+                                                <connections>
+                                                    <action selector="back:" destination="rQR-fd-37j" id="cea-yg-VM3"/>
+                                                </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Sales" id="KbR-KC-uMo"/>
+                                            <barButtonItem title="Sales" id="KbR-KC-uMo">
+                                                <connections>
+                                                    <action selector="selectSales:" destination="rQR-fd-37j" id="zK8-CW-5jk"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </leftBarButtonItems>
                                         <rightBarButtonItems>
                                             <barButtonItem style="plain" id="UKj-Si-AiT">
@@ -98,9 +105,16 @@
                                                     <rect key="frame" x="240" y="7" width="72" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Next"/>
+                                                    <connections>
+                                                        <action selector="nextPage:" destination="rQR-fd-37j" eventType="touchUpInside" id="zzp-b7-UFw"/>
+                                                    </connections>
                                                 </button>
                                             </barButtonItem>
-                                            <barButtonItem title="Expenses" id="pw3-aT-ZLu"/>
+                                            <barButtonItem title="Expenses" id="pw3-aT-ZLu">
+                                                <connections>
+                                                    <action selector="selectExpenses:" destination="rQR-fd-37j" id="ehh-WP-wur"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
@@ -126,7 +140,7 @@
                                             <constraint firstAttribute="width" secondItem="Wvz-OB-KPD" secondAttribute="height" multiplier="109:26" id="khg-O4-LkW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,8 +167,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ExpensesBarButtonItem" destination="pw3-aT-ZLu" id="cTg-zD-yT7"/>
-                        <outlet property="SalesBarButtonItem" destination="KbR-KC-uMo" id="RwL-Qa-h8P"/>
+                        <outlet property="SGDLabel" destination="82m-2V-TUM" id="W6E-9U-PhZ"/>
+                        <outlet property="amountTextField" destination="Wvz-OB-KPD" id="USF-bc-Q9G"/>
+                        <outlet property="amountView" destination="cRK-e5-zUM" id="7zE-u1-0Jt"/>
+                        <outlet property="expensesBarButtonItem" destination="pw3-aT-ZLu" id="txx-H7-SgS"/>
+                        <outlet property="nextBarButtonItem" destination="UKj-Si-AiT" id="DtA-uv-edU"/>
+                        <outlet property="positiveNegativeSignLabel" destination="X6y-Hs-0lB" id="0RZ-4M-GY6"/>
+                        <outlet property="salesBarButtonItem" destination="KbR-KC-uMo" id="hTr-9M-XXI"/>
+                        <segue destination="FpJ-W3-Gje" kind="modal" identifier="nextPage" id="Lht-bn-0IU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xga-qb-ipT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -354,6 +374,7 @@
                     </view>
                     <connections>
                         <outlet property="addbtn" destination="QTJ-7h-xr2" id="Irh-n4-Pnc"/>
+                        <outlet property="amountLabel" destination="Kwa-Pm-a8F" id="xRR-ET-j8O"/>
                         <outlet property="backbtn" destination="dVK-K9-92z" id="RJW-en-bjq"/>
                         <outlet property="descicon" destination="nTB-u1-6JW" id="zI3-xB-pO1"/>
                         <outlet property="donebtn" destination="cnX-9m-Mz3" id="I3y-a4-Au6"/>

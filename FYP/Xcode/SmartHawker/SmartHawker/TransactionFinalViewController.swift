@@ -12,21 +12,23 @@ import FontAwesome_iOS
 
 class TransactionFinalViewController: UIViewController {
     
+    // MARK: Properties
+    // Variables from previous VC
+    var amount = Double()
+    var type = Int()
     
+    // UIButton
     @IBOutlet weak var backbtn: UIButton!
-    
     @IBOutlet weak var donebtn: UIButton!
-    
     @IBOutlet weak var todaybtn: UIButton!
-    
-    
-    @IBOutlet weak var descicon: UILabel!
-    
-    
-    @IBOutlet weak var imageicon: UILabel!
-    
     @IBOutlet weak var addbtn: UIButton!
     
+    // UILabel
+    @IBOutlet weak var descicon: UILabel!
+    @IBOutlet weak var imageicon: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    
+    // View Did Load
     override func viewDidLoad() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
@@ -36,6 +38,8 @@ class TransactionFinalViewController: UIViewController {
         faicon["facalendar"] = 0xf274
         faicon["fadesc"] = 0xf044
         faicon["faimage"] = 0xf03e
+        
+        amountLabel.text = String(amount)
 
         backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
         
