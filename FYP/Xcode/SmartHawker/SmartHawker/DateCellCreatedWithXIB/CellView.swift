@@ -99,7 +99,7 @@ class CellView: JTAppleDayCellView {
         } else if cellState.dateBelongsTo == .ThisMonth {
             dayLabel.textColor = textDeselectedColor
         } else {
-            dayLabel.textColor = previousMonthTextColor
+            dayLabel.textColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.25)
         }
     }
     

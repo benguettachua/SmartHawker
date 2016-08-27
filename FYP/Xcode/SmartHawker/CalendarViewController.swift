@@ -10,9 +10,12 @@ import JTAppleCalendar
 
 class CalendarViewController: UIViewController {
     var numberOfRows = 6
-    
+    var correctDateString: String!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var salesText: UILabel!
+    @IBOutlet weak var expensesText: UILabel!
+    @IBOutlet weak var profitText: UILabel!
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
@@ -65,12 +68,17 @@ class CalendarViewController: UIViewController {
             print(currentDate)
             self.setupViewsOfCalendar(currentDate.dateRange.start, endDate: currentDate.dateRange.end)
         }
+        formatter.dateFormat = "dd/MM/yyyy"
+        correctDateString = formatter.stringFromDate(NSDate())
+        loadRecords(correctDateString)
     }
     
     @IBAction func printSelectedDates() {
         print("Selected dates --->")
         for date in calendarView.selectedDates {
-            print(formatter.stringFromDate(date))
+            formatter.dateFormat = "dd/MM/yyyy"
+            correctDateString = formatter.stringFromDate(date)
+            loadRecords(correctDateString)
         }
     }
     
@@ -79,7 +87,7 @@ class CalendarViewController: UIViewController {
         numberOfRows = 1
         calendarView.reloadData()
     }
-    
+    /*
     @IBAction func next(sender: UIButton) {
         self.calendarView.scrollToNextSegment() {
             let currentSegmentDates = self.calendarView.currentCalendarDateSegment()
@@ -93,6 +101,7 @@ class CalendarViewController: UIViewController {
             self.setupViewsOfCalendar(currentSegmentDates.dateRange.start, endDate: currentSegmentDates.dateRange.end)
         }
     }
+    */
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -103,6 +112,31 @@ class CalendarViewController: UIViewController {
         let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
         navBar.title = monthName + " " + String(year)
+    }
+    
+    func loadRecords(correctDateString: String){
+        var salesAmount = 0.0
+        var expensesAmount = 0.0
+        
+        let values = CalendarController().values(correctDateString)
+        
+        salesAmount = values.0
+        expensesAmount = values.1
+        
+        // Sales Label
+        let salesString2dp = "$" + String(format:"%.2f", salesAmount)
+        self.salesText.text = salesString2dp
+        self.salesText.font = UIFont(name: salesText.font.fontName, size: 15)
+        
+        // Expenses Label
+        let expensesString2dp = "$" + String(format:"%.2f", expensesAmount)
+        self.expensesText.text = expensesString2dp
+        self.expensesText.font = UIFont(name: expensesText.font.fontName, size: 15)
+        
+        // Profit Label
+        let profitString2dp = "$" + String(format:"%.2f", (salesAmount-expensesAmount))
+        self.profitText.text = profitString2dp
+        self.profitText.font = UIFont(name: profitText.font.fontName, size: 15)
     }
 }
 
