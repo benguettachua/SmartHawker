@@ -1818,7 +1818,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SW-ED-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1856" y="1402"/>
+            <point key="canvasLocation" x="1902" y="1290"/>
         </scene>
         <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
@@ -1834,7 +1834,7 @@ this password and admin pin</string>
                         <segue destination="L0Y-Uu-R27" kind="relationship" relationship="viewControllers" id="t2v-WB-jau"/>
                         <segue destination="QnU-xc-Kma" kind="relationship" relationship="viewControllers" id="1P7-rT-dfZ"/>
                         <segue destination="GfR-DB-bth" kind="relationship" relationship="viewControllers" id="Xlv-ce-XVC"/>
-                        <segue destination="DLA-hC-hwl" kind="relationship" relationship="viewControllers" id="fpI-Jt-XmL"/>
+                        <segue destination="juk-2W-KVC" kind="relationship" relationship="viewControllers" id="JhI-lD-2Su"/>
                         <segue destination="3qX-l7-K1Y" kind="relationship" relationship="viewControllers" id="GNC-m2-RcN"/>
                     </connections>
                 </tabBarController>
@@ -2175,7 +2175,7 @@ this password and admin pin</string>
             </objects>
             <point key="canvasLocation" x="1732" y="2998"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar-->
         <scene sceneID="0xZ-Cg-vkW">
             <objects>
                 <viewController id="juk-2W-KVC" sceneMemberID="viewController">
@@ -2184,11 +2184,11 @@ this password and admin pin</string>
                         <viewControllerLayoutGuide type="bottom" id="hk2-lF-h40"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Izd-Yz-755">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5A2-nC-biN">
-                                <rect key="frame" x="-4" y="20" width="328" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="5lm-F2-ezc">
                                         <rightBarButtonItems>
@@ -2199,18 +2199,18 @@ this password and admin pin</string>
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="2p6-6L-AWC">
-                                <rect key="frame" x="-4" y="64" width="328" height="95"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7z-eP-AMG">
-                                        <rect key="frame" x="0.0" y="0.0" width="108" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="137" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kp1-NR-3vK">
-                                        <rect key="frame" x="110" y="0.0" width="108" height="95"/>
+                                        <rect key="frame" x="139" y="0.0" width="136" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IV-dR-iop">
-                                        <rect key="frame" x="220" y="0.0" width="108" height="95"/>
+                                        <rect key="frame" x="277" y="0.0" width="137" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
@@ -2218,50 +2218,50 @@ this password and admin pin</string>
                                     <constraint firstAttribute="width" secondItem="2p6-6L-AWC" secondAttribute="height" multiplier="97:28" id="zgF-jn-yCQ"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MDs-e6-brZ">
-                                <rect key="frame" x="0.0" y="167" width="328" height="381"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MDs-e6-brZ">
+                                <rect key="frame" x="0.0" y="192" width="414" height="479"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2tt-jX-Koh">
-                                        <rect key="frame" x="0.0" y="0.0" width="328" height="23"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIA-n6-e0U">
-                                                <rect key="frame" x="0.0" y="0.0" width="47" height="23"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="59" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaJ-un-WQo">
-                                                <rect key="frame" x="47" y="0.0" width="47" height="23"/>
+                                                <rect key="frame" x="59" y="0.0" width="59" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wux-FY-PwB">
-                                                <rect key="frame" x="94" y="0.0" width="47" height="23"/>
+                                                <rect key="frame" x="118" y="0.0" width="59" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWx-Qb-hBz">
-                                                <rect key="frame" x="141" y="0.0" width="46" height="23"/>
+                                                <rect key="frame" x="177" y="0.0" width="60" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDB-jQ-yyd">
-                                                <rect key="frame" x="187" y="0.0" width="47" height="23"/>
+                                                <rect key="frame" x="237" y="0.0" width="59" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA0-xz-LOy">
-                                                <rect key="frame" x="234" y="0.0" width="47" height="23"/>
+                                                <rect key="frame" x="296" y="0.0" width="59" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YJ-9B-aOm">
-                                                <rect key="frame" x="281" y="0.0" width="47" height="23"/>
+                                                <rect key="frame" x="355" y="0.0" width="59" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2272,7 +2272,7 @@ this password and admin pin</string>
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="757-N2-gEd">
-                                        <rect key="frame" x="0.0" y="23" width="328" height="358"/>
+                                        <rect key="frame" x="0.0" y="29" width="414" height="450"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
@@ -2294,10 +2294,11 @@ this password and admin pin</string>
                             <constraint firstAttribute="trailingMargin" secondItem="2p6-6L-AWC" secondAttribute="trailing" constant="-20" id="whI-ZW-0mZ"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="tab-buttom-calendar" id="q1k-In-Ss7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-mW-yGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2037" y="3520"/>
+            <point key="canvasLocation" x="1131" y="2211"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8fU-ee-zTE">
@@ -2484,7 +2485,7 @@ this password and admin pin</string>
     <inferredMetricsTieBreakers>
         <segue reference="YqZ-aV-GNs"/>
         <segue reference="zip-MG-ivf"/>
-        <segue reference="TpA-R2-xdH"/>
+        <segue reference="nvg-Q7-gDK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>
