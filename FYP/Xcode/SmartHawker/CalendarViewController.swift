@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
+    var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     @IBOutlet weak var navBar: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +65,11 @@ class CalendarViewController: UIViewController {
             let currentDate = self.calendarView.currentCalendarDateSegment()
             print(currentDate)
             self.setupViewsOfCalendar(currentDate.dateRange.start, endDate: currentDate.dateRange.end)
+            self.calendarView.selectDates([NSDate()])
         }
+        
+        
+        loadRecords(correctDateString)
     }
     
     @IBAction func printSelectedDates() {
@@ -102,8 +107,57 @@ class CalendarViewController: UIViewController {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: endDate)
         let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
+        print(monthName + " " + String(year))
         navBar.title = monthName + " " + String(year)
+        printSelectedDates()
     }
+    
+    @IBAction func Record(sender: UIBarButtonItem) {
+        
+        
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM/yyyy"
+            var correctDateString: String!
+            
+            for date in calendarView.selectedDates {
+                correctDateString = formatter.stringFromDate(date)
+                
+            }
+
+            toShare.dateString = correctDateString
+        
+        // Move to Record Page.
+        self.performSegueWithIdentifier("dayRecord", sender: self)
+        
+        
+    }
+    
+    func loadRecords(correctDateString: String){
+        var salesAmount = 0.0
+        var expensesAmount = 0.0
+        
+        let values = CalendarController().values(correctDateString)
+        
+        salesAmount = values.0
+        expensesAmount = values.1
+        /*
+        // Sales Label
+        let salesString2dp = "$" + String(format:"%.2f", salesAmount)
+        self.salesText.text = salesString2dp
+        self.salesText.font = UIFont(name: salesText.font.fontName, size: 24)
+        
+        // Expenses Label
+        let expensesString2dp = "$" + String(format:"%.2f", expensesAmount)
+        self.expensesText.text = expensesString2dp
+        self.expensesText.font = UIFont(name: expensesText.font.fontName, size: 24)
+        
+        // Profit Label
+        let profitString2dp = "$" + String(format:"%.2f", (salesAmount-expensesAmount))
+        self.profitText.text = profitString2dp
+        self.profitText.font = UIFont(name: profitText.font.fontName, size: 24)
+         */
+    }
+    
 }
 
 // MARK : JTAppleCalendarDelegate
@@ -131,7 +185,6 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func calendar(calendar: JTAppleCalendarView, didSelectDate date: NSDate, cell: JTAppleDayCellView?, cellState: CellState) {
         (cell as? CellView)?.cellSelectionChanged(cellState)
         
-        print("lala")
         printSelectedDates()
     }
     
