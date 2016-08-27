@@ -6,12 +6,13 @@ target 'SmartHawker' do
   use_frameworks!
 
   # Pods for SmartHawker
-  pod "CalendarView"
+  pod 'SwiftMoment'
   pod 'Localize-Swift', '~> 1.5’
   pod 'Charts'
   pod 'IQKeyboardManagerSwift'
   pod 'Material', '~> 1.0'
   pod 'FontAwesome-iOS'
+  pod 'JTAppleCalendar'
 
   target 'SmartHawkerTests' do
     inherit! :search_paths
