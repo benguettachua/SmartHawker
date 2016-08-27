@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UITableViewController {
     // MARK: Properties
-    // Top Bar
+    // Image View
     @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var profileName: UILabel!
-    @IBOutlet weak var phoneNumber: UILabel!
     
+    // Label
+    @IBOutlet weak var profileName: UILabel!
+    
+    // Variables
     let user = PFUser.currentUser()
-    typealias CompletionHandler = (success:Bool) -> Void
-    var shared = ShareData.sharedInstance
     
     // MARK: Action
     
@@ -31,8 +31,10 @@ class ProfileViewController: UIViewController {
             if (name == nil) {
                 name = "No name"
             }
-            profileName.text! = name as! String
-            phoneNumber.text! = user!["phoneNumber"] as! String
+            let nameString = name as! String
+            let phoneNumber = user!["phoneNumber"] as! String
+            profileName.text! = nameString + "\r\n" + phoneNumber
+            
             
             // Getting the profile picture
             if let userPicture = user!["profilePicture"] as? PFFile {
@@ -45,7 +47,7 @@ class ProfileViewController: UIViewController {
         }
         
     }
-    @IBAction func syncData(sender: UIButton) {
+    func syncData() {
         let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
         let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
             
@@ -81,72 +83,35 @@ class ProfileViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func Logout(sender: UIBarButtonItem) {
-        let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            ProfileController().logout()
-        }))
-        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            
-            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
-            
-            
-        }))
-        
-        presentViewController(refreshAlert, animated: true, completion: nil)
-        
-        
-    }
+//    @IBAction func Logout(sender: UIBarButtonItem) {
+//        let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
+//            ProfileController().logout()
+//        }))
+//        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
+//            
+//            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+//            
+//            
+//        }))
+//        
+//        presentViewController(refreshAlert, animated: true, completion: nil)
+//        
+//        
+//    }
     
-    func loadRecordsIntoLocalDatastore(completionHandler: CompletionHandler) {
-        // Part 1: Load from DB and pin into local datastore.
-        let query = PFQuery(className: "Record")
-        query.whereKey("user", equalTo: user!)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            var dates = [String]()
-            if error == nil {
-                // Pin records found into local datastore.
-                PFObject.pinAllInBackground(objects)
-                for object in objects! {
-                    let dateString = object["date"] as! String
-                    dates.append(dateString)
-                    
-                }
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(dates, forKey: "SavedDateArray")
-                completionHandler(success: true)
-                
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Do something depending on which row is selected.
+        let selectedRow = indexPath.row
+        
+        if (selectedRow == 0) {
+            // Sync
+            syncData()
         }
-    }
-    
-    func saveRecordsIntoDatabase(completionHandler: CompletionHandler) {
-        let query = PFQuery(className: "Record")
-        let isSubUser = shared.isSubUser
-        if (isSubUser) {
-            query.whereKey("subuser", equalTo: shared.subuser)
-        }
-        query.fromLocalDatastore()
-        query.whereKey("user", equalTo: self.user!)
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                for object in objects! {
-                    object.pinInBackground()
-                    object.saveInBackground()
-                }
-                completionHandler(success: true)
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completionHandler(success: false)
-            }
+        
+        if (selectedRow == 1) {
+            self.performSegueWithIdentifier("toSettings", sender: self)
         }
     }
 

@@ -9,7 +9,7 @@
 import UIKit
 import Localize_Swift
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UITableViewController {
     // MARK: Properties
     // Top Bar
     @IBOutlet weak var profilePicture: UIImageView!
@@ -52,38 +52,38 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load the Top Bar
-        let user = PFUser.currentUser()
-        // Populate the top bar
-        
-        if NSUserDefaults.standardUserDefaults().objectForKey("langPref") == nil{
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject("en", forKey: "langPref")
-            displayNotificationStatus.text = "English"
-        }else{
-            let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String!
-            if lang == "zh-Hans"{
-                languageLabel.text = "华语"
-            }else{
-                languageLabel.text = "English"
-        
-        }
-        }
-        if NSUserDefaults.standardUserDefaults().objectForKey("notification") == nil{
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject("Off", forKey: "notification")
-            displayNotificationStatus.text = "Off"
-            notificationMode.setOn(false, animated: true)
-        }else{
-                var notificationStore = NSUserDefaults.standardUserDefaults().objectForKey("notification") as? String!
-            if notificationStore == "On"{
-                displayNotificationStatus.text = notificationStore
-                notificationMode.setOn(true, animated: true)
-            }else{
-                displayNotificationStatus.text = notificationStore
-                notificationMode.setOn(false, animated: true)
-            }
-        }
+//        // Load the Top Bar
+//        let user = PFUser.currentUser()
+//        // Populate the top bar
+//        
+//        if NSUserDefaults.standardUserDefaults().objectForKey("langPref") == nil{
+//            let defaults = NSUserDefaults.standardUserDefaults()
+//            defaults.setObject("en", forKey: "langPref")
+//            displayNotificationStatus.text = "English"
+//        }else{
+//            let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String!
+//            if lang == "zh-Hans"{
+//                languageLabel.text = "华语"
+//            }else{
+//                languageLabel.text = "English"
+//        
+//        }
+//        }
+//        if NSUserDefaults.standardUserDefaults().objectForKey("notification") == nil{
+//            let defaults = NSUserDefaults.standardUserDefaults()
+//            defaults.setObject("Off", forKey: "notification")
+//            displayNotificationStatus.text = "Off"
+//            notificationMode.setOn(false, animated: true)
+//        }else{
+//                var notificationStore = NSUserDefaults.standardUserDefaults().objectForKey("notification") as? String!
+//            if notificationStore == "On"{
+//                displayNotificationStatus.text = notificationStore
+//                notificationMode.setOn(true, animated: true)
+//            }else{
+//                displayNotificationStatus.text = notificationStore
+//                notificationMode.setOn(false, animated: true)
+//            }
+//        }
         
     }
     
@@ -100,7 +100,7 @@ class SettingsViewController: UIViewController {
     }
     
     
-    @IBAction func doChangeLanguage(sender: AnyObject) {
+    func doChangeLanguage() {
         actionSheet = UIAlertController(title: nil, message: "Switch Language", preferredStyle: UIAlertControllerStyle.ActionSheet)
         for language in availableLanguages {
             let displayName = Localize.displayNameForLanguage(language)
@@ -109,12 +109,12 @@ class SettingsViewController: UIViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
-                if language == "zh-Hans"{
-                    self.languageLabel.text = "华语"
-                }else{
-                    self.languageLabel.text = "English"
-                    
-                }
+//                if language == "zh-Hans"{
+//                    self.languageLabel.text = "华语"
+//                }else{
+//                    self.languageLabel.text = "English"
+//                    
+//                }
             })
             actionSheet.addAction(languageAction)
         }
@@ -126,7 +126,7 @@ class SettingsViewController: UIViewController {
     }
     
     
-    @IBAction func Logout(sender: UIBarButtonItem) {
+    func Logout() {
         let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
@@ -146,5 +146,55 @@ class SettingsViewController: UIViewController {
     
     @IBAction func back(sender: UIBarButtonItem){
         self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        if (section == 0) {
+            // Password
+            if (row == 0) {
+                let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing", preferredStyle: .Alert)
+                comingSoonAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+            }
+            
+            // Admin PIN
+            else if (row == 1) {
+                print("Admin PIN")
+            }
+            
+            // Notification
+            else if (row == 2) {
+                print("Notification")
+            }
+            
+            // Language
+            else if (row == 3) {
+                doChangeLanguage()
+            }
+            
+            // Privacy
+            else if (row == 4) {
+                print("Privacy")
+            }
+        }
+        
+        else if (section == 1) {
+            // FAQ
+            if (row == 0) {
+                self.performSegueWithIdentifier("toFaq", sender: self)
+            }
+            
+            // Contact Us
+            else if (row == 1) {
+                self.performSegueWithIdentifier("toContactUs", sender: self)
+            }
+        }
+        
+        else if (section == 2) {
+            Logout()
+        }
     }
 }
