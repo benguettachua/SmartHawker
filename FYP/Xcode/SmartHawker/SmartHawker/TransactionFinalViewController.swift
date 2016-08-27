@@ -79,7 +79,7 @@ class TransactionFinalViewController: UIViewController {
         } else {
             amountView.backgroundColor = hexStringToUIColor("ff0000")
         }
-  
+        
     }
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
@@ -181,13 +181,27 @@ class TransactionFinalViewController: UIViewController {
             let updateSuccess = recordController.update(localIdentifier, type: type, description: description!, amount: amount)
             
             if (updateSuccess) {
-                print("Updated!")
+                
+                // Updates controller
+                recordController.loadDatesToCalendar()
+                
+                // Recording successful, inform the user that they can enter another record.
+                let alert = UIAlertController(title: "Success", message: "Update success, please continue.", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+                    self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+                
             } else {
-                print("Update failed!")
+                
+                // Recording failed, popup to inform the user.
+                let errorAlert = UIAlertController(title: "Error", message: "Updating failed. Please try again.", preferredStyle: .Alert)
+                errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+                self.presentViewController(errorAlert, animated: true, completion: nil)
             }
+            
         }
         
+        
     }
-    
-    
 }
