@@ -65,18 +65,12 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var salesText: UILabel!
     typealias CompletionHandler = (success:Bool) -> Void
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        let underlineAttributedString = NSAttributedString(string: "Month", attributes: underlineAttribute)
-        
-        
-        monthButton.setAttributedTitle(underlineAttributedString, forState: UIControlState.Normal)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         //Here I’m creating the calendar instance that we will operate with:
         
-        weekMonthYear.text = actualMonthDate.monthName + " " + String(actualMonthDate.year)
+        weekMonthYear.text = "Choose Category"
         
         //Now asking the calendar what month are we in today’s date:
         
@@ -374,22 +368,10 @@ class SummaryViewController: UIViewController {
         
         weekMonthYear.text = weekMonthYear.text! + correctDateString
         loadRecordsWeekly()
-        
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        
-        let underlineAttribute2 = [NSForegroundColorAttributeName: UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        
-        
-        let underlineAttributedString2 = NSAttributedString(string: "Month", attributes: underlineAttribute2)
-        let underlineAttributedString3 = NSAttributedString(string: "Year", attributes: underlineAttribute2)
-        let underlineAttributedString = NSAttributedString(string: "Week", attributes: underlineAttribute)
-        weekButton.setAttributedTitle(underlineAttributedString, forState: UIControlState.Normal)
-        monthButton.setAttributedTitle(underlineAttributedString2, forState: UIControlState.Normal)
-        yearButton.setAttributedTitle(underlineAttributedString3, forState: UIControlState.Normal)
-        
-        weekButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        monthButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
-        yearButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
+
+        weekButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        monthButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        yearButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         loadRecordsWeekly()
     }
     
@@ -407,22 +389,11 @@ class SummaryViewController: UIViewController {
             currentMonthString = String(actualMonthDate.month)
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
+
         
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        let underlineAttribute2 = [NSForegroundColorAttributeName: UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        
-        let underlineAttributedString = NSAttributedString(string: "Month", attributes: underlineAttribute)
-        let underlineAttributedString2 = NSAttributedString(string: "Week", attributes: underlineAttribute2)
-        let underlineAttributedString3 = NSAttributedString(string: "Year", attributes: underlineAttribute2)
-        
-        monthButton.setAttributedTitle(underlineAttributedString, forState: UIControlState.Normal)
-        
-        weekButton.setAttributedTitle(underlineAttributedString2, forState: UIControlState.Normal)
-        yearButton.setAttributedTitle(underlineAttributedString3, forState: UIControlState.Normal)
-        
-        monthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        weekButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
-        yearButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
+        monthButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        weekButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        yearButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         loadRecordsMonthly()
     }
     
@@ -433,22 +404,11 @@ class SummaryViewController: UIViewController {
         //Here I’m creating the calendar instance that we will operate with:
         weekMonthYear.text = String(actualYearDate.year)
         dateString = String(actualYearDate.year)
+
         
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        let underlineAttributedString = NSAttributedString(string: "Year", attributes: underlineAttribute)
-        
-        let underlineAttribute2 = [NSForegroundColorAttributeName: UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), NSFontAttributeName: UIFont(name: "Avenir-Light", size: 25)!]
-        let underlineAttributedString2 = NSAttributedString(string: "Week", attributes: underlineAttribute2)
-        let underlineAttributedString3 = NSAttributedString(string: "Month", attributes: underlineAttribute2)
-        
-        monthButton.setAttributedTitle(underlineAttributedString3, forState: UIControlState.Normal)
-        
-        weekButton.setAttributedTitle(underlineAttributedString2, forState: UIControlState.Normal)
-        yearButton.setAttributedTitle(underlineAttributedString, forState: UIControlState.Normal)
-        
-        yearButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        monthButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
-        weekButton.setTitleColor(UIColor(red:0.98, green:0.83, blue:0.72, alpha:1.0), forState: UIControlState.Normal)
+        yearButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        monthButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        weekButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         loadRecordsYearly()
     }
     
@@ -525,7 +485,7 @@ class SummaryViewController: UIViewController {
         chart.leftAxis.axisMinValue = 1
         chart.descriptionText = ""
         
-        chart.legend.enabled = false
+        chart.legend.enabled = true
     }
     
 }
