@@ -11,5 +11,15 @@ import FontAwesome_iOS
 
 class TransactionViewController: UIViewController {
     
+    // MARK: Properties
+    // UI Bar Button Item
+    @IBOutlet weak var ExpensesBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var SalesBarButtonItem: UIBarButtonItem!
     
+    // View Did Load
+    override func viewDidLoad() {
+        self.viewDidLoad()
+        
+        UITextFieldTextDidBeginEditingNotification
+    }
 }
