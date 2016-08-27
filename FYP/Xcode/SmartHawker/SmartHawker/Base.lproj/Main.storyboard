@@ -2177,7 +2177,6 @@ this password and admin pin</string>
         <!--Calendar-->
         <scene sceneID="0xZ-Cg-vkW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-mW-yGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="juk-2W-KVC" customClass="CalendarViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1vn-kv-ARl"/>
@@ -2265,7 +2264,7 @@ this password and admin pin</string>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="udK-lj-p20">
+                            <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="udK-lj-p20">
                                 <rect key="frame" x="0.0" y="228" width="414" height="395"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="757-N2-gEd" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
@@ -2274,6 +2273,7 @@ this password and admin pin</string>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="udK-lj-p20" secondAttribute="height" multiplier="414:395" id="9FV-Kv-mSx"/>
                                     <constraint firstAttribute="height" constant="395" id="cNi-vz-qBr"/>
                                     <constraint firstAttribute="width" constant="414" id="vEN-UG-bmQ"/>
                                 </constraints>
@@ -2285,12 +2285,14 @@ this password and admin pin</string>
                             <constraint firstItem="2p6-6L-AWC" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="-20" id="63c-mM-ykL"/>
                             <constraint firstItem="2tt-jX-Koh" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="5" id="6D8-eQ-9GW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2tt-jX-Koh" secondAttribute="trailing" constant="5" id="8iC-AR-C7O"/>
+                            <constraint firstItem="udK-lj-p20" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leading" id="An1-6E-nkq"/>
                             <constraint firstItem="5A2-nC-biN" firstAttribute="leading" secondItem="Izd-Yz-755" secondAttribute="leadingMargin" constant="-20" id="KwV-l8-PLe"/>
                             <constraint firstItem="5A2-nC-biN" firstAttribute="top" secondItem="1vn-kv-ARl" secondAttribute="bottom" id="NAU-da-azh"/>
                             <constraint firstItem="2p6-6L-AWC" firstAttribute="top" secondItem="5A2-nC-biN" secondAttribute="bottom" id="RVV-mA-bNa"/>
+                            <constraint firstItem="hk2-lF-h40" firstAttribute="top" secondItem="udK-lj-p20" secondAttribute="bottom" constant="20" id="Vcl-lL-NcH"/>
                             <constraint firstItem="udK-lj-p20" firstAttribute="top" secondItem="2tt-jX-Koh" secondAttribute="bottom" constant="15" id="Y7S-mR-Rek"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5A2-nC-biN" secondAttribute="trailing" constant="-20" id="ZGl-V0-co1"/>
-                            <constraint firstItem="udK-lj-p20" firstAttribute="leading" secondItem="2p6-6L-AWC" secondAttribute="leading" id="rwA-sO-CfX"/>
+                            <constraint firstAttribute="trailing" secondItem="udK-lj-p20" secondAttribute="trailing" id="cW3-qN-yjE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2p6-6L-AWC" secondAttribute="trailing" constant="-20" id="whI-ZW-0mZ"/>
                         </constraints>
                     </view>
@@ -2300,6 +2302,7 @@ this password and admin pin</string>
                         <outlet property="navBar" destination="5lm-F2-ezc" id="rjf-Ec-qDe"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-mW-yGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1131" y="2211"/>
         </scene>
