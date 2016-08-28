@@ -104,14 +104,23 @@ class ProfileViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Do something depending on which row is selected.
         let selectedRow = indexPath.row
+        let section = indexPath.section
         
-        if (selectedRow == 0) {
-            // Sync
-            syncData()
+        // User click the profile bar
+        if (section == 0) {
+            print("Clicked Wendy pic")
         }
         
-        if (selectedRow == 1) {
-            self.performSegueWithIdentifier("toSettings", sender: self)
+        // User click Sync or Settings
+        if (section == 1) {
+            // Sync
+            if (selectedRow == 0) {
+                syncData()
+            }
+            // Setting
+            if (selectedRow == 1) {
+                self.performSegueWithIdentifier("toSettings", sender: self)
+            }
         }
     }
 
