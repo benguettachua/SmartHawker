@@ -46,9 +46,7 @@ class CellView: JTAppleDayCellView {
             configureTextColor(cellState)
         }
         if c.stringFromDate(date) == "2016-08-01" {
-            self.layer.cornerRadius =  self.frame.width  / 2
-            self.layer.borderColor = UIColor.orangeColor().CGColor
-            self.layer.borderWidth = 2
+            self.layer.backgroundColor = UIColor.orangeColor().CGColor
             
         }else{
             

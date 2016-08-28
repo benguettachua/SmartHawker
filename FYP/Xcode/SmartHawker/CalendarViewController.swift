@@ -7,6 +7,7 @@
 //
 
 import JTAppleCalendar
+import SwiftMoment
 
 class CalendarViewController: UIViewController {
     var numberOfRows = 6
@@ -19,6 +20,10 @@ class CalendarViewController: UIViewController {
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
+    var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
+    
+    //for language preference
+    let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     @IBOutlet weak var navBar: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,19 +70,20 @@ class CalendarViewController: UIViewController {
         // After reloading. Scroll to your selected date, and setup your calendar
         calendarView.scrollToDate(NSDate(), triggerScrollToDateDelegate: false, animateScroll: false) {
             let currentDate = self.calendarView.currentCalendarDateSegment()
-            print(currentDate)
             self.setupViewsOfCalendar(currentDate.dateRange.start, endDate: currentDate.dateRange.end)
         }
         formatter.dateFormat = "dd/MM/yyyy"
         correctDateString = formatter.stringFromDate(NSDate())
+        calendarView.selectDates([NSDate()])
+        toShare.storeDate = moment(NSDate())
         loadRecords(correctDateString)
     }
     
-    @IBAction func printSelectedDates() {
-        print("Selected dates --->")
+    @IBAction func selectDate() {
         for date in calendarView.selectedDates {
             formatter.dateFormat = "dd/MM/yyyy"
             correctDateString = formatter.stringFromDate(date)
+            print(correctDateString)
             loadRecords(correctDateString)
         }
     }
@@ -138,6 +144,44 @@ class CalendarViewController: UIViewController {
         self.profitText.text = profitString2dp
         self.profitText.font = UIFont(name: profitText.font.fontName, size: 15)
     }
+    
+    @IBAction func Record(sender: UIBarButtonItem) {
+        
+        for date in calendarView.selectedDates{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let correctDateString = dateFormatter.stringFromDate(date)
+            let dateMoment = moment(date)
+            var day: String!
+            
+            if dateMoment.day == 1 || dateMoment.day == 21{
+                day = String(dateMoment.day) + "st".localized()
+                
+            }else if dateMoment.day == 2 || dateMoment.day == 22{
+                day = String(dateMoment.day) + "nd".localized()
+                
+            }else if dateMoment.day == 3 || dateMoment.day == 23{
+                day = String(dateMoment.day) + "rd".localized()
+                
+            }else{
+                day = String(dateMoment.day) + "th".localized()
+            }
+            
+            var toDisplayDate = ""
+            if lang == "zh-Hans" {
+                toDisplayDate = dateMoment.monthName.localized() + " \(day) " + " \(dateMoment.year) 年, "+(dateMoment.weekdayName).localized()
+            }else{
+                toDisplayDate = day + " " + dateMoment.monthName + " " + String(dateMoment.year) + " , " + dateMoment.weekdayName
+            }
+            toShare.storeDate = dateMoment
+            toShare.dateString = correctDateString
+            toShare.toDisplayDate = toDisplayDate
+        }
+        // Move to Record Page.
+        self.performSegueWithIdentifier("dayRecord", sender: self)
+        
+        
+    }
 }
 
 // MARK : JTAppleCalendarDelegate
@@ -164,9 +208,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     
     func calendar(calendar: JTAppleCalendarView, didSelectDate date: NSDate, cell: JTAppleDayCellView?, cellState: CellState) {
         (cell as? CellView)?.cellSelectionChanged(cellState)
-        
-        print("lala")
-        printSelectedDates()
+        selectDate()
     }
     
     func calendar(calendar: JTAppleCalendarView, isAboutToResetCell cell: JTAppleDayCellView) {
