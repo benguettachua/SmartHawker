@@ -74,4 +74,9 @@ class RecordController {
         let subuser = shared.subuser
         dao.loadDatesIntoCalendar(isSubuser, subuser: subuser)
     }
+    
+    // Load all records
+    func loadRecords() -> [PFObject] {
+        return dao.loadRecords()
+    }
 }

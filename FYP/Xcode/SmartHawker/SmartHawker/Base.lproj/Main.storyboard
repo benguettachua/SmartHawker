@@ -991,7 +991,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaX-h2-TMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3338" y="2093"/>
+            <point key="canvasLocation" x="3970" y="2005"/>
         </scene>
         <!--Record Day View Controller-->
         <scene sceneID="ZM5-kO-09c">
@@ -1204,13 +1204,95 @@ this password and admin pin</string>
                         <outlet property="noRecordLabel" destination="UIs-EQ-ko1" id="Y0b-27-hFb"/>
                         <outlet property="noRecordView" destination="owM-XO-trf" id="WyU-if-nJq"/>
                         <outlet property="tableView" destination="hFy-fM-ZBa" id="6V9-Sq-EZe"/>
-                        <segue destination="Ch1-He-QFh" kind="modal" identifier="updateRecord" id="5xY-Qe-Prb"/>
                         <segue destination="OM1-N0-jK9" kind="modal" identifier="addRecord" id="TpA-R2-xdH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hms-CT-p5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2254" y="2211"/>
+            <point key="canvasLocation" x="3454" y="2019"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="0ap-TT-BAv">
+            <objects>
+                <tableViewController id="QSu-RF-hdB" customClass="MonthRecordTableViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2AG-wP-4QX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="lTZ-iC-rZc" customClass="RecordTableViewCell" customModule="SmartHawker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTZ-iC-rZc" id="WnT-5h-XeC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5T7-3e-W00">
+                                            <rect key="frame" x="19" y="11" width="77" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESe-rV-w3y">
+                                            <rect key="frame" x="104" y="11" width="210" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recorded by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaJ-dK-gSm">
+                                            <rect key="frame" x="19" y="35" width="144" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqI-FK-e4P">
+                                            <rect key="frame" x="322" y="11" width="84" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="PqI-FK-e4P" id="WrN-ad-BX7"/>
+                                    <outlet property="descriptionLabel" destination="ESe-rV-w3y" id="fz6-FU-PAy"/>
+                                    <outlet property="recordTypeLabel" destination="5T7-3e-W00" id="QfW-Lz-s1x"/>
+                                    <outlet property="recordedByLabel" destination="CaJ-dK-gSm" id="TQU-tc-Yp0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QSu-RF-hdB" id="pfZ-Vh-gDV"/>
+                            <outlet property="delegate" destination="QSu-RF-hdB" id="bvM-an-vUf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="KCL-fj-htj">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Month" id="rWd-iV-dop">
+                            <connections>
+                                <action selector="back:" destination="QSu-RF-hdB" id="5zO-sO-lgO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5d-xz-eia" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2307" y="2169"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IKR-hD-4AW">
+            <objects>
+                <navigationController id="vGJ-2D-drf" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CyR-a9-Mu3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QSu-RF-hdB" kind="relationship" relationship="rootViewController" id="Z1M-OC-5vt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zoX-YK-FP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1767" y="2169"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="mOw-UE-ogO">
@@ -1477,7 +1559,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRP-m8-3Zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688" y="2216"/>
+            <point key="canvasLocation" x="2866" y="2048"/>
         </scene>
         <!--Home-->
         <scene sceneID="9f0-zr-LK6">
@@ -2109,7 +2191,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIj-Zi-TTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3886" y="2093"/>
+            <point key="canvasLocation" x="3958" y="1117"/>
         </scene>
         <!--Add Record View Controller-->
         <scene sceneID="KUl-1F-PPY">
@@ -2164,7 +2246,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LC5-hv-6Mo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2811" y="2093"/>
+            <point key="canvasLocation" x="3459" y="1141"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Caj-Vw-5vz">
@@ -2198,7 +2280,11 @@ this password and admin pin</string>
                                                     <action selector="Record:" destination="juk-2W-KVC" id="0hK-lw-xJ3"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Item" id="mnY-2M-zAj"/>
+                                            <barButtonItem title="MR" id="mnY-2M-zAj">
+                                                <connections>
+                                                    <segue destination="vGJ-2D-drf" kind="modal" id="8B1-L5-idy"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
