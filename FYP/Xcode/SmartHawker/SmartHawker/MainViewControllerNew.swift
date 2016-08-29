@@ -224,39 +224,47 @@ class MainViewControllerNew: UIViewController{
         
     }
     @IBAction func syncRecords(sender: UIButton) {
-        let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
-            
-            // Pop up telling the user that you are currently syncing
-            let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
-            self.presentViewController(popup, animated: true, completion: {
-                let syncSucceed = ProfileController().sync()
-                if (syncSucceed) {
-                    
-                    // Retrieval succeed, inform the user that records are synced.
-                    popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-                        alertController.addAction(ok)
-                        self.presentViewController(alertController, animated: true,completion: nil)
-                    })
-                    
-                } else {
-                    
-                    // Retrieval failed, inform user that he can sync again after he log in.
-                    popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Failed!", message: "Please try again later.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-                        alertController.addAction(ok)
-                        self.presentViewController(alertController, animated: true,completion: nil)
-                    })
-                }
+        if connectionDAO().isConnectedToNetwork(){
+            let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+                
+                // Pop up telling the user that you are currently syncing
+                let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
+                self.presentViewController(popup, animated: true, completion: {
+                    let syncSucceed = ProfileController().sync()
+                    if (syncSucceed) {
+                        
+                        // Retrieval succeed, inform the user that records are synced.
+                        popup.dismissViewControllerAnimated(true, completion: {
+                            let alertController = UIAlertController(title: "Sync Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            alertController.addAction(ok)
+                            self.presentViewController(alertController, animated: true,completion: nil)
+                        })
+                        
+                    } else {
+                        
+                        // Retrieval failed, inform user that he can sync again after he log in.
+                        popup.dismissViewControllerAnimated(true, completion: {
+                            let alertController = UIAlertController(title: "Sync Failed!", message: "Please try again later.", preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            alertController.addAction(ok)
+                            self.presentViewController(alertController, animated: true,completion: nil)
+                        })
+                    }
+                })
             })
-        })
-        let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
-        alertController.addAction(ok)
-        alertController.addAction(no)
-        self.presentViewController(alertController, animated: true, completion: nil)
+            let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+            alertController.addAction(ok)
+            alertController.addAction(no)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }else{
+            
+            let alertController = UIAlertController(title: "Please find a internet connection.", message: "Please try again later.", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alertController.addAction(ok)
+            self.presentViewController(alertController, animated: true,completion: nil)
+        }
     }
     
 }
