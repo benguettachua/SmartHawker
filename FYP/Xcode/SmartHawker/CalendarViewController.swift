@@ -20,11 +20,18 @@ class CalendarViewController: UIViewController {
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
+
+    
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     var selectedDate: NSDate!
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     @IBOutlet weak var navBar: UINavigationItem!
+    
+    @IBOutlet weak var list: UIButton!
+    
+    @IBOutlet weak var add: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.dateFormat = "yyyy MM dd"
@@ -78,6 +85,20 @@ class CalendarViewController: UIViewController {
         toShare.storeDate = moment(NSDate())
         selectedDate = NSDate()
         loadRecords(NSDate())
+        
+        var faicon = [String: UniChar]()
+        faicon["falist"] = 0xf0ca
+        faicon["faadd"] = 0xf067
+        
+        
+        
+        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        
+        list.setTitle(String(format: "%C", faicon["falist"]!), forState: .Normal)
+        
+        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        
+        add.setTitle(String(format: "%C", faicon["faadd"]!), forState: .Normal)
     }
     
     

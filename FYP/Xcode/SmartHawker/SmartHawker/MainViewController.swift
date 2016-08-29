@@ -182,8 +182,8 @@ class MainViewcontroller: UIViewController, CLLocationManagerDelegate{
         }else{
             toDisplayDate += dayString + " " + date.monthName + " " + String(date.year)
         }
-        overviewLabel.text = toDisplayDate
-        dayLabel.text = date.weekdayName
+        //overviewLabel.text = toDisplayDate
+        //dayLabel.text = date.weekdayName
         // Formatting to format as saved in DB.
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/yyyy"
