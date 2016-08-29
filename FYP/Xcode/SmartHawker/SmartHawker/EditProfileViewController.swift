@@ -142,7 +142,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //change email
     @IBAction func change(sender: UIButton) {
         
-        
+        if connectionDAO().isConnectedToNetwork(){
         let alert = UIAlertController(title: "Editing", message: "Edits are being made to your profile details", preferredStyle: UIAlertControllerStyle.Alert)
         self.presentViewController(alert, animated: true, completion: {
         
@@ -205,9 +205,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         //checks for AdminPIN Number
         if self.adminPIN.text!.isEmpty == false{
-            
+            var text: String!
             if Int(self.adminPIN.text!) != nil {
-                if Int(self.adminPIN.text!) >= 0 && Int(self.adminPIN.text!) < 10000 && String(self.adminPIN).characters.count == 4{
+                text = self.adminPIN.text!
+                if Int(self.adminPIN.text!) >= 0 && Int(self.adminPIN.text!) < 10000 && text.characters.count == 4{
                     newPINNumber = self.adminPIN.text!
                 }else{
                     let errorString = "Invalid Admin PIN field."
@@ -341,6 +342,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                  })
         }
         })
+            
+        }else{
+            
+            let alertController = UIAlertController(title: "Please find a internet connection.", message: "Please try again later.", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alertController.addAction(ok)
+            self.presentViewController(alertController, animated: true,completion: nil)
+        }
     }
     //////Changing profile picture
     
