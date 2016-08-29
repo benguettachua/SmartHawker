@@ -120,6 +120,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        loadRecords(selectedDate)
     }
     
     func setupViewsOfCalendar(startDate: NSDate, endDate: NSDate) {
