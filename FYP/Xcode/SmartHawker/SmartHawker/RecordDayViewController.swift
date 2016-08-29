@@ -53,7 +53,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
             
             // There are records found, show the records in a table form.
             noRecordView.hidden = true
-            tableView.backgroundView = UIImageView(image: UIImage(named: "main-bg"))
             tableView.hidden = false
             
             // Loop through the records, removing all elements that should not be shown.
@@ -96,7 +95,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // MARK: Action
-    @IBAction func back(sender: UIButton) {
+    @IBAction func back(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -204,7 +203,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         shared.selectedRecord = records[indexPath.row]
-        self.performSegueWithIdentifier("updateRecord", sender: self)
+        //self.performSegueWithIdentifier("updateRecord", sender: self)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

@@ -219,7 +219,27 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func calendar(calendar: JTAppleCalendarView, didSelectDate date: NSDate, cell: JTAppleDayCellView?, cellState: CellState) {
         (cell as? CellView)?.cellSelectionChanged(cellState)
         selectedDate = date
-        goToPage()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let correctDateString = dateFormatter.stringFromDate(selectedDate)
+        let dateMoment = moment(selectedDate)
+        var day: String!
+        
+        if dateMoment.day == 1 || dateMoment.day == 21{
+            day = String(dateMoment.day) + "st".localized()
+            
+        }else if dateMoment.day == 2 || dateMoment.day == 22{
+            day = String(dateMoment.day) + "nd".localized()
+            
+        }else if dateMoment.day == 3 || dateMoment.day == 23{
+            day = String(dateMoment.day) + "rd".localized()
+            
+        }else{
+            day = String(dateMoment.day) + "th".localized()
+        }
+        toShare.storeDate = dateMoment
+        toShare.dateString = correctDateString
+        self.performSegueWithIdentifier("recordDay", sender: self)
     }
     
     func calendar(calendar: JTAppleCalendarView, isAboutToResetCell cell: JTAppleDayCellView) {
