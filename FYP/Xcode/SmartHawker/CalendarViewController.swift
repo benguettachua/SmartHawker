@@ -81,7 +81,6 @@ class CalendarViewController: UIViewController {
         }
         formatter.dateFormat = "MM/yyyy"
         correctDateString = formatter.stringFromDate(NSDate())
-        calendarView.selectDates([NSDate()])
         toShare.storeDate = moment(NSDate())
         selectedDate = NSDate()
         loadRecords(NSDate())

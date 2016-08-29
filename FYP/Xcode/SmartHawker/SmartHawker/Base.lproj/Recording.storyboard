@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQR-fd-37j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQR-fd-37j">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -34,7 +34,13 @@
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="back:" destination="rQR-fd-37j" eventType="touchUpInside" id="tqK-Rb-7hU"/>
+                                                    </connections>
                                                 </button>
+                                                <connections>
+                                                    <action selector="back:" destination="rQR-fd-37j" id="z2J-s7-l33"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Sales" id="KbR-KC-uMo">
                                                 <connections>
@@ -50,6 +56,9 @@
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="nextPage:" destination="rQR-fd-37j" eventType="touchUpInside" id="9sl-iW-Rl1"/>
+                                                    </connections>
                                                 </button>
                                             </barButtonItem>
                                             <barButtonItem title="Expenses" id="pw3-aT-ZLu">
@@ -61,7 +70,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRK-e5-zUM">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cRK-e5-zUM">
                                 <rect key="frame" x="-4" y="80" width="328" height="139"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SGD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82m-2V-TUM">
@@ -70,7 +79,7 @@
                                         <color key="textColor" red="0.89803921568627454" green="0.0" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6y-Hs-0lB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6y-Hs-0lB">
                                         <rect key="frame" x="16" y="43" width="13" height="53"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="39"/>
                                         <color key="textColor" red="0.89803921568627454" green="0.0" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,6 +123,7 @@
                         <outlet property="amountView" destination="cRK-e5-zUM" id="7zE-u1-0Jt"/>
                         <outlet property="backbtn" destination="sGF-T6-Ql4" id="y03-Nt-QQP"/>
                         <outlet property="expensesBarButtonItem" destination="pw3-aT-ZLu" id="txx-H7-SgS"/>
+                        <outlet property="nextBarButtonItem" destination="cR5-BM-tVn" id="0Tc-9e-cKE"/>
                         <outlet property="nextbtn" destination="cR5-BM-tVn" id="uJi-cT-bvK"/>
                         <outlet property="positiveNegativeSignLabel" destination="X6y-Hs-0lB" id="0RZ-4M-GY6"/>
                         <outlet property="salesBarButtonItem" destination="KbR-KC-uMo" id="hTr-9M-XXI"/>

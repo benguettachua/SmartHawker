@@ -66,7 +66,12 @@ class TransactionFinalViewController: UIViewController {
         amountLabel.text = String(amount)
         
         // Set selected date to label
-        let selectedDate = shared.dateString
+        var selectedDate = shared.dateString
+        if (selectedDate == nil) {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            selectedDate = dateFormatter.stringFromDate(NSDate())
+        }
         todayLabel.text = selectedDate
         
         // Change the background colour of the view

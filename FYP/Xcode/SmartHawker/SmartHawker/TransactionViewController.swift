@@ -15,7 +15,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
     // UI Bar Button Item
     @IBOutlet weak var expensesBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var salesBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var nextBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var nextBarButtonItem: UIButton!
     
     // Text Fields
     @IBOutlet weak var amountTextField: UITextField!

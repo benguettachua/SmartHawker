@@ -121,24 +121,6 @@ class ProfileViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-//    @IBAction func Logout(sender: UIBarButtonItem) {
-//        let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
-//        
-//        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-//            ProfileController().logout()
-//        }))
-//        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-//            
-//            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
-//            
-//            
-//        }))
-//        
-//        presentViewController(refreshAlert, animated: true, completion: nil)
-//        
-//        
-//    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Do something depending on which row is selected.
         let selectedRow = indexPath.row
