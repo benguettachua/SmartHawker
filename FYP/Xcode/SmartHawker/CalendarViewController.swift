@@ -102,8 +102,6 @@ class CalendarViewController: UIViewController {
         add.setTitle(String(format: "%C", faicon["faadd"]!), forState: .Normal)
     }
     
-    
-    
     @IBAction func goToPage() {
         //self.performSegueWithIdentifier("singleCalendar", sender: self)
     }
@@ -120,6 +118,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        calendarView.reloadData()
         loadRecords(selectedDate)
     }
     
@@ -160,7 +159,6 @@ class CalendarViewController: UIViewController {
     @IBAction func Record(sender: UIBarButtonItem) {
         
         for date in calendarView.selectedDates{
-            print("AM I IN HERE?")
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let correctDateString = dateFormatter.stringFromDate(date)
@@ -200,10 +198,11 @@ class CalendarViewController: UIViewController {
 // MARK : JTAppleCalendarDelegate
 extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     func configureCalendar(calendar: JTAppleCalendarView) -> (startDate: NSDate, endDate: NSDate, numberOfRows: Int, calendar: NSCalendar) {
+        formatter.dateFormat = "yyyy"
         
         let todayDateString = formatter.stringFromDate(NSDate())
-        let thisYearString = todayDateString[todayDateString.startIndex...todayDateString.startIndex.advancedBy(3)]
-        let nextYear = Int(thisYearString)! + 1
+        let nextYear = Int(todayDateString)! + 1
+        formatter.dateFormat = "yyyy MM dd"
         let secondDate = formatter.dateFromString(String(nextYear) + " 12 31")
         
         let firstDate = formatter.dateFromString("2016 01 01")

@@ -51,7 +51,6 @@ class CellView: JTAppleDayCellView {
         formatter.dateFormat = "dd/MM/yyyy"
         let array = toShare.datesWithRecords
         let dateString = formatter.stringFromDate(date)
-        print(array)
         if (array.contains(dateString) && cellState.dateBelongsTo == .ThisMonth) {
             
             self.layer.cornerRadius =  20  / 2
