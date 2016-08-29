@@ -45,16 +45,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         if (record == nil) {
             selectSales(salesBarButtonItem)
             isNewRecord = true
-        } else {
-            type = record["type"] as! Int
-            let amount = record["amount"] as! Double
-            amountTextField.text = String(amount)
-            if (type == 0) {
-                selectSales(salesBarButtonItem)
-            } else {
-                selectExpenses(expensesBarButtonItem)
-            }
-        }
+        } 
         
         // Delegate for textfield
         amountTextField.delegate = self
