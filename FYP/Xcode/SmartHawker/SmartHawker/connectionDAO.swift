@@ -70,7 +70,12 @@ class connectionDAO{
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         do{
             records = try query.findObjects()
-            try PFObject.pinAll(records)
+            for record in records {
+                if (record["subUser"] == nil) {
+                    record["subUser"] = NSUUID().UUIDString
+                }
+                try record.pin()
+            }
             return true
         } catch {
             return false
