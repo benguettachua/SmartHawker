@@ -592,12 +592,8 @@ this password and admin pin</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-page-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="f1e-Wp-gMg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-page-bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="f1e-Wp-gMg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="22A-Rv-dlI"/>
-                                    <constraint firstAttribute="height" constant="736" id="X6H-vU-9Nl"/>
-                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-EU-MSz">
                                 <rect key="frame" x="69" y="168" width="282" height="438"/>
@@ -766,7 +762,9 @@ this password and admin pin</string>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
                                         <rect key="frame" x="117" y="408" width="48" height="30"/>
-                                        <state key="normal" title="Cancel"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="back:" destination="w0u-9P-jUc" eventType="touchUpInside" id="wVH-qK-gJy"/>
                                             <action selector="cancel:" destination="tmR-p1-Jn7" eventType="touchUpInside" id="p2S-dH-Fj6"/>
@@ -777,10 +775,13 @@ this password and admin pin</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="f1e-Wp-gMg" firstAttribute="top" secondItem="D0V-qJ-6qa" secondAttribute="topMargin" id="974-7L-WaI"/>
                             <constraint firstItem="gVP-EU-MSz" firstAttribute="centerX" secondItem="D0V-qJ-6qa" secondAttribute="centerX" id="SFZ-h7-In8"/>
                             <constraint firstItem="f1e-Wp-gMg" firstAttribute="centerY" secondItem="D0V-qJ-6qa" secondAttribute="centerY" id="YAv-Mm-9Qf"/>
+                            <constraint firstItem="f1e-Wp-gMg" firstAttribute="leading" secondItem="D0V-qJ-6qa" secondAttribute="leadingMargin" constant="-20" id="eWu-pX-5So"/>
                             <constraint firstItem="gVP-EU-MSz" firstAttribute="centerY" secondItem="D0V-qJ-6qa" secondAttribute="centerY" id="lqd-IF-PQl"/>
                             <constraint firstItem="f1e-Wp-gMg" firstAttribute="centerX" secondItem="D0V-qJ-6qa" secondAttribute="centerX" id="oC4-Lv-ZUv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f1e-Wp-gMg" secondAttribute="trailing" constant="-20" id="q2a-CS-DWI"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
