@@ -103,9 +103,9 @@ class MainController{
         
         for (myKey,myValue) in datesAndRecords {
             let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM/yyyy"
+            let correctDateString = dateFormatter.stringFromDate(NSDate())
             dateFormatter.dateFormat = "dd/MM/yyyy"
-            var correctDateString = dateFormatter.stringFromDate(NSDate())
-            
             let recordDate = dateFormatter.dateFromString(myKey)
             let todayDate = dateFormatter.stringFromDate(NSDate())
             let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && myKey.containsString(correctDateString)
@@ -113,7 +113,10 @@ class MainController{
             var profit = 0.0
             var sales = 0.0
             
-            
+            print(correctDateString)
+            print(myKey)
+            print(earlier || same)
+            print("seperate")
             for record in myValue {
                 if earlier || same {
                     if datesWithRecords.contains(record["date"] as! String) == false {
