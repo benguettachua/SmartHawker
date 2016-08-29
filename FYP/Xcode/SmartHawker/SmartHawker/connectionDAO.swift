@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class connectionDAO{
     
@@ -366,5 +367,33 @@ class connectionDAO{
         } catch {
             return false
         }
+    }
+    
+    func isConnectedToNetwork()->Bool{
+        
+        let urlPath: String = "http://www.parse.com"
+        var url: NSURL = NSURL(string: urlPath)!
+        
+        // Notice the timeoutInterval property.
+        // Since this is a synchronous request you do not want it last for a long time
+        var request = NSURLRequest(URL: url,
+                                   cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData,
+                                   timeoutInterval: 3)
+        var response: NSURLResponse?
+        var error: NSError?
+        do{
+        let urlData = try NSURLConnection.sendSynchronousRequest(request,
+                                                             returningResponse: &response)
+        }catch{}
+        
+        if let httpResponse = response as? NSHTTPURLResponse {
+            print(httpResponse.statusCode)
+            
+            if(httpResponse.statusCode == 200) {
+                return true
+            }
+        }
+        
+        return false
     }
 }

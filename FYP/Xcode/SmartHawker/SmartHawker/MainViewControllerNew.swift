@@ -1,19 +1,16 @@
 
 import UIKit
-import CoreLocation
 import SwiftMoment
 
-class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocationManagerDelegate {
+class MainViewControllerNew: UIViewController{
 
     //MARK properties
     //---------------------------------
-    let locationManager = CLLocationManager()
     let user = PFUser.currentUser()
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     
     
     var targetAmount = 0.0
-    var weather: WeatherGetter!
     var targetAvailable = false
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     var newMonth = false
@@ -27,9 +24,6 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
     @IBOutlet weak var targetButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var weatherPicture: UIImageView!
-    @IBOutlet weak var weatherLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
     
     @IBOutlet weak var lowestSales: UILabel!
     @IBOutlet weak var highestSales: UILabel!
@@ -44,7 +38,6 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getLocation()
         getTodayDate()
         
         var faicon = [String: UniChar]()
@@ -57,7 +50,6 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        weather = WeatherGetter(delegate: self)
         
         // Initialize UI
         // -------------
@@ -105,12 +97,7 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
         toShare.dateString = correctDateString
         self.performSegueWithIdentifier("addRecord", sender: self)
     }
-    
-    // allows user to refresh the weather
-    @IBAction func refreshWeather(sender: UIButton) {
-        self.getLocation()
-    }
-    
+
     
     // allows the user to logout
     @IBAction func Logout(sender: UIBarButtonItem) {
@@ -236,143 +223,6 @@ class MainViewControllerNew: UIViewController, WeatherGetterDelegate, CLLocation
         overviewLabel.text = toDisplayDate
         dayLabel.text = date.weekdayName
         
-    }
-
-    
-    
-    // MARK: - WeatherGetterDelegate methods
-    // -----------------------------------
-    
-    func didGetWeather(weather: [String: AnyObject]) {
-        // This method is called asynchronously, which means it won't execute in the main queue.
-        // All UI code needs to execute in the main queue, which is why we're wrapping the code
-        // that updates all the labels in a dispatch_async() call.
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            self.temperatureLabel.text = "\(String(weather["main"]!["temp"]!! as! Double - 273.15))°C"
-            self.weatherLabel.text = weather["weather"]![0]!["description"]!! as? String
-            let weatherID = String(weather["weather"]![0]["icon"]!!)
-            if weatherID.containsString("01d") || weatherID.containsString("02d"){
-                self.weatherPicture.image = UIImage(named: "weather-sunny")
-            }
-            else if weatherID.containsString("01n") || weatherID.containsString("02n"){
-                self.weatherPicture.image = UIImage(named: "weather-moon")
-            }
-            else if weatherID.containsString("03") || weatherID.containsString("04") || weatherID.containsString("50"){
-                self.weatherPicture.image = UIImage(named: "weather-cloudly")
-            }
-            else if weatherID.containsString("09") || weatherID.containsString("10"){
-                self.weatherPicture.image = UIImage(named: "weather-raining")
-            }
-            else if weatherID.containsString("11") || weatherID.containsString("10"){
-                self.weatherPicture.image = UIImage(named: "weather-thunderstorm")
-            }
-
-        }
-
-    }
-    
-    func didNotGetWeather(error: NSError) {
-        // This method is called asynchronously, which means it won't execute in the main queue.
-        // All UI code needs to execute in the main queue, which is why we're wrapping the call
-        // to showSimpleAlert(title:message:) in a dispatch_async() call.
-        dispatch_async(dispatch_get_main_queue()) {
-            self.showSimpleAlert(title: "Can't get the weather",
-                                 message: "The weather service isn't responding.")
-        }
-        print("didNotGetWeather error: \(error)")
-    }
-    
-    
-    // MARK: - CLLocationManagerDelegate and related methods
-    
-    func getLocation() {
-        guard CLLocationManager.locationServicesEnabled() else {
-            showSimpleAlert(
-                title: "Please turn on location services",
-                message: "This app needs location services in order to report the weather " +
-                    "for your current location.\n" +
-                "Go to Settings → Privacy → Location Services and turn location services on."
-            )
-            return
-        }
-        
-        let authStatus = CLLocationManager.authorizationStatus()
-        guard authStatus == .AuthorizedWhenInUse else {
-            switch authStatus {
-            case .Denied, .Restricted:
-                let alert = UIAlertController(
-                    title: "Location services for this app are disabled",
-                    message: "In order to get your current location, please open Settings for this app, choose \"Location\"  and set \"Allow location access\" to \"While Using the App\".",
-                    preferredStyle: .Alert
-                )
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                let openSettingsAction = UIAlertAction(title: "Open Settings", style: .Default) {
-                    action in
-                    if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication().openURL(url)
-                    }
-                }
-                alert.addAction(cancelAction)
-                alert.addAction(openSettingsAction)
-                presentViewController(alert, animated: true, completion: nil)
-                return
-                
-            case .NotDetermined:
-                locationManager.requestWhenInUseAuthorization()
-                
-            default:
-                print("Oops! Shouldn't have come this far.")
-            }
-            
-            return
-        }
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        locationManager.requestLocation()
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let newLocation = locations.last!
-        weather.getWeatherByCoordinates(latitude: newLocation.coordinate.latitude,
-                                        longitude: newLocation.coordinate.longitude)
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        // This method is called asynchronously, which means it won't execute in the main queue.
-        // All UI code needs to execute in the main queue, which is why we're wrapping the call
-        // to showSimpleAlert(title:message:) in a dispatch_async() call.
-        dispatch_async(dispatch_get_main_queue()) {
-            self.showSimpleAlert(title: "Can't determine your location",
-                                 message: "The GPS and other location services aren't responding.")
-            self.weatherLabel.text = "Please Refresh"
-            self.temperatureLabel.text = ""
-        }
-        print("locationManager didFailWithError: \(error)")
-    }
-    
-    
-    // MARK: - Utility methods
-    // -----------------------
-    
-    func showSimpleAlert(title title: String, message: String) {
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .Alert
-        )
-        let okAction = UIAlertAction(
-            title: "OK",
-            style:  .Default,
-            handler: nil
-        )
-        alert.addAction(okAction)
-        presentViewController(
-            alert,
-            animated: true,
-            completion: nil
-        )
     }
     
 }
