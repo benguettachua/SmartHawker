@@ -37,15 +37,18 @@ class CellView: JTAppleDayCellView {
         // Setup text color
         configureTextColor(cellState)
 
-        // Setup Cell Background color
-        self.backgroundColor = c.stringFromDate(date) == todayDate ? todayColor:normalDayColor
+        print(c.stringFromDate(date) + "\(cellState.dateBelongsTo)")
         
-        if c.stringFromDate(date) == todayDate {
+        if c.stringFromDate(date) == todayDate && cellState.dateBelongsTo == .ThisMonth{
+            self.backgroundColor = c.stringFromDate(date) == todayDate ? todayColor:normalDayColor
             self.layer.cornerRadius =  15  / 2
             self.hidden = false
             configureTextColor(cellState)
+        }else{
+            self.backgroundColor = UIColor.clearColor()
         }
-        if c.stringFromDate(date) == "2016-08-01" || c.stringFromDate(date) == "2016-08-02"{
+        if (c.stringFromDate(date) == "2016-08-01" || c.stringFromDate(date) == "2016-08-02") && cellState.dateBelongsTo == .ThisMonth{
+            
             self.layer.cornerRadius =  20  / 2
             self.layer.borderColor = UIColor.orangeColor().CGColor
             self.layer.borderWidth = 1
