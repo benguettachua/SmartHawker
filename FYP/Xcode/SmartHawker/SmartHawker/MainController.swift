@@ -171,7 +171,6 @@ class MainController{
             highSalesDay = "None"
             lowSalesDay = "None"
         }
-        
         return (totalSales,expenses,totalProfit,highSales,lowSales,(totalSales/totalDays),highSalesDay,lowSalesDay)
     }
     

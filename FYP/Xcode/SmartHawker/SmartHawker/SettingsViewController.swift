@@ -226,7 +226,7 @@ class SettingsViewController: UITableViewController {
             
             // Privacy
             else if (row == 4) {
-                print("Privacy")
+                self.performSegueWithIdentifier("toPrivacy", sender: self)
             }
         }
         

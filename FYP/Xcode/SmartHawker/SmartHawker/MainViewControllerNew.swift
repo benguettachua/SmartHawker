@@ -64,7 +64,7 @@ class MainViewControllerNew: UIViewController{
         }
     
         let values = MainController().getMainValues()
-        
+        print(values)
         self.salesAmount.text = "$" + String(format: "%.0f", values.0)
         self.otherExpensesAmount.text = "$" + String(format: "%.0f", values.1)
         self.totalProfit.text = "$" + String(format: "%.0f", values.2)
@@ -220,8 +220,7 @@ class MainViewControllerNew: UIViewController{
         }else{
             toDisplayDate += dayString + " " + date.monthName + " " + String(date.year)
         }
-        overviewLabel.text = toDisplayDate
-        dayLabel.text = date.weekdayName
+        overviewLabel.text = date.weekdayName + "\n" + toDisplayDate
         
     }
     
