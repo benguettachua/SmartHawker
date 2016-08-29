@@ -424,6 +424,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gwb-eH-RoR">
+                                        <rect key="frame" x="0.0" y="333" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gwb-eH-RoR" id="KkX-as-j9o">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Icon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPI-YN-IAx">
+                                                    <rect key="frame" x="279" y="11" width="33" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.63921568630000003" green="0.63921568630000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="sei" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9S-VJ-pmw">
+                                                    <rect key="frame" x="8" y="11" width="29" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.63921568630000003" green="0.63921568630000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sub User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Kx-5H-wfN">
+                                                    <rect key="frame" x="45" y="11" width="71" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BPI-YN-IAx" firstAttribute="centerY" secondItem="KkX-as-j9o" secondAttribute="centerY" id="5in-xV-LQN"/>
+                                                <constraint firstItem="2Kx-5H-wfN" firstAttribute="leading" secondItem="O9S-VJ-pmw" secondAttribute="trailing" constant="8" id="AEg-Jd-2un"/>
+                                                <constraint firstItem="2Kx-5H-wfN" firstAttribute="centerY" secondItem="KkX-as-j9o" secondAttribute="centerY" id="H0w-rU-d5p"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BPI-YN-IAx" secondAttribute="trailing" id="WMr-kc-InW"/>
+                                                <constraint firstItem="O9S-VJ-pmw" firstAttribute="centerY" secondItem="KkX-as-j9o" secondAttribute="centerY" id="YmI-gu-ttx"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="O9S-VJ-pmw" secondAttribute="leading" id="l75-wD-mwf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
