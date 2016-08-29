@@ -11,11 +11,32 @@ import Foundation
 import Material
 import FontAwesome_iOS
 import UIKit
+import Parse
 
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: Properties
+    let picker = UIImagePickerController()
     
+    var name = TextField()
+    var bizname = TextField()
+    var biznum = TextField()
+    var phone = TextField()
+    var address = TextField()
+    var email = TextField()
+    var adminPIN = TextField()
+    @IBOutlet weak var profilePicture: UIImageView!
+    typealias CompletionHandler = (success: Bool) -> Void
+    @IBOutlet var information: UILabel!
+    @IBOutlet weak var back: UIButton!
+    
+    var imageFile: PFFile!
+    let user = PFUser.currentUser()
+    var shared = ShareData.sharedInstance
+    var updated = false
+    
+    var errorMsg = [String]()
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     
@@ -25,7 +46,7 @@ class EditProfileViewController: UIViewController {
     
         
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.handleTap(_:))))
 
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -39,42 +60,70 @@ class EditProfileViewController: UIViewController {
         
         donebtn.setTitle(String(format: "%C", faicon["fatick"]!), forState: .Normal)
         
-        let name = TextField()
         name.placeholder = "NAME"
-        name.text = "ang boon chang"
+        var name2 = user!["name"]
+        if (name2 == nil) {
+            name2 = "No name"
+        }
+        name.text = name2 as? String
         
         view.layout(name).top(200).horizontally(left: 20, right: 20).height(22)
         
-        let phone = TextField()
         phone.placeholder = "PHONE"
-        phone.text = "98765432"
+        phone.text = user!["phoneNumber"] as? String
         
         view.layout(phone).top(245).horizontally(left: 20, right: 20).height(22)
         
-        let email = TextField()
         email.placeholder = "EMAIL"
-        email.text = "abc@sis"
-
+        var email2 = user!["email"]
+        if (email2 == nil) {
+            email2 = "No name"
+        }
+        email.text = email2 as? String
+        
+        
         view.layout(email).top(290).horizontally(left: 20, right: 20).height(22)
         
-        let bizname = TextField()
         bizname.placeholder = "BUSINESS NAME"
-        bizname.text = "abc pte ltd"
-
+        var businessName2 = user!["businessName"]
+        if (businessName2 == nil) {
+            businessName2 = "No business name"
+        }
+        bizname.text = businessName2 as? String
     
-    view.layout(bizname).top(335).horizontally(left: 20, right: 20).height(22)
+        view.layout(bizname).top(335).horizontally(left: 20, right: 20).height(22)
         
-        let biznum = TextField()
         biznum.placeholder = "BUSINESS NUMBER"
-        biznum.text = "12345678"
-
+        var businessNum2 = user!["businessNumber"]
+        if (businessNum2 == nil) {
+            businessNum2 = "No business number"
+        }
+        biznum.text = businessNum2 as? String
+        
         view.layout(biznum).top(380).horizontally(left: 20, right: 20).height(22)
         
-        let address = TextField()
         address.placeholder = "ADDRESS"
-        address.text = "21 seletar road"
-
-    view.layout(address).top(425).horizontally(left: 20, right: 20).height(22)
+        var businessAddress2 = user!["businessAddress"]
+        if (businessAddress2 == nil) {
+            businessAddress2 = "No business address"
+        }
+        address.text = businessAddress2 as? String
+        
+        view.layout(address).top(425).horizontally(left: 20, right: 20).height(22)
+        
+        adminPIN.placeholder = "Admin PIN"
+        adminPIN.text = user!["adminPin"] as? String
+        
+        view.layout(adminPIN).top(470).horizontally(left: 20, right: 20).height(22)
+        
+        if let userPicture = user!["profilePicture"] as? PFFile {
+            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                if (error == nil) {
+                    self.profilePicture.image = UIImage(data: imageData!)
+                    self.imageFile = self.user!["profilePicture"] as? PFFile
+                }
+            }
+        }
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -88,5 +137,351 @@ class EditProfileViewController: UIViewController {
     @IBAction func back(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+
+    
+    //change email
+    @IBAction func change(sender: UIButton) {
+        
+        
+        let alert = UIAlertController(title: "Editing", message: "Edits are being made to your profile details", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        errorMsg.removeAll()
+        
+        var error = 0
+        var newName = ""
+        var newEmail = ""
+        var newPhoneNumber = ""
+        var newBusinessName = ""
+        var newBusinessAddress = ""
+        var newBusinessRegNo = ""
+        var newPINNumber = ""
+        //checks for name
+        if name.text!.isEmpty == false{
+            newName = name.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newName.isEmpty{
+                let errorString = "Invalid Name field."
+                name.text = ""
+                name.placeholder = "Invalid Name field."
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else{
+            let errorString = "Invalid Name field."
+            name.text = ""
+            name.placeholder = "Invalid Name field."
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        //checks for phone number
+        if phone.text!.isEmpty == false{
+            
+            if Int(phone.text!) != nil {
+                if Int(phone.text!) >= 80000000 && Int(phone.text!) < 100000000{
+                    newPhoneNumber = phone.text!
+                }else{
+                    let errorString = "Invalid Phone Number field."
+                    phone.text = ""
+                    phone.placeholder = "Invalid Phone Number field."
+                    errorMsg.append(errorString)
+                    error += 1
+                }
+            } else {
+                let errorString = "Invalid Phone Number field."
+                phone.text = ""
+                phone.placeholder = "Invalid Phone Number field."
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else {
+            let errorString = "Invalid Phone Number field."
+            phone.text = ""
+            phone.placeholder = "Invalid Phone Number field."
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        //checks for AdminPIN Number
+        if adminPIN.text!.isEmpty == false{
+            
+            if Int(adminPIN.text!) != nil {
+                if Int(adminPIN.text!) >= 1000 && Int(adminPIN.text!) < 10000{
+                    newPINNumber = adminPIN.text!
+                }else{
+                    let errorString = "Invalid Admin PIN field."
+                    adminPIN.text = ""
+                    adminPIN.placeholder = "Invalid Admin PIN field."
+                    errorMsg.append(errorString)
+                    error += 1
+                }
+            } else {
+                let errorString = "Invalid Admin PIN field."
+                adminPIN.text = ""
+                adminPIN.placeholder = "Invalid Admin PIN field."
+                errorMsg.append(errorString)
+                error += 1
+            }
+        }else {
+            let errorString = "Invalid Admin PIN field."
+            adminPIN.text = ""
+            adminPIN.placeholder = "Invalid Admin PIN field."
+            errorMsg.append(errorString)
+            error += 1
+        }
+        
+        //checks for email
+        if email.text!.isEmpty == false{
+            if isValidEmail(email.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(email.text!.stringByTrimmingCharactersInSet(
+                    NSCharacterSet.whitespaceAndNewlineCharacterSet())){
+                newEmail = email.text!
+            }else{
+                let error = "Invalid Email field."
+                email.text = ""
+                email.placeholder = "Invalid Email field."
+                errorMsg.append(error)
+            }
+        }else{
+            let error = "Empty Email field."
+            email.text = ""
+            email.placeholder = "Empty Email field."
+            errorMsg.append(error)
+        }
+        
+        //checks for business name
+        if bizname.text!.isEmpty == false{
+            newBusinessName = bizname.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessName.isEmpty{
+                let errorString = "Empty Business Name field."
+                bizname.text = ""
+                bizname.placeholder = "Empty Business Name field."
+                errorMsg.append(errorString)
+            }
+        }else{
+            let errorString = "Empty Business Name field."
+            bizname.text = ""
+            bizname.placeholder = "Empty Business Name field."
+            errorMsg.append(errorString)
+        }
+        
+        //Change business Reg No
+        if biznum.text!.isEmpty == false{
+            newBusinessRegNo = biznum.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessRegNo.isEmpty{
+                let errorString = "Empty Business Reg No field."
+                biznum.text = ""
+                biznum.placeholder = "Empty Business Reg No field."
+                errorMsg.append(errorString)
+            }
+        }else{
+            let errorString = "Empty Business Reg No field."
+            biznum.text = ""
+            biznum.placeholder = "Empty Business Reg No field."
+            errorMsg.append(errorString)
+        }
+        
+        //Change business Address
+        if address.text!.isEmpty == false{
+            newBusinessAddress = address.text!.stringByTrimmingCharactersInSet(
+                NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            if newBusinessAddress.isEmpty{
+                let errorString = "Empty Business Address field."
+                address.text = ""
+                address.placeholder = "Empty Business Address field."
+                errorMsg.append(errorString)
+            }
+        }else{
+            let errorString = "Empty Business Address field."
+            address.text = ""
+            address.placeholder = "Empty Business Address field."
+            errorMsg.append(errorString)
+        }
+        
+        
+        
+        if error == 0 {
+            
+            print(newName)
+            print(newEmail)
+            print(newPhoneNumber)
+            print(newPINNumber)
+            print(newBusinessAddress)
+            print(newBusinessRegNo)
+            print(imageFile)
+            let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: imageFile)
+            if edited == true{
+                self.dismissViewControllerAnimated(true, completion: {
+                let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                })
+            }else{
+                self.dismissViewControllerAnimated(true, completion: {
+                let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                    })
+            }
+            
+            
+            
+            
+        }else{
+            self.dismissViewControllerAnimated(true, completion: {
+            let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+                 })
+        }
+    }
+    //////Changing profile picture
+    
+    
+    // An alert method using the new iOS 8 UIAlertController instead of the deprecated UIAlertview
+    // make the alert with the preferredstyle .Alert, make necessary actions, and then add the actions.
+    // add to the handler a closure if you want the action to do anything.
+    
+    func noCamera(){
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "This device has no camera",
+            preferredStyle: .Alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.Default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
+    
+    //take a picture, check if we have a camera first.
+    func shootPhoto() {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker,
+                                  animated: true,
+                                  completion: nil)
+        } else {
+            noCamera()
+        }
+    }
+    
+    
+    // MARK: Actions
+    
+    
+    @IBAction func selectNewImageFromPhotoLibrary(sender: UIButton) {
+        let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.shootPhoto()
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.photoLibrary()
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            self.information.textColor = UIColor.blackColor()
+            self.information.text = "Choose image within 10MB"
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            
+            
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+    
+    func photoLibrary(){
+        
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        
+        picker.sourceType = .PhotoLibrary
+        
+        // Make sure ViewController is notified when the user picks an image.
+        picker.delegate = self
+        
+        presentViewController(picker, animated: true, completion: nil)
+        
+        
+    }
+    
+    //MARK: - Delegates
+    //What to do when the picker returns with a photo
+    func imagePickerController(
+        picker: UIImagePickerController,
+        
+        didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        
+        
+        
+        
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        let imageData = UIImageJPEGRepresentation(chosenImage, 100)
+        
+        if imageData!.length < 9999999{
+            imageFile = PFFile(name: "profilePicture.png", data: imageData!)
+            
+            
+            
+            profilePicture.contentMode = .ScaleAspectFit //3
+            profilePicture.image = chosenImage //4
+            
+            updated = true
+            self.information.textColor = UIColor.blackColor()
+            information.text = "Image Uploaded"
+            
+        }else{
+            information.textColor = UIColor.redColor()
+            information.text = "Image Not Within 10MB"
+            
+        }
+        
+        
+        dismissViewControllerAnimated(true, completion: nil) //5
+    }
+    //What to do if the image picker cancels.
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.information.textColor = UIColor.blackColor()
+        self.information.text = "Choose image within 10MB"
+        dismissViewControllerAnimated(true,
+                                      completion: nil)
+    }
+    
+    
+    //checks for valid email
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        if emailTest.evaluateWithObject(testStr) && testStr != user!["email"] as! String{
+            return true
+        }
+        return false
+    }
+    
+
     
 }

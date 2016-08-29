@@ -3220,6 +3220,9 @@ Cg
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="change:" destination="tuM-Xe-9Au" eventType="touchUpInside" id="V0S-v6-5L7"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -3236,6 +3239,9 @@ Cg
                                 <rect key="frame" x="69" y="140" width="183" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Change Profile Picture"/>
+                                <connections>
+                                    <action selector="selectNewImageFromPhotoLibrary:" destination="tuM-Xe-9Au" eventType="touchUpInside" id="Yy7-9j-WYZ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAA-al-MMa">
                                 <rect key="frame" x="41" y="165" width="239" height="23"/>
@@ -3260,8 +3266,11 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="back" destination="5gP-bo-hMP" id="NBV-tt-KHo"/>
                         <outlet property="backbtn" destination="5gP-bo-hMP" id="Zhi-GS-uNO"/>
                         <outlet property="donebtn" destination="h0T-8D-gJh" id="RrM-T6-QTB"/>
+                        <outlet property="information" destination="uAA-al-MMa" id="ETQ-GP-DA6"/>
+                        <outlet property="profilePicture" destination="fOS-Kc-jKN" id="JnR-fS-xV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tr-ka-d03" userLabel="First Responder" sceneMemberID="firstResponder"/>
