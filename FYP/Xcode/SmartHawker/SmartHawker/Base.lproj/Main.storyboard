@@ -605,7 +605,7 @@ this password and admin pin</string>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
                                         <rect key="frame" x="0.0" y="0.0" width="282" height="403"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reg-bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="geb-6L-mdH">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="reg-bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="geb-6L-mdH">
                                                 <rect key="frame" x="0.0" y="0.0" width="282" height="384"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
@@ -614,7 +614,7 @@ this password and admin pin</string>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="279"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
                                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="222"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="V43-JN-8om">
@@ -634,13 +634,13 @@ this password and admin pin</string>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="G6g-FM-mnU">
                                                                         <rect key="frame" x="0.0" y="24" width="222" height="2"/>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lb6-rC-tVj">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lb6-rC-tVj">
                                                                         <rect key="frame" x="0.0" y="31" width="190" height="22"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username-icon" translatesAutoresizingMaskIntoConstraints="NO" id="p7n-g5-48J">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username                    " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5LF-RF-K5c">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username                    " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5LF-RF-K5c">
                                                                                 <rect key="frame" x="42" y="0.0" width="148" height="22"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -651,13 +651,13 @@ this password and admin pin</string>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="566-ac-gO4">
                                                                         <rect key="frame" x="0.0" y="58" width="222" height="2"/>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="EbD-J2-pSo">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="EbD-J2-pSo">
                                                                         <rect key="frame" x="0.0" y="65" width="197" height="22"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password-icon" translatesAutoresizingMaskIntoConstraints="NO" id="hWb-fW-ZLU">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password                      " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="db7-FZ-uQw">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password                      " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="db7-FZ-uQw">
                                                                                 <rect key="frame" x="44" y="0.0" width="153" height="22"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -668,13 +668,13 @@ this password and admin pin</string>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="uJp-bD-VIl">
                                                                         <rect key="frame" x="0.0" y="92" width="222" height="2"/>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="jhS-Xm-eWe">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="jhS-Xm-eWe">
                                                                         <rect key="frame" x="0.0" y="99" width="213" height="22"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password-icon" translatesAutoresizingMaskIntoConstraints="NO" id="oRs-Bt-CzI">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password              " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-JA-871">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password              " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-JA-871">
                                                                                 <rect key="frame" x="44" y="0.0" width="169" height="22"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -702,13 +702,13 @@ this password and admin pin</string>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="wVn-Af-uNk">
                                                                         <rect key="frame" x="0.0" y="157" width="222" height="2"/>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="THg-jR-ybc">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="THg-jR-ybc">
                                                                         <rect key="frame" x="0.0" y="164" width="193" height="19"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone-icon-1" translatesAutoresizingMaskIntoConstraints="NO" id="WPb-yQ-vu8">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="19"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone                          " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8V0-XH-wlT">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone                          " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8V0-XH-wlT">
                                                                                 <rect key="frame" x="43" y="0.0" width="150" height="19"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -719,13 +719,13 @@ this password and admin pin</string>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-line-2x" translatesAutoresizingMaskIntoConstraints="NO" id="APX-MD-CZS">
                                                                         <rect key="frame" x="0.0" y="188" width="222" height="2"/>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sPf-yS-bi6">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sPf-yS-bi6">
                                                                         <rect key="frame" x="0.0" y="195" width="192" height="20"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="admin-pin-icon" translatesAutoresizingMaskIntoConstraints="NO" id="tof-AM-hZJ">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                             </imageView>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Admin Pin                     " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XVu-HA-72M">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Admin Pin                     " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XVu-HA-72M">
                                                                                 <rect key="frame" x="40" y="0.0" width="152" height="20"/>
                                                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" name="NoveoSans-Book" family="Noveo Sans" pointSize="14"/>
@@ -741,7 +741,7 @@ this password and admin pin</string>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
                                                                 <rect key="frame" x="0.0" y="237" width="222" height="42"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="42"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
@@ -1723,66 +1723,66 @@ this password and admin pin</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-q1-a8J">
                                         <rect key="frame" x="0.0" y="294" width="364" height="142"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gON-Zh-FvS">
-                                                <rect key="frame" x="5" y="5" width="168" height="60"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b39-Qj-19A">
+                                                <rect key="frame" x="13" y="13" width="338" height="116"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6ck-1A-Q0L">
-                                                        <rect key="frame" x="11" y="0.0" width="146" height="18"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JkE-iP-9U7">
+                                                        <rect key="frame" x="96" y="0.0" width="146" height="58"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your last record was on:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wac-GT-x1G">
-                                                                <rect key="frame" x="0.0" y="0.0" width="146" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your last record was on:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wac-GT-x1G">
+                                                                <rect key="frame" x="0.0" y="0.0" width="146" height="58"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
                                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cgu-Zc-jzA">
-                                                        <rect key="frame" x="0.0" y="18" width="168" height="42"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oHN-Ry-BVM">
+                                                        <rect key="frame" x="0.0" y="58" width="338" height="58"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Wcm-dP-QiP">
-                                                                <rect key="frame" x="0.0" y="0.0" width="56" height="42"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hoe-Be-a2g">
+                                                                <rect key="frame" x="0.0" y="0.0" width="106" height="58"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MGX-MD-nd0">
-                                                                        <rect key="frame" x="13" y="0.0" width="30" height="18"/>
+                                                                        <rect key="frame" x="38" y="0.0" width="30" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                                         <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="b9X-78-mER">
-                                                                        <rect key="frame" x="10" y="20" width="38" height="22"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                                                        <rect key="frame" x="38" y="29" width="31" height="29"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                                         <color key="textColor" red="0.0" green="0.42352941176470588" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="49j-IW-v7v">
-                                                                <rect key="frame" x="56" y="2" width="56" height="38"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zxK-W6-JiY">
+                                                                <rect key="frame" x="116" y="0.0" width="106" height="58"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5Y-AQ-v3K">
-                                                                        <rect key="frame" x="1" y="0.0" width="55" height="18"/>
+                                                                        <rect key="frame" x="26" y="0.0" width="55" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N38-1q-VdY">
-                                                                        <rect key="frame" x="0.0" y="20" width="56" height="18"/>
+                                                                        <rect key="frame" x="25" y="29" width="56" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Dn4-6R-JoV">
-                                                                <rect key="frame" x="112" y="1" width="56" height="41"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LJg-CX-ww0">
+                                                                <rect key="frame" x="232" y="0.0" width="106" height="58"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of6-ZV-Iji">
-                                                                        <rect key="frame" x="13" y="0.0" width="31" height="18"/>
+                                                                        <rect key="frame" x="38" y="0.0" width="31" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6P-9q-HUA" userLabel="Profit Amount">
-                                                                        <rect key="frame" x="10" y="20" width="38" height="21"/>
+                                                                        <rect key="frame" x="35" y="29" width="38" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1792,12 +1792,18 @@ this password and admin pin</string>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="oHN-Ry-BVM" firstAttribute="leading" secondItem="b39-Qj-19A" secondAttribute="leading" id="1Hw-Mb-M6r"/>
+                                                    <constraint firstAttribute="trailing" secondItem="oHN-Ry-BVM" secondAttribute="trailing" id="GVP-sU-O1o"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="gON-Zh-FvS" firstAttribute="centerY" secondItem="wu9-q1-a8J" secondAttribute="centerY" id="604-e0-LV0"/>
-                                            <constraint firstItem="gON-Zh-FvS" firstAttribute="centerX" secondItem="wu9-q1-a8J" secondAttribute="centerX" id="8Y1-G9-mur"/>
+                                            <constraint firstItem="b39-Qj-19A" firstAttribute="leading" secondItem="wu9-q1-a8J" secondAttribute="leadingMargin" constant="5" id="0yZ-CE-RyL"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="b39-Qj-19A" secondAttribute="trailing" constant="5" id="HKb-VY-G6D"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="b39-Qj-19A" secondAttribute="bottom" constant="5" id="Iht-O9-KlF"/>
+                                            <constraint firstItem="b39-Qj-19A" firstAttribute="top" secondItem="wu9-q1-a8J" secondAttribute="topMargin" constant="5" id="nLa-Eu-Mk7"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIv-hq-snV">
@@ -2660,9 +2666,9 @@ this password and admin pin</string>
         <image name="username-icon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ee8-T8-QJN"/>
-        <segue reference="47q-Zj-VmP"/>
         <segue reference="zip-MG-ivf"/>
+        <segue reference="ee8-T8-QJN"/>
+        <segue reference="FKB-a4-dJ9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>
