@@ -27,6 +27,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
     // View
     @IBOutlet weak var amountView: UIView!
     
+    @IBOutlet weak var backbtn: UIButton!
+    @IBOutlet weak var nextbtn: UIButton!
+    
     // Variables
     let shared = ShareData.sharedInstance
     var type = 0
@@ -58,8 +61,20 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         
         // Disable next button is no amount is entered.
         if (amountTextField.text!.isEmpty) {
-            nextBarButtonItem.enabled = false
+            nextbtn.enabled = false
         }
+        
+        var faicon = [String: UniChar]()
+        faicon["facross"] = 0xf00d
+        faicon["faright"] = 0xf054
+       
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        
+        backbtn.setTitle(String(format: "%C", faicon["facross"]!), forState: .Normal)
+        
+        nextbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        
+        nextbtn.setTitle(String(format: "%C", faicon["faright"]!), forState: .Normal)
     }
     
     // View Will Appear
