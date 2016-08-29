@@ -150,9 +150,10 @@ class MonthRecordTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedRecord = rows[indexPath.section][indexPath.row]
-        print (selectedRecord)
         shared.selectedRecord = selectedRecord
-        self.performSegueWithIdentifier("updateRecord", sender: self)
+        let storyboard = UIStoryboard(name: "Recording", bundle: nil)
+        let updateRecordVC = storyboard.instantiateViewControllerWithIdentifier("updateRecord")
+        self.presentViewController(updateRecordVC, animated: true, completion: nil)
     }
     
     // For sorting array in ascending order.

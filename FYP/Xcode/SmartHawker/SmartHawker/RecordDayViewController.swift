@@ -181,17 +181,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.recordTypeLabel.text = typeString
         cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
         
-        // Image Button Colour
-       // if (type == 0) {
-            //cell.buttonImageView.image = UIImage(named: "record-green")
-        //} else if (type == 1) {
-           //cell.buttonImageView.image = UIImage(named: "record-red")
-        //} else if (type == 2) {
-           // cell.buttonImageView.image = UIImage(named: "record-red")
-       // } else {
-           // cell.buttonImageView.hidden = true
-       // }
-        
         // Recorded by
         cell.recordedByLabel.text = records[indexPath.row]["subuser"] as! String
         
@@ -203,7 +192,9 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         shared.selectedRecord = records[indexPath.row]
-        //self.performSegueWithIdentifier("updateRecord", sender: self)
+        let storyboard = UIStoryboard(name: "Recording", bundle: nil)
+        let updateRecordVC = storyboard.instantiateViewControllerWithIdentifier("updateRecord")
+        self.presentViewController(updateRecordVC, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
