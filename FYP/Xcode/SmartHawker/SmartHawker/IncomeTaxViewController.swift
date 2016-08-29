@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncomeTaxViewController: UIViewController, UITextFieldDelegate {
+class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     
     // Mark: Properties
     
@@ -16,7 +16,6 @@ class IncomeTaxViewController: UIViewController, UITextFieldDelegate {
     let taxController = IncomeTaxController()
     // General Variables
     let user = PFUser.currentUser()
-    typealias CompletionHandler = (success:Bool) -> Void
     
     // Labels
     @IBOutlet weak var revenueLabel: UILabel!
