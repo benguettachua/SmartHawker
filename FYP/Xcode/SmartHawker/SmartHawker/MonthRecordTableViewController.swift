@@ -83,6 +83,7 @@ class MonthRecordTableViewController: UITableViewController {
             }
             rows.append(sectionRecord)
         }
+        tableView.reloadData()
     }
     
     //  Back

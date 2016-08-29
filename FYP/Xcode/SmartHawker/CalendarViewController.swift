@@ -83,16 +83,16 @@ class CalendarViewController: UIViewController {
     
     
     @IBAction func goToPage() {
-        self.performSegueWithIdentifier("singleCalendar", sender: self)
+        //self.performSegueWithIdentifier("singleCalendar", sender: self)
     }
     
     // Move to page two of transaction
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        // Set the destination view controller
-        let destinationVC : SingleCalendarViewController = segue.destinationViewController as! SingleCalendarViewController
-        
-        destinationVC.date = selectedDate
+//        // Set the destination view controller
+//        let destinationVC : SingleCalendarViewController = segue.destinationViewController as! SingleCalendarViewController
+//        
+//        destinationVC.date = selectedDate
     }
     
     
