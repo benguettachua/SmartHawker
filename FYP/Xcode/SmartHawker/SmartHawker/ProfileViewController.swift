@@ -86,6 +86,7 @@ class ProfileViewController: UITableViewController {
         
     }
     func syncData() {
+        if connectionDAO().isConnectedToNetwork(){
         let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
         let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
             
@@ -119,6 +120,13 @@ class ProfileViewController: UITableViewController {
         alertController.addAction(ok)
         alertController.addAction(no)
         self.presentViewController(alertController, animated: true, completion: nil)
+        }else{
+            
+            let alertController = UIAlertController(title: "Please find a internet connection.", message: "Please try again later.", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alertController.addAction(ok)
+            self.presentViewController(alertController, animated: true,completion: nil)
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
