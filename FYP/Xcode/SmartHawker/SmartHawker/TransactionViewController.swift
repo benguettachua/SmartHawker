@@ -170,7 +170,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         let text = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
         if !text.isEmpty{//Checking if the input field is not empty
-            nextBarButtonItem.enabled = true //Enabling the button
+            nextbtn.enabled = true //Enabling the button
         } else {
             nextBarButtonItem.enabled = false //Disabling the button
         }
