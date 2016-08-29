@@ -84,4 +84,9 @@ class EditProfileViewController: UIViewController {
         sender.cancelsTouchesInView = false
     }
     
+    // Back
+    @IBAction func back(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

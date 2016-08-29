@@ -146,7 +146,7 @@ class ProfileViewController: UITableViewController {
         
         // User click the profile bar
         if (section == 0) {
-            print("Clicked Wendy pic")
+            self.performSegueWithIdentifier("editProfile", sender: self)
         }
         
         // User click Sync or Settings
