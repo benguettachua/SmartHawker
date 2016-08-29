@@ -15,10 +15,18 @@ class MonthRecordTableViewController: UITableViewController {
     var shared = ShareData.sharedInstance
     var records = [PFObject]()
     let recordController = RecordController()
+    var sections = [String]()
+    var rows = [[PFObject]]()
     
     // View will appear
     override func viewWillAppear(animated: Bool) {
+        
+        // Remove all from all arrays to prevent duplication
         records.removeAll()
+        sections.removeAll()
+        rows.removeAll()
+        
+        // Load records
         records = recordController.loadRecords()
         
         // Loop through the records, removing all elements that should not be shown.
@@ -33,6 +41,48 @@ class MonthRecordTableViewController: UITableViewController {
                 records.removeAtIndex(i)
             }
         }
+        
+        // Populate into sections
+        sections = [String]()
+        
+        // Get the month selected
+        var monthDate = shared.monthSelected
+        if (monthDate == nil) {
+            monthDate = NSDate()
+        }
+        let calendar = NSCalendar.currentCalendar()
+        var components = calendar.components([.Day , .Month , .Year], fromDate: monthDate)
+        let month = components.month
+        
+        // Save the date into sections
+        for record in records {
+            let dateString = record["date"] as! String
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let date = dateFormatter.dateFromString(dateString)
+            components = calendar.components([.Day , .Month , .Year], fromDate: date!)
+            let recordMonth = components.month
+            if (month == recordMonth) {
+                if (sections.contains(dateString) == false) {
+                    sections.append(dateString)
+                }
+            }
+        }
+        
+        // Sort the section array to be increasing date.
+        sections.sortInPlace(before)
+        
+        // Save the rows.
+        for sectionStr in sections {
+            var sectionRecord = [PFObject]()
+            for record in records {
+                let date = record["date"] as! String
+                if (date == sectionStr) {
+                    sectionRecord.append(record)
+                }
+            }
+            rows.append(sectionRecord)
+        }
     }
     
     //  Back
@@ -45,15 +95,7 @@ class MonthRecordTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let title = self.tableView(tableView, titleForHeaderInSection: section)
-        var rows = 0
-        for record in records {
-            let recordDate = record["date"] as! String
-            if (recordDate == title) {
-                rows += 1
-            }
-        }
-        return rows
+        return rows[section].count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -62,19 +104,19 @@ class MonthRecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
         // Description Label
-        var description = records[indexPath.row]["description"] as? String
+        var description = rows[indexPath.section][indexPath.row]["description"] as? String
         if (description == "") {
             description = "No description"
         }
         cell.descriptionLabel.text = description
         
         // Amount Label
-        let amount = records[indexPath.row]["amount"] as! Double
+        let amount = rows[indexPath.section][indexPath.row]["amount"] as! Double
         let amountString2dp = "$" + String(format:"%.2f", amount)
         cell.amountLabel.text = amountString2dp
         
         // Type Label
-        let type = records[indexPath.row]["type"] as! Int
+        let type = rows[indexPath.section][indexPath.row]["type"] as! Int
         var typeString = ""
         if (type == 0) {
             typeString = "Sales"
@@ -86,7 +128,7 @@ class MonthRecordTableViewController: UITableViewController {
         cell.recordTypeLabel.text = typeString
         
         // Recorded by
-        var recordedBy = records[indexPath.row]["subuser"] as? String
+        var recordedBy = rows[indexPath.section][indexPath.row]["subuser"] as? String
         recordedBy = "By: " + recordedBy!
         cell.recordedByLabel.text = recordedBy
         
@@ -98,38 +140,46 @@ class MonthRecordTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        // Get the number of days
-        let date = NSDate()
-        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-        let days = cal.rangeOfUnit(.Day, inUnit: .Month, forDate: date)
-        return days.length
-        
+//        // #warning Incomplete implementation, return the number of sections
+//        // Get the number of days
+//        let date = NSDate()
+//        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
+//        let days = cal.rangeOfUnit(.Day, inUnit: .Month, forDate: date)
+//        return days.length
+        return sections.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let calendar = NSCalendar.currentCalendar() // you can also ask for a specific calendar (e.g Gregorian)
-        var month = shared.monthSelected
-        if (month == nil) {
-            month = NSDate()
-        }
-        let components = calendar.components([.Month, .Year], fromDate: month)
-        
-        // Day
-        let dayComponent = section+1
-        var dayComponentString = String(dayComponent)
-        if (dayComponent < 10) {
-            dayComponentString = "0" + dayComponentString
-        }
-        
-        // Month
-        let monthComponent = components.month
-        var monthComponentString = String(monthComponent)
-        if (monthComponent < 10) {
-            monthComponentString = "0" + monthComponentString
-        }
-        
-        let date = dayComponentString + "/" + monthComponentString + "/" + String(components.year)
-        return date
+//        let calendar = NSCalendar.currentCalendar() // you can also ask for a specific calendar (e.g Gregorian)
+//        var month = shared.monthSelected
+//        if (month == nil) {
+//            month = NSDate()
+//        }
+//        let components = calendar.components([.Month, .Year], fromDate: month)
+//        
+//        // Day
+//        let dayComponent = section+1
+//        var dayComponentString = String(dayComponent)
+//        if (dayComponent < 10) {
+//            dayComponentString = "0" + dayComponentString
+//        }
+//        
+//        // Month
+//        let monthComponent = components.month
+//        var monthComponentString = String(monthComponent)
+//        if (monthComponent < 10) {
+//            monthComponentString = "0" + monthComponentString
+//        }
+//        
+//        let date = dayComponentString + "/" + monthComponentString + "/" + String(components.year)
+//        return date
+        return sections[section]
+    }
+    
+    // For sorting array
+    func before(value1: String, value2: String) -> Bool {
+        // One string is alphabetically first.
+        // ... True means value1 precedes value2.
+        return value1 < value2;
     }
 }
