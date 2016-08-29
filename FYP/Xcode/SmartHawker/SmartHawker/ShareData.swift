@@ -33,4 +33,7 @@ class ShareData {
     var records: [PFObject]!
     var rowNo: Int!
     var selectedRecord: PFObject!
+    
+    // Month selected for population of Monthly Records.
+    var monthSelected: NSDate!
 }

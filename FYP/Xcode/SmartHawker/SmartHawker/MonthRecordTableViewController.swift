@@ -109,7 +109,11 @@ class MonthRecordTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let calendar = NSCalendar.currentCalendar() // you can also ask for a specific calendar (e.g Gregorian)
-        let components = calendar.components([.Month, .Year], fromDate:NSDate())
+        var month = shared.monthSelected
+        if (month == nil) {
+            month = NSDate()
+        }
+        let components = calendar.components([.Month, .Year], fromDate: month)
         
         // Day
         let dayComponent = section+1
