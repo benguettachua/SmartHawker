@@ -44,7 +44,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
             isNewRecord = true
         } else {
             type = record["type"] as! Int
-            let amount = Double(amountTextField.text!)
+            let amount = record["amount"] as! Double
             amountTextField.text = String(amount)
             if (type == 0) {
                 selectSales(salesBarButtonItem)

@@ -140,46 +140,22 @@ class MonthRecordTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        // Get the number of days
-//        let date = NSDate()
-//        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-//        let days = cal.rangeOfUnit(.Day, inUnit: .Month, forDate: date)
-//        return days.length
         return sections.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let calendar = NSCalendar.currentCalendar() // you can also ask for a specific calendar (e.g Gregorian)
-//        var month = shared.monthSelected
-//        if (month == nil) {
-//            month = NSDate()
-//        }
-//        let components = calendar.components([.Month, .Year], fromDate: month)
-//        
-//        // Day
-//        let dayComponent = section+1
-//        var dayComponentString = String(dayComponent)
-//        if (dayComponent < 10) {
-//            dayComponentString = "0" + dayComponentString
-//        }
-//        
-//        // Month
-//        let monthComponent = components.month
-//        var monthComponentString = String(monthComponent)
-//        if (monthComponent < 10) {
-//            monthComponentString = "0" + monthComponentString
-//        }
-//        
-//        let date = dayComponentString + "/" + monthComponentString + "/" + String(components.year)
-//        return date
         return sections[section]
     }
     
-    // For sorting array
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedRecord = rows[indexPath.section][indexPath.row]
+        print (selectedRecord)
+        shared.selectedRecord = selectedRecord
+        self.performSegueWithIdentifier("updateRecord", sender: self)
+    }
+    
+    // For sorting array in ascending order.
     func before(value1: String, value2: String) -> Bool {
-        // One string is alphabetically first.
-        // ... True means value1 precedes value2.
         return value1 < value2;
     }
 }
