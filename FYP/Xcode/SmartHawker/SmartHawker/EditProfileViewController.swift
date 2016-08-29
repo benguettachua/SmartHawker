@@ -67,12 +67,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         name.text = name2 as? String
         
-        view.layout(name).top(200).horizontally(left: 20, right: 20).height(22)
+        view.layout(name).top(180).horizontally(left: 20, right: 20).height(22)
         
         phone.placeholder = "PHONE"
         phone.text = user!["phoneNumber"] as? String
         
-        view.layout(phone).top(245).horizontally(left: 20, right: 20).height(22)
+        view.layout(phone).top(225).horizontally(left: 20, right: 20).height(22)
         
         email.placeholder = "EMAIL"
         var email2 = user!["email"]
@@ -82,7 +82,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         email.text = email2 as? String
         
         
-        view.layout(email).top(290).horizontally(left: 20, right: 20).height(22)
+        view.layout(email).top(270).horizontally(left: 20, right: 20).height(22)
         
         bizname.placeholder = "BUSINESS NAME"
         var businessName2 = user!["businessName"]
@@ -91,7 +91,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         bizname.text = businessName2 as? String
     
-        view.layout(bizname).top(335).horizontally(left: 20, right: 20).height(22)
+        view.layout(bizname).top(315).horizontally(left: 20, right: 20).height(22)
         
         biznum.placeholder = "BUSINESS NUMBER"
         var businessNum2 = user!["businessNumber"]
@@ -100,7 +100,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         biznum.text = businessNum2 as? String
         
-        view.layout(biznum).top(380).horizontally(left: 20, right: 20).height(22)
+        view.layout(biznum).top(360).horizontally(left: 20, right: 20).height(22)
         
         address.placeholder = "ADDRESS"
         var businessAddress2 = user!["businessAddress"]
@@ -109,12 +109,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         address.text = businessAddress2 as? String
         
-        view.layout(address).top(425).horizontally(left: 20, right: 20).height(22)
+        view.layout(address).top(405).horizontally(left: 20, right: 20).height(22)
         
         adminPIN.placeholder = "Admin PIN"
         adminPIN.text = user!["adminPin"] as? String
         
-        view.layout(adminPIN).top(470).horizontally(left: 20, right: 20).height(22)
+        view.layout(adminPIN).top(450).horizontally(left: 20, right: 20).height(22)
         
         if let userPicture = user!["profilePicture"] as? PFFile {
             userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
