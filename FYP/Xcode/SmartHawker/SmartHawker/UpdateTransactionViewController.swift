@@ -37,6 +37,8 @@ class UpdateTransactionViewController: UIViewController {
     @IBOutlet weak var salesBarButtonItem: UIBarButtonItem!
     
     
+    @IBOutlet weak var trashicon: UIButton!
+    
     // View
     @IBOutlet weak var amountView: UIView!
     
@@ -63,6 +65,13 @@ class UpdateTransactionViewController: UIViewController {
         // Get the amount of the record
         let amount = selectedRecord["amount"] as! Double
         amountTextField.text = String(amount)
+        
+        var faicon = [String: UniChar]()
+        faicon["fatrash"] = 0xf1f8
+        
+        trashicon.titleLabel!.font = UIFont(name: "FontAwesome", size: 40)
+        
+        trashicon.setTitle(String(format: "%C", faicon["fatrash"]!), forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
