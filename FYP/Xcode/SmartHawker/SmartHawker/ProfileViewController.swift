@@ -28,6 +28,11 @@ class ProfileViewController: UITableViewController {
     
     
     @IBOutlet weak var settingicon: UILabel!
+    
+    
+    @IBOutlet weak var subusericon: UILabel!
+    
+    @IBOutlet weak var rightsu: UILabel!
     // Variables
     let user = PFUser.currentUser()
     
@@ -62,6 +67,8 @@ class ProfileViewController: UITableViewController {
         faicon["faright"] = 0xf105
         faicon["fasync"] = 0xf021
         faicon["fasetting"] = 0xf013
+        faicon["fasubuser"] = 0xf234
+
 
         rightprofile.font = UIFont(name: "FontAwesome", size: 20)
         
@@ -75,6 +82,10 @@ class ProfileViewController: UITableViewController {
         
         rightsetting.text = String(format: "%C", faicon["faright"]!)
         
+        rightsu.font = UIFont(name: "FontAwesome", size: 20)
+        
+        rightsu.text = String(format: "%C", faicon["faright"]!)
+        
         syncicon.font = UIFont(name: "FontAwesome", size: 20)
         
         syncicon.text = String(format: "%C", faicon["fasync"]!)
@@ -82,6 +93,10 @@ class ProfileViewController: UITableViewController {
         settingicon.font = UIFont(name: "FontAwesome", size: 20)
         
         settingicon.text = String(format: "%C", faicon["fasetting"]!)
+        
+        subusericon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        subusericon.text = String(format: "%C", faicon["fasubuser"]!)
         
         
     }
