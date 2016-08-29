@@ -36,7 +36,7 @@ class UpdateTransactionViewController: UIViewController {
     @IBOutlet weak var expensesBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var salesBarButtonItem: UIBarButtonItem!
     
-    
+
     @IBOutlet weak var trashicon: UIButton!
     
     // View
@@ -68,10 +68,26 @@ class UpdateTransactionViewController: UIViewController {
         
         var faicon = [String: UniChar]()
         faicon["fatrash"] = 0xf1f8
+        faicon["faleftback"] = 0xf053
+        faicon["fatick"] = 0xf00c
+        faicon["facalendar"] = 0xf274
+        faicon["fadesc"] = 0xf044
+        faicon["faimage"] = 0xf03e
         
         trashicon.titleLabel!.font = UIFont(name: "FontAwesome", size: 40)
         
         trashicon.setTitle(String(format: "%C", faicon["fatrash"]!), forState: .Normal)
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
+        donebtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        donebtn.setTitle(String(format: "%C", faicon["fatick"]!), forState: .Normal)
+        todaybtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        todaybtn.setTitle(String(format: "%C", faicon["facalendar"]!), forState: .Normal)
+        descicon.font = UIFont(name: "FontAwesome", size: 20)
+        descicon.text = String(format: "%C", faicon["fadesc"]!)
+        imageicon.font = UIFont(name: "FontAwesome", size: 20)
+        imageicon.text = String(format: "%C", faicon["faimage"]!)
     }
     
     override func viewWillAppear(animated: Bool) {
