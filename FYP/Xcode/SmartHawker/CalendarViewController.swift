@@ -21,7 +21,7 @@ class CalendarViewController: UIViewController {
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
-    
+    var selectedDate: NSDate!
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     @IBOutlet weak var navBar: UINavigationItem!
@@ -76,30 +76,25 @@ class CalendarViewController: UIViewController {
         correctDateString = formatter.stringFromDate(NSDate())
         calendarView.selectDates([NSDate()])
         toShare.storeDate = moment(NSDate())
+        selectedDate = NSDate()
         loadRecords(NSDate())
     }
     
     
     
-    @IBAction func changeToOneRows() {
-        numberOfRows = 1
-        calendarView.reloadData()
-    }
-    /*
-    @IBAction func next(sender: UIButton) {
-        self.calendarView.scrollToNextSegment() {
-            let currentSegmentDates = self.calendarView.currentCalendarDateSegment()
-            self.setupViewsOfCalendar(currentSegmentDates.dateRange.start, endDate: currentSegmentDates.dateRange.end)
-        }
+    @IBAction func goToPage() {
+        self.performSegueWithIdentifier("singleCalendar", sender: self)
     }
     
-    @IBAction func previous(sender: UIButton) {
-        self.calendarView.scrollToPreviousSegment() {
-            let currentSegmentDates = self.calendarView.currentCalendarDateSegment()
-            self.setupViewsOfCalendar(currentSegmentDates.dateRange.start, endDate: currentSegmentDates.dateRange.end)
-        }
+    // Move to page two of transaction
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // Set the destination view controller
+        let destinationVC : SingleCalendarViewController = segue.destinationViewController as! SingleCalendarViewController
+        
+        destinationVC.date = selectedDate
     }
-    */
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -202,6 +197,8 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     
     func calendar(calendar: JTAppleCalendarView, didSelectDate date: NSDate, cell: JTAppleDayCellView?, cellState: CellState) {
         (cell as? CellView)?.cellSelectionChanged(cellState)
+        selectedDate = date
+        goToPage()
     }
     
     func calendar(calendar: JTAppleCalendarView, isAboutToResetCell cell: JTAppleDayCellView) {

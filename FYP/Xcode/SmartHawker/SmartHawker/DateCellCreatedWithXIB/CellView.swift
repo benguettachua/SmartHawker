@@ -41,13 +41,14 @@ class CellView: JTAppleDayCellView {
         self.backgroundColor = c.stringFromDate(date) == todayDate ? todayColor:normalDayColor
         
         if c.stringFromDate(date) == todayDate {
-            self.layer.cornerRadius =  self.frame.width  / 2
+            self.layer.cornerRadius =  15  / 2
             self.hidden = false
             configureTextColor(cellState)
         }
-        if c.stringFromDate(date) == "2016-08-01" {
-            self.layer.backgroundColor = UIColor.orangeColor().CGColor
-            
+        if c.stringFromDate(date) == "2016-08-01" || c.stringFromDate(date) == "2016-08-02"{
+            self.layer.cornerRadius =  20  / 2
+            self.layer.borderColor = UIColor.orangeColor().CGColor
+            self.layer.borderWidth = 1
         }else{
             
             self.layer.borderColor = UIColor.clearColor().CGColor
@@ -115,7 +116,7 @@ class CellView: JTAppleDayCellView {
     
     private func configueViewIntoBubbleView(cellState: CellState, animateDeselection: Bool = false) {
         if cellState.isSelected {
-            self.selectedView.layer.cornerRadius =  self.selectedView.frame.width  / 2
+            self.selectedView.layer.cornerRadius =  5  / 2
             self.selectedView.hidden = false
             configureTextColor(cellState)
             
