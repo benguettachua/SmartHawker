@@ -81,6 +81,8 @@ class CalendarViewController: UIViewController {
         }
         formatter.dateFormat = "MM/yyyy"
         correctDateString = formatter.stringFromDate(NSDate())
+        formatter.dateFormat = "dd/MM/yyyy"
+        toShare.dateString = formatter.stringFromDate(NSDate())
         toShare.storeDate = moment(NSDate())
         selectedDate = NSDate()
         loadRecords(NSDate())
@@ -157,6 +159,7 @@ class CalendarViewController: UIViewController {
     @IBAction func Record(sender: UIBarButtonItem) {
         
         for date in calendarView.selectedDates{
+            print("AM I IN HERE?")
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let correctDateString = dateFormatter.stringFromDate(date)

@@ -33,7 +33,7 @@ class RecordController {
         if (isSubuser == false) {
             subuser = (PFUser.currentUser()?.username)!
         }
-        
+
         return dao.addRecord(shared.dateString, amount: amount!, type: type, subuser: subuser!, description: description)
     }
     
