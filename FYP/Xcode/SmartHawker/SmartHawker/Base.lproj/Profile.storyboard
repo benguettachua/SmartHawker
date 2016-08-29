@@ -3146,6 +3146,69 @@ Cg
             </objects>
             <point key="canvasLocation" x="2287" y="2998"/>
         </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="jer-uC-ejD">
+            <objects>
+                <viewController id="tuM-Xe-9Au" customClass="EditProfileViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fcX-s1-Skk"/>
+                        <viewControllerLayoutGuide type="bottom" id="jBF-LP-WSr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xLO-fj-ve5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cN1-Sc-hXw">
+                                <rect key="frame" x="-4" y="20" width="328" height="44"/>
+                                <items>
+                                    <navigationItem title="Edit Profile" id="tZr-l4-KRi">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="9ER-Ou-jlK">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5gP-bo-hMP">
+                                                <rect key="frame" x="16" y="7" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="jdg-k1-75Q">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h0T-8D-gJh">
+                                                <rect key="frame" x="266" y="7" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Income Tax Calculation" translatesAutoresizingMaskIntoConstraints="NO" id="fOS-Kc-jKN">
+                                <rect key="frame" x="130" y="78" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="djA-H7-gQb"/>
+                                    <constraint firstAttribute="height" constant="60" id="dxC-lS-ZdS"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cN1-Sc-hXw" firstAttribute="leading" secondItem="xLO-fj-ve5" secondAttribute="leadingMargin" constant="-20" id="7yX-ju-m61"/>
+                            <constraint firstItem="fOS-Kc-jKN" firstAttribute="centerX" secondItem="xLO-fj-ve5" secondAttribute="centerX" id="NYY-tN-8TD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cN1-Sc-hXw" secondAttribute="trailing" constant="-20" id="TKm-qH-6E1"/>
+                            <constraint firstItem="cN1-Sc-hXw" firstAttribute="top" secondItem="fcX-s1-Skk" secondAttribute="bottom" id="gfj-PA-KBy"/>
+                            <constraint firstItem="fOS-Kc-jKN" firstAttribute="top" secondItem="cN1-Sc-hXw" secondAttribute="bottom" constant="14" id="sCT-7v-nKR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backbtn" destination="5gP-bo-hMP" id="Zhi-GS-uNO"/>
+                        <outlet property="donebtn" destination="h0T-8D-gJh" id="RrM-T6-QTB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Tr-ka-d03" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2580" y="1580"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="aLV-0b-eZq">
             <objects>
@@ -3184,6 +3247,7 @@ Cg
         </scene>
     </scenes>
     <resources>
+        <image name="Income Tax Calculation" width="245" height="272"/>
         <image name="admin-pin-icon-1" width="18" height="18"/>
         <image name="defaultProfilePic" width="112" height="112"/>
         <image name="header-box" width="374" height="121"/>
@@ -3201,5 +3265,5 @@ Cg
         <image name="setting-firstbox" width="375" height="246"/>
         <image name="tab-bottom-profile" width="19" height="17"/>
     </resources>
-    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.42352941179999998" green="0.42745098040000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
