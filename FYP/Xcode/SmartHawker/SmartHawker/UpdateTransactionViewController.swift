@@ -56,11 +56,11 @@ class UpdateTransactionViewController: UIViewController {
         type = selectedRecord["type"] as! Int
         
         // Get the description of the record
-        var description = selectedRecord["description"] as! String
-        if (description == "") {
+        var description = selectedRecord["description"]
+        if (description == nil) {
             description = "No description"
         }
-        descriptionTextField.text = description
+        descriptionTextField.text = description as? String
         
         // Get the amount of the record
         let amount = selectedRecord["amount"] as! Double

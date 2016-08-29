@@ -159,7 +159,11 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
         // Description Label
-        cell.descriptionLabel.text = records[indexPath.row]["description"] as! String
+        var description = records[indexPath.row]["description"]
+        if (description == nil) {
+            description = "No description"
+        }
+        cell.descriptionLabel.text = description as! String
         cell.descriptionLabel.font = UIFont(name: cell.descriptionLabel.font.fontName, size: 12)
         
         // Amount Label

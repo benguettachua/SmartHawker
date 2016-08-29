@@ -10,6 +10,9 @@
 import JTAppleCalendar
 
 class CellView: JTAppleDayCellView {
+    
+    let formatter = NSDateFormatter()
+    var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     @IBInspectable var todayColor: UIColor!// = UIColor(red: 254.0/255.0, green: 73.0/255.0, blue: 64.0/255.0, alpha: 0.3)
     @IBInspectable var normalDayColor: UIColor! //UIColor(white: 0.0, alpha: 0.1)
     @IBOutlet var selectedView: AnimationView!
@@ -45,7 +48,11 @@ class CellView: JTAppleDayCellView {
         }else{
             self.backgroundColor = UIColor.clearColor()
         }
-        if (c.stringFromDate(date) == "2016-08-01" || c.stringFromDate(date) == "2016-08-02") && cellState.dateBelongsTo == .ThisMonth{
+        formatter.dateFormat = "dd/MM/yyyy"
+        let array = toShare.datesWithRecords
+        let dateString = formatter.stringFromDate(date)
+        print(array)
+        if (array.contains(dateString) && cellState.dateBelongsTo == .ThisMonth) {
             
             self.layer.cornerRadius =  20  / 2
             self.layer.borderColor = UIColor.orangeColor().CGColor

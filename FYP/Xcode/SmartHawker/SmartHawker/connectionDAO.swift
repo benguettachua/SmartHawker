@@ -9,8 +9,11 @@
 import UIKit
 import Foundation
 
+
 class connectionDAO{
     
+    var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
+
     //load records into controller
     func loadRecords() -> [PFObject]{
         let query = PFQuery(className: "Record")
@@ -50,11 +53,9 @@ class connectionDAO{
             }
             
             if isSubuser == true{
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(dates[subuser!], forKey: "SavedDateArray")
+                toShare.datesWithRecords = dates[subuser!]
             }else{
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(arrayForAllDates, forKey: "SavedDateArray")
+                toShare.datesWithRecords = arrayForAllDates
             }
         } catch {
             
@@ -270,7 +271,7 @@ class connectionDAO{
             recordToDelete = try query.getFirstObject()
             
             //Remove it from calendar.
-            var array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+            var array = toShare.datesWithRecords
             for var i in 0..<array.count{
                 if array[i] == recordToDelete["date"] as! String{
                     array.removeAtIndex(i)
@@ -278,8 +279,7 @@ class connectionDAO{
                     break
                 }
             }
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(array, forKey: "SavedDateArray")
+            toShare.datesWithRecords = array
             
             // Set the amount to 0 to "unpin" it.
             recordToDelete["amount"] = 0
