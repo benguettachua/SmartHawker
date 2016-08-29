@@ -16,6 +16,18 @@ class ProfileViewController: UITableViewController {
     // Label
     @IBOutlet weak var profileName: UILabel!
     
+    @IBOutlet weak var rightprofile: UILabel!
+    
+    @IBOutlet weak var rightsync: UILabel!
+    
+    
+    @IBOutlet weak var rightsetting: UILabel!
+    
+    
+    @IBOutlet weak var syncicon: UILabel!
+    
+    
+    @IBOutlet weak var settingicon: UILabel!
     // Variables
     let user = PFUser.currentUser()
     
@@ -45,6 +57,32 @@ class ProfileViewController: UITableViewController {
                 }
             }
         }
+        
+        var faicon = [String: UniChar]()
+        faicon["faright"] = 0xf105
+        faicon["fasync"] = 0xf021
+        faicon["fasetting"] = 0xf013
+
+        rightprofile.font = UIFont(name: "FontAwesome", size: 20)
+        
+        rightprofile.text = String(format: "%C", faicon["faright"]!)
+    
+        rightsync.font = UIFont(name: "FontAwesome", size: 20)
+        
+        rightsync.text = String(format: "%C", faicon["faright"]!)
+        
+        rightsetting.font = UIFont(name: "FontAwesome", size: 20)
+        
+        rightsetting.text = String(format: "%C", faicon["faright"]!)
+        
+        syncicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        syncicon.text = String(format: "%C", faicon["fasync"]!)
+        
+        settingicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        settingicon.text = String(format: "%C", faicon["fasetting"]!)
+        
         
     }
     func syncData() {

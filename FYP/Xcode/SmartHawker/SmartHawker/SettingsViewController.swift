@@ -38,6 +38,23 @@ class SettingsViewController: UITableViewController {
     //for edit
     @IBOutlet weak var editButton: UIButton!
     
+    @IBOutlet weak var backbtn: UIButton!
+    
+    
+    @IBOutlet weak var passicon: UILabel!
+    
+    @IBOutlet weak var adminicon: UILabel!
+    
+    @IBOutlet weak var languageicon: UILabel!
+    
+    
+    @IBOutlet weak var privacyicon: UILabel!
+    
+    
+    @IBOutlet weak var faqicon: UILabel!
+    
+    
+    @IBOutlet weak var contactusicon: UILabel!
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
     
@@ -84,6 +101,38 @@ class SettingsViewController: UITableViewController {
 //                notificationMode.setOn(false, animated: true)
 //            }
 //        }
+        
+        var faicon = [String: UniChar]()
+        faicon["faleftback"] = 0xf053
+        faicon["faright"] = 0xf105
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        
+        backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
+        
+        passicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        passicon.text = String(format: "%C", faicon["faright"]!)
+        
+        adminicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        adminicon.text = String(format: "%C", faicon["faright"]!)
+        
+        languageicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        languageicon.text = String(format: "%C", faicon["faright"]!)
+        
+        privacyicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        privacyicon.text = String(format: "%C", faicon["faright"]!)
+        
+        faqicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        faqicon.text = String(format: "%C", faicon["faright"]!)
+        
+        contactusicon.font = UIFont(name: "FontAwesome", size: 20)
+        
+        contactusicon.text = String(format: "%C", faicon["faright"]!)
         
     }
     
@@ -144,7 +193,7 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    @IBAction func back(sender: UIBarButtonItem){
+    @IBAction func back(sender: UIButton){
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
