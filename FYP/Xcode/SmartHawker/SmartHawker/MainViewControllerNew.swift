@@ -3,7 +3,7 @@ import UIKit
 import SwiftMoment
 
 class MainViewControllerNew: UIViewController{
-
+    
     //MARK properties
     //---------------------------------
     let user = PFUser.currentUser()
@@ -62,7 +62,7 @@ class MainViewControllerNew: UIViewController{
             targetButton.titleLabel!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
             targetButton.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
         }
-    
+        
         let values = MainController().getMainValues()
         print(values)
         self.salesAmount.text = "$" + String(format: "%.0f", values.0)
@@ -80,7 +80,7 @@ class MainViewControllerNew: UIViewController{
         self.lowestSalesDay.text = values.7
     }
     
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -97,7 +97,7 @@ class MainViewControllerNew: UIViewController{
         toShare.dateString = correctDateString
         self.performSegueWithIdentifier("addRecord", sender: self)
     }
-
+    
     
     // allows the user to logout
     @IBAction func Logout(sender: UIBarButtonItem) {
@@ -122,7 +122,7 @@ class MainViewControllerNew: UIViewController{
     @IBAction func addTarget(sender: UIButton) {
         let alert = UIAlertController(title: "Monthly Target", message: "What is this month's target?", preferredStyle: .Alert)
         let saveAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
-
+            
             let targetTextField = alert.textFields![0] as UITextField
             if (targetTextField.text != nil && targetTextField.text != "") {
                 //puts a method to delete targets for this month
@@ -165,10 +165,10 @@ class MainViewControllerNew: UIViewController{
         currentMonth = dateFormatter.stringFromDate(NSDate())
         let result = MainController().loadTargetRecords(currentMonth)
         
-            if result.0 == true {
-                targetAvailable = true
-                targetAmount = result.1
-            }
+        if result.0 == true {
+            targetAvailable = true
+            targetAmount = result.1
+        }
         
         
         
@@ -222,6 +222,41 @@ class MainViewControllerNew: UIViewController{
         }
         overviewLabel.text = date.weekdayName + "\n" + toDisplayDate
         
+    }
+    @IBAction func syncRecords(sender: UIButton) {
+        let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            
+            // Pop up telling the user that you are currently syncing
+            let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
+            self.presentViewController(popup, animated: true, completion: {
+                let syncSucceed = ProfileController().sync()
+                if (syncSucceed) {
+                    
+                    // Retrieval succeed, inform the user that records are synced.
+                    popup.dismissViewControllerAnimated(true, completion: {
+                        let alertController = UIAlertController(title: "Sync Complete!", message: "Please proceed.", preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    })
+                    
+                } else {
+                    
+                    // Retrieval failed, inform user that he can sync again after he log in.
+                    popup.dismissViewControllerAnimated(true, completion: {
+                        let alertController = UIAlertController(title: "Sync Failed!", message: "Please try again later.", preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    })
+                }
+            })
+        })
+        let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+        alertController.addAction(ok)
+        alertController.addAction(no)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
 }
