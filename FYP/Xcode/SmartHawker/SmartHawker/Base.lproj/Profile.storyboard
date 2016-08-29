@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HOc-0T-eCr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HOc-0T-eCr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -2353,11 +2353,8 @@ Cg
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTJ-YN-Kw7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="QoY-2Q-gPj"/>
-                                </constraints>
-                                <color key="barTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <color key="barTintColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="My Sub Users" id="L37-8E-orT">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="TdB-Dp-pdK">
@@ -2374,15 +2371,17 @@ Cg
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2Re-sn-y1L" firstAttribute="trailing" secondItem="aTJ-YN-Kw7" secondAttribute="trailing" id="5hB-HS-k4w"/>
+                            <constraint firstItem="aTJ-YN-Kw7" firstAttribute="leading" secondItem="iPS-L4-yyc" secondAttribute="leadingMargin" constant="-20" id="7Il-rX-tBf"/>
                             <constraint firstItem="2Re-sn-y1L" firstAttribute="top" secondItem="aTJ-YN-Kw7" secondAttribute="bottom" id="FCe-rF-4Xv"/>
                             <constraint firstAttribute="trailing" secondItem="aTJ-YN-Kw7" secondAttribute="trailing" id="G0L-vH-1CY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aTJ-YN-Kw7" secondAttribute="trailing" constant="-20" id="fAe-p4-P72"/>
                             <constraint firstItem="2Re-sn-y1L" firstAttribute="leading" secondItem="aTJ-YN-Kw7" secondAttribute="leading" id="fFM-RE-Dd4"/>
                             <constraint firstItem="2Re-sn-y1L" firstAttribute="bottom" secondItem="aj4-tJ-65u" secondAttribute="top" id="oRz-GW-Pkb"/>
                             <constraint firstItem="aTJ-YN-Kw7" firstAttribute="leading" secondItem="iPS-L4-yyc" secondAttribute="leading" id="r2I-ud-tTb"/>
-                            <constraint firstItem="aTJ-YN-Kw7" firstAttribute="top" secondItem="iPS-L4-yyc" secondAttribute="top" id="zvL-1b-aNu"/>
+                            <constraint firstItem="aTJ-YN-Kw7" firstAttribute="top" secondItem="B8L-oj-Ees" secondAttribute="bottom" id="wla-2c-Xsz"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
