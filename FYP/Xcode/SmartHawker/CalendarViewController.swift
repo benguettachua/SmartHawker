@@ -209,6 +209,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     }
     
     func calendar(calendar: JTAppleCalendarView, didScrollToDateSegmentStartingWithdate startDate: NSDate, endingWithDate endDate: NSDate) {
+        toShare.monthSelected = endDate
         setupViewsOfCalendar(startDate, endDate: endDate)
         loadRecords(endDate)
     }
