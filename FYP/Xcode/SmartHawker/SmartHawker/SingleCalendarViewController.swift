@@ -109,7 +109,7 @@ class SingleCalendarViewController: UIViewController {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: endDate)
         let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
-        navBar.title = monthName + " " + String(year)
+        monthLabel.text = monthName + " " + String(year)
     }
     
     func loadRecords(date: NSDate){

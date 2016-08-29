@@ -36,8 +36,6 @@ class CellView: JTAppleDayCellView {
         
         // Setup text color
         configureTextColor(cellState)
-
-        print(c.stringFromDate(date) + "\(cellState.dateBelongsTo)")
         
         if c.stringFromDate(date) == todayDate && cellState.dateBelongsTo == .ThisMonth{
             self.backgroundColor = c.stringFromDate(date) == todayDate ? todayColor:normalDayColor

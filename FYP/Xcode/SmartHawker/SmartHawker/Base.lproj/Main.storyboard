@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1138,16 +1138,16 @@ this password and admin pin</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fxk-JA-oVQ">
-                                                <rect key="frame" x="57" y="0.0" width="301" height="125"/>
+                                                <rect key="frame" x="57" y="0.0" width="302" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="dayNo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bw-YPT">
-                                                        <rect key="frame" x="70" y="0.0" width="162" height="68"/>
+                                                        <rect key="frame" x="71" y="0.0" width="162" height="68"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="50"/>
                                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-pW-JRU">
-                                                        <rect key="frame" x="62" y="68" width="177" height="33"/>
+                                                        <rect key="frame" x="62" y="68" width="178" height="33"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33" id="CgH-Bm-AxY"/>
                                                         </constraints>
@@ -1156,7 +1156,7 @@ this password and admin pin</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="month, year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azn-Wh-eGq">
-                                                        <rect key="frame" x="36" y="101" width="229" height="24"/>
+                                                        <rect key="frame" x="36" y="101" width="230" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="tGG-my-hZw"/>
                                                         </constraints>
@@ -1171,7 +1171,7 @@ this password and admin pin</string>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TL9-6j-dAQ">
-                                                <rect key="frame" x="360" y="0.0" width="55" height="125"/>
+                                                <rect key="frame" x="361" y="0.0" width="54" height="125"/>
                                                 <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="70"/>
                                                 <state key="normal" title="&gt;">
                                                     <color key="titleColor" red="0.61960784313725492" green="0.45098039215686275" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
@@ -1258,15 +1258,15 @@ this password and admin pin</string>
             <objects>
                 <tableViewController id="QSu-RF-hdB" customClass="MonthRecordTableViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2AG-wP-4QX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="lTZ-iC-rZc" customClass="RecordTableViewCell" customModule="SmartHawker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTZ-iC-rZc" id="WnT-5h-XeC">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESe-rV-w3y">
@@ -2326,6 +2326,9 @@ this password and admin pin</string>
                                                     <rect key="frame" x="348" y="7" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="Record:" destination="juk-2W-KVC" eventType="touchUpInside" id="66t-6E-JbB"/>
+                                                    </connections>
                                                 </button>
                                             </barButtonItem>
                                             <barButtonItem style="plain" id="VZX-fO-Gnp">
@@ -2333,6 +2336,9 @@ this password and admin pin</string>
                                                     <rect key="frame" x="294" y="7" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <segue destination="vGJ-2D-drf" kind="modal" id="qQU-WY-0tp"/>
+                                                    </connections>
                                                 </button>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -2708,7 +2714,7 @@ this password and admin pin</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ee8-T8-QJN"/>
-        <segue reference="FKB-a4-dJ9"/>
+        <segue reference="47q-Zj-VmP"/>
         <segue reference="zip-MG-ivf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
