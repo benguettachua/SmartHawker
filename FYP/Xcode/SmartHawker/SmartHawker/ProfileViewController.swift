@@ -164,6 +164,13 @@ class ProfileViewController: UITableViewController {
             if (selectedRow == 1) {
                 self.performSegueWithIdentifier("toSettings", sender: self)
             }
+            
+            // Subuser
+            if (selectedRow == 2) {
+                let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing", preferredStyle: .Alert)
+                comingSoonAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+            }
         }
     }
 

@@ -62,45 +62,45 @@ class SettingsViewController: UITableViewController {
     func logout() {
         PFUser.logOut()
         self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
-
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // Load the Top Bar
-//        let user = PFUser.currentUser()
-//        // Populate the top bar
-//        
-//        if NSUserDefaults.standardUserDefaults().objectForKey("langPref") == nil{
-//            let defaults = NSUserDefaults.standardUserDefaults()
-//            defaults.setObject("en", forKey: "langPref")
-//            displayNotificationStatus.text = "English"
-//        }else{
-//            let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String!
-//            if lang == "zh-Hans"{
-//                languageLabel.text = "华语"
-//            }else{
-//                languageLabel.text = "English"
-//        
-//        }
-//        }
-//        if NSUserDefaults.standardUserDefaults().objectForKey("notification") == nil{
-//            let defaults = NSUserDefaults.standardUserDefaults()
-//            defaults.setObject("Off", forKey: "notification")
-//            displayNotificationStatus.text = "Off"
-//            notificationMode.setOn(false, animated: true)
-//        }else{
-//                var notificationStore = NSUserDefaults.standardUserDefaults().objectForKey("notification") as? String!
-//            if notificationStore == "On"{
-//                displayNotificationStatus.text = notificationStore
-//                notificationMode.setOn(true, animated: true)
-//            }else{
-//                displayNotificationStatus.text = notificationStore
-//                notificationMode.setOn(false, animated: true)
-//            }
-//        }
+        //        // Load the Top Bar
+        //        let user = PFUser.currentUser()
+        //        // Populate the top bar
+        //
+        //        if NSUserDefaults.standardUserDefaults().objectForKey("langPref") == nil{
+        //            let defaults = NSUserDefaults.standardUserDefaults()
+        //            defaults.setObject("en", forKey: "langPref")
+        //            displayNotificationStatus.text = "English"
+        //        }else{
+        //            let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String!
+        //            if lang == "zh-Hans"{
+        //                languageLabel.text = "华语"
+        //            }else{
+        //                languageLabel.text = "English"
+        //
+        //        }
+        //        }
+        //        if NSUserDefaults.standardUserDefaults().objectForKey("notification") == nil{
+        //            let defaults = NSUserDefaults.standardUserDefaults()
+        //            defaults.setObject("Off", forKey: "notification")
+        //            displayNotificationStatus.text = "Off"
+        //            notificationMode.setOn(false, animated: true)
+        //        }else{
+        //                var notificationStore = NSUserDefaults.standardUserDefaults().objectForKey("notification") as? String!
+        //            if notificationStore == "On"{
+        //                displayNotificationStatus.text = notificationStore
+        //                notificationMode.setOn(true, animated: true)
+        //            }else{
+        //                displayNotificationStatus.text = notificationStore
+        //                notificationMode.setOn(false, animated: true)
+        //            }
+        //        }
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -158,12 +158,12 @@ class SettingsViewController: UITableViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
-//                if language == "zh-Hans"{
-//                    self.languageLabel.text = "华语"
-//                }else{
-//                    self.languageLabel.text = "English"
-//                    
-//                }
+                //                if language == "zh-Hans"{
+                //                    self.languageLabel.text = "华语"
+                //                }else{
+                //                    self.languageLabel.text = "English"
+                //
+                //                }
             })
             actionSheet.addAction(languageAction)
         }
@@ -204,44 +204,88 @@ class SettingsViewController: UITableViewController {
         if (section == 0) {
             // Password
             if (row == 0) {
+                // An alert window will pop up asking the user to enter their email.
+                let alert = UIAlertController(title: "Forget password", message: "Enter your email", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (Void) in
+                    let emailTextField = alert.textFields![0] as UITextField
+                    let email = emailTextField.text
+                    if (email == PFUser.currentUser()!.email) {
+                        // Upon clicking "Send" from the pop up, this alert will show to inform the user that the server is now sending mail to their email.
+                        let sendingMailAlert = UIAlertController(title: "Sending mail", message: "Please wait.", preferredStyle: .Alert)
+                        self.presentViewController(sendingMailAlert, animated: true, completion: {
+                            let loginController = LoginController()
+                            let emailSent = loginController.forgetPassword(email!)
+                            if (emailSent) {
+                                
+                                // Sending mail success, the user will receive an email to change their password.
+                                sendingMailAlert.dismissViewControllerAnimated(true, completion: {
+                                    let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
+                                    successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                                    self.presentViewController(successAlert, animated: true, completion: nil)
+                                })
+                            } else {
+                                
+                                // Sending mail failed, the user will see this pop up notifying them to try again later.
+                                sendingMailAlert.dismissViewControllerAnimated(true, completion: {
+                                    let failAlert = UIAlertController(title: "Failed", message: "An error has occured, please try again later.", preferredStyle: .Alert)
+                                    failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                                    self.presentViewController(failAlert, animated: true, completion: nil)
+                                })
+                                
+                            }
+                        })
+                    } else {
+                        let failAlert = UIAlertController(title: "Failed", message: "Incorrect email.", preferredStyle: .Alert)
+                        failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        self.presentViewController(failAlert, animated: true, completion: nil)
+                    }
+                }))
+                
+                alert.addTextFieldWithConfigurationHandler({ (emailTextField) in
+                    emailTextField.placeholder = "Enter your email"
+                    emailTextField.keyboardType = UIKeyboardType.EmailAddress
+                })
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+                
+                // Admin PIN
+            else if (row == 1) {
                 let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing", preferredStyle: .Alert)
                 comingSoonAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                 self.presentViewController(comingSoonAlert, animated: true, completion: nil)
             }
-            
-            // Admin PIN
-            else if (row == 1) {
-                print("Admin PIN")
-            }
-            
-            // Notification
+                
+                // Notification
             else if (row == 2) {
-                print("Notification")
+                let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing", preferredStyle: .Alert)
+                comingSoonAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(comingSoonAlert, animated: true, completion: nil)
             }
-            
-            // Language
+                
+                // Language
             else if (row == 3) {
                 doChangeLanguage()
             }
-            
-            // Privacy
+                
+                // Privacy
             else if (row == 4) {
                 self.performSegueWithIdentifier("toPrivacy", sender: self)
             }
         }
-        
+            
         else if (section == 1) {
             // FAQ
             if (row == 0) {
                 self.performSegueWithIdentifier("toFaq", sender: self)
             }
-            
-            // Contact Us
+                
+                // Contact Us
             else if (row == 1) {
                 self.performSegueWithIdentifier("toContactUs", sender: self)
             }
         }
-        
+            
         else if (section == 2) {
             Logout()
         }
