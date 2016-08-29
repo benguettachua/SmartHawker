@@ -72,21 +72,13 @@ class CalendarViewController: UIViewController {
             let currentDate = self.calendarView.currentCalendarDateSegment()
             self.setupViewsOfCalendar(currentDate.dateRange.start, endDate: currentDate.dateRange.end)
         }
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "MM/yyyy"
         correctDateString = formatter.stringFromDate(NSDate())
         calendarView.selectDates([NSDate()])
         toShare.storeDate = moment(NSDate())
-        loadRecords(correctDateString)
+        loadRecords(NSDate())
     }
     
-    @IBAction func selectDate() {
-        for date in calendarView.selectedDates {
-            formatter.dateFormat = "dd/MM/yyyy"
-            correctDateString = formatter.stringFromDate(date)
-            print(correctDateString)
-            loadRecords(correctDateString)
-        }
-    }
     
     
     @IBAction func changeToOneRows() {
@@ -120,11 +112,13 @@ class CalendarViewController: UIViewController {
         navBar.title = monthName + " " + String(year)
     }
     
-    func loadRecords(correctDateString: String){
+    func loadRecords(date: NSDate){
         var salesAmount = 0.0
         var expensesAmount = 0.0
         
-        let values = CalendarController().values(correctDateString)
+        formatter.dateFormat = "MM/yyyy"
+        let correctedDateString = formatter.stringFromDate(date)
+        let values = CalendarController().values(correctedDateString)
         
         salesAmount = values.0
         expensesAmount = values.1
@@ -208,7 +202,6 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     
     func calendar(calendar: JTAppleCalendarView, didSelectDate date: NSDate, cell: JTAppleDayCellView?, cellState: CellState) {
         (cell as? CellView)?.cellSelectionChanged(cellState)
-        selectDate()
     }
     
     func calendar(calendar: JTAppleCalendarView, isAboutToResetCell cell: JTAppleDayCellView) {
@@ -217,6 +210,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     
     func calendar(calendar: JTAppleCalendarView, didScrollToDateSegmentStartingWithdate startDate: NSDate, endingWithDate endDate: NSDate) {
         setupViewsOfCalendar(startDate, endDate: endDate)
+        loadRecords(endDate)
     }
     
 }
