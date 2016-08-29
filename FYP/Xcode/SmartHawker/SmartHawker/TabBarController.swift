@@ -12,12 +12,12 @@ class TabBarController: UITabBarController {
     
     var shared = ShareData.sharedInstance
    
-    
+    // This disables the Analytics tab and redirect the user back to home.
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        if (selectedIndex == 1) {
-            print("hello")
+        let selectedTitle = tabBar.selectedItem?.title
+        if (selectedTitle == "Analytics") {
             let alert = UIAlertController(title: "Coming soon", message: "Function is coming soon.", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Please check back again.", style: .Default, handler: { void in
+            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { void in
                 self.selectedViewController = self.viewControllers![2]
             }))
             self.presentViewController(alert, animated: true, completion: nil)
