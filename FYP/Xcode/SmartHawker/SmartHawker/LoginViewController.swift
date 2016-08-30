@@ -22,13 +22,18 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var mobileicon: UILabel!
     @IBOutlet weak var passwordicon: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var smarthawkerLogo: UILabel!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var registerLabel: UILabel!
+    @IBOutlet weak var registerButton: UIButton!
     // MARK: Action
     // This function is called when the user clicks log in at the login page.
     @IBAction func login(sender: UIButton) {
-        
+        if connectionDAO().isConnectedToNetwork(){
         // There is an alert to inform the user that it is currently logging in.
-        let loggingInAlert = UIAlertController(title: "Logging In", message: "Please wait.", preferredStyle: .Alert)
+        let loggingInAlert = UIAlertController(title: "Logging In".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
         self.presentViewController(loggingInAlert, animated: true, completion: {
             let username = self.usernameTextField.text
             let password = self.passwordTextField.text
@@ -51,26 +56,30 @@ class LoginViewController: UIViewController {
                 
                 // Logging in failed, logging in alert is dismissed, login failed alert is shown
                 loggingInAlert.dismissViewControllerAnimated(false, completion: {
-                    let alert = UIAlertController(title: "Error", message: "Login not successful, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                    let alert = UIAlertController(title: "Error".localized(), message: "Login not successful, please try again.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))
                     
                     self.presentViewController(alert, animated: true, completion: nil)
                 })
             }
         })
+        }else{
+            let alert = UIAlertController(title: "Internet Connection is down.".localized(), message: "Login not successful, please try again.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))
+        }
     }
     
     // This function is called when the user clicks on forget password at the login page.
     @IBAction func forgetPassword(sender: UIButton) {
         
         // An alert window will pop up asking the user to enter their email.
-        let alert = UIAlertController(title: "Forget password", message: "Enter your email", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (Void) in
+        let alert = UIAlertController(title: "Forgot password".localized(), message: "Enter your email".localized(), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Send".localized(), style: .Default, handler: { (Void) in
             let emailTextField = alert.textFields![0] as UITextField
             let email = emailTextField.text
             
             // Upon clicking "Send" from the pop up, this alert will show to inform the user that the server is now sending mail to their email.
-            let sendingMailAlert = UIAlertController(title: "Sending mail", message: "Please wait.", preferredStyle: .Alert)
+            let sendingMailAlert = UIAlertController(title: "Sending mail".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
             self.presentViewController(sendingMailAlert, animated: true, completion: {
                 
                 let emailSent = self.loginController.forgetPassword(email!)
@@ -78,16 +87,16 @@ class LoginViewController: UIViewController {
                     
                     // Sending mail success, the user will receive an email to change their password.
                     sendingMailAlert.dismissViewControllerAnimated(true, completion: {
-                        let successAlert = UIAlertController(title: "Success", message: "Password change have been sent to: " + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
-                        successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        let successAlert = UIAlertController(title: "Success".localized(), message: "Password change have been sent to: ".localized() + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
+                        successAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
                         self.presentViewController(successAlert, animated: true, completion: nil)
                     })
                 } else {
                     
                     // Sending mail failed, the user will see this pop up notifying them to try again later.
                     sendingMailAlert.dismissViewControllerAnimated(true, completion: {
-                        let failAlert = UIAlertController(title: "Failed", message: "An error has occured, please try again later.", preferredStyle: .Alert)
-                        failAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        let failAlert = UIAlertController(title: "Failed".localized(), message: "An error has occured, please try again later.".localized(), preferredStyle: .Alert)
+                        failAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
                         self.presentViewController(failAlert, animated: true, completion: nil)
                     })
                     
@@ -95,10 +104,10 @@ class LoginViewController: UIViewController {
             })
         }))
         alert.addTextFieldWithConfigurationHandler({ (emailTextField) in
-            emailTextField.placeholder = "Enter your email"
+            emailTextField.placeholder = "Enter your email".localized()
             emailTextField.keyboardType = UIKeyboardType.EmailAddress
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -109,6 +118,11 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
+        smarthawkerLogo.text? = "SmartHawker © 2016".localized()
+        loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
+        forgotPasswordButton.setTitle("Forgot Password", forState: UIControlState.Normal)
+        registerLabel.text = "Don't have an account?".localized()
+        registerButton.setTitle("Sign Up".localized(), forState: UIControlState.Normal)
         
         var faicon = [String: UniChar]()
         faicon["famobilephone"] = 0xf10b
@@ -125,8 +139,8 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        usernameTextField.placeholder = "Username"
-        passwordTextField.placeholder = "Password"
+        usernameTextField.placeholder = "Username".localized()
+        passwordTextField.placeholder = "Password".localized()
     }
     
     override func viewDidAppear(animated: Bool) {

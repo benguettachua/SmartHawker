@@ -25,7 +25,24 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var adminPINTextField: UITextField!
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     // MARK: Action
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameTextField.placeholder = "Name".localized()
+        usernameTextField.placeholder = "Username".localized()
+        passwordTextField.placeholder = "Password".localized()
+        confirmPasswordTextField.placeholder = "Confirm Password".localized()
+        emailTextField.placeholder = "Email".localized()
+        phoneNumberTextField.placeholder = "Phone".localized()
+        adminPINTextField.placeholder = "Admin Pin".localized()
+        cancelButton.setTitle("Cancel".localized(), forState: UIControlState.Normal)
+        registerButton.setTitle("REGISTER".localized(), forState: UIControlState.Normal)
+        
+    }
+    
     @IBAction func registerAccount(sender: UIButton) {
         
         // Variables to register account.
@@ -38,7 +55,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let adminPIN = adminPINTextField.text
         
         // Shows a popup to inform the user that the registration is currently being processed.
-        let registeringAlert = UIAlertController(title: "Registration", message: "Processing your registration, please wait.", preferredStyle: .Alert)
+        let registeringAlert = UIAlertController(title: "Registration".localized(), message: "Processing your registration, please wait.".localized(), preferredStyle: .Alert)
         self.presentViewController(registeringAlert, animated: true) {
             let registerSuccess = self.registrationController.register(name!, username: username!, email: email!, phone: phone!, password: password!, confirmPassword: confirmPassword!, adminPIN: adminPIN!)
             if (registerSuccess == 0) {
@@ -52,10 +69,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     defaults.setObject(array, forKey: "SavedDateArray")
                     
                     // Popup to show that registration succeeded.
-                    let alert = UIAlertController(title: "Registration Successful", message: "Congratulations, you have created a new Account!", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Registration Successful".localized(), message: "Congratulations, you have created a new Account!".localized(), preferredStyle: UIAlertControllerStyle.Alert)
                     
                     // Once the user clicks "Ok", he will be directed to Home tab.
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { Void in
+                    alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { Void in
                         self.performSegueWithIdentifier("registerSuccess", sender: self)
                     }))
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -67,61 +84,61 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 var errorMsg = ""
                 switch registerSuccess {
                 case 1:
-                    errorMsg = "Name cannot be empty."
+                    errorMsg = "Name cannot be empty.".localized()
                     break
                     
                 case 2:
-                    errorMsg = "Username cannot be empty."
+                    errorMsg = "Username cannot be empty.".localized()
                     break
                     
                 case 3:
-                    errorMsg = "Email cannot be empty."
+                    errorMsg = "Email cannot be empty.".localized()
                     break
                     
                 case 4:
-                    errorMsg = "Phone number cannot be empty."
+                    errorMsg = "Phone number cannot be empty.".localized()
                     break
                     
                 case 5:
-                    errorMsg = "Please enter a valid Singapore phone number."
+                    errorMsg = "Please enter a valid Singapore phone number.".localized()
                     break
                     
                 case 6:
-                    errorMsg = "Password cannot be empty."
+                    errorMsg = "Password cannot be empty.".localized()
                     break
                     
                 case 7:
-                    errorMsg = "Password does not match confirm password."
+                    errorMsg = "Password does not match confirm password.".localized()
                     break
                     
                 case 8:
-                    errorMsg = "Admin PIN cannot be empty."
+                    errorMsg = "Admin PIN cannot be empty.".localized()
                     break
                     
                 case 9:
-                    errorMsg = "Admin PIN must be 4 digits long."
+                    errorMsg = "Admin PIN must be 4 digits long.".localized()
                     break
                     
                 case 100:
-                    errorMsg = "No network detected."
+                    errorMsg = "No network detected.".localized()
                     break
                     
                 case 202:
-                    errorMsg = "Username is taken."
+                    errorMsg = "Username is taken.".localized()
                     break
                     
                 case 203:
-                    errorMsg = "Email is taken."
+                    errorMsg = "Email is taken.".localized()
                     break
                     
                 default:
-                    errorMsg = "Unknown error, please try again."
+                    errorMsg = "Unknown error, please try again.".localized()
                     break
                 }
                 
                 registeringAlert.dismissViewControllerAnimated(true, completion: {
-                    let failAlert = UIAlertController(title: "Registration Failed", message: errorMsg, preferredStyle: .Alert)
-                    failAlert.addAction(UIAlertAction(title: "Try again.", style: .Default, handler: nil))
+                    let failAlert = UIAlertController(title: "Registration Failed".localized(), message: errorMsg, preferredStyle: .Alert)
+                    failAlert.addAction(UIAlertAction(title: "Try again.".localized(), style: .Default, handler: nil))
                     self.presentViewController(failAlert, animated: true, completion: nil)
                 })
             }

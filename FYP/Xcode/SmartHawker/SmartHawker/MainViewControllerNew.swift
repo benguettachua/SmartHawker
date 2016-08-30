@@ -23,8 +23,6 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var lastRecordLabel: UILabel!
     @IBOutlet weak var targetButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var dayLabel: UILabel!
-    
     @IBOutlet weak var lowestSales: UILabel!
     @IBOutlet weak var highestSales: UILabel!
     @IBOutlet weak var averageSales: UILabel!
@@ -35,9 +33,33 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var salesAmount: UILabel!
     @IBOutlet weak var totalProfit: UILabel!
     
+    @IBOutlet weak var lowestSalesLabel: UILabel!
+    @IBOutlet weak var highestSalesLabel: UILabel!
+    @IBOutlet weak var averageSalesLabel: UILabel!
+    @IBOutlet weak var profitLabel: UILabel!
+    @IBOutlet weak var expensesLabel: UILabel!
+    @IBOutlet weak var salesLabel: UILabel!
+    @IBOutlet weak var todayEntryLabel: UILabel!
+    @IBOutlet weak var monthlyTargetLabel: UILabel!
+    @IBOutlet weak var syncButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set labels for translation
+        lowestSalesLabel.text = "Lowest Sales".localized()
+        highestSalesLabel.text = "Highest Sales".localized()
+        averageSalesLabel.text = "Average Sales".localized()
+        profitLabel.text = "Profit".localized()
+        expensesLabel.text = "Expenses".localized()
+        salesLabel.text = "Sales".localized()
+        todayEntryLabel.text = "TODAYS ENTRY".localized()
+        monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
+        syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
+        infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
+        
         getTodayDate()
         
         var faicon = [String: UniChar]()
@@ -98,30 +120,10 @@ class MainViewControllerNew: UIViewController{
         self.performSegueWithIdentifier("addRecord", sender: self)
     }
     
-    
-    // allows the user to logout
-    @IBAction func Logout(sender: UIBarButtonItem) {
-        let refreshAlert = UIAlertController(title: "Logout".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            connectionDAO().logout()
-            self.performSegueWithIdentifier("logout", sender: self)
-        }))
-        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
-            
-            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
-            
-            
-        }))
-        
-        presentViewController(refreshAlert, animated: true, completion: nil)
-        
-    }
-    
     //allows the user to add a target for the app
     @IBAction func addTarget(sender: UIButton) {
-        let alert = UIAlertController(title: "Monthly Target", message: "What is this month's target?", preferredStyle: .Alert)
-        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
+        let alert = UIAlertController(title: "Monthly Target".localized(), message: "What is this month's target?".localized(), preferredStyle: .Alert)
+        let saveAction = UIAlertAction(title: "Save".localized(), style: .Default, handler: { Void in
             
             let targetTextField = alert.textFields![0] as UITextField
             if (targetTextField.text != nil && targetTextField.text != "") {
@@ -137,17 +139,17 @@ class MainViewControllerNew: UIViewController{
                 self.viewWillAppear(true)
                 
             } else {
-                let alert = UIAlertController(title: "Error", message: "Target cannot be empty.", preferredStyle: .Alert)
+                let alert = UIAlertController(title: "Error".localized(), message: "Target cannot be empty.".localized(), preferredStyle: .Alert)
                 alert.addAction((UIAlertAction(title: "Try again", style: .Default, handler: nil)))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         })
         alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
-            targetTextField.placeholder = "This month's target"
+            targetTextField.placeholder = "This month's target".localized()
             targetTextField.keyboardType = UIKeyboardType.DecimalPad
         })
         alert.addAction(saveAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { Void in
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { Void in
             self.viewWillAppear(true)
         }))
         
@@ -190,9 +192,9 @@ class MainViewControllerNew: UIViewController{
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
         if dateArray.count != 0{
             let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
-            lastRecordLabel.text = "Your last record was on: " + dateStringToDisplay
+            lastRecordLabel.text = "Your last record was on: ".localized() + dateStringToDisplay
         }else{
-            lastRecordLabel.text = "Your have yet to make any records."
+            lastRecordLabel.text = "Your have yet to make any records.".localized()
         }
     }
     
@@ -220,24 +222,24 @@ class MainViewControllerNew: UIViewController{
         }else{
             toDisplayDate += dayString + " " + date.monthName + " " + String(date.year)
         }
-        overviewLabel.text = date.weekdayName + "\n" + toDisplayDate
+        overviewLabel.text = date.weekdayName.localized() + "\n" + toDisplayDate
         
     }
     @IBAction func syncRecords(sender: UIButton) {
         if connectionDAO().isConnectedToNetwork(){
-            let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            let alertController = UIAlertController(title: "Sync Records".localized(), message: "Are you sure?".localized(), preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action) -> Void in
                 
                 // Pop up telling the user that you are currently syncing
-                let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
+                let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
                 self.presentViewController(popup, animated: true, completion: {
                     let syncSucceed = ProfileController().sync()
                     if (syncSucceed) {
                         
                         // Retrieval succeed, inform the user that records are synced.
                         popup.dismissViewControllerAnimated(true, completion: {
-                            let alertController = UIAlertController(title: "Sync Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            let alertController = UIAlertController(title: "Sync Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
                             alertController.addAction(ok)
                             self.presentViewController(alertController, animated: true,completion: nil)
                         })
@@ -246,8 +248,8 @@ class MainViewControllerNew: UIViewController{
                         
                         // Retrieval failed, inform user that he can sync again after he log in.
                         popup.dismissViewControllerAnimated(true, completion: {
-                            let alertController = UIAlertController(title: "Sync Failed!", message: "Please try again later.", preferredStyle: .Alert)
-                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            let alertController = UIAlertController(title: "Sync Failed!".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
                             alertController.addAction(ok)
                             self.presentViewController(alertController, animated: true,completion: nil)
                         })
@@ -260,8 +262,8 @@ class MainViewControllerNew: UIViewController{
             self.presentViewController(alertController, animated: true, completion: nil)
         }else{
             
-            let alertController = UIAlertController(title: "Please find a internet connection.", message: "Please try again later.", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let alertController = UIAlertController(title: "Please find a internet connection.".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
             alertController.addAction(ok)
             self.presentViewController(alertController, animated: true,completion: nil)
         }

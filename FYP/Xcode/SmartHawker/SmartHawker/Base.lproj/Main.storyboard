@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -358,12 +358,6 @@ this password and admin pin</string>
                                     <action selector="forgetPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lpu-tI-wGs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SmartHawker © 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-3U-Tfs">
-                                <rect key="frame" x="95" y="188" width="225" height="24"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zxB-Fd-RFC">
                                 <rect key="frame" x="83" y="431" width="249" height="36"/>
                                 <subviews>
@@ -404,6 +398,12 @@ this password and admin pin</string>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kw1-iQ-aba"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SmartHawker © 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-3U-Tfs">
+                                <rect key="frame" x="95" y="188" width="225" height="24"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -447,9 +447,14 @@ this password and admin pin</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
+                        <outlet property="forgotPasswordButton" destination="o5F-jb-Wk0" id="PCy-nM-qU8"/>
+                        <outlet property="loginButton" destination="Lf1-uj-GVK" id="BCj-fl-fRI"/>
                         <outlet property="mobileicon" destination="1HY-Jw-Mx1" id="tAK-f1-YHF"/>
                         <outlet property="passwordTextField" destination="MKl-yC-KNX" id="Xgs-ZP-feK"/>
                         <outlet property="passwordicon" destination="k9R-Tu-NKG" id="FCR-RO-3Xm"/>
+                        <outlet property="registerButton" destination="o5F-jb-Wk0" id="bkt-rq-e7G"/>
+                        <outlet property="registerLabel" destination="LiV-Nq-fah" id="1ww-w1-D5T"/>
+                        <outlet property="smarthawkerLogo" destination="dlY-3U-Tfs" id="ayG-iE-UQ8"/>
                         <outlet property="usernameTextField" destination="ArY-7T-wmf" id="ich-mU-hfv"/>
                         <segue destination="JUl-IL-xm2" kind="modal" identifier="loginSuccess" id="6Kf-CH-RRH"/>
                     </connections>
@@ -572,6 +577,7 @@ this password and admin pin</string>
                         <outlet property="adminPINTextField" destination="rAi-zC-waW" id="rpu-LU-y1r"/>
                         <outlet property="adminpinicon" destination="cYv-TV-D8G" id="zco-Lu-hkp"/>
                         <outlet property="cancelAndLogout" destination="bET-th-uz7" id="gFB-Rf-sWt"/>
+                        <outlet property="navBar" destination="guH-d9-hd7" id="Hyx-eE-0xZ"/>
                         <outlet property="submitButton" destination="ToA-rb-EoN" id="y9P-rl-JsJ"/>
                         <segue destination="xvq-Kx-gUH" kind="modal" identifier="toMain" id="tPZ-ny-ePW"/>
                     </connections>
@@ -787,11 +793,13 @@ this password and admin pin</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="adminPINTextField" destination="XVu-HA-72M" id="hBr-Kx-SCn"/>
+                        <outlet property="cancelButton" destination="aGV-8x-NBG" id="Xvf-2X-eEZ"/>
                         <outlet property="confirmPasswordTextField" destination="EBG-JA-871" id="P9C-Ae-4lt"/>
                         <outlet property="emailTextField" destination="KPu-OR-Y8o" id="gWE-5b-iE2"/>
                         <outlet property="nameTextField" destination="cgc-OB-LSk" id="Isf-sj-cyU"/>
                         <outlet property="passwordTextField" destination="db7-FZ-uQw" id="p8n-2D-TRG"/>
                         <outlet property="phoneNumberTextField" destination="8V0-XH-wlT" id="Ne2-sq-DNn"/>
+                        <outlet property="registerButton" destination="LUN-1v-x5r" id="7v4-2N-SdH"/>
                         <outlet property="usernameTextField" destination="5LF-RF-K5c" id="rkc-1E-Vbk"/>
                     </connections>
                 </viewController>
@@ -832,6 +840,79 @@ this password and admin pin</string>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-fM-ZBa">
+                                                <rect key="frame" x="0.0" y="8" width="414" height="421"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="70" id="c9y-X3-0XT" customClass="RecordTableViewCell" customModule="SmartHawker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c9y-X3-0XT" id="Ss2-uI-wry">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Record Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnG-XG-rLd">
+                                                                    <rect key="frame" x="29" y="14" width="115" height="27"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="115" id="7qS-gr-MnU"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ks-ly-dZo">
+                                                                    <rect key="frame" x="152" y="14" width="72" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="72" id="5Hc-Lg-0xT"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pD-ZX-tHJ">
+                                                                    <rect key="frame" x="152" y="43" width="254" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="21" id="uwY-FZ-bwN"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFn-Z7-Vy5" userLabel="recorded by label">
+                                                                    <rect key="frame" x="154" y="68" width="116" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="21" id="25Y-LJ-2rG"/>
+                                                                        <constraint firstAttribute="width" constant="116" id="D2Z-29-kkE"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="3pD-ZX-tHJ" firstAttribute="top" secondItem="8ks-ly-dZo" secondAttribute="bottom" constant="5" id="12Y-Rs-1H2"/>
+                                                                <constraint firstItem="8ks-ly-dZo" firstAttribute="top" secondItem="Ss2-uI-wry" secondAttribute="topMargin" constant="8" id="3Qe-u2-LDd"/>
+                                                                <constraint firstItem="QnG-XG-rLd" firstAttribute="leading" secondItem="Ss2-uI-wry" secondAttribute="leadingMargin" constant="20" id="9iP-cO-KTB"/>
+                                                                <constraint firstItem="NFn-Z7-Vy5" firstAttribute="leading" secondItem="QnG-XG-rLd" secondAttribute="trailing" constant="20" id="BjI-to-gUg"/>
+                                                                <constraint firstItem="3pD-ZX-tHJ" firstAttribute="trailing" secondItem="Ss2-uI-wry" secondAttribute="trailingMargin" id="C83-dg-7iq"/>
+                                                                <constraint firstItem="3pD-ZX-tHJ" firstAttribute="leading" secondItem="QnG-XG-rLd" secondAttribute="trailing" constant="20" id="Eel-rb-KS0"/>
+                                                                <constraint firstItem="QnG-XG-rLd" firstAttribute="top" secondItem="Ss2-uI-wry" secondAttribute="topMargin" constant="6" id="Fd2-HN-fwf"/>
+                                                                <constraint firstItem="8ks-ly-dZo" firstAttribute="leading" secondItem="QnG-XG-rLd" secondAttribute="trailing" constant="20" id="azZ-rG-zAP"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="QnG-XG-rLd" secondAttribute="bottom" constant="20.5" id="dJi-Iu-20i"/>
+                                                                <constraint firstItem="NFn-Z7-Vy5" firstAttribute="top" secondItem="3pD-ZX-tHJ" secondAttribute="bottom" constant="5" id="oW4-Nh-7EP"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="NFn-Z7-Vy5" secondAttribute="bottom" constant="-27.5" id="rpf-d8-Cm2"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <accessibility key="accessibilityConfiguration" identifier="RecordCell"/>
+                                                        <connections>
+                                                            <outlet property="amountLabel" destination="8ks-ly-dZo" id="s8G-Sj-Gjr"/>
+                                                            <outlet property="descriptionLabel" destination="3pD-ZX-tHJ" id="7HO-Ea-2ka"/>
+                                                            <outlet property="recordTypeLabel" destination="QnG-XG-rLd" id="Qaj-U8-ATD"/>
+                                                            <outlet property="recordedByLabel" destination="NFn-Z7-Vy5" id="1og-VL-hle"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -845,79 +926,6 @@ this password and admin pin</string>
                                     <constraint firstItem="owM-XO-trf" firstAttribute="leading" secondItem="9G2-j6-pnN" secondAttribute="leading" id="l6u-Bp-8uo"/>
                                 </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-fM-ZBa">
-                                <rect key="frame" x="0.0" y="271" width="414" height="421"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="70" id="c9y-X3-0XT" customClass="RecordTableViewCell" customModule="SmartHawker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c9y-X3-0XT" id="Ss2-uI-wry">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Record Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnG-XG-rLd">
-                                                    <rect key="frame" x="29" y="14" width="115" height="27"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="115" id="7qS-gr-MnU"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ks-ly-dZo">
-                                                    <rect key="frame" x="152" y="14" width="72" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="72" id="5Hc-Lg-0xT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pD-ZX-tHJ">
-                                                    <rect key="frame" x="152" y="43" width="254" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="uwY-FZ-bwN"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFn-Z7-Vy5" userLabel="recorded by label">
-                                                    <rect key="frame" x="154" y="68" width="116" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="25Y-LJ-2rG"/>
-                                                        <constraint firstAttribute="width" constant="116" id="D2Z-29-kkE"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="3pD-ZX-tHJ" firstAttribute="top" secondItem="8ks-ly-dZo" secondAttribute="bottom" constant="5" id="12Y-Rs-1H2"/>
-                                                <constraint firstItem="8ks-ly-dZo" firstAttribute="top" secondItem="Ss2-uI-wry" secondAttribute="topMargin" constant="8" id="3Qe-u2-LDd"/>
-                                                <constraint firstItem="QnG-XG-rLd" firstAttribute="leading" secondItem="Ss2-uI-wry" secondAttribute="leadingMargin" constant="20" id="9iP-cO-KTB"/>
-                                                <constraint firstItem="NFn-Z7-Vy5" firstAttribute="leading" secondItem="QnG-XG-rLd" secondAttribute="trailing" constant="20" id="BjI-to-gUg"/>
-                                                <constraint firstItem="3pD-ZX-tHJ" firstAttribute="trailing" secondItem="Ss2-uI-wry" secondAttribute="trailingMargin" id="C83-dg-7iq"/>
-                                                <constraint firstItem="3pD-ZX-tHJ" firstAttribute="leading" secondItem="QnG-XG-rLd" secondAttribute="trailing" constant="20" id="Eel-rb-KS0"/>
-                                                <constraint firstItem="QnG-XG-rLd" firstAttribute="top" secondItem="Ss2-uI-wry" secondAttribute="topMargin" constant="6" id="Fd2-HN-fwf"/>
-                                                <constraint firstItem="8ks-ly-dZo" firstAttribute="leading" secondItem="QnG-XG-rLd" secondAttribute="trailing" constant="20" id="azZ-rG-zAP"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="QnG-XG-rLd" secondAttribute="bottom" constant="20.5" id="dJi-Iu-20i"/>
-                                                <constraint firstItem="NFn-Z7-Vy5" firstAttribute="top" secondItem="3pD-ZX-tHJ" secondAttribute="bottom" constant="5" id="oW4-Nh-7EP"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="NFn-Z7-Vy5" secondAttribute="bottom" constant="-27.5" id="rpf-d8-Cm2"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <accessibility key="accessibilityConfiguration" identifier="RecordCell"/>
-                                        <connections>
-                                            <outlet property="amountLabel" destination="8ks-ly-dZo" id="s8G-Sj-Gjr"/>
-                                            <outlet property="descriptionLabel" destination="3pD-ZX-tHJ" id="7HO-Ea-2ka"/>
-                                            <outlet property="recordTypeLabel" destination="QnG-XG-rLd" id="Qaj-U8-ATD"/>
-                                            <outlet property="recordedByLabel" destination="NFn-Z7-Vy5" id="1og-VL-hle"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zo3-gT-i5b">
                                 <rect key="frame" x="0.0" y="78" width="414" height="160"/>
                                 <subviews>
@@ -935,16 +943,16 @@ this password and admin pin</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fxk-JA-oVQ">
-                                                <rect key="frame" x="57" y="0.0" width="302" height="125"/>
+                                                <rect key="frame" x="57" y="0.0" width="301" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="dayNo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bw-YPT">
-                                                        <rect key="frame" x="71" y="0.0" width="162" height="68"/>
+                                                        <rect key="frame" x="70" y="0.0" width="162" height="68"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="50"/>
                                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-pW-JRU">
-                                                        <rect key="frame" x="62" y="68" width="178" height="33"/>
+                                                        <rect key="frame" x="62" y="68" width="177" height="33"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33" id="CgH-Bm-AxY"/>
                                                         </constraints>
@@ -953,7 +961,7 @@ this password and admin pin</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="month, year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azn-Wh-eGq">
-                                                        <rect key="frame" x="36" y="101" width="230" height="24"/>
+                                                        <rect key="frame" x="36" y="101" width="229" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="tGG-my-hZw"/>
                                                         </constraints>
@@ -968,7 +976,7 @@ this password and admin pin</string>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TL9-6j-dAQ">
-                                                <rect key="frame" x="361" y="0.0" width="54" height="125"/>
+                                                <rect key="frame" x="360" y="0.0" width="55" height="125"/>
                                                 <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="70"/>
                                                 <state key="normal" title="&gt;">
                                                     <color key="titleColor" red="0.42352941179999998" green="0.42745098040000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1025,14 +1033,10 @@ this password and admin pin</string>
                             <constraint firstItem="OlT-gJ-sR8" firstAttribute="trailing" secondItem="gac-Gd-zWY" secondAttribute="trailing" id="0Mp-LO-1mY"/>
                             <constraint firstItem="OlT-gJ-sR8" firstAttribute="top" secondItem="GBq-TD-OPq" secondAttribute="top" id="3GB-k4-FbS"/>
                             <constraint firstItem="Zo3-gT-i5b" firstAttribute="top" secondItem="gac-Gd-zWY" secondAttribute="bottom" constant="14" id="BFb-U1-Aww"/>
-                            <constraint firstItem="OlT-gJ-sR8" firstAttribute="trailing" secondItem="hFy-fM-ZBa" secondAttribute="trailing" id="G7L-de-U5B"/>
                             <constraint firstItem="Zo3-gT-i5b" firstAttribute="leading" secondItem="GBq-TD-OPq" secondAttribute="leadingMargin" constant="-20" id="OUa-Th-3oT"/>
                             <constraint firstItem="OlT-gJ-sR8" firstAttribute="trailing" secondItem="9G2-j6-pnN" secondAttribute="trailing" id="RC8-5Q-hVU"/>
-                            <constraint firstItem="hFy-fM-ZBa" firstAttribute="top" secondItem="OlT-gJ-sR8" secondAttribute="bottom" constant="23" id="VlE-bh-uDA"/>
-                            <constraint firstItem="OlT-gJ-sR8" firstAttribute="leading" secondItem="hFy-fM-ZBa" secondAttribute="leading" id="WlI-gn-7hH"/>
                             <constraint firstItem="OlT-gJ-sR8" firstAttribute="leading" secondItem="Zo3-gT-i5b" secondAttribute="leading" id="dxI-bC-h8v"/>
                             <constraint firstItem="9G2-j6-pnN" firstAttribute="top" secondItem="Zo3-gT-i5b" secondAttribute="bottom" constant="22" id="e3Y-WJ-HA8"/>
-                            <constraint firstItem="hFy-fM-ZBa" firstAttribute="bottom" secondItem="sdG-la-Lv8" secondAttribute="top" id="hVO-Du-8oU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zo3-gT-i5b" secondAttribute="trailing" constant="-20" id="iCc-dF-HFI"/>
                             <constraint firstItem="gac-Gd-zWY" firstAttribute="top" secondItem="5C2-YP-9e7" secondAttribute="bottom" id="joW-RZ-eq2"/>
                             <constraint firstItem="OlT-gJ-sR8" firstAttribute="leading" secondItem="gac-Gd-zWY" secondAttribute="leading" id="k0d-5J-UTX"/>
@@ -1047,6 +1051,7 @@ this password and admin pin</string>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="addNewRecord" destination="fpM-bE-fq1" id="yxD-pv-dIW"/>
                         <outlet property="buttonName" destination="sHf-XZ-Uxv" id="Ego-Gc-CAi"/>
                         <outlet property="dayLabel" destination="QV8-pW-JRU" id="TjY-2a-Ouh"/>
                         <outlet property="dayNumberLabel" destination="Yu8-bw-YPT" id="pth-cJ-zZq"/>
@@ -1139,7 +1144,7 @@ this password and admin pin</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5d-xz-eia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2307" y="2169"/>
+            <point key="canvasLocation" x="2467" y="2041"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IKR-hD-4AW">
@@ -1469,15 +1474,25 @@ this password and admin pin</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="averageSales" destination="6tL-mA-tt6" id="aB3-Ag-Qop"/>
+                        <outlet property="averageSalesLabel" destination="fbt-Hf-3yN" id="feW-Zd-Cbq"/>
+                        <outlet property="expensesLabel" destination="H5Y-AQ-v3K" id="le1-hn-ao8"/>
                         <outlet property="highestSales" destination="cQ2-2m-eQt" id="Knl-Ou-Xc0"/>
                         <outlet property="highestSalesDay" destination="84E-Rq-5kJ" id="KZg-Nl-Am5"/>
-                        <outlet property="lastRecordLabel" destination="Wac-GT-x1G" id="Aaz-eh-eJ2"/>
+                        <outlet property="highestSalesLabel" destination="VVw-9G-xAz" id="4rg-A4-T16"/>
+                        <outlet property="infoButton" destination="lue-b1-yYA" id="JgS-X2-IFA"/>
+                        <outlet property="lastRecordLabel" destination="Wac-GT-x1G" id="gN0-IZ-2by"/>
                         <outlet property="lowestSales" destination="O7e-iu-kyX" id="uLl-i6-Gsi"/>
                         <outlet property="lowestSalesDay" destination="RWD-vl-d3p" id="QKo-D3-4Wh"/>
+                        <outlet property="lowestSalesLabel" destination="VYZ-Uc-e4E" id="TrY-aZ-zty"/>
+                        <outlet property="monthlyTargetLabel" destination="Ju1-jh-yWR" id="Ies-4n-f2C"/>
                         <outlet property="otherExpensesAmount" destination="N38-1q-VdY" id="ckN-ip-NHS"/>
                         <outlet property="overviewLabel" destination="Kbw-7D-Pc1" id="02Y-ce-B38"/>
+                        <outlet property="profitLabel" destination="of6-ZV-Iji" id="rYG-8a-9xI"/>
                         <outlet property="salesAmount" destination="b9X-78-mER" id="Cuk-4u-qX4"/>
+                        <outlet property="salesLabel" destination="MGX-MD-nd0" id="cx7-ct-kIU"/>
+                        <outlet property="syncButton" destination="fan-T9-6fQ" id="C6o-Lu-yym"/>
                         <outlet property="targetButton" destination="0zW-Kk-yZJ" id="khc-gd-6XX"/>
+                        <outlet property="todayEntryLabel" destination="VUc-dR-b4J" id="t8A-w9-8Cr"/>
                         <outlet property="totalProfit" destination="k6P-9q-HUA" id="5Qt-xy-oZn"/>
                     </connections>
                 </viewController>
@@ -1731,12 +1746,22 @@ this password and admin pin</string>
                     <connections>
                         <outlet property="add" destination="GQr-kt-vv4" id="2Pd-AC-nGd"/>
                         <outlet property="calendarView" destination="757-N2-gEd" id="kal-CQ-0Hp"/>
+                        <outlet property="expensesLabel" destination="3R0-JD-bvI" id="pWK-Qr-mLZ"/>
                         <outlet property="expensesText" destination="ARg-uh-5xm" id="e4X-1d-agA"/>
+                        <outlet property="friLabel" destination="uA0-xz-LOy" id="X1e-63-t4U"/>
                         <outlet property="list" destination="x0l-Ac-wKY" id="pRb-Sz-S52"/>
+                        <outlet property="monLabel" destination="HaJ-un-WQo" id="Xef-mY-Xcc"/>
                         <outlet property="monthLabel" destination="dFz-mo-xut" id="7th-OE-egf"/>
                         <outlet property="navBar" destination="5lm-F2-ezc" id="rjf-Ec-qDe"/>
+                        <outlet property="profitButton" destination="D8W-jk-TNQ" id="ESd-ZT-jZu"/>
                         <outlet property="profitText" destination="Ljt-uj-6WI" id="pTI-g4-Gdk"/>
+                        <outlet property="salesLabel" destination="nLm-XH-nPL" id="rsv-Fo-V65"/>
                         <outlet property="salesText" destination="Ejq-0k-9ik" id="g4A-73-Qcd"/>
+                        <outlet property="satLabel" destination="3YJ-9B-aOm" id="xXu-lX-upc"/>
+                        <outlet property="sunLabel" destination="OIA-n6-e0U" id="zVC-20-d3q"/>
+                        <outlet property="thursLabel" destination="xDB-jQ-yyd" id="zEa-jG-e2d"/>
+                        <outlet property="tuesLabel" destination="wux-FY-PwB" id="Hu7-Vz-a2C"/>
+                        <outlet property="wedLabel" destination="yWx-Qb-hBz" id="KHY-Mx-GTF"/>
                         <segue destination="Ch1-He-QFh" kind="modal" identifier="dayRecord" id="47q-Zj-VmP"/>
                         <segue destination="w0u-9P-jUc" kind="modal" identifier="recordDay" id="lvs-Sa-in2"/>
                     </connections>
@@ -1914,7 +1939,7 @@ this password and admin pin</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ee8-T8-QJN"/>
-        <segue reference="47q-Zj-VmP"/>
+        <segue reference="Jge-b4-csq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>

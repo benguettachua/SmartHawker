@@ -232,11 +232,16 @@
                     <connections>
                         <outlet property="chart" destination="uUX-uz-2cr" id="S5o-bh-ilZ"/>
                         <outlet property="expensesText" destination="6r7-1r-lJ5" id="aX7-kv-tCL"/>
+                        <outlet property="incomeTax" destination="y8v-9T-oLG" id="DCn-pL-jwg"/>
                         <outlet property="monthButton" destination="8o6-9s-fpl" id="1P0-UV-LUK"/>
+                        <outlet property="navBar" destination="6FF-bP-fFL" id="PeG-JI-9tw"/>
+                        <outlet property="netProfit" destination="TPn-rw-vN1" id="jzK-WO-TE5"/>
                         <outlet property="next" destination="wWH-HL-s1p" id="BQh-dP-1mf"/>
                         <outlet property="previous" destination="exM-mb-WOl" id="WZG-dP-Lad"/>
                         <outlet property="profitText" destination="h9a-hd-KER" id="ZEL-Mh-fNr"/>
                         <outlet property="salesText" destination="an6-Ne-VcP" id="FNB-jh-qQ0"/>
+                        <outlet property="totalExpenses" destination="O5Z-qQ-gvs" id="fOq-YV-WHY"/>
+                        <outlet property="totalSales" destination="RuV-rF-yKv" id="C3x-ZW-Qpt"/>
                         <outlet property="weekButton" destination="125-Gf-9MV" id="UIQ-pc-HlT"/>
                         <outlet property="weekMonthYear" destination="J2d-4y-REI" id="F1f-tT-xDS"/>
                         <outlet property="yearButton" destination="LZF-pW-Raz" id="ycJ-ba-agI"/>
@@ -524,18 +529,28 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="COGSLabel" destination="X29-Ea-cVu" id="94A-5c-HJ5"/>
+                        <outlet property="additionalBusinessExpenses" destination="gOd-1Y-Yng" id="nEL-Jb-UsS"/>
                         <outlet property="additionalExpensesTextField" destination="qrv-6I-cat" id="obe-2t-mhB"/>
                         <outlet property="adjustedProfitLabel" destination="gaE-8P-zp6" id="N5v-UV-KpM"/>
+                        <outlet property="adjustedProfitLabelOnly" destination="HLb-d0-Ho0" id="UE8-Su-cfQ"/>
+                        <outlet property="back" destination="STc-Q3-4sq" id="uid-tr-1vZ"/>
+                        <outlet property="businessExpensesLabelOnly" destination="cDc-hA-h04" id="ytX-s8-3P9"/>
+                        <outlet property="calculationLabelOnly" destination="DXn-RR-fR3" id="g3M-iR-TbK"/>
+                        <outlet property="calculationsForAdjustedProfit" destination="2tX-bd-sSB" id="HAk-yF-3UI"/>
+                        <outlet property="cogsLabelOnly" destination="0rO-jb-wbk" id="5eU-dE-9AV"/>
                         <outlet property="expensesLabel" destination="fYZ-dU-8D6" id="9v7-vx-eCf"/>
                         <outlet property="generateTaxButton" destination="dZT-dp-v4l" id="ztw-b5-TAI"/>
                         <outlet property="grossProfitLabel" destination="UDS-OY-1gu" id="l22-bl-VXN"/>
+                        <outlet property="grosssProfitLabelOnly" destination="rRh-Tl-JWZ" id="lky-p5-9tg"/>
+                        <outlet property="navBar" destination="STc-Q3-4sq" id="66X-hM-IPR"/>
                         <outlet property="revenueLabel" destination="R2s-JS-dTt" id="TqI-xE-vQe"/>
+                        <outlet property="revenueLabelOnly" destination="JS7-GM-KK8" id="JXX-aF-He0"/>
                         <outlet property="yearLabel" destination="60W-UC-lfw" id="5hY-69-Jkh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCY-ZR-usf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2171" y="-781"/>
+            <point key="canvasLocation" x="2243" y="-335"/>
         </scene>
         <!--Tax Report-->
         <scene sceneID="A74-Fc-9ay">
@@ -798,12 +813,19 @@
                     </navigationItem>
                     <connections>
                         <outlet property="COGSLabel" destination="IXK-bm-mGc" id="yyg-4g-Let"/>
+                        <outlet property="additionalBusinessExpenses" destination="fyX-Zg-c1z" id="WgD-qW-1kb"/>
                         <outlet property="additionalExpensesTextField" destination="pYx-Ee-1uk" id="aHR-yp-Bqv"/>
                         <outlet property="adjustedProfitLabel" destination="5Xq-CG-lus" id="Wgl-aO-nKk"/>
+                        <outlet property="adjustedProfitLabelOnly" destination="7Q2-PQ-5Mt" id="Zq8-YB-p1k"/>
+                        <outlet property="businessExpensesLabelOnly" destination="fhj-3y-isK" id="ktn-6x-ZBf"/>
+                        <outlet property="calculationLabelOnly" destination="iC1-EJ-E7z" id="9hP-LS-bPE"/>
+                        <outlet property="cogsLabelOnly" destination="LU1-5p-2fd" id="FS9-ty-u9L"/>
                         <outlet property="expensesLabel" destination="6Uo-qw-5EX" id="pgl-MZ-3Yh"/>
                         <outlet property="generateTaxButton" destination="yph-cI-cVc" id="NKG-1n-RXu"/>
                         <outlet property="grossProfitLabel" destination="z0D-ZC-ehm" id="d9E-Xb-wEN"/>
+                        <outlet property="grosssProfitLabelOnly" destination="lCm-YH-WcX" id="1Zp-m4-s90"/>
                         <outlet property="revenueLabel" destination="i18-o0-ze9" id="0d7-h9-oVw"/>
+                        <outlet property="revenueLabelOnly" destination="g2t-m5-6Sj" id="MfQ-e0-70T"/>
                         <outlet property="yearLabel" destination="0cJ-wu-ofX" id="qiq-yI-PcF"/>
                     </connections>
                 </tableViewController>

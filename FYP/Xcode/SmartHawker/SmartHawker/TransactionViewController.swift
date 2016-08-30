@@ -39,6 +39,10 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        salesBarButtonItem.title = "Sales"
+        expensesBarButtonItem.title = "Expenses"
+        amountTextField.placeholder = "Amount"
+        
         // Get the type of record
         let record = shared.selectedRecord
         // Add new record

@@ -25,6 +25,17 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var adjustedProfitLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
+    @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var back: UINavigationItem!
+    @IBOutlet weak var cogsLabelOnly: UILabel!
+    @IBOutlet weak var revenueLabelOnly: UILabel!
+    @IBOutlet weak var grosssProfitLabelOnly: UILabel!
+    @IBOutlet weak var calculationLabelOnly: UILabel!
+    @IBOutlet weak var businessExpensesLabelOnly: UILabel!
+    @IBOutlet weak var additionalBusinessExpenses: UILabel!
+    @IBOutlet weak var adjustedProfitLabelOnly: UILabel!
+    @IBOutlet weak var calculationsForAdjustedProfit: UILabel!
+    
     // Text Fields
     @IBOutlet weak var additionalExpensesTextField: UITextField!
     
@@ -75,6 +86,17 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         additionalExpensesTextField.delegate = self
+        additionalExpensesTextField.placeholder = "Optional"
+        navBar.title = "Income Tax"
+        back.title = "Back"
+        cogsLabelOnly.text = "COGS"
+        revenueLabelOnly.text = "Revenue"
+        grosssProfitLabelOnly.text = "Gross Profit"
+        calculationLabelOnly.text = "(Revenue - COGS)"
+        businessExpensesLabelOnly.text = "Business Expenses"
+        additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses"
+        adjustedProfitLabelOnly.text = "Adjusted Profit"
+        calculationsForAdjustedProfit.text = "(Gross Profit - Total Expenses)"
         
     }
     

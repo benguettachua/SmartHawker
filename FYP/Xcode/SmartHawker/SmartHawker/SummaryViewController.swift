@@ -14,9 +14,6 @@ class SummaryViewController: UIViewController {
     
     
     // MARK: Properties
-    @IBOutlet weak var weekMonthYear: UILabel!
-    @IBOutlet weak var previous: UIButton!
-    @IBOutlet weak var next: UIButton!
     var currentMonthInt = Int()
     var currentYearInt = Int()
     var currentMonthString = String()
@@ -45,24 +42,22 @@ class SummaryViewController: UIViewController {
     
     var calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
     let user = PFUser.currentUser()
-    @IBOutlet weak var recurringLabel: UILabel!
-    @IBOutlet weak var switcher: UISwitch!
-    @IBOutlet weak var expensesAmount: UITextField!
-    @IBOutlet weak var descriptor: UITextField!
-    @IBOutlet weak var descriptorLabel: UILabel!
-    @IBOutlet weak var expensesLabel: UILabel!
-    @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var picker: UIPickerView!
-    @IBOutlet var recordSuccessLabel: UILabel!
+    @IBOutlet weak var weekMonthYear: UILabel!
+    @IBOutlet weak var previous: UIButton!
+    @IBOutlet weak var next: UIButton!
     @IBOutlet weak var weekButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var yearButton: UIButton!
-    
-    @IBOutlet weak var summarytitle: UILabel!
-    
     @IBOutlet weak var profitText: UILabel!
     @IBOutlet weak var expensesText: UILabel!
     @IBOutlet weak var salesText: UILabel!
+    @IBOutlet weak var totalSales: UILabel!
+    @IBOutlet weak var totalExpenses: UILabel!
+    @IBOutlet weak var netProfit: UILabel!
+    @IBOutlet weak var incomeTax: UIButton!
+    @IBOutlet weak var navBar: UINavigationItem!
+    
+    
     typealias CompletionHandler = (success:Bool) -> Void
     
     override func viewDidLoad() {
@@ -71,6 +66,16 @@ class SummaryViewController: UIViewController {
         //Here I’m creating the calendar instance that we will operate with:
         
         weekMonthYear.text = "Choose Category"
+        
+        weekButton.setTitle("Week", forState: UIControlState.Normal)
+        monthButton.setTitle("Month", forState: UIControlState.Normal)
+        yearButton.setTitle("Year", forState: UIControlState.Normal)
+        incomeTax.setTitle("Income Tax", forState: UIControlState.Normal)
+        navBar.title = "Report"
+        totalSales.text = "Total Sales ($):"
+        totalExpenses.text = "Total Expenses ($):"
+        netProfit.text = "Net Profit ($):"
+        
         
         //Now asking the calendar what month are we in today’s date:
         
@@ -124,7 +129,7 @@ class SummaryViewController: UIViewController {
             actualMonthDate = moment(newDate)
             chosenMonthDate = newDate
             
-            weekMonthYear.text = actualMonthDate.monthName + " " + String(actualMonthDate.year)
+            weekMonthYear.text = actualMonthDate.monthName.localized() + " " + String(actualMonthDate.year)
             
             if actualMonthDate.month < 10 {
                 currentMonthString = "0" + String(actualMonthDate.month)
@@ -221,7 +226,7 @@ class SummaryViewController: UIViewController {
             actualMonthDate = moment(newDate)
             chosenMonthDate = newDate
             
-            weekMonthYear.text = actualMonthDate.monthName + " " + String(actualMonthDate.year)
+            weekMonthYear.text = actualMonthDate.monthName.localized() + " " + String(actualMonthDate.year)
             
             if actualMonthDate.month < 10 {
                 currentMonthString = "0"+String(actualMonthDate.month)
@@ -381,7 +386,7 @@ class SummaryViewController: UIViewController {
         summaryType = 1
         
         //Here I’m creating the calendar instance that we will operate with:
-        weekMonthYear.text = actualMonthDate.monthName + " " + String(actualMonthDate.year)
+        weekMonthYear.text = actualMonthDate.monthName.localized() + " " + String(actualMonthDate.year)
         //Now asking the calendar what month are we in today’s date:
         if actualMonthDate.month < 10 {
             currentMonthString = "0" + String(actualMonthDate.month)
@@ -421,7 +426,7 @@ class SummaryViewController: UIViewController {
             dataEntries1.append(dataEntry)
         }
         
-        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Sales")
+        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Sales".localized())
         lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet1.setColor(UIColor.greenColor())
         lineChartDataSet1.highlightColor = UIColor.clearColor()
@@ -440,7 +445,7 @@ class SummaryViewController: UIViewController {
             dataEntries2.append(dataEntry)
         }
         
-        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Expenses")
+        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Expenses".localized())
         lineChartDataSet2.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet2.setColor(UIColor.redColor())
         lineChartDataSet2.highlightColor = UIColor.clearColor()

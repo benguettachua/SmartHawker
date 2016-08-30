@@ -17,6 +17,12 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var salesText: UILabel!
     @IBOutlet weak var expensesText: UILabel!
     @IBOutlet weak var profitText: UILabel!
+    
+    
+    @IBOutlet weak var profitButton: UILabel!
+    @IBOutlet weak var expensesLabel: UILabel!
+    @IBOutlet weak var salesLabel: UILabel!
+    
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
@@ -32,8 +38,33 @@ class CalendarViewController: UIViewController {
     
     @IBOutlet weak var add: UIButton!
     
+    //day labels
+    
+    @IBOutlet weak var sunLabel: UILabel!
+    @IBOutlet weak var monLabel: UILabel!
+    @IBOutlet weak var tuesLabel: UILabel!
+    @IBOutlet weak var wedLabel: UILabel!
+    @IBOutlet weak var thursLabel: UILabel!
+    @IBOutlet weak var friLabel: UILabel!
+    @IBOutlet weak var satLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Setting day labels
+        
+        sunLabel.text = "SUN".localized()
+        monLabel.text = "MON".localized()
+        tuesLabel.text = "TUE".localized()
+        wedLabel.text = "WED".localized()
+        thursLabel.text = "THU".localized()
+        friLabel.text = "FRI".localized()
+        satLabel.text = "SAT".localized()
+        salesText.text = "SALES".localized()
+        expensesText.text = "EXPENSES".localized()
+        profitText.text = "PROFIT".localized()
+        
+        
         formatter.dateFormat = "yyyy MM dd"
         testCalendar.timeZone = NSTimeZone(abbreviation: "GMT")!
         
@@ -126,7 +157,7 @@ class CalendarViewController: UIViewController {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: endDate)
         let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
-        monthLabel.text = monthName + " " + String(year)
+        monthLabel.text = monthName.localized() + " " + String(year)
     }
     
     func loadRecords(date: NSDate){

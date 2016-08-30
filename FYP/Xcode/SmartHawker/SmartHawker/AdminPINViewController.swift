@@ -41,9 +41,10 @@ class AdminPINViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         // Activity Indicator
         shared.dateString = nil
+        navBar.topItem?.title = "Admin Pin".localized()
         submitButton.setTitle("ENTER".localized(), forState: .Normal)
         cancelAndLogout.setTitle("Cancel".localized(), forState: .Normal)
-        adminPINTextField.placeholder = "Enter your PIN here".localized()
+        adminPINTextField.placeholder = "Enter your admin pin".localized()
         
         var faicon = [String: UniChar]()
         faicon["faadminpin"] = 0xf00a
@@ -61,19 +62,19 @@ class AdminPINViewController: UIViewController {
             
             // Set first time logged in to False, so this popup appears only once, when you just logged in.
             defaults.setBool(false, forKey: "justLoggedIn")
-            let alertController = UIAlertController(title: "Welcome", message: "Do you want to retrieve past records online?", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+            let alertController = UIAlertController(title: "Welcome".localized(), message: "Do you want to retrieve past records online?".localized(), preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action) -> Void in
                 
                 // Pop up telling the user that you are currently syncing
-                let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
+                let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
                 self.presentViewController(popup, animated: true, completion: {
                     let syncSucceed = self.adminPINController.sync()
                     if (syncSucceed) {
                         
                         // Retrieval succeed, inform the user that records are synced.
                         popup.dismissViewControllerAnimated(true, completion: {
-                            let alertController = UIAlertController(title: "Retrieval Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            let alertController = UIAlertController(title: "Retrieval Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
                             alertController.addAction(ok)
                             self.presentViewController(alertController, animated: true,completion: nil)
                         })
@@ -82,8 +83,8 @@ class AdminPINViewController: UIViewController {
                         
                         // Retrieval failed, inform user that he can sync again after he log in.
                         popup.dismissViewControllerAnimated(true, completion: {
-                            let alertController = UIAlertController(title: "Retrieval Failed!", message: "You may sync your data again at settings page.", preferredStyle: .Alert)
-                            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                            let alertController = UIAlertController(title: "Retrieval Failed!".localized(), message: "You may sync your data again at settings page.".localized(), preferredStyle: .Alert)
+                            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
                             alertController.addAction(ok)
                             self.presentViewController(alertController, animated: true,completion: nil)
                         })
@@ -91,7 +92,7 @@ class AdminPINViewController: UIViewController {
                 })
                 
             })
-            let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+            let no = UIAlertAction(title: "No".localized(), style: .Cancel, handler: nil)
             alertController.addAction(ok)
             alertController.addAction(no)
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -109,7 +110,7 @@ class AdminPINViewController: UIViewController {
             
             // Invalid PIN, inform the user that the PIN entered is incorrect.
             adminPINTextField.text = ""
-            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Incorrect PIN".localized().localized(), attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             
         } else {
             

@@ -28,11 +28,16 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var noRecordView: UIView!
     
     // Buttons
+    @IBOutlet weak var addNewRecord: UIButton!
     @IBOutlet weak var buttonName: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addNewRecord.setTitle("Add new record".localized(), forState: UIControlState.Normal)
+        buttonName.setTitle("Edit Table".localized(), forState: UIControlState.Normal)
+        noRecordLabel.text = "You haven't added a record for the day.".localized()
+        
         
     }
     
@@ -83,8 +88,8 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         // Populate the UI, showing the date currently selected.
         let storeDate = shared.storeDate
         dayNumberLabel.text = String(storeDate.day)
-        dayLabel.text = storeDate.weekdayName
-        monthYearLabel.text = (storeDate.monthName + ", " + String(storeDate.year))
+        dayLabel.text = storeDate.weekdayName.localized()
+        monthYearLabel.text = (storeDate.monthName.localized() + ", " + String(storeDate.year))
         
         
     }
@@ -131,10 +136,10 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func editTable(sender: UIButton) {
         if (self.tableView.editing == false) {
             self.tableView.editing = true
-            self.buttonName.setTitle("Done", forState: UIControlState.Normal)
+            self.buttonName.setTitle("Done".localized(), forState: UIControlState.Normal)
         } else {
             self.tableView.editing = false
-            self.buttonName.setTitle("Edit Table", forState: UIControlState.Normal)
+            self.buttonName.setTitle("Edit Table".localized(), forState: UIControlState.Normal)
         }
     }
     
@@ -161,7 +166,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         // Description Label
         var description = records[indexPath.row]["description"]
         if (description == nil) {
-            description = "No description"
+            description = "No description".localized()
         }
         cell.descriptionLabel.text = description as! String
         cell.descriptionLabel.font = UIFont(name: cell.descriptionLabel.font.fontName, size: 12)
@@ -182,7 +187,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if (type == 2) {
             typeString = "Expenses"
         }
-        cell.recordTypeLabel.text = typeString
+        cell.recordTypeLabel.text = typeString.localized()
         cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
         
         // Recorded by
