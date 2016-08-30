@@ -44,7 +44,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         super.viewDidLoad()
     
-        
+        information.text = "Choose image within 10MB"
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.handleTap(_:))))
 
@@ -384,7 +384,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             presentViewController(picker,
                                   animated: true,
                                   completion: nil)
-        } else {
+        }else if UIImagePickerController.availableCaptureModesForCameraDevice(.Front) != nil {
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker,
+                                  animated: true,
+                                  completion: nil)
+        }else {
             noCamera()
         }
     }
@@ -448,7 +456,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         let imageData = UIImageJPEGRepresentation(chosenImage, 100)
-        
+        print(imageData!.length)
         if imageData!.length < 9999999{
             imageFile = PFFile(name: "profilePicture.png", data: imageData!)
             
@@ -459,6 +467,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             updated = true
             self.information.textColor = UIColor.blackColor()
+            
             information.text = "Image Uploaded"
             
         }else{
