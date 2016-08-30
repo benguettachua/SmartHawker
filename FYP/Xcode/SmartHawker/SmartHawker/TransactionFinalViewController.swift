@@ -32,6 +32,7 @@ class TransactionFinalViewController: UIViewController {
     @IBOutlet weak var imageicon: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var recriptUploadLabel: UILabel!
     
     // Text Fields
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -62,6 +63,10 @@ class TransactionFinalViewController: UIViewController {
         imageicon.font = UIFont(name: "FontAwesome", size: 20)
         imageicon.text = String(format: "%C", faicon["faimage"]!)
         
+        COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+        otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
+        descriptionTextField.placeholder = "Add description".localized()
+        recriptUploadLabel.text = "Attach your receipt (etc)".localized()
         // Set amount brought forward from previous page.
         amountLabel.text = String(amount)
         
@@ -142,8 +147,8 @@ class TransactionFinalViewController: UIViewController {
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-        let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing!", preferredStyle: .Alert)
-        comingSoonAlert.addAction(UIAlertAction(title: "ok", style: .Default, handler: nil))
+        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
+        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
         self.presentViewController(comingSoonAlert, animated: true, completion: nil)
     }
     
@@ -167,8 +172,8 @@ class TransactionFinalViewController: UIViewController {
                 recordController.loadDatesToCalendar()
                 
                 // Recording successful, inform the user that they can enter another record.
-                let alert = UIAlertController(title: "Success", message: "Record success, please continue.", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+                let alert = UIAlertController(title: "Success".localized(), message: "Record success, please continue.".localized(), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
                     self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
                 }))
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -176,8 +181,8 @@ class TransactionFinalViewController: UIViewController {
             } else {
                 
                 // Recording failed, popup to inform the user.
-                let errorAlert = UIAlertController(title: "Error", message: "Recording failed. Please try again.", preferredStyle: .Alert)
-                errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+                let errorAlert = UIAlertController(title: "Error".localized(), message: "Recording failed. Please try again.".localized(), preferredStyle: .Alert)
+                errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
                 self.presentViewController(errorAlert, animated: true, completion: nil)
             }
             
@@ -191,8 +196,8 @@ class TransactionFinalViewController: UIViewController {
                 recordController.loadDatesToCalendar()
                 
                 // Recording successful, inform the user that they can enter another record.
-                let alert = UIAlertController(title: "Success", message: "Update success, please continue.", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+                let alert = UIAlertController(title: "Success".localized(), message: "Update success, please continue.".localized(), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
                     self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
                 }))
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -200,8 +205,8 @@ class TransactionFinalViewController: UIViewController {
             } else {
                 
                 // Recording failed, popup to inform the user.
-                let errorAlert = UIAlertController(title: "Error", message: "Updating failed. Please try again.", preferredStyle: .Alert)
-                errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+                let errorAlert = UIAlertController(title: "Error".localized(), message: "Updating failed. Please try again.".localized(), preferredStyle: .Alert)
+                errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
                 self.presentViewController(errorAlert, animated: true, completion: nil)
             }
             

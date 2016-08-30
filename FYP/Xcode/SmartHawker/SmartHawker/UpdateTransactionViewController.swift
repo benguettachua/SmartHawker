@@ -88,6 +88,12 @@ class UpdateTransactionViewController: UIViewController {
         descicon.text = String(format: "%C", faicon["fadesc"]!)
         imageicon.font = UIFont(name: "FontAwesome", size: 20)
         imageicon.text = String(format: "%C", faicon["faimage"]!)
+        
+        COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+        otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
+        salesBarButtonItem.title = "Sales".localized()
+        expensesBarButtonItem.title = "Expenses".localized()
+        descriptionTextField.placeholder = "Add description".localized()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -163,8 +169,8 @@ class UpdateTransactionViewController: UIViewController {
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-        let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing!", preferredStyle: .Alert)
-        comingSoonAlert.addAction(UIAlertAction(title: "ok", style: .Default, handler: nil))
+        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
+        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
         self.presentViewController(comingSoonAlert, animated: true, completion: nil)
     }
     
@@ -187,8 +193,8 @@ class UpdateTransactionViewController: UIViewController {
             recordController.loadDatesToCalendar()
             
             // Recording successful, inform the user that they can enter another record.
-            let alert = UIAlertController(title: "Success", message: "Update success, please continue.", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+            let alert = UIAlertController(title: "Success".localized(), message: "Update success, please continue.".localized(), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
                 self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
             }))
             self.presentViewController(alert, animated: true, completion: nil)
@@ -196,8 +202,8 @@ class UpdateTransactionViewController: UIViewController {
         } else {
             
             // Recording failed, popup to inform the user.
-            let errorAlert = UIAlertController(title: "Error", message: "Updating failed. Please try again.", preferredStyle: .Alert)
-            errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+            let errorAlert = UIAlertController(title: "Error".localized(), message: "Updating failed. Please try again.".localized(), preferredStyle: .Alert)
+            errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
             self.presentViewController(errorAlert, animated: true, completion: nil)
         }
         
@@ -221,9 +227,9 @@ class UpdateTransactionViewController: UIViewController {
         let selectedRecord = shared.selectedRecord
         let recordController = RecordController()
         
-        let warningAlert = UIAlertController(title: "Are you sure?", message: "Record will be permanently deleted.", preferredStyle: .Alert)
-        warningAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
-        warningAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { void in
+        let warningAlert = UIAlertController(title: "Are you sure?".localized(), message: "Record will be permanently deleted.".localized(), preferredStyle: .Alert)
+        warningAlert.addAction(UIAlertAction(title: "No".localized(), style: .Default, handler: nil))
+        warningAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { void in
             let deleteSuccess = recordController.deleteRecord(selectedRecord)
             
             if (deleteSuccess) {
@@ -231,16 +237,16 @@ class UpdateTransactionViewController: UIViewController {
                 recordController.loadDatesToCalendar()
                 
                 // Deleting successful, inform the user
-                let alert = UIAlertController(title: "Success", message: "Record deleted, please continue.", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (Void) in
+                let alert = UIAlertController(title: "Success".localized(), message: "Record deleted, please continue.".localized(), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
                     self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
                 }))
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 
                 // Delete failed, popup to inform the user.
-                let errorAlert = UIAlertController(title: "Error", message: "Deleting failed. Please try again.", preferredStyle: .Alert)
-                errorAlert.addAction(UIAlertAction(title: "Try again", style: .Default, handler: nil))
+                let errorAlert = UIAlertController(title: "Error".localized(), message: "Deleting failed. Please try again.".localized(), preferredStyle: .Alert)
+                errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
                 self.presentViewController(errorAlert, animated: true, completion: nil)
             }
         }))
