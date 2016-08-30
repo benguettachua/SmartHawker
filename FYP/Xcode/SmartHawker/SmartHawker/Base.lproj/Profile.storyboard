@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HOc-0T-eCr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HOc-0T-eCr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -273,13 +273,22 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adminLabel" destination="Hnb-He-7pb" id="hjv-9Z-I8H"/>
                         <outlet property="adminicon" destination="Zzw-K4-S1W" id="be0-EC-wtw"/>
                         <outlet property="backbtn" destination="i1E-aj-vLE" id="dbK-n7-YSX"/>
+                        <outlet property="contactUsLabel" destination="OqX-NW-AJ9" id="cbH-QD-lZK"/>
                         <outlet property="contactusicon" destination="yS1-R0-mkn" id="8qi-YG-kJU"/>
+                        <outlet property="faqLabel" destination="eqC-58-j4u" id="Evd-o3-gPR"/>
                         <outlet property="faqicon" destination="hue-25-svv" id="eyz-KS-2ZL"/>
+                        <outlet property="languageLabel" destination="M7Q-3D-pSw" id="y9r-hH-7d2"/>
                         <outlet property="languageicon" destination="ysM-KX-yPV" id="d8v-Lk-4WA"/>
+                        <outlet property="logoutLabel" destination="Y9z-q0-2ek" id="PTI-60-UAB"/>
+                        <outlet property="navBar" destination="Cch-Di-eGO" id="sfR-rO-p2I"/>
+                        <outlet property="notificationLabel" destination="kPW-Ue-Jfr" id="lAY-2B-dGx"/>
                         <outlet property="notificationMode" destination="4Lk-4Y-xOp" id="xD1-T8-x2z"/>
                         <outlet property="passicon" destination="nBf-RS-jhX" id="xAg-DE-uzU"/>
+                        <outlet property="passwordLabel" destination="xMv-UO-3o9" id="HKo-pl-6ym"/>
+                        <outlet property="privacyLabel" destination="qru-0L-jtj" id="3lG-VH-FXH"/>
                         <outlet property="privacyicon" destination="vlh-er-MWw" id="H6V-Ww-lQo"/>
                         <segue destination="Vqf-2L-7Hg" kind="modal" identifier="toFaq" id="5Bj-AD-jWt"/>
                         <segue destination="O9n-jC-hEy" kind="modal" identifier="toContactUs" id="Ops-TL-1BI"/>
@@ -460,6 +469,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="7cg-kI-t2Q"/>
                     <connections>
+                        <outlet property="navBar" destination="7cg-kI-t2Q" id="eq6-Q1-mlV"/>
                         <outlet property="profileName" destination="AST-0E-kSZ" id="vJO-Fz-l5H"/>
                         <outlet property="profilePicture" destination="d25-Jw-lSB" id="SVb-Kg-6VG"/>
                         <outlet property="rightprofile" destination="TgR-Ha-Dfq" id="7Ie-Ca-ZgI"/>
@@ -467,7 +477,10 @@
                         <outlet property="rightsu" destination="BPI-YN-IAx" id="z1K-se-7eF"/>
                         <outlet property="rightsync" destination="wmk-Rr-fxa" id="9w2-Mx-Zxt"/>
                         <outlet property="settingicon" destination="vR1-ir-xq5" id="QpD-gU-wnR"/>
+                        <outlet property="settingsLabel" destination="Tya-4K-ufM" id="KlL-rR-ves"/>
+                        <outlet property="subuserLabel" destination="2Kx-5H-wfN" id="0lX-fl-Ir4"/>
                         <outlet property="subusericon" destination="O9S-VJ-pmw" id="NYg-zd-Nu8"/>
+                        <outlet property="syncLabel" destination="TV7-Wa-aWP" id="LK9-hm-f2Z"/>
                         <outlet property="syncicon" destination="gwD-Z4-92b" id="txy-5z-0zQ"/>
                         <segue destination="41k-kG-Jy2" kind="modal" identifier="toSettings" id="wFG-g9-PkO"/>
                         <segue destination="tuM-Xe-9Au" kind="modal" identifier="editProfile" id="L6q-hG-UJ6"/>
@@ -1690,6 +1703,7 @@ Cgo
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="backbtn" destination="k2g-ms-SIL" id="glA-iL-dI6"/>
+                        <outlet property="navBar" destination="4gW-23-sCb" id="TTy-p1-0QF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT7-ZU-Dh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2076,6 +2090,7 @@ Cg
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="backbtn" destination="ymI-Qp-OqE" id="bFv-yj-1Pf"/>
+                        <outlet property="navBar" destination="xWK-LJ-zrg" id="wSy-YI-t1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oa6-Dm-AcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2419,8 +2434,10 @@ Cg
                     <connections>
                         <outlet property="back" destination="5gP-bo-hMP" id="NBV-tt-KHo"/>
                         <outlet property="backbtn" destination="5gP-bo-hMP" id="Zhi-GS-uNO"/>
+                        <outlet property="changeProfilePicButton" destination="H6Y-Y6-ftB" id="sBq-J6-ylF"/>
                         <outlet property="donebtn" destination="h0T-8D-gJh" id="RrM-T6-QTB"/>
                         <outlet property="information" destination="uAA-al-MMa" id="ETQ-GP-DA6"/>
+                        <outlet property="navBar" destination="cN1-Sc-hXw" id="61s-uT-WxY"/>
                         <outlet property="profilePicture" destination="fOS-Kc-jKN" id="JnR-fS-xV0"/>
                     </connections>
                 </viewController>
@@ -3202,6 +3219,7 @@ Cg
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="backbtn" destination="t0O-6A-k3h" id="2P7-YI-9Xy"/>
+                        <outlet property="navBar" destination="D7F-i3-PQT" id="7pG-4i-0L2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGv-a8-LUf" userLabel="First Responder" sceneMemberID="firstResponder"/>

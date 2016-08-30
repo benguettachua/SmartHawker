@@ -30,6 +30,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     typealias CompletionHandler = (success: Bool) -> Void
     @IBOutlet var information: UILabel!
     @IBOutlet weak var back: UIButton!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var changeProfilePicButton: UIButton!
     
     var imageFile: PFFile!
     let user = PFUser.currentUser()
@@ -43,7 +45,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         
         super.viewDidLoad()
-    
+        
+        navBar.topItem?.title = "Edit Profile"
+        changeProfilePicButton.setTitle("Change Profile Picture", forState: UIControlState.Normal)
         information.text = "Choose image within 10MB"
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.handleTap(_:))))
@@ -77,7 +81,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         email.placeholder = "EMAIL"
         var email2 = user!["email"]
         if (email2 == nil) {
-            email2 = "No name"
+            email2 = "No email"
         }
         email.text = email2 as? String
         
@@ -364,7 +368,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             message: "This device has no camera",
             preferredStyle: .Alert)
         let okAction = UIAlertAction(
-            title: "OK",
+            title: "Ok",
             style:.Default,
             handler: nil)
         alertVC.addAction(okAction)

@@ -13,6 +13,7 @@ class ContactUsPage: UIViewController {
     //MARK properties
     
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var backbtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class ContactUsPage: UIViewController {
         faicon["faleftback"] = 0xf053
         
         backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
-        
+        navBar.topItem?.title = "Contact Us".localized()
         backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
     }
     

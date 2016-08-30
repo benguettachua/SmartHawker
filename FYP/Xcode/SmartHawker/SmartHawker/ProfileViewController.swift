@@ -33,6 +33,13 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var subusericon: UILabel!
     
     @IBOutlet weak var rightsu: UILabel!
+    
+    
+    @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var syncLabel: UILabel!
+    @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var subuserLabel: UILabel!
+    
     // Variables
     let user = PFUser.currentUser()
     
@@ -40,13 +47,19 @@ class ProfileViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navBar.title = "Profile".localized()
+        syncLabel.text = "Sync".localized()
+        settingsLabel.text = "Settings".localized()
+        subusericon.text = "Sub User".localized()
+        
         // Load the Top Bar
         let user = PFUser.currentUser()
         // Populate the top bar
         if user != nil{
             var name = user!["name"]
             if (name == nil) {
-                name = "No name"
+                name = "No name".localized()
             }
             let nameString = name as! String
             let phoneNumber = user!["phoneNumber"] as! String
@@ -102,19 +115,19 @@ class ProfileViewController: UITableViewController {
     }
     func syncData() {
         if connectionDAO().isConnectedToNetwork(){
-        let alertController = UIAlertController(title: "Sync Records", message: "Are you sure?", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "Yes", style: .Default, handler: { (action) -> Void in
+        let alertController = UIAlertController(title: "Sync Records".localized(), message: "Are you sure?".localized(), preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action) -> Void in
             
             // Pop up telling the user that you are currently syncing
-            let popup = UIAlertController(title: "Syncing", message: "Please wait.", preferredStyle: .Alert)
+            let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
             self.presentViewController(popup, animated: true, completion: {
                 let syncSucceed = ProfileController().sync()
                 if (syncSucceed) {
                     
                     // Retrieval succeed, inform the user that records are synced.
                     popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Complete!", message: "Please proceed.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                        let alertController = UIAlertController(title: "Sync Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
                         alertController.addAction(ok)
                         self.presentViewController(alertController, animated: true,completion: nil)
                     })
@@ -123,22 +136,22 @@ class ProfileViewController: UITableViewController {
                     
                     // Retrieval failed, inform user that he can sync again after he log in.
                     popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Failed!", message: "Please try again later.", preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+                        let alertController = UIAlertController(title: "Sync Failed!".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
                         alertController.addAction(ok)
                         self.presentViewController(alertController, animated: true,completion: nil)
                     })
                 }
             })
         })
-        let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+        let no = UIAlertAction(title: "No".localized(), style: .Cancel, handler: nil)
         alertController.addAction(ok)
         alertController.addAction(no)
         self.presentViewController(alertController, animated: true, completion: nil)
         }else{
             
-            let alertController = UIAlertController(title: "Please find a internet connection.", message: "Please try again later.", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let alertController = UIAlertController(title: "Please find a internet connection.".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
             alertController.addAction(ok)
             self.presentViewController(alertController, animated: true,completion: nil)
         }
@@ -167,8 +180,8 @@ class ProfileViewController: UITableViewController {
             
             // Subuser
             if (selectedRow == 2) {
-                let comingSoonAlert = UIAlertController(title: "Coming soon", message: "Function currently developing", preferredStyle: .Alert)
-                comingSoonAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing".localized(), preferredStyle: .Alert)
+                comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
                 self.presentViewController(comingSoonAlert, animated: true, completion: nil)
             }
         }

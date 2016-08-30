@@ -34,7 +34,6 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var businessExpensesLabelOnly: UILabel!
     @IBOutlet weak var additionalBusinessExpenses: UILabel!
     @IBOutlet weak var adjustedProfitLabelOnly: UILabel!
-    @IBOutlet weak var calculationsForAdjustedProfit: UILabel!
     
     // Text Fields
     @IBOutlet weak var additionalExpensesTextField: UITextField!
@@ -96,7 +95,6 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         businessExpensesLabelOnly.text = "Business Expenses"
         additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses"
         adjustedProfitLabelOnly.text = "Adjusted Profit"
-        calculationsForAdjustedProfit.text = "(Gross Profit - Total Expenses)"
         
     }
     
