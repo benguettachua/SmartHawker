@@ -16,7 +16,6 @@ class TransactionFinalViewController: UIViewController {
     // Variables from previous VC
     var amount = Double()
     var type = Int()
-    var isNewRecord = Bool()
     var shared = ShareData.sharedInstance
     
     // UIButton
@@ -162,56 +161,28 @@ class TransactionFinalViewController: UIViewController {
         let subuser = shared.subuser
         
         // Check if this is a new record.
-        if (isNewRecord) {
-            // New record, save the new record.
-            let saveSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        
+        // New record, save the new record.
+        let saveSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        
+        if (saveSuccess) {
             
-            if (saveSuccess) {
-                
-                // Updates controller
-                recordController.loadDatesToCalendar()
-                
-                // Recording successful, inform the user that they can enter another record.
-                let alert = UIAlertController(title: "Success".localized(), message: "Record success, please continue.".localized(), preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
-                    self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-                }))
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-            } else {
-                
-                // Recording failed, popup to inform the user.
-                let errorAlert = UIAlertController(title: "Error".localized(), message: "Recording failed. Please try again.".localized(), preferredStyle: .Alert)
-                errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
-                self.presentViewController(errorAlert, animated: true, completion: nil)
-            }
+            // Updates controller
+            recordController.loadDatesToCalendar()
+            
+            // Recording successful, inform the user that they can enter another record.
+            let alert = UIAlertController(title: "Success".localized(), message: "Record success, please continue.".localized(), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
+                self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            let localIdentifier = shared.selectedRecord["subUser"] as! String
-            let updateSuccess = recordController.update(localIdentifier, type: type, description: description!, amount: amount)
             
-            if (updateSuccess) {
-                
-                // Updates controller
-                recordController.loadDatesToCalendar()
-                
-                // Recording successful, inform the user that they can enter another record.
-                let alert = UIAlertController(title: "Success".localized(), message: "Update success, please continue.".localized(), preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
-                    self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-                }))
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-            } else {
-                
-                // Recording failed, popup to inform the user.
-                let errorAlert = UIAlertController(title: "Error".localized(), message: "Updating failed. Please try again.".localized(), preferredStyle: .Alert)
-                errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
-                self.presentViewController(errorAlert, animated: true, completion: nil)
-            }
-            
+            // Recording failed, popup to inform the user.
+            let errorAlert = UIAlertController(title: "Error".localized(), message: "Recording failed. Please try again.".localized(), preferredStyle: .Alert)
+            errorAlert.addAction(UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil))
+            self.presentViewController(errorAlert, animated: true, completion: nil)
         }
-        
-        
     }
 }

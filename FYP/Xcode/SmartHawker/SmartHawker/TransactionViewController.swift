@@ -31,9 +31,7 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nextbtn: UIButton!
     
     // Variables
-    let shared = ShareData.sharedInstance
     var type = 0
-    var isNewRecord = false
     
     // View Did Load
     override func viewDidLoad() {
@@ -43,13 +41,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         expensesBarButtonItem.title = "Expenses".localized()
         amountTextField.placeholder = "Amount".localized()
         
-        // Get the type of record
-        let record = shared.selectedRecord
-        // Add new record
-        if (record == nil) {
-            isNewRecord = true
-        } 
+        // Always select sales as the first
         selectSales(salesBarButtonItem)
+        
         // Delegate for textfield
         amountTextField.delegate = self
         
@@ -154,7 +148,6 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         
         destinationVC.amount = Double(amountTextField.text!)!
         destinationVC.type = type
-        destinationVC.isNewRecord = isNewRecord
     }
     
     //Need to have the ViewController extend UITextFieldDelegate for using this feature
