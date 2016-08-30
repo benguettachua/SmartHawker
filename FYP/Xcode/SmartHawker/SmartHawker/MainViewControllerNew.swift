@@ -94,7 +94,7 @@ class MainViewControllerNew: UIViewController{
         self.highestSales.text = "$" + String(format: "%.0f", values.3)
         self.lowestSales.text = "$" + String(format: "%.0f", values.4)
         if values.5 == 0{
-            self.averageSales.text = "0"
+            self.averageSales.text = "$0"
         }else{
             self.averageSales.text = "$" + String(format: "%.0f", values.5)
         }

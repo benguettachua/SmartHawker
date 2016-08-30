@@ -51,11 +51,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         information.text = "Choose image within 10MB"
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.handleTap(_:))))
-
+        
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
         faicon["fatick"] = 0xf00c
-
+        
         backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
         
         backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
@@ -94,7 +94,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             businessName2 = "No business name"
         }
         bizname.text = businessName2 as? String
-    
+        
         view.layout(bizname).top(315).horizontally(left: 20, right: 20).height(22)
         
         biznum.placeholder = "BUSINESS NUMBER"
@@ -120,11 +120,18 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         view.layout(adminPIN).top(450).horizontally(left: 20, right: 20).height(22)
         
-        if let userPicture = user!["profilePicture"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.profilePicture.image = UIImage(data: imageData!)
-                    self.imageFile = self.user!["profilePicture"] as? PFFile
+        let profilePic = user!["profilePicture"]
+        if (profilePic == nil) {
+            let image = UIImage(named: "defaultProfilePic")
+            self.profilePicture.image = image
+            self.imageFile = PFFile(data: UIImageJPEGRepresentation(image!, 0)!)
+        } else {
+            if let userPicture = user!["profilePicture"] as? PFFile {
+                userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                    if (error == nil) {
+                        self.profilePicture.image = UIImage(data: imageData!)
+                        self.imageFile = self.user!["profilePicture"] as? PFFile
+                    }
                 }
             }
         }
@@ -141,211 +148,213 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func back(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     
     //change email
     @IBAction func change(sender: UIButton) {
         
         if connectionDAO().isConnectedToNetwork(){
-        let alert = UIAlertController(title: "Editing", message: "Edits are being made to your profile details", preferredStyle: UIAlertControllerStyle.Alert)
-        self.presentViewController(alert, animated: true, completion: {
-        
-        self.errorMsg.removeAll()
-        
-        var error = 0
-        var newName = ""
-        var newEmail = ""
-        var newPhoneNumber = ""
-        var newBusinessName = ""
-        var newBusinessAddress = ""
-        var newBusinessRegNo = ""
-        var newPINNumber = ""
-        //checks for name
-        if self.name.text!.isEmpty == false{
-            newName = self.name.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            if newName.isEmpty{
-                let errorString = "Invalid Name field."
-                self.name.text = ""
-                self.name.placeholder = "Invalid Name field."
-                self.errorMsg.append(errorString)
-                error += 1
-            }
-        }else{
-            let errorString = "Invalid Name field."
-            self.name.text = ""
-            self.name.placeholder = "Invalid Name field."
-            self.errorMsg.append(errorString)
-            error += 1
-        }
-        
-        //checks for phone number
-        if self.phone.text!.isEmpty == false{
-            
-            if Int(self.phone.text!) != nil {
-                if Int(self.phone.text!) >= 80000000 && Int(self.phone.text!) < 100000000{
-                    newPhoneNumber = self.phone.text!
+            let alert = UIAlertController(title: "Editing", message: "Edits are being made to your profile details", preferredStyle: UIAlertControllerStyle.Alert)
+            self.presentViewController(alert, animated: true, completion: {
+                
+                self.errorMsg.removeAll()
+                
+                var error = 0
+                var newName = ""
+                var newEmail = ""
+                var newPhoneNumber = ""
+                var newBusinessName = ""
+                var newBusinessAddress = ""
+                var newBusinessRegNo = ""
+                var newPINNumber = ""
+                //checks for name
+                if self.name.text!.isEmpty == false{
+                    newName = self.name.text!.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    if newName.isEmpty{
+                        let errorString = "Invalid Name field."
+                        self.name.text = ""
+                        self.name.placeholder = "Invalid Name field."
+                        self.errorMsg.append(errorString)
+                        error += 1
+                    }
                 }else{
+                    let errorString = "Invalid Name field."
+                    self.name.text = ""
+                    self.name.placeholder = "Invalid Name field."
+                    self.errorMsg.append(errorString)
+                    error += 1
+                }
+                
+                //checks for phone number
+                if self.phone.text!.isEmpty == false{
+                    
+                    if Int(self.phone.text!) != nil {
+                        if Int(self.phone.text!) >= 80000000 && Int(self.phone.text!) < 100000000{
+                            newPhoneNumber = self.phone.text!
+                        }else{
+                            let errorString = "Invalid Phone Number field."
+                            self.phone.text = ""
+                            self.phone.placeholder = "Invalid Phone Number field."
+                            self.errorMsg.append(errorString)
+                            error += 1
+                        }
+                    } else {
+                        let errorString = "Invalid Phone Number field."
+                        self.phone.text = ""
+                        self.phone.placeholder = "Invalid Phone Number field."
+                        self.errorMsg.append(errorString)
+                        error += 1
+                    }
+                }else {
                     let errorString = "Invalid Phone Number field."
                     self.phone.text = ""
                     self.phone.placeholder = "Invalid Phone Number field."
                     self.errorMsg.append(errorString)
                     error += 1
                 }
-            } else {
-                let errorString = "Invalid Phone Number field."
-                self.phone.text = ""
-                self.phone.placeholder = "Invalid Phone Number field."
-                self.errorMsg.append(errorString)
-                error += 1
-            }
-        }else {
-            let errorString = "Invalid Phone Number field."
-            self.phone.text = ""
-            self.phone.placeholder = "Invalid Phone Number field."
-            self.errorMsg.append(errorString)
-            error += 1
-        }
-        
-        //checks for AdminPIN Number
-        if self.adminPIN.text!.isEmpty == false{
-            var text: String!
-            if Int(self.adminPIN.text!) != nil {
-                text = self.adminPIN.text!
-                if Int(self.adminPIN.text!) >= 0 && Int(self.adminPIN.text!) < 10000 && text.characters.count == 4{
-                    newPINNumber = self.adminPIN.text!
-                }else{
+                
+                //checks for AdminPIN Number
+                if self.adminPIN.text!.isEmpty == false{
+                    var text: String!
+                    if Int(self.adminPIN.text!) != nil {
+                        text = self.adminPIN.text!
+                        if Int(self.adminPIN.text!) >= 0 && Int(self.adminPIN.text!) < 10000 && text.characters.count == 4{
+                            newPINNumber = self.adminPIN.text!
+                        }else{
+                            let errorString = "Invalid Admin PIN field."
+                            self.adminPIN.text = ""
+                            self.adminPIN.placeholder = "Invalid Admin PIN field."
+                            self.errorMsg.append(errorString)
+                            error += 1
+                        }
+                    } else {
+                        let errorString = "Invalid Admin PIN field."
+                        self.adminPIN.text = ""
+                        self.adminPIN.placeholder = "Invalid Admin PIN field."
+                        self.errorMsg.append(errorString)
+                        error += 1
+                    }
+                }else {
                     let errorString = "Invalid Admin PIN field."
                     self.adminPIN.text = ""
                     self.adminPIN.placeholder = "Invalid Admin PIN field."
                     self.errorMsg.append(errorString)
                     error += 1
                 }
-            } else {
-                let errorString = "Invalid Admin PIN field."
-                self.adminPIN.text = ""
-                self.adminPIN.placeholder = "Invalid Admin PIN field."
-                self.errorMsg.append(errorString)
-                error += 1
-            }
-        }else {
-            let errorString = "Invalid Admin PIN field."
-            self.adminPIN.text = ""
-            self.adminPIN.placeholder = "Invalid Admin PIN field."
-            self.errorMsg.append(errorString)
-            error += 1
-        }
-        
-        //checks for email
-        if self.email.text!.isEmpty == false{
-            if self.isValidEmail(self.email.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(self.email.text!.stringByTrimmingCharactersInSet(
-                    NSCharacterSet.whitespaceAndNewlineCharacterSet())){
-                newEmail = self.email.text!
-            }else{
-                let error = "Invalid Email field."
-                self.email.text = ""
-                self.email.placeholder = "Invalid Email field."
-                self.errorMsg.append(error)
-            }
-        }else{
-            let error = "Empty Email field."
-            self.email.text = ""
-            self.email.placeholder = "Empty Email field."
-            self.errorMsg.append(error)
-        }
-        
-        //checks for business name
-        if self.bizname.text!.isEmpty == false{
-            newBusinessName = self.bizname.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            if newBusinessName.isEmpty{
-                let errorString = "Empty Business Name field."
-                self.bizname.text = ""
-                self.bizname.placeholder = "Empty Business Name field."
-                self.errorMsg.append(errorString)
-            }
-        }else{
-            let errorString = "Empty Business Name field."
-            self.bizname.text = ""
-            self.bizname.placeholder = "Empty Business Name field."
-            self.errorMsg.append(errorString)
-        }
-        
-        //Change business Reg No
-        if self.biznum.text!.isEmpty == false{
-            newBusinessRegNo = self.biznum.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            if newBusinessRegNo.isEmpty{
-                let errorString = "Empty Business Reg No field."
-                self.biznum.text = ""
-                self.biznum.placeholder = "Empty Business Reg No field."
-                self.errorMsg.append(errorString)
-            }
-        }else{
-            let errorString = "Empty Business Reg No field."
-            self.biznum.text = ""
-            self.biznum.placeholder = "Empty Business Reg No field."
-            self.errorMsg.append(errorString)
-        }
-        
-        //Change business Address
-        if self.address.text!.isEmpty == false{
-            newBusinessAddress = self.address.text!.stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            if newBusinessAddress.isEmpty{
-                let errorString = "Empty Business Address field."
-                self.address.text = ""
-                self.address.placeholder = "Empty Business Address field."
-                self.errorMsg.append(errorString)
-            }
-        }else{
-            let errorString = "Empty Business Address field."
-            self.address.text = ""
-            self.address.placeholder = "Empty Business Address field."
-            self.errorMsg.append(errorString)
-        }
-        
-        
-        
-        if error == 0 {
-            
-            print(newName)
-            print(newEmail)
-            print(newPhoneNumber)
-            print(newPINNumber)
-            print(newBusinessAddress)
-            print(newBusinessRegNo)
-            print(self.imageFile)
-            let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: self.imageFile)
-            if edited == true{
-                self.dismissViewControllerAnimated(true, completion: {
-                let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
                 
-                self.presentViewController(alert, animated: true, completion: nil)
-                })
-            }else{
-                self.dismissViewControllerAnimated(true, completion: {
-                let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                //checks for email
+                if self.email.text!.isEmpty == false{
+                    if self.isValidEmail(self.email.text!.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(self.email.text!.stringByTrimmingCharactersInSet(
+                            NSCharacterSet.whitespaceAndNewlineCharacterSet())){
+                        newEmail = self.email.text!
+                    }else{
+                        let errorString = "Invalid Email field."
+                        self.email.text = ""
+                        self.email.placeholder = "Invalid Email field."
+                        self.errorMsg.append(errorString)
+                        error += 1
+                    }
+                }else{
+                    let errorString = "Empty Email field."
+                    self.email.text = ""
+                    self.email.placeholder = "Empty Email field."
+                    self.errorMsg.append(errorString)
+                    error += 1
+                }
                 
-                self.presentViewController(alert, animated: true, completion: nil)
+                //checks for business name
+                if self.bizname.text!.isEmpty == false{
+                    newBusinessName = self.bizname.text!.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    if newBusinessName.isEmpty{
+                        let errorString = "Empty Business Name field."
+                        self.bizname.text = ""
+                        self.bizname.placeholder = "Empty Business Name field."
+                        self.errorMsg.append(errorString)
+                    }
+                }else{
+                    let errorString = "Empty Business Name field."
+                    self.bizname.text = ""
+                    self.bizname.placeholder = "Empty Business Name field."
+                    self.errorMsg.append(errorString)
+                }
+                
+                //Change business Reg No
+                if self.biznum.text!.isEmpty == false{
+                    newBusinessRegNo = self.biznum.text!.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    if newBusinessRegNo.isEmpty{
+                        let errorString = "Empty Business Reg No field."
+                        self.biznum.text = ""
+                        self.biznum.placeholder = "Empty Business Reg No field."
+                        self.errorMsg.append(errorString)
+                    }
+                }else{
+                    let errorString = "Empty Business Reg No field."
+                    self.biznum.text = ""
+                    self.biznum.placeholder = "Empty Business Reg No field."
+                    self.errorMsg.append(errorString)
+                }
+                
+                //Change business Address
+                if self.address.text!.isEmpty == false{
+                    newBusinessAddress = self.address.text!.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    if newBusinessAddress.isEmpty{
+                        let errorString = "Empty Business Address field."
+                        self.address.text = ""
+                        self.address.placeholder = "Empty Business Address field."
+                        self.errorMsg.append(errorString)
+                    }
+                }else{
+                    let errorString = "Empty Business Address field."
+                    self.address.text = ""
+                    self.address.placeholder = "Empty Business Address field."
+                    self.errorMsg.append(errorString)
+                }
+                
+                
+                
+                if error == 0 {
+                    
+                    print(newName)
+                    print(newEmail)
+                    print(newPhoneNumber)
+                    print(newPINNumber)
+                    print(newBusinessAddress)
+                    print(newBusinessRegNo)
+                    print(self.imageFile)
+                    let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: self.imageFile)
+                    if edited == true{
+                        self.dismissViewControllerAnimated(true, completion: {
+                            let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
+                            
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
+                    }else{
+                        self.dismissViewControllerAnimated(true, completion: {
+                            let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                            
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
+                    }
+                    
+                    
+                    
+                    
+                }else{
+                    self.dismissViewControllerAnimated(true, completion: {
+                        let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                        
+                        self.presentViewController(alert, animated: true, completion: nil)
                     })
-            }
-            
-            
-            
-            
-        }else{
-            self.dismissViewControllerAnimated(true, completion: {
-            let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
-                 })
-        }
-        })
+                }
+            })
             
         }else{
             
@@ -505,6 +514,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         return false
     }
     
-
+    
     
 }

@@ -54,35 +54,35 @@ class MainController{
         
         for object in array {
             let dateString = object["date"] as! String
-//            let type = object["type"] as! Int
-//            let amount = object["amount"] as! Double
-//            var localIdentifierString = object["subUser"]
-//            var recordedBy = object["subuser"]
-//            if (recordedBy == nil) {
-//                recordedBy = ""
-//            }
-//            var typeString = ""
-//            if (type == 0) {
-//                typeString = "Sales"
-//            } else if (type == 1) {
-//                typeString = "COGS"
-//            } else if (type == 2) {
-//                typeString = "Expenses"
-//            } else if (type == 3){
-//                typeString = "fixMonthlyExpenses"
-//            }
-//            
-//            var description = object["description"]
-//            
-//            if (description == nil || description as! String == "") {
-//                description = "No description"
-//            }
-//            
-//            if (localIdentifierString == nil) {
-//                localIdentifierString = String(tempCounter += 1)
-//            }
-//            
-//            let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
+            //            let type = object["type"] as! Int
+            //            let amount = object["amount"] as! Double
+            //            var localIdentifierString = object["subUser"]
+            //            var recordedBy = object["subuser"]
+            //            if (recordedBy == nil) {
+            //                recordedBy = ""
+            //            }
+            //            var typeString = ""
+            //            if (type == 0) {
+            //                typeString = "Sales"
+            //            } else if (type == 1) {
+            //                typeString = "COGS"
+            //            } else if (type == 2) {
+            //                typeString = "Expenses"
+            //            } else if (type == 3){
+            //                typeString = "fixMonthlyExpenses"
+            //            }
+            //
+            //            var description = object["description"]
+            //
+            //            if (description == nil || description as! String == "") {
+            //                description = "No description"
+            //            }
+            //
+            //            if (localIdentifierString == nil) {
+            //                localIdentifierString = String(tempCounter += 1)
+            //            }
+            //
+            //            let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
             if datesAndRecords[dateString] == nil {
                 var arrayForRecords = [PFObject]()
                 arrayForRecords.append(object)
@@ -119,11 +119,15 @@ class MainController{
             print("seperate")
             for record in myValue {
                 if earlier || same {
-                    if datesWithRecords.contains(record["date"] as! String) == false {
-                        datesWithRecords.append(record["date"] as! String)
-                        totalDays += 1.0
-                    }
                     let type = record["type"] as! Int
+                    if (type == 0 || type == 1 || type == 2) {
+                        if datesWithRecords.contains(record["date"] as! String) == false {
+                            datesWithRecords.append(record["date"] as! String)
+                            totalDays += 1.0
+                            
+                        }
+                    }
+                    
                     let amount = record["amount"] as! Double
                     //let subuser = object["subuser"] as? String
                     if (type == 0) {
@@ -173,6 +177,8 @@ class MainController{
             lowSales = 0.0
             highSalesDay = "None"
             lowSalesDay = "None"
+            print("AM I HERE?")
+            return (totalSales,expenses,totalProfit,highSales,lowSales,totalSales,highSalesDay,lowSalesDay)
         }
         return (totalSales,expenses,totalProfit,highSales,lowSales,(totalSales/totalDays),highSalesDay,lowSalesDay)
     }
