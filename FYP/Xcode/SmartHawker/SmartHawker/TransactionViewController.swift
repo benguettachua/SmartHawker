@@ -47,10 +47,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         let record = shared.selectedRecord
         // Add new record
         if (record == nil) {
-            selectSales(salesBarButtonItem)
             isNewRecord = true
         } 
-        
+        selectSales(salesBarButtonItem)
         // Delegate for textfield
         amountTextField.delegate = self
         
