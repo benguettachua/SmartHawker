@@ -113,10 +113,6 @@ class MainController{
             var profit = 0.0
             var sales = 0.0
             
-            print(correctDateString)
-            print(myKey)
-            print(earlier || same)
-            print("seperate")
             for record in myValue {
                 if earlier || same {
                     let type = record["type"] as! Int

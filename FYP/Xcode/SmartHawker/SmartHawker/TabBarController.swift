@@ -15,17 +15,17 @@ class TabBarController: UITabBarController {
     // This disables the Analytics tab and redirect the user back to home.
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         let selectedTitle = tabBar.selectedItem?.title
-        if (selectedTitle == "Analytics") {
-            let alert = UIAlertController(title: "Coming soon", message: "Function is coming soon.", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { void in
+        if (selectedTitle == "Analytics".localized()) {
+            let alert = UIAlertController(title: "Coming soon".localized(), message: "Function is coming soon.".localized(), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { void in
                 self.selectedViewController = self.viewControllers![2]
             }))
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         
         tabBar.items?[0].title = "Report".localized()
@@ -33,6 +33,11 @@ class TabBarController: UITabBarController {
         tabBar.items?[2].title = "Home".localized()
         tabBar.items?[3].title = "Calendar".localized()
         tabBar.items?[4].title = "Profile".localized()
+        print(tabBar.items?[0].title)
+        print(tabBar.items?[1].title)
+        print(tabBar.items?[2].title)
+        print(tabBar.items?[3].title)
+        print(tabBar.items?[4].title)
         
         // Start with the home page
         self.selectedViewController = self.viewControllers![2]

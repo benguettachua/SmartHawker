@@ -98,7 +98,6 @@ class AnalyticsViewController: UIViewController, ChartViewDelegate, UIScrollView
         var dataEntries1: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            print(dataPoints[i])
             stringData.append(dataPoints[i])
         }
         

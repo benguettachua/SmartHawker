@@ -47,20 +47,7 @@ class MainViewControllerNew: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //set labels for translation
-        lowestSalesLabel.text = "Lowest Sales".localized()
-        highestSalesLabel.text = "Highest Sales".localized()
-        averageSalesLabel.text = "Average Sales".localized()
-        profitLabel.text = "Profit".localized()
-        expensesLabel.text = "Expenses".localized()
-        salesLabel.text = "Sales".localized()
-        todayEntryLabel.text = "TODAYS ENTRY".localized()
-        monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
-        syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
-        infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
-        
-        getTodayDate()
+
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -72,9 +59,20 @@ class MainViewControllerNew: UIViewController{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        //set labels for translation
+        lowestSalesLabel.text = "Lowest Sales".localized()
+        highestSalesLabel.text = "Highest Sales".localized()
+        averageSalesLabel.text = "Average Sales".localized()
+        profitLabel.text = "Profit".localized()
+        expensesLabel.text = "Expenses".localized()
+        salesLabel.text = "Sales".localized()
+        todayEntryLabel.text = "TODAYS ENTRY".localized()
+        monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
+        syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
+        infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
         // Initialize UI
         // -------------
+        getTodayDate()
         getLatestDate()
         getMonthlyTarget()
         if(targetAvailable) {
@@ -86,7 +84,6 @@ class MainViewControllerNew: UIViewController{
         }
         
         let values = MainController().getMainValues()
-        print(values)
         self.salesAmount.text = "$" + String(format: "%.0f", values.0)
         self.otherExpensesAmount.text = "$" + String(format: "%.0f", values.1)
         self.totalProfit.text = "$" + String(format: "%.0f", values.2)

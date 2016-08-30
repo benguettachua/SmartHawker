@@ -55,28 +55,30 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var totalExpenses: UILabel!
     @IBOutlet weak var netProfit: UILabel!
     @IBOutlet weak var incomeTax: UIButton!
-    @IBOutlet weak var navBar: UINavigationItem!
     
+    @IBOutlet weak var report: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     typealias CompletionHandler = (success:Bool) -> Void
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         //Here I’m creating the calendar instance that we will operate with:
         
-        weekMonthYear.text = "Choose Category"
+        weekMonthYear.text = "Choose Category".localized()
         
-        weekButton.setTitle("Week", forState: UIControlState.Normal)
-        monthButton.setTitle("Month", forState: UIControlState.Normal)
-        yearButton.setTitle("Year", forState: UIControlState.Normal)
-        incomeTax.setTitle("Income Tax", forState: UIControlState.Normal)
-        navBar.title = "Report"
-        totalSales.text = "Total Sales ($):"
-        totalExpenses.text = "Total Expenses ($):"
-        netProfit.text = "Net Profit ($):"
-        
-        
+        weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
+        monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
+        yearButton.setTitle("Year".localized(), forState: UIControlState.Normal)
+        incomeTax.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
+        totalSales.text = "Total Sales ($):".localized()
+        totalExpenses.text = "Total Expenses ($):".localized()
+        netProfit.text = "Net Profit ($):".localized()
+        print("lala")
+        navBar.topItem?.title = "Report".localized()
+        report.title = "awdawd".localized()
+        print(navBar.topItem?.title)
         //Now asking the calendar what month are we in today’s date:
         
         if actualMonthDate.month < 10 {
@@ -351,12 +353,10 @@ class SummaryViewController: UIViewController {
             dayOfWeek = 6
         }
         periodComponents.day = 1 - dayOfWeek
-        print(1 - dayOfWeek)
         let firstDayOfWeek = calendar!.dateByAddingComponents(
             periodComponents,
             toDate: chosenWeekDate,
             options: [])!
-        print(firstDayOfWeek)
         var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
         daysInWeek.append(correctDateString)
         weekMonthYear.text = String(correctDateString) + " - "

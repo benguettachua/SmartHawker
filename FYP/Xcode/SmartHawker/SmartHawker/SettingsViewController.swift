@@ -27,7 +27,6 @@ class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var backbtn: UIButton!
     
-    
     @IBOutlet weak var passicon: UILabel!
     
     @IBOutlet weak var adminicon: UILabel!
@@ -52,6 +51,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var faqLabel: UILabel!
     @IBOutlet weak var contactUsLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
+    @IBOutlet weak var language: UILabel!
     
     
     
@@ -65,10 +65,8 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         navBar.title = "Settings".localized()
         passwordLabel.text = "Password".localized()
         adminLabel.text = "Admin".localized()
@@ -77,6 +75,20 @@ class SettingsViewController: UITableViewController {
         faqLabel.text = "FAQ".localized()
         contactUsLabel.text = "Contact Us".localized()
         logoutLabel.text = "Log Out".localized()
+        language.text = "Language".localized()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let name = defaults.stringForKey("langPref")
+        print(name)
+        if name == "zh-Hans"{
+            self.languageLabel.text = "华语"
+        }else{
+            self.languageLabel.text = "English"
+            
+        }
+
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -132,12 +144,21 @@ class SettingsViewController: UITableViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
-                //                if language == "zh-Hans"{
-                //                    self.languageLabel.text = "华语"
-                //                }else{
-                //                    self.languageLabel.text = "English"
-                //
-                //                }
+                               if language == "zh-Hans"{
+                                   self.languageLabel.text = "华语"
+                                }else{
+                                 self.languageLabel.text = "English"
+                
+                               }
+                 self.passwordLabel.text = "Password".localized()
+                 self.adminLabel.text = "Admin".localized()
+                 self.notificationLabel.text = "Notification".localized()
+                 self.privacyLabel.text = "Privacy".localized()
+                 self.faqLabel.text = "FAQ".localized()
+                 self.contactUsLabel.text = "Contact Us".localized()
+                 self.logoutLabel.text = "Log Out".localized()
+                self.language.text = "Language".localized()
+                
             })
             actionSheet.addAction(languageAction)
         }
@@ -146,6 +167,7 @@ class SettingsViewController: UITableViewController {
         })
         actionSheet.addAction(cancelAction)
         self.presentViewController(actionSheet, animated: true, completion: nil)
+
     }
     
     

@@ -392,7 +392,6 @@ class connectionDAO{
         }catch{}
         
         if let httpResponse = response as? NSHTTPURLResponse {
-            print(httpResponse.statusCode)
             
             if(httpResponse.statusCode == 200) {
                 return true

@@ -50,19 +50,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Setting day labels
-        
-        sunLabel.text = "SUN".localized()
-        monLabel.text = "MON".localized()
-        tuesLabel.text = "TUE".localized()
-        wedLabel.text = "WED".localized()
-        thursLabel.text = "THU".localized()
-        friLabel.text = "FRI".localized()
-        satLabel.text = "SAT".localized()
-        salesText.text = "SALES".localized()
-        expensesText.text = "EXPENSES".localized()
-        profitText.text = "PROFIT".localized()
+
         
         
         formatter.dateFormat = "yyyy MM dd"
@@ -147,8 +135,21 @@ class CalendarViewController: UIViewController {
     }
     
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Setting day labels
+        
+        sunLabel.text = "SUN".localized()
+        monLabel.text = "MON".localized()
+        tuesLabel.text = "TUE".localized()
+        wedLabel.text = "WED".localized()
+        thursLabel.text = "THU".localized()
+        friLabel.text = "FRI".localized()
+        satLabel.text = "SAT".localized()
+        salesText.text = "SALES".localized()
+        expensesText.text = "EXPENSES".localized()
+        profitText.text = "PROFIT".localized()
         calendarView.reloadData()
         loadRecords(selectedDate)
     }
