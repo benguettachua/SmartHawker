@@ -36,7 +36,6 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         addNewRecord.setTitle("Add new record".localized(), forState: UIControlState.Normal)
         buttonName.setTitle("Edit Table".localized(), forState: UIControlState.Normal)
-        noRecordLabel.text = "You haven't added a record for the day.".localized()
         
         
     }
@@ -49,6 +48,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
         // Load records from local datastore into an array.
         records = recordDayController.loadRecord()
         
+        noRecordLabel.text = "You haven't added a record for the day.".localized()
         if (records.isEmpty) {
             
             // No records are found, inform user that they have not made a record for the day.
