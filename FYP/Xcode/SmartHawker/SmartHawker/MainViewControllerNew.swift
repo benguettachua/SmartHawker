@@ -7,7 +7,7 @@ class MainViewControllerNew: UIViewController{
     //MARK properties
     //---------------------------------
     let user = PFUser.currentUser()
-    let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
+    
     
     
     var targetAmount = 0.0
@@ -137,7 +137,7 @@ class MainViewControllerNew: UIViewController{
                 
             } else {
                 let alert = UIAlertController(title: "Error".localized(), message: "Target cannot be empty.".localized(), preferredStyle: .Alert)
-                alert.addAction((UIAlertAction(title: "Try again", style: .Default, handler: nil)))
+                alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         })
@@ -214,6 +214,7 @@ class MainViewControllerNew: UIViewController{
         }else{
             dayString = String(date.day) + "th".localized()
         }
+        let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
         if lang == "zh-Hans" {
             toDisplayDate += date.monthName.localized() + " \(dayString) " + " \(date.year) 年"
         }else{
@@ -253,7 +254,7 @@ class MainViewControllerNew: UIViewController{
                     }
                 })
             })
-            let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+            let no = UIAlertAction(title: "No".localized(), style: .Cancel, handler: nil)
             alertController.addAction(ok)
             alertController.addAction(no)
             self.presentViewController(alertController, animated: true, completion: nil)

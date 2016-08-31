@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         let selectedTitle = tabBar.selectedItem?.title
         if (selectedTitle == "Analytics".localized()) {
-            let alert = UIAlertController(title: "Coming soon".localized(), message: "Function is coming soon.".localized(), preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { void in
                 self.selectedViewController = self.viewControllers![2]
             }))

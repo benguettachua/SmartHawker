@@ -75,10 +75,6 @@ class SummaryViewController: UIViewController {
         totalSales.text = "Total Sales ($):".localized()
         totalExpenses.text = "Total Expenses ($):".localized()
         netProfit.text = "Net Profit ($):".localized()
-        print("lala")
-        navBar.topItem?.title = "Report".localized()
-        report.title = "awdawd".localized()
-        print(navBar.topItem?.title)
         //Now asking the calendar what month are we in today’s date:
         
         if actualMonthDate.month < 10 {

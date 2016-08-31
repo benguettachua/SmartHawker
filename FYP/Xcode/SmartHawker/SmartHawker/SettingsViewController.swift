@@ -142,6 +142,7 @@ class SettingsViewController: UITableViewController {
             let languageAction = UIAlertAction(title: displayName, style: .Default, handler: {
                 (alert: UIAlertAction!) -> Void in
                 let defaults = NSUserDefaults.standardUserDefaults()
+                print(language)
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
                                if language == "zh-Hans"{
@@ -247,14 +248,14 @@ class SettingsViewController: UITableViewController {
                 
                 // Admin PIN
             else if (row == 1) {
-                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing".localized(), preferredStyle: .Alert)
+                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
                 comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
                 self.presentViewController(comingSoonAlert, animated: true, completion: nil)
             }
                 
                 // Notification
             else if (row == 2) {
-                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing".localized(), preferredStyle: .Alert)
+                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
                 comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
                 self.presentViewController(comingSoonAlert, animated: true, completion: nil)
             }

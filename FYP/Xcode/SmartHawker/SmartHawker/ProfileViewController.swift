@@ -51,7 +51,7 @@ class ProfileViewController: UITableViewController {
         navBar.title = "Profile".localized()
         syncLabel.text = "Sync".localized()
         settingsLabel.text = "Settings".localized()
-        subusericon.text = "Sub User".localized()
+        subuserLabel.text = "Sub User".localized()
         
         // Load the Top Bar
         let user = PFUser.currentUser()
