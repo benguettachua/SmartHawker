@@ -882,6 +882,9 @@ this password and admin pin</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="back" destination="rWd-iV-dop" id="G0W-0s-Bih"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5d-xz-eia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -901,7 +904,7 @@ this password and admin pin</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zoX-YK-FP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1863" y="2241"/>
+            <point key="canvasLocation" x="1920" y="2373"/>
         </scene>
         <!--Home-->
         <scene sceneID="9f0-zr-LK6">
@@ -1793,16 +1796,16 @@ this password and admin pin</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8tz-eE-nYP">
-                                                <rect key="frame" x="57" y="0.0" width="301" height="125"/>
+                                                <rect key="frame" x="57" y="0.0" width="302" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="dayNo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYG-nZ-A46">
-                                                        <rect key="frame" x="70" y="0.0" width="162" height="68"/>
+                                                        <rect key="frame" x="71" y="0.0" width="162" height="68"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="50"/>
                                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3o-bF-CVm">
-                                                        <rect key="frame" x="62" y="68" width="177" height="33"/>
+                                                        <rect key="frame" x="62" y="68" width="178" height="33"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33" id="KNj-FV-IRP"/>
                                                         </constraints>
@@ -1811,7 +1814,7 @@ this password and admin pin</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="month, year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvy-XL-b2M">
-                                                        <rect key="frame" x="36" y="101" width="229" height="24"/>
+                                                        <rect key="frame" x="36" y="101" width="230" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="ZXR-Iw-ePs"/>
                                                         </constraints>
@@ -1826,7 +1829,7 @@ this password and admin pin</string>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRd-pu-z0W">
-                                                <rect key="frame" x="360" y="0.0" width="55" height="125"/>
+                                                <rect key="frame" x="361" y="0.0" width="54" height="125"/>
                                                 <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="70"/>
                                                 <state key="normal" title="&gt;">
                                                     <color key="titleColor" red="0.42352941179999998" green="0.42745098040000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>

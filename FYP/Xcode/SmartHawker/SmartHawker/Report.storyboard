@@ -19,26 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnF-zr-F9z">
-                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Report" id="6FF-bP-fFL">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="2NO-RJ-dOf">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y8v-9T-oLG">
-                                                <rect key="frame" x="323" y="9" width="71" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="Income Tax">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="bBf-Yr-IMH" kind="modal" id="mvf-YK-yfd"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-rZ-B6i">
                                 <rect key="frame" x="0.0" y="132" width="414" height="44"/>
                                 <subviews>
@@ -201,6 +181,29 @@
                                     <constraint firstAttribute="width" secondItem="uUX-uz-2cr" secondAttribute="height" multiplier="310:119" id="fi4-gn-mAO"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnF-zr-F9z">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Report" id="6FF-bP-fFL">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="2NO-RJ-dOf">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y8v-9T-oLG">
+                                                <rect key="frame" x="323" y="9" width="71" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="Income Tax">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="bBf-Yr-IMH" kind="modal" id="mvf-YK-yfd"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="Report" value="" localized="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -234,12 +237,11 @@
                         <outlet property="expensesText" destination="6r7-1r-lJ5" id="aX7-kv-tCL"/>
                         <outlet property="incomeTax" destination="y8v-9T-oLG" id="DCn-pL-jwg"/>
                         <outlet property="monthButton" destination="8o6-9s-fpl" id="1P0-UV-LUK"/>
-                        <outlet property="navBar" destination="EnF-zr-F9z" id="RZh-pB-VND"/>
+                        <outlet property="navBar" destination="EnF-zr-F9z" id="fbQ-Pw-TiY"/>
                         <outlet property="netProfit" destination="TPn-rw-vN1" id="jzK-WO-TE5"/>
                         <outlet property="next" destination="wWH-HL-s1p" id="BQh-dP-1mf"/>
                         <outlet property="previous" destination="exM-mb-WOl" id="WZG-dP-Lad"/>
                         <outlet property="profitText" destination="h9a-hd-KER" id="ZEL-Mh-fNr"/>
-                        <outlet property="report" destination="6FF-bP-fFL" id="7Go-P8-6Gy"/>
                         <outlet property="salesText" destination="an6-Ne-VcP" id="FNB-jh-qQ0"/>
                         <outlet property="totalExpenses" destination="O5Z-qQ-gvs" id="fOq-YV-WHY"/>
                         <outlet property="totalSales" destination="RuV-rF-yKv" id="C3x-ZW-Qpt"/>

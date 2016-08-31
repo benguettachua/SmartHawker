@@ -9,6 +9,7 @@
 import UIKit
 
 class MonthRecordTableViewController: UITableViewController {
+    @IBOutlet weak var back: UIBarButtonItem!
     
     // MARK: Properties
     // Variables
@@ -22,6 +23,7 @@ class MonthRecordTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         
         // Remove all from all arrays to prevent duplication
+        back.title = "Back".localized()
         records.removeAll()
         sections.removeAll()
         rows.removeAll()
@@ -126,7 +128,7 @@ class MonthRecordTableViewController: UITableViewController {
         } else if (type == 2) {
             typeString = "Expenses"
         }
-        cell.recordTypeLabel.text = typeString
+        cell.recordTypeLabel.text = typeString.localized()
         
         // Recorded by
         var recordedBy = rows[indexPath.section][indexPath.row]["subuser"] as? String
