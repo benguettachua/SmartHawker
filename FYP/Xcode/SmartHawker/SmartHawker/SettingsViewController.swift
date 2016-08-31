@@ -61,8 +61,13 @@ class SettingsViewController: UITableViewController {
     
     // MARK: Action
     func logout() {
+        
+        let alertController = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
+        self.presentViewController(alertController, animated: true,completion: {
+        
         PFUser.logOut()
         self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
+        })
         
     }
     
