@@ -28,6 +28,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var registerLabel: UILabel!
     @IBOutlet weak var registerButton: UIButton!
+    // Shared Data
+    let shared = ShareData.sharedInstance
     // MARK: Action
     // This function is called when the user clicks log in at the login page.
     @IBAction func login(sender: UIButton) {
@@ -41,6 +43,8 @@ class LoginViewController: UIViewController {
             // Calls controller to log in using the entered parameters.
             let loginSuccess = self.loginController.login(username!, password: password!)
             if (loginSuccess) {
+                
+                self.shared.clearData()
                 
                 // Set just logged in to true to prompt to retrieve record
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "justLoggedIn")

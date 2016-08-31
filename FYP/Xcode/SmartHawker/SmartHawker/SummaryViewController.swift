@@ -61,12 +61,17 @@ class SummaryViewController: UIViewController {
     
     typealias CompletionHandler = (success:Bool) -> Void
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        weekMonthYear.text = "Choose Category".localized()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         //Here I’m creating the calendar instance that we will operate with:
         
-        weekMonthYear.text = "Choose Category".localized()
+        
         
         weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)

@@ -13,6 +13,9 @@ class ProfileController{
     var imageFile: PFFile!
     let user = PFUser.currentUser()
     
+    // Shared Data
+    let shared = ShareData.sharedInstance
+    
     func logout() {
         connectionDAO().logout()
     }
@@ -47,6 +50,7 @@ class ProfileController{
         if (loadSucceed == false) {
             return false
         }
+        connectionDAO().loadDatesIntoCalendar(shared.isSubUser, subuser: shared.subuser)
         
         return true
     }

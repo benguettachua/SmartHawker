@@ -23,6 +23,20 @@ class ShareData {
         return Static.instance!
     }
     
+    func clearData(){
+        isSubUser = false
+        subuser = nil
+        storeDate = nil
+        dateSelected = nil
+        dateString = nil
+        toDisplayDate = nil
+        password = nil
+        records = nil
+        rowNo = nil
+        selectedRecord = nil
+        datesWithRecords = nil
+    }
+    
     var isSubUser = false
     var subuser: String!
     var storeDate: Moment!

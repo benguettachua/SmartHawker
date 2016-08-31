@@ -61,7 +61,21 @@ class connectionDAO{
             
         }
     }
-    
+    //unloads all data on the calendar
+    func unloadRecords(){
+        // Part 1: Load from DB and pin into local datastore.
+        let query = PFQuery(className: "Record")
+        var records = [PFObject]()
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.fromLocalDatastore()
+        do{
+            records = try query.findObjects()
+            for record in records {
+                try record.unpin()
+            }
+        } catch {
+        }
+    }
     //load records into local datastore
     func loadRecordsIntoLocalDatastore() -> Bool{
         // Part 1: Load from DB and pin into local datastore.

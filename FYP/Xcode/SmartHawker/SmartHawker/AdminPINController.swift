@@ -27,6 +27,7 @@ class AdminPINController {
         if (loadSucceed == false) {
             return false
         }
+        dao.loadDatesIntoCalendar(shared.isSubUser, subuser: shared.subuser)
         return true
     }
     

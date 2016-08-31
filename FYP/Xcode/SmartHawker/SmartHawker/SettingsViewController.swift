@@ -52,7 +52,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var contactUsLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
     @IBOutlet weak var language: UILabel!
-    
+    // Shared Data
+    let shared = ShareData.sharedInstance
     
     
     let user = PFUser.currentUser()
@@ -176,6 +177,8 @@ class SettingsViewController: UITableViewController {
         let refreshAlert = UIAlertController(title: "Log Out".localized(), message: "Are You Sure?".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
+            self.shared.clearData()
+            connectionDAO().unloadRecords()
             self.logout()
         }))
         refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
