@@ -26,7 +26,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var yearLabel: UILabel!
     
     @IBOutlet weak var navBar: UINavigationItem!
-    @IBOutlet weak var back: UINavigationItem!
+    @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var cogsLabelOnly: UILabel!
     @IBOutlet weak var revenueLabelOnly: UILabel!
     @IBOutlet weak var grosssProfitLabelOnly: UILabel!

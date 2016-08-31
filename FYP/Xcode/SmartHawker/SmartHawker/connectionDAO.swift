@@ -13,7 +13,7 @@ import Foundation
 class connectionDAO{
     
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
-
+    
     //load records into controller
     func loadRecords() -> [PFObject]{
         let query = PFQuery(className: "Record")
@@ -41,19 +41,19 @@ class connectionDAO{
             for object in array {
                 let dateString = object["date"] as! String
                 let subuserName = object["subuser"] as! String
-                let type = object["type"] as! String
+                let type = object["type"] as! Int
                 
-                if type == "0" || type == "1" || type == "2"{
-                if dates[subuserName] == nil{
-                    let arrayForDates = [dateString]
-                    dates.updateValue(arrayForDates, forKey: subuserName)
-                }else{
-                    var arrayForDates = dates[subuserName]
-                    arrayForDates?.append(dateString)
-                    dates.updateValue(arrayForDates!, forKey: subuserName)
+                if type == 0 || type == 1 || type == 2 {
+                    if dates[subuserName] == nil{
+                        let arrayForDates = [dateString]
+                        dates.updateValue(arrayForDates, forKey: subuserName)
+                    }else{
+                        var arrayForDates = dates[subuserName]
+                        arrayForDates?.append(dateString)
+                        dates.updateValue(arrayForDates!, forKey: subuserName)
+                    }
+                    arrayForAllDates.append(dateString)
                 }
-                arrayForAllDates.append(dateString)
-            }
             }
             
             if isSubuser == true{
@@ -405,8 +405,8 @@ class connectionDAO{
         var response: NSURLResponse?
         var error: NSError?
         do{
-        let urlData = try NSURLConnection.sendSynchronousRequest(request,
-                                                             returningResponse: &response)
+            let urlData = try NSURLConnection.sendSynchronousRequest(request,
+                                                                     returningResponse: &response)
         }catch{}
         
         if let httpResponse = response as? NSHTTPURLResponse {
