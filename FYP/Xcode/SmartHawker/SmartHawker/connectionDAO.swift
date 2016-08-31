@@ -41,6 +41,9 @@ class connectionDAO{
             for object in array {
                 let dateString = object["date"] as! String
                 let subuserName = object["subuser"] as! String
+                let type = object["type"] as! String
+                
+                if type == "0" || type == "1" || type == "2"{
                 if dates[subuserName] == nil{
                     let arrayForDates = [dateString]
                     dates.updateValue(arrayForDates, forKey: subuserName)
@@ -50,6 +53,7 @@ class connectionDAO{
                     dates.updateValue(arrayForDates!, forKey: subuserName)
                 }
                 arrayForAllDates.append(dateString)
+            }
             }
             
             if isSubuser == true{
