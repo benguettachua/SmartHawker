@@ -14,6 +14,7 @@ class SummaryViewController: UIViewController {
     
     
     // MARK: Properties
+    @IBOutlet weak var reportLabel: UILabel!
     var currentMonthInt = Int()
     var currentYearInt = Int()
     var currentMonthString = String()
@@ -80,6 +81,7 @@ class SummaryViewController: UIViewController {
         totalSales.text = "Total Sales ($):".localized()
         totalExpenses.text = "Total Expenses ($):".localized()
         netProfit.text = "Net Profit ($):".localized()
+        reportLabel.text = "Report".localized()
         //Now asking the calendar what month are we in today’s date:
         
         if actualMonthDate.month < 10 {

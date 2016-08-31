@@ -34,6 +34,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var businessExpensesLabelOnly: UILabel!
     @IBOutlet weak var additionalBusinessExpenses: UILabel!
     @IBOutlet weak var adjustedProfitLabelOnly: UILabel!
+    @IBOutlet weak var generateIncomeTax: UIButton!
     
     // Text Fields
     @IBOutlet weak var additionalExpensesTextField: UITextField!
@@ -77,24 +78,25 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         let taxPayable = taxController.calculateTax(profitDouble!)
         
         // Inform the user the amount of tax he will have to pay based on his income.
-        let alert = UIAlertController(title: "Income Tax", message: "Your payable tax is $" + String(format: "%.2f", taxPayable) + ".", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        let alert = UIAlertController(title: "Income Tax".localized(), message: "Your payable tax is $".localized() + String(format: "%.2f", taxPayable) + ".", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         additionalExpensesTextField.delegate = self
-        additionalExpensesTextField.placeholder = "Optional"
-        navBar.title = "Income Tax"
-        back.title = "Back"
-        cogsLabelOnly.text = "COGS"
-        revenueLabelOnly.text = "Revenue"
-        grosssProfitLabelOnly.text = "Gross Profit"
-        calculationLabelOnly.text = "(Revenue - COGS)"
-        businessExpensesLabelOnly.text = "Business Expenses"
-        additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses"
-        adjustedProfitLabelOnly.text = "Adjusted Profit"
+        additionalExpensesTextField.placeholder = "Optional".localized()
+        navBar.title = "Income Tax".localized()
+        back.title = "Back".localized()
+        cogsLabelOnly.text = "COGS".localized()
+        revenueLabelOnly.text = "Revenue".localized()
+        grosssProfitLabelOnly.text = "Gross Profit".localized()
+        calculationLabelOnly.text = "(Revenue - COGS)".localized()
+        businessExpensesLabelOnly.text = "Business Expenses".localized()
+        additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses".localized()
+        adjustedProfitLabelOnly.text = "Adjusted Profit \n(Gross Profit - Total Expenses)".localized()
+        generateTaxButton.setTitle("Generate Income Tax".localized(), forState: UIControlState.Normal)
         
     }
     
