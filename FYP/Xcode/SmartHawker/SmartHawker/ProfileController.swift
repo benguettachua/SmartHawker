@@ -47,6 +47,7 @@ class ProfileController{
         if (loadSucceed == false) {
             return false
         }
+        
         return true
     }
 }

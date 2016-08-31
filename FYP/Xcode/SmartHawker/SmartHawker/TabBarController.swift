@@ -39,8 +39,7 @@ class TabBarController: UITabBarController {
         print(tabBar.items?[3].title)
         print(tabBar.items?[4].title)
         
-        // Start with the home page
-        self.selectedViewController = self.viewControllers![2]
+        
         let isSubUser = shared.isSubUser
         
         // If subuser, only allow calendar.
@@ -54,6 +53,10 @@ class TabBarController: UITabBarController {
         }
         
     }
-
+    
+    override func viewDidLoad() {
+        // Start with the home page
+        self.selectedViewController = self.viewControllers![2]
+    }
     
 }
