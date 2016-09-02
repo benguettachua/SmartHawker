@@ -83,6 +83,7 @@ class SettingsViewController: UITableViewController {
         logoutLabel.text = "Log Out".localized()
         language.text = "Language".localized()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -203,6 +204,10 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Deselect the selected row after selecting to prevent the row from permanently highlighted.
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let section = indexPath.section
         let row = indexPath.row
         

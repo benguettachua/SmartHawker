@@ -158,6 +158,10 @@ class ProfileViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Deselect the selected row after selecting to prevent the row from permanently highlighted.
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         // Do something depending on which row is selected.
         let selectedRow = indexPath.row
         let section = indexPath.section

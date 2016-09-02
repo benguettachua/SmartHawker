@@ -169,4 +169,9 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         adjustedProfitLabel.text = "$" + String(format: "%.2f", adjustedProfit)
         generateTaxButton.enabled = true
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Deselect the selected row after selecting to prevent the row from permanently highlighted.
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 }
