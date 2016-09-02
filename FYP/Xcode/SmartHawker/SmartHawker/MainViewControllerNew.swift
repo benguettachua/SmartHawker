@@ -1,6 +1,8 @@
 
 import UIKit
 import SwiftMoment
+import Material
+import FontAwesome_iOS
 
 class MainViewControllerNew: UIViewController{
     
@@ -46,16 +48,43 @@ class MainViewControllerNew: UIViewController{
         super.viewDidLoad()
 
         
-        var faicon = [String: UniChar]()
-        faicon["faleftback"] = 0xf053
-        
-        //backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
-        
-        //backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        var faicon = [String: UniChar]()
+        faicon["fasync"] = 0xf021
+        faicon["fainfo"] = 0xf129
+        
+        syncButton.titleLabel?.lineBreakMode
+        syncButton.titleLabel?.numberOfLines = 2
+        syncButton.titleLabel!.textAlignment = .Center
+        
+        var sync = String(format: "%C", faicon["fasync"]!)
+        
+        sync += "\n"
+        
+        sync += "Sync".localized()
+        
+        syncButton.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        syncButton.setTitle(String(sync), forState: .Normal);
+        
+        infoButton.titleLabel?.lineBreakMode
+        infoButton.titleLabel?.numberOfLines = 2
+        infoButton.titleLabel!.textAlignment = .Center
+        
+        var info = String(format: "%C", faicon["fainfo"]!)
+        
+        info += "\n"
+        
+        info += "Info".localized()
+        
+        infoButton.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        infoButton.setTitle(String(info), forState: .Normal)
+        
         //set labels for translation
         lowestSalesLabel.text = "Lowest Sales".localized()
         highestSalesLabel.text = "Highest Sales".localized()
@@ -65,8 +94,8 @@ class MainViewControllerNew: UIViewController{
         salesLabel.text = "Sales".localized()
         todayEntryLabel.text = "TODAYS ENTRY".localized()
         monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
-        syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
-        infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
+        //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
+        //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
         // Initialize UI
         // -------------
         getTodayDate()

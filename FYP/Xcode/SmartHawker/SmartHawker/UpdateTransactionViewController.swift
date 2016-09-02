@@ -78,10 +78,34 @@ class UpdateTransactionViewController: UIViewController {
         
         trashicon.setTitle(String(format: "%C", faicon["fatrash"]!), forState: .Normal)
         
-        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
-        backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
-        donebtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
-        donebtn.setTitle(String(format: "%C", faicon["fatick"]!), forState: .Normal)
+        backbtn.titleLabel?.lineBreakMode
+        backbtn.titleLabel?.numberOfLines = 2
+        backbtn.titleLabel!.textAlignment = .Center
+        
+        var backs = String(format: "%C", faicon["faleftback"]!)
+        
+        backs += "\n"
+        
+        backs += "Back".localized()
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        backbtn.setTitle(String(backs), forState: .Normal);
+        
+        donebtn.titleLabel?.lineBreakMode
+        donebtn.titleLabel?.numberOfLines = 2
+        donebtn.titleLabel!.textAlignment = .Center
+        
+        var dones = String(format: "%C", faicon["fatick"]!)
+        
+        dones += "\n"
+        
+        dones += "Save".localized()
+        
+        donebtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        donebtn.setTitle(String(dones), forState: .Normal);
+        
         todaybtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
         todaybtn.setTitle(String(format: "%C", faicon["facalendar"]!), forState: .Normal)
         descicon.font = UIFont(name: "FontAwesome", size: 20)

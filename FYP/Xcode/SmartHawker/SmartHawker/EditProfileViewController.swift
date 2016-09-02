@@ -56,13 +56,33 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         faicon["faleftback"] = 0xf053
         faicon["fatick"] = 0xf00c
         
-        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        backbtn.titleLabel?.lineBreakMode
+        backbtn.titleLabel?.numberOfLines = 2
+        backbtn.titleLabel!.textAlignment = .Center
         
-        backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
+        var backs = String(format: "%C", faicon["faleftback"]!)
         
-        donebtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        backs += "\n"
         
-        donebtn.setTitle(String(format: "%C", faicon["fatick"]!), forState: .Normal)
+        backs += "Back".localized()
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        backbtn.setTitle(String(backs), forState: .Normal);
+        
+        donebtn.titleLabel?.lineBreakMode
+        donebtn.titleLabel?.numberOfLines = 2
+        donebtn.titleLabel!.textAlignment = .Center
+        
+        var dones = String(format: "%C", faicon["fatick"]!)
+        
+        dones += "\n"
+        
+        dones += "Save".localized()
+        
+        donebtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        donebtn.setTitle(String(dones), forState: .Normal);
         
         name.placeholder = "NAME"
         var name2 = user!["name"]

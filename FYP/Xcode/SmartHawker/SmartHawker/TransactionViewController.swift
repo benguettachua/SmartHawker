@@ -55,14 +55,36 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         var faicon = [String: UniChar]()
         faicon["facross"] = 0xf00d
         faicon["faright"] = 0xf054
-       
-        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+
         
-        backbtn.setTitle(String(format: "%C", faicon["facross"]!), forState: .Normal)
+        backbtn.titleLabel?.lineBreakMode
+        backbtn.titleLabel?.numberOfLines = 2
+        backbtn.titleLabel!.textAlignment = .Center
         
-        nextbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        var backs = String(format: "%C", faicon["facross"]!)
         
-        nextbtn.setTitle(String(format: "%C", faicon["faright"]!), forState: .Normal)
+        backs += "\n"
+        
+        backs += "Back".localized()
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        backbtn.setTitle(String(backs), forState: .Normal);
+        
+        nextbtn.titleLabel?.lineBreakMode
+        nextbtn.titleLabel?.numberOfLines = 2
+        nextbtn.titleLabel!.textAlignment = .Center
+        
+        var nexts = String(format: "%C", faicon["faright"]!)
+        
+        nexts += "\n"
+        
+        nexts += "Next".localized()
+        
+        nextbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        nextbtn.setTitle(String(nexts), forState: .Normal);
+
     }
     
     // View Will Appear

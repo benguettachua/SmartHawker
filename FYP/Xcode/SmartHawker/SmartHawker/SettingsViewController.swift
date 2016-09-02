@@ -101,9 +101,19 @@ class SettingsViewController: UITableViewController {
         faicon["faleftback"] = 0xf053
         faicon["faright"] = 0xf105
         
-        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        backbtn.titleLabel?.lineBreakMode
+        backbtn.titleLabel?.numberOfLines = 2
+        backbtn.titleLabel!.textAlignment = .Center
         
-        backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
+        var backs = String(format: "%C", faicon["faleftback"]!)
+        
+        backs += "\n"
+        
+        backs += "Back".localized()
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        backbtn.setTitle(String(backs), forState: .Normal);
         
         passicon.font = UIFont(name: "FontAwesome", size: 20)
         

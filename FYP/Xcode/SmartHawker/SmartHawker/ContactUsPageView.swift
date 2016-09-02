@@ -20,9 +20,22 @@ class ContactUsPage: UIViewController {
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
         
-        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        backbtn.titleLabel?.lineBreakMode
+        backbtn.titleLabel?.numberOfLines = 2
+        backbtn.titleLabel!.textAlignment = .Center
+        
+        var backs = String(format: "%C", faicon["faleftback"]!)
+        
+        backs += "\n"
+        
+        backs += "Back".localized()
+        
+        backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        backbtn.setTitle(String(backs), forState: .Normal);
+
         navBar.topItem?.title = "Contact Us".localized()
-        backbtn.setTitle(String(format: "%C", faicon["faleftback"]!), forState: .Normal)
+
     }
     
     @IBAction func back(sender: UIBarButtonItem){

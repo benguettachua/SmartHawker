@@ -108,15 +108,33 @@ class CalendarViewController: UIViewController {
         faicon["falist"] = 0xf0ca
         faicon["faadd"] = 0xf067
         
+        list.titleLabel?.lineBreakMode
+        list.titleLabel?.numberOfLines = 2
+        list.titleLabel!.textAlignment = .Center
         
+        var lists = String(format: "%C", faicon["falist"]!)
         
-        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        lists += "\n"
         
-        list.setTitle(String(format: "%C", faicon["falist"]!), forState: .Normal)
+        lists += "List".localized()
         
-        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 20)
+        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         
-        add.setTitle(String(format: "%C", faicon["faadd"]!), forState: .Normal)
+        list.setTitle(String(lists), forState: .Normal);
+        
+        add.titleLabel?.lineBreakMode
+        add.titleLabel?.numberOfLines = 2
+        add.titleLabel!.textAlignment = .Center
+        
+        var adds = String(format: "%C", faicon["faadd"]!)
+        
+        adds += "\n"
+        
+        adds += "Add".localized()
+        
+        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        add.setTitle(String(adds), forState: .Normal)
     }
     
     @IBAction func goToPage() {
