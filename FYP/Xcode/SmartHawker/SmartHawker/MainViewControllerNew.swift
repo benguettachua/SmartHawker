@@ -7,9 +7,6 @@ class MainViewControllerNew: UIViewController{
     //MARK properties
     //---------------------------------
     let user = PFUser.currentUser()
-    
-    
-    
     var targetAmount = 0.0
     var targetAvailable = false
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.

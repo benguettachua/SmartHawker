@@ -123,7 +123,6 @@ class SummaryViewController: UIViewController {
         for date in daysInWeek{
             let index = date.startIndex..<date.endIndex.advancedBy(-5)
             let newDate = date[index]
-            print(newDate)
             array.append(newDate)
         }
         setData(array, values1: loadedData.0, values2: loadedData.1)

@@ -26,8 +26,6 @@ class CalendarViewController: UIViewController {
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
-
-    
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     var selectedDate: NSDate!
     //for language preference
@@ -152,12 +150,22 @@ class CalendarViewController: UIViewController {
         profitText.text = "PROFIT".localized()
         calendarView.reloadData()
         loadRecords(selectedDate)
+        
+        let monthLabel2 = monthLabel.text!
+        let indexForMonth = monthLabel2.startIndex..<monthLabel2.endIndex.advancedBy(-5)
+        let indexForYear = monthLabel2.endIndex.advancedBy(-4)..<monthLabel2.endIndex
+        let newMonth = monthLabel2[indexForMonth]
+        let newYear = monthLabel2[indexForYear]
+        print("lala" + newMonth + "lala")
+        monthLabel.text = newMonth.localized() + " " + newYear
+        
     }
     
     func setupViewsOfCalendar(startDate: NSDate, endDate: NSDate) {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: endDate)
         let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
+
         monthLabel.text = monthName.localized() + " " + String(year)
     }
     
