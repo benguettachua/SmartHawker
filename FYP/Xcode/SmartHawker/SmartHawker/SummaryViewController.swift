@@ -113,8 +113,14 @@ class SummaryViewController: UIViewController {
     
     func loadRecordsWeekly(){
         let loadedData = SummaryControllerNew().loadRecordsWeekly(daysInWeek)
-        
-        setData(daysInWeek, values1: loadedData.0, values2: loadedData.1)
+        var array = [String]()
+        for date in daysInWeek{
+            let index = date.startIndex..<date.endIndex.advancedBy(-5)
+            let newDate = date[index]
+            print(newDate)
+            array.append(newDate)
+        }
+        setData(array, values1: loadedData.0, values2: loadedData.1)
         self.salesText.text = loadedData.2
         self.expensesText.text = loadedData.3
         self.profitText.text = loadedData.4
@@ -484,6 +490,7 @@ class SummaryViewController: UIViewController {
         chart.leftAxis.drawAxisLineEnabled = false
         
         chart.xAxis.drawLabelsEnabled = true
+        chart.xAxis.labelFont = UIFont(name: "Helvetica Neue", size: 7)!
         chart.rightAxis.drawLabelsEnabled = false
         chart.leftAxis.drawLabelsEnabled = false
         
