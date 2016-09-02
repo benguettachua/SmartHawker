@@ -64,9 +64,9 @@ class SettingsViewController: UITableViewController {
         
         let alertController = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
         self.presentViewController(alertController, animated: true,completion: {
-        
-        PFUser.logOut()
-        self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
+            
+            PFUser.logOut()
+            self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
         })
         
     }
@@ -94,7 +94,7 @@ class SettingsViewController: UITableViewController {
             self.languageLabel.text = "English"
             
         }
-
+        
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -151,19 +151,19 @@ class SettingsViewController: UITableViewController {
                 print(language)
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
-                               if language == "zh-Hans"{
-                                   self.languageLabel.text = "华语"
-                                }else{
-                                 self.languageLabel.text = "English"
-                
-                               }
-                 self.passwordLabel.text = "Password".localized()
-                 self.adminLabel.text = "Admin".localized()
-                 self.notificationLabel.text = "Notification".localized()
-                 self.privacyLabel.text = "Privacy".localized()
-                 self.faqLabel.text = "FAQ".localized()
-                 self.contactUsLabel.text = "Contact Us".localized()
-                 self.logoutLabel.text = "Log Out".localized()
+                if language == "zh-Hans"{
+                    self.languageLabel.text = "华语"
+                }else{
+                    self.languageLabel.text = "English"
+                    
+                }
+                self.passwordLabel.text = "Password".localized()
+                self.adminLabel.text = "Admin".localized()
+                self.notificationLabel.text = "Notification".localized()
+                self.privacyLabel.text = "Privacy".localized()
+                self.faqLabel.text = "FAQ".localized()
+                self.contactUsLabel.text = "Contact Us".localized()
+                self.logoutLabel.text = "Log Out".localized()
                 self.language.text = "Language".localized()
                 
             })
@@ -174,7 +174,7 @@ class SettingsViewController: UITableViewController {
         })
         actionSheet.addAction(cancelAction)
         self.presentViewController(actionSheet, animated: true, completion: nil)
-
+        
     }
     
     
@@ -209,47 +209,39 @@ class SettingsViewController: UITableViewController {
         if (section == 0) {
             // Password
             if (row == 0) {
-                // An alert window will pop up asking the user to enter their email.
-                let alert = UIAlertController(title: "Reset password".localized(), message: "Enter your email".localized(), preferredStyle: .Alert)
+                // An alert window will pop up to confirm with user.
+                let userEmail = user?.email
+                let alert = UIAlertController(title: "Reset password".localized(), message: "Password reset will be sent to".localized() + " :" + userEmail!, preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "Send".localized(), style: .Default, handler: { (Void) in
-                    let emailTextField = alert.textFields![0] as UITextField
-                    let email = emailTextField.text
-                    if (email == PFUser.currentUser()!.email) {
-                        // Upon clicking "Send" from the pop up, this alert will show to inform the user that the server is now sending mail to their email.
-                        let sendingMailAlert = UIAlertController(title: "Sending mail".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
-                        self.presentViewController(sendingMailAlert, animated: true, completion: {
-                            let loginController = LoginController()
-                            let emailSent = loginController.forgetPassword(email!)
-                            if (emailSent) {
-                                
-                                // Sending mail success, the user will receive an email to change their password.
-                                sendingMailAlert.dismissViewControllerAnimated(true, completion: {
-                                    let successAlert = UIAlertController(title: "Success".localized(), message: "Password change have been sent to: ".localized() + emailTextField.text!.lowercaseString, preferredStyle: .Alert)
-                                    successAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-                                    self.presentViewController(successAlert, animated: true, completion: nil)
-                                })
-                            } else {
-                                
-                                // Sending mail failed, the user will see this pop up notifying them to try again later.
-                                sendingMailAlert.dismissViewControllerAnimated(true, completion: {
-                                    let failAlert = UIAlertController(title: "Failed".localized(), message: "An error has occured, please try again later.".localized(), preferredStyle: .Alert)
-                                    failAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-                                    self.presentViewController(failAlert, animated: true, completion: nil)
-                                })
-                                
-                            }
-                        })
-                    } else {
-                        let failAlert = UIAlertController(title: "Failed".localized(), message: "Incorrect email.".localized(), preferredStyle: .Alert)
-                        failAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-                        self.presentViewController(failAlert, animated: true, completion: nil)
-                    }
+                    
+                    // Upon clicking "Send" from the pop up, this alert will show to inform the user that the server is now sending mail to their email.
+                    let sendingMailAlert = UIAlertController(title: "Sending mail".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
+                    self.presentViewController(sendingMailAlert, animated: true, completion: {
+                        let loginController = LoginController()
+                        let emailSent = loginController.forgetPassword(userEmail!)
+                        if (emailSent) {
+                            
+                            // Sending mail success, the user will receive an email to change their password.
+                            sendingMailAlert.dismissViewControllerAnimated(true, completion: {
+                                let successAlert = UIAlertController(title: "Success".localized(), message: "Password change have been sent to: ".localized() + userEmail!, preferredStyle: .Alert)
+                                successAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+                                self.presentViewController(successAlert, animated: true, completion: nil)
+                            })
+                        } else {
+                            
+                            // Sending mail failed, the user will see this pop up notifying them to try again later.
+                            sendingMailAlert.dismissViewControllerAnimated(true, completion: {
+                                let failAlert = UIAlertController(title: "Failed".localized(), message: "An error has occured, please try again later.".localized(), preferredStyle: .Alert)
+                                failAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+                                self.presentViewController(failAlert, animated: true, completion: nil)
+                            })
+                            
+                        }
+                    })
+                    
                 }))
                 
-                alert.addTextFieldWithConfigurationHandler({ (emailTextField) in
-                    emailTextField.placeholder = "Enter your email".localized()
-                    emailTextField.keyboardType = UIKeyboardType.EmailAddress
-                })
+                
                 alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
