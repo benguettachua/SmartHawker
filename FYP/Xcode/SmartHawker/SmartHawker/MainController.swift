@@ -94,10 +94,10 @@ class MainController{
         
         var totalSales = 0.0
         var totalDays = 0.0
-        var highSales: Double!
-        var highSalesDay: String!
-        var lowSales: Double!
-        var lowSalesDay: String!
+        var highSales = 0.0
+        var highSalesDay = "None"
+        var lowSales = 0.0
+        var lowSalesDay = "None"
         var totalProfit = 0.0
         var expenses = 0.0
         
@@ -134,19 +134,13 @@ class MainController{
                         
                         
                         //to get max and min sales
-                        if highSales == nil && sales > 0{
-                            highSales = sales
-                            highSalesDay = record["date"] as! String
-                        }else if sales > highSales{
+                        if sales > highSales{
                             highSales = sales
                             highSalesDay = myKey
                         }
                         
                         
-                        if lowSales == nil  && sales > 0{
-                            lowSales = sales
-                            lowSalesDay = myKey
-                        }else if sales < lowSales && sales > 0{
+                        if sales < lowSales && sales > 0{
                             lowSales = sales
                             lowSalesDay = myKey
                         }
@@ -168,14 +162,7 @@ class MainController{
             }
             
         }
-        if totalDays == 0.0 {
-            highSales = 0.0
-            lowSales = 0.0
-            highSalesDay = "None"
-            lowSalesDay = "None"
-            print("AM I HERE?")
-            return (totalSales,expenses,totalProfit,highSales,lowSales,totalSales,highSalesDay,lowSalesDay)
-        }
+        
         return (totalSales,expenses,totalProfit,highSales,lowSales,(totalSales/totalDays),highSalesDay,lowSalesDay)
     }
     
