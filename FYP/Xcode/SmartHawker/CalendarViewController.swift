@@ -186,6 +186,11 @@ class CalendarViewController: UIViewController {
         let profitString2dp = "$" + String(format:"%.2f", (salesAmount-expensesAmount))
         self.profitText.text = profitString2dp
         self.profitText.font = UIFont(name: profitText.font.fontName, size: 15)
+        if salesAmount-expensesAmount < 0 {
+            self.profitText.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+        }else{
+            self.profitText.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
+        }
     }
     
     @IBAction func Record(sender: UIBarButtonItem) {
