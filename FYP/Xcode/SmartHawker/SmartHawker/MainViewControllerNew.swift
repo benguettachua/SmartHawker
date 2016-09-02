@@ -87,7 +87,11 @@ class MainViewControllerNew: UIViewController{
         self.salesAmount.text = "$" + String(format: "%.0f", values.0)
         self.otherExpensesAmount.text = "$" + String(format: "%.0f", values.1)
         self.totalProfit.text = "$" + String(format: "%.0f", values.2)
-        
+        if values.2 < 0 {
+            self.totalProfit.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+        }else{
+            self.totalProfit.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
+        }
         self.highestSales.text = "$" + String(format: "%.0f", values.3)
         self.lowestSales.text = "$" + String(format: "%.0f", values.4)
         if values.5 == 0{
