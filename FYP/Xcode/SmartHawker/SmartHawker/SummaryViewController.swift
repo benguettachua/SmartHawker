@@ -90,7 +90,13 @@ class SummaryViewController: UIViewController {
             currentMonthString = String(actualMonthDate.month)
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
-        
+        if summaryType == 1{
+            loadRecordsMonthly()
+        }else if summaryType == 2{
+            loadRecordsYearly()
+        }else{
+            loadRecordsWeekly()
+        }
 
         
     }
