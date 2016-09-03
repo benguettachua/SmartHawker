@@ -206,12 +206,15 @@ class connectionDAO{
     // Register a new acount
     func register(username:String, password: String, name: String, email: String, phoneNumber: String, adminPIN: String) -> Int{
         let newUser = PFUser()
+        let image = UIImageJPEGRepresentation(UIImage(named: "defaultProfilePic")!, 0.0)
+        let imageFile = PFFile(name: "defaultProfilePic", data: image!)
         newUser.username = username
         newUser.password = password
         newUser.email = email
         newUser["name"] = name
         newUser["phoneNumber"] = phoneNumber
         newUser["adminPin"] = adminPIN
+        newUser["profilePicture"] = imageFile
         do {
             try newUser.signUp()
             return 0
