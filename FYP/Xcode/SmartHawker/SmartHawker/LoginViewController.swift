@@ -9,17 +9,20 @@
 import UIKit
 import Material
 import FontAwesome_iOS
+import Localize_Swift
 
 class LoginViewController: UIViewController {
     
     // MARK: Properties
     // Controller
     let loginController = LoginController()
-    
+    var actionSheet: UIAlertController!
     // Text Fields
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    let availableLanguages = Localize.availableLanguages()
     
+    @IBOutlet weak var changeLangButton: UIButton!
     @IBOutlet weak var mobileicon: UILabel!
     @IBOutlet weak var passwordicon: UILabel!
     @IBOutlet weak var loginButton: UIButton!
@@ -119,14 +122,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap(_:))))
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
         smarthawkerLogo.text? = "SmartHawker © 2016".localized()
         loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
-        forgotPasswordButton.setTitle("Forgot Password", forState: UIControlState.Normal)
+        forgotPasswordButton.setTitle("Forgot Password".localized(), forState: UIControlState.Normal)
         registerLabel.text = "Don't have an account?".localized()
         registerButton.setTitle("Sign Up".localized(), forState: UIControlState.Normal)
+        changeLangButton.setTitle("Change Language".localized(), forState: UIControlState.Normal)
         
         var faicon = [String: UniChar]()
         faicon["famobilephone"] = 0xf10b
@@ -158,5 +162,35 @@ class LoginViewController: UIViewController {
             view.endEditing(true)
         }
         sender.cancelsTouchesInView = false
+    }
+    
+    @IBAction func doChangeLanguage() {
+        actionSheet = UIAlertController(title: nil, message: "Switch Language".localized(), preferredStyle: UIAlertControllerStyle.ActionSheet)
+        for language in availableLanguages {
+            let displayName = Localize.displayNameForLanguage(language)
+            let languageAction = UIAlertAction(title: displayName, style: .Default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                let defaults = NSUserDefaults.standardUserDefaults()
+                print(language)
+                defaults.setObject(language, forKey: "langPref")
+                Localize.setCurrentLanguage(language)
+                
+                self.usernameTextField.placeholder = "Username".localized()
+                self.passwordTextField.placeholder = "Password".localized()
+                self.smarthawkerLogo.text? = "SmartHawker © 2016".localized()
+                self.loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
+                self.forgotPasswordButton.setTitle("Forgot Password".localized(), forState: UIControlState.Normal)
+                self.registerLabel.text = "Don't have an account?".localized()
+                self.registerButton.setTitle("Sign Up".localized(), forState: UIControlState.Normal)
+                self.changeLangButton.setTitle("Change Language".localized(), forState: UIControlState.Normal)
+            })
+            actionSheet.addAction(languageAction)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: UIAlertActionStyle.Cancel, handler: {
+            (alert: UIAlertAction) -> Void in
+        })
+        actionSheet.addAction(cancelAction)
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+        
     }
 }
