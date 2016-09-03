@@ -14,8 +14,7 @@ class TransactionFinalViewController: UIViewController {
     
     // MARK: Properties
     // Variables from previous VC
-    var amount = Double()
-    var type = Int()
+    var type = 0
     var shared = ShareData.sharedInstance
     
     // UIButton
@@ -25,16 +24,19 @@ class TransactionFinalViewController: UIViewController {
     @IBOutlet weak var addbtn: UIButton!
     @IBOutlet weak var COGSButton: UIButton!
     @IBOutlet weak var otherExpensesButton: UIButton!
+    @IBOutlet weak var typeExpensesButton: UIButton!
+    @IBOutlet weak var typeSalesButton: UIButton!
     
     // UILabel
     @IBOutlet weak var descicon: UILabel!
     @IBOutlet weak var imageicon: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var recriptUploadLabel: UILabel!
+    @IBOutlet weak var SGDLabel: UILabel!
     
     // Text Fields
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
     
     // View
     @IBOutlet weak var amountView: UIView!
@@ -93,8 +95,6 @@ class TransactionFinalViewController: UIViewController {
         otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
         descriptionTextField.placeholder = "Add description".localized()
         recriptUploadLabel.text = "Attach your receipt (etc)".localized()
-        // Set amount brought forward from previous page.
-        amountLabel.text = String(amount)
         
         // Set selected date to label
         var selectedDate = shared.dateString
@@ -104,19 +104,33 @@ class TransactionFinalViewController: UIViewController {
             selectedDate = dateFormatter.stringFromDate(NSDate())
         }
         todayLabel.text = selectedDate
+    }
+    
+    // View will appear
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // Change the background colour of the view
+        // Change the Text colour of the Labels
         if (type == 0) {
-            amountView.backgroundColor = hexStringToUIColor("006cff")
+            SGDLabel.textColor = hexStringToUIColor("006cff")
             
             // Hide COGS and Expenses button
             COGSButton.hidden = true
             otherExpensesButton.hidden = true
+            typeSalesButton.setTitleColor(hexStringToUIColor("006cff"), forState: .Normal)
+            typeExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         } else {
-            amountView.backgroundColor = hexStringToUIColor("ff0000")
+            SGDLabel.textColor = hexStringToUIColor("ff0000")
+            // Hide COGS and Expenses button
+            COGSButton.hidden = false
+            otherExpensesButton.hidden = false
+            typeSalesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            typeExpensesButton.setTitleColor(hexStringToUIColor("ff0000"), forState: .Normal)
         }
         
+        amountTextField.becomeFirstResponder()
     }
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             view.endEditing(true)
@@ -126,6 +140,16 @@ class TransactionFinalViewController: UIViewController {
     
     @IBAction func back(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func selectSalesType(sender: UIButton) {
+        type = 0
+        self.viewWillAppear(true)
+    }
+    
+    @IBAction func selectExpensesType(sender: UIButton) {
+        type = 1
+        self.viewWillAppear(true)
     }
     
     // Changing colour based on colour code
@@ -162,7 +186,7 @@ class TransactionFinalViewController: UIViewController {
     }
     
     // Select other expenses as the type.
-    @IBAction func seelctExpenses(sender: UIButton) {
+    @IBAction func selectExpenses(sender: UIButton) {
         // Change the type
         type = 2
         
@@ -183,7 +207,7 @@ class TransactionFinalViewController: UIViewController {
         
         let recordController = RecordController()
         let description = descriptionTextField.text
-        let amount = Double(amountLabel.text!)
+        let amount = Double(amountTextField.text!)
         let isSubuser = shared.isSubUser
         let subuser = shared.subuser
         
@@ -200,7 +224,7 @@ class TransactionFinalViewController: UIViewController {
             // Recording successful, inform the user that they can enter another record.
             let alert = UIAlertController(title: "Success".localized(), message: "Record success, please continue.".localized(), preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
-                self.presentingViewController?.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                self.dismissViewControllerAnimated(false, completion: nil)
             }))
             self.presentViewController(alert, animated: true, completion: nil)
             
