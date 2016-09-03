@@ -33,11 +33,11 @@ class UpdateTransactionViewController: UIViewController {
     @IBOutlet weak var imageicon: UILabel!
     
     // Bar Button Item
-    @IBOutlet weak var expensesBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var salesBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var expensesBarButtonItem: UIButton!
+    @IBOutlet weak var salesBarButtonItem: UIButton!
     
 
-    @IBOutlet weak var trashicon: UIButton!
+    
     
     // View
     @IBOutlet weak var amountView: UIView!
@@ -74,10 +74,6 @@ class UpdateTransactionViewController: UIViewController {
         faicon["facalendar"] = 0xf274
         faicon["fadesc"] = 0xf044
         faicon["faimage"] = 0xf03e
-        
-        trashicon.titleLabel!.font = UIFont(name: "FontAwesome", size: 40)
-        
-        trashicon.setTitle(String(format: "%C", faicon["fatrash"]!), forState: .Normal)
         
         backbtn.titleLabel?.lineBreakMode
         backbtn.titleLabel?.numberOfLines = 2
@@ -116,8 +112,8 @@ class UpdateTransactionViewController: UIViewController {
         
         COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
         otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
-        salesBarButtonItem.title = "Sales".localized()
-        expensesBarButtonItem.title = "Expenses".localized()
+        salesBarButtonItem.setTitle("Sales".localized(), forState: .Normal)
+        expensesBarButtonItem.setTitle("Expenses".localized(), forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -183,7 +179,7 @@ class UpdateTransactionViewController: UIViewController {
     }
     
     // Select other expenses as the type.
-    @IBAction func seelctExpenses(sender: UIButton) {
+    @IBAction func selectExpenses(sender: UIButton) {
         // Change the type
         type = 2
         
@@ -236,13 +232,13 @@ class UpdateTransactionViewController: UIViewController {
     
     
     // Change the type to sale
-    @IBAction func typeSales(sender: UIBarButtonItem) {
+    @IBAction func typeSales(sender: UIButton) {
         type = 0
         self.viewWillAppear(true)
     }
     
     // Change the type to expenses
-    @IBAction func typeExpenses(sender: UIBarButtonItem) {
+    @IBAction func typeExpenses(sender: UIButton) {
         type = 1
         self.viewWillAppear(true)
     }
