@@ -411,20 +411,18 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     func shootPhoto() {
         if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
             picker.allowsEditing = false
+            picker.delegate = self
             picker.sourceType = UIImagePickerControllerSourceType.Camera
             picker.cameraCaptureMode = .Photo
             picker.modalPresentationStyle = .FullScreen
-            presentViewController(picker,
-                                  animated: true,
-                                  completion: nil)
+            presentViewController(picker, animated: true, completion: nil)
         }else if UIImagePickerController.availableCaptureModesForCameraDevice(.Front) != nil {
             picker.allowsEditing = false
+            picker.delegate = self
             picker.sourceType = UIImagePickerControllerSourceType.Camera
             picker.cameraCaptureMode = .Photo
             picker.modalPresentationStyle = .FullScreen
-            presentViewController(picker,
-                                  animated: true,
-                                  completion: nil)
+            presentViewController(picker, animated: true, completion: nil)
         }else {
             noCamera()
         }
@@ -464,60 +462,44 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     func photoLibrary(){
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        
         picker.sourceType = .PhotoLibrary
         
         // Make sure ViewController is notified when the user picks an image.
         picker.delegate = self
         
         presentViewController(picker, animated: true, completion: nil)
-        
-        
     }
     
     //MARK: - Delegates
     //What to do when the picker returns with a photo
-    func imagePickerController(
-        picker: UIImagePickerController,
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageData = UIImageJPEGRepresentation(chosenImage, 0)
         
-        didFinishPickingMediaWithInfo info: [String : AnyObject])
-    {
-        
-        
-        
-        
-        
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        let imageData = UIImageJPEGRepresentation(chosenImage, 100)
-        print(imageData!.length)
         if imageData!.length < 9999999{
-            imageFile = PFFile(name: "profilePicture.png", data: imageData!)
             
-            
-            
-            profilePicture.contentMode = .ScaleAspectFit //3
-            profilePicture.image = chosenImage //4
-            
+            // Image is within size limit, allow upload.
+            imageFile = PFFile(name: "profilePicture", data: imageData!)
+            profilePicture.contentMode = .ScaleAspectFit
+            profilePicture.image = chosenImage
             updated = true
             self.information.textColor = UIColor.blackColor()
-            
             information.text = "Image Uploaded"
-            
         }else{
+            
+            // Inform the user that size limit exceeded
             information.textColor = UIColor.redColor()
             information.text = "Image Not Within 10MB"
-            
         }
-        
-        
-        dismissViewControllerAnimated(true, completion: nil) //5
+        dismissViewControllerAnimated(true, completion: nil)
     }
     //What to do if the image picker cancels.
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        
         self.information.textColor = UIColor.blackColor()
         self.information.text = "Choose image within 10MB"
-        dismissViewControllerAnimated(true,
-                                      completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
