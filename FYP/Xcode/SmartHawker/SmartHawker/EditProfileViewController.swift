@@ -46,9 +46,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         super.viewDidLoad()
         
-        navBar.topItem?.title = "Edit Profile"
-        changeProfilePicButton.setTitle("Change Profile Picture", forState: UIControlState.Normal)
-        information.text = "Choose image within 10MB"
+        navBar.topItem?.title = "Edit Profile".localized()
+        changeProfilePicButton.setTitle("Change Profile Picture".localized(), forState: UIControlState.Normal)
+        information.text = "Choose image within 10MB".localized()
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.handleTap(_:))))
         
@@ -84,58 +84,58 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         donebtn.setTitle(String(dones), forState: .Normal);
         
-        name.placeholder = "NAME"
+        name.placeholder = "NAME".localized()
         var name2 = user!["name"]
         if (name2 == nil) {
-            name2 = "No name"
+            name2 = "No name".localized()
         }
         name.text = name2 as? String
         
         view.layout(name).top(180).horizontally(left: 20, right: 20).height(22)
         
-        phone.placeholder = "PHONE"
+        phone.placeholder = "PHONE".localized()
         phone.text = user!["phoneNumber"] as? String
         
         view.layout(phone).top(225).horizontally(left: 20, right: 20).height(22)
         
-        email.placeholder = "EMAIL"
+        email.placeholder = "EMAIL".localized()
         var email2 = user!["email"]
         if (email2 == nil) {
-            email2 = "No email"
+            email2 = "No email".localized()
         }
         email.text = email2 as? String
         
         
         view.layout(email).top(270).horizontally(left: 20, right: 20).height(22)
         
-        bizname.placeholder = "BUSINESS NAME"
+        bizname.placeholder = "BUSINESS NAME".localized()
         var businessName2 = user!["businessName"]
         if (businessName2 == nil) {
-            businessName2 = "No business name"
+            businessName2 = "No business name".localized()
         }
         bizname.text = businessName2 as? String
         
         view.layout(bizname).top(315).horizontally(left: 20, right: 20).height(22)
         
-        biznum.placeholder = "BUSINESS NUMBER"
+        biznum.placeholder = "BUSINESS NUMBER".localized()
         var businessNum2 = user!["businessNumber"]
         if (businessNum2 == nil) {
-            businessNum2 = "No business number"
+            businessNum2 = "No business number".localized()
         }
         biznum.text = businessNum2 as? String
         
         view.layout(biznum).top(360).horizontally(left: 20, right: 20).height(22)
         
-        address.placeholder = "ADDRESS"
+        address.placeholder = "ADDRESS".localized()
         var businessAddress2 = user!["businessAddress"]
         if (businessAddress2 == nil) {
-            businessAddress2 = "No business address"
+            businessAddress2 = "No business address".localized()
         }
         address.text = businessAddress2 as? String
         
         view.layout(address).top(405).horizontally(left: 20, right: 20).height(22)
         
-        adminPIN.placeholder = "Admin PIN"
+        adminPIN.placeholder = "Admin PIN".localized()
         adminPIN.text = user!["adminPin"] as? String
         
         view.layout(adminPIN).top(450).horizontally(left: 20, right: 20).height(22)
@@ -174,7 +174,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func change(sender: UIButton) {
         
         if connectionDAO().isConnectedToNetwork(){
-            let alert = UIAlertController(title: "Editing", message: "Edits are being made to your profile details", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Editing".localized(), message: "Edits are being made to your profile details".localized(), preferredStyle: UIAlertControllerStyle.Alert)
             self.presentViewController(alert, animated: true, completion: {
                 
                 self.errorMsg.removeAll()
@@ -192,16 +192,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     newName = self.name.text!.stringByTrimmingCharactersInSet(
                         NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     if newName.isEmpty{
-                        let errorString = "Invalid Name field."
+                        let errorString = "Invalid Name field.".localized()
                         self.name.text = ""
-                        self.name.placeholder = "Invalid Name field."
+                        self.name.placeholder = "Invalid Name field.".localized()
                         self.errorMsg.append(errorString)
                         error += 1
                     }
                 }else{
-                    let errorString = "Invalid Name field."
+                    let errorString = "Invalid Name field.".localized()
                     self.name.text = ""
-                    self.name.placeholder = "Invalid Name field."
+                    self.name.placeholder = "Invalid Name field.".localized()
                     self.errorMsg.append(errorString)
                     error += 1
                 }
@@ -213,23 +213,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         if Int(self.phone.text!) >= 80000000 && Int(self.phone.text!) < 100000000{
                             newPhoneNumber = self.phone.text!
                         }else{
-                            let errorString = "Invalid Phone Number field."
+                            let errorString = "Invalid Phone Number field.".localized()
                             self.phone.text = ""
-                            self.phone.placeholder = "Invalid Phone Number field."
+                            self.phone.placeholder = "Invalid Phone Number field.".localized()
                             self.errorMsg.append(errorString)
                             error += 1
                         }
                     } else {
-                        let errorString = "Invalid Phone Number field."
+                        let errorString = "Invalid Phone Number field.".localized()
                         self.phone.text = ""
-                        self.phone.placeholder = "Invalid Phone Number field."
+                        self.phone.placeholder = "Invalid Phone Number field.".localized()
                         self.errorMsg.append(errorString)
                         error += 1
                     }
                 }else {
-                    let errorString = "Invalid Phone Number field."
+                    let errorString = "Invalid Phone Number field.".localized()
                     self.phone.text = ""
-                    self.phone.placeholder = "Invalid Phone Number field."
+                    self.phone.placeholder = "Invalid Phone Number field.".localized()
                     self.errorMsg.append(errorString)
                     error += 1
                 }
@@ -242,23 +242,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         if Int(self.adminPIN.text!) >= 0 && Int(self.adminPIN.text!) < 10000 && text.characters.count == 4{
                             newPINNumber = self.adminPIN.text!
                         }else{
-                            let errorString = "Invalid Admin PIN field."
+                            let errorString = "Invalid Admin PIN field.".localized()
                             self.adminPIN.text = ""
-                            self.adminPIN.placeholder = "Invalid Admin PIN field."
+                            self.adminPIN.placeholder = "Invalid Admin PIN field.".localized()
                             self.errorMsg.append(errorString)
                             error += 1
                         }
                     } else {
-                        let errorString = "Invalid Admin PIN field."
+                        let errorString = "Invalid Admin PIN field.".localized()
                         self.adminPIN.text = ""
-                        self.adminPIN.placeholder = "Invalid Admin PIN field."
+                        self.adminPIN.placeholder = "Invalid Admin PIN field.".localized()
                         self.errorMsg.append(errorString)
                         error += 1
                     }
                 }else {
-                    let errorString = "Invalid Admin PIN field."
+                    let errorString = "Invalid Admin PIN field.".localized()
                     self.adminPIN.text = ""
-                    self.adminPIN.placeholder = "Invalid Admin PIN field."
+                    self.adminPIN.placeholder = "Invalid Admin PIN field.".localized()
                     self.errorMsg.append(errorString)
                     error += 1
                 }
@@ -270,16 +270,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             NSCharacterSet.whitespaceAndNewlineCharacterSet())){
                         newEmail = self.email.text!
                     }else{
-                        let errorString = "Invalid Email field."
+                        let errorString = "Invalid Email field.".localized()
                         self.email.text = ""
-                        self.email.placeholder = "Invalid Email field."
+                        self.email.placeholder = "Invalid Email field.".localized()
                         self.errorMsg.append(errorString)
                         error += 1
                     }
                 }else{
-                    let errorString = "Empty Email field."
+                    let errorString = "Empty Email field.".localized()
                     self.email.text = ""
-                    self.email.placeholder = "Empty Email field."
+                    self.email.placeholder = "Empty Email field.".localized()
                     self.errorMsg.append(errorString)
                     error += 1
                 }
@@ -289,15 +289,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     newBusinessName = self.bizname.text!.stringByTrimmingCharactersInSet(
                         NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     if newBusinessName.isEmpty{
-                        let errorString = "Empty Business Name field."
+                        let errorString = "Empty Business Name field.".localized()
                         self.bizname.text = ""
-                        self.bizname.placeholder = "Empty Business Name field."
+                        self.bizname.placeholder = "Empty Business Name field.".localized()
                         self.errorMsg.append(errorString)
                     }
                 }else{
-                    let errorString = "Empty Business Name field."
+                    let errorString = "Empty Business Name field.".localized()
                     self.bizname.text = ""
-                    self.bizname.placeholder = "Empty Business Name field."
+                    self.bizname.placeholder = "Empty Business Name field.".localized()
                     self.errorMsg.append(errorString)
                 }
                 
@@ -306,15 +306,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     newBusinessRegNo = self.biznum.text!.stringByTrimmingCharactersInSet(
                         NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     if newBusinessRegNo.isEmpty{
-                        let errorString = "Empty Business Reg No field."
+                        let errorString = "Empty Business Reg No field.".localized()
                         self.biznum.text = ""
-                        self.biznum.placeholder = "Empty Business Reg No field."
+                        self.biznum.placeholder = "Empty Business Reg No field.".localized()
                         self.errorMsg.append(errorString)
                     }
                 }else{
-                    let errorString = "Empty Business Reg No field."
+                    let errorString = "Empty Business Reg No field.".localized()
                     self.biznum.text = ""
-                    self.biznum.placeholder = "Empty Business Reg No field."
+                    self.biznum.placeholder = "Empty Business Reg No field.".localized()
                     self.errorMsg.append(errorString)
                 }
                 
@@ -323,15 +323,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     newBusinessAddress = self.address.text!.stringByTrimmingCharactersInSet(
                         NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     if newBusinessAddress.isEmpty{
-                        let errorString = "Empty Business Address field."
+                        let errorString = "Empty Business Address field.".localized()
                         self.address.text = ""
-                        self.address.placeholder = "Empty Business Address field."
+                        self.address.placeholder = "Empty Business Address field.".localized()
                         self.errorMsg.append(errorString)
                     }
                 }else{
-                    let errorString = "Empty Business Address field."
+                    let errorString = "Empty Business Address field.".localized()
                     self.address.text = ""
-                    self.address.placeholder = "Empty Business Address field."
+                    self.address.placeholder = "Empty Business Address field.".localized()
                     self.errorMsg.append(errorString)
                 }
                 
@@ -349,15 +349,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: self.imageFile)
                     if edited == true{
                         self.dismissViewControllerAnimated(true, completion: {
-                            let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
+                            let alert = UIAlertController(title: "Edit Successful".localized(), message: "Edits are made to the profile details".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
                             
                             self.presentViewController(alert, animated: true, completion: nil)
                         })
                     }else{
                         self.dismissViewControllerAnimated(true, completion: {
-                            let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                            let alert = UIAlertController(title: "Edit Unsuccessful".localized(), message: "Edits are not made to the profile details".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))
                             
                             self.presentViewController(alert, animated: true, completion: nil)
                         })
@@ -368,8 +368,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     
                 }else{
                     self.dismissViewControllerAnimated(true, completion: {
-                        let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+                        let alert = UIAlertController(title: "Edit Unsuccessful".localized(), message: "Edits are not made to the profile details".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))
                         
                         self.presentViewController(alert, animated: true, completion: nil)
                     })
@@ -378,8 +378,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
         }else{
             
-            let alertController = UIAlertController(title: "Please find a internet connection.", message: "Please try again later.", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let alertController = UIAlertController(title: "Please find a internet connection.".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
             alertController.addAction(ok)
             self.presentViewController(alertController, animated: true,completion: nil)
         }
@@ -393,11 +393,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func noCamera(){
         let alertVC = UIAlertController(
-            title: "No Camera",
-            message: "This device has no camera",
+            title: "No Camera".localized(),
+            message: "This device has no camera".localized(),
             preferredStyle: .Alert)
         let okAction = UIAlertAction(
-            title: "Ok",
+            title: "Ok".localized(),
             style:.Default,
             handler: nil)
         alertVC.addAction(okAction)
@@ -433,23 +433,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     
     @IBAction func selectNewImageFromPhotoLibrary(sender: UIButton) {
-        let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Update Profile Picture".localized(), message: "Please upload your new profile picture.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Camera".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             
             self.shootPhoto()
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
         }))
-        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Photo Library".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             
             self.photoLibrary()
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             self.information.textColor = UIColor.blackColor()
-            self.information.text = "Choose image within 10MB"
+            self.information.text = "Choose image within 10MB".localized()
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
             
@@ -485,12 +485,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             profilePicture.image = chosenImage
             updated = true
             self.information.textColor = UIColor.blackColor()
-            information.text = "Image Uploaded"
+            information.text = "Image Uploaded".localized()
         }else{
             
             // Inform the user that size limit exceeded
             information.textColor = UIColor.redColor()
-            information.text = "Image Not Within 10MB"
+            information.text = "Image Not Within 10MB".localized()
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -498,7 +498,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         
         self.information.textColor = UIColor.blackColor()
-        self.information.text = "Choose image within 10MB"
+        self.information.text = "Choose image within 10MB".localized()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
