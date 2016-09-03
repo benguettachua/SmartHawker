@@ -201,10 +201,10 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-//        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-//        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-//        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
-        shootPhoto()
+        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
+        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+//        shootPhoto()
     }
     
     // Click Save to save edit or new record.

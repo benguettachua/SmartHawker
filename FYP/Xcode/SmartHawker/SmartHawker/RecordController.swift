@@ -19,11 +19,6 @@ class RecordController {
         var description = description
         var subuser = subuser
         
-        // If user did not input any description, save the record as "No description"
-        if (description == "") {
-            description = "No description"
-        }
-        
         // Records must have positive value
         if (amount == nil || amount <= 0) {
             return false
@@ -42,11 +37,6 @@ class RecordController {
         
         // Make description mutable.
         var description = description
-        
-        // If user did not input any description, save the record as "No description"
-        if (description == "") {
-            description = "No description"
-        }
         
         // Records must have positive value
         if (amount == nil || amount <= 0) {
