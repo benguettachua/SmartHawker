@@ -184,7 +184,7 @@ class ProfileViewController: UITableViewController {
             
             // Subuser
             if (selectedRow == 2) {
-                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing".localized(), preferredStyle: .Alert)
+                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
                 comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
                 self.presentViewController(comingSoonAlert, animated: true, completion: nil)
             }

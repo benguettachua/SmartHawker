@@ -71,9 +71,16 @@ class SummaryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //Here I’m creating the calendar instance that we will operate with:
-        
-        
-        
+        if weekMonthYear.text! == "Choose Category"{
+            weekMonthYear.text = "Choose Category".localized()
+        }else{
+            var index = weekMonthYear.text!.endIndex.advancedBy(-5)..<weekMonthYear.text!.endIndex
+            let year = weekMonthYear.text![index]
+            
+            index = weekMonthYear.text!.startIndex..<weekMonthYear.text!.endIndex.advancedBy(-5)
+            let weekMonthYearText = weekMonthYear.text![index]
+            weekMonthYear.text! = weekMonthYearText.localized() + year
+        }
         weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
         yearButton.setTitle("Year".localized(), forState: UIControlState.Normal)

@@ -19,7 +19,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var profitText: UILabel!
     
     
-    @IBOutlet weak var profitButton: UILabel!
+    @IBOutlet weak var profitLabel: UILabel!
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var salesLabel: UILabel!
     
@@ -163,9 +163,41 @@ class CalendarViewController: UIViewController {
         thursLabel.text = "THU".localized()
         friLabel.text = "FRI".localized()
         satLabel.text = "SAT".localized()
-        salesText.text = "SALES".localized()
-        expensesText.text = "EXPENSES".localized()
-        profitText.text = "PROFIT".localized()
+        salesLabel.text = "SALES".localized()
+        expensesLabel.text = "EXPENSES".localized()
+        profitLabel.text = "PROFIT".localized()
+        var faicon = [String: UniChar]()
+        faicon["falist"] = 0xf0ca
+        faicon["faadd"] = 0xf067
+        
+        list.titleLabel?.lineBreakMode
+        list.titleLabel?.numberOfLines = 2
+        list.titleLabel!.textAlignment = .Center
+        
+        var lists = String(format: "%C", faicon["falist"]!)
+        
+        lists += "\n"
+        
+        lists += "List".localized()
+        
+        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        list.setTitle(String(lists), forState: .Normal);
+        
+        add.titleLabel?.lineBreakMode
+        add.titleLabel?.numberOfLines = 2
+        add.titleLabel!.textAlignment = .Center
+        
+        var adds = String(format: "%C", faicon["faadd"]!)
+        
+        adds += "\n"
+        
+        adds += "Add".localized()
+        
+        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        add.setTitle(String(adds), forState: .Normal)
+
         calendarView.reloadData()
         loadRecords(selectedDate)
         

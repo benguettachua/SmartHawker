@@ -177,6 +177,25 @@ class SettingsViewController: UITableViewController {
                 self.logoutLabel.text = "Log Out".localized()
                 self.language.text = "Language".localized()
                 
+                
+                var faicon = [String: UniChar]()
+                faicon["faleftback"] = 0xf053
+                faicon["faright"] = 0xf105
+                
+                self.backbtn.titleLabel?.lineBreakMode
+                self.backbtn.titleLabel?.numberOfLines = 2
+                self.backbtn.titleLabel!.textAlignment = .Center
+                
+                var backs = String(format: "%C", faicon["faleftback"]!)
+                
+                backs += "\n"
+                
+                backs += "Back".localized()
+                
+                self.backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+                
+                self.backbtn.setTitle(String(backs), forState: .Normal);
+                
             })
             actionSheet.addAction(languageAction)
         }
