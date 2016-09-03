@@ -106,6 +106,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             selectedDate = dateFormatter.stringFromDate(NSDate())
         }
         todayLabel.text = selectedDate
+        typeSalesButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
+        typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
     }
     
     // View will appear

@@ -58,10 +58,11 @@ class UpdateTransactionViewController: UIViewController {
         // Get the description of the record
         var description = selectedRecord["description"]
         if (description == nil) {
-            description = "No description"
+            description = "No Description.".localized()
+            descriptionTextField.placeholder = description as? String
+        }else{
+            descriptionTextField.text = description as? String
         }
-        descriptionTextField.text = description as? String
-        
         // Get the amount of the record
         let amount = selectedRecord["amount"] as! Double
         amountTextField.text = String(amount)
@@ -117,7 +118,6 @@ class UpdateTransactionViewController: UIViewController {
         otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
         salesBarButtonItem.title = "Sales".localized()
         expensesBarButtonItem.title = "Expenses".localized()
-        descriptionTextField.placeholder = "Add description".localized()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -165,6 +165,7 @@ class UpdateTransactionViewController: UIViewController {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+        
     }
     
     @IBAction func back(sender: UIButton) {
