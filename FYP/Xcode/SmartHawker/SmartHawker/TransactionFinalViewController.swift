@@ -10,12 +10,14 @@
 import UIKit
 import FontAwesome_iOS
 
-class TransactionFinalViewController: UIViewController {
+class TransactionFinalViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
-    // Variables from previous VC
+    // Variables
     var type = 0
     var shared = ShareData.sharedInstance
+    let picker = UIImagePickerController()
+    var imageFile: PFFile!
     
     // UIButton
     @IBOutlet weak var backbtn: UIButton!
@@ -197,9 +199,10 @@ class TransactionFinalViewController: UIViewController {
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+//        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
+//        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+//        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+        shootPhoto()
     }
     
     // Click Save to save edit or new record.
@@ -236,4 +239,108 @@ class TransactionFinalViewController: UIViewController {
             self.presentViewController(errorAlert, animated: true, completion: nil)
         }
     }
+    
+    //***********************************************************
+    // METHODS FOR TAKING PICTURE STARTS
+    //***********************************************************
+    func noCamera(){
+        let alertVC = UIAlertController(title: "No Camera", message: "This device has no camera", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style:.Default, handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(alertVC, animated: true, completion: nil)
+    }
+    
+    //take a picture, check if we have a camera first.
+    func shootPhoto() {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            picker.allowsEditing = false
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker, animated: true, completion: nil)
+        }else if UIImagePickerController.availableCaptureModesForCameraDevice(.Front) != nil {
+            picker.allowsEditing = false
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker, animated: true, completion: nil)
+        }else {
+            noCamera()
+        }
+    }
+    
+    
+    // MARK: Actions
+    
+    
+    @IBAction func selectNewImageFromPhotoLibrary() {
+        let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.shootPhoto()
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            self.photoLibrary()
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+//            self.information.textColor = UIColor.blackColor()
+//            self.information.text = "Choose image within 10MB"
+            refreshAlert .dismissViewControllerAnimated(true, completion: nil)
+            
+            
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+    
+    func photoLibrary(){
+        
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        picker.sourceType = .PhotoLibrary
+        
+        // Make sure ViewController is notified when the user picks an image.
+        picker.delegate = self
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    //MARK: - Delegates
+    //What to do when the picker returns with a photo
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageData = UIImageJPEGRepresentation(chosenImage, 0)
+        
+        if imageData!.length < 9999999{
+            
+            // Image is within size limit, allow upload.
+            imageFile = PFFile(name: "profilePicture", data: imageData!)
+            print("UPLOAD SUCCESS, WILL SHOW THE PIC AFTER UI ADDED AN IMAGE VIEW")
+        }else{
+            
+            // Inform the user that size limit exceeded
+//            information.textColor = UIColor.redColor()
+//            information.text = "Image Not Within 10MB"
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    //What to do if the image picker cancels.
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        
+//        self.information.textColor = UIColor.blackColor()
+//        self.information.text = "Choose image within 10MB"
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    //***********************************************************
+    // METHODS FOR TAKING PICTURE ENDS
+    //***********************************************************
 }
