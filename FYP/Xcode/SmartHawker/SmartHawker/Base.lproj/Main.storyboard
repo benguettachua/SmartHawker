@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -471,7 +471,7 @@ this password and admin pin</string>
                         <outlet property="registerLabel" destination="LiV-Nq-fah" id="1ww-w1-D5T"/>
                         <outlet property="smarthawkerLogo" destination="dlY-3U-Tfs" id="ayG-iE-UQ8"/>
                         <outlet property="usernameTextField" destination="ArY-7T-wmf" id="ich-mU-hfv"/>
-                        <segue destination="JUl-IL-xm2" kind="modal" identifier="loginSuccess" id="6Kf-CH-RRH"/>
+                        <segue destination="9rU-gi-HLB" kind="modal" identifier="loginSuccess" id="6Kf-CH-RRH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -494,28 +494,7 @@ this password and admin pin</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guH-d9-hd7">
-                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Admin Pin" id="ZjX-b8-Efn">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="HYH-jQ-VgE">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bET-th-uz7">
-                                                <rect key="frame" x="339" y="5" width="55" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" red="0.29019607843137252" green="0.30196078431372547" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cancel:" destination="JUl-IL-xm2" eventType="touchUpInside" id="RdD-9p-0xE"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToA-rb-EoN">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToA-rb-EoN">
                                 <rect key="frame" x="20" y="173" width="374" height="33"/>
                                 <color key="backgroundColor" red="0.99215686274509807" green="0.44705882352941173" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -531,13 +510,13 @@ this password and admin pin</string>
                                     <action selector="submitPIN:" destination="JUl-IL-xm2" eventType="touchUpInside" id="adk-dX-D4n"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYv-TV-D8G">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYv-TV-D8G">
                                 <rect key="frame" x="30" y="101" width="42" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rin-xm-nTY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rin-xm-nTY">
                                 <rect key="frame" x="0.0" y="153" width="414" height="1"/>
                                 <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -548,7 +527,7 @@ this password and admin pin</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjg-t2-B6I">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjg-t2-B6I">
                                 <rect key="frame" x="92" y="99" width="1" height="55"/>
                                 <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -568,38 +547,48 @@ this password and admin pin</string>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="rAi-zC-waW" firstAttribute="top" secondItem="oLh-Nx-HjF" secondAttribute="bottom" constant="88" id="33F-Y7-6WH"/>
                             <constraint firstItem="ToA-rb-EoN" firstAttribute="top" secondItem="Rin-xm-nTY" secondAttribute="bottom" constant="19" id="9no-YQ-0Th"/>
                             <constraint firstItem="Rin-xm-nTY" firstAttribute="top" secondItem="Sjg-t2-B6I" secondAttribute="bottom" constant="-1" id="Jdx-yF-c9u"/>
                             <constraint firstItem="Rin-xm-nTY" firstAttribute="top" secondItem="cYv-TV-D8G" secondAttribute="bottom" constant="15" id="N5H-oW-9al"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="guH-d9-hd7" secondAttribute="trailing" constant="-20" id="Pau-nJ-T4q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rin-xm-nTY" secondAttribute="trailing" constant="-20" id="QHH-mZ-PXM"/>
-                            <constraint firstItem="guH-d9-hd7" firstAttribute="leading" secondItem="8LG-ZI-Jbx" secondAttribute="leadingMargin" constant="-20" id="Vnj-Dk-Rpv"/>
-                            <constraint firstItem="cYv-TV-D8G" firstAttribute="top" secondItem="guH-d9-hd7" secondAttribute="bottom" constant="37" id="YsT-WY-AZu"/>
                             <constraint firstItem="Rin-xm-nTY" firstAttribute="leading" secondItem="8LG-ZI-Jbx" secondAttribute="leadingMargin" constant="-20" id="a5J-ON-tuB"/>
                             <constraint firstItem="ToA-rb-EoN" firstAttribute="leading" secondItem="8LG-ZI-Jbx" secondAttribute="leadingMargin" id="aKe-dp-vpC"/>
+                            <constraint firstItem="rAi-zC-waW" firstAttribute="top" secondItem="oLh-Nx-HjF" secondAttribute="bottom" constant="43" id="b2F-tl-sb3"/>
                             <constraint firstItem="Sjg-t2-B6I" firstAttribute="leading" secondItem="cYv-TV-D8G" secondAttribute="trailing" constant="20" id="bNw-S7-GUM"/>
                             <constraint firstItem="ToA-rb-EoN" firstAttribute="trailing" secondItem="8LG-ZI-Jbx" secondAttribute="trailingMargin" id="d4a-92-RWR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rAi-zC-waW" secondAttribute="trailing" constant="27" id="ecd-BW-GLs"/>
                             <constraint firstItem="rAi-zC-waW" firstAttribute="leading" secondItem="cYv-TV-D8G" secondAttribute="trailing" constant="42" id="iNa-ka-lue"/>
-                            <constraint firstItem="Sjg-t2-B6I" firstAttribute="top" secondItem="guH-d9-hd7" secondAttribute="bottom" constant="35" id="pLg-3e-Vt9"/>
                             <constraint firstItem="cYv-TV-D8G" firstAttribute="leading" secondItem="8LG-ZI-Jbx" secondAttribute="leadingMargin" constant="10" id="v4M-jD-4bC"/>
-                            <constraint firstItem="guH-d9-hd7" firstAttribute="top" secondItem="8LG-ZI-Jbx" secondAttribute="topMargin" constant="20" id="zsM-Y3-2a5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="LCj-3S-9us">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Mt0-nt-Tkg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nKx-rL-Ikq">
+                                <rect key="frame" x="339" y="5" width="55" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.2901960784" green="0.30196078430000001" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="JUl-IL-xm2" eventType="touchUpInside" id="OpZ-9r-HZR"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="adminPINTextField" destination="rAi-zC-waW" id="rpu-LU-y1r"/>
                         <outlet property="adminpinicon" destination="cYv-TV-D8G" id="zco-Lu-hkp"/>
-                        <outlet property="cancelAndLogout" destination="bET-th-uz7" id="gFB-Rf-sWt"/>
-                        <outlet property="navBar" destination="guH-d9-hd7" id="Hyx-eE-0xZ"/>
+                        <outlet property="cancelAndLogout" destination="nKx-rL-Ikq" id="hDe-aH-rDs"/>
                         <outlet property="submitButton" destination="ToA-rb-EoN" id="y9P-rl-JsJ"/>
                         <segue destination="xvq-Kx-gUH" kind="modal" identifier="toMain" id="tPZ-ny-ePW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c22-yS-Ua9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702" y="1229"/>
+            <point key="canvasLocation" x="1234" y="1229"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="h1a-Hd-syf">
@@ -1317,7 +1306,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SW-ED-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="1260"/>
+            <point key="canvasLocation" x="2418" y="1260"/>
         </scene>
         <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
@@ -1339,7 +1328,7 @@ this password and admin pin</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIs-CO-F2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1208" y="1180"/>
+            <point key="canvasLocation" x="1740" y="1180"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Caj-Vw-5vz">
@@ -1607,7 +1596,7 @@ this password and admin pin</string>
                 <viewControllerPlaceholder storyboardName="Recording" id="Ch1-He-QFh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kq7-fc-Ivh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800.5" y="1260"/>
+            <point key="canvasLocation" x="3332" y="1260"/>
         </scene>
         <!--Analytics-->
         <scene sceneID="JVP-iy-8dd">
@@ -1881,6 +1870,24 @@ this password and admin pin</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="428-3Y-f7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1658" y="3517"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rhd-c1-imP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9rU-gi-HLB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eHy-zt-CyE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JUl-IL-xm2" kind="relationship" relationship="rootViewController" id="LXj-1O-Fmk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gwh-dj-MsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="702" y="1229"/>
         </scene>
     </scenes>
     <resources>

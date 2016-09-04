@@ -39,15 +39,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var updated = false
     
     var errorMsg = [String]()
+ 
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        let navigationItem = UINavigationItem.init(title: "Edit Profile".localized())
-        navBar.items = [navigationItem]
+        self.navigationController?.topViewController?.title="Edit Profile".localized();
+
         changeProfilePicButton.setTitle("Change Profile Picture".localized(), forState: UIControlState.Normal)
         information.text = "Choose image within 10MB".localized()
         

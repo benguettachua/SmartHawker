@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HOc-0T-eCr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HOc-0T-eCr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -484,7 +484,7 @@
                         <outlet property="syncLabel" destination="TV7-Wa-aWP" id="LK9-hm-f2Z"/>
                         <outlet property="syncicon" destination="gwD-Z4-92b" id="txy-5z-0zQ"/>
                         <segue destination="41k-kG-Jy2" kind="modal" identifier="toSettings" id="wFG-g9-PkO"/>
-                        <segue destination="tuM-Xe-9Au" kind="modal" identifier="editProfile" id="L6q-hG-UJ6"/>
+                        <segue destination="lbt-FK-Mos" kind="modal" identifier="editProfile" id="L6q-hG-UJ6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7LR-QN-xHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1710,7 +1710,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT7-ZU-Dh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4137" y="2118"/>
+            <point key="canvasLocation" x="4669" y="2118"/>
         </scene>
         <!--contactUsPage-->
         <scene sceneID="0fP-DE-K2i">
@@ -2047,7 +2047,7 @@ Cg
                                     <constraint firstAttribute="height" constant="632" id="Mes-2G-jXU"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header-box" translatesAutoresizingMaskIntoConstraints="NO" id="cpB-c1-zhP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="header-box" translatesAutoresizingMaskIntoConstraints="NO" id="cpB-c1-zhP">
                                 <rect key="frame" x="0.0" y="-53" width="414" height="121"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xWK-LJ-zrg">
@@ -2366,37 +2366,6 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cN1-Sc-hXw">
-                                <rect key="frame" x="-4" y="20" width="328" height="44"/>
-                                <items>
-                                    <navigationItem title="Edit Profile" id="tZr-l4-KRi">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="9ER-Ou-jlK">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5gP-bo-hMP">
-                                                <rect key="frame" x="16" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="back:" destination="tuM-Xe-9Au" eventType="touchUpInside" id="y4G-a9-9sa"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="jdg-k1-75Q">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h0T-8D-gJh">
-                                                <rect key="frame" x="266" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="change:" destination="tuM-Xe-9Au" eventType="touchUpInside" id="V0S-v6-5L7"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Income Tax Calculation" translatesAutoresizingMaskIntoConstraints="NO" id="fOS-Kc-jKN">
                                 <rect key="frame" x="130" y="69" width="60" height="60"/>
                                 <constraints>
@@ -2422,31 +2391,52 @@ Cg
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="H6Y-Y6-ftB" secondAttribute="trailing" constant="-20" id="72m-ef-5HK"/>
-                            <constraint firstItem="cN1-Sc-hXw" firstAttribute="leading" secondItem="xLO-fj-ve5" secondAttribute="leadingMargin" constant="-20" id="7yX-ju-m61"/>
                             <constraint firstItem="uAA-al-MMa" firstAttribute="leading" secondItem="xLO-fj-ve5" secondAttribute="leadingMargin" constant="-20" id="DG6-XV-s1J"/>
                             <constraint firstItem="fOS-Kc-jKN" firstAttribute="centerX" secondItem="xLO-fj-ve5" secondAttribute="centerX" id="NYY-tN-8TD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uAA-al-MMa" secondAttribute="trailing" constant="-20" id="Rpj-aJ-YkT"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cN1-Sc-hXw" secondAttribute="trailing" constant="-20" id="TKm-qH-6E1"/>
                             <constraint firstItem="H6Y-Y6-ftB" firstAttribute="top" secondItem="fOS-Kc-jKN" secondAttribute="bottom" constant="2" id="Wdm-xc-JfN"/>
                             <constraint firstItem="H6Y-Y6-ftB" firstAttribute="leading" secondItem="xLO-fj-ve5" secondAttribute="leadingMargin" constant="-20" id="aJG-bt-mA4"/>
-                            <constraint firstItem="cN1-Sc-hXw" firstAttribute="top" secondItem="fcX-s1-Skk" secondAttribute="bottom" id="gfj-PA-KBy"/>
-                            <constraint firstItem="fOS-Kc-jKN" firstAttribute="top" secondItem="cN1-Sc-hXw" secondAttribute="bottom" constant="5" id="sCT-7v-nKR"/>
+                            <constraint firstItem="fOS-Kc-jKN" firstAttribute="top" secondItem="fcX-s1-Skk" secondAttribute="bottom" constant="5" id="hbP-06-5VZ"/>
                             <constraint firstItem="uAA-al-MMa" firstAttribute="top" secondItem="H6Y-Y6-ftB" secondAttribute="bottom" constant="-5" id="tUQ-pT-GAp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ZLJ-k3-QSh">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="OAD-oM-ZPV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="efV-hN-Zkb">
+                                <rect key="frame" x="16" y="7" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="tuM-Xe-9Au" eventType="touchUpInside" id="JzL-ea-0Kx"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Sbb-EA-fim">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KZp-5b-geU">
+                                <rect key="frame" x="258" y="7" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="change:" destination="tuM-Xe-9Au" eventType="touchUpInside" id="CzF-5x-gaP"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="back" destination="5gP-bo-hMP" id="NBV-tt-KHo"/>
-                        <outlet property="backbtn" destination="5gP-bo-hMP" id="Zhi-GS-uNO"/>
+                        <outlet property="backbtn" destination="efV-hN-Zkb" id="JcM-we-lC3"/>
                         <outlet property="changeProfilePicButton" destination="H6Y-Y6-ftB" id="sBq-J6-ylF"/>
-                        <outlet property="donebtn" destination="h0T-8D-gJh" id="RrM-T6-QTB"/>
+                        <outlet property="donebtn" destination="KZp-5b-geU" id="cg0-m9-oZY"/>
                         <outlet property="information" destination="uAA-al-MMa" id="ETQ-GP-DA6"/>
-                        <outlet property="navBar" destination="cN1-Sc-hXw" id="61s-uT-WxY"/>
                         <outlet property="profilePicture" destination="fOS-Kc-jKN" id="JnR-fS-xV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tr-ka-d03" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="1580"/>
+            <point key="canvasLocation" x="3112" y="1580"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aLV-0b-eZq">
@@ -3228,7 +3218,25 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGv-a8-LUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3665" y="1496"/>
+            <point key="canvasLocation" x="4197" y="1496"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qvJ-JV-TRH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lbt-FK-Mos" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="e8b-13-JNU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tuM-Xe-9Au" kind="relationship" relationship="rootViewController" id="916-qB-CH4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="37H-DT-8jE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2580" y="1580"/>
         </scene>
     </scenes>
     <resources>

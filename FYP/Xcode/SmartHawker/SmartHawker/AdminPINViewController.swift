@@ -25,25 +25,38 @@ class AdminPINViewController: UIViewController {
     @IBOutlet weak var adminPINTextField: UITextField!
     
     // Buttons
-    @IBOutlet weak var cancelAndLogout: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var cancelAndLogout: UIButton!
     
     // Labels
     @IBOutlet weak var adminPINLabel: UILabel!
-    
-    // Nav Bar
-    @IBOutlet weak var navBar: UINavigationBar!
-    
+
     @IBOutlet weak var adminpinicon: UILabel!
     //viewDidLoad
+    
+    //override func viewWillAppear(animated: Bool) {
+    //let navigationItem = UINavigationItem(title: "Admin Pin".localized())
+    
+    //navBar.items = [navigationItem];
+    
+    //cancelAndLogout.setTitle("Cancel".localized(), forState: .Normal)
+    //self.navItem.title = "Second View"
+    
+    //}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         // Activity Indicator
         shared.dateString = nil
-        navBar.topItem?.title = "Admin Pin".localized()
+        //titlebar.title = "Admin Pin".localized()
         submitButton.setTitle("ENTER".localized(), forState: .Normal)
+        //UINavigationItem.title (title: "Admin Pin".localized())
+        //self.navItem.title = "Admin Pin".localized()
+        self.navigationController?.topViewController?.title="Admin Pin".localized();
+        
         cancelAndLogout.setTitle("Cancel".localized(), forState: .Normal)
+        
         adminPINTextField.placeholder = "Enter your admin pin".localized()
         
         var faicon = [String: UniChar]()
@@ -52,6 +65,8 @@ class AdminPINViewController: UIViewController {
         adminpinicon.font = UIFont(name: "FontAwesome", size: 40)
         
         adminpinicon.text = String(format: "%C", faicon["faadminpin"]!)
+        
+        
         
     }
     
@@ -98,9 +113,8 @@ class AdminPINViewController: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         
-        let navigationItem = UINavigationItem.init(title: "Admin Pin".localized())
-        navBar.items = [navigationItem]
-
+        
+        
     }
     
     // MARK: Action
