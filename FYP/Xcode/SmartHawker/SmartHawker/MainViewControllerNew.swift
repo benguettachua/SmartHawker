@@ -95,7 +95,7 @@ class MainViewControllerNew: UIViewController{
         profitLabel.text = "Profit".localized()
         expensesLabel.text = "Expenses".localized()
         salesLabel.text = "Sales".localized()
-        todayEntryLabel.text = "TODAYS ENTRY".localized()
+        todayEntryLabel.text = "Add new record".localized()
         monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
