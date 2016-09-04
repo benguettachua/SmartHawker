@@ -95,9 +95,9 @@ class MainController{
         var totalSales = 0.0
         var totalDays = 0.0
         var highSales = 0.0
-        var highSalesDay = "None"
+        var highSalesDay = "None".localized()
         var lowSales = 0.0
-        var lowSalesDay = "None"
+        var lowSalesDay = "None".localized()
         var totalProfit = 0.0
         var expenses = 0.0
         
@@ -162,8 +162,11 @@ class MainController{
             }
             
         }
-        
-        return (totalSales,expenses,totalProfit,highSales,lowSales,(totalSales/totalDays),highSalesDay,lowSalesDay)
+        var averageSales = 0.0
+        if totalDays != 0{
+            averageSales = (totalSales/totalDays)
+        }
+        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay)
     }
     
 }

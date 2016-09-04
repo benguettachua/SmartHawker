@@ -48,7 +48,6 @@ class ProfileViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        navBar.title = "Profile".localized()
         syncLabel.text = "Sync".localized()
         settingsLabel.text = "Settings".localized()
         subuserLabel.text = "Sub User".localized()
@@ -111,7 +110,7 @@ class ProfileViewController: UITableViewController {
         
         subusericon.text = String(format: "%C", faicon["fasubuser"]!)
         
-        
+        self.title = "Profile".localized()
     }
     func syncData() {
         if connectionDAO().isConnectedToNetwork(){

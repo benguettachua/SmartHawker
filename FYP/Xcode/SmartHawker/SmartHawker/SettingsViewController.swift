@@ -73,7 +73,6 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navBar.title = "Settings".localized()
         passwordLabel.text = "Password".localized()
         adminLabel.text = "Admin".localized()
         notificationLabel.text = "Notification".localized()
@@ -82,6 +81,9 @@ class SettingsViewController: UITableViewController {
         contactUsLabel.text = "Contact Us".localized()
         logoutLabel.text = "Log Out".localized()
         language.text = "Language".localized()
+        
+        self.title = "Settings".localized()
+        
     }
     
     override func viewDidLoad() {
@@ -176,7 +178,7 @@ class SettingsViewController: UITableViewController {
                 self.contactUsLabel.text = "Contact Us".localized()
                 self.logoutLabel.text = "Log Out".localized()
                 self.language.text = "Language".localized()
-                
+                self.title = "Settings".localized()
                 
                 var faicon = [String: UniChar]()
                 faicon["faleftback"] = 0xf053

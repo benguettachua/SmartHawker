@@ -46,7 +46,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         super.viewDidLoad()
         
-        navBar.topItem?.title = "Edit Profile".localized()
+        let navigationItem = UINavigationItem.init(title: "Edit Profile".localized())
+        navBar.items = [navigationItem]
         changeProfilePicButton.setTitle("Change Profile Picture".localized(), forState: UIControlState.Normal)
         information.text = "Choose image within 10MB".localized()
         
@@ -155,6 +156,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 }
             }
         }
+        
+        self.title = "Edit Profile".localized()
     }
     
     func handleTap(sender: UITapGestureRecognizer) {

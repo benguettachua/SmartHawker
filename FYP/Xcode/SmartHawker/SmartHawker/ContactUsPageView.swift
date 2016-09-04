@@ -11,8 +11,7 @@ import UIKit
 class ContactUsPage: UIViewController {
  
     //MARK properties
-    
-    
+    @IBOutlet weak var navBackBtn: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var backbtn: UIButton!
     override func viewDidLoad() {
@@ -33,8 +32,10 @@ class ContactUsPage: UIViewController {
         backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         
         backbtn.setTitle(String(backs), forState: .Normal);
-
-        navBar.topItem?.title = "Contact Us".localized()
+        
+        let navigationItem = UINavigationItem.init(title: "Contact Us".localized())
+        navigationItem.leftBarButtonItem = navBackBtn
+        navBar.items = [navigationItem]
 
     }
     

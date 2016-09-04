@@ -97,6 +97,10 @@ class AdminPINViewController: UIViewController {
             alertController.addAction(no)
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+        
+        let navigationItem = UINavigationItem.init(title: "Admin Pin".localized())
+        navBar.items = [navigationItem]
+
     }
     
     // MARK: Action

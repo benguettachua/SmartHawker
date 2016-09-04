@@ -11,7 +11,7 @@ import UIKit
 class PrivacyView: UIViewController {
     
     //MARK properties
-    
+    @IBOutlet weak var navBackBtn: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var backbtn: UIButton!
     override func viewDidLoad() {
@@ -34,8 +34,9 @@ class PrivacyView: UIViewController {
         
         backbtn.setTitle(String(backs), forState: .Normal);
 
-        navBar.topItem?.title = "Privacy".localized()
-
+        let navigationItem = UINavigationItem.init(title: "Contact Us".localized())
+        navigationItem.leftBarButtonItem = navBackBtn
+        navBar.items = [navigationItem]
     }
     
     @IBAction func back(sender: UIBarButtonItem){
