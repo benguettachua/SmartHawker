@@ -126,8 +126,8 @@ class UpdateTransactionViewController: UIViewController {
             otherExpensesButton.hidden = true
             
             // UI Bar Button Item Change
-            salesBarButtonItem.tintColor = hexStringToUIColor("006cff")
-            expensesBarButtonItem.tintColor = UIColor.lightGrayColor()
+            salesBarButtonItem.setTitleColor(hexStringToUIColor("006cff"), forState: .Normal)
+            expensesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         } else {
             amountView.backgroundColor = hexStringToUIColor("ff0000")
             
@@ -136,8 +136,8 @@ class UpdateTransactionViewController: UIViewController {
             otherExpensesButton.hidden = false
             
             // UI Bar Button Item Change
-            salesBarButtonItem.tintColor = UIColor.lightGrayColor()
-            expensesBarButtonItem.tintColor = hexStringToUIColor("ff0000")
+            salesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            expensesBarButtonItem.setTitleColor(hexStringToUIColor("ff0000"), forState: .Normal)
         }
     }
     // Changing colour based on colour code
