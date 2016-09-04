@@ -74,12 +74,14 @@ class SummaryViewController: UIViewController {
         if weekMonthYear.text! == "Choose Category"{
             weekMonthYear.text = "Choose Category".localized()
         }else{
-            var index = weekMonthYear.text!.endIndex.advancedBy(-5)..<weekMonthYear.text!.endIndex
-            let year = weekMonthYear.text![index]
-            
-            index = weekMonthYear.text!.startIndex..<weekMonthYear.text!.endIndex.advancedBy(-5)
-            let weekMonthYearText = weekMonthYear.text![index]
-            weekMonthYear.text! = weekMonthYearText.localized() + year
+            if (weekMonthYear.text?.characters.count > 4) {
+                var index = weekMonthYear.text!.endIndex.advancedBy(-5)..<weekMonthYear.text!.endIndex
+                let year = weekMonthYear.text![index]
+                
+                index = weekMonthYear.text!.startIndex..<weekMonthYear.text!.endIndex.advancedBy(-5)
+                let weekMonthYearText = weekMonthYear.text![index]
+                weekMonthYear.text! = weekMonthYearText.localized() + year
+            }
         }
         weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
