@@ -267,7 +267,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 }
                 
                 //checks for email
-                if self.email.text!.isEmpty == false{
+                var email2 = self.user!["email"]
+                if self.email.text!.isEmpty == false && self.email.text! != email2 as! String{
                     if self.isValidEmail(self.email.text!.stringByTrimmingCharactersInSet(
                         NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(self.email.text!.stringByTrimmingCharactersInSet(
                             NSCharacterSet.whitespaceAndNewlineCharacterSet())){
@@ -279,6 +280,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         self.errorMsg.append(errorString)
                         error += 1
                     }
+                }else if self.email.text! == email2 as! String{
+                    newEmail = self.email.text!
                 }else{
                     let errorString = "Empty Email field.".localized()
                     self.email.text = ""

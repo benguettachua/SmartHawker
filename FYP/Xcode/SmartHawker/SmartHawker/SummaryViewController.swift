@@ -395,7 +395,6 @@ class SummaryViewController: UIViewController {
         
         
         weekMonthYear.text = weekMonthYear.text! + correctDateString
-        loadRecordsWeekly()
 
         weekButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         monthButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)

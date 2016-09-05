@@ -140,7 +140,8 @@ class SummaryControllerNew {
         var totalExpensesAmount = 0.00
         
         for stringToCheck in daysInWeek{
-            
+            salesAmount = 0.00
+            expensesAmount = 0.00
             for record in self.records {
                 
                 let date = record["date"] as! String
