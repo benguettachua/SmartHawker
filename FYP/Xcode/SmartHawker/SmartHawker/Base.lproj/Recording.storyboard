@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jbu-4G-lWA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jbu-4G-lWA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,13 +24,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wma-l7-2Nr">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rvb-dq-RDi">
-                                                <rect key="frame" x="8" y="53" width="252" height="29"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rvb-dq-RDi">
+                                                <rect key="frame" x="133" y="53" width="127" height="29"/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SGD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxj-eT-gO7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SGD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxj-eT-gO7">
                                                 <rect key="frame" x="263" y="53" width="49" height="29"/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -38,6 +38,12 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Fxj-eT-gO7" firstAttribute="leading" secondItem="rvb-dq-RDi" secondAttribute="trailing" constant="3" id="JKK-6G-Fsg"/>
+                                            <constraint firstItem="rvb-dq-RDi" firstAttribute="centerY" secondItem="Wma-l7-2Nr" secondAttribute="centerY" id="Lit-Dz-1UI"/>
+                                            <constraint firstItem="Fxj-eT-gO7" firstAttribute="centerY" secondItem="Wma-l7-2Nr" secondAttribute="centerY" id="Oe2-V7-KDW"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fxj-eT-gO7" secondAttribute="trailing" constant="8" id="uh3-DY-MXH"/>
+                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="qA9-pH-Z70">
                                         <rect key="frame" x="0.0" y="137" width="320" height="70"/>
@@ -72,9 +78,9 @@
                                                 <rect key="frame" x="161" y="0.0" width="159" height="70"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnX-fA-Xhj">
-                                                        <rect key="frame" x="25" y="33" width="109" height="29"/>
+                                                        <rect key="frame" x="25" y="23" width="109" height="48"/>
                                                         <state key="normal">
-                                                            <string key="title">Other expenses
+                                                            <string key="title">Other Expenses
 </string>
                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -103,7 +109,7 @@
                                                 <rect key="frame" x="58" y="33" width="242" height="17"/>
                                                 <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="des" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeP-Ak-QKB">
                                                 <rect key="frame" x="20" y="17" width="28" height="48"/>
@@ -288,13 +294,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-dD-Lgu">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZM-Z9-iF5">
-                                                <rect key="frame" x="8" y="53" width="252" height="29"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZM-Z9-iF5">
+                                                <rect key="frame" x="116" y="53" width="144" height="29"/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SGD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enz-GM-7Bj">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SGD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enz-GM-7Bj">
                                                 <rect key="frame" x="263" y="53" width="49" height="29"/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -302,6 +308,12 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="enz-GM-7Bj" secondAttribute="trailing" constant="8" id="6Th-bB-q3g"/>
+                                            <constraint firstItem="enz-GM-7Bj" firstAttribute="leading" secondItem="eZM-Z9-iF5" secondAttribute="trailing" constant="3" id="k2O-vY-Qvr"/>
+                                            <constraint firstItem="enz-GM-7Bj" firstAttribute="centerY" secondItem="jJA-dD-Lgu" secondAttribute="centerY" id="qAh-b3-39w"/>
+                                            <constraint firstItem="eZM-Z9-iF5" firstAttribute="centerY" secondItem="jJA-dD-Lgu" secondAttribute="centerY" id="z9P-Ud-wxG"/>
+                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="z9C-fs-cxw">
                                         <rect key="frame" x="0.0" y="137" width="320" height="70"/>
@@ -336,9 +348,9 @@
                                                 <rect key="frame" x="161" y="0.0" width="159" height="70"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEb-Tk-Z0R">
-                                                        <rect key="frame" x="25" y="33" width="109" height="29"/>
+                                                        <rect key="frame" x="25" y="23" width="109" height="48"/>
                                                         <state key="normal">
-                                                            <string key="title">Other expenses
+                                                            <string key="title">Other Expenses
 </string>
                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -367,7 +379,7 @@
                                                 <rect key="frame" x="58" y="33" width="242" height="17"/>
                                                 <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="des" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg0-js-k4y">
                                                 <rect key="frame" x="20" y="17" width="28" height="48"/>

@@ -20,6 +20,7 @@ class ProfileViewController: UITableViewController {
     
     @IBOutlet weak var rightsync: UILabel!
     
+    @IBOutlet weak var editLabel: UILabel!
     
     @IBOutlet weak var rightsetting: UILabel!
     
@@ -51,6 +52,7 @@ class ProfileViewController: UITableViewController {
         syncLabel.text = "Sync".localized()
         settingsLabel.text = "Settings".localized()
         subuserLabel.text = "Sub User".localized()
+        editLabel.text = "Edit".localized()
         
         // Load the Top Bar
         let user = PFUser.currentUser()

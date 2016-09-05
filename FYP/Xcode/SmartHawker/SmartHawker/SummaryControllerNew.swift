@@ -42,7 +42,11 @@ class SummaryControllerNew {
             if i < 10 {
                 stringToCheck = "0" + stringToCheck
             }
-            days.append(stringToCheck)
+            
+            let index = stringToCheck.startIndex..<stringToCheck.endIndex.advancedBy(-5)
+            let stringToDisplay = stringToCheck[index]
+            
+            days.append(stringToDisplay)
             
             for record in self.records {
                 let date = record["date"] as! String

@@ -43,6 +43,7 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var syncButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     
+    @IBOutlet weak var overview: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,16 +87,16 @@ class MainViewControllerNew: UIViewController{
         infoButton.setTitle(String(info), forState: .Normal)
         
         //set labels for translation
-        lowestSalesLabel.text = "Lowest".localized()
+        lowestSalesLabel.text = "Lowest Sales".localized()
         
-        highestSalesLabel.text = "Highest".localized()
+        highestSalesLabel.text = "Highest Sales".localized()
         
-        averageSalesLabel.text = "Average".localized()
+        averageSalesLabel.text = "Average Sales".localized()
 
         profitLabel.text = "Profit".localized()
         expensesLabel.text = "Expenses".localized()
         salesLabel.text = "Sales".localized()
-        todayEntryLabel.text = "Add new record".localized()
+        todayEntryLabel.text = "ADD NEW RECORD".localized()
         monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
@@ -130,6 +131,8 @@ class MainViewControllerNew: UIViewController{
         }
         self.highestSalesDay.text = values.6
         self.lowestSalesDay.text = values.7
+        
+        overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
     }
     
     
