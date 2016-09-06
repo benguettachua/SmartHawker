@@ -133,6 +133,9 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }
         
         amountTextField.becomeFirstResponder()
+        
+        // Setting of image
+        
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -204,7 +207,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
         comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
         self.presentViewController(comingSoonAlert, animated: true, completion: nil)
-//        shootPhoto()
+//        selectNewImageFromPhotoLibrary()
     }
     
     // Click Save to save edit or new record.
@@ -219,7 +222,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         // Check if this is a new record.
         
         // New record, save the new record.
-        let saveSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type)
+        let saveSuccess = recordController.record(description!, amount: amount, isSubuser: isSubuser, subuser: subuser, type: type, receipt: imageFile)
         
         if (saveSuccess) {
             
@@ -278,7 +281,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     
     @IBAction func selectNewImageFromPhotoLibrary() {
-        let refreshAlert = UIAlertController(title: "Update Profile Picture", message: "Please upload your new profile picture.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Please upload your receipt for this record.", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
@@ -325,8 +328,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         if imageData!.length < 9999999{
             
             // Image is within size limit, allow upload.
-            imageFile = PFFile(name: "profilePicture", data: imageData!)
-            print("UPLOAD SUCCESS, WILL SHOW THE PIC AFTER UI ADDED AN IMAGE VIEW")
+            imageFile = PFFile(name: "receipt", data: imageData!)
+            addbtn.setImage(chosenImage, forState: .Normal)
         }else{
             
             // Inform the user that size limit exceeded

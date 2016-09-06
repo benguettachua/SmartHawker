@@ -13,10 +13,9 @@ class RecordController {
     let shared = ShareData.sharedInstance
     
     // This function records the submitted record.
-    func record (description: String, amount: Double?, isSubuser: Bool, subuser: String?, type: Int) -> Bool {
+    func record (description: String, amount: Double?, isSubuser: Bool, subuser: String?, type: Int, receipt: PFFile!) -> Bool {
         
-        // Make description and subuser mutable.
-        var description = description
+        // Make subuser mutable.
         var subuser = subuser
         
         // Records must have positive value
@@ -29,14 +28,11 @@ class RecordController {
             subuser = (PFUser.currentUser()?.username)!
         }
 
-        return dao.addRecord(shared.dateString, amount: amount!, type: type, subuser: subuser!, description: description)
+        return dao.addRecord(shared.dateString, amount: amount!, type: type, subuser: subuser!, description: description, receipt: receipt)
     }
     
     // This function updates the selected record, based on localIdentifier.
     func update(localIdentifier: String, type: Int, description: String, amount: Double?) -> Bool {
-        
-        // Make description mutable.
-        var description = description
         
         // Records must have positive value
         if (amount == nil || amount <= 0) {
