@@ -94,7 +94,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         imageicon.text = String(format: "%C", faicon["faimage"]!)
         
         COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
-        otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
+        otherExpensesButton.setTitle("Other Expenses".localized(), forState: UIControlState.Normal)
         descriptionTextField.placeholder = "Add description".localized()
         recriptUploadLabel.text = "Attach your receipt (etc)".localized()
         
