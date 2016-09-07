@@ -67,6 +67,18 @@ class UpdateTransactionViewController: UIViewController {
         let amount = selectedRecord["amount"] as! Double
         amountTextField.text = String(amount)
         
+        // Show the receipt of the record, if any.
+        let userImageFile = selectedRecord["receipt"] as! PFFile
+        userImageFile.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) -> Void in
+            if error == nil {
+                if let imageData = imageData {
+                    let image = UIImage(data:imageData)
+                    self.addbtn.setImage(image, forState: .Normal)
+                }
+            }
+        }
+        
         var faicon = [String: UniChar]()
         faicon["fatrash"] = 0xf1f8
         faicon["faleftback"] = 0xf053
