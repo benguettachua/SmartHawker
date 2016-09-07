@@ -225,7 +225,9 @@ class MainViewControllerNew: UIViewController{
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
         if dateArray.count != 0{
             let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
-            lastRecordLabel.text = "Your last record was on: ".localized() + dateStringToDisplay
+            lastRecordLabel.text = "Your last record was on:\n".localized() + dateStringToDisplay
+            lastRecordLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            lastRecordLabel.numberOfLines = 2
         }else{
             lastRecordLabel.text = "Your have yet to make any records.".localized()
         }
