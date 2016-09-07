@@ -258,7 +258,6 @@ class connectionDAO{
         toRecord["description"] = description
         toRecord["subUser"] = NSUUID().UUIDString
         print("HI")
-        print(receipt)
         if (receipt != nil) {
             toRecord["receipt"] = receipt
         }
@@ -279,7 +278,7 @@ class connectionDAO{
     }
     
     // Update record in local datastore
-    func updateRecord(localIdentifier: String, type: Int, amount: Double, description: String) -> Bool {
+    func updateRecord(localIdentifier: String, type: Int, amount: Double, description: String, receipt: PFFile?) -> Bool {
         let query = PFQuery(className: "Record")
         var recordToUpdate = PFObject(className: "Record")
         query.fromLocalDatastore()
@@ -290,7 +289,18 @@ class connectionDAO{
             recordToUpdate["amount"] = amount
             recordToUpdate["type"] = type
             recordToUpdate["description"] = description
-            try recordToUpdate.pin()
+            if (receipt != nil) {
+                recordToUpdate["receipt"] = receipt
+            }
+            
+            if (receipt == nil) {
+                print ("PINNING")
+                try recordToUpdate.pin()
+            } else {
+                print ("SAVING")
+                try recordToUpdate.pin()
+                try recordToUpdate.save()
+            }
             return true
         } catch {
             return false

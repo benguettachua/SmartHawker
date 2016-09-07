@@ -55,8 +55,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         faicon["faimage"] = 0xf03e
         
         // UIUX Stuff here
-
-
+        
+        
         
         backbtn.titleLabel?.lineBreakMode
         backbtn.titleLabel?.numberOfLines = 2
@@ -107,12 +107,12 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }
         todayLabel.text = selectedDate
         typeSalesButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
-
-        typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)        
-        //addbtn.setImage(UIImage(named: "defaultReceipt"), forState: .Normal)
-
+        
         typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
-
+        //addbtn.setImage(UIImage(named: "defaultReceipt"), forState: .Normal)
+        
+        typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
+        
     }
     
     // View will appear
@@ -209,9 +209,9 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-//        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-//        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-//        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+        //        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
+        //        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+        //        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
         selectNewImageFromPhotoLibrary()
     }
     
@@ -301,8 +301,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-//            self.information.textColor = UIColor.blackColor()
-//            self.information.text = "Choose image within 10MB"
+            //            self.information.textColor = UIColor.blackColor()
+            //            self.information.text = "Choose image within 10MB"
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
             
@@ -338,19 +338,19 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }else{
             
             // Inform the user that size limit exceeded
-//            information.textColor = UIColor.redColor()
-//            information.text = "Image Not Within 10MB"
+            //            information.textColor = UIColor.redColor()
+            //            information.text = "Image Not Within 10MB"
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
     //What to do if the image picker cancels.
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         
-//        self.information.textColor = UIColor.blackColor()
-//        self.information.text = "Choose image within 10MB"
+        //        self.information.textColor = UIColor.blackColor()
+        //        self.information.text = "Choose image within 10MB"
         dismissViewControllerAnimated(true, completion: nil)
     }
     //***********************************************************
     // METHODS FOR TAKING PICTURE ENDS
     //***********************************************************
-    };
+}

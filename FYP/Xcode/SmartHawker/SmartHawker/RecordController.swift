@@ -32,14 +32,14 @@ class RecordController {
     }
     
     // This function updates the selected record, based on localIdentifier.
-    func update(localIdentifier: String, type: Int, description: String, amount: Double?) -> Bool {
+    func update(localIdentifier: String, type: Int, description: String, amount: Double?, receipt: PFFile!) -> Bool {
         
         // Records must have positive value
         if (amount == nil || amount <= 0) {
             return false
         }
         
-        return dao.updateRecord(localIdentifier, type: type, amount: amount!, description: description)
+        return dao.updateRecord(localIdentifier, type: type, amount: amount!, description: description, receipt: receipt)
     }
     
     // This function deletes the selected record.
