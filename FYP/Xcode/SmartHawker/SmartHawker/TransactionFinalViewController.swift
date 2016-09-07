@@ -107,8 +107,12 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }
         todayLabel.text = selectedDate
         typeSalesButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
+<<<<<<< HEAD
         typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)        
         //addbtn.setImage(UIImage(named: "defaultReceipt"), forState: .Normal)
+=======
+        typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
+>>>>>>> origin/master
     }
     
     // View will appear
