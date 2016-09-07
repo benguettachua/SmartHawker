@@ -278,7 +278,7 @@ class connectionDAO{
     }
     
     // Update record in local datastore
-    func updateRecord(localIdentifier: String, type: Int, amount: Double, description: String, receipt: PFFile?) -> Bool {
+    func updateRecord(localIdentifier: String, type: Int, amount: Double, description: String, receipt: PFFile?, hasReceipt: Bool) -> Bool {
         let query = PFQuery(className: "Record")
         var recordToUpdate = PFObject(className: "Record")
         query.fromLocalDatastore()
@@ -294,10 +294,17 @@ class connectionDAO{
             }
             
             if (receipt == nil) {
-                print ("PINNING")
-                try recordToUpdate.pin()
+                if (hasReceipt == false) {
+                    print ("PINNING")
+                    try recordToUpdate.pin()
+                } else {
+                    print ("SAVING123")
+                    recordToUpdate.removeObjectForKey("receipt")
+                    try recordToUpdate.pin()
+                    try recordToUpdate.save()
+                }
             } else {
-                print ("SAVING")
+                print ("SAVING456")
                 try recordToUpdate.pin()
                 try recordToUpdate.save()
             }

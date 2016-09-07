@@ -16,6 +16,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     var type = Int()
     let picker = UIImagePickerController()
     var imageFile: PFFile!
+    var hasReceipt = false
     
     // TextField
     @IBOutlet weak var amountTextField: UITextField!
@@ -78,6 +79,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
                     if let imageData = imageData {
                         let image = UIImage(data:imageData)
                         self.addbtn.setImage(image, forState: .Normal)
+                        self.hasReceipt = true
                     }
                 }
             }
@@ -218,12 +220,9 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         let recordController = RecordController()
         let description = descriptionTextField.text
         let amount = Double(amountTextField.text!)
-        let isSubuser = shared.isSubUser
-        let subuser = shared.subuser
-        
         
         let localIdentifier = shared.selectedRecord["subUser"] as! String
-        let updateSuccess = recordController.update(localIdentifier, type: type, description: description!, amount: amount, receipt: imageFile)
+        let updateSuccess = recordController.update(localIdentifier, type: type, description: description!, amount: amount, receipt: imageFile, hasReceipt: hasReceipt)
         
         if (updateSuccess) {
             
@@ -340,6 +339,11 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             
         }))
         
+        refreshAlert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (action: UIAlertAction) in
+            self.imageFile = nil
+            self.addbtn.setImage(nil, forState: .Normal)
+        }))
+        
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
             //            self.information.textColor = UIColor.blackColor()
             //            self.information.text = "Choose image within 10MB"
@@ -375,6 +379,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             // Image is within size limit, allow upload.
             imageFile = PFFile(name: "receipt", data: imageData!)
             addbtn.setImage(chosenImage, forState: .Normal)
+            hasReceipt = true
         }else{
             
             // Inform the user that size limit exceeded
