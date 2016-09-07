@@ -168,9 +168,7 @@ class MainViewControllerNew: UIViewController{
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd/MM/yyyy"
                 let correctDateString = dateFormatter.stringFromDate(NSDate())
-                let image = UIImage(named: "defaultReceipt")
-                let imageFile = PFFile(data: UIImageJPEGRepresentation(image!, 0)!)
-                connectionDAO().addRecord(correctDateString, amount: Double(targetTextField.text!)!, type: 4, subuser: (self.user?.username)!, description: "Monthly Target", receipt: imageFile!)
+                connectionDAO().addRecord(correctDateString, amount: Double(targetTextField.text!)!, type: 4, subuser: (self.user?.username)!, description: "Monthly Target", receipt: nil)
                 self.viewWillAppear(true)
                 
             } else {

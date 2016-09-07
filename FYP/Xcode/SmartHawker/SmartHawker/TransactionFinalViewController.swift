@@ -107,9 +107,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }
         todayLabel.text = selectedDate
         typeSalesButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
-        typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
-        
-        addbtn.setImage(UIImage(named: "defaultReceipt"), forState: .Normal)
+        typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)        
+        //addbtn.setImage(UIImage(named: "defaultReceipt"), forState: .Normal)
     }
     
     // View will appear
@@ -206,10 +205,10 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
-//        selectNewImageFromPhotoLibrary()
+//        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
+//        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+//        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+        selectNewImageFromPhotoLibrary()
     }
     
     // Click Save to save edit or new record.
@@ -283,7 +282,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     
     @IBAction func selectNewImageFromPhotoLibrary() {
-        let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Please upload your receipt for this record.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
@@ -350,4 +349,4 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     //***********************************************************
     // METHODS FOR TAKING PICTURE ENDS
     //***********************************************************
-}
+    };

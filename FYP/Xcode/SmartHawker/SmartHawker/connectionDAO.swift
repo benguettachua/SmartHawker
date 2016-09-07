@@ -247,7 +247,7 @@ class connectionDAO{
     }
     
     // Save record to local datastore
-    func addRecord(date: String, amount: Double, type: Int, subuser: String, description: String, receipt: PFFile) -> Bool {
+    func addRecord(date: String, amount: Double, type: Int, subuser: String, description: String, receipt: PFFile?) -> Bool {
         let toRecord = PFObject(className: "Record")
         toRecord.ACL = PFACL(user: PFUser.currentUser()!)
         toRecord["user"] = PFUser.currentUser()
@@ -257,9 +257,20 @@ class connectionDAO{
         toRecord["subuser"] = subuser
         toRecord["description"] = description
         toRecord["subUser"] = NSUUID().UUIDString
-        toRecord["receipt"] = receipt
+        print("HI")
+        print(receipt)
+        if (receipt != nil) {
+            toRecord["receipt"] = receipt
+        }
         do{
-            try toRecord.pin()
+            if (receipt == nil) {
+                print ("PINNING")
+                try toRecord.pin()
+            } else {
+                print ("SAVING")
+                try toRecord.pin()
+                try toRecord.save()
+            }
             return true
         } catch {
             return false

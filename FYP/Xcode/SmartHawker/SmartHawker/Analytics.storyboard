@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="0cL-cQ-vI3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -110,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="2041" y="135"/>
         </scene>
-        <!--View Controller-->
+        <!--Analytics-->
         <scene sceneID="pys-Eh-t0b">
             <objects>
-                <viewController id="L8r-JO-uUd" sceneMemberID="viewController">
+                <viewController id="L8r-JO-uUd" customClass="AnalyticsViewControllerNEW" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fss-ye-CuD"/>
                         <viewControllerLayoutGuide type="bottom" id="XE7-Qc-Hm8"/>
@@ -122,13 +122,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-mD-9V2">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-mD-9V2">
                                 <rect key="frame" x="-4" y="64" width="328" height="504"/>
                                 <connections>
                                     <segue destination="wFh-Gl-T95" kind="embed" identifier="" id="NI0-4v-Ljz"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-52-944">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-52-944">
                                 <rect key="frame" x="-4" y="64" width="328" height="504"/>
                                 <connections>
                                     <segue destination="fZX-DB-Zao" kind="embed" id="0cc-zn-dNk"/>
@@ -149,11 +149,14 @@
                                                 <segment title="Trending"/>
                                             </segments>
                                             <color key="tintColor" red="0.99215686274509807" green="0.44705882352941173" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="chooseCategory:" destination="L8r-JO-uUd" eventType="valueChanged" id="JTM-vb-Isr"/>
+                                            </connections>
                                         </segmentedControl>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBU-xa-ZeN">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JBU-xa-ZeN">
                                 <rect key="frame" x="-4" y="64" width="328" height="504"/>
                                 <connections>
                                     <segue destination="jnb-23-rtJ" kind="embed" id="GQ5-kN-IFe"/>
@@ -179,6 +182,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="JBU-xa-ZeN" secondAttribute="trailing" constant="-20" id="wfz-59-YhW"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Analytics" image="tab-buttom-analytics" id="FGn-gi-PeI">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="analyticsCategory" destination="VQn-B0-Duo" id="fwl-D1-BqZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOD-bY-te8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
