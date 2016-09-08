@@ -139,8 +139,10 @@ class MainController{
                             highSalesDay = myKey
                         }
                         
-                        
-                        if sales < lowSales && sales > 0{
+                        if lowSales == 0 && sales > 0{
+                            lowSales = sales
+                            lowSalesDay = myKey
+                        }else if sales < lowSales && sales > 0{
                             lowSales = sales
                             lowSalesDay = myKey
                         }
