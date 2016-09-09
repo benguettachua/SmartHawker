@@ -85,7 +85,7 @@ class MonthRecordTableViewController: UITableViewController {
                     sectionRecord.append(record)
                 }
             }
-            sectionRecord.sortInPlace({$1["type"] as! Int > $0["type"] as! Int})
+            sectionRecord.sortInPlace { $0["type"]as!Int == $1["type"]as!Int ? $0.createdAt < $1.createdAt : $1["type"]as!Int > $0["type"]as!Int }
             rows.append(sectionRecord)
         }
         

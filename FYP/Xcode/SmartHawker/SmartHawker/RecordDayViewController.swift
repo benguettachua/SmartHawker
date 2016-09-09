@@ -78,7 +78,7 @@ class RecordDayViewController: UIViewController, UITableViewDelegate, UITableVie
                 noRecordView.hidden = false
                 tableView.hidden = true
             } else {
-                records.sortInPlace ({$1["type"]as!Int > $0["type"]as!Int })
+                records.sortInPlace { $0["type"]as!Int == $1["type"]as!Int ? $0.createdAt < $1.createdAt : $1["type"]as!Int > $0["type"]as!Int }
             }
         }
         
