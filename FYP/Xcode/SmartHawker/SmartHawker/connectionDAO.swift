@@ -289,6 +289,7 @@ class connectionDAO{
             recordToUpdate["amount"] = amount
             recordToUpdate["type"] = type
             recordToUpdate["description"] = description
+            recordToUpdate["date"] = toShare.dateString
             if (receipt != nil) {
                 recordToUpdate["receipt"] = receipt
             }
