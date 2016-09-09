@@ -19,19 +19,15 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     
     // Labels
     @IBOutlet weak var revenueLabel: UILabel!
-    @IBOutlet weak var COGSLabel: UILabel!
     @IBOutlet weak var grossProfitLabel: UILabel!
-    @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var adjustedProfitLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var back: UIBarButtonItem!
-    @IBOutlet weak var cogsLabelOnly: UILabel!
     @IBOutlet weak var revenueLabelOnly: UILabel!
     @IBOutlet weak var grosssProfitLabelOnly: UILabel!
     @IBOutlet weak var calculationLabelOnly: UILabel!
-    @IBOutlet weak var businessExpensesLabelOnly: UILabel!
     @IBOutlet weak var additionalBusinessExpenses: UILabel!
     @IBOutlet weak var adjustedProfitLabelOnly: UILabel!
     @IBOutlet weak var generateIncomeTax: UIButton!
@@ -53,6 +49,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         var year = Int(yearLabel.text!)!
         year += 1
         yearLabel.text = String(year)
+        additionalExpensesTextField.text = ""
         self.viewWillAppear(true)
     }
     
@@ -60,6 +57,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         var year = Int(yearLabel.text!)!
         year -= 1
         yearLabel.text = String(year)
+        additionalExpensesTextField.text = ""
         self.viewWillAppear(true)
     }
     
@@ -89,11 +87,9 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         additionalExpensesTextField.placeholder = "Optional".localized()
         navBar.title = "Income Tax".localized()
         back.title = "Back".localized()
-        cogsLabelOnly.text = "COGS".localized()
         revenueLabelOnly.text = "Revenue".localized()
         grosssProfitLabelOnly.text = "Gross Profit".localized()
         calculationLabelOnly.text = "(Revenue - COGS)".localized()
-        businessExpensesLabelOnly.text = "Business Expenses".localized()
         additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses".localized()
         adjustedProfitLabelOnly.text = "Adjusted Profit \n(Gross Profit - Total Expenses)".localized()
         generateTaxButton.setTitle("Generate Income Tax".localized(), forState: UIControlState.Normal)
@@ -112,7 +108,6 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         var revenue = 0.0
         var COGS = 0.0
         var grossprofit = 0.0
-        var expenses = 0.0
         var adjustedProfit = 0.0
         
         // Step 2: Loop through all records, adding each record to respective category.
@@ -126,26 +121,16 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
                 
                 // Cost of goods sold
                 COGS += record["amount"] as! Double
-            } else if (record["type"] as! Int == 2) {
-                
-                // Expenses
-                expenses += record["amount"] as! Double
-            } else if (record["type"] as! Int == 3) {
-                
-                // Month fixed expenses still count as expenses
-                expenses += record["amount"] as! Double
             }
         }
         
         // Step 3: Calculate gross profit and adjusted profit
         grossprofit = revenue - COGS
-        adjustedProfit = grossprofit - expenses
+        adjustedProfit = grossprofit
         
         // Step 4: Populate with $ sign and 2 decimal place.
         revenueLabel.text = "$" + String(format:"%.2f", revenue)
-        COGSLabel.text = "$" + String(format:"%.2f", COGS)
         grossProfitLabel.text = "$" + String(format:"%.2f", grossprofit)
-        expensesLabel.text = "$" + String(format:"%.2f", expenses)
         adjustedProfitLabel.text = "$" + String(format:"%.2f", adjustedProfit)
     }
     
@@ -160,12 +145,9 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         if (newValue == nil || newValue == "") {
             newValue = "0.0"
         }
-        var expenses = expensesLabel.text
-        expenses?.removeAtIndex((expenses?.startIndex)!)
         var grossProfit = grossProfitLabel.text
         grossProfit?.removeAtIndex((grossProfit?.startIndex)!)
-        var adjustedProfit = 0.0
-        adjustedProfit = Double(grossProfit!)! - Double(expenses!)! - Double(newValue!)!
+        var adjustedProfit = Double(grossProfit!)! - Double(newValue!)!
         adjustedProfitLabel.text = "$" + String(format: "%.2f", adjustedProfit)
         generateTaxButton.enabled = true
     }
