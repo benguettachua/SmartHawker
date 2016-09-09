@@ -85,8 +85,20 @@ class MonthRecordTableViewController: UITableViewController {
                     sectionRecord.append(record)
                 }
             }
+            sectionRecord.sortInPlace({$1["type"] as! Int > $0["type"] as! Int})
             rows.append(sectionRecord)
         }
+        
+//        // Sort the records by types
+//        for i in 0...rows.count-1 {
+//            print(i)
+//            var currentSection = rows[i]
+//            print("BEFORE")
+//            print(currentSection)
+//            currentSection.sortInPlace({$0["type"] as! Int > $1["type"] as! Int})
+//            print("AFTER")
+//            print(currentSection)
+//        }
         tableView.reloadData()
     }
     
