@@ -32,8 +32,8 @@ class CalendarViewController: UIViewController {
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     @IBOutlet weak var navBar: UINavigationItem!
     
-    @IBOutlet weak var list: UIButton!
     
+    @IBOutlet weak var list: UIButton!
     @IBOutlet weak var add: UIButton!
     
     //day labels
@@ -164,8 +164,8 @@ class CalendarViewController: UIViewController {
         friLabel.text = "FRI".localized()
         satLabel.text = "SAT".localized()
         salesLabel.text = "SALES".localized()
-        expensesLabel.text = "EXPENSES".localized()
-        profitLabel.text = "PROFIT".localized()
+        expensesLabel.text = "COGS".localized()
+        profitLabel.text = "EXPENSES".localized()
         var faicon = [String: UniChar]()
         faicon["falist"] = 0xf0ca
         faicon["faadd"] = 0xf067
