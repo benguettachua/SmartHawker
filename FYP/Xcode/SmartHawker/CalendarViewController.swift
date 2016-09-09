@@ -16,10 +16,10 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var salesText: UILabel!
     @IBOutlet weak var expensesText: UILabel!
-    @IBOutlet weak var profitText: UILabel!
+    @IBOutlet weak var cogsText: UILabel!
     
     
-    @IBOutlet weak var profitLabel: UILabel!
+    @IBOutlet weak var cogsLabel: UILabel!
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var salesLabel: UILabel!
     
@@ -164,8 +164,8 @@ class CalendarViewController: UIViewController {
         friLabel.text = "FRI".localized()
         satLabel.text = "SAT".localized()
         salesLabel.text = "SALES".localized()
-        expensesLabel.text = "COGS".localized()
-        profitLabel.text = "EXPENSES".localized()
+        cogsLabel.text = "COGS".localized()
+        expensesLabel.text = "EXPENSES".localized()
         var faicon = [String: UniChar]()
         faicon["falist"] = 0xf0ca
         faicon["faadd"] = 0xf067
@@ -222,6 +222,7 @@ class CalendarViewController: UIViewController {
     func loadRecords(date: NSDate){
         var salesAmount = 0.0
         var expensesAmount = 0.0
+        var cogsAmount = 0.0
         
         formatter.dateFormat = "MM/yyyy"
         let correctedDateString = formatter.stringFromDate(date)
@@ -229,6 +230,7 @@ class CalendarViewController: UIViewController {
         
         salesAmount = values.0
         expensesAmount = values.1
+        cogsAmount = values.2
         
         // Sales Label
         let salesString2dp = "$" + String(format:"%.2f", salesAmount)
@@ -241,13 +243,13 @@ class CalendarViewController: UIViewController {
         self.expensesText.font = UIFont(name: expensesText.font.fontName, size: 15)
         
         // Profit Label
-        let profitString2dp = "$" + String(format:"%.2f", (salesAmount-expensesAmount))
-        self.profitText.text = profitString2dp
-        self.profitText.font = UIFont(name: profitText.font.fontName, size: 15)
+        let cogsString2dp = "$" + String(format:"%.2f", cogsAmount)
+        self.cogsText.text = cogsString2dp
+        self.cogsText.font = UIFont(name: cogsText.font.fontName, size: 15)
         if salesAmount-expensesAmount < 0 {
-            self.profitText.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+            self.cogsText.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
         }else{
-            self.profitText.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
+            self.cogsText.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
         }
     }
     

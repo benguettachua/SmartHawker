@@ -18,12 +18,13 @@ class CalendarController{
         
     }
     
-    func values(correctDateString: String) -> (Double, Double){
+    func values(correctDateString: String) -> (Double, Double, Double){
         
         records = connectionDAO().loadRecords()
         
         var salesAmount = 0.0
         var expensesAmount = 0.0
+        var cogsAmount = 0.0
         var dates = [String]()
         for record in self.records {
             
@@ -37,7 +38,7 @@ class CalendarController{
                 if (type == 0) {
                     salesAmount += amount
                 } else if (type == 1) {
-                    expensesAmount += amount
+                    cogsAmount += amount
                 } else if (type == 2) {
                     expensesAmount += amount
                 }
@@ -47,7 +48,7 @@ class CalendarController{
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(dates, forKey: "SavedDateArray")
         
-        return (salesAmount, expensesAmount)
+        return (salesAmount, expensesAmount, cogsAmount)
     }
     
 }

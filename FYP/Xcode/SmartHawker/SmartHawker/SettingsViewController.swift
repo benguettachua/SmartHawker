@@ -166,8 +166,11 @@ class SettingsViewController: UITableViewController {
                 Localize.setCurrentLanguage(language)
                 if language == "zh-Hans"{
                     self.languageLabel.text = "华语"
-                }else{
+                }else if language == "en"{
                     self.languageLabel.text = "English"
+                    
+                }else{
+                    self.languageLabel.text = "Malay"
                     
                 }
                 self.passwordLabel.text = "Password".localized()
