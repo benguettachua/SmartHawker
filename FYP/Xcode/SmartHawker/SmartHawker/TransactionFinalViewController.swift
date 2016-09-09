@@ -237,7 +237,9 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             // Recording successful, inform the user that they can enter another record.
             let alert = UIAlertController(title: "Success".localized(), message: "Record success, please continue.".localized(), preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
-                self.dismissViewControllerAnimated(false, completion: nil)
+                self.amountTextField.text = ""
+                self.descriptionTextField.text = ""
+                self.viewWillAppear(true)
             }))
             self.presentViewController(alert, animated: true, completion: nil)
             
