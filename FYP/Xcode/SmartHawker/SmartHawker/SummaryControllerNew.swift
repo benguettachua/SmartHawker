@@ -87,6 +87,7 @@ class SummaryControllerNew {
         var series1 = [Double]()
         var series2 = [Double]()
         
+        
         for i in 1...12 {
             salesAmount = 0.00
             expensesAmount = 0.00

@@ -18,7 +18,6 @@ class AnalyticsViewControllerNEW: UIViewController {
     @IBOutlet weak var container2: UIView!
     @IBOutlet weak var container3: UIView!
     
-    
     // MARK: Action
     @IBAction func chooseCategory(sender: UISegmentedControl) {
         
@@ -28,12 +27,12 @@ class AnalyticsViewControllerNEW: UIViewController {
             container3.alpha = 0
         } else if (sender.selectedSegmentIndex == 1) {
             container1.alpha = 0
-            container2.alpha = 1
-            container3.alpha = 0
-        } else if (sender.selectedSegmentIndex == 2) {
-            container1.alpha = 0
             container2.alpha = 0
             container3.alpha = 1
+        } else if (sender.selectedSegmentIndex == 2) {
+            container1.alpha = 0
+            container2.alpha = 1
+            container3.alpha = 0
         }
     }
 }

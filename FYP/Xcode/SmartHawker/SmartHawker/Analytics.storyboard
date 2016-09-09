@@ -197,10 +197,10 @@
             </objects>
             <point key="canvasLocation" x="2580" y="-81"/>
         </scene>
-        <!--View Controller-->
+        <!--Comparison-->
         <scene sceneID="G1m-UT-yJr">
             <objects>
-                <viewController id="wFh-Gl-T95" sceneMemberID="viewController">
+                <viewController title="Comparison" id="wFh-Gl-T95" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uyO-u8-heb"/>
                         <viewControllerLayoutGuide type="bottom" id="olR-P5-WHo"/>
@@ -249,10 +249,10 @@
             </objects>
             <point key="canvasLocation" x="3241" y="605"/>
         </scene>
-        <!--View Controller-->
+        <!--Trending-->
         <scene sceneID="8hA-al-mP7">
             <objects>
-                <viewController id="fZX-DB-Zao" sceneMemberID="viewController">
+                <viewController title="Trending" id="fZX-DB-Zao" customClass="TrendingViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mfH-aM-L3M"/>
                         <viewControllerLayoutGuide type="bottom" id="GUr-Uz-BV6"/>
@@ -271,6 +271,9 @@
                                     <segment title="Year"/>
                                 </segments>
                                 <color key="tintColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="chooseCategory:" destination="fZX-DB-Zao" eventType="valueChanged" id="cvd-5O-4Cu"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hc3-ZH-Xmf">
                                 <rect key="frame" x="44" y="125" width="240" height="312"/>
@@ -297,15 +300,19 @@
                             <constraint firstItem="1aj-br-d0L" firstAttribute="centerX" secondItem="XJk-Ma-C7z" secondAttribute="centerX" id="vk7-qK-5MC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="categoryLabel" destination="1aj-br-d0L" id="i4c-Ho-nmb"/>
+                        <outlet property="categorySegmentedControl" destination="Wvj-04-aQl" id="SZk-zC-2ps"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugu-dE-KyP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3234" y="-612"/>
         </scene>
-        <!--View Controller-->
+        <!--Best Sales-->
         <scene sceneID="wEQ-zD-E7e">
             <objects>
-                <viewController id="jnb-23-rtJ" sceneMemberID="viewController">
+                <viewController title="Best Sales" id="jnb-23-rtJ" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y5P-XW-IOX"/>
                         <viewControllerLayoutGuide type="bottom" id="yAd-Tq-FE9"/>
@@ -330,8 +337,8 @@
                                 </segments>
                                 <color key="tintColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selected value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiJ-AY-nwV">
-                                <rect key="frame" x="109" y="44" width="111" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Testing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiJ-AY-nwV">
+                                <rect key="frame" x="164" y="44" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

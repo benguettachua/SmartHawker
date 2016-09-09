@@ -132,4 +132,41 @@ class AnalyticsController{
         return (salesListForDay, expensesListForDay, days)
     }
     
+    // Load the values of the day.
+    func loadTodayRecord() -> (Double, Double, Double, Double) {
+        
+        // Load the records
+        loadRecords()
+        
+        // Variables to return
+        var sales = 0.0
+        var COGS = 0.0
+        var expenses = 0.0
+        var profit = 0.0
+        
+        // Convert today's date to usable format.
+        let date = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dateFormatter.stringFromDate(date)
+        
+        // Loop through all records to pick out relavant records.
+        for record in self.records {
+            let recordDate = record["date"] as! String
+            if (recordDate == dateString) {
+                let type = record["type"] as! Int
+                let amount = record["amount"] as! Double
+                if (type == 0) {
+                    sales += amount
+                } else if (type == 1) {
+                    COGS += amount
+                } else if (type == 2) {
+                    expenses += amount
+                }
+            }
+        }
+        profit = sales - COGS - expenses
+        return (sales, COGS, expenses, profit)
+    }
+    
 }
