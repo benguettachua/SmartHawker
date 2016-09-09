@@ -312,7 +312,7 @@
         <!--Best Sales-->
         <scene sceneID="wEQ-zD-E7e">
             <objects>
-                <viewController title="Best Sales" id="jnb-23-rtJ" sceneMemberID="viewController">
+                <viewController title="Best Sales" id="jnb-23-rtJ" customClass="BestSalesViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y5P-XW-IOX"/>
                         <viewControllerLayoutGuide type="bottom" id="yAd-Tq-FE9"/>
@@ -355,6 +355,9 @@
                             <constraint firstItem="PiJ-AY-nwV" firstAttribute="top" secondItem="WfJ-u5-43A" secondAttribute="bottom" constant="8" id="vyJ-KV-TAe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="categorySegmentControl" destination="WfJ-u5-43A" id="Paa-78-aK7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="58W-fh-WBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
