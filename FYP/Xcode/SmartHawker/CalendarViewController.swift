@@ -9,7 +9,7 @@
 import JTAppleCalendar
 import SwiftMoment
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     var numberOfRows = 6
     var correctDateString: String!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
@@ -18,6 +18,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var expensesText: UILabel!
     @IBOutlet weak var cogsText: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var cogsLabel: UILabel!
     @IBOutlet weak var expensesLabel: UILabel!
@@ -31,7 +32,8 @@ class CalendarViewController: UIViewController {
     //for language preference
     let lang = NSUserDefaults.standardUserDefaults().objectForKey("langPref") as? String
     @IBOutlet weak var navBar: UINavigationItem!
-    
+    var records = [PFObject]()
+    let recordDayController = RecordDayController()
     
     @IBOutlet weak var list: UIButton!
     @IBOutlet weak var add: UIButton!
@@ -48,7 +50,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         
         formatter.dateFormat = "yyyy MM dd"
@@ -144,10 +146,10 @@ class CalendarViewController: UIViewController {
     // Move to page two of transaction
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-//        // Set the destination view controller
-//        let destinationVC : SingleCalendarViewController = segue.destinationViewController as! SingleCalendarViewController
-//        
-//        destinationVC.date = selectedDate
+        //        // Set the destination view controller
+        //        let destinationVC : SingleCalendarViewController = segue.destinationViewController as! SingleCalendarViewController
+        //
+        //        destinationVC.date = selectedDate
     }
     
     
@@ -197,7 +199,7 @@ class CalendarViewController: UIViewController {
         add.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         
         add.setTitle(String(adds), forState: .Normal)
-
+        
         calendarView.reloadData()
         loadRecords(selectedDate)
         
@@ -209,13 +211,45 @@ class CalendarViewController: UIViewController {
         print("lala" + newMonth + "lala")
         monthLabel.text = newMonth.localized() + " " + newYear
         
+        // Remove all records to prevent duplicates.
+        records.removeAll()
+        
+        // Load records from local datastore into an array.
+        records = recordDayController.loadRecord()
+        
+        
+        
+        // Loop through the records, removing all elements that should not be shown.
+        for (i,num) in records.enumerate().reverse() {
+            
+            // Removing records that have amount $0.00 as it means that the record is deleted.
+            if (records[i]["amount"] as! Double == 0) {
+                records.removeAtIndex(i)
+                
+                // Removing records that have type 3 or 4 as it should not be shown, Monthly Fixed Expenses and Monthly Target.
+            } else if (records[i]["type"] as! Int == 3 || records[i]["type"] as! Int == 4){
+                records.removeAtIndex(i)
+            }
+        }
+        
+        
+        records.sortInPlace { $0["type"]as!Int == $1["type"]as!Int ? $0.createdAt < $1.createdAt : $1["type"]as!Int > $0["type"]as!Int }
+        
+        
+    
+        // Reload the table to show any ammendments made to the data.
+        tableView.reloadData()
+        tableView!.delegate = self
+        tableView!.dataSource = self
+        
+        
     }
     
     func setupViewsOfCalendar(startDate: NSDate, endDate: NSDate) {
         let month = testCalendar.component(NSCalendarUnit.Month, fromDate: endDate)
         let monthName = NSDateFormatter().monthSymbols[(month-1) % 12] // 0 indexed array
         let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: startDate)
-
+        
         monthLabel.text = monthName.localized() + " " + String(year)
     }
     
@@ -290,6 +324,80 @@ class CalendarViewController: UIViewController {
         
         
     }
+    
+    // Below this comment are all the methods for table.
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.records.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "RecordCell"
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
+        
+        // Description Label
+        var description = records[indexPath.row]["description"]
+        if (description == nil) {
+            description = "No description".localized()
+        }
+        cell.descriptionLabel.text = description as! String
+        cell.descriptionLabel.font = UIFont(name: cell.descriptionLabel.font.fontName, size: 12)
+        
+        // Amount Label
+        let amount = records[indexPath.row]["amount"] as! Double
+        let amountString2dp = "$" + String(format:"%.2f", amount)
+        cell.amountLabel.text = amountString2dp
+        cell.amountLabel.font = UIFont(name: cell.amountLabel.font.fontName, size: 12)
+        
+        // Type Label
+        let type = records[indexPath.row]["type"] as! Int
+        var typeString = ""
+        if (type == 0) {
+            typeString = "Sales"
+        } else if (type == 1) {
+            typeString = "COGS"
+        } else if (type == 2) {
+            typeString = "Expenses"
+        }
+        cell.recordTypeLabel.text = typeString.localized()
+        cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
+        
+        // Recorded by
+        cell.recordedByLabel.text = records[indexPath.row]["subuser"] as! String
+        
+        // Cell background
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        toShare.selectedRecord = records[indexPath.row]
+        let storyboard = UIStoryboard(name: "Recording", bundle: nil)
+        let updateRecordVC = storyboard.instantiateViewControllerWithIdentifier("updateRecord")
+        self.presentViewController(updateRecordVC, animated: true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+            let selectedRecord = records[indexPath.row]
+            
+            // Delete the record
+            let deleteSuccess = recordDayController.deleteRecord(selectedRecord)
+            if(deleteSuccess) {
+                records.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            } else {
+                print("Delete failed.")
+            }
+        }
+    }
 }
 
 // MARK : JTAppleCalendarDelegate
@@ -339,6 +447,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         toShare.storeDate = dateMoment
         toShare.dateString = correctDateString
         loadRecords(selectedDate)
+        self.viewWillAppear(true)
     }
     
     func calendar(calendar: JTAppleCalendarView, isAboutToResetCell cell: JTAppleDayCellView) {
