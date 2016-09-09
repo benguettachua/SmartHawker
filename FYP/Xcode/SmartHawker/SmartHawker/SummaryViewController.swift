@@ -64,25 +64,30 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weekMonthYear.text = "Choose Category".localized()
+        weekMonthYear.text = actualMonthDate.monthName.localized() + " " + String(actualMonthDate.year)
+        
+        if actualMonthDate.month < 10 {
+            currentMonthString = "0" + String(actualMonthDate.month)
+        }else{
+            currentMonthString = String(actualMonthDate.month)
+        }
+        dateString = currentMonthString + "/" + String(actualMonthDate.year)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         //Here I’m creating the calendar instance that we will operate with:
-        if weekMonthYear.text! == "Choose Category"{
-            weekMonthYear.text = "Choose Category".localized()
-        }else{
-            if (weekMonthYear.text?.characters.count > 4) {
+        
+        if (weekMonthYear.text?.characters.count > 4) {
                 var index = weekMonthYear.text!.endIndex.advancedBy(-5)..<weekMonthYear.text!.endIndex
                 let year = weekMonthYear.text![index]
                 
                 index = weekMonthYear.text!.startIndex..<weekMonthYear.text!.endIndex.advancedBy(-5)
                 let weekMonthYearText = weekMonthYear.text![index]
                 weekMonthYear.text! = weekMonthYearText.localized() + year
-            }
         }
+        
         weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
         yearButton.setTitle("Year".localized(), forState: UIControlState.Normal)
@@ -92,13 +97,6 @@ class SummaryViewController: UIViewController {
         netProfit.text = "Net Profit ($):".localized()
         reportLabel.text = "Report".localized()
         //Now asking the calendar what month are we in today’s date:
-        
-        if actualMonthDate.month < 10 {
-            currentMonthString = "0" + String(actualMonthDate.month)
-        }else{
-            currentMonthString = String(actualMonthDate.month)
-        }
-        dateString = currentMonthString + "/" + String(actualMonthDate.year)
         if summaryType == 1{
             loadRecordsMonthly()
         }else if summaryType == 2{
@@ -107,7 +105,6 @@ class SummaryViewController: UIViewController {
             loadRecordsWeekly()
         }
 
-        
     }
     
     func loadRecordsMonthly(){
@@ -119,7 +116,9 @@ class SummaryViewController: UIViewController {
     }
     func loadRecordsYearly(){
         let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
-        
+        print(loadedData.0)
+        print(loadedData.1)
+        print(loadedData.2)
         setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
         self.salesText.text = loadedData.3
         self.expensesText.text = loadedData.4
