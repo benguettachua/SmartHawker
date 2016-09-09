@@ -92,11 +92,9 @@ class SummaryControllerNew {
             salesAmount = 0.00
             expensesAmount = 0.00
             var text = ""
-            if i == 1{
+            if i < 10{
                 text = "0" + String(i)
-            }else if i == 2 {
-                text = "0" + String(i)
-            }else{
+            } else{
                 text = String(i)
             }
             let stringOfMonth = text + "/" + dateString
