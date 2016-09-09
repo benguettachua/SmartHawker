@@ -224,7 +224,7 @@ class CalendarViewController: UIViewController {
         var expensesAmount = 0.0
         var cogsAmount = 0.0
         
-        formatter.dateFormat = "MM/yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"
         let correctedDateString = formatter.stringFromDate(date)
         let values = CalendarController().values(correctedDateString)
         
@@ -338,7 +338,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         }
         toShare.storeDate = dateMoment
         toShare.dateString = correctDateString
-        self.performSegueWithIdentifier("recordDay", sender: self)
+        loadRecords(selectedDate)
     }
     
     func calendar(calendar: JTAppleCalendarView, isAboutToResetCell cell: JTAppleDayCellView) {
