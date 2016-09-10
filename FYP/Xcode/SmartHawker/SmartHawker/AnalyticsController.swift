@@ -63,7 +63,7 @@ class AnalyticsController{
             salesList.append(salesAmount)
             expensesList.append(expensesAmount)
             profit = salesAmount - expensesAmount
-
+            
             profitsMonthly.append(Double(profit))
             
             
@@ -105,7 +105,7 @@ class AnalyticsController{
                 let dateString = record["date"] as! String
                 let type = record["type"] as! Int
                 let amount = record["amount"] as! Double
-            
+                
                 if dateString.containsString(yearMonthDay){
                     //let subuser = object["subuser"] as? String
                     if (type == 0) {
@@ -263,5 +263,50 @@ class AnalyticsController{
         }
         let sortedKeys = Array(bestSalesYear.keys).sort({bestSalesYear[$1] < bestSalesYear[$0]})
         return (bestSalesYear, sortedKeys)
+    }
+    
+    // Return an array of the past six similar days
+    func getPastSixSimilarDays(date: NSDate) -> [String : Double] {
+        
+        // Initialise NSDateFormatter to work with it.
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        // Set an NSDictionary to store all 6 days.
+        var pastSixDays = [String : Double]()
+        let chosenDateString = dateFormatter.stringFromDate(date)
+        pastSixDays[chosenDateString] = 0.0
+        
+        // Populate the past 6 days to search for records
+        var chosenDay = moment(date)
+        for i in 1...5 {
+            chosenDay = chosenDay.subtract(7.days)
+            let pastDayDate = chosenDay.date
+            let pastDateString = dateFormatter.stringFromDate(pastDayDate)
+            pastSixDays[pastDateString] = 0.0
+        }
+        
+        // Load Records
+        loadRecords()
+        
+        for record in self.records {
+            
+            // Check if the record is the selected past six days.
+            let recordDate = record["date"] as! String
+            if (pastSixDays.keys.contains(recordDate)) {
+                
+                // Check the type of record, only use "Sales"
+                let type = record["type"] as! Int
+                if (type == 0) {
+                    
+                    // Get the amount and add to the dictionary for the respective dates.
+                    let amount = record["amount"] as! Double
+                    let dayAmount = pastSixDays[recordDate]
+                    let newDayAmount = dayAmount! + amount
+                    pastSixDays[recordDate] = newDayAmount
+                }
+            }
+        }
+        return pastSixDays
     }
 }
