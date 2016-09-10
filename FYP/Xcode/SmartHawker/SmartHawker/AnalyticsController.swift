@@ -170,10 +170,10 @@ class AnalyticsController{
     }
     
     // Return an array of sales amount based on their best sales
-    func getBestSalesMonth() -> ([Int : Double], [Int]){
+    func getBestSalesMonth() -> ([Int : Double], [Int], Double){
         
         var bestSalesMonth = [Int : Double] ()
-        
+        var total = 0.0
         // Get the year.
         let date = NSDate()
         let dateFormatter = NSDateFormatter()
@@ -193,7 +193,6 @@ class AnalyticsController{
             // Get the year of this record.
             dateFormatter.dateFormat = "yyyy"
             let recordYear = Int(dateFormatter.stringFromDate(recordDate!))
-            
             if (recordYear == year) {
                 
                 // Get the type of the record, only work with type "Sales".
@@ -214,11 +213,12 @@ class AnalyticsController{
                     }
                     let newMonthAmount = monthAmount! + amount
                     bestSalesMonth[recordMonth!] = newMonthAmount
+                    total += amount
                 }
             }
         }
         let sortedKeys = Array(bestSalesMonth.keys).sort({bestSalesMonth[$1] < bestSalesMonth[$0]})
-        return (bestSalesMonth, sortedKeys)
+        return (bestSalesMonth, sortedKeys, total)
     }
     
     // Return an array of sales amount based on their best sales
