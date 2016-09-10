@@ -45,7 +45,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     // View Did Load
     override func viewDidLoad() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TransactionFinalViewController.handleTap(_:))))
+        //view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TransactionFinalViewController.handleTap(_:))))
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -390,7 +390,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         descriptionTextField.autoCompleteTextColor = UIColor(red: 128.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
         descriptionTextField.autoCompleteTextFont = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
         descriptionTextField.autoCompleteCellHeight = 35.0
-        descriptionTextField.maximumAutoCompleteCount = 20
+        descriptionTextField.maximumAutoCompleteCount = 1
         descriptionTextField.hidesWhenSelected = true
         descriptionTextField.hidesWhenEmpty = true
         descriptionTextField.enableAttributedText = true
@@ -413,10 +413,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     
     private func fetchAutocompletePlaces(keyword:String) {
-        var array = [String]()
-        array.append("Dog")
-        array.append("Mouse")
-        array.append("Cat")
+        var array = shared.stringsWithAutoFill
         var locations = [String]()
         for word in array{
             if word.containsString(keyword){
