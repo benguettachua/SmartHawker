@@ -179,7 +179,6 @@ class AnalyticsController{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy"
         let year = Int(dateFormatter.stringFromDate(date))
-        print("YEAR IS " + String(year))
         // Load records
         loadRecords()
         
