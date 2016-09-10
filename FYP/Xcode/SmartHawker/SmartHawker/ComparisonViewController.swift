@@ -24,8 +24,29 @@ class ComparisonViewController: UIViewController {
     
     func getPastSixDays(date: NSDate) {
         
+        // Get the sales for the past six days, with the date being in String type
         let pastSixDays = analyticController.getPastSixSimilarDays(date)
-        print(pastSixDays)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        // Create a new Dictionary with Date and Amount, so that the date can be sorted.
+        var newPastSixDays = [NSDate : Double]()
+        
+        // Populate the new dictionary.
+        for key in pastSixDays.keys {
+            let dateKey = dateFormatter.dateFromString(key)
+            newPastSixDays[dateKey!] = pastSixDays[key]
+        }
+        
+        // Sort the new dictionary according to date.
+        let sortedKeys = Array(newPastSixDays.keys).sort(<)
+        
+        // Print the date and sales amount, to be changed to graph.
+        for day in sortedKeys {
+            let dayString = dateFormatter.stringFromDate(day)
+            print("Date: " + dayString + " Amount: " + String(newPastSixDays[day]))
+        }
     }
     
     // Changing Dates of the record
