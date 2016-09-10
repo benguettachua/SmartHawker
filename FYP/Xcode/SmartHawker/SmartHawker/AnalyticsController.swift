@@ -169,4 +169,100 @@ class AnalyticsController{
         return (sales, COGS, expenses, profit)
     }
     
+    // Return an array of sales amount based on their best sales
+    func getBestSalesMonth() -> ([Int : Double], [Int]){
+        
+        var bestSalesMonth = [Int : Double] ()
+        
+        // Get the year.
+        let date = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let year = Int(dateFormatter.stringFromDate(date))
+        print("YEAR IS " + String(year))
+        // Load records
+        loadRecords()
+        
+        // Loop through all records and save them according to their month.
+        for record in self.records {
+            
+            // Check the year of the record, only work with the current year records.
+            let recordDateString = record["date"] as! String
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let recordDate = dateFormatter.dateFromString(recordDateString)
+            
+            // Get the year of this record.
+            dateFormatter.dateFormat = "yyyy"
+            let recordYear = Int(dateFormatter.stringFromDate(recordDate!))
+            
+            if (recordYear == year) {
+                
+                // Get the type of the record, only work with type "Sales".
+                let type = record["type"] as! Int
+                if (type == 0) {
+                    
+                    // Get the month of this record.
+                    dateFormatter.dateFormat = "MM"
+                    let recordMonth = Int(dateFormatter.stringFromDate(recordDate!))
+                    
+                    // Get the amount of this record.
+                    let amount = record["amount"] as! Double
+                    
+                    // Add this record's amount to its month's total sales
+                    var monthAmount = bestSalesMonth[recordMonth!]
+                    if (monthAmount == nil) {
+                        monthAmount = 0.0
+                    }
+                    let newMonthAmount = monthAmount! + amount
+                    bestSalesMonth[recordMonth!] = newMonthAmount
+                }
+            }
+        }
+        let sortedKeys = Array(bestSalesMonth.keys).sort({bestSalesMonth[$1] < bestSalesMonth[$0]})
+        return (bestSalesMonth, sortedKeys)
+    }
+    
+    // Return an array of sales amount based on their best sales
+    func getBestSalesYear() -> ([Int : Double], [Int]){
+        
+        var bestSalesYear = [Int : Double] ()
+        
+        // Initialize Date Formatter to use
+        let dateFormatter = NSDateFormatter()
+        
+        // Load records
+        loadRecords()
+        
+        // Loop through all records and save them according to their year.
+        for record in self.records {
+            
+            // Check the year of the record, only work with the current year records.
+            let recordDateString = record["date"] as! String
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let recordDate = dateFormatter.dateFromString(recordDateString)
+            
+            // Get the year of this record.
+            dateFormatter.dateFormat = "yyyy"
+            let recordYear = Int(dateFormatter.stringFromDate(recordDate!))
+            
+            // Get the type of the record, only work with type "Sales".
+            let type = record["type"] as! Int
+            if (type == 0) {
+                
+                // Get the amount of this record.
+                let amount = record["amount"] as! Double
+                
+                // Add this record's amount to its year total sales
+                var yearAmount = bestSalesYear[recordYear!]
+                if (yearAmount == nil) {
+                    yearAmount = 0.0
+                }
+                let newYearAmount = yearAmount! + amount
+                bestSalesYear[recordYear!] = newYearAmount
+            }
+            
+        }
+        let sortedKeys = Array(bestSalesYear.keys).sort({bestSalesYear[$1] < bestSalesYear[$0]})
+        return (bestSalesYear, sortedKeys)
+    }
 }

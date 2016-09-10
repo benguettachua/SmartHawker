@@ -22,13 +22,13 @@ class AnalyticsViewControllerNEW: UIViewController {
     @IBAction func chooseCategory(sender: UISegmentedControl) {
         
         if (sender.selectedSegmentIndex == 0) {
-            container1.alpha = 1
-            container2.alpha = 0
-            container3.alpha = 0
-        } else if (sender.selectedSegmentIndex == 1) {
             container1.alpha = 0
             container2.alpha = 0
             container3.alpha = 1
+        } else if (sender.selectedSegmentIndex == 1) {
+            container1.alpha = 1
+            container2.alpha = 0
+            container3.alpha = 0
         } else if (sender.selectedSegmentIndex == 2) {
             container1.alpha = 0
             container2.alpha = 1
