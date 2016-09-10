@@ -65,6 +65,31 @@ class connectionDAO{
             
         }
     }
+    
+    //loads autocomplete words
+    func loadStringIntoAutoFill() {
+        let query = PFQuery(className: "Record")
+        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        do{
+            let array = try query.findObjects()
+            var descriptions = [String]()
+            
+            for object in array {
+                if object["description"] != nil {
+                    let description = object["description"] as! String
+                    if description != "" {
+                        descriptions.append(description)
+                    }
+                }
+            }
+            toShare.stringsWithAutoFill = descriptions
+        } catch {
+            
+        }
+    }
+    
+    
     //unloads all data on the calendar
     func unloadRecords(){
         // Part 1: Load from DB and pin into local datastore.

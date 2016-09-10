@@ -133,6 +133,9 @@ class MainViewControllerNew: UIViewController{
         self.lowestSalesDay.text = values.7
         
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
+        
+        connectionDAO().loadStringIntoAutoFill()
+        print(toShare.stringsWithAutoFill)
     }
     
     

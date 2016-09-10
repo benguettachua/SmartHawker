@@ -37,7 +37,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var SGDLabel: UILabel!
     
     // Text Fields
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: AutoCompleteTextField!
     @IBOutlet weak var amountTextField: UITextField!
     
     // View
@@ -45,7 +45,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     // View Did Load
     override func viewDidLoad() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TransactionFinalViewController.handleTap(_:))))
         
         var faicon = [String: UniChar]()
         faicon["faleftback"] = 0xf053
@@ -139,6 +139,9 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         
         amountTextField.becomeFirstResponder()
         
+        connectionDAO().loadStringIntoAutoFill()
+        configureTextField()
+        handleTextFieldInterfaces()
         // Setting of image
         
     }
@@ -381,5 +384,50 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         alertController.addAction(cancelAction)
         
         self.presentViewController(alertController, animated: true, completion:{})
+    }
+    
+    func configureTextField(){
+        descriptionTextField.autoCompleteTextColor = UIColor(red: 128.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
+        descriptionTextField.autoCompleteTextFont = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
+        descriptionTextField.autoCompleteCellHeight = 35.0
+        descriptionTextField.maximumAutoCompleteCount = 20
+        descriptionTextField.hidesWhenSelected = true
+        descriptionTextField.hidesWhenEmpty = true
+        descriptionTextField.enableAttributedText = true
+        var attributes = [String:AnyObject]()
+        attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
+        attributes[NSFontAttributeName] = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
+        descriptionTextField.autoCompleteAttributes = attributes
+    }
+    
+    func handleTextFieldInterfaces(){
+        descriptionTextField.onTextChange = {[weak self] text in
+            if !text.isEmpty{
+                self?.fetchAutocompletePlaces(text)
+            }
+        }
+        
+    }
+    
+    //MARK: - Private Methods
+    
+    
+    private func fetchAutocompletePlaces(keyword:String) {
+        var array = [String]()
+        array.append("Dog")
+        array.append("Mouse")
+        array.append("Cat")
+        var locations = [String]()
+        for word in array{
+            if word.containsString(keyword){
+                locations.append(word)
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.descriptionTextField.autoCompleteStrings = locations
+        })
+        
+        
     }
 }
