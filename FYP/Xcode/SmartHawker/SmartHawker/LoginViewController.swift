@@ -122,6 +122,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(true, forKey: "firstLaunch")
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap(_:))))
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()

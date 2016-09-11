@@ -14,13 +14,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.enableLocalDatastore()
         Parse.setApplicationId("p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht", clientKey: "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt")
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let firstLaunch = defaults.boolForKey("firstLaunch")
+        print(firstLaunch)
+        if firstLaunch {
+            print("Not first launch.")
+          
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Main") as UIViewController
+
+        
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        
+        
+        }else {
+            print("First launch, setting NSUserDefault.")
+    
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("lang") as! UINavigationController
+    
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+    
+        }
         return true
     }
 

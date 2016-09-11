@@ -13,12 +13,21 @@ class StartUpPage: UITableViewController{
     // MARK: Proerties
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath == 0{
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateViewControllerWithIdentifier("Main")
+       
+        
+        if indexPath.row == 0{
             Localize.setCurrentLanguage("en")
-        }else if indexPath == 1{
+            self.presentViewController(mainVC, animated: true, completion: nil)
+            
+        }else if indexPath.row == 1{
             Localize.setCurrentLanguage("zh-Hans")
+            print("1")
         }else{
             Localize.setCurrentLanguage("ms")
+            print("2")
         }
     }
     
