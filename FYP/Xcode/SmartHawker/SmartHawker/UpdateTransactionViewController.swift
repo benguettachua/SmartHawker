@@ -23,8 +23,8 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     @IBOutlet weak var descriptionTextField: UITextField!
     
     // Buttons
-    @IBOutlet weak var COGSButton: UIButton!
-    @IBOutlet weak var otherExpensesButton: UIButton!
+    //@IBOutlet weak var COGSButton: UIButton!
+    //@IBOutlet weak var otherExpensesButton: UIButton!
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     @IBOutlet weak var todaybtn: UIButton!
@@ -36,8 +36,8 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     @IBOutlet weak var imageicon: UILabel!
     
     // Bar Button Item
-    @IBOutlet weak var expensesBarButtonItem: UIButton!
-    @IBOutlet weak var salesBarButtonItem: UIButton!
+    //@IBOutlet weak var expensesBarButtonItem: UIButton!
+    //@IBOutlet weak var salesBarButtonItem: UIButton!
     
 
     
@@ -128,10 +128,10 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         imageicon.font = UIFont(name: "FontAwesome", size: 20)
         imageicon.text = String(format: "%C", faicon["faimage"]!)
         
-        COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
-        otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
-        salesBarButtonItem.setTitle("Sales".localized(), forState: .Normal)
-        expensesBarButtonItem.setTitle("Expenses".localized(), forState: .Normal)
+        //COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+        //otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
+        //salesBarButtonItem.setTitle("Sales".localized(), forState: .Normal)
+        //expensesBarButtonItem.setTitle("Expenses".localized(), forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -140,22 +140,22 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             amountView.backgroundColor = hexStringToUIColor("006cff")
             
             // Hide COGS and Expenses button
-            COGSButton.hidden = true
-            otherExpensesButton.hidden = true
+            //COGSButton.hidden = true
+            //otherExpensesButton.hidden = true
             
             // UI Bar Button Item Change
-            salesBarButtonItem.setTitleColor(hexStringToUIColor("006cff"), forState: .Normal)
-            expensesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            //salesBarButtonItem.setTitleColor(hexStringToUIColor("006cff"), forState: .Normal)
+            //expensesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         } else {
             amountView.backgroundColor = hexStringToUIColor("ff0000")
             
             // Show COGS and Expenses button
-            COGSButton.hidden = false
-            otherExpensesButton.hidden = false
+            //COGSButton.hidden = false
+            //otherExpensesButton.hidden = false
             
             // UI Bar Button Item Change
-            salesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-            expensesBarButtonItem.setTitleColor(hexStringToUIColor("ff0000"), forState: .Normal)
+            //salesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            //expensesBarButtonItem.setTitleColor(hexStringToUIColor("ff0000"), forState: .Normal)
         }
     }
     // Changing colour based on colour code
@@ -192,8 +192,8 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         type = 1
         
         // Change the colour of buttons
-        COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        otherExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        //COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        //otherExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
     }
     
     // Select other expenses as the type.
@@ -202,8 +202,8 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         type = 2
         
         // Change the colour of buttons
-        COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        otherExpensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        //COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        //otherExpensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
     }
     
     // Attach receipt for Audit Purpose
