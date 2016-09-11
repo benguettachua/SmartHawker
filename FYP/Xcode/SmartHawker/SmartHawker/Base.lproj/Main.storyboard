@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
->>>>>>> origin/master
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -47,7 +43,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="btn"/>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="presentation" id="Qfp-Op-bEZ"/>
+                                                    <segue destination="BYZ-38-t0r" kind="modal" id="Qfp-Op-bEZ"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -72,7 +68,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="UwT-UI-dcx" kind="presentation" id="ee8-T8-QJN"/>
+                                    <segue destination="UwT-UI-dcx" kind="modal" id="ee8-T8-QJN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="By continuing, you are indicating that you agree to the Privacy Policy and Terms" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbP-jy-BXn">
@@ -106,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6dH-cE-hAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="405" y="305.28169014084506"/>
+            <point key="canvasLocation" x="216" y="289"/>
         </scene>
         <!--Sign Up Page Two View Controller-->
         <scene sceneID="rja-1f-0cU">
@@ -130,7 +126,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="btn"/>
                                                 <connections>
-                                                    <segue destination="eTl-4s-0qY" kind="presentation" id="ndA-ih-qca"/>
+                                                    <segue destination="eTl-4s-0qY" kind="modal" id="ndA-ih-qca"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -167,7 +163,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="vfn-8w-cJh" kind="presentation" id="fID-41-hmf"/>
+                                    <segue destination="vfn-8w-cJh" kind="modal" id="fID-41-hmf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-f2-Mna">
@@ -204,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIa-Yf-hfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1351.875" y="305.28169014084506"/>
+            <point key="canvasLocation" x="721" y="289"/>
         </scene>
         <!--Sign Up Page Three View Controller-->
         <scene sceneID="y2E-CS-MXt">
@@ -228,7 +224,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="btn"/>
                                                 <connections>
-                                                    <segue destination="UwT-UI-dcx" kind="presentation" id="YqZ-aV-GNs"/>
+                                                    <segue destination="UwT-UI-dcx" kind="modal" id="YqZ-aV-GNs"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -276,36 +272,28 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCO-Ma-kYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2265" y="305.28169014084506"/>
+            <point key="canvasLocation" x="1208" y="289"/>
         </scene>
         <!--Select language-->
         <scene sceneID="XWC-2k-f9J">
             <objects>
                 <tableViewController id="8MO-iI-UGe" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ac7-po-UcT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="" id="Fyq-jn-djg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="Afm-vN-dHo" style="IBUITableViewCellStyleDefault" id="VPb-5t-Wng">
-                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VPb-5t-Wng" id="QLo-8F-7kb">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Afm-vN-dHo">
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Afm-vN-dHo">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
->>>>>>> origin/master
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -315,14 +303,10 @@ this password and admin pin</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yOC-uf-gHy">
-                                        <rect key="frame" x="0.0" y="143" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="143" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOC-uf-gHy" id="XmM-gf-dvM">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
->>>>>>> origin/master
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Chinese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4z-7Ek">
@@ -335,14 +319,10 @@ this password and admin pin</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8bd-NI-S76">
-                                        <rect key="frame" x="0.0" y="187" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="187" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bd-NI-S76" id="VeU-pP-Pkf">
-<<<<<<< HEAD
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
->>>>>>> origin/master
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Malay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDb-JG-riL">
@@ -366,7 +346,7 @@ this password and admin pin</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uqy-gf-0k0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204.375" y="1561.2676056338028"/>
+            <point key="canvasLocation" x="109" y="1478"/>
         </scene>
         <!--welcomePage-->
         <scene sceneID="tne-QT-ifu">
@@ -472,7 +452,7 @@ this password and admin pin</string>
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="tmR-p1-Jn7" kind="presentation" id="LT5-os-JSa"/>
+                                                    <segue destination="tmR-p1-Jn7" kind="modal" id="LT5-os-JSa"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -564,7 +544,7 @@ this password and admin pin</string>
                         <outlet property="registerLabel" destination="LiV-Nq-fah" id="1ww-w1-D5T"/>
                         <outlet property="smarthawkerLogo" destination="dlY-3U-Tfs" id="ayG-iE-UQ8"/>
                         <outlet property="usernameTextField" destination="ArY-7T-wmf" id="ich-mU-hfv"/>
-                        <segue destination="9rU-gi-HLB" kind="presentation" identifier="loginSuccess" id="6Kf-CH-RRH"/>
+                        <segue destination="9rU-gi-HLB" kind="modal" identifier="loginSuccess" id="6Kf-CH-RRH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -573,7 +553,7 @@ this password and admin pin</string>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="1095" y="1298.2394366197182"/>
+            <point key="canvasLocation" x="584" y="1229"/>
         </scene>
         <!--AdminPIN View Controller-->
         <scene sceneID="TFq-ct-rBu">
@@ -678,12 +658,12 @@ this password and admin pin</string>
                         <outlet property="adminpinicon" destination="cYv-TV-D8G" id="zco-Lu-hkp"/>
                         <outlet property="cancelAndLogout" destination="nKx-rL-Ikq" id="hDe-aH-rDs"/>
                         <outlet property="submitButton" destination="ToA-rb-EoN" id="y9P-rl-JsJ"/>
-                        <segue destination="xvq-Kx-gUH" kind="presentation" identifier="toMain" id="tPZ-ny-ePW"/>
+                        <segue destination="xvq-Kx-gUH" kind="modal" identifier="toMain" id="tPZ-ny-ePW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c22-yS-Ua9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3311.25" y="1298.2394366197182"/>
+            <point key="canvasLocation" x="1766" y="1229"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="h1a-Hd-syf">
@@ -932,12 +912,12 @@ this password and admin pin</string>
                         <outlet property="phoneNumberTextField" destination="8V0-XH-wlT" id="Ne2-sq-DNn"/>
                         <outlet property="registerButton" destination="LUN-1v-x5r" id="7v4-2N-SdH"/>
                         <outlet property="usernameTextField" destination="5LF-RF-K5c" id="rkc-1E-Vbk"/>
-                        <segue destination="xvq-Kx-gUH" kind="presentation" identifier="registerSuccess" id="JmP-wi-c8m"/>
+                        <segue destination="xvq-Kx-gUH" kind="modal" identifier="registerSuccess" id="JmP-wi-c8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMs-Om-CsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402.5" y="2189.788732394366"/>
+            <point key="canvasLocation" x="748" y="2073"/>
         </scene>
         <!--Monthly Record-->
         <scene sceneID="0ap-TT-BAv">
@@ -1020,7 +1000,7 @@ this password and admin pin</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5d-xz-eia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4648.125" y="2401.0563380281687"/>
+            <point key="canvasLocation" x="2479" y="2273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IKR-hD-4AW">
@@ -1036,11 +1016,7 @@ this password and admin pin</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zoX-YK-FP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2228" y="2420"/>
-=======
-            <point key="canvasLocation" x="3600" y="2506.6901408450703"/>
->>>>>>> origin/master
         </scene>
         <!--Home-->
         <scene sceneID="9f0-zr-LK6">
@@ -1096,12 +1072,9 @@ this password and admin pin</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tuesday 21st August 2016" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbw-7D-Pc1">
                                                 <rect key="frame" x="24" y="15" width="126" height="112"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="widthClass=compact">
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                                </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your last record was on:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wac-GT-x1G">
                                                 <rect key="frame" x="214" y="49" width="142" height="43"/>
@@ -1125,9 +1098,8 @@ this password and admin pin</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="225"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kau-G1-qJg">
-                                                        <rect key="frame" x="9" y="15" width="121" height="66"/>
+                                                        <rect key="frame" x="9" y="15" width="110" height="66"/>
                                                         <subviews>
-<<<<<<< HEAD
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SET MONTHLY TARGET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ju1-jh-yWR">
                                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="33"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
@@ -1136,16 +1108,6 @@ this password and admin pin</string>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zW-Kk-yZJ">
                                                                 <rect key="frame" x="39" y="33" width="33" height="33"/>
-=======
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SET MONTHLY TARGET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ju1-jh-yWR">
-                                                                <rect key="frame" x="0.0" y="0.0" width="121" height="33"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zW-Kk-yZJ">
-                                                                <rect key="frame" x="44" y="33" width="33" height="33"/>
->>>>>>> origin/master
                                                                 <state key="normal" image="homeview-addbtn">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
@@ -1166,20 +1128,20 @@ this password and admin pin</string>
                                                 <rect key="frame" x="184" y="0.0" width="180" height="225"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9hj-gW-Sqg">
-                                                        <rect key="frame" x="19" y="15" width="92" height="66"/>
+                                                        <rect key="frame" x="19" y="15" width="83" height="66"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ADD NEW ENTRY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUc-dR-b4J">
-                                                                <rect key="frame" x="0.0" y="0.0" width="92" height="33"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD NEW ENTRY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUc-dR-b4J">
+                                                                <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLH-lE-igp">
-                                                                <rect key="frame" x="29" y="33" width="33" height="33"/>
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLH-lE-igp">
+                                                                <rect key="frame" x="25" y="33" width="33" height="33"/>
                                                                 <state key="normal" image="homeview-addbtn"/>
                                                                 <connections>
                                                                     <action selector="addTodayRecord:" destination="GfR-DB-bth" eventType="touchUpInside" id="PgH-AB-7q4"/>
-                                                                    <segue destination="Ch1-He-QFh" kind="presentation" identifier="addRecord" id="FKB-a4-dJ9"/>
+                                                                    <segue destination="Ch1-He-QFh" kind="modal" identifier="addRecord" id="FKB-a4-dJ9"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1196,32 +1158,26 @@ this password and admin pin</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KkO-T9-5ND">
                                         <rect key="frame" x="0.0" y="460" width="364" height="226"/>
                                         <subviews>
-<<<<<<< HEAD
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nJY-fT-IdH">
                                                 <rect key="frame" x="13" y="10" width="338" height="203"/>
-=======
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nJY-fT-IdH">
-                                                <rect key="frame" x="13" y="10" width="338" height="202"/>
->>>>>>> origin/master
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-Gt-cqB">
-                                                        <rect key="frame" x="103" y="0.0" width="133" height="167"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-Gt-cqB">
+                                                        <rect key="frame" x="113" y="0.0" width="112" height="99"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview - This Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qev-CL-QGI" userLabel="salesmonthlabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="133" height="167"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview - This Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qev-CL-QGI" userLabel="salesmonthlabel">
+                                                                <rect key="frame" x="0.0" y="0.0" width="112" height="99"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="LRp-Dl-GOj">
-                                                        <rect key="frame" x="0.0" y="169" width="338" height="33"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LRp-Dl-GOj">
+                                                        <rect key="frame" x="0.0" y="104" width="338" height="99"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0na-Sk-FfT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0na-Sk-FfT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VBj-eQ-Lp3">
                                                                         <rect key="frame" x="27" y="0.0" width="24" height="49"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
@@ -1230,26 +1186,15 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="1HN-oP-Wek">
                                                                         <rect key="frame" x="27" y="49" width="24" height="50"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VBj-eQ-Lp3">
-                                                                        <rect key="frame" x="29" y="0.0" width="26" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="1HN-oP-Wek">
-                                                                        <rect key="frame" x="30" y="18" width="24" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.0" green="0.42352941179999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="xo6-21-lbL">
-                                                                <rect key="frame" x="85" y="0.0" width="83" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xo6-21-lbL">
+                                                                <rect key="frame" x="87" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkZ-ct-KLq">
                                                                         <rect key="frame" x="24" y="0.0" width="29" height="49"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
@@ -1257,25 +1202,15 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esd-eG-9qE">
                                                                         <rect key="frame" x="24" y="49" width="29" height="50"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkZ-ct-KLq">
-                                                                        <rect key="frame" x="26" y="0.0" width="32" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esd-eG-9qE">
-                                                                        <rect key="frame" x="27" y="18" width="29" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="LPI-YV-smX">
-                                                                <rect key="frame" x="170" y="0.0" width="83" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LPI-YV-smX">
+                                                                <rect key="frame" x="174" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7M4-3p-vPK">
                                                                         <rect key="frame" x="17" y="0.0" width="43" height="49"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
@@ -1283,25 +1218,15 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkS-Ip-KhR">
                                                                         <rect key="frame" x="17" y="49" width="43" height="50"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7M4-3p-vPK">
-                                                                        <rect key="frame" x="18" y="0.0" width="48" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkS-Ip-KhR">
-                                                                        <rect key="frame" x="20" y="18" width="43" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9fE-iR-Mul">
-                                                                <rect key="frame" x="255" y="0.0" width="83" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9fE-iR-Mul">
+                                                                <rect key="frame" x="261" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30U-GR-sEd">
                                                                         <rect key="frame" x="26" y="0.0" width="25" height="49"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
@@ -1309,15 +1234,6 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-fr-9fa" userLabel="Profit Amount">
                                                                         <rect key="frame" x="26" y="49" width="25" height="50"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30U-GR-sEd">
-                                                                        <rect key="frame" x="28" y="0.0" width="28" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-fr-9fa" userLabel="Profit Amount">
-                                                                        <rect key="frame" x="29" y="18" width="25" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1344,7 +1260,6 @@ this password and admin pin</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-q1-a8J">
                                         <rect key="frame" x="0.0" y="691" width="364" height="225"/>
                                         <subviews>
-<<<<<<< HEAD
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="b39-Qj-19A">
                                                 <rect key="frame" x="13" y="10" width="338" height="202"/>
                                                 <subviews>
@@ -1354,34 +1269,17 @@ this password and admin pin</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview - This Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-UN-Ykn" userLabel="salesmonthlabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="117" height="98"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-=======
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="b39-Qj-19A">
-                                                <rect key="frame" x="13" y="10" width="338" height="203"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JkE-iP-9U7">
-                                                        <rect key="frame" x="100" y="0.0" width="138" height="166"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview - This Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-UN-Ykn" userLabel="salesmonthlabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="138" height="166"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
->>>>>>> origin/master
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-<<<<<<< HEAD
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oHN-Ry-BVM">
                                                         <rect key="frame" x="0.0" y="103" width="338" height="99"/>
-=======
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oHN-Ry-BVM">
-                                                        <rect key="frame" x="0.0" y="170" width="338" height="33"/>
->>>>>>> origin/master
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hoe-Be-a2g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="77" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hoe-Be-a2g">
+                                                                <rect key="frame" x="0.0" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MGX-MD-nd0">
                                                                         <rect key="frame" x="27" y="0.0" width="24" height="50"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
@@ -1390,79 +1288,54 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="b9X-78-mER">
                                                                         <rect key="frame" x="27" y="50" width="24" height="49"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MGX-MD-nd0">
-                                                                        <rect key="frame" x="26" y="0.0" width="26" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="b9X-78-mER">
-                                                                        <rect key="frame" x="27" y="18" width="24" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.0" green="0.42352941176470588" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="SWW-bl-Dfr">
-                                                                <rect key="frame" x="87" y="0.0" width="77" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SWW-bl-Dfr">
+                                                                <rect key="frame" x="87" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTc-O8-AZW">
-                                                                        <rect key="frame" x="23" y="0.0" width="32" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTc-O8-AZW">
+                                                                        <rect key="frame" x="24" y="0.0" width="29" height="50"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="653-EP-GVI">
                                                                         <rect key="frame" x="24" y="50" width="29" height="49"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="653-EP-GVI">
-                                                                        <rect key="frame" x="24" y="18" width="29" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="zxK-W6-JiY">
-                                                                <rect key="frame" x="174" y="0.0" width="77" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zxK-W6-JiY">
+                                                                <rect key="frame" x="174" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5Y-AQ-v3K">
-                                                                        <rect key="frame" x="15" y="0.0" width="48" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5Y-AQ-v3K">
+                                                                        <rect key="frame" x="17" y="0.0" width="43" height="50"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N38-1q-VdY">
                                                                         <rect key="frame" x="17" y="50" width="43" height="49"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N38-1q-VdY">
-                                                                        <rect key="frame" x="17" y="18" width="43" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="LJg-CX-ww0">
-                                                                <rect key="frame" x="261" y="0.0" width="77" height="33"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LJg-CX-ww0">
+                                                                <rect key="frame" x="261" y="0.0" width="77" height="99"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of6-ZV-Iji">
-                                                                        <rect key="frame" x="25" y="0.0" width="28" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of6-ZV-Iji">
+                                                                        <rect key="frame" x="26" y="0.0" width="25" height="50"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-<<<<<<< HEAD
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6P-9q-HUA" userLabel="Profit Amount">
                                                                         <rect key="frame" x="26" y="50" width="25" height="49"/>
-=======
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6P-9q-HUA" userLabel="Profit Amount">
-                                                                        <rect key="frame" x="26" y="18" width="25" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.38812590670000002" green="0.65978047220000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1490,28 +1363,19 @@ this password and admin pin</string>
                                         <rect key="frame" x="0.0" y="921" width="364" height="225"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="88L-Kp-Dcr">
-                                                <rect key="frame" x="13" y="10" width="338" height="71"/>
+                                                <rect key="frame" x="13" y="10" width="338" height="64"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z3I-tR-yI8">
-<<<<<<< HEAD
                                                         <rect key="frame" x="122" y="0.0" width="94" height="16"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales - This Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbb-1u-Eoi" userLabel="salesmonthlabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="16"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-=======
-                                                        <rect key="frame" x="114" y="0.0" width="111" height="18"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales - This Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbb-1u-Eoi" userLabel="salesmonthlabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="111" height="18"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
->>>>>>> origin/master
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-<<<<<<< HEAD
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-AV-11x">
                                                         <rect key="frame" x="0.0" y="18" width="338" height="46"/>
                                                         <subviews>
@@ -1530,33 +1394,12 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="0          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6tL-mA-tt6">
                                                                         <rect key="frame" x="0.0" y="32" width="111" height="14"/>
-=======
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-AV-11x">
-                                                        <rect key="frame" x="0.0" y="20" width="338" height="51"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="chE-XK-Hb3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="112" height="51"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Average" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="fbt-Hf-3yN">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="112" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" misplaced="YES" text="-              " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Vyb-JK-2hB">
-                                                                        <rect key="frame" x="0.0" y="18" width="112" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" misplaced="YES" text="0          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6tL-mA-tt6">
-                                                                        <rect key="frame" x="0.0" y="35" width="112" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.16352396962966187" green="0.19341203583139732" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-<<<<<<< HEAD
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="atD-YU-aWB">
                                                                 <rect key="frame" x="113" y="0.0" width="112" height="46"/>
                                                                 <subviews>
@@ -1572,30 +1415,12 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cQ2-2m-eQt">
                                                                         <rect key="frame" x="0.0" y="32" width="112" height="14"/>
-=======
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="atD-YU-aWB">
-                                                                <rect key="frame" x="114" y="0.0" width="111" height="51"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Highest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VVw-9G-xAz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="111" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Highest Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="84E-Rq-5kJ">
-                                                                        <rect key="frame" x="0.0" y="18" width="111" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cQ2-2m-eQt">
-                                                                        <rect key="frame" x="0.0" y="35" width="111" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.14419957100153258" green="0.43228641014309921" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-<<<<<<< HEAD
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rm4-YP-pM5">
                                                                 <rect key="frame" x="227" y="0.0" width="111" height="46"/>
                                                                 <subviews>
@@ -1611,23 +1436,6 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7e-iu-kyX">
                                                                         <rect key="frame" x="0.0" y="32" width="111" height="14"/>
-=======
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rm4-YP-pM5">
-                                                                <rect key="frame" x="227" y="0.0" width="112" height="51"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Lowest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYZ-Uc-e4E">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="112" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Lowest Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWD-vl-d3p">
-                                                                        <rect key="frame" x="0.0" y="18" width="112" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7e-iu-kyX">
-                                                                        <rect key="frame" x="0.0" y="35" width="112" height="16"/>
->>>>>>> origin/master
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
                                                                         <color key="textColor" red="0.23257398245831162" green="0.63642100331810769" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1699,7 +1507,7 @@ this password and admin pin</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SW-ED-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5531.25" y="1330.9859154929577"/>
+            <point key="canvasLocation" x="2950" y="1260"/>
         </scene>
         <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
@@ -1721,7 +1529,7 @@ this password and admin pin</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIs-CO-F2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4260" y="1246.4788732394366"/>
+            <point key="canvasLocation" x="2272" y="1180"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Caj-Vw-5vz">
@@ -1731,7 +1539,7 @@ this password and admin pin</string>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ZR-HS-bcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247.5" y="3166.9014084507039"/>
+            <point key="canvasLocation" x="1732" y="2998"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="0xZ-Cg-vkW">
@@ -1756,7 +1564,7 @@ this password and admin pin</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="vGJ-2D-drf" kind="presentation" id="fJh-Up-DZ4"/>
+                                                    <segue destination="vGJ-2D-drf" kind="modal" id="fJh-Up-DZ4"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -2041,13 +1849,13 @@ this password and admin pin</string>
                         <outlet property="thursLabel" destination="xDB-jQ-yyd" id="zEa-jG-e2d"/>
                         <outlet property="tuesLabel" destination="wux-FY-PwB" id="Hu7-Vz-a2C"/>
                         <outlet property="wedLabel" destination="yWx-Qb-hBz" id="KHY-Mx-GTF"/>
-                        <segue destination="Ch1-He-QFh" kind="presentation" identifier="dayRecord" id="47q-Zj-VmP"/>
-                        <segue destination="H8x-4N-5Od" kind="presentation" identifier="recordDay" id="gsP-iE-zJW"/>
+                        <segue destination="Ch1-He-QFh" kind="modal" identifier="dayRecord" id="47q-Zj-VmP"/>
+                        <segue destination="H8x-4N-5Od" kind="modal" identifier="recordDay" id="gsP-iE-zJW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-mW-yGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3208.125" y="2457.0422535211264"/>
+            <point key="canvasLocation" x="1711" y="2326"/>
         </scene>
         <!--Report-->
         <scene sceneID="iaA-ON-ZmC">
@@ -2057,7 +1865,7 @@ this password and admin pin</string>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSJ-12-uDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247.5" y="-811.26760563380276"/>
+            <point key="canvasLocation" x="1732" y="-768"/>
         </scene>
         <!--Recording-->
         <scene sceneID="Sdk-0R-mDM">
@@ -2065,7 +1873,7 @@ this password and admin pin</string>
                 <viewControllerPlaceholder storyboardName="Recording" id="Ch1-He-QFh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kq7-fc-Ivh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7245" y="1330.9859154929577"/>
+            <point key="canvasLocation" x="3864" y="1260"/>
         </scene>
         <!--Analytics-->
         <scene sceneID="JVP-iy-8dd">
@@ -2075,7 +1883,7 @@ this password and admin pin</string>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3nk-wi-DBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4852.5" y="227.11267605633802"/>
+            <point key="canvasLocation" x="2588" y="215"/>
         </scene>
         <!--Record Day View Controller-->
         <scene sceneID="Eky-wT-xs0">
@@ -2333,12 +2141,12 @@ this password and admin pin</string>
                         <outlet property="noRecordLabel" destination="BD6-UB-apI" id="FaF-82-FKG"/>
                         <outlet property="noRecordView" destination="HJd-hn-Pk4" id="xTm-bf-3mR"/>
                         <outlet property="tableView" destination="X4z-a4-uTP" id="tao-jN-dvR"/>
-                        <segue destination="Ch1-He-QFh" kind="presentation" identifier="addRecord" id="qf3-bS-qhx"/>
+                        <segue destination="Ch1-He-QFh" kind="modal" identifier="addRecord" id="qf3-bS-qhx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="428-3Y-f7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3108.75" y="3715.1408450704221"/>
+            <point key="canvasLocation" x="1658" y="3517"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rhd-c1-imP">
@@ -2356,7 +2164,7 @@ this password and admin pin</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwh-dj-MsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313.75" y="1298.2394366197182"/>
+            <point key="canvasLocation" x="1234" y="1229"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ADG-2I-Wey">
@@ -2374,7 +2182,7 @@ this password and admin pin</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4HG-ra-heH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793.125" y="1561.2676056338028"/>
+            <point key="canvasLocation" x="-423" y="1478"/>
         </scene>
     </scenes>
     <resources>
@@ -2399,13 +2207,8 @@ this password and admin pin</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ee8-T8-QJN"/>
-<<<<<<< HEAD
         <segue reference="JmP-wi-c8m"/>
         <segue reference="47q-Zj-VmP"/>
-=======
-        <segue reference="tPZ-ny-ePW"/>
-        <segue reference="FKB-a4-dJ9"/>
->>>>>>> origin/master
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>
