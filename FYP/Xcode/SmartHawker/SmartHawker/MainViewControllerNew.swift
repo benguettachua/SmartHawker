@@ -43,6 +43,12 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var syncButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     
+    @IBOutlet weak var monthCOGSAmountLabel: UILabel!
+    @IBOutlet weak var weekProfitAmountLabel: UILabel!
+    @IBOutlet weak var weekExpensesAmountLabel: UILabel!
+    @IBOutlet weak var weekCOGSAmountLabel: UILabel!
+    @IBOutlet weak var weekSalesAmountLabel: UILabel!
+    
     @IBOutlet weak var overview: UILabel!
     
     override func viewDidLoad() {
@@ -131,6 +137,7 @@ class MainViewControllerNew: UIViewController{
         }
         self.highestSalesDay.text = values.6
         self.lowestSalesDay.text = values.7
+        self.monthCOGSAmountLabel.text = "$" + String(format: "%.0f", values.8)
         
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
         

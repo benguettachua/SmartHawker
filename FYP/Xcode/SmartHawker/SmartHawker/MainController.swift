@@ -46,7 +46,7 @@ class MainController{
         }
     }
     
-    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String){
+    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double){
         
         var array = connectionDAO().loadRecords()
         var datesAndRecords = [String:[PFObject]]()
@@ -100,6 +100,7 @@ class MainController{
         var lowSalesDay = "None".localized()
         var totalProfit = 0.0
         var expenses = 0.0
+        var COGS = 0.0
         
         for (myKey,myValue) in datesAndRecords {
             let dateFormatter = NSDateFormatter()
@@ -148,7 +149,7 @@ class MainController{
                         }
                         
                     } else if (type == 1) {
-                        expenses += amount
+                        COGS += amount
                         profit -= amount
                         totalProfit -= amount
                     } else if (type == 2) {
@@ -168,7 +169,7 @@ class MainController{
         if totalDays != 0{
             averageSales = (totalSales/totalDays)
         }
-        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay)
+        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS)
     }
     
 }
