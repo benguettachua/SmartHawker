@@ -56,6 +56,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var totalExpenses: UILabel!
     @IBOutlet weak var netProfit: UILabel!
     @IBOutlet weak var incomeTax: UIButton!
+    @IBOutlet weak var COGStext: UILabel!
     
     @IBOutlet weak var report: UINavigationItem!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -110,19 +111,18 @@ class SummaryViewController: UIViewController {
     func loadRecordsMonthly(){
         let loadedData = SummaryControllerNew().loadRecordsMonthly(chosenMonthDate, dateString: dateString)
         setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
-        self.salesText.text = loadedData.3
-        self.expensesText.text = loadedData.4
-        self.profitText.text = loadedData.5
+        self.salesText.text = loadedData.4
+        self.expensesText.text = loadedData.5
+        self.COGStext.text = loadedData.7
+        self.profitText.text = loadedData.6
     }
     func loadRecordsYearly(){
         let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
-        print(loadedData.0)
-        print(loadedData.1)
-        print(loadedData.2)
         setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
-        self.salesText.text = loadedData.3
-        self.expensesText.text = loadedData.4
-        self.profitText.text = loadedData.5
+        self.salesText.text = loadedData.4
+        self.expensesText.text = loadedData.5
+        self.COGStext.text = loadedData.7
+        self.profitText.text = loadedData.6
     }
     
     func loadRecordsWeekly(){
@@ -134,9 +134,10 @@ class SummaryViewController: UIViewController {
             array.append(newDate)
         }
         setData(array, values1: loadedData.0, values2: loadedData.1)
-        self.salesText.text = loadedData.2
-        self.expensesText.text = loadedData.3
-        self.profitText.text = loadedData.4
+        self.salesText.text = loadedData.3
+        self.expensesText.text = loadedData.4
+        self.COGStext.text = loadedData.6
+        self.profitText.text = loadedData.5
     }
     
     
@@ -279,9 +280,10 @@ class SummaryViewController: UIViewController {
             let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
             
             setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
-            self.salesText.text = loadedData.3
-            self.expensesText.text = loadedData.4
-            self.profitText.text = loadedData.5
+            self.salesText.text = loadedData.4
+            self.expensesText.text = loadedData.5
+            self.COGStext.text = loadedData.7
+            self.profitText.text = loadedData.6
             
             loadRecordsYearly()
             
@@ -340,9 +342,10 @@ class SummaryViewController: UIViewController {
             let loadedData = SummaryControllerNew().loadRecordsWeekly(daysInWeek)
             
             setData(daysInWeek, values1: loadedData.0, values2: loadedData.1)
-            self.salesText.text = loadedData.2
-            self.expensesText.text = loadedData.3
-            self.profitText.text = loadedData.4
+            self.salesText.text = loadedData.3
+            self.expensesText.text = loadedData.4
+            self.COGStext.text = loadedData.6
+            self.profitText.text = loadedData.5
             
             loadRecordsWeekly()
             

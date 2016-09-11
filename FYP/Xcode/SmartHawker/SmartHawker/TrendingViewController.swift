@@ -36,25 +36,31 @@ class TrendingViewController: UIViewController {
     // This week's values
     var useless4 = [Double]()
     var useless5 = [Double]()
+    var useless11 = [Double]()
     var weekSales = ""
     var weekExpenses = ""
     var weekProfit = ""
+    var weekCOGS = ""
     
     // This month's values
     var useless6 = [String]()
     var useless7 = [Double]()
     var useless8 = [Double]()
+    var useless9 = [Double]()
     var monthSales = ""
     var monthExpenses = ""
     var monthProfit = ""
+    var monthCOGS = ""
     
     // This year's values
     var useless1 = [String]()
     var useless2 = [Double]()
     var useless3 = [Double]()
+    var useless10 = [Double]()
     var yearSales = ""
     var yearExpenses = ""
     var yearProfit = ""
+    var yearCOGS = ""
     
     // Viewdidload
     override func viewWillAppear(animated: Bool) {
@@ -63,18 +69,18 @@ class TrendingViewController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy"
         var dateString = dateFormatter.stringFromDate(NSDate())
-        (useless1, useless2, useless3, yearSales, yearExpenses, yearProfit) = summaryController.loadRecordsYearly(dateString)
+        (useless1, useless2, useless3, useless10, yearSales, yearExpenses, yearProfit, yearCOGS) = summaryController.loadRecordsYearly(dateString)
         print(summaryController.loadRecordsYearly(dateString))
         // For day trending
         (todaySales, todayCOGS, todayExpenses, todayProfit) = analyticController.loadTodayRecord()
         
         // For week trending
-        (useless4, useless5, weekSales, weekExpenses, weekProfit) = summaryController.loadRecordsWeekly(daysInWeek())
+        (useless4, useless5, useless11, weekSales, weekExpenses, weekProfit, weekCOGS) = summaryController.loadRecordsWeekly(daysInWeek())
         
         // For month trending
         dateFormatter.dateFormat = "MM/yyyy"
         dateString = dateFormatter.stringFromDate(NSDate())
-        (useless6, useless7, useless8, monthSales, monthExpenses, monthProfit) = summaryController.loadRecordsMonthly(NSDate(), dateString: dateString)
+        (useless6, useless7, useless8, useless9, monthSales, monthExpenses, monthProfit, monthCOGS) = summaryController.loadRecordsMonthly(NSDate(), dateString: dateString)
     }
     
     @IBAction func chooseCategory(sender: UISegmentedControl) {

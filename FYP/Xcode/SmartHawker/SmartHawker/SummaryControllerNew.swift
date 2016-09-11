@@ -21,22 +21,25 @@ class SummaryControllerNew {
 
     
     // for loading records monthly
-    func loadRecordsMonthly(chosenMonthDate: NSDate, dateString: String) -> ([String], [Double], [Double], String, String, String){
+    func loadRecordsMonthly(chosenMonthDate: NSDate, dateString: String) -> ([String], [Double], [Double], [Double], String, String, String, String){
         
         var totalSalesAmount = 0.00
         var totalExpensesAmount = 0.00
+        var totalCOGSAmount = 0.00
         // Swift 2:
         let range = calendar!.rangeOfUnit(.Day, inUnit: .Month, forDate: chosenMonthDate)
         
         let numDays = range.length
         var series1 = [Double]()
         var series2 = [Double]()
+        var series3 = [Double]()
         var days = [String]()
         
         for i in 1...numDays{
             
             var salesAmount = 0.00
             var expensesAmount = 0.00
+            var COGSAmount = 0.00
             
             var stringToCheck = String(i) + "/" + dateString
             if i < 10 {
@@ -59,8 +62,8 @@ class SummaryControllerNew {
                         salesAmount += amount
                         totalSalesAmount += amount
                     } else if (type == 1) {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
+                        COGSAmount += amount
+                        totalCOGSAmount += amount
                     } else if (type == 2) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
@@ -71,26 +74,33 @@ class SummaryControllerNew {
             
             series1.append(salesAmount)
             series2.append(expensesAmount)
+            series3.append(COGSAmount)
         }
         let sales = "$" + String(format: "%.2f", totalSalesAmount)
         let expenses = "$" + String(format: "%.2f", totalExpensesAmount)
-        let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
-        return (days, series1, series2, sales, expenses, profit)
+        let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount - totalCOGSAmount))
+        let COGS = "$" + String(format: "%.2f", totalCOGSAmount)
+        
+        return (days, series1, series2, series3, sales, expenses, profit, COGS)
     }
     
     // for loading records yearly
-    func loadRecordsYearly(dateString: String) -> ([String], [Double], [Double], String, String, String){
+    func loadRecordsYearly(dateString: String) -> ([String], [Double], [Double], [Double], String, String, String, String){
         var salesAmount = 0.00
         var expensesAmount = 0.00
+        var COGSAmount = 0.00
         var totalSalesAmount = 0.00
         var totalExpensesAmount = 0.00
+        var totalCOGSAmount = 0.00
         var series1 = [Double]()
         var series2 = [Double]()
+        var series3 = [Double]()
         
         
         for i in 1...12 {
             salesAmount = 0.00
             expensesAmount = 0.00
+            COGSAmount = 0.00
             var text = ""
             if i < 10{
                 text = "0" + String(i)
@@ -109,8 +119,8 @@ class SummaryControllerNew {
                         salesAmount += amount
                         totalSalesAmount += amount
                     } else if (type == 1) {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
+                        COGSAmount += amount
+                        totalCOGSAmount += amount
                     } else if (type == 2) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
@@ -124,27 +134,33 @@ class SummaryControllerNew {
             
             series1.append(salesAmount)
             series2.append(expensesAmount)
+            series3.append(COGSAmount)
         }
         let sales = "$" + String(format: "%.2f", totalSalesAmount)
         let expenses = "$" + String(format: "%.2f", totalExpensesAmount)
-        let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
+        let COGS = "$" + String(format: "%.2f", totalCOGSAmount)
+        let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount - totalCOGSAmount))
         
-        return (months, series1, series2, sales, expenses, profit)
+        return (months, series1, series2, series3, sales, expenses, profit, COGS)
     }
     
     //for loading record weekly
-    func loadRecordsWeekly(daysInWeek: [String]) -> ([Double], [Double], String, String, String){
+    func loadRecordsWeekly(daysInWeek: [String]) -> ([Double], [Double], [Double], String, String, String, String){
         
         var salesAmount = 0.00
         var expensesAmount = 0.00
+        var COGSAmount = 0.00
         var series1 = [0.00]
         var series2 = [0.00]
+        var series3 = [0.00]
         var totalSalesAmount = 0.00
         var totalExpensesAmount = 0.00
+        var totalCOGSAmount = 0.00
         
         for stringToCheck in daysInWeek{
             salesAmount = 0.00
             expensesAmount = 0.00
+            COGSAmount = 0.00
             for record in self.records {
                 
                 let date = record["date"] as! String
@@ -156,8 +172,8 @@ class SummaryControllerNew {
                         salesAmount += amount
                         totalSalesAmount += amount
                     } else if (type == 1) {
-                        expensesAmount += amount
-                        totalExpensesAmount += amount
+                        COGSAmount += amount
+                        totalCOGSAmount += amount
                     } else if (type == 2) {
                         expensesAmount += amount
                         totalExpensesAmount += amount
@@ -168,11 +184,13 @@ class SummaryControllerNew {
             }
             series1.append(salesAmount)
             series2.append(expensesAmount)
+            series3.append(COGSAmount)
         }
         let sales = "$" + String(format: "%.2f", totalSalesAmount)
         let expenses = "$" + String(format: "%.2f", totalExpensesAmount)
+        let COGS = "$" + String(format: "%.2f", totalCOGSAmount)
         let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
-        return (series1, series2, sales, expenses, profit)
+        return (series1, series2, series3, sales, expenses, profit, COGS)
     }
 
 }
