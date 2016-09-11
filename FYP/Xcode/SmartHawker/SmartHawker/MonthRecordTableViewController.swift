@@ -137,10 +137,13 @@ class MonthRecordTableViewController: UITableViewController {
         var typeString = ""
         if (type == 0) {
             typeString = "Sales"
+            cell.recordTypeLabel.textColor = UIColor.greenColor()
         } else if (type == 1) {
             typeString = "COGS"
+            cell.recordTypeLabel.textColor = UIColor.redColor()
         } else if (type == 2) {
             typeString = "Expenses"
+            cell.recordTypeLabel.textColor = UIColor.redColor()
         }
         cell.recordTypeLabel.text = typeString.localized()
         
