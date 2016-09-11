@@ -120,7 +120,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         lists += "List".localized()
         
-        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 14)
         
         list.setTitle(String(lists), forState: .Normal);
         
@@ -134,7 +134,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         adds += "Add".localized()
         
-        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 14)
         
         add.setTitle(String(adds), forState: .Normal)
     }
