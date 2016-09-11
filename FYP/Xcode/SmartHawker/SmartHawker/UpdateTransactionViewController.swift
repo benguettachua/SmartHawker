@@ -23,21 +23,19 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     @IBOutlet weak var descriptionTextField: UITextField!
     
     // Buttons
-    //@IBOutlet weak var COGSButton: UIButton!
-    //@IBOutlet weak var otherExpensesButton: UIButton!
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     @IBOutlet weak var todaybtn: UIButton!
     @IBOutlet weak var addbtn: UIButton!
+    @IBOutlet weak var SGDLabel: UILabel!
     
     // Label
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var descicon: UILabel!
     @IBOutlet weak var imageicon: UILabel!
     
-    // Bar Button Item
-    //@IBOutlet weak var expensesBarButtonItem: UIButton!
-    //@IBOutlet weak var salesBarButtonItem: UIButton!
+    // Segment Control
+    @IBOutlet weak var categorySegmentControl: UISegmentedControl!
     
 
     
@@ -127,37 +125,17 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         descicon.text = String(format: "%C", faicon["fadesc"]!)
         imageicon.font = UIFont(name: "FontAwesome", size: 20)
         imageicon.text = String(format: "%C", faicon["faimage"]!)
-        
-        //COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
-        //otherExpensesButton.setTitle("Other expenses".localized(), forState: UIControlState.Normal)
-        //salesBarButtonItem.setTitle("Sales".localized(), forState: .Normal)
-        //expensesBarButtonItem.setTitle("Expenses".localized(), forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
-        // Change the background colour of the view
+        // Change the Text colour of the Labels
         if (type == 0) {
-            amountView.backgroundColor = hexStringToUIColor("006cff")
-            
-            // Hide COGS and Expenses button
-            //COGSButton.hidden = true
-            //otherExpensesButton.hidden = true
-            
-            // UI Bar Button Item Change
-            //salesBarButtonItem.setTitleColor(hexStringToUIColor("006cff"), forState: .Normal)
-            //expensesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            SGDLabel.textColor = hexStringToUIColor("006cff")
         } else {
-            amountView.backgroundColor = hexStringToUIColor("ff0000")
-            
-            // Show COGS and Expenses button
-            //COGSButton.hidden = false
-            //otherExpensesButton.hidden = false
-            
-            // UI Bar Button Item Change
-            //salesBarButtonItem.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-            //expensesBarButtonItem.setTitleColor(hexStringToUIColor("ff0000"), forState: .Normal)
+            SGDLabel.textColor = hexStringToUIColor("ff0000")
         }
     }
+    
     // Changing colour based on colour code
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
@@ -186,31 +164,29 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Select COGS as the type of expenses.
-    @IBAction func selectCOGS(sender: UIButton) {
-        // Change the type
-        type = 1
-        
-        // Change the colour of buttons
-        //COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        //otherExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-    }
     
-    // Select other expenses as the type.
-    @IBAction func selectExpenses(sender: UIButton) {
-        // Change the type
-        type = 2
+    @IBAction func changeCategory(sender: UISegmentedControl) {
         
-        // Change the colour of buttons
-        //COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        //otherExpensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        if (categorySegmentControl.selectedSegmentIndex == 0) {
+            
+            // Sales
+            type = 0
+            SGDLabel.textColor = hexStringToUIColor("006cff")
+        } else if (categorySegmentControl.selectedSegmentIndex == 1) {
+            
+            // COGS
+            type = 1
+            SGDLabel.textColor = hexStringToUIColor("ff0000")
+        } else if (categorySegmentControl.selectedSegmentIndex == 2) {
+            
+            // Expenses
+            type = 2
+            SGDLabel.textColor = hexStringToUIColor("ff0000")
+        }
     }
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-//        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-//        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-//        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
         selectNewImageFromPhotoLibrary()
     }
     
@@ -245,20 +221,6 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         }
         
     }
-    
-    
-    // Change the type to sale
-    @IBAction func typeSales(sender: UIButton) {
-        type = 0
-        self.viewWillAppear(true)
-    }
-    
-    // Change the type to expenses
-    @IBAction func typeExpenses(sender: UIButton) {
-        type = 1
-        self.viewWillAppear(true)
-    }
-    
     
     @IBAction func deleteRecord(sender: UIButton) {
         let selectedRecord = shared.selectedRecord

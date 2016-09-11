@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jbu-4G-lWA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jbu-4G-lWA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -32,6 +32,9 @@
                                                     <segment title="COGS"/>
                                                     <segment title="Expenses"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="chooseCategory:" destination="jbu-4G-lWA" eventType="valueChanged" id="zIX-FM-M0F"/>
+                                                </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wma-l7-2Nr">
                                                 <rect key="frame" x="0.0" y="30" width="328" height="105"/>
@@ -238,6 +241,7 @@
                         <outlet property="amountTextField" destination="rvb-dq-RDi" id="thH-Dr-IUs"/>
                         <outlet property="amountView" destination="Wma-l7-2Nr" id="lii-cd-hhW"/>
                         <outlet property="backbtn" destination="WkB-Sg-ZqT" id="g8G-u6-BbX"/>
+                        <outlet property="categorySegmentControl" destination="rPN-62-EDW" id="bKw-FQ-KvL"/>
                         <outlet property="descicon" destination="oeP-Ak-QKB" id="cIA-OB-61y"/>
                         <outlet property="descriptionTextField" destination="kfi-yb-MFA" id="McQ-1S-Uxn"/>
                         <outlet property="donebtn" destination="bWh-ZF-UCo" id="MPG-GY-rV0"/>
@@ -249,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="toU-qc-L07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4249" y="515"/>
+            <point key="canvasLocation" x="4240" y="423"/>
         </scene>
         <!--updateRecord-->
         <scene sceneID="knA-dl-CPz">
@@ -276,6 +280,9 @@
                                                     <segment title="COGS"/>
                                                     <segment title="Expenses"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="changeCategory:" destination="4YC-jJ-Rxh" eventType="valueChanged" id="tan-x4-bGo"/>
+                                                </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lv6-HP-QOw">
                                                 <rect key="frame" x="0.0" y="30" width="328" height="105"/>
@@ -490,10 +497,12 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="700"/>
                     <connections>
+                        <outlet property="SGDLabel" destination="B2h-mD-uMZ" id="eeM-Pd-Q8C"/>
                         <outlet property="addbtn" destination="ohR-fo-rK9" id="pmj-V1-3Zi"/>
                         <outlet property="amountTextField" destination="fdE-u4-808" id="y8g-LV-nHH"/>
                         <outlet property="amountView" destination="lv6-HP-QOw" id="you-KY-tdu"/>
                         <outlet property="backbtn" destination="NnE-Lr-c0H" id="bsN-EM-26l"/>
+                        <outlet property="categorySegmentControl" destination="G2v-VN-IoH" id="t7E-S9-B1h"/>
                         <outlet property="descicon" destination="2fT-uY-EQu" id="5bE-g3-3av"/>
                         <outlet property="descriptionTextField" destination="JBL-9W-dB7" id="O6g-VJ-Fbl"/>
                         <outlet property="donebtn" destination="ei0-l8-K92" id="Mdp-3w-rn3"/>

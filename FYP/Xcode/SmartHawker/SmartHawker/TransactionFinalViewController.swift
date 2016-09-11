@@ -19,15 +19,14 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     let picker = UIImagePickerController()
     var imageFile: PFFile!
     
+    // Segment Control
+    @IBOutlet weak var categorySegmentControl: UISegmentedControl!
+    
     // UIButton
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     @IBOutlet weak var todaybtn: UIButton!
     @IBOutlet weak var addbtn: UIButton!
-    @IBOutlet weak var COGSButton: UIButton!
-    @IBOutlet weak var otherExpensesButton: UIButton!
-    //@IBOutlet weak var typeExpensesButton: UIButton!
-    //@IBOutlet weak var typeSalesButton: UIButton!
     
     // UILabel
     @IBOutlet weak var descicon: UILabel!
@@ -93,8 +92,6 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         imageicon.font = UIFont(name: "FontAwesome", size: 20)
         imageicon.text = String(format: "%C", faicon["faimage"]!)
         
-        //COGSButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
-        //otherExpensesButton.setTitle("Other Expenses".localized(), forState: UIControlState.Normal)
         descriptionTextField.placeholder = "Add description".localized()
         recriptUploadLabel.text = "Attach your receipt (etc)".localized()
         
@@ -106,12 +103,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             selectedDate = dateFormatter.stringFromDate(NSDate())
         }
         todayLabel.text = selectedDate
-        //typeSalesButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
-        
-        //typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
-        //addbtn.setImage(UIImage(named: "defaultReceipt"), forState: .Normal)
-        
-        //typeExpensesButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
+
         
     }
     
@@ -122,19 +114,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         // Change the Text colour of the Labels
         if (type == 0) {
             SGDLabel.textColor = hexStringToUIColor("006cff")
-            
-            // Hide COGS and Expenses button
-            //COGSButton.hidden = true
-            //otherExpensesButton.hidden = true
-            //typeSalesButton.setTitleColor(hexStringToUIColor("006cff"), forState: .Normal)
-            //typeExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         } else {
             SGDLabel.textColor = hexStringToUIColor("ff0000")
-            // Hide COGS and Expenses button
-            //COGSButton.hidden = false
-            //otherExpensesButton.hidden = false
-            //typeSalesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-            //typeExpensesButton.setTitleColor(hexStringToUIColor("ff0000"), forState: .Normal)
         }
         
         amountTextField.becomeFirstResponder()
@@ -190,24 +171,25 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         )
     }
     
-    // Select COGS as the type of expenses.
-    @IBAction func selectCOGS(sender: UIButton) {
-        // Change the type
-        type = 1
+    // Change the category of the record.
+    @IBAction func chooseCategory(sender: UISegmentedControl) {
         
-        // Change the colour of buttons
-        COGSButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        otherExpensesButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-    }
-    
-    // Select other expenses as the type.
-    @IBAction func selectExpenses(sender: UIButton) {
-        // Change the type
-        type = 2
-        
-        // Change the colour of buttons
-        COGSButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        otherExpensesButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        if (categorySegmentControl.selectedSegmentIndex == 0) {
+            
+            // Sales
+            type = 0
+            SGDLabel.textColor = hexStringToUIColor("006cff")
+        } else if (categorySegmentControl.selectedSegmentIndex == 1) {
+            
+            // COGS
+            type = 1
+            SGDLabel.textColor = hexStringToUIColor("ff0000")
+        } else if (categorySegmentControl.selectedSegmentIndex == 2) {
+            
+            // Expenses
+            type = 2
+            SGDLabel.textColor = hexStringToUIColor("ff0000")
+        }
     }
     
     // Attach receipt for Audit Purpose
