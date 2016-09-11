@@ -60,19 +60,21 @@ class BestSalesViewController: UIViewController {
         combinedChartView.data = chartData
         
         combinedChartView.drawGridBackgroundEnabled = false
-        combinedChartView.xAxis.drawGridLinesEnabled = true
-        combinedChartView.rightAxis.drawGridLinesEnabled = true
-        combinedChartView.leftAxis.drawGridLinesEnabled = true
+        combinedChartView.xAxis.drawGridLinesEnabled = false
+        combinedChartView.rightAxis.drawGridLinesEnabled = false
+        combinedChartView.leftAxis.drawGridLinesEnabled = false
         
         combinedChartView.xAxis.drawAxisLineEnabled = false
-        combinedChartView.rightAxis.drawAxisLineEnabled = true
-        combinedChartView.leftAxis.drawAxisLineEnabled = true
+        combinedChartView.rightAxis.drawAxisLineEnabled = false
+        combinedChartView.leftAxis.drawAxisLineEnabled = false
         
         combinedChartView.xAxis.drawLabelsEnabled = true
+        combinedChartView.rightAxis.drawLabelsEnabled = false
+        combinedChartView.leftAxis.drawLabelsEnabled = false
         combinedChartView.xAxis.labelPosition = .Bottom
         
         combinedChartView.leftAxis.drawLimitLinesBehindDataEnabled = false
-        combinedChartView.xAxis.drawLimitLinesBehindDataEnabled = true
+        combinedChartView.xAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.rightAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.descriptionText = ""
     }

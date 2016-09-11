@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftMoment
+import Charts
 
 class ComparisonViewController: UIViewController {
     
@@ -17,13 +18,15 @@ class ComparisonViewController: UIViewController {
     
     // UI Button
     @IBOutlet weak var selectDateButton: UIButton!
-    
+    @IBOutlet weak var combinedChartView: BarChartView!
     override func viewDidLoad() {
     
     }
     
     func getPastSixDays(date: NSDate) {
         
+        var pastSixDaysRanked = [String]()
+        var pastSixDaysValue = [Double]()
         // Get the sales for the past six days, with the date being in String type
         let pastSixDays = analyticController.getPastSixSimilarDays(date)
         
@@ -45,8 +48,11 @@ class ComparisonViewController: UIViewController {
         // Print the date and sales amount, to be changed to graph.
         for day in sortedKeys {
             let dayString = dateFormatter.stringFromDate(day)
-            print("Date: " + dayString + " Amount: " + String(newPastSixDays[day]))
+            pastSixDaysRanked.append(dayString)
+            pastSixDaysValue.append(newPastSixDays[day]!)
         }
+        
+        setChart(pastSixDaysRanked, values: pastSixDaysValue)
     }
     
     // Changing Dates of the record
@@ -80,5 +86,45 @@ class ComparisonViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         self.presentViewController(alertController, animated: true, completion:{})
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [BarChartDataEntry] = []
+        var dates = [String]()
+        let dateFormatter = NSDateFormatter()
+        
+        for i in 0..<dataPoints.count {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateString1 = dateFormatter.dateFromString(dataPoints[i])
+            dateFormatter.dateFormat = "dd/MM"
+            dates.append(dateFormatter.stringFromDate(dateString1!))
+            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales")
+        let chartData = BarChartData(xVals: dates, dataSet: chartDataSet)
+        combinedChartView.data = chartData
+        
+        combinedChartView.drawGridBackgroundEnabled = false
+        combinedChartView.xAxis.drawGridLinesEnabled = false
+        combinedChartView.rightAxis.drawGridLinesEnabled = false
+        combinedChartView.leftAxis.drawGridLinesEnabled = false
+        
+        combinedChartView.xAxis.drawAxisLineEnabled = false
+        combinedChartView.rightAxis.drawAxisLineEnabled = false
+        combinedChartView.leftAxis.drawAxisLineEnabled = false
+        
+        combinedChartView.xAxis.drawLabelsEnabled = true
+        combinedChartView.xAxis.labelFont
+        combinedChartView.rightAxis.drawLabelsEnabled = false
+        combinedChartView.leftAxis.drawLabelsEnabled = false
+        combinedChartView.xAxis.labelPosition = .Bottom
+        
+        combinedChartView.leftAxis.drawLimitLinesBehindDataEnabled = false
+        combinedChartView.xAxis.drawLimitLinesBehindDataEnabled = true
+        combinedChartView.rightAxis.drawLimitLinesBehindDataEnabled = false
+        combinedChartView.descriptionText = ""
     }
 }
