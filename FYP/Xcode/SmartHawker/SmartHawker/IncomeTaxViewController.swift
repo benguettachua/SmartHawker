@@ -22,6 +22,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var grossProfitLabel: UILabel!
     @IBOutlet weak var adjustedProfitLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var incomeTaxAmountLabel: UILabel!
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var back: UIBarButtonItem!
@@ -63,21 +64,27 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func generateIncomeTax(sender: UIButton) {
         
-        // Get the adjusted profit, which will be calculated for tax.
-        var profit = adjustedProfitLabel.text
         
-        // Remove the "$" in front of the string.
-        profit?.removeAtIndex((profit?.startIndex)!)
         
-        // Turn the adjusted profit into Double for calculation.
-        let profitDouble = Double(profit!)
         
-        // Calculate the amount of tax payable.
-        let taxPayable = taxController.calculateTax(profitDouble!)
         
         // Inform the user the amount of tax he will have to pay based on his income.
-        let alert = UIAlertController(title: "Income Tax".localized(), message: "Your payable tax is $".localized() + String(format: "%.2f", taxPayable) + ".", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+        let alert = UIAlertController(title: "Disclaimer".localized(), message: "The calculations below are only meant to help you estimate your income tax payable. For the actual amount to be declared to IRAS, please check with your accountant and/or review your own financial records for the relevant year of assessment before making your declaration.".localized(), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { void in
+            // Get the adjusted profit, which will be calculated for tax.
+            var profit = self.adjustedProfitLabel.text
+            
+            // Remove the "$" in front of the string.
+            profit?.removeAtIndex((profit?.startIndex)!)
+            
+            // Turn the adjusted profit into Double for calculation.
+            let profitDouble = Double(profit!)
+            
+            // Calculate the amount of tax payable.
+            let taxPayable = self.taxController.calculateTax(profitDouble!)
+            
+            self.incomeTaxAmountLabel.text = "$" + String(format:"%.2f", taxPayable)
+        }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -92,7 +99,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         calculationLabelOnly.text = "(Revenue - COGS)".localized()
         additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses".localized()
         adjustedProfitLabelOnly.text = "Adjusted Profit \n(Gross Profit - Total Expenses)".localized()
-        generateTaxButton.setTitle("Generate Income Tax".localized(), forState: UIControlState.Normal)
+        generateTaxButton.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
         
     }
     

@@ -600,10 +600,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yph-cI-cVc">
-                            <rect key="frame" x="0.0" y="477" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="521" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Generate Income Tax">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="generateIncomeTax:" destination="jkn-GS-2O4" eventType="touchUpInside" id="T3y-R9-IR5"/>
@@ -797,6 +798,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="var-NT-OyW">
+                                        <rect key="frame" x="0.0" y="459" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="var-NT-OyW" id="mNC-C3-PG2">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your estimated tax payable is:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7A-sV-qqF">
+                                                    <rect key="frame" x="8" y="8" width="233" height="27"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOa-b7-YER">
+                                                    <rect key="frame" x="244" y="8" width="68" height="27"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zOa-b7-YER" firstAttribute="trailing" secondItem="mNC-C3-PG2" secondAttribute="trailingMargin" id="7Gq-U0-H5t"/>
+                                                <constraint firstItem="r7A-sV-qqF" firstAttribute="leading" secondItem="mNC-C3-PG2" secondAttribute="leadingMargin" id="gXE-v3-m7U"/>
+                                                <constraint firstItem="r7A-sV-qqF" firstAttribute="centerY" secondItem="mNC-C3-PG2" secondAttribute="centerY" id="rDz-7n-DPl"/>
+                                                <constraint firstItem="zOa-b7-YER" firstAttribute="centerY" secondItem="mNC-C3-PG2" secondAttribute="centerY" id="sNl-Xf-pTB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -824,6 +853,7 @@
                         <outlet property="generateTaxButton" destination="yph-cI-cVc" id="NKG-1n-RXu"/>
                         <outlet property="grossProfitLabel" destination="z0D-ZC-ehm" id="d9E-Xb-wEN"/>
                         <outlet property="grosssProfitLabelOnly" destination="lCm-YH-WcX" id="1Zp-m4-s90"/>
+                        <outlet property="incomeTaxAmountLabel" destination="zOa-b7-YER" id="oV6-ms-NjV"/>
                         <outlet property="navBar" destination="wsY-EY-b0o" id="Vc7-Ay-jRe"/>
                         <outlet property="revenueLabel" destination="i18-o0-ze9" id="0d7-h9-oVw"/>
                         <outlet property="revenueLabelOnly" destination="g2t-m5-6Sj" id="MfQ-e0-70T"/>
