@@ -178,10 +178,6 @@ class TrendingViewController: UIViewController {
             // Current sales amount: yearSales
             // Trended year end sales: endOfYearSales
             //*******************************************
-        } else if (selectedSegment == 3) {
-            
-            // Category: Year
-            print("If every year was like this year:")
         }
     }
     
