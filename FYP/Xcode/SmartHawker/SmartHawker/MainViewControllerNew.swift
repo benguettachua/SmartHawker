@@ -135,7 +135,6 @@ class MainViewControllerNew: UIViewController{
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
         
         connectionDAO().loadStringIntoAutoFill()
-        print(toShare.stringsWithAutoFill)
     }
     
     
@@ -218,7 +217,7 @@ class MainViewControllerNew: UIViewController{
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        let array = NSUserDefaults.standardUserDefaults().objectForKey("SavedDateArray") as? [String] ?? [String]()
+        let array = toShare.datesWithRecords
         var dateArray = [NSDate]()
         for stringDate in array{
             

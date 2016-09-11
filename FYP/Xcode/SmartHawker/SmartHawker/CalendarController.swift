@@ -10,6 +10,8 @@ import Foundation
 
 class CalendarController{
     
+    var toShared = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
+
     var records = [PFObject]()
     
     func loadRecords(){
@@ -45,8 +47,7 @@ class CalendarController{
             }
             
         }
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(dates, forKey: "SavedDateArray")
+        toShared.datesWithRecords = dates
         
         return (salesAmount, expensesAmount, cogsAmount)
     }
