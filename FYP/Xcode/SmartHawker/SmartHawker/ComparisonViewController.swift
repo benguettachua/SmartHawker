@@ -117,7 +117,6 @@ class ComparisonViewController: UIViewController {
         combinedChartView.leftAxis.drawAxisLineEnabled = false
         
         combinedChartView.xAxis.drawLabelsEnabled = true
-        combinedChartView.xAxis.labelFont
         combinedChartView.rightAxis.drawLabelsEnabled = false
         combinedChartView.leftAxis.drawLabelsEnabled = false
         combinedChartView.xAxis.labelPosition = .Bottom
