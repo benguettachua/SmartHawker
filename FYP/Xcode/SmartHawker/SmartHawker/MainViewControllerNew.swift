@@ -87,11 +87,11 @@ class MainViewControllerNew: UIViewController{
         infoButton.setTitle(String(info), forState: .Normal)
         
         //set labels for translation
-        lowestSalesLabel.text = "Lowest Sales".localized()
+        lowestSalesLabel.text = "Lowest".localized()
         
-        highestSalesLabel.text = "Highest Sales".localized()
+        highestSalesLabel.text = "Highest".localized()
         
-        averageSalesLabel.text = "Average Sales".localized()
+        averageSalesLabel.text = "Average".localized()
 
         profitLabel.text = "Profit".localized()
         expensesLabel.text = "Expenses".localized()
