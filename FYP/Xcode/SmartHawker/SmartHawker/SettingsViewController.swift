@@ -90,12 +90,13 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         let defaults = NSUserDefaults.standardUserDefaults()
         let name = defaults.stringForKey("langPref")
-        print(name)
         if name == "zh-Hans"{
             self.languageLabel.text = "华语"
-        }else{
+        }else if name == "en"{
             self.languageLabel.text = "English"
             
+        }else{
+            self.languageLabel.text = "Malay"
         }
         
         
@@ -161,17 +162,15 @@ class SettingsViewController: UITableViewController {
             let languageAction = UIAlertAction(title: displayName, style: .Default, handler: {
                 (alert: UIAlertAction!) -> Void in
                 let defaults = NSUserDefaults.standardUserDefaults()
-                print(language)
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
-                if language == "zh-Hans"{
+                print(language)
+                if language.containsString("zh-Hans"){
                     self.languageLabel.text = "华语"
-                }else if language == "en"{
+                }else if language.containsString("en"){
                     self.languageLabel.text = "English"
-                    
-                }else{
+                }else if language.containsString("ms"){
                     self.languageLabel.text = "Malay"
-                    
                 }
                 self.passwordLabel.text = "Password".localized()
                 self.adminLabel.text = "Admin".localized()
