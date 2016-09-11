@@ -24,10 +24,10 @@ class StartUpPage: UITableViewController{
             
         }else if indexPath.row == 1{
             Localize.setCurrentLanguage("zh-Hans")
-            print("1")
+            self.presentViewController(mainVC, animated: true, completion: nil)
         }else{
             Localize.setCurrentLanguage("ms")
-            print("2")
+            self.presentViewController(mainVC, animated: true, completion: nil)
         }
     }
     
