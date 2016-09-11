@@ -88,17 +88,6 @@ class MonthRecordTableViewController: UITableViewController {
             sectionRecord.sortInPlace { $0["type"]as!Int == $1["type"]as!Int ? $0.createdAt < $1.createdAt : $1["type"]as!Int > $0["type"]as!Int }
             rows.append(sectionRecord)
         }
-        
-//        // Sort the records by types
-//        for i in 0...rows.count-1 {
-//            print(i)
-//            var currentSection = rows[i]
-//            print("BEFORE")
-//            print(currentSection)
-//            currentSection.sortInPlace({$0["type"] as! Int > $1["type"] as! Int})
-//            print("AFTER")
-//            print(currentSection)
-//        }
         tableView.reloadData()
     }
     
@@ -164,7 +153,13 @@ class MonthRecordTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        let dateStringBefore = sections[section]
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateBefore = dateFormatter.dateFromString(dateStringBefore)
+        dateFormatter.dateFormat = "EEE dd MMM yyyy"
+        let dateStringafter = dateFormatter.stringFromDate(dateBefore!)
+        return dateStringafter
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
