@@ -48,6 +48,7 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var weekExpensesAmountLabel: UILabel!
     @IBOutlet weak var weekCOGSAmountLabel: UILabel!
     @IBOutlet weak var weekSalesAmountLabel: UILabel!
+    @IBOutlet weak var monthlyTargetAmountLabel: UILabel!
     
     @IBOutlet weak var overview: UILabel!
     
@@ -113,10 +114,9 @@ class MainViewControllerNew: UIViewController{
         getMonthlyTarget()
         if(targetAvailable) {
             targetButton.setImage(UIImage(named: "profile-edit-button"), forState: .Normal)
-            targetButton.setTitle("$" + String(format: "%.0f", targetAmount), forState: .Normal)
-            targetButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
-            targetButton.titleLabel!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
-            targetButton.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+            monthlyTargetAmountLabel.text = "$" + String(format: "%.0f", targetAmount)
+        } else {
+            monthlyTargetAmountLabel.text = "No target set"
         }
         
         let values = MainController().getMainValues()
