@@ -232,7 +232,7 @@ class MainViewControllerNew: UIViewController{
             lastRecordLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
             lastRecordLabel.numberOfLines = 2
         }else{
-            lastRecordLabel.text = "Your have yet to make any records.".localized()
+            lastRecordLabel.text = "No records yet.".localized()
         }
     }
     
@@ -278,7 +278,10 @@ class MainViewControllerNew: UIViewController{
                         // Retrieval succeed, inform the user that records are synced.
                         popup.dismissViewControllerAnimated(true, completion: {
                             let alertController = UIAlertController(title: "Sync Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
-                            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
+                            let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
+                                
+                                self.viewWillAppear(true)
+                            })
                             alertController.addAction(ok)
                             self.presentViewController(alertController, animated: true,completion: nil)
                         })

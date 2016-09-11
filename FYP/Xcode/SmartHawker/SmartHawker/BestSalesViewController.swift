@@ -68,6 +68,7 @@ class BestSalesViewController: UIViewController {
         combinedChartView.rightAxis.drawAxisLineEnabled = false
         combinedChartView.leftAxis.drawAxisLineEnabled = false
         
+        combinedChartView.xAxis.labelFont = UIFont(name: "Avenir-Light", size: 17.5)!
         combinedChartView.xAxis.drawLabelsEnabled = true
         combinedChartView.rightAxis.drawLabelsEnabled = false
         combinedChartView.leftAxis.drawLabelsEnabled = false

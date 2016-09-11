@@ -140,6 +140,8 @@ class AdminPINViewController: UIViewController {
     
     @IBAction func cancel(sender: UIButton) {
         // Logs the user out if they are click Cancel
+        shared.clearData()
+        connectionDAO().unloadRecords()
         PFUser.logOutInBackground()
         self.dismissViewControllerAnimated(true, completion: nil)
     }

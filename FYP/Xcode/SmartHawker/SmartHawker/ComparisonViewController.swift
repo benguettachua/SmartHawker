@@ -117,9 +117,11 @@ class ComparisonViewController: UIViewController {
         combinedChartView.leftAxis.drawAxisLineEnabled = false
         
         combinedChartView.xAxis.drawLabelsEnabled = true
+        combinedChartView.xAxis.labelRotatedWidth = 10.0
         combinedChartView.rightAxis.drawLabelsEnabled = false
         combinedChartView.leftAxis.drawLabelsEnabled = false
         combinedChartView.xAxis.labelPosition = .Bottom
+        combinedChartView.xAxis.labelFont = UIFont(name: "Avenir-Light", size: 15.0)!
         
         combinedChartView.leftAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.xAxis.drawLimitLinesBehindDataEnabled = true
