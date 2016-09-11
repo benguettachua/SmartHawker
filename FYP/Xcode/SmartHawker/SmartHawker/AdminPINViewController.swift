@@ -138,68 +138,12 @@ class AdminPINViewController: UIViewController {
         }
     }
     
-    // Logs the user out if they are click Cancel
     @IBAction func cancel(sender: UIButton) {
-        
-        // Alert to warn user about logging out.
-        let logoutAlert = UIAlertController(title: "Are you sure?", message: "All records that are not synced will be lost.", preferredStyle: .Alert)
-        
-        // Option 1: Sync then logout.
-        logoutAlert.addAction(UIAlertAction(title: "Sync", style: .Default, handler: { void in
-            // Pop up telling the user that you are currently syncing
-            let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
-            self.presentViewController(popup, animated: true, completion: {
-                let syncSucceed = self.adminPINController.sync()
-                if (syncSucceed) {
-                    
-                    // Retrieval succeed, inform the user that records are synced.
-                    popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Complete!", message: nil, preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
-                            let alert = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
-                            self.presentViewController(alert, animated: true,completion: {
-                                
-                                self.shared.clearData()
-                                connectionDAO().unloadRecords()
-                                connectionDAO().logout()
-                                self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-                            })
-                        })
-                        alertController.addAction(ok)
-                        self.presentViewController(alertController, animated: true,completion: nil)
-                    })
-                    
-                } else {
-                    
-                    // Retrieval failed, inform user that he can sync again after he log in.
-                    popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Failed!".localized(), message: nil, preferredStyle: .Alert)
-                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
-                        alertController.addAction(ok)
-                        self.presentViewController(alertController, animated: true,completion: nil)
-                    })
-                }
-            })
-        }))
-        
-        // Option 2: Continue logging out despite the warning.
-        logoutAlert.addAction(UIAlertAction(title: "Yes, log out.", style: .Default, handler: { void in
-            
-            let alertController = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
-            self.presentViewController(alertController, animated: true,completion: {
-                
-                self.shared.clearData()
-                connectionDAO().unloadRecords()
-                connectionDAO().logout()
-                self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-            })
-//            self.presentViewController(alertController, animated: true, completion: nil)
-        }))
-        
-        // Option 3: Cancel the logging out.
-        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        self.presentViewController(logoutAlert, animated: true, completion: nil)
-        
+        // Logs the user out if they are click Cancel
+        shared.clearData()
+        connectionDAO().unloadRecords()
+        PFUser.logOutInBackground()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
