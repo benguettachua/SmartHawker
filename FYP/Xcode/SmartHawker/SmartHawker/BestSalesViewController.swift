@@ -22,28 +22,13 @@ class BestSalesViewController: UIViewController {
     
     @IBAction func chooseCategory(sender: UISegmentedControl) {
         
-        if (categorySegmentControl.selectedSegmentIndex == 0) {
-            var monthsForGraph = [String]()
-            var monthlyValuesForGraph = [Double]()
-            let (bestSalesMonth, sortedMonth, total) = analyticController.getBestSalesMonth()
-            for month in sortedMonth {
-                monthsForGraph.append(months[month])
-                monthlyValuesForGraph.append(bestSalesMonth[month]!)
-                
-            }
-            
-            setChart(monthsForGraph, values: monthlyValuesForGraph)
-        } else {
-            var yearsForGraph = [String]()
-            var yearlyValuesForGraph = [Double]()
-            let (bestSalesYear, sortedYear) = analyticController.getBestSalesYear()
-            for year in sortedYear {
-                yearsForGraph.append(String(year))
-                yearlyValuesForGraph.append(bestSalesYear[year]!)
-            }
-            
-            setChart(yearsForGraph, values: yearlyValuesForGraph)
-        }
+        populateBestSales()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        populateBestSales()
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -80,4 +65,28 @@ class BestSalesViewController: UIViewController {
         combinedChartView.descriptionText = ""
     }
     
+    func populateBestSales() {
+        if (categorySegmentControl.selectedSegmentIndex == 0) {
+            var monthsForGraph = [String]()
+            var monthlyValuesForGraph = [Double]()
+            let (bestSalesMonth, sortedMonth, total) = analyticController.getBestSalesMonth()
+            for month in sortedMonth {
+                monthsForGraph.append(months[month])
+                monthlyValuesForGraph.append(bestSalesMonth[month]!)
+                
+            }
+            
+            setChart(monthsForGraph, values: monthlyValuesForGraph)
+        } else {
+            var yearsForGraph = [String]()
+            var yearlyValuesForGraph = [Double]()
+            let (bestSalesYear, sortedYear) = analyticController.getBestSalesYear()
+            for year in sortedYear {
+                yearsForGraph.append(String(year))
+                yearlyValuesForGraph.append(bestSalesYear[year]!)
+            }
+            
+            setChart(yearsForGraph, values: yearlyValuesForGraph)
+        }
+    }
 }
