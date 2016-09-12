@@ -110,7 +110,7 @@ class SummaryViewController: UIViewController {
     
     func loadRecordsMonthly(){
         let loadedData = SummaryControllerNew().loadRecordsMonthly(chosenMonthDate, dateString: dateString)
-        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
+        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2, values3: loadedData.3)
         self.salesText.text = loadedData.4
         self.expensesText.text = loadedData.5
         self.COGStext.text = loadedData.7
@@ -118,7 +118,7 @@ class SummaryViewController: UIViewController {
     }
     func loadRecordsYearly(){
         let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
-        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
+        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2, values3: loadedData.3)
         self.salesText.text = loadedData.4
         self.expensesText.text = loadedData.5
         self.COGStext.text = loadedData.7
@@ -133,7 +133,7 @@ class SummaryViewController: UIViewController {
             let newDate = date[index]
             array.append(newDate)
         }
-        setData(array, values1: loadedData.0, values2: loadedData.1)
+        setData(array, values1: loadedData.0, values2: loadedData.1, values3: loadedData.2)
         self.salesText.text = loadedData.3
         self.expensesText.text = loadedData.4
         self.COGStext.text = loadedData.6
@@ -277,13 +277,6 @@ class SummaryViewController: UIViewController {
             
             dateString = String(actualYearDate.year)
             
-            let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
-            
-            setData(loadedData.0, values1: loadedData.1, values2: loadedData.2)
-            self.salesText.text = loadedData.4
-            self.expensesText.text = loadedData.5
-            self.COGStext.text = loadedData.7
-            self.profitText.text = loadedData.6
             
             loadRecordsYearly()
             
@@ -338,14 +331,6 @@ class SummaryViewController: UIViewController {
             
             
             weekMonthYear.text = weekMonthYear.text! + correctDateString
-            
-            let loadedData = SummaryControllerNew().loadRecordsWeekly(daysInWeek)
-            
-            setData(daysInWeek, values1: loadedData.0, values2: loadedData.1)
-            self.salesText.text = loadedData.3
-            self.expensesText.text = loadedData.4
-            self.COGStext.text = loadedData.6
-            self.profitText.text = loadedData.5
             
             loadRecordsWeekly()
             
@@ -441,7 +426,7 @@ class SummaryViewController: UIViewController {
         loadRecordsYearly()
     }
     
-    func setData(dataPoints : [String], values1 : [Double], values2 : [Double]) {
+    func setData(dataPoints : [String], values1 : [Double], values2 : [Double], values3 : [Double]) {
         
         var dataEntries1: [ChartDataEntry] = []
         
@@ -482,11 +467,32 @@ class SummaryViewController: UIViewController {
         lineChartDataSet2.fill = ChartFill.fillWithColor(UIColor.redColor())
         lineChartDataSet2.drawFilledEnabled = true
         
+        var dataEntries3: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values3[i], xIndex: i)
+            dataEntries3.append(dataEntry)
+        }
+        
+        let lineChartDataSet3 = LineChartDataSet(yVals: dataEntries3, label: "COGS".localized())
+        lineChartDataSet3.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet3.setColor(UIColor.orangeColor())
+        lineChartDataSet3.highlightColor = UIColor.clearColor()
+        lineChartDataSet3.lineWidth = 2
+        lineChartDataSet3.drawCircleHoleEnabled = false
+        lineChartDataSet3.circleRadius = 0
+        lineChartDataSet3.drawValuesEnabled = false
+        lineChartDataSet3.mode = .HorizontalBezier
+        
+        lineChartDataSet3.fill = ChartFill.fillWithColor(UIColor.orangeColor())
+        lineChartDataSet3.drawFilledEnabled = true
+
+        
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(lineChartDataSet1)
         dataSets.append(lineChartDataSet2)
-        
+        dataSets.append(lineChartDataSet3)
         //4 - pass our months in for our x-axis label value along with our dataSets
         let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
         data.setValueTextColor(UIColor.whiteColor())
