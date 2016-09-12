@@ -217,7 +217,7 @@ class AnalyticsController{
                 }
             }
         }
-        let sortedKeys = Array(bestSalesMonth.keys).sort({bestSalesMonth[$1] < bestSalesMonth[$0]})
+        let sortedKeys = Array(bestSalesMonth.keys).sort({bestSalesMonth[$0] < bestSalesMonth[$1]})
         return (bestSalesMonth, sortedKeys, total)
     }
     
@@ -261,7 +261,7 @@ class AnalyticsController{
             }
             
         }
-        let sortedKeys = Array(bestSalesYear.keys).sort({bestSalesYear[$1] < bestSalesYear[$0]})
+        let sortedKeys = Array(bestSalesYear.keys).sort({bestSalesYear[$0] < bestSalesYear[$1]})
         return (bestSalesYear, sortedKeys)
     }
     
