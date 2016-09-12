@@ -241,6 +241,7 @@ class TrendingViewController: UIViewController {
             salesSoFarLabel.text = "This year's sales so far:"
             salesCategoryLabel.text = "Today's sales:"
             categoryLeft.text = "Days left this year:"
+            ifEveryCategoryLabel.text = "If every day was like today, end of this year, you will have earned:"
         } else if (selectedSegment == 1) {
             
             // Format according to what is saved in database.
@@ -274,6 +275,7 @@ class TrendingViewController: UIViewController {
             salesSoFarLabel.text = "This year's sales so far:"
             salesCategoryLabel.text = "This week's sales:"
             categoryLeft.text = "Weeks left this year:"
+            ifEveryCategoryLabel.text = "If every week was like this week, end of this year, you will have earned:"
         } else if (selectedSegment == 2) {
             
             // Format according to what is saved in database.
@@ -307,6 +309,7 @@ class TrendingViewController: UIViewController {
             salesSoFarLabel.text = "This year's sales so far:"
             salesCategoryLabel.text = "This month's sales:"
             categoryLeft.text = "Months left this year:"
+            ifEveryCategoryLabel.text = "If every month was like this month, end of this year, you will have earned:"
         }
     }
 }
