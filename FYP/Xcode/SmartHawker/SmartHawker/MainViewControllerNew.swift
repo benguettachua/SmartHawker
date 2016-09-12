@@ -156,7 +156,7 @@ class MainViewControllerNew: UIViewController{
         self.weeklyCOGSLabel.text = "$" + String(format: "%.0f", values.10)
         self.weeklyExpensesLabel.text = "$" + String(format: "%.0f", values.11)
         
-        if values.2 < 0 {
+        if values.12 < 0 {
             self.weeklyProfitLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
         }else{
             self.weeklyProfitLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
