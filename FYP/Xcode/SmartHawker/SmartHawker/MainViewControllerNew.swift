@@ -23,6 +23,8 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var weeklyCOGSLabel: UILabel!
     @IBOutlet weak var weeklyExpensesLabel: UILabel!
     @IBOutlet weak var weeklyProfitLabel: UILabel!
+    @IBOutlet weak var weeklyLabel: UILabel!
+    
     
     @IBOutlet weak var lastRecordLabel: UILabel!
     @IBOutlet weak var targetButton: UIButton!
@@ -160,8 +162,10 @@ class MainViewControllerNew: UIViewController{
             self.weeklyProfitLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
         }
         self.weeklyProfitLabel.text = "$" + String(format: "%.0f", values.12)
-        
+        print("Weekly Overview from \n" + values.13 + " - " + values.14)
+        self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
+        
     }
     
     override func didReceiveMemoryWarning() {

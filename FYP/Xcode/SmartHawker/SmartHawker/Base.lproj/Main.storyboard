@@ -1173,7 +1173,7 @@ this password and admin pin</string>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-Gt-cqB">
                                                         <rect key="frame" x="113" y="0.0" width="112" height="99"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview - This Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qev-CL-QGI" userLabel="salesmonthlabel">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview - This Week" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qev-CL-QGI" userLabel="salesmonthlabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="112" height="99"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1520,6 +1520,7 @@ this password and admin pin</string>
                         <outlet property="weekSalesAmountLabel" destination="1HN-oP-Wek" id="Jg2-j8-vmf"/>
                         <outlet property="weeklyCOGSLabel" destination="esd-eG-9qE" id="G7a-FM-PJU"/>
                         <outlet property="weeklyExpensesLabel" destination="zkS-Ip-KhR" id="vCb-xE-KfN"/>
+                        <outlet property="weeklyLabel" destination="Qev-CL-QGI" id="AB2-vn-cjU"/>
                         <outlet property="weeklyProfitLabel" destination="V2O-fr-9fa" id="N9V-mf-Jy2"/>
                         <outlet property="weeklySalesLabel" destination="1HN-oP-Wek" id="Qmt-FJ-tP1"/>
                     </connections>
@@ -2040,16 +2041,16 @@ this password and admin pin</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8tz-eE-nYP">
-                                                <rect key="frame" x="57" y="0.0" width="301" height="125"/>
+                                                <rect key="frame" x="57" y="0.0" width="302" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="dayNo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYG-nZ-A46">
-                                                        <rect key="frame" x="70" y="0.0" width="162" height="68"/>
+                                                        <rect key="frame" x="71" y="0.0" width="162" height="68"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="50"/>
                                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3o-bF-CVm">
-                                                        <rect key="frame" x="62" y="68" width="177" height="33"/>
+                                                        <rect key="frame" x="62" y="68" width="178" height="33"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33" id="KNj-FV-IRP"/>
                                                         </constraints>
@@ -2058,7 +2059,7 @@ this password and admin pin</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="month, year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvy-XL-b2M">
-                                                        <rect key="frame" x="36" y="101" width="229" height="24"/>
+                                                        <rect key="frame" x="36" y="101" width="230" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="ZXR-Iw-ePs"/>
                                                         </constraints>
@@ -2073,7 +2074,7 @@ this password and admin pin</string>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRd-pu-z0W">
-                                                <rect key="frame" x="360" y="0.0" width="55" height="125"/>
+                                                <rect key="frame" x="361" y="0.0" width="54" height="125"/>
                                                 <fontDescription key="fontDescription" name="DiwanMishafi" family="Mishafi" pointSize="70"/>
                                                 <state key="normal" title="&gt;">
                                                     <color key="titleColor" red="0.42352941179999998" green="0.42745098040000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>

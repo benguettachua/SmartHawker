@@ -48,11 +48,14 @@ class MainController{
         }
     }
     
-    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double, Double){
+    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double, Double, String, String){
         thisWeekDates()
         var array = connectionDAO().loadRecords()
         var datesAndRecords = [String:[PFObject]]()
         var datesWithRecords = [String]()
+        
+        var stringForFirstDay: String!
+        var stringForLastDay: String!
         
         for object in array {
             let dateString = object["date"] as! String
@@ -87,7 +90,8 @@ class MainController{
             let todayDate = dateFormatter.stringFromDate(NSDate())
             let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && myKey.containsString(correctDateString)
             let same = myKey.containsString(todayDate)
-            
+            stringForFirstDay = dateFormatter.stringFromDate(firstDay)
+            stringForLastDay = dateFormatter.stringFromDate(lastDay)
             let earlierThanThisWeek = recordDate!.earlierDate(firstDay).isEqualToDate(recordDate!)
             
             var profit = 0.0
@@ -159,7 +163,7 @@ class MainController{
         if totalDays != 0{
             averageSales = (totalSales/totalDays)
         }
-        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS, weeklySales, weeklyCOGS, weeklyExpenses, weeklyProfit)
+        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS, weeklySales, weeklyCOGS, weeklyExpenses, weeklyProfit, stringForFirstDay, stringForLastDay)
     }
     
     func thisWeekDates(){
