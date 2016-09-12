@@ -271,7 +271,7 @@ class MainViewControllerNew: UIViewController{
         if lang == "zh-Hans" {
             toDisplayDate += date.monthName.localized() + " \(dayString) " + " \(date.year) 年"
         }else{
-            toDisplayDate += dayString + " " + date.monthName + " " + String(date.year)
+            toDisplayDate += dayString + " " + date.monthName.localized() + " " + String(date.year)
         }
         overviewLabel.text = date.weekdayName.localized() + "\n" + toDisplayDate
         
