@@ -19,6 +19,12 @@ class MainViewControllerNew: UIViewController{
     
     // MARK: outlets on the storyboard
     
+    //for weekly
+    @IBOutlet weak var weekSalesLabel: UILabel!
+    @IBOutlet weak var weekCOGSLabel: UILabel!
+    @IBOutlet weak var weekExpensesLabel: UILabel!
+    @IBOutlet weak var weekProfitLabel: UILabel!
+
     @IBOutlet weak var weeklySalesLabel: UILabel!
     @IBOutlet weak var weeklyCOGSLabel: UILabel!
     @IBOutlet weak var weeklyExpensesLabel: UILabel!
