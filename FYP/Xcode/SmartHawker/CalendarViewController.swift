@@ -283,7 +283,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         if salesAmount-expensesAmount < 0 {
             self.cogsText.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
         }else{
-            self.cogsText.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
+            self.cogsText.textColor = UIColor.orangeColor()
         }
     }
     
@@ -342,7 +342,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Description Label
         var description = records[indexPath.row]["description"]
-        if (description == nil) {
+        if (description == nil || description as! String == "") {
             description = "No description".localized()
         }
         cell.descriptionLabel.text = description as! String
@@ -359,16 +359,16 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         var typeString = ""
         if (type == 0) {
             typeString = "Sales"
+            cell.recordTypeLabel.textColor = UIColor.blueColor()
         } else if (type == 1) {
             typeString = "COGS"
+            cell.recordTypeLabel.textColor = UIColor.orangeColor()
         } else if (type == 2) {
             typeString = "Expenses"
+            cell.recordTypeLabel.textColor = UIColor.redColor()
         }
         cell.recordTypeLabel.text = typeString.localized()
         cell.recordTypeLabel.font = UIFont.boldSystemFontOfSize(20)
-        
-        // Recorded by
-        cell.recordedByLabel.text = records[indexPath.row]["subuser"] as! String
         
         // Cell background
         cell.backgroundColor = UIColor(white: 1, alpha: 0.0)

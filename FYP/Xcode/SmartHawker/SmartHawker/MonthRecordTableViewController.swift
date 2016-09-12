@@ -126,10 +126,10 @@ class MonthRecordTableViewController: UITableViewController {
         var typeString = ""
         if (type == 0) {
             typeString = "Sales"
-            cell.recordTypeLabel.textColor = UIColor.greenColor()
+            cell.recordTypeLabel.textColor = UIColor.blueColor()
         } else if (type == 1) {
             typeString = "COGS"
-            cell.recordTypeLabel.textColor = UIColor.redColor()
+            cell.recordTypeLabel.textColor = UIColor.orangeColor()
         } else if (type == 2) {
             typeString = "Expenses"
             cell.recordTypeLabel.textColor = UIColor.redColor()
