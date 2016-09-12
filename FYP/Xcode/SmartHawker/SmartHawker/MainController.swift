@@ -12,8 +12,10 @@ import CoreLocation;
 
 class MainController{
     
-    
-    
+    var firstDay: NSDate!
+    var lastDay: NSDate!
+    let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
+
     func loadTargetRecords(currentMonth: String) -> (Bool, Double){
         
         let records = connectionDAO().loadRecords()
@@ -46,43 +48,14 @@ class MainController{
         }
     }
     
-    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double){
-        
+    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double, Double){
+        thisWeekDates()
         var array = connectionDAO().loadRecords()
         var datesAndRecords = [String:[PFObject]]()
         var datesWithRecords = [String]()
         
         for object in array {
             let dateString = object["date"] as! String
-            //            let type = object["type"] as! Int
-            //            let amount = object["amount"] as! Double
-            //            var localIdentifierString = object["subUser"]
-            //            var recordedBy = object["subuser"]
-            //            if (recordedBy == nil) {
-            //                recordedBy = ""
-            //            }
-            //            var typeString = ""
-            //            if (type == 0) {
-            //                typeString = "Sales"
-            //            } else if (type == 1) {
-            //                typeString = "COGS"
-            //            } else if (type == 2) {
-            //                typeString = "Expenses"
-            //            } else if (type == 3){
-            //                typeString = "fixMonthlyExpenses"
-            //            }
-            //
-            //            var description = object["description"]
-            //
-            //            if (description == nil || description as! String == "") {
-            //                description = "No description"
-            //            }
-            //
-            //            if (localIdentifierString == nil) {
-            //                localIdentifierString = String(tempCounter += 1)
-            //            }
-            //
-            //            let newRecord = RecordTable(date: dateString, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
             if datesAndRecords[dateString] == nil {
                 var arrayForRecords = [PFObject]()
                 arrayForRecords.append(object)
@@ -91,7 +64,10 @@ class MainController{
                 datesAndRecords[dateString]?.append(object)
             }
         }
-        
+        var weeklySales = 0.0
+        var weeklyExpenses = 0.0
+        var weeklyCOGS = 0.0
+        var weeklyProfit = 0.0
         var totalSales = 0.0
         var totalDays = 0.0
         var highSales = 0.0
@@ -111,6 +87,9 @@ class MainController{
             let todayDate = dateFormatter.stringFromDate(NSDate())
             let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && myKey.containsString(correctDateString)
             let same = myKey.containsString(todayDate)
+            
+            let earlierThanThisWeek = recordDate!.earlierDate(firstDay).isEqualToDate(recordDate!)
+            
             var profit = 0.0
             var sales = 0.0
             
@@ -158,9 +137,20 @@ class MainController{
                         totalProfit -= amount
                     }
                     
-                    
+                    if earlierThanThisWeek == false || myKey.containsString(todayDate) {
+                        if (type == 0) {
+                            weeklyProfit += amount
+                            weeklySales += amount
+                        }else if (type == 1) {
+                            weeklyCOGS += amount
+                            weeklyProfit -= amount
+                        } else if (type == 2) {
+                            weeklyExpenses += amount
+                            weeklyProfit -= amount
+                        }
+                    }
                 }
-                
+
                 
             }
             
@@ -169,7 +159,43 @@ class MainController{
         if totalDays != 0{
             averageSales = (totalSales/totalDays)
         }
-        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS)
+        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS, weeklySales, weeklyCOGS, weeklyExpenses, weeklyProfit)
+    }
+    
+    func thisWeekDates(){
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let periodComponents = NSDateComponents()
+            let stringDayOfWeek = moment(NSDate()).weekdayName
+            var dayOfWeek = 0
+            if stringDayOfWeek.containsString("Sunday"){
+                dayOfWeek = 7
+            }else if stringDayOfWeek.containsString("Monday"){
+                dayOfWeek = 1
+            }else if stringDayOfWeek.containsString("Tuesday"){
+                dayOfWeek = 2
+            }else if stringDayOfWeek.containsString("Wednesday"){
+                dayOfWeek = 3
+            }else if stringDayOfWeek.containsString("Thursday"){
+                dayOfWeek = 4
+            }else if stringDayOfWeek.containsString("Friday"){
+                dayOfWeek = 5
+            }else if stringDayOfWeek.containsString("Saturday"){
+                dayOfWeek = 6
+            }
+            periodComponents.day = 1 - dayOfWeek
+            firstDay = calendar!.dateByAddingComponents(
+                periodComponents,
+                toDate: NSDate(),
+                options: [])!
+        
+        periodComponents.day = 7 - dayOfWeek
+        lastDay = calendar!.dateByAddingComponents(
+            periodComponents,
+            toDate: NSDate(),
+            options: [])!
+        
+        
     }
     
 }

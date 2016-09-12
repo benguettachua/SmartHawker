@@ -19,6 +19,11 @@ class MainViewControllerNew: UIViewController{
     
     // MARK: outlets on the storyboard
     
+    @IBOutlet weak var weeklySalesLabel: UILabel!
+    @IBOutlet weak var weeklyCOGSLabel: UILabel!
+    @IBOutlet weak var weeklyExpensesLabel: UILabel!
+    @IBOutlet weak var weeklyProfitLabel: UILabel!
+    
     @IBOutlet weak var lastRecordLabel: UILabel!
     @IBOutlet weak var targetButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
@@ -118,6 +123,12 @@ class MainViewControllerNew: UIViewController{
         } else {
             monthlyTargetAmountLabel.text = "No target set"
         }
+        setValues()
+        
+        connectionDAO().loadStringIntoAutoFill()
+    }
+    
+    func setValues(){
         
         let values = MainController().getMainValues()
         self.salesAmount.text = "$" + String(format: "%.0f", values.0)
@@ -139,12 +150,19 @@ class MainViewControllerNew: UIViewController{
         self.lowestSalesDay.text = values.7
         self.monthCOGSAmountLabel.text = "$" + String(format: "%.0f", values.8)
         
-        overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
+        self.weeklySalesLabel.text = "$" + String(format: "%.0f", values.9)
+        self.weeklyCOGSLabel.text = "$" + String(format: "%.0f", values.10)
+        self.weeklyExpensesLabel.text = "$" + String(format: "%.0f", values.11)
         
-        connectionDAO().loadStringIntoAutoFill()
+        if values.2 < 0 {
+            self.weeklyProfitLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+        }else{
+            self.weeklyProfitLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
+        }
+        self.weeklyProfitLabel.text = "$" + String(format: "%.0f", values.12)
+        
+        overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
