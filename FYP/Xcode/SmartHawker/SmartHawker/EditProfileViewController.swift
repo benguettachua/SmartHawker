@@ -46,7 +46,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.navigationController?.topViewController?.title="Edit Profile".localized();
+        self.navigationController?.topViewController?.title="Edit".localized();
 
         changeProfilePicButton.setTitle("Change Profile Picture".localized(), forState: UIControlState.Normal)
         information.text = "Choose image within 10MB".localized()

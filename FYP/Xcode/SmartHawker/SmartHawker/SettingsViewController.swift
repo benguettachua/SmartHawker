@@ -81,7 +81,17 @@ class SettingsViewController: UITableViewController {
         contactUsLabel.text = "Contact Us".localized()
         logoutLabel.text = "Log Out".localized()
         language.text = "Language".localized()
-        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let name = defaults.stringForKey("langPref")
+        if name == "zh-Hans"{
+            self.languageLabel.text = "华语"
+        }else if name == "en"{
+            self.languageLabel.text = "English"
+            
+        }else{
+            self.languageLabel.text = "Malay"
+        }
+
         self.title = "Settings".localized()
         
     }

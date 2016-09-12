@@ -20,13 +20,23 @@ class StartUpPage: UITableViewController{
         
         if indexPath.row == 0{
             Localize.setCurrentLanguage("en")
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject("en", forKey: "langPref")
             self.presentViewController(mainVC, animated: true, completion: nil)
             
         }else if indexPath.row == 1{
+            
             Localize.setCurrentLanguage("zh-Hans")
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject("zh-Hans", forKey: "langPref")
             self.presentViewController(mainVC, animated: true, completion: nil)
         }else{
             Localize.setCurrentLanguage("ms")
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject("ms", forKey: "langPref")
             self.presentViewController(mainVC, animated: true, completion: nil)
         }
     }
