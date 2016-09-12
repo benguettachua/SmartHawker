@@ -118,7 +118,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         lists += "\n"
         
-        lists += "List".localized()
+        lists += "Records".localized()
         
         list.titleLabel!.font = UIFont(name: "FontAwesome", size: 14)
         
@@ -180,7 +180,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         lists += "\n"
         
-        lists += "List".localized()
+        lists += "Records".localized()
         
         list.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         

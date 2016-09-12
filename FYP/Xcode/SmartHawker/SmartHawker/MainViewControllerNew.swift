@@ -48,7 +48,6 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var todayEntryLabel: UILabel!
     @IBOutlet weak var monthlyTargetLabel: UILabel!
     @IBOutlet weak var syncButton: UIButton!
-    @IBOutlet weak var infoButton: UIButton!
     
     @IBOutlet weak var monthCOGSAmountLabel: UILabel!
     @IBOutlet weak var weekProfitAmountLabel: UILabel!
@@ -85,20 +84,6 @@ class MainViewControllerNew: UIViewController{
         syncButton.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         
         syncButton.setTitle(String(sync), forState: .Normal);
-        
-        infoButton.titleLabel?.lineBreakMode
-        infoButton.titleLabel?.numberOfLines = 2
-        infoButton.titleLabel!.textAlignment = .Center
-        
-        var info = String(format: "%C", faicon["fainfo"]!)
-        
-        info += "\n"
-        
-        info += "Info".localized()
-        
-        infoButton.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
-        
-        infoButton.setTitle(String(info), forState: .Normal)
         
         //set labels for translation
         lowestSalesLabel.text = "Lowest".localized()
@@ -163,7 +148,7 @@ class MainViewControllerNew: UIViewController{
         }
         self.weeklyProfitLabel.text = "$" + String(format: "%.0f", values.12)
         print("Weekly Overview from \n" + values.13 + " - " + values.14)
-        self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
+        //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
         
     }
@@ -256,9 +241,8 @@ class MainViewControllerNew: UIViewController{
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
         if dateArray.count != 0{
             let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
-            lastRecordLabel.text = "Your last record was on:\n".localized() + dateStringToDisplay
-            lastRecordLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            lastRecordLabel.numberOfLines = 2
+            lastRecordLabel.text = "Your last record was on: ".localized() + dateStringToDisplay
+            //lastRecordLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         }else{
             lastRecordLabel.text = "No records yet.".localized()
         }

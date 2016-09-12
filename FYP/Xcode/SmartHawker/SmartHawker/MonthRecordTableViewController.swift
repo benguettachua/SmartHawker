@@ -136,11 +136,6 @@ class MonthRecordTableViewController: UITableViewController {
         }
         cell.recordTypeLabel.text = typeString.localized()
         
-        // Recorded by
-        var recordedBy = rows[indexPath.section][indexPath.row]["subuser"] as? String
-        recordedBy = "By: " + recordedBy!
-        cell.recordedByLabel.text = recordedBy
-        
         // Cell background
         cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
 
