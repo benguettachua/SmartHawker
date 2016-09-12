@@ -683,16 +683,16 @@ this password and admin pin</string>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-EU-MSz">
                                 <rect key="frame" x="69" y="168" width="282" height="438"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
                                         <rect key="frame" x="0.0" y="0.0" width="282" height="403"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reg-bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="geb-6L-mdH">
                                                 <rect key="frame" x="0.0" y="0.0" width="282" height="384"/>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
                                                 <rect key="frame" x="30" y="124" width="222" height="279"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="279"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
@@ -847,13 +847,13 @@ this password and admin pin</string>
                                                                     </imageView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
                                                                 <rect key="frame" x="0.0" y="237" width="222" height="42"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="42"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
                                                                         <rect key="frame" x="0.0" y="7" width="222" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -878,7 +878,7 @@ this password and admin pin</string>
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
                                         <rect key="frame" x="117" y="408" width="48" height="30"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -1482,6 +1482,7 @@ this password and admin pin</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1300"/>
                     <connections>
+                        <outlet property="COGSLabel" destination="QTc-O8-AZW" id="9If-M3-KCW"/>
                         <outlet property="averageSales" destination="6tL-mA-tt6" id="aB3-Ag-Qop"/>
                         <outlet property="averageSalesLabel" destination="fbt-Hf-3yN" id="feW-Zd-Cbq"/>
                         <outlet property="expensesLabel" destination="H5Y-AQ-v3K" id="le1-hn-ao8"/>
@@ -1503,12 +1504,14 @@ this password and admin pin</string>
                         <outlet property="salesLabel" destination="MGX-MD-nd0" id="cx7-ct-kIU"/>
                         <outlet property="syncButton" destination="fan-T9-6fQ" id="C6o-Lu-yym"/>
                         <outlet property="targetButton" destination="0zW-Kk-yZJ" id="khc-gd-6XX"/>
+                        <outlet property="thisMonthSaleLabel" destination="Tbb-1u-Eoi" id="bWe-Uu-co4"/>
+                        <outlet property="thisWeekOverviewLabel" destination="Qev-CL-QGI" id="paV-Bj-4ds"/>
                         <outlet property="todayEntryLabel" destination="VUc-dR-b4J" id="t8A-w9-8Cr"/>
                         <outlet property="totalProfit" destination="k6P-9q-HUA" id="5Qt-xy-oZn"/>
-                        <outlet property="weekCOGSAmountLabel" destination="esd-eG-9qE" id="SU3-fD-pFY"/>
-                        <outlet property="weekExpensesAmountLabel" destination="zkS-Ip-KhR" id="zsB-hq-90O"/>
-                        <outlet property="weekProfitAmountLabel" destination="V2O-fr-9fa" id="cJM-vl-MfM"/>
-                        <outlet property="weekSalesAmountLabel" destination="1HN-oP-Wek" id="Jg2-j8-vmf"/>
+                        <outlet property="weekCOGSLabel" destination="hkZ-ct-KLq" id="RWy-Jc-j3C"/>
+                        <outlet property="weekExpensesLabel" destination="7M4-3p-vPK" id="4v6-a2-kKh"/>
+                        <outlet property="weekProfitLabel" destination="30U-GR-sEd" id="Xrd-oO-qGa"/>
+                        <outlet property="weekSalesLabel" destination="VBj-eQ-Lp3" id="wwv-ir-zFK"/>
                         <outlet property="weeklyCOGSLabel" destination="esd-eG-9qE" id="G7a-FM-PJU"/>
                         <outlet property="weeklyExpensesLabel" destination="zkS-Ip-KhR" id="vCb-xE-KfN"/>
                         <outlet property="weeklyLabel" destination="Qev-CL-QGI" id="AB2-vn-cjU"/>

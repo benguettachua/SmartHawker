@@ -24,6 +24,7 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var weekCOGSLabel: UILabel!
     @IBOutlet weak var weekExpensesLabel: UILabel!
     @IBOutlet weak var weekProfitLabel: UILabel!
+    @IBOutlet weak var thisWeekOverviewLabel: UILabel!
 
     @IBOutlet weak var weeklySalesLabel: UILabel!
     @IBOutlet weak var weeklyCOGSLabel: UILabel!
@@ -51,16 +52,15 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var profitLabel: UILabel!
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var salesLabel: UILabel!
+    @IBOutlet weak var COGSLabel: UILabel!
     @IBOutlet weak var todayEntryLabel: UILabel!
     @IBOutlet weak var monthlyTargetLabel: UILabel!
     @IBOutlet weak var syncButton: UIButton!
     
     @IBOutlet weak var monthCOGSAmountLabel: UILabel!
-    @IBOutlet weak var weekProfitAmountLabel: UILabel!
-    @IBOutlet weak var weekExpensesAmountLabel: UILabel!
-    @IBOutlet weak var weekCOGSAmountLabel: UILabel!
-    @IBOutlet weak var weekSalesAmountLabel: UILabel!
     @IBOutlet weak var monthlyTargetAmountLabel: UILabel!
+    @IBOutlet weak var thisMonthSaleLabel: UILabel!
+
     
     @IBOutlet weak var overview: UILabel!
     
@@ -101,8 +101,15 @@ class MainViewControllerNew: UIViewController{
         profitLabel.text = "Profit".localized()
         expensesLabel.text = "Expenses".localized()
         salesLabel.text = "Sales".localized()
+        COGSLabel.text = "COGS".localized()
         todayEntryLabel.text = "ADD NEW RECORD".localized()
         monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
+        thisMonthSaleLabel.text = "Sales - This Month".localized()
+        thisWeekOverviewLabel.text = "This Weeks' Overview".localized()
+        weekSalesLabel.text = "Sales".localized()
+        weekCOGSLabel.text = "COGS".localized()
+        weekExpensesLabel.text = "Expenses".localized()
+        weekProfitLabel.text = "Profit".localized()
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
         // Initialize UI
@@ -114,7 +121,7 @@ class MainViewControllerNew: UIViewController{
             targetButton.setImage(UIImage(named: "profile-edit-button"), forState: .Normal)
             monthlyTargetAmountLabel.text = "$" + String(format: "%.0f", targetAmount)
         } else {
-            monthlyTargetAmountLabel.text = "No target set"
+            monthlyTargetAmountLabel.text = "No target set".localized()
         }
         setValues()
         
