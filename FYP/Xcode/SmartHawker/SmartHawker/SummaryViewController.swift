@@ -54,6 +54,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var salesText: UILabel!
     @IBOutlet weak var totalSales: UILabel!
     @IBOutlet weak var totalExpenses: UILabel!
+    @IBOutlet weak var totalCOGS: UILabel!
     @IBOutlet weak var netProfit: UILabel!
     @IBOutlet weak var incomeTax: UIButton!
     @IBOutlet weak var COGStext: UILabel!
@@ -95,6 +96,7 @@ class SummaryViewController: UIViewController {
         incomeTax.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
         totalSales.text = "Total Sales ($):".localized()
         totalExpenses.text = "Total Expenses ($):".localized()
+        totalCOGS.text = "Total COGS ($):".localized()
         netProfit.text = "Net Profit ($):".localized()
         reportLabel.text = "Report".localized()
         //Now asking the calendar what month are we in today’s date:

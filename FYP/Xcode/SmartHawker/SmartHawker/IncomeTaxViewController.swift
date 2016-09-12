@@ -23,6 +23,8 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var adjustedProfitLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var incomeTaxAmountLabel: UILabel!
+    @IBOutlet weak var accessLabel: UILabel!
+    @IBOutlet weak var access2Label: UILabel!
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var back: UIBarButtonItem!
@@ -31,7 +33,8 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var calculationLabelOnly: UILabel!
     @IBOutlet weak var additionalBusinessExpenses: UILabel!
     @IBOutlet weak var adjustedProfitLabelOnly: UILabel!
-    @IBOutlet weak var generateIncomeTax: UIButton!
+    @IBOutlet weak var estimatedTaxPayable: UILabel!
+    
     
     // Text Fields
     @IBOutlet weak var additionalExpensesTextField: UITextField!
@@ -100,6 +103,9 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses".localized()
         adjustedProfitLabelOnly.text = "Adjusted Profit \n(Gross Profit - Total Expenses)".localized()
         generateTaxButton.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
+        accessLabel.text = "Please assess your \nTotal Expenses and enter \nallowable amount".localized()
+        access2Label.text = "Gross Profit – Allowable \nBusiness Expenses".localized()
+        estimatedTaxPayable.text = "Your estimated tax payable is:".localized()
         
     }
     
