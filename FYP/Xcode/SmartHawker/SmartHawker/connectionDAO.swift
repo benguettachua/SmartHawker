@@ -57,7 +57,7 @@ class connectionDAO{
             }
             
             if isSubuser == true{
-                toShare.datesWithRecords = dates[subuser!]
+                toShare.datesWithRecords = dates[subuser!]!
             }else{
                 toShare.datesWithRecords = arrayForAllDates
             }

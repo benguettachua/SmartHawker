@@ -50,12 +50,13 @@ class MainController{
     
     func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double, Double, String, String){
         thisWeekDates()
-        var array = connectionDAO().loadRecords()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        var stringForFirstDay = dateFormatter.stringFromDate(firstDay)
+        var stringForLastDay = dateFormatter.stringFromDate(lastDay)
+        let array = connectionDAO().loadRecords()
         var datesAndRecords = [String:[PFObject]]()
         var datesWithRecords = [String]()
-        
-        var stringForFirstDay: String!
-        var stringForLastDay: String!
         
         for object in array {
             let dateString = object["date"] as! String
@@ -82,7 +83,6 @@ class MainController{
         var COGS = 0.0
         
         for (myKey,myValue) in datesAndRecords {
-            let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/yyyy"
             let correctDateString = dateFormatter.stringFromDate(NSDate())
             dateFormatter.dateFormat = "dd/MM/yyyy"

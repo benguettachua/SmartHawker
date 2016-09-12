@@ -244,14 +244,19 @@ class MainViewControllerNew: UIViewController{
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
+        
         let array = toShare.datesWithRecords
+        
         var dateArray = [NSDate]()
-        for stringDate in array{
+            for stringDate in array{
             
-            let correctDate = dateFormatter.dateFromString(stringDate)
-            dateArray.append(correctDate!)
-        }
+                let correctDate = dateFormatter.dateFromString(stringDate)
+                dateArray.append(correctDate!)
+            }
+            
+        
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
+        
         if dateArray.count != 0{
             let dateStringToDisplay = dateFormatter.stringFromDate(dateArray[0])
             lastRecordLabel.text = "Your last record was on: ".localized() + dateStringToDisplay
@@ -259,6 +264,7 @@ class MainViewControllerNew: UIViewController{
         }else{
             lastRecordLabel.text = "No records yet.".localized()
         }
+        
     }
     
     

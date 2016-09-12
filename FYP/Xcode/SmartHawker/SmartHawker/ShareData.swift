@@ -34,7 +34,7 @@ class ShareData {
         records = nil
         rowNo = nil
         selectedRecord = nil
-        datesWithRecords = nil
+        datesWithRecords = [String]()
         stringsWithAutoFill = nil
     }
     
@@ -48,7 +48,7 @@ class ShareData {
     var records: [PFObject]!
     var rowNo: Int!
     var selectedRecord: PFObject!
-    var datesWithRecords: [String]!
+    var datesWithRecords = [String]()
     var stringsWithAutoFill: [String]!
     // Month selected for population of Monthly Records.
     var monthSelected: NSDate!
