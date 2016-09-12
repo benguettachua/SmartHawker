@@ -55,6 +55,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         
         // Get the type of the record
         type = selectedRecord["type"] as! Int
+        categorySegmentControl.selectedSegmentIndex = type
         
         // Get the description of the record
         var description = selectedRecord["description"]
