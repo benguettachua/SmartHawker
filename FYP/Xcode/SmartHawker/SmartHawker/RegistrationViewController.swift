@@ -82,6 +82,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 
                 // Registration failed, show the respective error message in a popup to notify user.
                 var errorMsg = ""
+                self.checksForEmpty()
                 switch registerSuccess {
                 case 1:
                     errorMsg = "Name cannot be empty.".localized()
@@ -104,7 +105,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     break
                     
                 case 6:
-                    errorMsg = "Password cannot be empty.".localized()
+                    errorMsg = "Password Must be more than 8 digits long.".localized()
                     break
                     
                 case 7:
@@ -119,12 +120,19 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     errorMsg = "Admin PIN must be 4 digits long.".localized()
                     break
                     
+                case 10:
+                    errorMsg = "Username must be more than 5 letters.".localized()
+                    break
+                    
                 case 100:
                     errorMsg = "No network detected.".localized()
                     break
                     
                 case 202:
                     errorMsg = "Username is taken.".localized()
+                    
+                    self.usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username taken.",
+                                                                                 attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
                     break
                     
                 case 203:
@@ -148,5 +156,78 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func checksForEmpty(){
+    
+        let name = nameTextField.text
+        let username = usernameTextField.text
+        let email = emailTextField.text?.lowercaseString
+        let phone = phoneNumberTextField.text
+        let password = passwordTextField.text
+        let confirmPassword = confirmPasswordTextField.text
+        let adminPIN = adminPINTextField.text
+        
+        if (name == "") {
+            nameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Name.",
+                                                       attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Username is not entered
+        if (username == "") {
+            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Username.",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Email is not entered
+        if (email == "") {
+            emailTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Email.",
+                                                                      attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Phone is not entered
+        if (phone == "") {
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Phone Number.",
+                                                                            attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Phone does not starts with 8 or 9
+        let phoneInt = Int(phone!)
+        if (phoneInt < 80000000 || phoneInt > 99999999) {
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Phone Numer.",
+                                                                            attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Password is not entered
+        if (password == "" || password!.characters.count < 8) {
+            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Password.",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Password does not match confirm password.
+        if (password != confirmPassword || confirmPassword == "" || confirmPassword!.characters.count < 8) {
+            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Confirm Password.",
+                                                                                attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Admin PIN is not entered
+        if (adminPIN == "") {
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Admin PIN.",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        // Admin PIN is not 4 digit
+        if (adminPIN!.characters.count != 4) {
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Admin PIN.",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if (username!.characters.count < 5) {
+            usernameTextField.text = ""
+            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Username.",
+                                                                         attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+    }
+    
     
 }

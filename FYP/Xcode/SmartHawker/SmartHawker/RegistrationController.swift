@@ -24,6 +24,11 @@ class RegistrationController {
             return 2
         }
         
+        
+        if (username.characters.count < 5) {
+            return 10
+        }
+        
         // Email is not entered
         if (email == "") {
             return 3
@@ -59,7 +64,7 @@ class RegistrationController {
         if (adminPIN.characters.count != 4) {
             return 9
         }
-        
+
         // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.
         return dao.register(username, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
     }
