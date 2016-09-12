@@ -189,7 +189,7 @@ class SummaryControllerNew {
         let sales = "$" + String(format: "%.2f", totalSalesAmount)
         let expenses = "$" + String(format: "%.2f", totalExpensesAmount)
         let COGS = "$" + String(format: "%.2f", totalCOGSAmount)
-        let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount))
+        let profit = "$" + String(format: "%.2f", (totalSalesAmount - totalExpensesAmount - totalCOGSAmount))
         return (series1, series2, series3, sales, expenses, profit, COGS)
     }
 
