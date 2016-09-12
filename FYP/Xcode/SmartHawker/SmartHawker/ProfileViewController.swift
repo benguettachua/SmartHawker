@@ -15,43 +15,24 @@ class ProfileViewController: UITableViewController {
     
     // Label
     @IBOutlet weak var profileName: UILabel!
-    
     @IBOutlet weak var rightprofile: UILabel!
-    
     @IBOutlet weak var rightsync: UILabel!
-    
     @IBOutlet weak var editLabel: UILabel!
-    
     @IBOutlet weak var rightsetting: UILabel!
-    
-    
     @IBOutlet weak var syncicon: UILabel!
-    
-    
     @IBOutlet weak var settingicon: UILabel!
-    
-    
-    @IBOutlet weak var subusericon: UILabel!
-    
-    @IBOutlet weak var rightsu: UILabel!
-    
-    
-    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var syncLabel: UILabel!
     @IBOutlet weak var settingsLabel: UILabel!
-    @IBOutlet weak var subuserLabel: UILabel!
     
     // Variables
     let user = PFUser.currentUser()
     
     // MARK: Action
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         syncLabel.text = "Sync".localized()
         settingsLabel.text = "Settings".localized()
-        subuserLabel.text = "Sub User".localized()
         editLabel.text = "Edit".localized()
         
         // Load the Top Bar
@@ -96,10 +77,6 @@ class ProfileViewController: UITableViewController {
         
         rightsetting.text = String(format: "%C", faicon["faright"]!)
         
-        rightsu.font = UIFont(name: "FontAwesome", size: 20)
-        
-        rightsu.text = String(format: "%C", faicon["faright"]!)
-        
         syncicon.font = UIFont(name: "FontAwesome", size: 20)
         
         syncicon.text = String(format: "%C", faicon["fasync"]!)
@@ -107,10 +84,6 @@ class ProfileViewController: UITableViewController {
         settingicon.font = UIFont(name: "FontAwesome", size: 20)
         
         settingicon.text = String(format: "%C", faicon["fasetting"]!)
-        
-        subusericon.font = UIFont(name: "FontAwesome", size: 20)
-        
-        subusericon.text = String(format: "%C", faicon["fasubuser"]!)
         
         self.title = "Profile".localized()
     }
