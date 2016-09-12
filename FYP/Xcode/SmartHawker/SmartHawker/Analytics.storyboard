@@ -172,33 +172,99 @@
                                     <action selector="chooseCategory:" destination="fZX-DB-Zao" eventType="valueChanged" id="cvd-5O-4Cu"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selected value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aj-br-d0L">
-                                <rect key="frame" x="109" y="44" width="111" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Working days per week:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aj-br-d0L">
+                                <rect key="frame" x="20" y="44" width="183" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hc3-ZH-Xmf">
-                                <rect key="frame" x="6" y="89" width="317" height="390"/>
-                                <color key="backgroundColor" red="0.54901960780000003" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikx-T3-1hp">
+                                <rect key="frame" x="211" y="44" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLL-Xf-cau">
+                                <rect key="frame" x="211" y="73" width="97" height="30"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Change">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeWorkingDaysPerWeek:" destination="fZX-DB-Zao" eventType="touchUpInside" id="5V9-pk-7h0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This year's sales so far:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSC-i0-mMn">
+                                <rect key="frame" x="20" y="123" width="183" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6v-ij-nCc">
+                                <rect key="frame" x="211" y="123" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sales category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-kA-1cS">
+                                <rect key="frame" x="20" y="152" width="183" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWy-yc-iYS">
+                                <rect key="frame" x="211" y="152" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category left:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPa-yp-pXm">
+                                <rect key="frame" x="20" y="181" width="183" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16H-NO-JrL">
+                                <rect key="frame" x="211" y="181" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="If every category was like category, end of this year, you will have earn:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzD-Rt-b47">
+                                <rect key="frame" x="20" y="210" width="288" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WyD-1Q-9XM">
+                                <rect key="frame" x="20" y="264" width="288" height="139"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GUr-Uz-BV6" firstAttribute="top" secondItem="Hc3-ZH-Xmf" secondAttribute="bottom" constant="25" id="1Wa-2p-5ia"/>
                             <constraint firstItem="Wvj-04-aQl" firstAttribute="top" secondItem="mfH-aM-L3M" secondAttribute="bottom" constant="8" id="8eK-Fk-h4y"/>
-                            <constraint firstItem="Hc3-ZH-Xmf" firstAttribute="top" secondItem="1aj-br-d0L" secondAttribute="bottom" constant="5" id="BpK-Gj-hIr"/>
                             <constraint firstItem="Wvj-04-aQl" firstAttribute="leading" secondItem="XJk-Ma-C7z" secondAttribute="leadingMargin" id="KT0-hb-Yco"/>
                             <constraint firstItem="1aj-br-d0L" firstAttribute="top" secondItem="Wvj-04-aQl" secondAttribute="bottom" constant="8" id="NZq-Sc-oph"/>
-                            <constraint firstItem="Hc3-ZH-Xmf" firstAttribute="leading" secondItem="XJk-Ma-C7z" secondAttribute="leadingMargin" id="ZPa-zt-7Gw"/>
                             <constraint firstItem="Wvj-04-aQl" firstAttribute="trailing" secondItem="XJk-Ma-C7z" secondAttribute="trailingMargin" id="cfy-4p-RWW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Hc3-ZH-Xmf" secondAttribute="trailing" id="dgW-Vg-g1O"/>
                             <constraint firstItem="1aj-br-d0L" firstAttribute="centerX" secondItem="XJk-Ma-C7z" secondAttribute="centerX" id="vk7-qK-5MC"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="categoryLabel" destination="1aj-br-d0L" id="i4c-Ho-nmb"/>
+                        <outlet property="categoryLeft" destination="NPa-yp-pXm" id="eqg-hu-e5p"/>
+                        <outlet property="categoryLeftAmount" destination="16H-NO-JrL" id="Sxr-Md-klb"/>
                         <outlet property="categorySegmentedControl" destination="Wvj-04-aQl" id="SZk-zC-2ps"/>
+                        <outlet property="changeWorkingDayButton" destination="fLL-Xf-cau" id="LdB-Mn-X4Q"/>
+                        <outlet property="endOfYearTrendedAmountLabel" destination="WyD-1Q-9XM" id="wKx-gw-Nd2"/>
+                        <outlet property="ifEveryCategoryLabel" destination="AzD-Rt-b47" id="k1d-dq-6uZ"/>
+                        <outlet property="salesCategoryAmountLabel" destination="HWy-yc-iYS" id="EQb-Ka-2Rz"/>
+                        <outlet property="salesCategoryLabel" destination="Y5V-kA-1cS" id="5P3-on-VaO"/>
+                        <outlet property="salesSoFarAmountLabel" destination="D6v-ij-nCc" id="OeR-63-QLM"/>
+                        <outlet property="salesSoFarLabel" destination="ZSC-i0-mMn" id="Dvu-8Y-vFc"/>
+                        <outlet property="workingDayNumberLabel" destination="ikx-T3-1hp" id="6Zo-la-pdQ"/>
+                        <outlet property="workingDayPerWeekLabel" destination="1aj-br-d0L" id="5dr-7g-XlZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugu-dE-KyP" userLabel="First Responder" sceneMemberID="firstResponder"/>

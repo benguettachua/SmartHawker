@@ -16,7 +16,19 @@ class TrendingViewController: UIViewController {
     @IBOutlet weak var categorySegmentedControl: UISegmentedControl!
     
     // Label
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var workingDayPerWeekLabel: UILabel!
+    @IBOutlet weak var workingDayNumberLabel: UILabel!
+    @IBOutlet weak var salesSoFarLabel: UILabel!
+    @IBOutlet weak var salesSoFarAmountLabel: UILabel!
+    @IBOutlet weak var salesCategoryLabel: UILabel!
+    @IBOutlet weak var salesCategoryAmountLabel: UILabel!
+    @IBOutlet weak var categoryLeft: UILabel!
+    @IBOutlet weak var categoryLeftAmount: UILabel!
+    @IBOutlet weak var ifEveryCategoryLabel: UILabel!
+    @IBOutlet weak var endOfYearTrendedAmountLabel: UILabel!
+    
+    // UIButton
+    @IBOutlet weak var changeWorkingDayButton: UIButton!
     
     // Controller
     let analyticController = AnalyticsController()
@@ -81,104 +93,54 @@ class TrendingViewController: UIViewController {
         dateFormatter.dateFormat = "MM/yyyy"
         dateString = dateFormatter.stringFromDate(NSDate())
         (useless6, useless7, useless8, useless9, monthSales, monthExpenses, monthProfit, monthCOGS) = summaryController.loadRecordsMonthly(NSDate(), dateString: dateString)
+        
+        trend()
     }
     
     @IBAction func chooseCategory(sender: UISegmentedControl) {
+        trend()
+    }
+    
+    @IBAction func changeWorkingDaysPerWeek(sender: UIButton) {
+        let alert = UIAlertController(title: "Working days per week", message: nil, preferredStyle: .Alert)
         
-        // Determine what category is chosen
-        let selectedSegment = categorySegmentedControl.selectedSegmentIndex
+        alert.addAction(UIAlertAction(title: "1", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "1"
+            self.trend()
+        }))
         
-        // Define a calendar to use
-        let calendar = NSCalendar.currentCalendar()
+        alert.addAction(UIAlertAction(title: "2", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "2"
+            self.trend()
+        }))
         
-        if (selectedSegment == 0) {
-            
-            // Format according to what is saved in database.
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            // Calculate the number of days to the end of year
-            let today = NSDate()
-            var components = calendar.components([.Day , .Month , .Year], fromDate: today)
-            let yearEnd = dateFormatter.dateFromString("31/12/" + String(components.year))
-            let flags = NSCalendarUnit.Day
-            components = calendar.components(flags, fromDate: today, toDate: yearEnd!, options: [])
-            
-            // Category: Day
-            if (yearSales[yearSales.startIndex] == "$") {
-                yearSales.removeAtIndex(yearSales.startIndex)
-            }
-            let numOfDays = components.day
-            let endOfYearSales = Double(yearSales)! + (todaySales * Double(numOfDays))
-            //*******************************************
-            // Variables used for graph
-            //
-            // Num of days: numOfDays
-            // Today's sales amount: todaySales
-            // Current sales amount: yearSales
-            // Trended year end sales: endOfYearSales
-            //*******************************************
-        } else if (selectedSegment == 1) {
-            
-            // Format according to what is saved in database.
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            // Calculate the number of days to the end of year
-            let today = NSDate()
-            var components = calendar.components([.Day , .Month , .Year], fromDate: today)
-            let yearEnd = dateFormatter.dateFromString("31/12/" + String(components.year))
-            let flags = NSCalendarUnit.Day
-            components = calendar.components(flags, fromDate: today, toDate: yearEnd!, options: [])
-            
-            // Category: Week
-            if (yearSales[yearSales.startIndex] == "$") {
-                yearSales.removeAtIndex(yearSales.startIndex)
-            }
-            if (weekSales[weekSales.startIndex] == "$") {
-                weekSales.removeAtIndex(weekSales.startIndex)
-            }
-            let numOfWeeks = components.day/7
-            let endOfYearSales = Double(yearSales)! + (Double(weekSales)! * (Double(numOfWeeks)))
-            //*******************************************
-            // Variables used for graph
-            //
-            // Num of weeks: numOfWeeks
-            // This week's sales amount: weekSales
-            // Current sales amount: yearSales
-            // Trended year end sales: endOfYearSales
-            //*******************************************
-        } else if (selectedSegment == 2) {
-            
-            // Format according to what is saved in database.
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            // Calculate the number of days to the end of year
-            let today = NSDate()
-            var components = calendar.components([.Day , .Month , .Year], fromDate: today)
-            let yearEnd = dateFormatter.dateFromString("31/12/" + String(components.year))
-            let flags = NSCalendarUnit.Month
-            components = calendar.components(flags, fromDate: today, toDate: yearEnd!, options: [])
-            
-            // Category: Week
-            if (yearSales[yearSales.startIndex] == "$") {
-                yearSales.removeAtIndex(yearSales.startIndex)
-            }
-            if (monthSales[monthSales.startIndex] == "$") {
-                monthSales.removeAtIndex(monthSales.startIndex)
-            }
-            let numOfMonths = components.month
-            let endOfYearSales = Double(yearSales)! + (Double(monthSales)! * (Double(numOfMonths)))
-            //*******************************************
-            // Variables used for graph
-            //
-            // Num of months: numOfMonths
-            // This month's sales amount: weekSales
-            // Current sales amount: yearSales
-            // Trended year end sales: endOfYearSales
-            //*******************************************
-        }
+        alert.addAction(UIAlertAction(title: "3", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "3"
+            self.trend()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "4", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "4"
+            self.trend()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "5", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "5"
+            self.trend()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "6", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "6"
+            self.trend()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "7", style: .Default, handler: { void in
+            self.workingDayNumberLabel.text = "7"
+            self.trend()
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     func daysInWeek() -> [String] {
@@ -222,5 +184,129 @@ class TrendingViewController: UIViewController {
         }
         
         return daysInWeek
+    }
+    
+    // Show working days only if category is "Daily"
+    func showWorkingDay() {
+        if (categorySegmentedControl.selectedSegmentIndex == 0) {
+            workingDayNumberLabel.hidden = false
+            workingDayPerWeekLabel.hidden = false
+            changeWorkingDayButton.hidden = false
+        } else {
+            workingDayNumberLabel.hidden = true
+            workingDayPerWeekLabel.hidden = true
+            changeWorkingDayButton.hidden = true
+        }
+    }
+    
+    func trend() {
+        showWorkingDay()
+        // Determine what category is chosen
+        let selectedSegment = categorySegmentedControl.selectedSegmentIndex
+        
+        // Define a calendar to use
+        let calendar = NSCalendar.currentCalendar()
+        
+        if (selectedSegment == 0) {
+            
+            // Find out the number of working days per week.
+            let workingDayPerWeek = Int(workingDayNumberLabel.text!)
+            
+            // Format according to what is saved in database.
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            
+            // Calculate the number of days to the end of year
+            let today = NSDate()
+            var components = calendar.components([.Day , .Month , .Year], fromDate: today)
+            let yearEnd = dateFormatter.dateFromString("31/12/" + String(components.year))
+            let flags = NSCalendarUnit.Day
+            components = calendar.components(flags, fromDate: today, toDate: yearEnd!, options: [])
+            
+            // Category: Day
+            if (yearSales[yearSales.startIndex] == "$") {
+                yearSales.removeAtIndex(yearSales.startIndex)
+            }
+            let numOfDays = components.day
+            let numOfWeeks = components.day/7
+            let endOfYearSales = Double(yearSales)! + (todaySales * Double(numOfWeeks) * Double(workingDayPerWeek!))
+            
+            // Populating the UI with necessary information
+            salesSoFarAmountLabel.text = "$" + yearSales
+            salesCategoryAmountLabel.text = "$" + String(format: "%.2f", todaySales)
+            categoryLeftAmount.text = String(numOfDays)
+            endOfYearTrendedAmountLabel.text = "$" + String(format: "%.2f", endOfYearSales)
+            
+            // Changing the Labels
+            salesSoFarLabel.text = "This year's sales so far:"
+            salesCategoryLabel.text = "Today's sales:"
+            categoryLeft.text = "Days left this year:"
+        } else if (selectedSegment == 1) {
+            
+            // Format according to what is saved in database.
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            
+            // Calculate the number of days to the end of year
+            let today = NSDate()
+            var components = calendar.components([.Day , .Month , .Year], fromDate: today)
+            let yearEnd = dateFormatter.dateFromString("31/12/" + String(components.year))
+            let flags = NSCalendarUnit.Day
+            components = calendar.components(flags, fromDate: today, toDate: yearEnd!, options: [])
+            
+            // Category: Week
+            if (yearSales[yearSales.startIndex] == "$") {
+                yearSales.removeAtIndex(yearSales.startIndex)
+            }
+            if (weekSales[weekSales.startIndex] == "$") {
+                weekSales.removeAtIndex(weekSales.startIndex)
+            }
+            let numOfWeeks = components.day/7
+            let endOfYearSales = Double(yearSales)! + (Double(weekSales)! * (Double(numOfWeeks)))
+            
+            // Populating the UI with necessary information
+            salesSoFarAmountLabel.text = "$" + yearSales
+            salesCategoryAmountLabel.text = "$" + weekSales
+            categoryLeftAmount.text = String(numOfWeeks)
+            endOfYearTrendedAmountLabel.text = "$" + String(format: "%.2f", endOfYearSales)
+            
+            // Changing the Labels
+            salesSoFarLabel.text = "This year's sales so far:"
+            salesCategoryLabel.text = "This week's sales:"
+            categoryLeft.text = "Weeks left this year:"
+        } else if (selectedSegment == 2) {
+            
+            // Format according to what is saved in database.
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            
+            // Calculate the number of days to the end of year
+            let today = NSDate()
+            var components = calendar.components([.Day , .Month , .Year], fromDate: today)
+            let yearEnd = dateFormatter.dateFromString("31/12/" + String(components.year))
+            let flags = NSCalendarUnit.Month
+            components = calendar.components(flags, fromDate: today, toDate: yearEnd!, options: [])
+            
+            // Category: Week
+            if (yearSales[yearSales.startIndex] == "$") {
+                yearSales.removeAtIndex(yearSales.startIndex)
+            }
+            if (monthSales[monthSales.startIndex] == "$") {
+                monthSales.removeAtIndex(monthSales.startIndex)
+            }
+            let numOfMonths = components.month
+            let endOfYearSales = Double(yearSales)! + (Double(monthSales)! * (Double(numOfMonths)))
+            
+            // Populating the UI with necessary information
+            salesSoFarAmountLabel.text = "$" + yearSales
+            salesCategoryAmountLabel.text = "$" + monthSales
+            categoryLeftAmount.text = String(numOfMonths)
+            endOfYearTrendedAmountLabel.text = "$" + String(format: "%.2f", endOfYearSales)
+            
+            // Changing the Labels
+            salesSoFarLabel.text = "This year's sales so far:"
+            salesCategoryLabel.text = "This month's sales:"
+            categoryLeft.text = "Months left this year:"
+        }
     }
 }
