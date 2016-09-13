@@ -25,6 +25,8 @@ class ComparisonViewController: UIViewController {
         super.viewWillAppear(animated)
         comparingString.text = "Comparing of past 6 similar days to:".localized()
         selectDateButton.setTitle("No Date Selected".localized(), forState: UIControlState.Normal)
+        
+
     }
     
     func getPastSixDays(date: NSDate) {
@@ -67,6 +69,18 @@ class ComparisonViewController: UIViewController {
         let picker : UIDatePicker = UIDatePicker()
         picker.datePickerMode = .Date
         let pickerSize : CGSize = picker.sizeThatFits(CGSizeZero)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let name = defaults.stringForKey("langPref")
+        if name == "zh-Hans"{
+            picker.locale = NSLocale(localeIdentifier: "zh-Hans")
+        }else if name == "en"{
+            picker.locale = NSLocale(localeIdentifier: "en")
+            
+        }else{
+            picker.locale = NSLocale(localeIdentifier: "ms")
+        }
+        
+        
         
         // Adding date picker to a custom view to be added to the alert.
         let margin:CGFloat = 8.0
@@ -82,7 +96,7 @@ class ComparisonViewController: UIViewController {
             let dateString = dateFormatter.stringFromDate(picker.date)
             let momentDateSelected = moment(picker.date)
             let weekday = momentDateSelected.weekdayName
-            self.selectDateButton.setTitle(dateString + ", " + weekday, forState: .Normal)
+            self.selectDateButton.setTitle(dateString + ", " + weekday.localized(), forState: .Normal)
             self.getPastSixDays(picker.date)
             
         })
