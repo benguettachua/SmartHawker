@@ -81,9 +81,8 @@ class TrendingViewController: UIViewController {
         categorySegmentedControl.setTitle("Day".localized(), forSegmentAtIndex: 0)
         categorySegmentedControl.setTitle("Week".localized(), forSegmentAtIndex: 1)
         categorySegmentedControl.setTitle("Month".localized(), forSegmentAtIndex: 2)
-        
+        changeWorkingDayButton.setTitle("Change".localized(), forState: UIControlState.Normal)
         workingDayPerWeekLabel.text = "Working days per week:".localized()
-        ifEveryCategoryLabel.text = "If every category was like category, \nend of this year, you will have earn:".localized()
         
         // Current records
         let dateFormatter = NSDateFormatter()
