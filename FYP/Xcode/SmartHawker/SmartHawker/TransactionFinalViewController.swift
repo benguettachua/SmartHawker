@@ -225,6 +225,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
                 self.amountTextField.text = ""
                 self.descriptionTextField.text = ""
+                self.addbtn.setImage(nil, forState: .Normal)
                 self.viewWillAppear(true)
             }))
             self.presentViewController(alert, animated: true, completion: nil)
