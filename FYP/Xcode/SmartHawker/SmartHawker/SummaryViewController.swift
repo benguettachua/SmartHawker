@@ -94,10 +94,10 @@ class SummaryViewController: UIViewController {
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
         yearButton.setTitle("Year".localized(), forState: UIControlState.Normal)
         incomeTax.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
-        totalSales.text = "Total Sales ($):".localized()
-        totalExpenses.text = "Total Expenses ($):".localized()
-        totalCOGS.text = "Total COGS ($):".localized()
-        netProfit.text = "Net Profit ($):".localized()
+        totalSales.text = "Total Sales:".localized()
+        totalExpenses.text = "Total Expenses:".localized()
+        totalCOGS.text = "Total COGS:".localized()
+        netProfit.text = "Net Profit:".localized()
         reportLabel.text = "Report".localized()
         //Now asking the calendar what month are we in today’s date:
         if summaryType == 1{

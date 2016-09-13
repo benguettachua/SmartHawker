@@ -110,7 +110,10 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     // View will appear
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        categorySegmentControl.setTitle("Sales".localized(), forSegmentAtIndex: 0)
+        categorySegmentControl.setTitle("COGS".localized(), forSegmentAtIndex: 1)
+        categorySegmentControl.setTitle("Expenses".localized(), forSegmentAtIndex: 2)
+        addbtn.setTitle("Tap to add receipt".localized(), forState: UIControlState.Normal)
         // Change the Text colour of the Labels
         if (type == 0) {
             SGDLabel.textColor = hexStringToUIColor("006cff")

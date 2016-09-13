@@ -142,10 +142,10 @@ class AdminPINViewController: UIViewController {
     @IBAction func cancel(sender: UIButton) {
         
         // Alert to warn user about logging out.
-        let logoutAlert = UIAlertController(title: "Are you sure?", message: "All records that are not synced will be lost.", preferredStyle: .Alert)
+        let logoutAlert = UIAlertController(title: "Are you sure?".localized(), message: "All records that are not synced will be lost.".localized(), preferredStyle: .Alert)
         
         // Option 1: Sync then logout.
-        logoutAlert.addAction(UIAlertAction(title: "Sync", style: .Default, handler: { void in
+        logoutAlert.addAction(UIAlertAction(title: "Sync".localized(), style: .Default, handler: { void in
             // Pop up telling the user that you are currently syncing
             let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
             self.presentViewController(popup, animated: true, completion: {
@@ -154,9 +154,9 @@ class AdminPINViewController: UIViewController {
                     
                     // Retrieval succeed, inform the user that records are synced.
                     popup.dismissViewControllerAnimated(true, completion: {
-                        let alertController = UIAlertController(title: "Sync Complete!", message: nil, preferredStyle: .Alert)
+                        let alertController = UIAlertController(title: "Sync Complete!".localized(), message: nil, preferredStyle: .Alert)
                         let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
-                            let alert = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
+                            let alert = UIAlertController(title: "Logging Out".localized(), message: "Please Wait".localized(), preferredStyle: .Alert)
                             self.presentViewController(alert, animated: true,completion: {
                                 
                                 self.shared.clearData()
@@ -183,9 +183,9 @@ class AdminPINViewController: UIViewController {
         }))
         
         // Option 2: Continue logging out despite the warning.
-        logoutAlert.addAction(UIAlertAction(title: "Yes, log out.", style: .Default, handler: { void in
+        logoutAlert.addAction(UIAlertAction(title: "Yes, log out.".localized(), style: .Default, handler: { void in
             
-            let alertController = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Logging Out".localized(), message: "Please Wait".localized(), preferredStyle: .Alert)
             self.presentViewController(alertController, animated: true,completion: {
                 
                 self.shared.clearData()
@@ -197,7 +197,7 @@ class AdminPINViewController: UIViewController {
         }))
         
         // Option 3: Cancel the logging out.
-        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        logoutAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Cancel, handler: nil))
         self.presentViewController(logoutAlert, animated: true, completion: nil)
         
     }

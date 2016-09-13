@@ -16,7 +16,7 @@ class BestSalesViewController: UIViewController {
     
     @IBOutlet weak var combinedChartView: HorizontalBarChartView!
     
-    let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY", "AUG", "SEPT", "OCT", "NOV", "DEC"]
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     // Controller
     let analyticController = AnalyticsController()
     
@@ -27,6 +27,10 @@ class BestSalesViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        categorySegmentControl.setTitle("Month".localized(), forSegmentAtIndex: 0)
+        categorySegmentControl.setTitle("Year".localized(), forSegmentAtIndex: 1)
+        
         
         populateBestSales()
     }
@@ -40,7 +44,7 @@ class BestSalesViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
         combinedChartView.data = chartData
         
@@ -71,7 +75,7 @@ class BestSalesViewController: UIViewController {
             var monthlyValuesForGraph = [Double]()
             let (bestSalesMonth, sortedMonth, total) = analyticController.getBestSalesMonth()
             for month in sortedMonth {
-                monthsForGraph.append(months[month])
+                monthsForGraph.append(months[month].localized())
                 monthlyValuesForGraph.append(bestSalesMonth[month]!)
                 
             }
