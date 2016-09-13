@@ -45,6 +45,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         
+        // create tap gesture recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.selectNewImageFromPhotoLibrary(_:)))
+        
+        // add it to the image view;
+        profilePicture.addGestureRecognizer(tapGesture)
+        // make sure imageView can be interacted with by user
+        profilePicture.userInteractionEnabled = true
+        
         super.viewDidLoad()
         self.navigationController?.topViewController?.title="Edit".localized();
 
