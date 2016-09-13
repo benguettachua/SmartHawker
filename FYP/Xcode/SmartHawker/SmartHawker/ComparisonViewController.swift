@@ -19,8 +19,12 @@ class ComparisonViewController: UIViewController {
     // UI Button
     @IBOutlet weak var selectDateButton: UIButton!
     @IBOutlet weak var combinedChartView: BarChartView!
-    override func viewDidLoad() {
+    @IBOutlet weak var comparingString: UILabel!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        comparingString.text = "Comparing of past 6 similar days to:".localized()
+        selectDateButton.setTitle("No Date Selected".localized(), forState: UIControlState.Normal)
     }
     
     func getPastSixDays(date: NSDate) {
@@ -72,7 +76,7 @@ class ComparisonViewController: UIViewController {
         customView.addSubview(picker)
         alertController.view.addSubview(customView)
         
-        let cancelAction = UIAlertAction(title: "Done", style: .Default, handler: { void in
+        let cancelAction = UIAlertAction(title: "Done".localized(), style: .Default, handler: { void in
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let dateString = dateFormatter.stringFromDate(picker.date)
@@ -103,7 +107,7 @@ class ComparisonViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         let chartData = BarChartData(xVals: dates, dataSet: chartDataSet)
         combinedChartView.data = chartData
         

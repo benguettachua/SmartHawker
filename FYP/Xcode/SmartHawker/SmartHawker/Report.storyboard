@@ -200,9 +200,13 @@
                                     <constraint firstItem="skr-sp-1gz" firstAttribute="leading" secondItem="F1Z-lt-GI9" secondAttribute="leading" constant="10" id="oNW-r2-GAL"/>
                                 </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uUX-uz-2cr" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uUX-uz-2cr" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="52" y="332.5" width="310" height="119"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" adjustable="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uUX-uz-2cr" secondAttribute="height" multiplier="310:119" id="fi4-gn-mAO"/>
                                 </constraints>
