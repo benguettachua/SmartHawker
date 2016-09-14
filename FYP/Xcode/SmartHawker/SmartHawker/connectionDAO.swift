@@ -221,7 +221,7 @@ class connectionDAO{
     // Sends an email to reset password.
     func forgetPassword(email: String) -> Bool {
         do{
-            try PFUser.requestPasswordResetForEmail(email)
+            try PFUser.requestPasswordResetForEmail(email.lowercaseString)
             return true
         }catch{
             return false
@@ -235,7 +235,7 @@ class connectionDAO{
         let imageFile = PFFile(name: "defaultProfilePic", data: image!)
         newUser.username = username
         newUser.password = password
-        newUser.email = email
+        newUser.email = email.lowercaseString
         newUser["name"] = name
         newUser["phoneNumber"] = phoneNumber
         newUser["adminPin"] = adminPIN
@@ -256,7 +256,7 @@ class connectionDAO{
         let user = PFUser.currentUser()
         user!["name"] = name
         user!["phoneNumber"] = phoneNumber
-        user!["email"] = email
+        user!["email"] = email.lowercaseString
         user!["adminPin"] = adminPIN
         user!["businessAddress"] = businessAddress
         user!["businessName"] = businessName
@@ -415,11 +415,14 @@ class connectionDAO{
     func checkEmail(newEmail: String) -> Bool{
         // Part 1: Load from DB and pin into local datastore.
         
-        let query = PFQuery(className: "User")
+        let query = PFQuery(className: "_User")
         var emails = [PFObject]()
+        print(newEmail)
         query.whereKey("email", equalTo: newEmail)
         do{
             emails = try query.findObjects()
+            print("wewewewe")
+            print(emails)
             if emails.count == 1{
                 // false means email is taken
                 return false

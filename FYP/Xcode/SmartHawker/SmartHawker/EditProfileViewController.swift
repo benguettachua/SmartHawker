@@ -43,8 +43,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     
-    override func viewDidLoad() {
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         // create tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.selectNewImageFromPhotoLibrary(_:)))
         
@@ -53,7 +53,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // make sure imageView can be interacted with by user
         profilePicture.userInteractionEnabled = true
         
-        super.viewDidLoad()
         self.navigationController?.topViewController?.title="Edit".localized();
 
         changeProfilePicButton.setTitle("Change Profile Picture".localized(), forState: UIControlState.Normal)
@@ -97,8 +96,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         var name2 = user!["name"]
         if (name2 == nil) {
             name2 = "No name".localized()
+            name.placeholder = name2 as? String
+        }else{
+            name.text = name2 as? String
         }
-        name.text = name2 as? String
         
         view.layout(name).top(180).horizontally(left: 20, right: 20).height(22)
         
@@ -111,9 +112,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         var email2 = user!["email"]
         if (email2 == nil) {
             email2 = "No email".localized()
+            email.placeholder = email2 as? String
+        }else{
+            email.text = email2 as? String
         }
-        email.text = email2 as? String
-        
         
         view.layout(email).top(270).horizontally(left: 20, right: 20).height(22)
         
@@ -121,27 +123,30 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         var businessName2 = user!["businessName"]
         if (businessName2 == nil) {
             businessName2 = "No business name".localized()
+            bizname.placeholder = businessName2 as? String
+        }else{
+            bizname.text = businessName2 as? String
         }
-        bizname.text = businessName2 as? String
-        
         view.layout(bizname).top(315).horizontally(left: 20, right: 20).height(22)
         
         biznum.placeholder = "BUSINESS NUMBER".localized()
         var businessNum2 = user!["businessNumber"]
         if (businessNum2 == nil) {
             businessNum2 = "No business number".localized()
+            biznum.placeholder = businessNum2 as? String
+        }else{
+            biznum.text = businessNum2 as? String
         }
-        biznum.text = businessNum2 as? String
-        
         view.layout(biznum).top(360).horizontally(left: 20, right: 20).height(22)
         
         address.placeholder = "ADDRESS".localized()
         var businessAddress2 = user!["businessAddress"]
         if (businessAddress2 == nil) {
             businessAddress2 = "No business address".localized()
+            address.placeholder = businessAddress2 as? String
+        }else{
+            address.text = businessAddress2 as? String
         }
-        address.text = businessAddress2 as? String
-        
         view.layout(address).top(405).horizontally(left: 20, right: 20).height(22)
         
         adminPIN.placeholder = "Admin PIN".localized()
@@ -279,9 +284,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 if self.email.text!.isEmpty == false && self.email.text! != email2 as! String{
                     if self.isValidEmail(self.email.text!.stringByTrimmingCharactersInSet(
                         NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(self.email.text!.stringByTrimmingCharactersInSet(
-                            NSCharacterSet.whitespaceAndNewlineCharacterSet())){
+                            NSCharacterSet.whitespaceAndNewlineCharacterSet()).lowercaseString){
                         newEmail = self.email.text!
+                        print("LSLS".lowercaseString)
                     }else{
+                        print("loloolo")
                         let errorString = "Invalid Email field.".localized()
                         self.email.text = ""
                         self.email.placeholder = "Invalid Email field.".localized()
@@ -289,6 +296,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         error += 1
                     }
                 }else if self.email.text! == email2 as! String{
+                    print("lelelelel")
                     newEmail = self.email.text!
                 }else{
                     let errorString = "Empty Email field.".localized()

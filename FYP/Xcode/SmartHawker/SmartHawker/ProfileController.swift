@@ -21,7 +21,7 @@ class ProfileController{
     }
     
     func checkEmail(email: String) -> Bool{
-        return connectionDAO().checkEmail(email)
+        return connectionDAO().checkEmail(email.lowercaseString)
     }
     
     func saveChanges(newName: String, newPhoneNumber: String, newEmail: String, newPINNumber: String, newBusinessAddress:String, newBusinessName: String, newBusinessRegNo: String, imageFile: PFFile){
