@@ -153,7 +153,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         adminPIN.text = user!["adminPin"] as? String
         
         view.layout(adminPIN).top(450).horizontally(left: 20, right: 20).height(22)
+
+
         
+        self.title = "Edit Profile".localized()
+    }
+    override func viewDidLoad(){
+        super.viewDidLoad()
         let profilePic = user!["profilePicture"]
         if (profilePic == nil) {
             let image = UIImage(named: "defaultProfilePic")
@@ -169,10 +175,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 }
             }
         }
-        
-        self.title = "Edit Profile".localized()
     }
-    
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             view.endEditing(true)
@@ -283,10 +286,17 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 var email2 = self.user!["email"]
                 if self.email.text!.isEmpty == false && self.email.text! != email2 as! String{
                     if self.isValidEmail(self.email.text!.stringByTrimmingCharactersInSet(
-                        NSCharacterSet.whitespaceAndNewlineCharacterSet())) && ProfileController().checkEmail(self.email.text!.stringByTrimmingCharactersInSet(
-                            NSCharacterSet.whitespaceAndNewlineCharacterSet()).lowercaseString){
-                        newEmail = self.email.text!
-                        print("LSLS".lowercaseString)
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())){
+                        if ProfileController().checkEmail(self.email.text!.stringByTrimmingCharactersInSet(
+                            NSCharacterSet.whitespaceAndNewlineCharacterSet())){
+                            newEmail = self.email.text!
+                        }else{
+                            let errorString = "Email Taken.".localized()
+                            self.email.text = ""
+                            self.email.placeholder = "Email Taken.".localized()
+                            self.errorMsg.append(errorString)
+                            error += 1
+                        }
                     }else{
                         print("loloolo")
                         let errorString = "Invalid Email field.".localized()
@@ -498,9 +508,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(chosenImage, 0)
-        
+        print(imageData!.length)
         if imageData!.length < 9999999{
-            
             // Image is within size limit, allow upload.
             imageFile = PFFile(name: "profilePicture", data: imageData!)
             profilePicture.contentMode = .ScaleAspectFit
@@ -508,6 +517,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             updated = true
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded".localized()
+            print("aweawe")
+
         }else{
             
             // Inform the user that size limit exceeded
