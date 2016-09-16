@@ -54,7 +54,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var language: UILabel!
     // Shared Data
     let shared = ShareData.sharedInstance
-    
+    let adminPINController = AdminPINController()
     
     let user = PFUser.currentUser()
     typealias CompletionHandler = (success:Bool) -> Void
@@ -62,12 +62,65 @@ class SettingsViewController: UITableViewController {
     // MARK: Action
     func logout() {
         
-        let alertController = UIAlertController(title: "Logging Out", message: "Please Wait", preferredStyle: .Alert)
-        self.presentViewController(alertController, animated: true,completion: {
+        // Alert to warn user about logging out.
+        let logoutAlert = UIAlertController(title: "Are you sure?".localized(), message: "All records that are not synced will be lost.".localized(), preferredStyle: .Alert)
+        
+        // Option 1: Sync then logout.
+        logoutAlert.addAction(UIAlertAction(title: "Sync".localized(), style: .Default, handler: { void in
+            // Pop up telling the user that you are currently syncing
+            let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
+            self.presentViewController(popup, animated: true, completion: {
+                let syncSucceed = self.adminPINController.sync()
+                if (syncSucceed) {
+                    
+                    // Retrieval succeed, inform the user that records are synced.
+                    popup.dismissViewControllerAnimated(true, completion: {
+                        let alertController = UIAlertController(title: "Sync Complete!".localized(), message: nil, preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
+                            let alert = UIAlertController(title: "Logging Out".localized(), message: "Please Wait".localized(), preferredStyle: .Alert)
+                            self.presentViewController(alert, animated: true,completion: {
+                                
+                                self.shared.clearData()
+                                connectionDAO().unloadRecords()
+                                connectionDAO().logout()
+                                self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                            })
+                        })
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    })
+                    
+                } else {
+                    
+                    // Retrieval failed, inform user that he can sync again after he log in.
+                    popup.dismissViewControllerAnimated(true, completion: {
+                        let alertController = UIAlertController(title: "Sync Failed!".localized(), message: nil, preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    })
+                }
+            })
+        }))
+        
+        // Option 2: Continue logging out despite the warning.
+        logoutAlert.addAction(UIAlertAction(title: "Yes, log out.".localized(), style: .Default, handler: { void in
             
-            PFUser.logOut()
-            self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
-        })
+            let alertController = UIAlertController(title: "Logging Out".localized(), message: "Please Wait".localized(), preferredStyle: .Alert)
+            self.presentViewController(alertController, animated: true,completion: {
+                
+                self.shared.clearData()
+                connectionDAO().unloadRecords()
+                connectionDAO().logout()
+                self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+            })
+            //            self.presentViewController(alertController, animated: true, completion: nil)
+        }))
+        
+        // Option 3: Cancel the logging out.
+        logoutAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Cancel, handler: nil))
+        self.presentViewController(logoutAlert, animated: true, completion: nil)
+
         
     }
     
@@ -332,7 +385,7 @@ class SettingsViewController: UITableViewController {
         }
             
         else if (section == 2) {
-            Logout()
+            logout()
         }
     }
 }
