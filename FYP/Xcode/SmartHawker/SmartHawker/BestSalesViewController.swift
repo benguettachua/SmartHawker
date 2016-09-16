@@ -16,7 +16,7 @@ class BestSalesViewController: UIViewController {
     
     @IBOutlet weak var combinedChartView: HorizontalBarChartView!
     
-    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
     // Controller
     let analyticController = AnalyticsController()
     
@@ -44,9 +44,12 @@ class BestSalesViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
+        let valueMax = values[values.count-1]
+        combinedChartView.leftAxis.axisMaxValue = 1.15*valueMax
+        
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         chartDataSet.colors = ChartColorTemplates.joyful()
-        chartDataSet.valueFont = UIFont.systemFontOfSize(13)
+        chartDataSet.valueFont = UIFont.systemFontOfSize(10)
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
         combinedChartView.data = chartData
         
@@ -59,10 +62,11 @@ class BestSalesViewController: UIViewController {
         combinedChartView.rightAxis.drawAxisLineEnabled = true
         combinedChartView.leftAxis.drawAxisLineEnabled = true
         
-        combinedChartView.xAxis.labelFont = UIFont(name: "Avenir-Light", size: 17.5)!
+        combinedChartView.xAxis.labelFont = UIFont.systemFontOfSize(12)
         combinedChartView.xAxis.drawLabelsEnabled = true
         combinedChartView.rightAxis.drawLabelsEnabled = false
         combinedChartView.leftAxis.drawLabelsEnabled = true
+        combinedChartView.leftAxis.labelFont = UIFont.systemFontOfSize(8)
         combinedChartView.xAxis.labelPosition = .Bottom
         
         combinedChartView.leftAxis.drawLimitLinesBehindDataEnabled = false
