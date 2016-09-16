@@ -309,7 +309,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yph-cI-cVc">
-                            <rect key="frame" x="0.0" y="528" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="531" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
@@ -366,11 +366,11 @@
                             </tableViewSection>
                             <tableViewSection id="vhg-5P-VG3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1Mq-VD-x83">
-                                        <rect key="frame" x="0.0" y="179" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="58" id="1Mq-VD-x83">
+                                        <rect key="frame" x="0.0" y="179" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Mq-VD-x83" id="FBx-im-X9I">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i18-o0-ze9">
@@ -379,39 +379,50 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g2t-m5-6Sj">
-                                                    <rect key="frame" x="8" y="11" width="85" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="i18-o0-ze9" secondAttribute="trailing" id="RXJ-MW-8VK"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="g2t-m5-6Sj" secondAttribute="leading" id="nHT-cM-1bN"/>
-                                                <constraint firstItem="i18-o0-ze9" firstAttribute="centerY" secondItem="FBx-im-X9I" secondAttribute="centerY" id="r0o-ii-rQr"/>
-                                                <constraint firstItem="g2t-m5-6Sj" firstAttribute="centerY" secondItem="FBx-im-X9I" secondAttribute="centerY" id="xfA-LE-zdx"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qx7-XW-C08">
-                                        <rect key="frame" x="0.0" y="223" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qx7-XW-C08" id="WcE-4p-qWH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XCd-Sr-upn">
-                                                    <rect key="frame" x="8" y="3" width="116" height="34"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aCS-73-dlG">
+                                                    <rect key="frame" x="8" y="12" width="75" height="34"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gross Profit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lCm-YH-WcX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ju7-G6-tqP">
+                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(Revenue - COGS)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iC1-EJ-E7z">
-                                                            <rect key="frame" x="0.0" y="18" width="116" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(Total Sales)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iKX-yE-91S">
+                                                            <rect key="frame" x="0.0" y="18" width="75" height="17"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.30347521550000001" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="i18-o0-ze9" secondAttribute="trailing" id="RXJ-MW-8VK"/>
+                                                <constraint firstItem="aCS-73-dlG" firstAttribute="leading" secondItem="FBx-im-X9I" secondAttribute="leadingMargin" id="Tfx-If-BJL"/>
+                                                <constraint firstItem="aCS-73-dlG" firstAttribute="centerY" secondItem="FBx-im-X9I" secondAttribute="centerY" id="kuf-kx-Q9H"/>
+                                                <constraint firstItem="i18-o0-ze9" firstAttribute="centerY" secondItem="FBx-im-X9I" secondAttribute="centerY" id="r0o-ii-rQr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="58" id="qx7-XW-C08">
+                                        <rect key="frame" x="0.0" y="237" width="320" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qx7-XW-C08" id="WcE-4p-qWH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XCd-Sr-upn">
+                                                    <rect key="frame" x="8" y="3" width="163" height="34"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gross Profit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lCm-YH-WcX">
+                                                            <rect key="frame" x="0.0" y="0.0" width="163" height="18"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(Total Sales - Total COGS)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iC1-EJ-E7z">
+                                                            <rect key="frame" x="0.0" y="18" width="163" height="17"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.30347521550000001" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -433,24 +444,24 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="114" id="qdg-4n-g7y">
-                                        <rect key="frame" x="0.0" y="267" width="320" height="114"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="qdg-4n-g7y">
+                                        <rect key="frame" x="0.0" y="295" width="320" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdg-4n-g7y" id="hV0-4Q-Hdb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="113.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="111.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6i8-d9-Irp">
-                                                    <rect key="frame" x="8" y="1" width="200" height="67"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6i8-d9-Irp">
+                                                    <rect key="frame" x="8" y="8" width="200" height="83"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Allowable Business Expenses" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyX-Zg-c1z">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Allowable Business Expenses" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyX-Zg-c1z">
                                                             <rect key="frame" x="0.0" y="0.0" width="200" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Please assess your  Total Expenses and enter  allowable amount" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWc-lN-ODv">
-                                                            <rect key="frame" x="0.0" y="18" width="200" height="49"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please assess your  Total Expenses and enter  allowable amount. Check IRS website if unsure." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWc-lN-ODv">
+                                                            <rect key="frame" x="0.0" y="18" width="200" height="66"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -458,34 +469,36 @@
                                                     </subviews>
                                                 </stackView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Optional" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pYx-Ee-1uk">
-                                                    <rect key="frame" x="228" y="11" width="84" height="22"/>
+                                                    <rect key="frame" x="228" y="8" width="84" height="22"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="pYx-Ee-1uk" secondAttribute="trailing" id="024-6X-XKx"/>
-                                                <constraint firstItem="pYx-Ee-1uk" firstAttribute="centerY" secondItem="hV0-4Q-Hdb" secondAttribute="centerY" id="M5n-If-Wpy"/>
+                                                <constraint firstItem="6i8-d9-Irp" firstAttribute="top" secondItem="pYx-Ee-1uk" secondAttribute="bottom" constant="-22" id="934-N0-Bk7"/>
+                                                <constraint firstItem="6i8-d9-Irp" firstAttribute="leading" secondItem="hV0-4Q-Hdb" secondAttribute="leadingMargin" id="F98-PQ-qo7"/>
+                                                <constraint firstItem="pYx-Ee-1uk" firstAttribute="trailing" secondItem="hV0-4Q-Hdb" secondAttribute="trailingMargin" id="M3T-Vf-BOY"/>
+                                                <constraint firstItem="6i8-d9-Irp" firstAttribute="centerY" secondItem="hV0-4Q-Hdb" secondAttribute="centerY" id="v2W-zU-GmN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="tor-r5-MEP">
-                                        <rect key="frame" x="0.0" y="381" width="320" height="85"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="62" id="tor-r5-MEP">
+                                        <rect key="frame" x="0.0" y="407" width="320" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tor-r5-MEP" id="ZPn-be-9LD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TWO-Mx-sQf">
-                                                    <rect key="frame" x="8" y="2" width="150" height="51"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TWO-Mx-sQf">
+                                                    <rect key="frame" x="8" y="5" width="150" height="51"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Adjusted Profit / Loss" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q2-PQ-5Mt">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Adjusted Profit/Loss" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q2-PQ-5Mt">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Gross Profit – Allowable Business Expenses" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yq-s2-MvF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gross Profit – Allowable Business Expenses" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yq-s2-MvF">
                                                             <rect key="frame" x="0.0" y="18" width="150" height="33"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -494,20 +507,22 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xq-CG-lus">
-                                                    <rect key="frame" x="187" y="8" width="125" height="22"/>
+                                                    <rect key="frame" x="187" y="5" width="125" height="22"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="5Xq-CG-lus" secondAttribute="trailing" id="JRS-GP-l4j"/>
-                                                <constraint firstItem="5Xq-CG-lus" firstAttribute="centerY" secondItem="ZPn-be-9LD" secondAttribute="centerY" id="oGG-uV-P4s"/>
+                                                <constraint firstItem="5Xq-CG-lus" firstAttribute="trailing" secondItem="ZPn-be-9LD" secondAttribute="trailingMargin" id="LRX-is-AFF"/>
+                                                <constraint firstItem="TWO-Mx-sQf" firstAttribute="centerY" secondItem="ZPn-be-9LD" secondAttribute="centerY" id="j0Z-K9-rJb"/>
+                                                <constraint firstItem="TWO-Mx-sQf" firstAttribute="leading" secondItem="ZPn-be-9LD" secondAttribute="leadingMargin" id="wV0-PG-wuU"/>
+                                                <constraint firstItem="TWO-Mx-sQf" firstAttribute="top" secondItem="5Xq-CG-lus" secondAttribute="bottom" constant="-22" id="z7s-fX-f90"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="var-NT-OyW">
-                                        <rect key="frame" x="0.0" y="466" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="469" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="var-NT-OyW" id="mNC-C3-PG2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -551,22 +566,23 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="access2Label" destination="8Yq-s2-MvF" id="whk-qx-O3c"/>
                         <outlet property="accessLabel" destination="yWc-lN-ODv" id="Cj2-Eo-ijU"/>
                         <outlet property="additionalBusinessExpenses" destination="fyX-Zg-c1z" id="WgD-qW-1kb"/>
                         <outlet property="additionalExpensesTextField" destination="pYx-Ee-1uk" id="aHR-yp-Bqv"/>
+                        <outlet property="adjustProfitSub" destination="8Yq-s2-MvF" id="DcI-wG-e1V"/>
                         <outlet property="adjustedProfitLabel" destination="5Xq-CG-lus" id="Wgl-aO-nKk"/>
                         <outlet property="adjustedProfitLabelOnly" destination="7Q2-PQ-5Mt" id="Zq8-YB-p1k"/>
                         <outlet property="back" destination="8Yb-BU-j6v" id="uPW-BW-7RU"/>
                         <outlet property="calculationLabelOnly" destination="iC1-EJ-E7z" id="9hP-LS-bPE"/>
                         <outlet property="estimatedTaxPayable" destination="r7A-sV-qqF" id="zkk-Qc-aFF"/>
                         <outlet property="generateTaxButton" destination="yph-cI-cVc" id="NKG-1n-RXu"/>
-                        <outlet property="grossProfitLabel" destination="z0D-ZC-ehm" id="d9E-Xb-wEN"/>
+                        <outlet property="grossProfitLabel" destination="z0D-ZC-ehm" id="xgW-C2-J41"/>
                         <outlet property="grosssProfitLabelOnly" destination="lCm-YH-WcX" id="1Zp-m4-s90"/>
                         <outlet property="incomeTaxAmountLabel" destination="zOa-b7-YER" id="oV6-ms-NjV"/>
                         <outlet property="navBar" destination="wsY-EY-b0o" id="Vc7-Ay-jRe"/>
-                        <outlet property="revenueLabel" destination="i18-o0-ze9" id="0d7-h9-oVw"/>
-                        <outlet property="revenueLabelOnly" destination="g2t-m5-6Sj" id="MfQ-e0-70T"/>
+                        <outlet property="revenueLabel" destination="i18-o0-ze9" id="TVW-6m-7QP"/>
+                        <outlet property="revenueLabelOnly" destination="Ju7-G6-tqP" id="6Wy-pp-bTN"/>
+                        <outlet property="totalSalesLabel" destination="iKX-yE-91S" id="Opq-uL-jf7"/>
                         <outlet property="yearLabel" destination="0cJ-wu-ofX" id="qiq-yI-PcF"/>
                     </connections>
                 </tableViewController>
@@ -598,5 +614,5 @@
         <image name="tax-left-icon" width="9" height="16"/>
         <image name="tax-right-icon" width="9" height="16"/>
     </resources>
-    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -24,7 +24,8 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var incomeTaxAmountLabel: UILabel!
     @IBOutlet weak var accessLabel: UILabel!
-    @IBOutlet weak var access2Label: UILabel!
+    @IBOutlet weak var totalSalesLabel: UILabel!
+    @IBOutlet weak var adjustProfitSub: UILabel!
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var back: UIBarButtonItem!
@@ -98,13 +99,14 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         navBar.title = "Income Tax".localized()
         back.title = "Back".localized()
         revenueLabelOnly.text = "Revenue".localized()
+        totalSalesLabel.text = "(Total Sales)".localized()
         grosssProfitLabelOnly.text = "Gross Profit".localized()
-        calculationLabelOnly.text = "(Revenue - COGS)".localized()
-        additionalBusinessExpenses.text = "Additional (Optional)\nBusiness Expenses".localized()
-        adjustedProfitLabelOnly.text = "Adjusted Profit \n(Gross Profit - Total Expenses)".localized()
+        calculationLabelOnly.text = "(Total Sales - Total COGS)".localized()
+        additionalBusinessExpenses.text = "Allowable Business Expenses".localized()
+        adjustedProfitLabelOnly.text = "Adjusted Profit/Loss".localized()
         generateTaxButton.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
-        accessLabel.text = "Please assess your \nTotal Expenses and enter \nallowable amount".localized()
-        access2Label.text = "Gross Profit – Allowable \nBusiness Expenses".localized()
+        accessLabel.text = "Please assess your \nTotal Expenses and enter \nallowable amount. Check \nIRAS website if unsure.".localized()
+        //access2Label.text = "Gross Profit – Allowable \nBusiness Expenses".localized()
         estimatedTaxPayable.text = "Your estimated tax payable is:".localized()
         
     }
