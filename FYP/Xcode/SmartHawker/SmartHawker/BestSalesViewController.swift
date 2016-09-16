@@ -43,10 +43,10 @@ class BestSalesViewController: UIViewController {
             let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
-        
-        let valueMax = values[values.count-1]
-        combinedChartView.leftAxis.axisMaxValue = 1.15*valueMax
-        
+        if values.isEmpty == false{
+            let valueMax = values[values.count-1]
+            combinedChartView.leftAxis.axisMaxValue = 1.15*valueMax
+        }
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         chartDataSet.colors = ChartColorTemplates.joyful()
         chartDataSet.valueFont = UIFont.systemFontOfSize(10)
@@ -86,8 +86,11 @@ class BestSalesViewController: UIViewController {
                 monthlyValuesForGraph.append(bestSalesMonth[month]!)
                 
             }
-            
-            setChart(monthsForGraph, values: monthlyValuesForGraph)
+            if monthlyValuesForGraph.isEmpty == false{
+                setChart(monthsForGraph, values: monthlyValuesForGraph)
+            }else{
+                combinedChartView.noDataText = "Please make some records.".localized()
+            }
         } else {
             var yearsForGraph = [String]()
             var yearlyValuesForGraph = [Double]()
@@ -97,7 +100,11 @@ class BestSalesViewController: UIViewController {
                 yearlyValuesForGraph.append(bestSalesYear[year]!)
             }
             
-            setChart(yearsForGraph, values: yearlyValuesForGraph)
+            if yearlyValuesForGraph.isEmpty == false{
+                setChart(yearsForGraph, values: yearlyValuesForGraph)
+            }else{
+                combinedChartView.noDataText = "Please make some records.".localized()
+            }
         }
     }
 }
