@@ -122,6 +122,8 @@ class ComparisonViewController: UIViewController {
         }
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
+        chartDataSet.colors = ChartColorTemplates.joyful()
+        chartDataSet.valueFont = UIFont.systemFontOfSize(10)
         let chartData = BarChartData(xVals: dates, dataSet: chartDataSet)
         combinedChartView.data = chartData
         
@@ -145,5 +147,6 @@ class ComparisonViewController: UIViewController {
         combinedChartView.xAxis.drawLimitLinesBehindDataEnabled = true
         combinedChartView.rightAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.descriptionText = ""
+        combinedChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
     }
 }
