@@ -221,7 +221,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             recordController.loadDatesToCalendar()
             
             // Recording successful, inform the user that they can enter another record.
-            let alert = UIAlertController(title: "Success".localized(), message: "Record success, please continue.".localized(), preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Successfully Saved".localized(), message: "Please continue.".localized(), preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: { (Void) in
                 self.amountTextField.text = ""
                 self.descriptionTextField.text = ""
