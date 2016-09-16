@@ -766,7 +766,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     private var _keyboardManagerFlags = flags(isTextFieldViewFrameChanged: false, isKeyboardShowing: false)
 
     /** To use with keyboardDistanceFromTextField. */
-    private var         _privateKeyboardDistanceFromTextField: CGFloat = 10.0
+    private var         _privateKeyboardDistanceFromTextField: CGFloat = 40.0
     
     /**************************************************************************************/
     
