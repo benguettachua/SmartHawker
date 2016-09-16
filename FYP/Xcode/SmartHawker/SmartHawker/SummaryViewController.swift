@@ -112,7 +112,7 @@ class SummaryViewController: UIViewController {
     
     func loadRecordsMonthly(){
         let loadedData = SummaryControllerNew().loadRecordsMonthly(chosenMonthDate, dateString: dateString)
-        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2, values3: loadedData.3)
+        setData(loadedData.0, value1: loadedData.1, value2: loadedData.2, value3: loadedData.3, value4: loadedData.8)
         self.salesText.text = loadedData.4
         self.expensesText.text = loadedData.5
         self.COGStext.text = loadedData.7
@@ -120,7 +120,7 @@ class SummaryViewController: UIViewController {
     }
     func loadRecordsYearly(){
         let loadedData = SummaryControllerNew().loadRecordsYearly(dateString)
-        setData(loadedData.0, values1: loadedData.1, values2: loadedData.2, values3: loadedData.3)
+        setData(loadedData.0, value1: loadedData.1, value2: loadedData.2, value3: loadedData.3, value4: loadedData.8)
         self.salesText.text = loadedData.4
         self.expensesText.text = loadedData.5
         self.COGStext.text = loadedData.7
@@ -131,11 +131,16 @@ class SummaryViewController: UIViewController {
         let loadedData = SummaryControllerNew().loadRecordsWeekly(daysInWeek)
         var array = [String]()
         for date in daysInWeek{
-            let index = date.startIndex..<date.endIndex.advancedBy(-5)
-            let newDate = date[index]
-            array.append(newDate)
+            if date.containsString("Days"){
+
+            array.append(date)
+            }else{
+                let index = date.startIndex..<date.endIndex.advancedBy(-5)
+                let newDate = date[index]
+               array.append(newDate)
+            }
         }
-        setData(array, values1: loadedData.0, values2: loadedData.1, values3: loadedData.2)
+        setData(array, value1: loadedData.0, value2: loadedData.1, value3: loadedData.2, value4: loadedData.7)
         self.salesText.text = loadedData.3
         self.expensesText.text = loadedData.4
         self.COGStext.text = loadedData.6
@@ -222,6 +227,7 @@ class SummaryViewController: UIViewController {
                 toDate: chosenWeekDate,
                 options: [])!
             var correctDateString = dateFormatter.stringFromDate(firstDayOfWeek)
+            
             daysInWeek.append(correctDateString)
             weekMonthYear.text = String(correctDateString) + " - "
             for i in 1...6 {
@@ -233,7 +239,6 @@ class SummaryViewController: UIViewController {
                 correctDateString = dateFormatter.stringFromDate(dayOfWeek)
                 daysInWeek.append(correctDateString)
             }
-            
             
             weekMonthYear.text = weekMonthYear.text! + correctDateString
 
@@ -331,7 +336,6 @@ class SummaryViewController: UIViewController {
                 daysInWeek.append(correctDateString)
             }
             
-            
             weekMonthYear.text = weekMonthYear.text! + correctDateString
             
             loadRecordsWeekly()
@@ -382,7 +386,6 @@ class SummaryViewController: UIViewController {
             daysInWeek.append(correctDateString)
         }
         
-        
         weekMonthYear.text = weekMonthYear.text! + correctDateString
 
         weekButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -428,16 +431,38 @@ class SummaryViewController: UIViewController {
         loadRecordsYearly()
     }
     
-    func setData(dataPoints : [String], values1 : [Double], values2 : [Double], values3 : [Double]) {
+    func setData(dataPoints : [String], value1 : [Double], value2 : [Double], value3 : [Double], value4 : [Double]) {
+        var dataPointsToUse = dataPoints
+        var values1 = value1
+        var values2 = value2
+        var values3 = value3
+        var values4 = value4
+        values1.append(0.00)
+        values1.insert(0.00, atIndex: 0)
+        values2.append(0.00)
+        values2.insert(0.00, atIndex: 0)
+        values3.append(0.00)
+        values3.insert(0.00, atIndex: 0)
+        values4.append(0.00)
+        values4.insert(0.00, atIndex: 0)
+        
+        if summaryType == 0 || summaryType == 1{
+            dataPointsToUse.append("")
+            dataPointsToUse.insert("", atIndex: 0)
+        }else{
+            
+            dataPointsToUse.append("")
+            dataPointsToUse.insert("", atIndex: 0)
+        }
         
         var dataEntries1: [ChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
+        for i in 0..<dataPointsToUse.count {
             let dataEntry = ChartDataEntry(value: values1[i], xIndex: i)
             dataEntries1.append(dataEntry)
         }
         
-        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Sales".localized())
+        let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Total Sales".localized())
         lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet1.setColor(UIColor.greenColor())
         lineChartDataSet1.highlightColor = UIColor.clearColor()
@@ -451,12 +476,12 @@ class SummaryViewController: UIViewController {
         lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
         var dataEntries2: [ChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
+        for i in 0..<dataPointsToUse.count {
             let dataEntry = ChartDataEntry(value: values2[i], xIndex: i)
             dataEntries2.append(dataEntry)
         }
         
-        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Expenses".localized())
+        let lineChartDataSet2 = LineChartDataSet(yVals: dataEntries2, label: "Total Expenses".localized())
         lineChartDataSet2.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet2.setColor(UIColor.redColor())
         lineChartDataSet2.highlightColor = UIColor.clearColor()
@@ -471,12 +496,12 @@ class SummaryViewController: UIViewController {
         
         var dataEntries3: [ChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
+        for i in 0..<dataPointsToUse.count {
             let dataEntry = ChartDataEntry(value: values3[i], xIndex: i)
             dataEntries3.append(dataEntry)
         }
         
-        let lineChartDataSet3 = LineChartDataSet(yVals: dataEntries3, label: "COGS".localized())
+        let lineChartDataSet3 = LineChartDataSet(yVals: dataEntries3, label: "Total COGS".localized())
         lineChartDataSet3.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet3.setColor(UIColor.orangeColor())
         lineChartDataSet3.highlightColor = UIColor.clearColor()
@@ -489,15 +514,35 @@ class SummaryViewController: UIViewController {
         lineChartDataSet3.fill = ChartFill.fillWithColor(UIColor.orangeColor())
         lineChartDataSet3.drawFilledEnabled = true
 
+        var dataEntries4: [ChartDataEntry] = []
         
+        for i in 0..<dataPointsToUse.count {
+            let dataEntry = ChartDataEntry(value: values4[i], xIndex: i)
+            dataEntries4.append(dataEntry)
+        }
+        
+        let lineChartDataSet4 = LineChartDataSet(yVals: dataEntries4, label: "Profit".localized())
+        lineChartDataSet4.axisDependency = .Left // Line will correlate with left axis values
+        lineChartDataSet4.setColor(UIColor.blueColor())
+        lineChartDataSet4.highlightColor = UIColor.clearColor()
+        lineChartDataSet4.lineWidth = 2
+        lineChartDataSet4.drawCircleHoleEnabled = false
+        lineChartDataSet4.circleRadius = 0
+        lineChartDataSet4.drawValuesEnabled = true
+        lineChartDataSet4.mode = .HorizontalBezier
+        
+        lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blueColor())
+        lineChartDataSet4.drawFilledEnabled = true
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(lineChartDataSet1)
         dataSets.append(lineChartDataSet2)
         dataSets.append(lineChartDataSet3)
+        dataSets.append(lineChartDataSet4)
         //4 - pass our months in for our x-axis label value along with our dataSets
-        let data: LineChartData = LineChartData(xVals: dataPoints, dataSets: dataSets)
-        data.setValueTextColor(UIColor.whiteColor())
+        let data: LineChartData = LineChartData(xVals: dataPointsToUse, dataSets: dataSets)
+        data.setValueTextColor(UIColor.magentaColor())
+        data.setValueFont(UIFont.systemFontOfSize(14))
         
         //5 - finally set our data
         self.chart.data = data
@@ -513,7 +558,7 @@ class SummaryViewController: UIViewController {
         chart.leftAxis.drawAxisLineEnabled = false
         
         chart.xAxis.drawLabelsEnabled = true
-        chart.xAxis.labelFont = UIFont(name: "Helvetica Neue", size: 7)!
+        chart.xAxis.labelFont = UIFont.systemFontOfSize(11)
         chart.rightAxis.drawLabelsEnabled = false
         chart.leftAxis.drawLabelsEnabled = false
         

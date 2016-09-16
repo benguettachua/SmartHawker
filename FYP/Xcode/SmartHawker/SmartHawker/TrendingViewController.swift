@@ -69,6 +69,7 @@ class TrendingViewController: UIViewController {
     var useless2 = [Double]()
     var useless3 = [Double]()
     var useless10 = [Double]()
+    var useless = [Double]()
     var yearSales = ""
     var yearExpenses = ""
     var yearProfit = ""
@@ -88,18 +89,18 @@ class TrendingViewController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy"
         var dateString = dateFormatter.stringFromDate(NSDate())
-        (useless1, useless2, useless3, useless10, yearSales, yearExpenses, yearProfit, yearCOGS) = summaryController.loadRecordsYearly(dateString)
+        (useless1, useless2, useless3, useless10, yearSales, yearExpenses, yearProfit, yearCOGS, useless) = summaryController.loadRecordsYearly(dateString)
         print(summaryController.loadRecordsYearly(dateString))
         // For day trending
         (todaySales, todayCOGS, todayExpenses, todayProfit) = analyticController.loadTodayRecord()
         
         // For week trending
-        (useless4, useless5, useless11, weekSales, weekExpenses, weekProfit, weekCOGS) = summaryController.loadRecordsWeekly(daysInWeek())
+        (useless4, useless5, useless11, weekSales, weekExpenses, weekProfit, weekCOGS, useless) = summaryController.loadRecordsWeekly(daysInWeek())
         
         // For month trending
         dateFormatter.dateFormat = "MM/yyyy"
         dateString = dateFormatter.stringFromDate(NSDate())
-        (useless6, useless7, useless8, useless9, monthSales, monthExpenses, monthProfit, monthCOGS) = summaryController.loadRecordsMonthly(NSDate(), dateString: dateString)
+        (useless6, useless7, useless8, useless9, monthSales, monthExpenses, monthProfit, monthCOGS, useless) = summaryController.loadRecordsMonthly(NSDate(), dateString: dateString)
         
         trend()
     }

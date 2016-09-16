@@ -25,8 +25,7 @@ class ComparisonViewController: UIViewController {
         super.viewWillAppear(animated)
         comparingString.text = "Comparing of past 6 similar days to:".localized()
         selectDateButton.setTitle("No Date Selected".localized(), forState: UIControlState.Normal)
-        
-
+        combinedChartView.noDataText = "Please make some records.".localized()
     }
     
     func getPastSixDays(date: NSDate) {
