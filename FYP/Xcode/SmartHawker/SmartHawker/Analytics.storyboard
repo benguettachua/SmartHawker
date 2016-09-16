@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -332,12 +332,6 @@
                                     <action selector="chooseCategory:" destination="jnb-23-rtJ" eventType="valueChanged" id="dqq-7I-yde"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Testing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiJ-AY-nwV">
-                                <rect key="frame" x="136" y="44" width="56" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FSx-79-nYf" customClass="HorizontalBarChartView" customModule="Charts">
                                 <rect key="frame" x="8" y="73" width="313" height="399"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -345,15 +339,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PiJ-AY-nwV" firstAttribute="centerX" secondItem="pbO-wy-NT8" secondAttribute="centerX" id="2H1-fu-xbb"/>
                             <constraint firstItem="WfJ-u5-43A" firstAttribute="centerX" secondItem="pbO-wy-NT8" secondAttribute="centerX" id="7a6-lY-cip"/>
                             <constraint firstItem="yAd-Tq-FE9" firstAttribute="top" secondItem="FSx-79-nYf" secondAttribute="bottom" constant="25" id="LQF-uB-Zg4"/>
                             <constraint firstItem="WfJ-u5-43A" firstAttribute="top" secondItem="Y5P-XW-IOX" secondAttribute="bottom" constant="8" id="QjD-jj-x84"/>
                             <constraint firstItem="FSx-79-nYf" firstAttribute="leading" secondItem="pbO-wy-NT8" secondAttribute="leadingMargin" id="RjQ-Id-yoH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FSx-79-nYf" secondAttribute="trailing" id="fcU-mw-0cf"/>
-                            <constraint firstItem="PiJ-AY-nwV" firstAttribute="centerX" secondItem="pbO-wy-NT8" secondAttribute="centerX" id="jfX-WJ-xml"/>
-                            <constraint firstItem="PiJ-AY-nwV" firstAttribute="top" secondItem="WfJ-u5-43A" secondAttribute="bottom" constant="8" id="q0T-Ss-sZt"/>
-                            <constraint firstItem="FSx-79-nYf" firstAttribute="top" secondItem="PiJ-AY-nwV" secondAttribute="bottom" constant="8" id="x98-hO-XVW"/>
+                            <constraint firstItem="FSx-79-nYf" firstAttribute="top" secondItem="WfJ-u5-43A" secondAttribute="bottom" constant="15" id="vd9-pp-GBb"/>
                         </constraints>
                     </view>
                     <connections>
