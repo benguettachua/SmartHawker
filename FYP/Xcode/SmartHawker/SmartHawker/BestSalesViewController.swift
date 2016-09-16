@@ -45,6 +45,8 @@ class BestSalesViewController: UIViewController {
         }
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
+        chartDataSet.colors = ChartColorTemplates.joyful()
+        chartDataSet.valueFont = UIFont.systemFontOfSize(10)
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
         combinedChartView.data = chartData
         
@@ -67,6 +69,7 @@ class BestSalesViewController: UIViewController {
         combinedChartView.xAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.rightAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.descriptionText = ""
+        combinedChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
     }
     
     func populateBestSales() {
