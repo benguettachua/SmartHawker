@@ -150,9 +150,9 @@ class SummaryControllerNew {
         var salesAmount = 0.00
         var expensesAmount = 0.00
         var COGSAmount = 0.00
-        var series1 = [0.00]
-        var series2 = [0.00]
-        var series3 = [0.00]
+        var series1 = [Double]()
+        var series2 = [Double]()
+        var series3 = [Double]()
         var totalSalesAmount = 0.00
         var totalExpensesAmount = 0.00
         var totalCOGSAmount = 0.00

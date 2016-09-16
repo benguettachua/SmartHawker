@@ -38,7 +38,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var chart: LineChartView!
     
     //1 = monthly, 2 = yearly, 0 = weekly
-    var summaryType = 1
+    var summaryType = 0
     
     
     var calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
@@ -66,7 +66,6 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weekMonthYear.text = actualMonthDate.monthName.localized() + " " + String(actualMonthDate.year)
         
         if actualMonthDate.month < 10 {
             currentMonthString = "0" + String(actualMonthDate.month)
@@ -74,6 +73,7 @@ class SummaryViewController: UIViewController {
             currentMonthString = String(actualMonthDate.month)
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
+        self.week(nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -340,7 +340,7 @@ class SummaryViewController: UIViewController {
     }
     
     //to change the category to week/month/year
-    @IBAction func week(sender: UIButton) {
+    @IBAction func week(sender: AnyObject?) {
         daysInWeek.removeAll()
         summaryType = 0
         
