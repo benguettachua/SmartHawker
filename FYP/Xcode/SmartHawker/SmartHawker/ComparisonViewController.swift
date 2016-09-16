@@ -123,23 +123,23 @@ class ComparisonViewController: UIViewController {
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         chartDataSet.colors = ChartColorTemplates.joyful()
-        chartDataSet.valueFont = UIFont.systemFontOfSize(10)
+        chartDataSet.valueFont = UIFont.systemFontOfSize(13)
         let chartData = BarChartData(xVals: dates, dataSet: chartDataSet)
         combinedChartView.data = chartData
         
         combinedChartView.drawGridBackgroundEnabled = false
         combinedChartView.xAxis.drawGridLinesEnabled = false
         combinedChartView.rightAxis.drawGridLinesEnabled = false
-        combinedChartView.leftAxis.drawGridLinesEnabled = false
+        combinedChartView.leftAxis.drawGridLinesEnabled = true
         
         combinedChartView.xAxis.drawAxisLineEnabled = false
         combinedChartView.rightAxis.drawAxisLineEnabled = false
-        combinedChartView.leftAxis.drawAxisLineEnabled = false
+        combinedChartView.leftAxis.drawAxisLineEnabled = true
         
         combinedChartView.xAxis.drawLabelsEnabled = true
         combinedChartView.xAxis.labelRotatedWidth = 10.0
         combinedChartView.rightAxis.drawLabelsEnabled = false
-        combinedChartView.leftAxis.drawLabelsEnabled = false
+        combinedChartView.leftAxis.drawLabelsEnabled = true
         combinedChartView.xAxis.labelPosition = .Bottom
         combinedChartView.xAxis.labelFont = UIFont(name: "Avenir-Light", size: 15.0)!
         
