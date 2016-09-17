@@ -528,7 +528,7 @@ class SummaryViewController: UIViewController {
         lineChartDataSet4.lineWidth = 2
         lineChartDataSet4.drawCircleHoleEnabled = false
         lineChartDataSet4.circleRadius = 0
-        lineChartDataSet4.drawValuesEnabled = true
+        lineChartDataSet4.drawValuesEnabled = false
         lineChartDataSet4.mode = .HorizontalBezier
         
         lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blueColor())
@@ -551,16 +551,15 @@ class SummaryViewController: UIViewController {
         chart.drawGridBackgroundEnabled = false
         chart.xAxis.drawGridLinesEnabled = true
         chart.rightAxis.drawGridLinesEnabled = false
-        chart.leftAxis.drawGridLinesEnabled = false
+        chart.leftAxis.drawGridLinesEnabled = true
         
-        chart.xAxis.drawAxisLineEnabled = false
+        chart.xAxis.drawAxisLineEnabled = true
         chart.rightAxis.drawAxisLineEnabled = false
         chart.leftAxis.drawAxisLineEnabled = false
         
         chart.xAxis.drawLabelsEnabled = true
-        chart.xAxis.labelFont = UIFont.systemFontOfSize(11)
         chart.rightAxis.drawLabelsEnabled = false
-        chart.leftAxis.drawLabelsEnabled = false
+        chart.leftAxis.drawLabelsEnabled = true
         
         chart.leftAxis.drawLimitLinesBehindDataEnabled = false
         chart.xAxis.drawLimitLinesBehindDataEnabled = true
