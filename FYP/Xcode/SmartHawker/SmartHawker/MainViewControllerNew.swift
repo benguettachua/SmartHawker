@@ -26,7 +26,7 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var weekExpensesLabel: UILabel!
     @IBOutlet weak var weekProfitLabel: UILabel!
     @IBOutlet weak var thisWeekOverviewLabel: UILabel!
-
+    
     @IBOutlet weak var weeklySalesLabel: UILabel!
     @IBOutlet weak var weeklyCOGSLabel: UILabel!
     @IBOutlet weak var weeklyExpensesLabel: UILabel!
@@ -61,13 +61,13 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var monthCOGSAmountLabel: UILabel!
     @IBOutlet weak var monthlyTargetAmountLabel: UILabel!
     @IBOutlet weak var thisMonthSaleLabel: UILabel!
-
+    
     
     @IBOutlet weak var overview: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
@@ -98,7 +98,7 @@ class MainViewControllerNew: UIViewController{
         highestSalesLabel.text = "Highest".localized()
         
         averageSalesLabel.text = "Average".localized()
-
+        
         profitLabel.text = "Profit".localized()
         expensesLabel.text = "Expenses".localized()
         salesLabel.text = "Sales".localized()
@@ -168,6 +168,12 @@ class MainViewControllerNew: UIViewController{
         print("Weekly Overview from \n" + values.13 + " - " + values.14)
         //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
+        
+        // Today's value to be populated to UI when done
+        print("Today sales: " + "$" + String(format: "%.0f", values.15))
+        print("Today COGS: " + "$" + String(format: "%.0f", values.16))
+        print("Today Expenses: " + "$" + String(format: "%.0f", values.17))
+        print("Today Profit: " + "$" + String(format: "%.0f", values.18))
         
     }
     
@@ -253,12 +259,12 @@ class MainViewControllerNew: UIViewController{
         let array = toShare.datesWithRecords
         
         var dateArray = [NSDate]()
-            for stringDate in array{
+        for stringDate in array{
             
-                let correctDate = dateFormatter.dateFromString(stringDate)
-                dateArray.append(correctDate!)
-            }
-            
+            let correctDate = dateFormatter.dateFromString(stringDate)
+            dateArray.append(correctDate!)
+        }
+        
         
         dateArray.sortInPlace({$0.timeIntervalSinceNow > $1.timeIntervalSinceNow})
         

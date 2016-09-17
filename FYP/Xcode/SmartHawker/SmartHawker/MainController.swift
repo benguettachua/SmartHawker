@@ -48,7 +48,7 @@ class MainController{
         }
     }
     
-    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double, Double, String, String){
+    func getMainValues() -> (Double, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double, Double, String, String, Double, Double, Double, Double){
         thisWeekDates()
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -81,6 +81,10 @@ class MainController{
         var totalProfit = 0.0
         var expenses = 0.0
         var COGS = 0.0
+        var todaySales = 0.0
+        var todayCOGS = 0.0
+        var todayExpenses = 0.0
+        var todayProfit = 0.0
         
         for (myKey,myValue) in datesAndRecords {
             dateFormatter.dateFormat = "MM/yyyy"
@@ -100,9 +104,11 @@ class MainController{
             for record in myValue {
                 if earlier || same {
                     let type = record["type"] as! Int
+                    let recordDate = record["date"] as! String
+                    let todayDate = dateFormatter.stringFromDate(NSDate())
                     if (type == 0 || type == 1 || type == 2) {
-                        if datesWithRecords.contains(record["date"] as! String) == false {
-                            datesWithRecords.append(record["date"] as! String)
+                        if datesWithRecords.contains(recordDate) == false {
+                            datesWithRecords.append(recordDate)
                             totalDays += 1.0
                             
                         }
@@ -131,14 +137,29 @@ class MainController{
                             lowSalesDay = myKey
                         }
                         
+                        // To populate today's sales
+                        if (todayDate == recordDate) {
+                            todaySales += amount
+                        }
+                        
                     } else if (type == 1) {
                         COGS += amount
                         profit -= amount
                         totalProfit -= amount
+                        
+                        // To populate today's COGS
+                        if (todayDate == recordDate) {
+                            todayCOGS += amount
+                        }
                     } else if (type == 2) {
                         expenses += amount
                         profit -= amount
                         totalProfit -= amount
+                        
+                        // To populate today's expenses
+                        if (todayDate == recordDate) {
+                            todayExpenses += amount
+                        }
                     }
                     
                     if earlierThanThisWeek == false || myKey.containsString(todayDate) {
@@ -163,7 +184,11 @@ class MainController{
         if totalDays != 0{
             averageSales = (totalSales/totalDays)
         }
-        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS, weeklySales, weeklyCOGS, weeklyExpenses, weeklyProfit, stringForFirstDay, stringForLastDay)
+        
+        // To populate today's profit
+        todayProfit = todaySales - todayCOGS - todayExpenses
+        
+        return (totalSales,expenses,totalProfit,highSales,lowSales,averageSales,highSalesDay,lowSalesDay, COGS, weeklySales, weeklyCOGS, weeklyExpenses, weeklyProfit, stringForFirstDay, stringForLastDay, todaySales, todayCOGS, todayExpenses, todayProfit)
     }
     
     func thisWeekDates(){
