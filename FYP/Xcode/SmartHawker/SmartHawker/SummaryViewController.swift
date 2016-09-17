@@ -12,7 +12,10 @@ import Charts
 
 class SummaryViewController: UIViewController {
     
-    
+    var oneTrue = true
+    var twoTrue = true
+    var threeTrue = true
+    var fourTrue = true
     // MARK: Properties
     @IBOutlet weak var reportLabel: UILabel!
     var currentMonthInt = Int()
@@ -395,7 +398,7 @@ class SummaryViewController: UIViewController {
     }
     
     
-    @IBAction func month(sender: UIButton) {
+    @IBAction func month(sender: AnyObject?) {
         
         summaryType = 1
         
@@ -416,7 +419,7 @@ class SummaryViewController: UIViewController {
         loadRecordsMonthly()
     }
     
-    @IBAction func year(sender: UIButton) {
+    @IBAction func year(sender: AnyObject?) {
         
         summaryType = 2
         
@@ -523,7 +526,7 @@ class SummaryViewController: UIViewController {
         
         let lineChartDataSet4 = LineChartDataSet(yVals: dataEntries4, label: "Profit".localized())
         lineChartDataSet4.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet4.setColor(UIColor.blueColor())
+        lineChartDataSet4.setColor(UIColor.blackColor())
         lineChartDataSet4.highlightColor = UIColor.clearColor()
         lineChartDataSet4.lineWidth = 2
         lineChartDataSet4.drawCircleHoleEnabled = false
@@ -531,14 +534,22 @@ class SummaryViewController: UIViewController {
         lineChartDataSet4.drawValuesEnabled = false
         lineChartDataSet4.mode = .HorizontalBezier
         
-        lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blueColor())
+        lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blackColor())
         lineChartDataSet4.drawFilledEnabled = true
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
-        dataSets.append(lineChartDataSet1)
-        dataSets.append(lineChartDataSet2)
-        dataSets.append(lineChartDataSet3)
-        dataSets.append(lineChartDataSet4)
+        if oneTrue{
+            dataSets.append(lineChartDataSet1)
+        }
+        if twoTrue{
+            dataSets.append(lineChartDataSet2)
+        }
+        if threeTrue{
+            dataSets.append(lineChartDataSet3)
+        }
+        if fourTrue{
+            dataSets.append(lineChartDataSet4)
+        }
         //4 - pass our months in for our x-axis label value along with our dataSets
         let data: LineChartData = LineChartData(xVals: dataPointsToUse, dataSets: dataSets)
         data.setValueTextColor(UIColor.magentaColor())
@@ -564,10 +575,52 @@ class SummaryViewController: UIViewController {
         chart.leftAxis.drawLimitLinesBehindDataEnabled = false
         chart.xAxis.drawLimitLinesBehindDataEnabled = true
         chart.rightAxis.drawLimitLinesBehindDataEnabled = false
-        chart.leftAxis.axisMinValue = 1
+        chart.leftAxis.axisMinValue = 0
         chart.descriptionText = ""
         
         chart.legend.enabled = true
+    }
+    
+    
+    @IBAction func salesButton(sender: UIButton){
+        oneTrue = !oneTrue
+        if summaryType == 1{
+            loadRecordsMonthly()
+        }else if summaryType == 2{
+            loadRecordsYearly()
+        }else{
+            loadRecordsWeekly()
+        }
+    }
+    @IBAction func expensesButton(sender: UIButton){
+        twoTrue = !twoTrue
+        if summaryType == 1{
+            loadRecordsMonthly()
+        }else if summaryType == 2{
+            loadRecordsYearly()
+        }else{
+            loadRecordsWeekly()
+        }
+    }
+    @IBAction func COGSButton(sender: UIButton){
+         threeTrue = !threeTrue
+        if summaryType == 1{
+            loadRecordsMonthly()
+        }else if summaryType == 2{
+            loadRecordsYearly()
+        }else{
+            loadRecordsWeekly()
+        }
+    }
+    @IBAction func profitButton(sender: UIButton){
+        fourTrue = !fourTrue
+        if summaryType == 1{
+            loadRecordsMonthly()
+        }else if summaryType == 2{
+            loadRecordsYearly()
+        }else{
+            loadRecordsWeekly()
+        }
     }
     
 }
