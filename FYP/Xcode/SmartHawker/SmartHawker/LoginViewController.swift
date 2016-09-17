@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     // Controller
     let loginController = LoginController()
     var actionSheet: UIAlertController!
+    let adminPINController = AdminPINController()
+    
     // Text Fields
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -37,39 +39,90 @@ class LoginViewController: UIViewController {
     // This function is called when the user clicks log in at the login page.
     @IBAction func login(sender: UIButton) {
         if connectionDAO().isConnectedToNetwork(){
-        // There is an alert to inform the user that it is currently logging in.
-        let loggingInAlert = UIAlertController(title: "Logging In".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
-        self.presentViewController(loggingInAlert, animated: true, completion: {
-            let username = self.usernameTextField.text
-            let password = self.passwordTextField.text
-            
-            // Calls controller to log in using the entered parameters.
-            let loginSuccess = self.loginController.login(username!, password: password!)
-            if (loginSuccess) {
+            // There is an alert to inform the user that it is currently logging in.
+            let loggingInAlert = UIAlertController(title: "Logging In".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
+            self.presentViewController(loggingInAlert, animated: true, completion: {
+                let username = self.usernameTextField.text
+                let password = self.passwordTextField.text
                 
-                self.shared.clearData()
-                
-                // Set just logged in to true to prompt to retrieve record
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "justLoggedIn")
-                
-                // Pin all subusers of this account to local datastore
-                self.loginController.pinSubusers()
-                
-                // Logging in success, logging in alert is dissmissed, scene is moved to admin page.
-                loggingInAlert.dismissViewControllerAnimated(false, completion: {
-                    self.performSegueWithIdentifier("loginSuccess", sender: self)
-                })
-            } else {
-                
-                // Logging in failed, logging in alert is dismissed, login failed alert is shown
-                loggingInAlert.dismissViewControllerAnimated(false, completion: {
-                    let alert = UIAlertController(title: "Error".localized(), message: "Login not successful, please try again.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))
+                // Calls controller to log in using the entered parameters.
+                let loginSuccess = self.loginController.login(username!, password: password!)
+                if (loginSuccess) {
                     
-                    self.presentViewController(alert, animated: true, completion: nil)
-                })
-            }
-        })
+                    
+                    self.shared.clearData()
+                    
+                    // Set just logged in to true to prompt to retrieve record
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "justLoggedIn")
+                    
+                    // Pin all subusers of this account to local datastore
+                    self.loginController.pinSubusers()
+                    
+                    // Logging in success, logging in alert is dissmissed, scene is moved to admin page.
+                    loggingInAlert.dismissViewControllerAnimated(false, completion: {
+                        
+                        // Load dates with records into calendar.
+                        self.adminPINController.loadDatesToCalendar()
+                        
+                        
+                        // Set first time logged in to False, so this popup appears only once, when you just logged in.
+                        let alertController = UIAlertController(title: "Welcome".localized(), message: "Do you want to retrieve past records online?".localized(), preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action) -> Void in
+                            
+                            // Pop up telling the user that you are currently syncing
+                            let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
+                            self.presentViewController(popup, animated: true, completion: {
+                                let syncSucceed = self.adminPINController.sync()
+                                if (syncSucceed) {
+                                    
+                                    // Retrieval succeed, inform the user that records are synced.
+                                    popup.dismissViewControllerAnimated(true, completion: {
+                                        let alertController = UIAlertController(title: "Retrieval Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
+                                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
+                                            self.adminPINController.loadDatesToCalendar()
+                                            self.performSegueWithIdentifier("loginSuccess", sender: self)
+                                        })
+                                        alertController.addAction(ok)
+                                        self.presentViewController(alertController, animated: true,completion: nil)
+                                    })
+                                    
+                                } else {
+                                    
+                                    // Retrieval failed, inform user that he can sync again after he log in.
+                                    popup.dismissViewControllerAnimated(true, completion: {
+                                        let alertController = UIAlertController(title: "Retrieval Failed!".localized(), message: "You may sync your data again at settings page.".localized(), preferredStyle: .Alert)
+                                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
+                                            self.adminPINController.loadDatesToCalendar()
+                                            self.performSegueWithIdentifier("loginSuccess", sender: self)
+                                        })
+                                        alertController.addAction(ok)
+                                        self.presentViewController(alertController, animated: true,completion: nil)
+                                    })
+                                }
+                            })
+                            
+                        })
+                        let no = UIAlertAction(title: "No".localized(), style: .Cancel, handler: { void in
+                            self.performSegueWithIdentifier("loginSuccess", sender: self)
+                        })
+                        alertController.addAction(ok)
+                        alertController.addAction(no)
+                        self.adminPINController.loadDatesToCalendar()
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        
+                    })
+                } else {
+                    
+                    // Logging in failed, logging in alert is dismissed, login failed alert is shown
+                    loggingInAlert.dismissViewControllerAnimated(false, completion: {
+                        let alert = UIAlertController(title: "Error".localized(), message: "Login not successful, please try again.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))
+                        
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
+                }
+            })
         }else{
             let alert = UIAlertController(title: "Internet Connection is down.".localized(), message: "Login not successful, please try again.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Close".localized(), style: UIAlertActionStyle.Default, handler: nil))

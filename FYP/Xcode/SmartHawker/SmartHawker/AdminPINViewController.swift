@@ -91,61 +91,8 @@ class AdminPINViewController: UIViewController {
             
         } else {
             
-            // Load dates with records into calendar.
             adminPINController.loadDatesToCalendar()
-            let defaults = NSUserDefaults.standardUserDefaults()
-            let justLoggedIn = defaults.boolForKey("justLoggedIn")
-            if (justLoggedIn == true) {
-                
-                // Set first time logged in to False, so this popup appears only once, when you just logged in.
-                defaults.setBool(false, forKey: "justLoggedIn")
-                let alertController = UIAlertController(title: "Welcome".localized(), message: "Do you want to retrieve past records online?".localized(), preferredStyle: .Alert)
-                let ok = UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action) -> Void in
-                    
-                    // Pop up telling the user that you are currently syncing
-                    let popup = UIAlertController(title: "Syncing".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
-                    self.presentViewController(popup, animated: true, completion: {
-                        let syncSucceed = self.adminPINController.sync()
-                        if (syncSucceed) {
-                            
-                            // Retrieval succeed, inform the user that records are synced.
-                            popup.dismissViewControllerAnimated(true, completion: {
-                                let alertController = UIAlertController(title: "Retrieval Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
-                                let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
-                                    self.adminPINController.loadDatesToCalendar()
-                                    self.performSegueWithIdentifier("toMain", sender: self)
-                                })
-                                alertController.addAction(ok)
-                                self.presentViewController(alertController, animated: true,completion: nil)
-                            })
-                            
-                        } else {
-                            
-                            // Retrieval failed, inform user that he can sync again after he log in.
-                            popup.dismissViewControllerAnimated(true, completion: {
-                                let alertController = UIAlertController(title: "Retrieval Failed!".localized(), message: "You may sync your data again at settings page.".localized(), preferredStyle: .Alert)
-                                let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
-                                    self.adminPINController.loadDatesToCalendar()
-                                    self.performSegueWithIdentifier("toMain", sender: self)
-                                })
-                                alertController.addAction(ok)
-                                self.presentViewController(alertController, animated: true,completion: nil)
-                            })
-                        }
-                    })
-                    
-                })
-                let no = UIAlertAction(title: "No".localized(), style: .Cancel, handler: { void in
-                    self.performSegueWithIdentifier("toMain", sender: self)
-                })
-                alertController.addAction(ok)
-                alertController.addAction(no)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            } else {
-                adminPINController.loadDatesToCalendar()
-                self.performSegueWithIdentifier("toMain", sender: self)
-            }
-            
+            self.performSegueWithIdentifier("toMain", sender: self)
         }
     }
     
