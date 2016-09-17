@@ -81,7 +81,7 @@ class BestSalesViewController: UIViewController {
             var monthlyValuesForGraph = [Double]()
             let (bestSalesMonth, sortedMonth, total) = analyticController.getBestSalesMonth()
             for month in sortedMonth {
-                monthsForGraph.append(months[month].localized())
+                monthsForGraph.append(months[month-1].localized())
                 monthlyValuesForGraph.append(bestSalesMonth[month]!)
                 
             }
