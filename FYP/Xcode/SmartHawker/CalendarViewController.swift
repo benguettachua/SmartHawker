@@ -285,6 +285,10 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             self.cogsText.textColor = UIColor.orangeColor()
         }
+        
+        // Profit Label
+        let profitAmount = salesAmount - expensesAmount - cogsAmount
+        print(profitAmount)
     }
     
     @IBAction func Record(sender: UIBarButtonItem) {
