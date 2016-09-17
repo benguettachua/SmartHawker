@@ -32,7 +32,7 @@ class TrendingViewController: UIViewController {
     
     // Controller
     let analyticController = AnalyticsController()
-    let summaryController = SummaryControllerNew()
+    let formatter = NSNumberFormatter()
     
     // Variables
     // Others
@@ -76,9 +76,9 @@ class TrendingViewController: UIViewController {
     var yearCOGS = ""
     
     // Viewdidload
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         
-        
+        super.viewDidAppear(animated)
         categorySegmentedControl.setTitle("Day".localized(), forSegmentAtIndex: 0)
         categorySegmentedControl.setTitle("Week".localized(), forSegmentAtIndex: 1)
         categorySegmentedControl.setTitle("Month".localized(), forSegmentAtIndex: 2)
@@ -89,19 +89,17 @@ class TrendingViewController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy"
         var dateString = dateFormatter.stringFromDate(NSDate())
-        (useless1, useless2, useless3, useless10, yearSales, yearExpenses, yearProfit, yearCOGS, useless) = summaryController.loadRecordsYearly(dateString)
-        print(summaryController.loadRecordsYearly(dateString))
+        (useless1, useless2, useless3, useless10, yearSales, yearExpenses, yearProfit, yearCOGS, useless) = SummaryControllerNew().loadRecordsYearly(dateString)
         // For day trending
         (todaySales, todayCOGS, todayExpenses, todayProfit) = analyticController.loadTodayRecord()
         
         // For week trending
-        (useless4, useless5, useless11, weekSales, weekExpenses, weekProfit, weekCOGS, useless) = summaryController.loadRecordsWeekly(daysInWeek())
+        (useless4, useless5, useless11, weekSales, weekExpenses, weekProfit, weekCOGS, useless) = SummaryControllerNew().loadRecordsWeekly(daysInWeek())
         
         // For month trending
         dateFormatter.dateFormat = "MM/yyyy"
         dateString = dateFormatter.stringFromDate(NSDate())
-        (useless6, useless7, useless8, useless9, monthSales, monthExpenses, monthProfit, monthCOGS, useless) = summaryController.loadRecordsMonthly(NSDate(), dateString: dateString)
-        
+        (useless6, useless7, useless8, useless9, monthSales, monthExpenses, monthProfit, monthCOGS, useless) = SummaryControllerNew().loadRecordsMonthly(NSDate(), dateString: dateString)
         trend()
     }
     
@@ -237,7 +235,9 @@ class TrendingViewController: UIViewController {
             }
             let numOfDays = components.day
             let numOfWeeks = components.day/7
-            let endOfYearSales = Double(yearSales)! + (todaySales * Double(numOfWeeks) * Double(workingDayPerWeek!))
+            
+            formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+            let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + (todaySales * Double(numOfWeeks) * Double(workingDayPerWeek!))
             
             // Populating the UI with necessary information
             salesSoFarAmountLabel.text = "$" + yearSales
@@ -271,7 +271,10 @@ class TrendingViewController: UIViewController {
                 weekSales.removeAtIndex(weekSales.startIndex)
             }
             let numOfWeeks = components.day/7
-            let endOfYearSales = Double(yearSales)! + (Double(weekSales)! * (Double(numOfWeeks)))
+
+            formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+            print(Double(formatter.numberFromString(yearSales)!))
+            let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + Double(formatter.numberFromString(weekSales)!) * (Double(numOfWeeks))
             
             // Populating the UI with necessary information
             salesSoFarAmountLabel.text = "$" + yearSales
@@ -305,7 +308,11 @@ class TrendingViewController: UIViewController {
                 monthSales.removeAtIndex(monthSales.startIndex)
             }
             let numOfMonths = components.month
-            let endOfYearSales = Double(yearSales)! + (Double(monthSales)! * (Double(numOfMonths)))
+            
+            formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+            
+            print(Double(formatter.numberFromString(yearSales)!))
+            let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + Double(formatter.numberFromString(monthSales)!) * (Double(numOfMonths))
             
             // Populating the UI with necessary information
             salesSoFarAmountLabel.text = "$" + yearSales

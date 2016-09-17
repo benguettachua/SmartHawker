@@ -66,7 +66,6 @@ class BestSalesViewController: UIViewController {
         combinedChartView.xAxis.drawLabelsEnabled = true
         combinedChartView.rightAxis.drawLabelsEnabled = false
         combinedChartView.leftAxis.drawLabelsEnabled = true
-        combinedChartView.leftAxis.labelFont = UIFont.systemFontOfSize(8)
         combinedChartView.xAxis.labelPosition = .Bottom
         
         combinedChartView.leftAxis.drawLimitLinesBehindDataEnabled = false

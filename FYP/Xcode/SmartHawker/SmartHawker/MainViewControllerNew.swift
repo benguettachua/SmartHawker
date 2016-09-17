@@ -16,6 +16,7 @@ class MainViewControllerNew: UIViewController{
     var currentMonth: String!
     var datesWithRecords = [String]()
     
+    let formatter = NSNumberFormatter()
     
     // MARK: outlets on the storyboard
     
@@ -130,36 +131,40 @@ class MainViewControllerNew: UIViewController{
     
     func setValues(){
         
+        
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        
         let values = MainController().getMainValues()
-        self.salesAmount.text = "$" + String(format: "%.0f", values.0)
-        self.otherExpensesAmount.text = "$" + String(format: "%.0f", values.1)
-        self.totalProfit.text = "$" + String(format: "%.0f", values.2)
+        self.salesAmount.text = formatter.stringFromNumber(values.0)
+        self.otherExpensesAmount.text = formatter.stringFromNumber(values.1)
+        self.totalProfit.text = formatter.stringFromNumber(values.2)
         if values.2 < 0 {
             self.totalProfit.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
         }else{
             self.totalProfit.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
         }
-        self.highestSales.text = "$" + String(format: "%.0f", values.3)
-        self.lowestSales.text = "$" + String(format: "%.0f", values.4)
+        self.highestSales.text = formatter.stringFromNumber(values.3)
+        self.lowestSales.text = formatter.stringFromNumber(values.4)
         if values.5 == 0{
             self.averageSales.text = "$0"
         }else{
-            self.averageSales.text = "$" + String(format: "%.0f", values.5)
+            self.averageSales.text = formatter.stringFromNumber(values.5)
         }
         self.highestSalesDay.text = values.6
         self.lowestSalesDay.text = values.7
-        self.monthCOGSAmountLabel.text = "$" + String(format: "%.0f", values.8)
+        self.monthCOGSAmountLabel.text = formatter.stringFromNumber(values.8)
         
-        self.weeklySalesLabel.text = "$" + String(format: "%.0f", values.9)
-        self.weeklyCOGSLabel.text = "$" + String(format: "%.0f", values.10)
-        self.weeklyExpensesLabel.text = "$" + String(format: "%.0f", values.11)
+        self.weeklySalesLabel.text = formatter.stringFromNumber(values.9)
+        self.weeklyCOGSLabel.text = formatter.stringFromNumber(values.10)
+        self.weeklyExpensesLabel.text = formatter.stringFromNumber(values.11)
         
         if values.12 < 0 {
             self.weeklyProfitLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
         }else{
             self.weeklyProfitLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
         }
-        self.weeklyProfitLabel.text = "$" + String(format: "%.0f", values.12)
+        self.weeklyProfitLabel.text = formatter.stringFromNumber(values.12)
         print("Weekly Overview from \n" + values.13 + " - " + values.14)
         //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
