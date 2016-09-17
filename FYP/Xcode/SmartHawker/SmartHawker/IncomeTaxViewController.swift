@@ -169,6 +169,10 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         if (newValue == nil || newValue == "") {
             newValue = "0.0"
         }
+        
+        if (newValue![newValue!.startIndex] == "$") {
+            newValue!.removeAtIndex(newValue!.startIndex)
+        }
         let doubleValue = Double(newValue!)
         
         // Update the last updated record in database with this new value.
