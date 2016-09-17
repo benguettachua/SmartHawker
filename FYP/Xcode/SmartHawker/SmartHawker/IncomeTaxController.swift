@@ -65,4 +65,14 @@ class IncomeTaxController {
         
         return taxPayable
     }
+    
+    func getAllowableBusinessExpenses () -> PFObject? {
+        return dao.getAllowableBusinessExpenses()
+    }
+    
+    func updateAllowableBusinessExpenses (amount: Double) -> PFObject?{
+        
+        return dao.updateAllowableBusinessExpenses(amount)
+        
+    }
 }

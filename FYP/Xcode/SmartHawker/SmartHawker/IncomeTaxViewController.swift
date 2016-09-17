@@ -147,6 +147,15 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         revenueLabel.text = "$" + String(format:"%.2f", revenue)
         grossProfitLabel.text = "$" + String(format:"%.2f", grossprofit)
         adjustedProfitLabel.text = "$" + String(format:"%.2f", adjustedProfit)
+        
+        // Step 5: Find the allowable business expenses and populate the UI.
+        let ABE_PFObject = taxController.getAllowableBusinessExpenses()
+        if (ABE_PFObject == nil) {
+            additionalExpensesTextField.text = "$0.00"
+        } else {
+            additionalExpensesTextField.text = "$" + String(format:"%.2f", ABE_PFObject!["amount"]as! Double)
+            print(ABE_PFObject?.updatedAt) // To populate the label when it is done.
+        }
     }
     
     // When the user is editting additional expenses, they are not allowed to click generate tax.
@@ -160,8 +169,21 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         if (newValue == nil || newValue == "") {
             newValue = "0.0"
         }
+        let doubleValue = Double(newValue!)
+        
+        // Update the last updated record in database with this new value.
+        let updatedABE = taxController.updateAllowableBusinessExpenses(doubleValue!)
+        if (updatedABE != nil) {
+            additionalExpensesTextField.text = "$" + String(format:"%.2f", updatedABE!["amount"]as! Double)
+            print(updatedABE?.updatedAt) // To populate label with this
+        } else {
+            print("error")
+        }
+        
         var grossProfit = grossProfitLabel.text
         grossProfit?.removeAtIndex((grossProfit?.startIndex)!)
+        
+        // Change the UI with the newly calculated adjusted profit.
         var adjustedProfit = Double(grossProfit!)! - Double(newValue!)!
         adjustedProfitLabel.text = "$" + String(format: "%.2f", adjustedProfit)
         generateTaxButton.enabled = true

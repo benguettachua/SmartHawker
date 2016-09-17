@@ -478,4 +478,62 @@ class connectionDAO{
         
         return false
     }
+    
+    // get the last recorded allowable business expenses
+    func getAllowableBusinessExpenses () -> PFObject?{
+        
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("type", equalTo: 5)
+        query.fromLocalDatastore()
+        do {
+            let ABE = try query.getFirstObject()
+            return ABE
+            
+        } catch {
+            let errorCode = error as NSError!
+            
+            // Record is not created in the DB before, create new record
+            if (errorCode.code == 101) {
+                let newRecord = PFObject(className: "Record")
+                newRecord.ACL = PFACL(user: PFUser.currentUser()!)
+                newRecord["type"] = 5
+                newRecord["amount"] = 0.0
+                newRecord["user"] = PFUser.currentUser()
+                newRecord["subuser"] = PFUser.currentUser()?.username
+                newRecord["subUser"] = NSUUID().UUIDString
+                newRecord["date"] = "12/12/1212"
+                
+                do{
+                    try newRecord.pin()
+                    try newRecord.save()
+                    return newRecord
+                } catch {
+                    print("Fail to create")
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    // Update the allowaable business expenses
+    func updateAllowableBusinessExpenses(amount: Double) -> PFObject? {
+        let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("type", equalTo: 5)
+        query.fromLocalDatastore()
+        do {
+            let ABE = try query.getFirstObject()
+            ABE["amount"] = amount
+            try ABE.pin()
+            try ABE.save()
+            return ABE
+        } catch {
+            print("error")
+            return nil
+        }
+        
+    }
 }
