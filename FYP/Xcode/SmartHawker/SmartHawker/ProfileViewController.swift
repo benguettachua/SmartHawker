@@ -44,9 +44,11 @@ class ProfileViewController: UITableViewController {
                 name = "No name".localized()
             }
             let nameString = name as! String
-            let phoneNumber = user!["phoneNumber"] as! String
-            profileName.text! = nameString + "\r\n" + phoneNumber
-            
+            var phoneNumber = user!["phoneNumber"]
+            if (phoneNumber == nil) {
+                phoneNumber = "No phone number"
+            }
+            profileName.text! = nameString + "\r\n" + (phoneNumber as! String)
             
             // Getting the profile picture
             if let userPicture = user!["profilePicture"] as? PFFile {
