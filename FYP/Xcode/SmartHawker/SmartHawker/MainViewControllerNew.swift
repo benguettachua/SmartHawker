@@ -62,6 +62,17 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var monthlyTargetAmountLabel: UILabel!
     @IBOutlet weak var thisMonthSaleLabel: UILabel!
     
+    // For Today Overview Part
+    @IBOutlet weak var todaySalesLabel: UILabel!
+    @IBOutlet weak var todaySalesAmountLabel: UILabel!
+    @IBOutlet weak var todayCOGSLabel: UILabel!
+    @IBOutlet weak var todayCOGSAmountLabel: UILabel!
+    @IBOutlet weak var todayExpensesLabel: UILabel!
+    @IBOutlet weak var todayExpensesAmountLabel: UILabel!
+    @IBOutlet weak var todayProfitLabel: UILabel!
+    @IBOutlet weak var todayProfitAmountLabel: UILabel!
+    
+    
     
     @IBOutlet weak var overview: UILabel!
     
@@ -111,6 +122,13 @@ class MainViewControllerNew: UIViewController{
         weekCOGSLabel.text = "COGS".localized()
         weekExpensesLabel.text = "Expenses".localized()
         weekProfitLabel.text = "Profit".localized()
+        
+        // Translation for today's section
+        todaySalesLabel.text = "Sales".localized()
+        todayCOGSLabel.text = "COGS".localized()
+        todayExpensesLabel.text = "Expenses".localized()
+        todayProfitLabel.text = "Profit".localized()
+        
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
         // Initialize UI
@@ -170,10 +188,10 @@ class MainViewControllerNew: UIViewController{
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
         
         // Today's value to be populated to UI when done
-        print("Today sales: " + "$" + String(format: "%.0f", values.15))
-        print("Today COGS: " + "$" + String(format: "%.0f", values.16))
-        print("Today Expenses: " + "$" + String(format: "%.0f", values.17))
-        print("Today Profit: " + "$" + String(format: "%.0f", values.18))
+        todaySalesAmountLabel.text = "$" + String(format: "%.0f", values.15)
+        todayCOGSAmountLabel.text = "$" + String(format: "%.0f", values.16)
+        todayExpensesAmountLabel.text = "$" + String(format: "%.0f", values.17)
+        todayProfitAmountLabel.text = "$" + String(format: "%.0f", values.18)
         
     }
     
