@@ -24,6 +24,10 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var salesLabel: UILabel!
     
+    @IBOutlet weak var profitLabel: UILabel!
+    @IBOutlet weak var profitAmountLabel: UILabel!
+    
+    
     let formatter = NSDateFormatter()
     let testCalendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
@@ -168,6 +172,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         salesLabel.text = "SALES".localized()
         cogsLabel.text = "COGS".localized()
         expensesLabel.text = "EXPENSES".localized()
+        profitLabel.text = "PROFIT".localized()
+        
         var faicon = [String: UniChar]()
         faicon["falist"] = 0xf0ca
         faicon["faadd"] = 0xf067
@@ -288,7 +294,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Profit Label
         let profitAmount = salesAmount - expensesAmount - cogsAmount
-        print(profitAmount)
+        profitAmountLabel.text = "$" + String(format: "%.2f", profitAmount)
     }
     
     @IBAction func Record(sender: UIBarButtonItem) {
