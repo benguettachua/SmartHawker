@@ -72,6 +72,7 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var todayProfitLabel: UILabel!
     @IBOutlet weak var todayProfitAmountLabel: UILabel!
     
+    @IBOutlet weak var todayLabel: UILabel!
     
     
     @IBOutlet weak var overview: UILabel!
@@ -128,6 +129,7 @@ class MainViewControllerNew: UIViewController{
         todayCOGSLabel.text = "COGS".localized()
         todayExpensesLabel.text = "Expenses".localized()
         todayProfitLabel.text = "Profit".localized()
+        todayLabel.text = "Today's Overview".localized()
         
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)

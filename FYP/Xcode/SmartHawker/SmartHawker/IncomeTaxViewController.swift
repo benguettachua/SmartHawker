@@ -97,12 +97,13 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         additionalExpensesTextField.delegate = self
         additionalExpensesTextField.placeholder = "Optional".localized()
+        adjustProfitSub.text = "Gross Profit – Allowable \nBusiness Expenses".localized()
         navBar.title = "Income Tax".localized()
         back.title = "Back".localized()
         revenueLabelOnly.text = "Revenue".localized()
-        totalSalesLabel.text = "(Total Sales)".localized()
+        totalSalesLabel.text = "(" + "Total Sales".localized() + ")"
         grosssProfitLabelOnly.text = "Gross Profit".localized()
-        calculationLabelOnly.text = "(Total Sales - Total COGS)".localized()
+        calculationLabelOnly.text = "(" + "Total Sales".localized() + " - " + "Total COGS".localized() + ")"
         additionalBusinessExpenses.text = "Allowable Business Expenses".localized()
         adjustedProfitLabelOnly.text = "Adjusted Profit/Loss".localized()
         generateTaxButton.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
