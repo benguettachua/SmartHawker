@@ -43,6 +43,10 @@ class SummaryViewController: UIViewController {
     //1 = monthly, 2 = yearly, 0 = weekly
     var summaryType = 0
     
+    @IBOutlet weak var COGSGraphButton: UIButton!
+    @IBOutlet weak var salesGraphButton: UIButton!
+    @IBOutlet weak var expensesGraphButton: UIButton!
+    @IBOutlet weak var profitGraphButton: UIButton!
     
     var calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
     let user = PFUser.currentUser()
@@ -110,7 +114,40 @@ class SummaryViewController: UIViewController {
         }else{
             loadRecordsWeekly()
         }
+        
+        
+        // set the button for sales graph selection
+        if oneTrue{
+            salesGraphButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            salesGraphButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
 
+        }else{
+            salesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        }
+        // set the button for expenses graph selection
+        if twoTrue{
+            expensesGraphButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+            expensesGraphButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            expensesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        }
+        
+        if threeTrue{
+            COGSGraphButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+            COGSGraphButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            COGSGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        }
+        
+        if fourTrue{
+            profitGraphButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            profitGraphButton.setTitle("Profit".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            profitGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        }
     }
     
     func loadRecordsMonthly(){
@@ -580,8 +617,7 @@ class SummaryViewController: UIViewController {
         
         chart.legend.enabled = true
     }
-    
-    
+
     @IBAction func salesButton(sender: UIButton){
         oneTrue = !oneTrue
         if summaryType == 1{
@@ -590,6 +626,13 @@ class SummaryViewController: UIViewController {
             loadRecordsYearly()
         }else{
             loadRecordsWeekly()
+        }
+        if oneTrue{
+            salesGraphButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            salesGraphButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            salesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         }
     }
     @IBAction func expensesButton(sender: UIButton){
@@ -601,6 +644,13 @@ class SummaryViewController: UIViewController {
         }else{
             loadRecordsWeekly()
         }
+        if twoTrue{
+            expensesGraphButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+            expensesGraphButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            expensesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        }
     }
     @IBAction func COGSButton(sender: UIButton){
          threeTrue = !threeTrue
@@ -611,6 +661,13 @@ class SummaryViewController: UIViewController {
         }else{
             loadRecordsWeekly()
         }
+        if threeTrue{
+            COGSGraphButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+            COGSGraphButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            COGSGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        }
     }
     @IBAction func profitButton(sender: UIButton){
         fourTrue = !fourTrue
@@ -620,6 +677,13 @@ class SummaryViewController: UIViewController {
             loadRecordsYearly()
         }else{
             loadRecordsWeekly()
+        }
+        if fourTrue{
+            profitGraphButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            profitGraphButton.setTitle("Profit".localized(), forState: UIControlState.Normal)
+            
+        }else{
+            profitGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         }
     }
     
