@@ -93,11 +93,11 @@ class MainViewControllerNew: UIViewController{
         syncButton.setTitle(String(sync), forState: .Normal);
         
         //set labels for translation
-        lowestSalesLabel.text = "Lowest".localized()
+        //lowestSalesLabel.text = "Lowest".localized()
         
-        highestSalesLabel.text = "Highest".localized()
+        //highestSalesLabel.text = "Highest".localized()
         
-        averageSalesLabel.text = "Average".localized()
+        //averageSalesLabel.text = "Average".localized()
         
         profitLabel.text = "Profit".localized()
         expensesLabel.text = "Expenses".localized()
@@ -105,7 +105,7 @@ class MainViewControllerNew: UIViewController{
         COGSLabel.text = "COGS".localized()
         todayEntryLabel.text = "ADD NEW RECORD".localized()
         monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
-        thisMonthSaleLabel.text = "Sales - This Month".localized()
+        //thisMonthSaleLabel.text = "Sales - This Month".localized()
         thisWeekOverviewLabel.text = "This Weeks' Overview".localized()
         weekSalesLabel.text = "Sales".localized()
         weekCOGSLabel.text = "COGS".localized()
@@ -144,15 +144,15 @@ class MainViewControllerNew: UIViewController{
         }else{
             self.totalProfit.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
         }
-        self.highestSales.text = formatter.stringFromNumber(values.3)
-        self.lowestSales.text = formatter.stringFromNumber(values.4)
-        if values.5 == 0{
-            self.averageSales.text = "$0"
-        }else{
-            self.averageSales.text = formatter.stringFromNumber(values.5)
-        }
-        self.highestSalesDay.text = values.6
-        self.lowestSalesDay.text = values.7
+        //self.highestSales.text = formatter.stringFromNumber(values.3)
+        //self.lowestSales.text = formatter.stringFromNumber(values.4)
+        //if values.5 == 0{
+        //    self.averageSales.text = "$0"
+        //}else{
+        ////    self.averageSales.text = formatter.stringFromNumber(values.5)
+        //}
+        //self.highestSalesDay.text = values.6
+        //self.lowestSalesDay.text = values.7
         self.monthCOGSAmountLabel.text = formatter.stringFromNumber(values.8)
         
         self.weeklySalesLabel.text = formatter.stringFromNumber(values.9)
