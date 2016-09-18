@@ -35,6 +35,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var additionalBusinessExpenses: UILabel!
     @IBOutlet weak var adjustedProfitLabelOnly: UILabel!
     @IBOutlet weak var estimatedTaxPayable: UILabel!
+    @IBOutlet weak var lastUpdatedLabel: UILabel!
     
     
     // Text Fields
@@ -154,7 +155,10 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             additionalExpensesTextField.text = "$0.00"
         } else {
             additionalExpensesTextField.text = "$" + String(format:"%.2f", ABE_PFObject!["amount"]as! Double)
-            print(ABE_PFObject?.updatedAt) // To populate the label when it is done.
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy, hh.mm a"
+            let lastUpdatedString = dateFormatter.stringFromDate((ABE_PFObject?.updatedAt)!)
+            lastUpdatedLabel.text = "Last updated: ".localized() + lastUpdatedString
         }
     }
     
