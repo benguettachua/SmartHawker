@@ -110,6 +110,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         accessLabel.text = "Please assess your \nTotal Expenses and enter \nallowable amount. Check \nIRAS website if unsure.".localized()
         //access2Label.text = "Gross Profit – Allowable \nBusiness Expenses".localized()
         estimatedTaxPayable.text = "Your estimated tax payable is:".localized()
+        lastUpdatedLabel.text = "Last updated: ".localized()
         
     }
     
@@ -158,8 +159,10 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             additionalExpensesTextField.text = "$" + String(format:"%.2f", ABE_PFObject!["amount"]as! Double)
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy, hh.mm a"
-            let lastUpdatedString = dateFormatter.stringFromDate((ABE_PFObject?.updatedAt)!)
-            lastUpdatedLabel.text = "Last updated: ".localized() + lastUpdatedString
+            if (ABE_PFObject?.updatedAt != nil) {
+                let lastUpdatedString = dateFormatter.stringFromDate((ABE_PFObject?.updatedAt)!)
+                lastUpdatedLabel.text = "Last updated: ".localized() + lastUpdatedString
+            }
         }
     }
     
