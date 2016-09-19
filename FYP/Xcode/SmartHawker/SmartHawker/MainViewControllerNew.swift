@@ -197,7 +197,7 @@ class MainViewControllerNew: UIViewController{
         if (values.18 < 0) {
             self.todayProfitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
         } else {
-            self.todayProfitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+            self.todayProfitAmountLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
         }
         
     }
