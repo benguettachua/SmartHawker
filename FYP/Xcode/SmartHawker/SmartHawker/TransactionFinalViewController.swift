@@ -197,10 +197,13 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     // Attach receipt for Audit Purpose
     @IBAction func attachedReceipt(sender: UIButton) {
-        //        let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-        //        comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-        //        self.presentViewController(comingSoonAlert, animated: true, completion: nil)
-        selectNewImageFromPhotoLibrary()
+        if connectionDAO().isConnectedToNetwork(){
+            selectNewImageFromPhotoLibrary()
+        } else {
+            let alert = UIAlertController(title: "Failed".localized(), message: "You must be conneced to the internet to save image.".localized(), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     // Click Save to save edit or new record.
