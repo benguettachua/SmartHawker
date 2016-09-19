@@ -62,8 +62,13 @@ class SettingsViewController: UITableViewController {
     // MARK: Action
     func logout() {
         
+        // Red message to capture attention and warn user.
+        let attributedString = NSAttributedString(string: "All records that are not synced will be lost.".localized(), attributes: [
+            NSForegroundColorAttributeName : UIColor.redColor()
+            ])
         // Alert to warn user about logging out.
-        let logoutAlert = UIAlertController(title: "Are you sure?".localized(), message: "All records that are not synced will be lost.".localized(), preferredStyle: .Alert)
+        let logoutAlert = UIAlertController(title: "Are you sure?".localized(), message: "", preferredStyle: .Alert)
+        logoutAlert.setValue(attributedString, forKey: "attributedMessage")
         
         // Option 1: Sync then logout.
         logoutAlert.addAction(UIAlertAction(title: "Sync".localized(), style: .Default, handler: { void in
@@ -104,7 +109,7 @@ class SettingsViewController: UITableViewController {
         }))
         
         // Option 2: Continue logging out despite the warning.
-        logoutAlert.addAction(UIAlertAction(title: "Yes, log out.".localized(), style: .Default, handler: { void in
+        logoutAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { void in
             
             let alertController = UIAlertController(title: "Logging Out".localized(), message: "Please Wait".localized(), preferredStyle: .Alert)
             self.presentViewController(alertController, animated: true,completion: {
