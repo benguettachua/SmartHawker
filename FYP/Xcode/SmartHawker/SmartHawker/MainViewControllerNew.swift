@@ -139,7 +139,7 @@ class MainViewControllerNew: UIViewController{
         getLatestDate()
         getMonthlyTarget()
         if(targetAvailable) {
-            targetButton.setImage(UIImage(named: "profile-edit-button"), forState: .Normal)
+            targetButton.setImage(UIImage(named: "edit-button"), forState: .Normal)
             monthlyTargetAmountLabel.text = "$" + String(format: "%.0f", targetAmount)
         } else {
             monthlyTargetAmountLabel.text = "No target set".localized()

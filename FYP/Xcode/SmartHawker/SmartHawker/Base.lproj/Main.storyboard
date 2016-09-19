@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -309,7 +309,7 @@ this password and admin pin</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Chinese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4z-7Ek">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="简体中文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4z-7Ek">
                                                     <rect key="frame" x="15" y="1" width="290" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -325,7 +325,7 @@ this password and admin pin</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Malay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDb-JG-riL">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Bahasa Melayu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDb-JG-riL">
                                                     <rect key="frame" x="15" y="1" width="290" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -683,16 +683,16 @@ this password and admin pin</string>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-EU-MSz">
                                 <rect key="frame" x="69" y="168" width="282" height="438"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
                                         <rect key="frame" x="0.0" y="0.0" width="282" height="403"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reg-bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="geb-6L-mdH">
                                                 <rect key="frame" x="0.0" y="0.0" width="282" height="384"/>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
                                                 <rect key="frame" x="30" y="124" width="222" height="279"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="279"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
@@ -847,13 +847,13 @@ this password and admin pin</string>
                                                                     </imageView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
                                                                 <rect key="frame" x="0.0" y="237" width="222" height="42"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="42"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
                                                                         <rect key="frame" x="0.0" y="7" width="222" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -878,7 +878,7 @@ this password and admin pin</string>
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
                                         <rect key="frame" x="117" y="408" width="48" height="30"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -1044,8 +1044,12 @@ this password and admin pin</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeview-shicontop" translatesAutoresizingMaskIntoConstraints="NO" id="VcR-Qh-RC4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="homeview-shicontop" translatesAutoresizingMaskIntoConstraints="NO" id="VcR-Qh-RC4">
                                 <rect key="frame" x="182" y="20" width="51" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="bpg-g2-398"/>
+                                    <constraint firstAttribute="width" constant="45" id="qzY-8u-LCW"/>
+                                </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-F2-0o6">
                                 <rect key="frame" x="0.0" y="64" width="414" height="937"/>
@@ -1101,7 +1105,7 @@ this password and admin pin</string>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zW-Kk-yZJ">
                                                                         <rect key="frame" x="55" y="33" width="33" height="33"/>
-                                                                        <state key="normal" image="homeview-addbtn">
+                                                                        <state key="normal" image="add-button-new">
                                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
@@ -1130,22 +1134,31 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="205" height="130"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9hj-gW-Sqg">
-                                                                <rect key="frame" x="19" y="15" width="108" height="66"/>
+                                                                <rect key="frame" x="19" y="15" width="132" height="99"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD NEW ENTRY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUc-dR-b4J">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="33"/>
+                                                                        <rect key="frame" x="12" y="0.0" width="108" height="33"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLH-lE-igp">
-                                                                        <rect key="frame" x="38" y="33" width="33" height="33"/>
-                                                                        <state key="normal" image="homeview-addbtn"/>
+                                                                        <rect key="frame" x="50" y="33" width="33" height="33"/>
+                                                                        <state key="normal" image="add-button-new"/>
                                                                         <connections>
                                                                             <action selector="addTodayRecord:" destination="GfR-DB-bth" eventType="touchUpInside" id="PgH-AB-7q4"/>
                                                                             <segue destination="Ch1-He-QFh" kind="modal" identifier="addRecord" id="FKB-a4-dJ9"/>
                                                                         </connections>
                                                                     </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw4-eX-1XC">
+                                                                        <rect key="frame" x="0.0" y="66" width="132" height="33"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="132" id="Nwh-p3-DUB"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
@@ -1199,17 +1212,17 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YSi-mR-VIj">
-                                                                <rect key="frame" x="70" y="12" width="60" height="69"/>
+                                                                <rect key="frame" x="70" y="12" width="48" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="m6b-xk-Fcy">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-2A-OqX">
-                                                                        <rect key="frame" x="7" y="35" width="47" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="5" y="28" width="38" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="0.0" green="0.42352941179999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1226,17 +1239,17 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b2U-js-i9S">
-                                                                <rect key="frame" x="66" y="12" width="72" height="69"/>
+                                                                <rect key="frame" x="66" y="12" width="55" height="52"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-rp-KvE">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-rp-KvE">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="26"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEq-0K-ryw">
-                                                                        <rect key="frame" x="7" y="35" width="58" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEq-0K-ryw">
+                                                                        <rect key="frame" x="5" y="26" width="46" height="26"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                                                        <color key="textColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1260,16 +1273,16 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="324-hB-KHd">
-                                                                <rect key="frame" x="56" y="12" width="110" height="69"/>
+                                                                <rect key="frame" x="56" y="12" width="88" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UP5-sS-Ovh">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="88" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydC-3u-zrv">
-                                                                        <rect key="frame" x="12" y="35" width="86" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="10" y="28" width="69" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1286,16 +1299,16 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yCn-nx-uDp">
-                                                                <rect key="frame" x="68" y="12" width="65" height="69"/>
+                                                                <rect key="frame" x="68" y="12" width="52" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOS-d4-ac3">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cih-Jh-YjW" userLabel="Profit Amount">
-                                                                        <rect key="frame" x="8" y="35" width="50" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="6" y="28" width="40" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="0.17337121010000001" green="0.84306383129999996" blue="0.53421259239999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1352,17 +1365,17 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0na-Sk-FfT">
-                                                                <rect key="frame" x="70" y="12" width="60" height="69"/>
+                                                                <rect key="frame" x="70" y="12" width="48" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VBj-eQ-Lp3">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="1HN-oP-Wek">
-                                                                        <rect key="frame" x="7" y="35" width="47" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="5" y="28" width="38" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="0.0" green="0.42352941179999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1379,17 +1392,17 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xo6-21-lbL">
-                                                                <rect key="frame" x="66" y="12" width="72" height="69"/>
+                                                                <rect key="frame" x="66" y="12" width="58" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkZ-ct-KLq">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="58" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esd-eG-9qE">
-                                                                        <rect key="frame" x="7" y="35" width="58" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <rect key="frame" x="9" y="28" width="41" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                                        <color key="textColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1413,16 +1426,16 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LPI-YV-smX">
-                                                                <rect key="frame" x="56" y="12" width="110" height="69"/>
+                                                                <rect key="frame" x="56" y="12" width="88" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7M4-3p-vPK">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="88" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkS-Ip-KhR">
-                                                                        <rect key="frame" x="12" y="35" width="86" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="10" y="28" width="69" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1439,16 +1452,16 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9fE-iR-Mul">
-                                                                <rect key="frame" x="68" y="12" width="65" height="69"/>
+                                                                <rect key="frame" x="68" y="12" width="52" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30U-GR-sEd">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-fr-9fa" userLabel="Profit Amount">
-                                                                        <rect key="frame" x="8" y="35" width="50" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="6" y="28" width="40" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="0.17337121010000001" green="0.84306383129999996" blue="0.53421259239999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1502,17 +1515,17 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hoe-Be-a2g">
-                                                                <rect key="frame" x="77" y="20" width="60" height="69"/>
+                                                                <rect key="frame" x="77" y="20" width="48" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MGX-MD-nd0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="b9X-78-mER">
-                                                                        <rect key="frame" x="7" y="35" width="47" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="5" y="28" width="38" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="0.0" green="0.42352941176470588" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1529,17 +1542,17 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SWW-bl-Dfr">
-                                                                <rect key="frame" x="73" y="20" width="72" height="69"/>
+                                                                <rect key="frame" x="73" y="20" width="58" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTc-O8-AZW">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="58" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="653-EP-GVI">
-                                                                        <rect key="frame" x="7" y="35" width="58" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <rect key="frame" x="6" y="28" width="46" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                                                        <color key="textColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1563,16 +1576,16 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zxK-W6-JiY">
-                                                                <rect key="frame" x="63" y="20" width="110" height="69"/>
+                                                                <rect key="frame" x="63" y="20" width="88" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5Y-AQ-v3K">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="88" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N38-1q-VdY">
-                                                                        <rect key="frame" x="12" y="35" width="86" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="10" y="28" width="69" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1589,16 +1602,16 @@ this password and admin pin</string>
                                                         <rect key="frame" x="209" y="0.0" width="206" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="c8P-xB-th1">
-                                                                <rect key="frame" x="71" y="5" width="65" height="69"/>
+                                                                <rect key="frame" x="71" y="5" width="52" height="55"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-RD-qHz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaE-0h-iaH" userLabel="Profit Amount">
-                                                                        <rect key="frame" x="8" y="35" width="50" height="35"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                                        <rect key="frame" x="6" y="28" width="40" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                                         <color key="textColor" red="0.17337121010000001" green="0.84306383129999996" blue="0.53421259239999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1644,7 +1657,7 @@ this password and admin pin</string>
                             <constraint firstItem="IKM-F2-0o6" firstAttribute="top" secondItem="eeG-aX-vVY" secondAttribute="bottom" id="ppa-Am-kNq"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="tab-buttom-home" id="wwS-eG-fqL"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="tab-home" id="wwS-eG-fqL"/>
                     <navigationItem key="navigationItem" id="RlE-dX-Tvv"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1906,7 +1919,7 @@ this password and admin pin</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAw-ec-LRZ">
                                                                 <rect key="frame" x="41" y="21" width="30" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.17337121010000001" green="0.84306383129999996" blue="0.53421259239999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -2031,7 +2044,7 @@ this password and admin pin</string>
                             <constraint firstItem="hk2-lF-h40" firstAttribute="top" secondItem="4P1-Pz-ikg" secondAttribute="bottom" constant="8" id="pgS-Ym-VfE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calendar" image="tab-buttom-calendar" id="q1k-In-Ss7"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="tab-calendar" id="q1k-In-Ss7"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
@@ -2129,9 +2142,9 @@ this password and admin pin</string>
         </scene>
     </scenes>
     <resources>
+        <image name="add-button-new" width="33" height="33"/>
         <image name="admin-pin-icon" width="20" height="20"/>
         <image name="email-icon" width="20" height="17"/>
-        <image name="homeview-addbtn" width="33" height="33"/>
         <image name="homeview-shicontop" width="51" height="49"/>
         <image name="login-line-2x" width="222" height="2"/>
         <image name="login-page-bg-2" width="375" height="667"/>
@@ -2143,14 +2156,14 @@ this password and admin pin</string>
         <image name="phone-icon-1" width="15" height="19"/>
         <image name="reg-bg-1" width="282" height="384"/>
         <image name="tab-bottom-profile" width="19" height="17"/>
-        <image name="tab-buttom-calendar" width="16" height="16"/>
-        <image name="tab-buttom-home" width="20" height="17"/>
+        <image name="tab-calendar" width="17" height="18"/>
+        <image name="tab-home" width="22" height="18"/>
         <image name="username-icon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tPZ-ny-ePW"/>
         <segue reference="ee8-T8-QJN"/>
-        <segue reference="FKB-a4-dJ9"/>
+        <segue reference="JmP-wi-c8m"/>
+        <segue reference="47q-Zj-VmP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>

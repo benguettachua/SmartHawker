@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -78,9 +78,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="JBU-xa-ZeN" secondAttribute="trailing" constant="-20" id="wfz-59-YhW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Analytics" image="tab-buttom-analytics" id="FGn-gi-PeI">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Analytics" image="tab-bi" id="FGn-gi-PeI"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="analyticsCategory" destination="VQn-B0-Duo" id="fwl-D1-BqZ"/>
@@ -358,7 +356,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab-buttom-analytics" width="17" height="17"/>
+        <image name="tab-bi" width="24" height="18"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
