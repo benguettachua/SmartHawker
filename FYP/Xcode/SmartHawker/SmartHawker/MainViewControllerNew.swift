@@ -194,6 +194,11 @@ class MainViewControllerNew: UIViewController{
         todayCOGSAmountLabel.text = "$" + String(format: "%.0f", values.16)
         todayExpensesAmountLabel.text = "$" + String(format: "%.0f", values.17)
         todayProfitAmountLabel.text = "$" + String(format: "%.0f", values.18)
+        if (values.18 < 0) {
+            self.todayProfitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+        } else {
+            self.todayProfitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+        }
         
     }
     

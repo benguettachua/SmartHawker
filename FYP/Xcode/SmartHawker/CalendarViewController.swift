@@ -286,15 +286,17 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         let cogsString2dp = "$" + String(format:"%.2f", cogsAmount)
         self.cogsText.text = cogsString2dp
         self.cogsText.font = UIFont(name: cogsText.font.fontName, size: 15)
-        if salesAmount-expensesAmount < 0 {
-            self.cogsText.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
-        }else{
-            self.cogsText.textColor = UIColor.orangeColor()
-        }
+        self.cogsText.textColor = UIColor.orangeColor()
+        
         
         // Profit Label
         let profitAmount = salesAmount - expensesAmount - cogsAmount
         profitAmountLabel.text = "$" + String(format: "%.2f", profitAmount)
+        if profitAmount < 0 {
+            self.profitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
+        }else{
+            self.profitAmountLabel.textColor = UIColor.greenColor()
+        }
     }
     
     @IBAction func Record(sender: UIBarButtonItem) {
