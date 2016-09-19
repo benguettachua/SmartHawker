@@ -78,6 +78,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
                     if let imageData = imageData {
                         let image = UIImage(data:imageData)
                         self.addbtn.setImage(image, forState: .Normal)
+                        self.imageFile = PFFile(name: "receipt", data: imageData)
                         self.hasReceipt = true
                     }
                 }
