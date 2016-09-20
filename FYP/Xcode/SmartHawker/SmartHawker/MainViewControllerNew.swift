@@ -159,11 +159,6 @@ class MainViewControllerNew: UIViewController{
         self.salesAmount.text = formatter.stringFromNumber(values.0)
         self.otherExpensesAmount.text = formatter.stringFromNumber(values.1)
         self.totalProfit.text = formatter.stringFromNumber(values.2)
-        if values.2 < 0 {
-            self.totalProfit.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
-        }else{
-            self.totalProfit.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
-        }
         //self.highestSales.text = formatter.stringFromNumber(values.3)
         //self.lowestSales.text = formatter.stringFromNumber(values.4)
         //if values.5 == 0{
@@ -178,27 +173,17 @@ class MainViewControllerNew: UIViewController{
         self.weeklySalesLabel.text = formatter.stringFromNumber(values.9)
         self.weeklyCOGSLabel.text = formatter.stringFromNumber(values.10)
         self.weeklyExpensesLabel.text = formatter.stringFromNumber(values.11)
-        
-        if values.12 < 0 {
-            self.weeklyProfitLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
-        }else{
-            self.weeklyProfitLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
-        }
+
         self.weeklyProfitLabel.text = formatter.stringFromNumber(values.12)
         print("Weekly Overview from \n" + values.13 + " - " + values.14)
         //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
         overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
         
         // Today's value to be populated to UI when done
-        todaySalesAmountLabel.text = "$" + String(format: "%.0f", values.15)
-        todayCOGSAmountLabel.text = "$" + String(format: "%.0f", values.16)
-        todayExpensesAmountLabel.text = "$" + String(format: "%.0f", values.17)
-        todayProfitAmountLabel.text = "$" + String(format: "%.0f", values.18)
-        if (values.18 < 0) {
-            self.todayProfitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
-        } else {
-            self.todayProfitAmountLabel.textColor = UIColor(red: 83/255, green: 142/255, blue: 0/255, alpha: 1)
-        }
+        todaySalesAmountLabel.text = formatter.stringFromNumber(values.15)
+        todayCOGSAmountLabel.text = formatter.stringFromNumber(values.16)
+        todayExpensesAmountLabel.text = formatter.stringFromNumber(values.17)
+        todayProfitAmountLabel.text = formatter.stringFromNumber(values.18)
         
     }
     

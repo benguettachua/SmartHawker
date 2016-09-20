@@ -12,6 +12,8 @@ import SwiftMoment
 class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     var numberOfRows = 6
     var correctDateString: String!
+    
+    let formatterNo = NSNumberFormatter()
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var salesText: UILabel!
@@ -260,6 +262,10 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadRecords(date: NSDate){
+        
+        
+        formatterNo.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatterNo.locale = NSLocale(localeIdentifier: "en_US")
         var salesAmount = 0.0
         var expensesAmount = 0.0
         var cogsAmount = 0.0
@@ -273,17 +279,17 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         cogsAmount = values.2
         
         // Sales Label
-        let salesString2dp = "$" + String(format:"%.2f", salesAmount)
+        let salesString2dp = formatterNo.stringFromNumber(salesAmount)
         self.salesText.text = salesString2dp
         self.salesText.font = UIFont(name: salesText.font.fontName, size: 15)
         
         // Expenses Label
-        let expensesString2dp = "$" + String(format:"%.2f", expensesAmount)
+        let expensesString2dp = formatterNo.stringFromNumber(expensesAmount)
         self.expensesText.text = expensesString2dp
         self.expensesText.font = UIFont(name: expensesText.font.fontName, size: 15)
         
         // Profit Label
-        let cogsString2dp = "$" + String(format:"%.2f", cogsAmount)
+        let cogsString2dp = formatterNo.stringFromNumber(cogsAmount)
         self.cogsText.text = cogsString2dp
         self.cogsText.font = UIFont(name: cogsText.font.fontName, size: 15)
         self.cogsText.textColor = UIColor.orangeColor()
@@ -291,12 +297,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Profit Label
         let profitAmount = salesAmount - expensesAmount - cogsAmount
-        profitAmountLabel.text = "$" + String(format: "%.2f", profitAmount)
-        if profitAmount < 0 {
-            self.profitAmountLabel.textColor = UIColor(red: 234/255, green: 0/255, blue: 0/255, alpha: 1)
-        }else{
-            self.profitAmountLabel.textColor = UIColor.greenColor()
-        }
+        profitAmountLabel.text = formatterNo.stringFromNumber(profitAmount)
     }
     
     @IBAction func Record(sender: UIBarButtonItem) {

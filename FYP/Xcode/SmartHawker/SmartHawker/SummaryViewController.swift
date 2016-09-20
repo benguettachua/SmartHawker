@@ -504,7 +504,7 @@ class SummaryViewController: UIViewController {
         
         let lineChartDataSet1 = LineChartDataSet(yVals: dataEntries1, label: "Total Sales".localized())
         lineChartDataSet1.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet1.setColor(UIColor.greenColor())
+        lineChartDataSet1.setColor(UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0))
         lineChartDataSet1.highlightColor = UIColor.clearColor()
         lineChartDataSet1.lineWidth = 4
         lineChartDataSet1.drawFilledEnabled = true
@@ -513,7 +513,7 @@ class SummaryViewController: UIViewController {
         lineChartDataSet1.drawValuesEnabled = false
         lineChartDataSet1.mode = .HorizontalBezier
         
-        lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor.greenColor())
+        lineChartDataSet1.fill = ChartFill.fillWithColor(UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0))
         var dataEntries2: [ChartDataEntry] = []
         
         for i in 0..<dataPointsToUse.count {
@@ -563,7 +563,7 @@ class SummaryViewController: UIViewController {
         
         let lineChartDataSet4 = LineChartDataSet(yVals: dataEntries4, label: "Profit".localized())
         lineChartDataSet4.axisDependency = .Left // Line will correlate with left axis values
-        lineChartDataSet4.setColor(UIColor.blueColor())
+        lineChartDataSet4.setColor(UIColor.blackColor())
         lineChartDataSet4.highlightColor = UIColor.clearColor()
         lineChartDataSet4.lineWidth = 2
         lineChartDataSet4.drawCircleHoleEnabled = false
@@ -571,7 +571,7 @@ class SummaryViewController: UIViewController {
         lineChartDataSet4.drawValuesEnabled = false
         lineChartDataSet4.mode = .HorizontalBezier
         
-        lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blueColor())
+        lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blackColor())
         lineChartDataSet4.drawFilledEnabled = true
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
@@ -628,7 +628,7 @@ class SummaryViewController: UIViewController {
             loadRecordsWeekly()
         }
         if oneTrue{
-            salesGraphButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+            salesGraphButton.setTitleColor(UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0), forState: .Normal)
             salesGraphButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
             
         }else{
@@ -679,11 +679,11 @@ class SummaryViewController: UIViewController {
             loadRecordsWeekly()
         }
         if fourTrue{
-            profitGraphButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            profitGraphButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             profitGraphButton.setTitle("Profit".localized(), forState: UIControlState.Normal)
             
         }else{
-            profitGraphButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            profitGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         }
     }
     
