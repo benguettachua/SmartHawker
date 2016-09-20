@@ -186,7 +186,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             
             // COGS
             type = 1
-            SGDLabel.textColor = hexStringToUIColor("ff0000")
+            SGDLabel.textColor = hexStringToUIColor("FD7200")
         } else if (categorySegmentControl.selectedSegmentIndex == 2) {
             
             // Expenses
