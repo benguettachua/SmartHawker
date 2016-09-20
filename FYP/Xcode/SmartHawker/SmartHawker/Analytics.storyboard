@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L8r-JO-uUd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Analytics-->
+        <!--BI-->
         <scene sceneID="pys-Eh-t0b">
             <objects>
                 <viewController id="L8r-JO-uUd" customClass="AnalyticsViewControllerNEW" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzS-tF-eSy">
-                                <rect key="frame" x="-4" y="20" width="328" height="44"/>
+                                <rect key="frame" x="-4" y="55" width="328" height="44"/>
                                 <items>
                                     <navigationItem id="zAW-nc-KOu">
                                         <nil key="title"/>
@@ -40,24 +40,30 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-mD-9V2">
-                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-mD-9V2">
+                                <rect key="frame" x="-4" y="99" width="328" height="420"/>
                                 <connections>
                                     <segue destination="wFh-Gl-T95" kind="embed" identifier="" id="NI0-4v-Ljz"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-52-944">
-                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-52-944">
+                                <rect key="frame" x="-4" y="99" width="328" height="420"/>
                                 <connections>
                                     <segue destination="fZX-DB-Zao" kind="embed" id="0cc-zn-dNk"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JBU-xa-ZeN">
-                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBU-xa-ZeN">
+                                <rect key="frame" x="-4" y="99" width="328" height="420"/>
                                 <connections>
                                     <segue destination="jnb-23-rtJ" kind="embed" id="GQ5-kN-IFe"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Intelligence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mw-jm-T8o">
+                                <rect key="frame" x="-4" y="30" width="328" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -68,17 +74,20 @@
                             <constraint firstItem="Qmb-mD-9V2" firstAttribute="top" secondItem="RzS-tF-eSy" secondAttribute="bottom" id="Hsp-D7-1YN"/>
                             <constraint firstItem="JBU-xa-ZeN" firstAttribute="top" secondItem="RzS-tF-eSy" secondAttribute="bottom" id="KIM-Im-GM7"/>
                             <constraint firstItem="RzS-tF-eSy" firstAttribute="leading" secondItem="Pyj-Ki-WDt" secondAttribute="leadingMargin" constant="-20" id="T28-uV-mw1"/>
-                            <constraint firstItem="RzS-tF-eSy" firstAttribute="top" secondItem="Fss-ye-CuD" secondAttribute="bottom" id="Vw9-A3-peY"/>
+                            <constraint firstItem="0mw-jm-T8o" firstAttribute="top" secondItem="Fss-ye-CuD" secondAttribute="bottom" constant="10" id="UDt-9y-the"/>
+                            <constraint firstItem="RzS-tF-eSy" firstAttribute="top" secondItem="Fss-ye-CuD" secondAttribute="bottom" constant="35" id="Vw9-A3-peY"/>
                             <constraint firstItem="AwX-52-944" firstAttribute="top" secondItem="RzS-tF-eSy" secondAttribute="bottom" id="XoG-Ga-2Dg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AwX-52-944" secondAttribute="trailing" constant="-20" id="cT5-cl-YMP"/>
                             <constraint firstItem="JBU-xa-ZeN" firstAttribute="leading" secondItem="Pyj-Ki-WDt" secondAttribute="leadingMargin" constant="-20" id="dU0-ay-0ig"/>
+                            <constraint firstItem="0mw-jm-T8o" firstAttribute="leading" secondItem="Pyj-Ki-WDt" secondAttribute="leadingMargin" constant="-20" id="hbI-hI-jJm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0mw-jm-T8o" secondAttribute="trailing" constant="-20" id="ik4-xM-c5y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qmb-mD-9V2" secondAttribute="trailing" constant="-20" id="l4U-D6-s15"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RzS-tF-eSy" secondAttribute="trailing" constant="-20" id="mLz-9R-OXB"/>
                             <constraint firstItem="AwX-52-944" firstAttribute="leading" secondItem="Pyj-Ki-WDt" secondAttribute="leadingMargin" constant="-20" id="uPs-jp-y91"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JBU-xa-ZeN" secondAttribute="trailing" constant="-20" id="wfz-59-YhW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Analytics" image="tab-bi" id="FGn-gi-PeI"/>
+                    <tabBarItem key="tabBarItem" title="BI" image="tab-bi" id="FGn-gi-PeI"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="analyticsCategory" destination="VQn-B0-Duo" id="fwl-D1-BqZ"/>
@@ -89,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOD-bY-te8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="-81"/>
+            <point key="canvasLocation" x="2539" y="-81"/>
         </scene>
         <!--Comparison-->
         <scene sceneID="G1m-UT-yJr">
@@ -100,7 +109,7 @@
                         <viewControllerLayoutGuide type="bottom" id="olR-P5-WHo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LaY-b1-DVk">
-                        <rect key="frame" x="0.0" y="0.0" width="328" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="420"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Comparing of past 6 similar days to:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBo-SQ-Im8">
@@ -155,7 +164,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GUr-Uz-BV6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XJk-Ma-C7z">
-                        <rect key="frame" x="0.0" y="0.0" width="328" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="420"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wvj-04-aQl">
@@ -315,7 +324,7 @@
                         <viewControllerLayoutGuide type="bottom" id="yAd-Tq-FE9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pbO-wy-NT8">
-                        <rect key="frame" x="0.0" y="0.0" width="328" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="420"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WfJ-u5-43A">
