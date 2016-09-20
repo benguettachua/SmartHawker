@@ -11,7 +11,7 @@ import SwiftMoment
 import CoreLocation;
 
 class MainController{
-    
+    var firstDayOfWeek: NSDate!
     var firstDay: NSDate!
     var lastDay: NSDate!
     let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
@@ -94,15 +94,16 @@ class MainController{
             let todayDate = dateFormatter.stringFromDate(NSDate())
             let earlier = recordDate!.earlierDate(NSDate()).isEqualToDate(recordDate!) && myKey.containsString(correctDateString)
             let same = myKey.containsString(todayDate)
-            stringForFirstDay = dateFormatter.stringFromDate(firstDay)
-            stringForLastDay = dateFormatter.stringFromDate(lastDay)
-            let earlierThanThisWeek = recordDate!.earlierDate(firstDay).isEqualToDate(recordDate!)
+            stringForFirstDay = dateFormatter.stringFromDate(firstDayOfWeek)
             
+            let dateForFirstDay = dateFormatter.dateFromString(stringForFirstDay)
+            let earlierThanThisWeek = recordDate!.earlierDate(dateForFirstDay!).isEqualToDate(recordDate!)
             var profit = 0.0
             var sales = 0.0
             
             for record in myValue {
                 if earlier || same {
+                    
                     let type = record["type"] as! Int
                     let recordDate = record["date"] as! String
                     let todayDate = dateFormatter.stringFromDate(NSDate())
@@ -163,6 +164,7 @@ class MainController{
                     }
                     
                     if earlierThanThisWeek == false || myKey.containsString(todayDate) {
+                        
                         if (type == 0) {
                             weeklyProfit += amount
                             weeklySales += amount
@@ -218,13 +220,19 @@ class MainController{
                 toDate: NSDate(),
                 options: [])!
         
+        periodComponents.day = 0 - dayOfWeek
+        firstDayOfWeek = calendar!.dateByAddingComponents(
+            periodComponents,
+            toDate: NSDate(),
+            options: [])!
+        
         periodComponents.day = 7 - dayOfWeek
         lastDay = calendar!.dateByAddingComponents(
             periodComponents,
             toDate: NSDate(),
             options: [])!
         
-        
+        print(firstDay)
     }
     
 }
