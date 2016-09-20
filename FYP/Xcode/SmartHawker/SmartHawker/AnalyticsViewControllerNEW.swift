@@ -17,13 +17,14 @@ class AnalyticsViewControllerNEW: UIViewController {
     @IBOutlet weak var container1: UIView!
     @IBOutlet weak var container2: UIView!
     @IBOutlet weak var container3: UIView!
-    
+    @IBOutlet weak var BI: UILabel!
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
         
         analyticsCategory.setTitle("Best Sales".localized(), forSegmentAtIndex: 0)
         analyticsCategory.setTitle("Comparison".localized(), forSegmentAtIndex: 1)
         analyticsCategory.setTitle("Trending".localized(), forSegmentAtIndex: 2)
+        BI.text = "Business Intelligence".localized()
     }
     
     // MARK: Action

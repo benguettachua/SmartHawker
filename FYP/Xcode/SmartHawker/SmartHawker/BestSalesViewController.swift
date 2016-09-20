@@ -16,7 +16,7 @@ class BestSalesViewController: UIViewController {
     
     @IBOutlet weak var combinedChartView: HorizontalBarChartView!
     
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    let months = ["Jan".localized(), "Feb".localized(), "Mar".localized(), "Apr".localized(), "May".localized(), "June".localized(), "July".localized(), "Aug".localized(), "Sept".localized(), "Oct".localized(), "Nov".localized(), "Dec".localized()]
     // Controller
     let analyticController = AnalyticsController()
     
