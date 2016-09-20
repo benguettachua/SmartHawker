@@ -561,7 +561,7 @@ class SummaryViewController: UIViewController {
             dataEntries4.append(dataEntry)
         }
         
-        let lineChartDataSet4 = LineChartDataSet(yVals: dataEntries4, label: "Profit".localized())
+        let lineChartDataSet4 = LineChartDataSet(yVals: dataEntries4, label: "Net Profit".localized())
         lineChartDataSet4.axisDependency = .Left // Line will correlate with left axis values
         lineChartDataSet4.setColor(UIColor.blackColor())
         lineChartDataSet4.highlightColor = UIColor.clearColor()
@@ -578,12 +578,13 @@ class SummaryViewController: UIViewController {
         if oneTrue{
             dataSets.append(lineChartDataSet1)
         }
-        if twoTrue{
-            dataSets.append(lineChartDataSet2)
-        }
         if threeTrue{
             dataSets.append(lineChartDataSet3)
         }
+        if twoTrue{
+            dataSets.append(lineChartDataSet2)
+        }
+
         if fourTrue{
             dataSets.append(lineChartDataSet4)
         }
