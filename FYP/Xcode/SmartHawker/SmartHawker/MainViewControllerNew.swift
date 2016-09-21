@@ -129,7 +129,7 @@ class MainViewControllerNew: UIViewController{
         todayCOGSLabel.text = "COGS".localized()
         todayExpensesLabel.text = "Expenses".localized()
         todayProfitLabel.text = "Profit".localized()
-        todayLabel.text = "Today's Earning".localized()
+        todayLabel.text = "Today's Earnings".localized()
         
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
@@ -177,7 +177,7 @@ class MainViewControllerNew: UIViewController{
         self.weeklyProfitLabel.text = formatter.stringFromNumber(values.12)
         print("Weekly Overview from \n" + values.13 + " - " + values.14)
         //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
-        overview.text = "This Month's Earnings "
+        overview.text = "This Month's Earnings".localized()
         
         // Today's value to be populated to UI when done
         todaySalesAmountLabel.text = formatter.stringFromNumber(values.15)

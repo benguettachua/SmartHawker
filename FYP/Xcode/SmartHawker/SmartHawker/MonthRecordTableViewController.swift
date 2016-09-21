@@ -163,9 +163,9 @@ class MonthRecordTableViewController: UITableViewController {
                 }
             }
             cell.amountLabel.text = formatter.stringFromNumber(profit)
-            cell.recordTypeLabel.text = "Profit"
+            cell.recordTypeLabel.text = "Profit".localized()
             cell.recordTypeLabel.textColor = UIColor.blackColor()
-            cell.descriptionLabel.text = "Profit of the day"
+            cell.descriptionLabel.text = "Profit of the day".localized()
             cell.backgroundColor = UIColor(red: 0.0, green: 0.250, blue: 0.0, alpha: 0.1)
             return cell
         }

@@ -280,7 +280,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
     
     
     func selectNewImageFromPhotoLibrary() {
-        let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Upload Receipt".localized(), message: "Uploading receipt will save this record online.".localized(), preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
