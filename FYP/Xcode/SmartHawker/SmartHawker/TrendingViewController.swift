@@ -241,9 +241,9 @@ class TrendingViewController: UIViewController {
             
             // Populating the UI with necessary information
             salesSoFarAmountLabel.text = "$" + yearSales
-            salesCategoryAmountLabel.text = "$" + String(format: "%.2f", todaySales)
+            salesCategoryAmountLabel.text = String(formatter.stringFromNumber(todaySales))
             categoryLeftAmount.text = String(numOfDays)
-            endOfYearTrendedAmountLabel.text = "$" + String(format: "%.2f", endOfYearSales)
+            endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
             // Changing the Labels
             salesSoFarLabel.text = "This year's sales so far:".localized()
@@ -280,7 +280,7 @@ class TrendingViewController: UIViewController {
             salesSoFarAmountLabel.text = "$" + yearSales
             salesCategoryAmountLabel.text = "$" + weekSales
             categoryLeftAmount.text = String(numOfWeeks)
-            endOfYearTrendedAmountLabel.text = "$" + String(format: "%.2f", endOfYearSales)
+            endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
             // Changing the Labels
             salesSoFarLabel.text = "This year's sales so far:".localized()
@@ -318,7 +318,7 @@ class TrendingViewController: UIViewController {
             salesSoFarAmountLabel.text = "$" + yearSales
             salesCategoryAmountLabel.text = "$" + monthSales
             categoryLeftAmount.text = String(numOfMonths)
-            endOfYearTrendedAmountLabel.text = "$" + String(format: "%.2f", endOfYearSales)
+            endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
             // Changing the Labels
             salesSoFarLabel.text = "This year's sales so far:".localized()
