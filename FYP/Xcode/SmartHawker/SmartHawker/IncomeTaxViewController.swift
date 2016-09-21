@@ -106,7 +106,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         calculationLabelOnly.text = "(" + "Total Sales".localized() + " - " + "Total COGS".localized() + ")"
         additionalBusinessExpenses.text = "Allowable Business Expenses".localized()
         adjustedProfitLabelOnly.text = "Adjusted Profit/Loss".localized()
-        generateTaxButton.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
+        generateTaxButton.setTitle("Calculate Income Tax".localized(), forState: UIControlState.Normal)
         accessLabel.text = "Please assess your \nTotal Expenses and enter \nallowable amount. Check \nIRAS website if unsure.".localized()
         //access2Label.text = "Gross Profit – Allowable \nBusiness Expenses".localized()
         estimatedTaxPayable.text = "Your estimated tax payable is:".localized()
