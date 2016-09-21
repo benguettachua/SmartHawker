@@ -11,9 +11,13 @@ class IncomeTaxController {
     // Import DAO to access database
     let dao = connectionDAO()
     
-    func retrieveThisYearRecord(year: String) -> [PFObject]{
+    func retrieveThisYearRecord(year: String) -> (Double, Double, Double, Double){
         
         var thisYearRecord = [PFObject]()
+        var revenue = 0.0
+        var COGS = 0.0
+        var grossProfit = 0.0
+        var adjustedProfit = 0.0
         
         // Get all the records by user
         let records = dao.loadRecords()
@@ -27,7 +31,24 @@ class IncomeTaxController {
             }
         }
         
-        return thisYearRecord
+        for record in thisYearRecord {
+            
+            if (record["type"] as! Int == 0) {
+                
+                // Revenue
+                revenue += record["amount"] as! Double
+            } else if (record["type"] as! Int == 1) {
+                
+                // Cost of goods sold
+                COGS += record["amount"] as! Double
+            }
+        }
+        
+        // Step 3: Calculate gross profit and adjusted profit
+        grossProfit = revenue - COGS
+        adjustedProfit = grossProfit
+        
+        return (revenue, COGS, grossProfit, adjustedProfit)
     }
     
     // Calculate the amount of tax payable based on profit 'amount'.
