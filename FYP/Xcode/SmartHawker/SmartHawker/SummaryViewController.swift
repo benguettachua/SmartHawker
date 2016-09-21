@@ -81,6 +81,8 @@ class SummaryViewController: UIViewController {
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
         self.week(nil)
+        
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -96,6 +98,7 @@ class SummaryViewController: UIViewController {
                 let weekMonthYearText = weekMonthYear.text![index]
                 weekMonthYear.text! = weekMonthYearText.localized() + year
         }
+
         
         weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
@@ -118,35 +121,39 @@ class SummaryViewController: UIViewController {
         
         // set the button for sales graph selection
         if oneTrue{
-            salesGraphButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
             salesGraphButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
+        salesGraphButton.layer.borderColor = UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0).CGColor
 
         }else{
             salesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            salesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
         // set the button for expenses graph selection
         if twoTrue{
-            expensesGraphButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             expensesGraphButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
+        expensesGraphButton.layer.borderColor = UIColor(red:1.00, green:0.00, blue:0.00, alpha:1.0).CGColor
             
         }else{
             expensesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            expensesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
         
         if threeTrue{
-            COGSGraphButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
             COGSGraphButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+            COGSGraphButton.layer.borderColor = UIColor(red:0.99, green:0.45, blue:0.00, alpha:1.0).CGColor
             
         }else{
             COGSGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            COGSGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
         
         if fourTrue{
-            profitGraphButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             profitGraphButton.setTitle("Profit".localized(), forState: UIControlState.Normal)
+            profitGraphButton.layer.borderColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0).CGColor
             
         }else{
             profitGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            profitGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
     
