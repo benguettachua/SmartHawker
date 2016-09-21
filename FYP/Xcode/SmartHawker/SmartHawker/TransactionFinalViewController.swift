@@ -117,7 +117,9 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         // Change the Text colour of the Labels
         if (type == 0) {
             SGDLabel.textColor = hexStringToUIColor("006cff")
-        } else {
+        } else if (type == 1) {
+            SGDLabel.textColor = hexStringToUIColor("FD7200")
+        }else {
             SGDLabel.textColor = hexStringToUIColor("ff0000")
         }
         

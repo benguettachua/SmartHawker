@@ -133,9 +133,12 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         // Change the Text colour of the Labels
         if (type == 0) {
             SGDLabel.textColor = hexStringToUIColor("006cff")
-        } else {
+        } else if (type == 1) {
+            SGDLabel.textColor = hexStringToUIColor("FD7200")
+        }else {
             SGDLabel.textColor = hexStringToUIColor("ff0000")
         }
+        
     }
     
     // Changing colour based on colour code
@@ -178,7 +181,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             
             // COGS
             type = 1
-            SGDLabel.textColor = hexStringToUIColor("ff0000")
+            SGDLabel.textColor = hexStringToUIColor("FD7200")
         } else if (categorySegmentControl.selectedSegmentIndex == 2) {
             
             // Expenses
