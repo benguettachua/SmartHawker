@@ -101,46 +101,71 @@ class MonthRecordTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows[section].count
+        return rows[section].count + 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
         
-        // Description Label
-        var description = rows[indexPath.section][indexPath.row]["description"] as? String
-        if (description == "") {
-            description = "No description"
+        if (indexPath.row < self.rows[indexPath.section].count) {
+            // Table view cells are reused and should be dequeued using a cell identifier.
+            let cellIdentifier = "Cell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
+            
+            // Description Label
+            var description = rows[indexPath.section][indexPath.row]["description"] as? String
+            if (description == "") {
+                description = "No description"
+            }
+            cell.descriptionLabel.text = description
+            
+            // Amount Label
+            let amount = rows[indexPath.section][indexPath.row]["amount"] as! Double
+            let amountString2dp = "$" + String(format:"%.2f", amount)
+            cell.amountLabel.text = amountString2dp
+            
+            // Type Label
+            let type = rows[indexPath.section][indexPath.row]["type"] as! Int
+            var typeString = ""
+            if (type == 0) {
+                typeString = "Sales"
+                cell.recordTypeLabel.textColor = UIColor.blueColor()
+            } else if (type == 1) {
+                typeString = "COGS"
+                cell.recordTypeLabel.textColor = UIColor.orangeColor()
+            } else if (type == 2) {
+                typeString = "Expenses"
+                cell.recordTypeLabel.textColor = UIColor.redColor()
+            }
+            cell.recordTypeLabel.text = typeString.localized()
+            
+            // Cell background
+            cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
+            
+            
+            return cell
+        } else {
+            let cellIdentifier = "Cell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RecordTableViewCell
+            
+            var profit = 0.0
+            for record in rows[indexPath.section] {
+                let recordType = record["type"] as! Int
+                let recordAmount = record["amount"] as! Double
+                if (recordType == 0) {
+                    profit += recordAmount
+                } else if (recordType == 1) {
+                    profit -= recordAmount
+                } else if (recordType == 2) {
+                    profit -= recordAmount
+                }
+            }
+            cell.amountLabel.text = "$" + String(format:"%.2f", profit)
+            cell.recordTypeLabel.text = "Profit"
+            cell.recordTypeLabel.textColor = UIColor.blackColor()
+            cell.descriptionLabel.text = "Profit of the day"
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.250, blue: 0.0, alpha: 0.1)
+            return cell
         }
-        cell.descriptionLabel.text = description
-        
-        // Amount Label
-        let amount = rows[indexPath.section][indexPath.row]["amount"] as! Double
-        let amountString2dp = "$" + String(format:"%.2f", amount)
-        cell.amountLabel.text = amountString2dp
-        
-        // Type Label
-        let type = rows[indexPath.section][indexPath.row]["type"] as! Int
-        var typeString = ""
-        if (type == 0) {
-            typeString = "Sales"
-            cell.recordTypeLabel.textColor = UIColor.blueColor()
-        } else if (type == 1) {
-            typeString = "COGS"
-            cell.recordTypeLabel.textColor = UIColor.orangeColor()
-        } else if (type == 2) {
-            typeString = "Expenses"
-            cell.recordTypeLabel.textColor = UIColor.redColor()
-        }
-        cell.recordTypeLabel.text = typeString.localized()
-        
-        // Cell background
-        cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
-
-        
-        return cell
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -158,11 +183,17 @@ class MonthRecordTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedRecord = rows[indexPath.section][indexPath.row]
-        shared.selectedRecord = selectedRecord
-        let storyboard = UIStoryboard(name: "Recording", bundle: nil)
-        let updateRecordVC = storyboard.instantiateViewControllerWithIdentifier("updateRecord")
-        self.presentViewController(updateRecordVC, animated: true, completion: nil)
+        
+        // Deselect the selected row after selecting to prevent the row from permanently highlighted.
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if(indexPath.row < rows[indexPath.section].count) {
+            let selectedRecord = rows[indexPath.section][indexPath.row]
+            shared.selectedRecord = selectedRecord
+            let storyboard = UIStoryboard(name: "Recording", bundle: nil)
+            let updateRecordVC = storyboard.instantiateViewControllerWithIdentifier("updateRecord")
+            self.presentViewController(updateRecordVC, animated: true, completion: nil)
+        }
     }
     
     // For sorting array in ascending order.
