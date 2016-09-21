@@ -115,10 +115,10 @@ class MainViewControllerNew: UIViewController{
         expensesLabel.text = "Expenses".localized()
         salesLabel.text = "Sales".localized()
         COGSLabel.text = "COGS".localized()
-        todayEntryLabel.text = "ADD NEW RECORD".localized()
-        monthlyTargetLabel.text = "SET MONTHLY TARGET".localized()
+        todayEntryLabel.text = "New Record".localized()
+        monthlyTargetLabel.text = "Monthly Record".localized()
         //thisMonthSaleLabel.text = "Sales - This Month".localized()
-        thisWeekOverviewLabel.text = "This Weeks' Overview".localized()
+        thisWeekOverviewLabel.text = "This Week's Earnings".localized()
         weekSalesLabel.text = "Sales".localized()
         weekCOGSLabel.text = "COGS".localized()
         weekExpensesLabel.text = "Expenses".localized()
@@ -129,7 +129,7 @@ class MainViewControllerNew: UIViewController{
         todayCOGSLabel.text = "COGS".localized()
         todayExpensesLabel.text = "Expenses".localized()
         todayProfitLabel.text = "Profit".localized()
-        todayLabel.text = "Today's Overview".localized()
+        todayLabel.text = "Today's Earning".localized()
         
         //syncButton.setTitle("Sync".localized(), forState: UIControlState.Normal)
         //infoButton.setTitle("Info".localized(), forState: UIControlState.Normal)
@@ -177,7 +177,7 @@ class MainViewControllerNew: UIViewController{
         self.weeklyProfitLabel.text = formatter.stringFromNumber(values.12)
         print("Weekly Overview from \n" + values.13 + " - " + values.14)
         //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
-        overview.text = "Overview for ".localized() + moment(NSDate()).monthName.localized()
+        overview.text = "This Month's Earnings "
         
         // Today's value to be populated to UI when done
         todaySalesAmountLabel.text = formatter.stringFromNumber(values.15)
