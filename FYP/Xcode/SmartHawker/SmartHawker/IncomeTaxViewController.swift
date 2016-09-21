@@ -158,7 +158,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         } else {
             additionalExpensesTextField.text = "$" + String(format:"%.2f", ABE_PFObject!["amount"]as! Double)
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy, hh.mm a"
+            dateFormatter.dateFormat = "dd/MM/yyyy, hh.mm a"
             if (ABE_PFObject?.updatedAt != nil) {
                 let lastUpdatedString = dateFormatter.stringFromDate((ABE_PFObject?.updatedAt)!)
                 lastUpdatedLabel.text = "Last updated: ".localized() + lastUpdatedString
