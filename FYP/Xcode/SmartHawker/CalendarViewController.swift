@@ -363,7 +363,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Amount Label
         let amount = records[indexPath.row]["amount"] as! Double
-        let amountString2dp = "$" + String(format:"%.2f", amount)
+        let amountString2dp = formatterNo.stringFromNumber(amount)
         cell.amountLabel.text = amountString2dp
         cell.amountLabel.font = UIFont(name: cell.amountLabel.font.fontName, size: 12)
         

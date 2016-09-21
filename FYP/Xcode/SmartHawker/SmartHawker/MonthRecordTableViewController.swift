@@ -19,6 +19,7 @@ class MonthRecordTableViewController: UITableViewController {
     var sections = [String]()
     var rows = [[PFObject]]()
     
+    let formatter = NSNumberFormatter()
     // View will appear
     override func viewWillAppear(animated: Bool) {
         
@@ -106,6 +107,8 @@ class MonthRecordTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
         if (indexPath.row < self.rows[indexPath.section].count) {
             // Table view cells are reused and should be dequeued using a cell identifier.
             let cellIdentifier = "Cell"
@@ -120,7 +123,7 @@ class MonthRecordTableViewController: UITableViewController {
             
             // Amount Label
             let amount = rows[indexPath.section][indexPath.row]["amount"] as! Double
-            let amountString2dp = "$" + String(format:"%.2f", amount)
+            let amountString2dp = formatter.stringFromNumber(amount)
             cell.amountLabel.text = amountString2dp
             
             // Type Label
@@ -159,7 +162,7 @@ class MonthRecordTableViewController: UITableViewController {
                     profit -= recordAmount
                 }
             }
-            cell.amountLabel.text = "$" + String(format:"%.2f", profit)
+            cell.amountLabel.text = formatter.stringFromNumber(profit)
             cell.recordTypeLabel.text = "Profit"
             cell.recordTypeLabel.textColor = UIColor.blackColor()
             cell.descriptionLabel.text = "Profit of the day"

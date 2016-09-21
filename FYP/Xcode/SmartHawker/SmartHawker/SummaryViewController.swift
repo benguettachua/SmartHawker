@@ -638,9 +638,10 @@ class SummaryViewController: UIViewController {
         if oneTrue{
             salesGraphButton.setTitleColor(UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0), forState: .Normal)
             salesGraphButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
-            
+            salesGraphButton.layer.borderColor = UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0).CGColor
         }else{
             salesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            salesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
     @IBAction func expensesButton(sender: UIButton){
@@ -656,8 +657,10 @@ class SummaryViewController: UIViewController {
             expensesGraphButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             expensesGraphButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
             
+            expensesGraphButton.layer.borderColor = UIColor(red:1.00, green:0.00, blue:0.00, alpha:1.0).CGColor
         }else{
             expensesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            expensesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
     @IBAction func COGSButton(sender: UIButton){
@@ -672,9 +675,11 @@ class SummaryViewController: UIViewController {
         if threeTrue{
             COGSGraphButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
             COGSGraphButton.setTitle("COGS".localized(), forState: UIControlState.Normal)
+            COGSGraphButton.layer.borderColor = UIColor(red:0.99, green:0.45, blue:0.00, alpha:1.0).CGColor
             
         }else{
             COGSGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            COGSGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
     @IBAction func profitButton(sender: UIButton){
@@ -689,9 +694,11 @@ class SummaryViewController: UIViewController {
         if fourTrue{
             profitGraphButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             profitGraphButton.setTitle("Profit".localized(), forState: UIControlState.Normal)
+            profitGraphButton.layer.borderColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0).CGColor
             
         }else{
             profitGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+            profitGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
     
