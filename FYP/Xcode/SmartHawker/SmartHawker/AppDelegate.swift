@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.enableLocalDatastore()
         Parse.setApplicationId("p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht", clientKey: "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt")
+        
         // Override point for customization after application launch.
+        //***********************************************************
+        // START OF INITIAL LAUNCH WILL PROMPT FOR LANGUAGE
+        //***********************************************************
         IQKeyboardManager.sharedManager().enable = true
         let defaults = NSUserDefaults.standardUserDefaults()
         let firstLaunch = defaults.boolForKey("firstLaunch")
@@ -49,6 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
     
         }
+        //***********************************************************
+        // END OF INITIAL LAUNCH ASK LANGUAGE
+        //***********************************************************
+        
+        //***********************************************************
+        // START OF ASK FOR NOTIFICATION PERMISSION
+        //***********************************************************
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        //***********************************************************
+        // END OF ASK FOR NOTIFICATION PERMISSION
+        //***********************************************************
+        
         return true
     }
 
