@@ -80,6 +80,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        let notification = UILocalNotification()
+        
+        /* Time and timezone settings */
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.hour = 21
+        dateComp.minute = 0
+        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        var date:NSDate = calender.dateFromComponents(dateComp)!
+        
+        notification.fireDate = date
+        notification.repeatInterval = NSCalendarUnit.Day
+        notification.timeZone = NSCalendar.currentCalendar().timeZone
+        notification.alertBody = "Have you made your record today?"
+        
+        /* Action settings */
+        notification.hasAction = true
+        notification.alertAction = "View"
+        
+        /* Badge settings */
+        notification.applicationIconBadgeNumber =
+            UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        
+        
+        /* Schedule the notification */
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
