@@ -158,10 +158,22 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
     // When the user is editting additional expenses, they are not allowed to click generate tax.
     func textFieldDidBeginEditing(textField: UITextField) {
         generateTaxButton.enabled = false
+        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        var value = textField.text
+        if (value![value!.startIndex] == "$") {
+            value!.removeAtIndex(value!.startIndex)
+        }
+        let valueString = Double(formatter.numberFromString(value!)!)
+        
+        textField.text = String(valueString)
     }
+    
     
     // Once the user is done editting additional expenses, reflect the change immediately. Re-enable the button to generate tax after that.
     func textFieldDidEndEditing(textField: UITextField) {
+        
+        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        
         var newValue = textField.text
         if (newValue == nil || newValue == "") {
             newValue = "0.0"
@@ -170,22 +182,28 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         if (newValue![newValue!.startIndex] == "$") {
             newValue!.removeAtIndex(newValue!.startIndex)
         }
-        let doubleValue = Double(newValue!)
+        let doubleValue = Double(formatter.numberFromString(newValue!)!)
         
         // Update the last updated record in database with this new value.
-        let updatedABE = taxController.updateAllowableBusinessExpenses(doubleValue!)
+        let updatedABE = taxController.updateAllowableBusinessExpenses(doubleValue)
         if (updatedABE != nil) {
+            
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
+            
             additionalExpensesTextField.text = formatter.stringFromNumber(updatedABE!["amount"]as! Double)
             print(updatedABE?.updatedAt) // To populate label with this
         } else {
             print("error")
         }
         
+        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         var grossProfit = grossProfitLabel.text
         grossProfit?.removeAtIndex((grossProfit?.startIndex)!)
         
+        let grossProfitAmount = formatter.numberFromString(grossProfit!)
         // Change the UI with the newly calculated adjusted profit.
-        var adjustedProfit = Double(grossProfit!)! - Double(newValue!)!
+        var adjustedProfit = Double(grossProfitAmount!) - Double(newValue!)!
         adjustedProfitLabel.text = formatter.stringFromNumber(adjustedProfit)
         generateTaxButton.enabled = true
     }
