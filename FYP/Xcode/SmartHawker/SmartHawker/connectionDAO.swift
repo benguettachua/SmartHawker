@@ -17,15 +17,22 @@ class connectionDAO{
     //load records into controller
     func loadRecords() -> [PFObject]{
         let query = PFQuery(className: "Record")
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.fromLocalDatastore()
         query.limit = 1000
         var records = [PFObject]()
-        query.fromLocalDatastore()
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do{
-            records = try query.findObjects()
-        } catch {
-            
+        var counter = 0
+        while (records.count >= counter * 1000) {
+            query.skip = 1000 * counter
+            do{
+                let thousandRecords = try query.findObjects()
+                records += thousandRecords
+            } catch {
+                
+            }
+            counter += 1
         }
+        
         return records
     }
     
@@ -35,36 +42,43 @@ class connectionDAO{
         query.limit = 1000
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do{
-            let array = try query.findObjects()
-            var arrayForAllDates = [String]()
-            var dates = [String:[String]]()
-            
-            for object in array {
-                let dateString = object["date"] as! String
-                let subuserName = object["subuser"] as! String
-                let type = object["type"] as! Int
+        var counter = 0
+        var records = [PFObject]()
+        while records.count >= counter * 1000 {
+            query.skip = 1000 * counter
+            do{
+                let array = try query.findObjects()
+                var arrayForAllDates = [String]()
+                var dates = [String:[String]]()
                 
-                if type == 0 || type == 1 || type == 2 {
-                    if dates[subuserName] == nil{
-                        let arrayForDates = [dateString]
-                        dates.updateValue(arrayForDates, forKey: subuserName)
-                    }else{
-                        var arrayForDates = dates[subuserName]
-                        arrayForDates?.append(dateString)
-                        dates.updateValue(arrayForDates!, forKey: subuserName)
+                for object in array {
+                    let dateString = object["date"] as! String
+                    let subuserName = object["subuser"] as! String
+                    let type = object["type"] as! Int
+                    
+                    if type == 0 || type == 1 || type == 2 {
+                        if dates[subuserName] == nil{
+                            let arrayForDates = [dateString]
+                            dates.updateValue(arrayForDates, forKey: subuserName)
+                        }else{
+                            var arrayForDates = dates[subuserName]
+                            arrayForDates?.append(dateString)
+                            dates.updateValue(arrayForDates!, forKey: subuserName)
+                        }
+                        arrayForAllDates.append(dateString)
                     }
-                    arrayForAllDates.append(dateString)
                 }
+                
+                if isSubuser == true{
+                    toShare.datesWithRecords = dates[subuser!]!
+                }else{
+                    toShare.datesWithRecords = arrayForAllDates
+                }
+                records += array
+                counter += 1
+            } catch {
+                
             }
-            
-            if isSubuser == true{
-                toShare.datesWithRecords = dates[subuser!]!
-            }else{
-                toShare.datesWithRecords = arrayForAllDates
-            }
-        } catch {
-            
         }
     }
     
@@ -74,21 +88,28 @@ class connectionDAO{
         query.limit = 1000
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do{
-            let array = try query.findObjects()
-            var descriptions = [String]()
-            
-            for object in array {
-                if object["description"] != nil {
-                    let description = object["description"] as! String
-                    if description != "" {
-                        descriptions.append(description)
+        var records = [PFObject]()
+        var counter = 0
+        while (records.count >= counter * 1000) {
+            query.skip = 1000 * counter
+            do{
+                let array = try query.findObjects()
+                var descriptions = [String]()
+                
+                for object in array {
+                    if object["description"] != nil {
+                        let description = object["description"] as! String
+                        if description != "" {
+                            descriptions.append(description)
+                        }
                     }
                 }
+                toShare.stringsWithAutoFill = descriptions
+                records += array
+                counter += 1
+            } catch {
+                
             }
-            toShare.stringsWithAutoFill = descriptions
-        } catch {
-            
         }
     }
     
@@ -97,17 +118,24 @@ class connectionDAO{
     func unloadRecords(){
         // Part 1: Load from DB and pin into local datastore.
         let query = PFQuery(className: "Record")
-        query.limit = 1000
-        var records = [PFObject]()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.fromLocalDatastore()
-        do{
-            records = try query.findObjects()
-            for record in records {
-                try record.unpin()
+        query.limit = 1000
+        var records = [PFObject]()
+        var counter = 0
+        while (records.count >= counter * 1000) {
+            query.skip = 1000 * counter
+            do{
+                let array = try query.findObjects()
+                for record in records {
+                    try record.unpin()
+                }
+                records += array
+                counter += 1
+            } catch {
             }
-        } catch {
         }
+        
     }
     //load records into local datastore
     func loadRecordsIntoLocalDatastore() -> Bool{
@@ -116,65 +144,24 @@ class connectionDAO{
         query.limit = 1000
         var records = [PFObject]()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do{
-            records = try query.findObjects()
-            print("HOW MANY RECORDS?!?!?!")
-            print(records.count)
-            for record in records {
-                if (record["subUser"] == nil) {
-                    record["subUser"] = NSUUID().UUIDString
+        var counter = 0
+        while (records.count >= counter * 1000) {
+            query.skip = 1000 * counter
+            do{
+                let array = try query.findObjects()
+                for record in array {
+                    if (record["subUser"] == nil) {
+                        record["subUser"] = NSUUID().UUIDString
+                    }
+                    try record.pin()
                 }
-                try record.pin()
+                records += array
+                counter += 1
+            } catch {
+                return false
             }
-            return true
-        } catch {
-            return false
         }
-    }
-    
-    // Find subuser from local datastore with a specific pin
-    func getSubuserFromLocalDatastore(pin: String) -> PFObject?{
-        let query = PFQuery(className: "SubUser")
-        query.limit = 1000
-        var subuser: PFObject?
-        query.whereKey("pin", equalTo: pin)
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        query.fromLocalDatastore()
-        do {
-            subuser = try query.getFirstObject()
-        } catch {
-            subuser = nil
-        }
-        return subuser
-    }
-    
-    // Find all subuser and load into local datastore
-    func getSubuserFromDatabase(){
-        let query = PFQuery(className: "SubUser")
-        query.limit = 1000
-        var subusers = [PFObject]()
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do {
-            subusers = try query.findObjects()
-            try PFObject.pinAll(subusers)
-        } catch {
-            
-        }
-    }
-    
-    // Find all subusers in local datastore and return.
-    func retrieveSubusers() -> [PFObject]{
-        let query = PFQuery(className: "SubUser")
-        query.limit = 1000
-        query.fromLocalDatastore()
-        var subusers = [PFObject]()
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        do {
-            subusers = try query.findObjects()
-        } catch {
-            
-        }
-        return subusers
+        return true
     }
     
     // Saves Records into Database
@@ -184,16 +171,22 @@ class connectionDAO{
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         var objects = [PFObject]()
-        do{
-            objects = try query.findObjects()
-            for object in objects {
-                try object.pin()
-                try object.save()
+        var counter = 0
+        while (objects.count >= counter * 1000) {
+            query.skip = 1000 * counter
+            do{
+                let array = try query.findObjects()
+                for object in objects {
+                    try object.pin()
+                    try object.save()
+                }
+                objects += array
+                counter += 1
+            } catch {
+                return false
             }
-            return true
-        } catch {
-            return false
         }
+        return true
     }
     
     // Loads all record from a day to an array
@@ -204,13 +197,19 @@ class connectionDAO{
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("date", equalTo: date)
-        if (isSubuser) {
-            query.whereKey("subuser", equalTo: subuser!)
-        }
-        do {
-            records = try query.findObjects()
-        } catch {
-            records = nil
+        var counter = 0
+        records = [PFObject]()
+        while (records != nil && records!.count >= counter * 1000) {
+            query.skip = counter * 1000
+            do {
+                let array = try query.findObjects()
+                for record in array {
+                    records?.append(record)
+                }
+                counter += 1
+            } catch {
+                records = nil
+            }
         }
         return records
     }
@@ -247,7 +246,7 @@ class connectionDAO{
         let imageFile = PFFile(name: "defaultProfilePic", data: image!)
         newUser.username = username
         newUser.password = password
-        newUser.email = email 
+        newUser.email = email
         newUser["name"] = name
         newUser["phoneNumber"] = phoneNumber
         newUser["adminPin"] = adminPIN
@@ -268,7 +267,7 @@ class connectionDAO{
         let user = PFUser.currentUser()
         user!["name"] = name
         user!["phoneNumber"] = phoneNumber
-        user!["email"] = email 
+        user!["email"] = email
         user!["adminPin"] = adminPIN
         user!["businessAddress"] = businessAddress
         user!["businessName"] = businessName
@@ -319,7 +318,6 @@ class connectionDAO{
         let query = PFQuery(className: "Record")
         var recordToUpdate = PFObject(className: "Record")
         query.fromLocalDatastore()
-        query.limit = 1000
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("subUser", equalTo: localIdentifier)
         do{
@@ -356,7 +354,6 @@ class connectionDAO{
     // Delete record
     func deleteRecord(localIdentifier: String) -> Bool {
         let query = PFQuery(className: "Record")
-        query.limit = 1000
         var recordToDelete = PFObject(className: "Record")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -385,24 +382,6 @@ class connectionDAO{
             
             // Delete it eventually.
             recordToDelete.deleteEventually()
-            return true
-        } catch {
-            return false
-        }
-    }
-    
-    // Delete subuser
-    func deleteSubuser(PIN: String) -> Bool {
-        let query = PFQuery(className: "SubUser")
-        query.limit = 1000
-        var subuser = PFObject(className: "SubUser")
-        query.fromLocalDatastore()
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        query.whereKey("pin", equalTo: PIN)
-        do {
-            subuser = try query.getFirstObject()
-            try subuser.unpin()
-            try subuser.delete()
             return true
         } catch {
             return false
@@ -451,24 +430,6 @@ class connectionDAO{
         }
     }
     
-    // Adds a new subuser
-    func addNewSubuser(name: String, address: String, pin: String) -> Bool {
-        let subuser = PFObject(className: "SubUser")
-        subuser.ACL = PFACL(user: PFUser.currentUser()!)
-        subuser["user"] = PFUser.currentUser()
-        subuser["name"] = name
-        subuser["address"] = address
-        subuser["pin"] = pin
-        
-        do {
-            try subuser.save()
-            try subuser.pin()
-            return true
-        } catch {
-            return false
-        }
-    }
-    
     func isConnectedToNetwork()->Bool{
         
         let urlPath: String = "http://www.parse.com"
@@ -500,7 +461,6 @@ class connectionDAO{
     func getAllowableBusinessExpenses () -> PFObject?{
         
         let query = PFQuery(className: "Record")
-        query.limit = 1000
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("type", equalTo: 5)
         query.fromLocalDatastore()
@@ -539,7 +499,6 @@ class connectionDAO{
     // Update the allowaable business expenses
     func updateAllowableBusinessExpenses(amount: Double) -> PFObject? {
         let query = PFQuery(className: "Record")
-        query.limit = 1000
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("type", equalTo: 5)
         query.fromLocalDatastore()

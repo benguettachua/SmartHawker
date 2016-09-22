@@ -39,17 +39,6 @@ class AdminPINController {
             shared.isSubUser = false
             return 0
         }
-        
-        // Check if pin entered belongs to any of subuser's PIN
-        else {
-            let subuser = dao.getSubuserFromLocalDatastore(pinEntered)
-            if (subuser != nil) {
-                shared.isSubUser = true
-                shared.subuser = subuser!["name"] as! String
-                return 1
-            }
-        }
-        
         // Invalid PIN
         return 2
     }
