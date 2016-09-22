@@ -17,6 +17,7 @@ class connectionDAO{
     //load records into controller
     func loadRecords() -> [PFObject]{
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         var records = [PFObject]()
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -31,6 +32,7 @@ class connectionDAO{
     // Load dates with records into Calendar
     func loadDatesIntoCalendar(isSubuser: Bool, subuser: String?) {
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         do{
@@ -69,6 +71,7 @@ class connectionDAO{
     //loads autocomplete words
     func loadStringIntoAutoFill() {
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         do{
@@ -94,6 +97,7 @@ class connectionDAO{
     func unloadRecords(){
         // Part 1: Load from DB and pin into local datastore.
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         var records = [PFObject]()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.fromLocalDatastore()
@@ -109,10 +113,13 @@ class connectionDAO{
     func loadRecordsIntoLocalDatastore() -> Bool{
         // Part 1: Load from DB and pin into local datastore.
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         var records = [PFObject]()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         do{
             records = try query.findObjects()
+            print("HOW MANY RECORDS?!?!?!")
+            print(records.count)
             for record in records {
                 if (record["subUser"] == nil) {
                     record["subUser"] = NSUUID().UUIDString
@@ -128,6 +135,7 @@ class connectionDAO{
     // Find subuser from local datastore with a specific pin
     func getSubuserFromLocalDatastore(pin: String) -> PFObject?{
         let query = PFQuery(className: "SubUser")
+        query.limit = 1000
         var subuser: PFObject?
         query.whereKey("pin", equalTo: pin)
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -143,6 +151,7 @@ class connectionDAO{
     // Find all subuser and load into local datastore
     func getSubuserFromDatabase(){
         let query = PFQuery(className: "SubUser")
+        query.limit = 1000
         var subusers = [PFObject]()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         do {
@@ -156,6 +165,7 @@ class connectionDAO{
     // Find all subusers in local datastore and return.
     func retrieveSubusers() -> [PFObject]{
         let query = PFQuery(className: "SubUser")
+        query.limit = 1000
         query.fromLocalDatastore()
         var subusers = [PFObject]()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -170,6 +180,7 @@ class connectionDAO{
     // Saves Records into Database
     func saveRecordsIntoDatabase() -> Bool{
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         var objects = [PFObject]()
@@ -189,6 +200,7 @@ class connectionDAO{
     func loadRecordOfTheDay(isSubuser: Bool, date: String, subuser: String?) -> [PFObject]?{
         var records: [PFObject]?
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("date", equalTo: date)
@@ -307,6 +319,7 @@ class connectionDAO{
         let query = PFQuery(className: "Record")
         var recordToUpdate = PFObject(className: "Record")
         query.fromLocalDatastore()
+        query.limit = 1000
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("subUser", equalTo: localIdentifier)
         do{
@@ -343,6 +356,7 @@ class connectionDAO{
     // Delete record
     func deleteRecord(localIdentifier: String) -> Bool {
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         var recordToDelete = PFObject(className: "Record")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -380,6 +394,7 @@ class connectionDAO{
     // Delete subuser
     func deleteSubuser(PIN: String) -> Bool {
         let query = PFQuery(className: "SubUser")
+        query.limit = 1000
         var subuser = PFObject(className: "SubUser")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -397,6 +412,7 @@ class connectionDAO{
     // Edit subuser's PIN
     func editPIN(currentPIN: String, newPIN: String) -> Bool{
         let query = PFQuery(className: "SubUser")
+        query.limit = 1000
         var subuser = PFObject(className: "SubUser")
         query.fromLocalDatastore()
         query.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -416,6 +432,7 @@ class connectionDAO{
         // Part 1: Load from DB and pin into local datastore.
         
         let query = PFQuery(className: "_User")
+        query.limit = 1000
         var emails = [PFObject]()
         let array = [newEmail, newEmail.lowercaseString]
         query.whereKey("email", containedIn: array)
@@ -483,6 +500,7 @@ class connectionDAO{
     func getAllowableBusinessExpenses () -> PFObject?{
         
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("type", equalTo: 5)
         query.fromLocalDatastore()
@@ -521,6 +539,7 @@ class connectionDAO{
     // Update the allowaable business expenses
     func updateAllowableBusinessExpenses(amount: Double) -> PFObject? {
         let query = PFQuery(className: "Record")
+        query.limit = 1000
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("type", equalTo: 5)
         query.fromLocalDatastore()
