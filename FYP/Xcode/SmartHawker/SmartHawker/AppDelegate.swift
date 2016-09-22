@@ -61,6 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // START OF ASK FOR NOTIFICATION PERMISSION
         //***********************************************************
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        
+        // Set the badge number to zero when app is laugned
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         //***********************************************************
         // END OF ASK FOR NOTIFICATION PERMISSION
         //***********************************************************
@@ -115,10 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    func showLoginScreen() {
-        
     }
     
 }
