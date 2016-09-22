@@ -116,7 +116,7 @@ class MainViewControllerNew: UIViewController{
         salesLabel.text = "Sales".localized()
         COGSLabel.text = "COGS".localized()
         todayEntryLabel.text = "New Record".localized()
-        monthlyTargetLabel.text = "Monthly Record".localized()
+        monthlyTargetLabel.text = "Monthly Target".localized()
         //thisMonthSaleLabel.text = "Sales - This Month".localized()
         thisWeekOverviewLabel.text = "This Week's Earnings".localized()
         weekSalesLabel.text = "Sales".localized()
