@@ -241,7 +241,7 @@ class TrendingViewController: UIViewController {
             
             // Populating the UI with necessary information
             salesSoFarAmountLabel.text = "$" + yearSales
-            salesCategoryAmountLabel.text = String(formatter.stringFromNumber(todaySales))
+            salesCategoryAmountLabel.text = "$" + String(formatter.stringFromNumber(todaySales)!)
             categoryLeftAmount.text = String(numOfDays)
             endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
