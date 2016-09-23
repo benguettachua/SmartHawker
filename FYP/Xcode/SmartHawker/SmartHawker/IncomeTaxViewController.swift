@@ -175,7 +175,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         
         var newValue = textField.text
-        if (newValue == nil || newValue == "") {
+        if (newValue == nil || newValue == "" || Double(newValue!) == nil) {
             newValue = "0.0"
         }
         
