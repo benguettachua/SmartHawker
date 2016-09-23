@@ -581,6 +581,10 @@ class SummaryViewController: UIViewController {
         lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blackColor())
         lineChartDataSet4.drawFilledEnabled = true
         
+        let formatter = NSNumberFormatter()
+        
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
         
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
@@ -599,6 +603,7 @@ class SummaryViewController: UIViewController {
         }
         //4 - pass our months in for our x-axis label value along with our dataSets
         let data: LineChartData = LineChartData(xVals: dataPointsToUse, dataSets: dataSets)
+        
         data.setValueTextColor(UIColor.magentaColor())
         data.setValueFont(UIFont.systemFontOfSize(14))
         
@@ -619,7 +624,7 @@ class SummaryViewController: UIViewController {
         chart.rightAxis.drawLabelsEnabled = false
         chart.leftAxis.drawLabelsEnabled = true
         
-        
+        chart.leftAxis.valueFormatter = formatter
         
         chart.leftAxis.drawLimitLinesBehindDataEnabled = false
         chart.xAxis.drawLimitLinesBehindDataEnabled = true
