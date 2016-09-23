@@ -138,6 +138,9 @@ class MainViewControllerNew: UIViewController{
         getTodayDate()
         getLatestDate()
         getMonthlyTarget()
+        
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
         if(targetAvailable) {
             targetButton.setImage(UIImage(named: "edit-button"), forState: .Normal)
             monthlyTargetAmountLabel.text = formatter.stringFromNumber(targetAmount)

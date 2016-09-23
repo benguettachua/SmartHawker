@@ -15,7 +15,7 @@ class MainController{
     var firstDay: NSDate!
     var lastDay: NSDate!
     let calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
-
+    
     func loadTargetRecords(currentMonth: String) -> (Bool, Double){
         
         let records = connectionDAO().loadRecords()
