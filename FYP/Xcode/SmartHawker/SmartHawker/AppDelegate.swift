@@ -44,7 +44,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("First launch, setting NSUserDefault.")
             
             // When the app is first launched, set notification to be off.
-            defaults.setBool(false, forKey: "notification")
+            defaults.setBool(true, forKey: "notification")
+            
+            let notification = UILocalNotification()
+            
+            /* Time and timezone settings */
+            let dateComp:NSDateComponents = NSDateComponents()
+            dateComp.hour = 21
+            dateComp.minute = 0
+            dateComp.timeZone = NSTimeZone.systemTimeZone()
+            let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+            let date:NSDate = calender.dateFromComponents(dateComp)!
+            
+            notification.fireDate = date
+            notification.repeatInterval = NSCalendarUnit.Day
+            notification.timeZone = NSCalendar.currentCalendar().timeZone
+            notification.alertBody = "Have you made your record today?"
+            
+            /* Action settings */
+            notification.hasAction = true
+            notification.alertAction = "View"
+            
+            /* Badge settings */
+            notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+            
+            /* Schedule the notification */
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            defaults.setBool(true, forKey: "notification")
             
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
