@@ -481,10 +481,10 @@ class connectionDAO{
                 newRecord["subuser"] = PFUser.currentUser()?.username
                 newRecord["subUser"] = NSUUID().UUIDString
                 newRecord["date"] = "12/12/1212"
+                newRecord["lastUpdated"] = NSDate()
                 
                 do{
                     try newRecord.pin()
-                    try newRecord.save()
                     return newRecord
                 } catch {
                     print("Fail to create")
@@ -503,10 +503,11 @@ class connectionDAO{
         query.whereKey("type", equalTo: 5)
         query.fromLocalDatastore()
         do {
+            print("updating")
             let ABE = try query.getFirstObject()
             ABE["amount"] = amount
+            ABE["lastUpdated"] = NSDate()
             try ABE.pin()
-            try ABE.save()
             return ABE
         } catch {
             print("error")

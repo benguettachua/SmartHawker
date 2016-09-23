@@ -82,7 +82,10 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             var profit = self.adjustedProfitLabel.text
             
             // Remove the "$" in front of the string.
-            profit?.removeAtIndex((profit?.startIndex)!)
+            if (profit![profit!.startIndex] == "$") {
+                profit?.removeAtIndex((profit?.startIndex)!)
+            }
+            
             
             self.formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
             // Turn the adjusted profit into Double for calculation.
@@ -138,9 +141,10 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         // Step 4: Populate with $ sign and 2 decimal place.
         revenueLabel.text = formatter.stringFromNumber(revenue)
         grossProfitLabel.text = formatter.stringFromNumber(grossprofit)
-        adjustedProfitLabel.text = formatter.stringFromNumber(adjustedProfit)
+        
         
         // Step 5: Find the allowable business expenses and populate the UI.
+        
         let ABE_PFObject = taxController.getAllowableBusinessExpenses()
         if (ABE_PFObject == nil) {
             additionalExpensesTextField.text = "$0.00"
@@ -148,11 +152,20 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             additionalExpensesTextField.text = formatter.stringFromNumber(ABE_PFObject!["amount"]as! Double)
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy, hh.mm a"
-            if (ABE_PFObject?.updatedAt != nil) {
-                let lastUpdatedString = dateFormatter.stringFromDate((ABE_PFObject?.updatedAt)!)
-                lastUpdatedLabel.text = "Last updated: ".localized() + lastUpdatedString
-            }
+            
+            let lastUpdatedString = dateFormatter.stringFromDate((ABE_PFObject!["lastUpdated"] as! NSDate))
+            lastUpdatedLabel.text = "Last updated: ".localized() + lastUpdatedString
+            
         }
+        
+        
+        var allowableBusinessExpensesString = additionalExpensesTextField.text
+        if (allowableBusinessExpensesString![allowableBusinessExpensesString!.startIndex] == "$") {
+            allowableBusinessExpensesString!.removeAtIndex(allowableBusinessExpensesString!.startIndex)
+        }
+        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        let allowableBusinessExpenses = Double(formatter.numberFromString(allowableBusinessExpensesString!)!)
+        adjustedProfitLabel.text = "$" + formatter.stringFromNumber(adjustedProfit - allowableBusinessExpenses)!
     }
     
     // When the user is editting additional expenses, they are not allowed to click generate tax.
@@ -183,16 +196,19 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             newValue!.removeAtIndex(newValue!.startIndex)
         }
         let doubleValue = Double(formatter.numberFromString(newValue!)!)
-        
+        print("PRINTING DOUBLE VALUEEEEE")
+        print(doubleValue)
         // Update the last updated record in database with this new value.
         let updatedABE = taxController.updateAllowableBusinessExpenses(doubleValue)
         if (updatedABE != nil) {
-            
             formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
             formatter.locale = NSLocale(localeIdentifier: "en_US")
             
             additionalExpensesTextField.text = formatter.stringFromNumber(updatedABE!["amount"]as! Double)
-            print(updatedABE?.updatedAt) // To populate label with this
+            let lastUpdated = updatedABE!["lastUpdated"] as! NSDate
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy, hh.mm a"
+            lastUpdatedLabel.text = "Last updated: ".localized() + dateFormatter.stringFromDate(lastUpdated)
         } else {
             print("error")
         }
@@ -204,7 +220,8 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
         let grossProfitAmount = formatter.numberFromString(grossProfit!)
         // Change the UI with the newly calculated adjusted profit.
         var adjustedProfit = Double(grossProfitAmount!) - Double(newValue!)!
-        adjustedProfitLabel.text = formatter.stringFromNumber(adjustedProfit)
+        adjustedProfitLabel.text = "$" + formatter.stringFromNumber(adjustedProfit)!
+        self.incomeTaxAmountLabel.text = "-"
         generateTaxButton.enabled = true
     }
     
