@@ -252,7 +252,6 @@ class SettingsViewController: UITableViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
-                print(language)
                 if language.containsString("zh-Hans"){
                     self.languageLabel.text = "华语"
                 }else if language.containsString("en"){

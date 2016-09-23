@@ -243,7 +243,6 @@ class LoginViewController: UIViewController {
             let languageAction = UIAlertAction(title: displayName, style: .Default, handler: {
                 (alert: UIAlertAction!) -> Void in
                 let defaults = NSUserDefaults.standardUserDefaults()
-                print(language)
                 defaults.setObject(language, forKey: "langPref")
                 Localize.setCurrentLanguage(language)
                 

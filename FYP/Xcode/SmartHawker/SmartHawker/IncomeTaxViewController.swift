@@ -203,8 +203,6 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             newValue!.removeAtIndex(newValue!.startIndex)
         }
         let doubleValue = Double(formatter.numberFromString(newValue!)!)
-        print("PRINTING DOUBLE VALUEEEEE")
-        print(doubleValue)
         // Update the last updated record in database with this new value.
         let updatedABE = taxController.updateAllowableBusinessExpenses(doubleValue)
         if (updatedABE != nil) {

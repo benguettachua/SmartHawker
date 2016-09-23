@@ -211,8 +211,6 @@ extension SingleCalendarViewController: JTAppleCalendarViewDataSource, JTAppleCa
     func calendar(calendar: JTAppleCalendarView, didScrollToDateSegmentStartingWithdate startDate: NSDate, endingWithDate endDate: NSDate) {
         setupViewsOfCalendar(startDate, endDate: endDate)
         loadRecords(endDate)
-        print(startDate)
-        print(endDate)
     }
     
 }

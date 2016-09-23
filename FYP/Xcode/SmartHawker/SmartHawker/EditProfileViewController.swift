@@ -298,18 +298,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             error += 1
                         }
                     }else{
-                        print("loloolo")
                         let errorString = "Invalid Email field.".localized()
                         self.email.text = ""
                         self.email.placeholder = "Invalid Email field.".localized()
                         self.errorMsg.append(errorString)
                         error += 1
                     }
-                }else if self.email.text!.lowercaseString == email2{
-                    print("lelelelel")
+                }else if self.email.text!.lowercaseString == email2.lowercaseString{
                     newEmail = self.email.text!
                 }else{
-                    
                     let errorString = "Empty Email field.".localized()
                     self.email.text = ""
                     self.email.placeholder = "Empty Email field.".localized()
@@ -371,14 +368,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 
                 
                 if error == 0 {
-                    
-                    print(newName)
-                    print(newEmail)
-                    print(newPhoneNumber)
-                    print(newPINNumber)
-                    print(newBusinessAddress)
-                    print(newBusinessRegNo)
-                    print(self.imageFile)
+                
                     let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: self.imageFile)
                     if edited == true{
                         self.dismissViewControllerAnimated(true, completion: {
@@ -509,7 +499,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(chosenImage, 0)
-        print(imageData!.length)
         if imageData!.length < 9999999{
             // Image is within size limit, allow upload.
             imageFile = PFFile(name: "profilePicture", data: imageData!)
@@ -518,7 +507,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             updated = true
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded".localized()
-            print("aweawe")
 
         }else{
             

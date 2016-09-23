@@ -175,7 +175,6 @@ class MainViewControllerNew: UIViewController{
         self.weeklyExpensesLabel.text = formatter.stringFromNumber(values.11)
 
         self.weeklyProfitLabel.text = formatter.stringFromNumber(values.12)
-        print("Weekly Overview from \n" + values.13 + " - " + values.14)
         //self.weeklyLabel.text = "Weekly Overview from \n" + values.13 + " - " + values.14
         overview.text = "This Month's Earnings".localized()
         

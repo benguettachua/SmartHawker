@@ -67,7 +67,6 @@ class AdminPINViewController: UIViewController {
         adminpinicon.text = String(format: "%C", faicon["faadminpin"]!)
         
         let records = connectionDAO().loadRecords()
-        print(records.count)
         
     }
     

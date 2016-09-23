@@ -216,7 +216,6 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         let indexForYear = monthLabel2.endIndex.advancedBy(-4)..<monthLabel2.endIndex
         let newMonth = monthLabel2[indexForMonth]
         let newYear = monthLabel2[indexForYear]
-        print("lala" + newMonth + "lala")
         monthLabel.text = newMonth.localized() + " " + newYear
         
         // Remove all records to prevent duplicates.

@@ -275,7 +275,6 @@ class TrendingViewController: UIViewController {
             let numOfWeeks = components.day/7
 
             formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-            print(Double(formatter.numberFromString(yearSales)!))
             let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + Double(formatter.numberFromString(weekSales)!) * (Double(numOfWeeks))
             
             // Populating the UI with necessary information
@@ -315,7 +314,6 @@ class TrendingViewController: UIViewController {
             
             formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
             
-            print(Double(formatter.numberFromString(yearSales)!))
             let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + Double(formatter.numberFromString(monthSales)!) * (Double(numOfMonths))
             
             // Populating the UI with necessary information
