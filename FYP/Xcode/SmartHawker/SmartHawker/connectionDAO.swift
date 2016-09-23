@@ -176,10 +176,8 @@ class connectionDAO{
             query.skip = 1000 * counter
             do{
                 let array = try query.findObjects()
-                for object in objects {
-                    try object.pin()
-                    try object.save()
-                }
+                try PFObject.pinAll(array)
+                try PFObject.saveAll(array)
                 objects += array
                 counter += 1
             } catch {
