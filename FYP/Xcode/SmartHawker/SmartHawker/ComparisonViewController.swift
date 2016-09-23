@@ -62,7 +62,7 @@ class ComparisonViewController: UIViewController {
     
     // Changing Dates of the record
     @IBAction func changeDate(sender: UIButton) {
-        let alertController = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         // Creating the date picker
         let picker : UIDatePicker = UIDatePicker()
