@@ -29,8 +29,6 @@ class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var passicon: UILabel!
     
-    @IBOutlet weak var adminicon: UILabel!
-    
     @IBOutlet weak var languageicon: UILabel!
     
     
@@ -132,7 +130,6 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         passwordLabel.text = "Password".localized()
-        adminLabel.text = "Admin".localized()
         notificationLabel.text = "Notification".localized()
         privacyLabel.text = "Privacy".localized()
         faqLabel.text = "FAQ".localized()
@@ -189,10 +186,6 @@ class SettingsViewController: UITableViewController {
         passicon.font = UIFont(name: "FontAwesome", size: 20)
         
         passicon.text = String(format: "%C", faicon["faright"]!)
-        
-        adminicon.font = UIFont(name: "FontAwesome", size: 20)
-        
-        adminicon.text = String(format: "%C", faicon["faright"]!)
         
         languageicon.font = UIFont(name: "FontAwesome", size: 20)
         
@@ -380,27 +373,18 @@ class SettingsViewController: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
                 
-                // Admin PIN
-            else if (row == 1) {
-                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-                comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-                self.presentViewController(comingSoonAlert, animated: true, completion: nil)
-            }
-                
                 // Notification
-            else if (row == 2) {
-                let comingSoonAlert = UIAlertController(title: "Coming soon".localized(), message: "Function currently developing!".localized(), preferredStyle: .Alert)
-                comingSoonAlert.addAction(UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil))
-                self.presentViewController(comingSoonAlert, animated: true, completion: nil)
+            else if (row == 1) {
+                // Nothing to do in this
             }
                 
                 // Language
-            else if (row == 3) {
+            else if (row == 2) {
                 doChangeLanguage()
             }
                 
                 // Privacy
-            else if (row == 4) {
+            else if (row == 3) {
                 self.performSegueWithIdentifier("toPrivacy", sender: self)
             }
         }
