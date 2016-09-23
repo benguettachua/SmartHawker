@@ -210,15 +210,18 @@ class SettingsViewController: UITableViewController {
         
         contactusicon.text = String(format: "%C", faicon["faright"]!)
         
+        // Set the Notification switch on/off based on the setting.
+        notificationMode.on = defaults.boolForKey("notification")
+        
     }
     
     
     @IBAction func switchOnOrOff(sender: UISwitch) {
         let defaults = NSUserDefaults.standardUserDefaults()
         if notificationMode.on {
-            defaults.setObject("On", forKey: "notification")
+            defaults.setBool(true, forKey: "notification")
         } else {
-            defaults.setObject("Off", forKey: "notification")
+            defaults.setBool(false, forKey: "notification")
         }
     }
     

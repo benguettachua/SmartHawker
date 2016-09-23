@@ -68,6 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // END OF ASK FOR NOTIFICATION PERMISSION
         //***********************************************************
         
+        //let defaults = NSUserDefaults.standardUserDefaults()
+        let allowNotification = defaults.boolForKey("notification")
+        print("BABANANA")
+        print(allowNotification)
+        print("NANABABA")
         return true
     }
 
