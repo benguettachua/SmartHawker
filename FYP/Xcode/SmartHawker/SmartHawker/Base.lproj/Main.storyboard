@@ -24,7 +24,7 @@
         <!--Sign Up Page One View Controller-->
         <scene sceneID="YJg-6x-9ex">
             <objects>
-                <viewController id="eTl-4s-0qY" customClass="SignUpPageOneViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eTl-4s-0qY" customClass="SignUpPageOneViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8g1-dL-epr"/>
                         <viewControllerLayoutGuide type="bottom" id="nwV-5E-g7t"/>
@@ -107,7 +107,7 @@
         <!--Sign Up Page Two View Controller-->
         <scene sceneID="rja-1f-0cU">
             <objects>
-                <viewController id="UwT-UI-dcx" customClass="SignUpPageTwoViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UwT-UI-dcx" customClass="SignUpPageTwoViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y7C-Lo-euW"/>
                         <viewControllerLayoutGuide type="bottom" id="69S-qz-NtF"/>
@@ -205,7 +205,7 @@
         <!--Sign Up Page Three View Controller-->
         <scene sceneID="y2E-CS-MXt">
             <objects>
-                <viewController id="vfn-8w-cJh" customClass="SignUpPageThreeViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vfn-8w-cJh" customClass="SignUpPageThreeViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Cs-1r-iWo"/>
                         <viewControllerLayoutGuide type="bottom" id="gHB-I9-Wr8"/>
@@ -277,7 +277,7 @@ this password and admin pin</string>
         <!--Select language-->
         <scene sceneID="XWC-2k-f9J">
             <objects>
-                <tableViewController id="8MO-iI-UGe" customClass="StartUpPage" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8MO-iI-UGe" customClass="StartUpPage" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ac7-po-UcT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,7 +351,7 @@ this password and admin pin</string>
         <!--welcomePage-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Main" title="welcomePage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" title="welcomePage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -558,7 +558,7 @@ this password and admin pin</string>
         <!--AdminPIN View Controller-->
         <scene sceneID="TFq-ct-rBu">
             <objects>
-                <viewController storyboardIdentifier="AdminPINViewController" id="JUl-IL-xm2" customClass="AdminPINViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdminPINViewController" id="JUl-IL-xm2" customClass="AdminPINViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oLh-Nx-HjF"/>
                         <viewControllerLayoutGuide type="bottom" id="BbS-48-u9i"/>
@@ -668,7 +668,7 @@ this password and admin pin</string>
         <!--Registration View Controller-->
         <scene sceneID="h1a-Hd-syf">
             <objects>
-                <viewController id="tmR-p1-Jn7" customClass="RegistrationViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tmR-p1-Jn7" customClass="RegistrationViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="THD-ZD-7is"/>
                         <viewControllerLayoutGuide type="bottom" id="44d-ga-ZzO"/>
@@ -683,16 +683,16 @@ this password and admin pin</string>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-EU-MSz">
                                 <rect key="frame" x="69" y="168" width="282" height="438"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="-260" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-Tg-45U">
                                         <rect key="frame" x="0.0" y="0.0" width="282" height="403"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reg-bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="geb-6L-mdH">
                                                 <rect key="frame" x="0.0" y="0.0" width="282" height="384"/>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="clD-Cm-jl2">
                                                 <rect key="frame" x="30" y="124" width="222" height="279"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eC5-Zo-fML">
                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="279"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-vw-E1n">
@@ -847,13 +847,13 @@ this password and admin pin</string>
                                                                     </imageView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="-35" translatesAutoresizingMaskIntoConstraints="NO" id="39A-KW-dxb">
                                                                 <rect key="frame" x="0.0" y="237" width="222" height="42"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-register-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="ZI0-qD-Emo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="222" height="42"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUN-1v-x5r">
                                                                         <rect key="frame" x="0.0" y="7" width="222" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" name="NoveoSans-BlackXtraCond" family="Noveo Sans" pointSize="23"/>
@@ -878,7 +878,7 @@ this password and admin pin</string>
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-8x-NBG">
                                         <rect key="frame" x="117" y="408" width="48" height="30"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -922,13 +922,13 @@ this password and admin pin</string>
         <!--Monthly Record-->
         <scene sceneID="0ap-TT-BAv">
             <objects>
-                <tableViewController id="QSu-RF-hdB" customClass="MonthRecordTableViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="QSu-RF-hdB" customClass="MonthRecordTableViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2AG-wP-4QX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="lTZ-iC-rZc" customClass="RecordTableViewCell" customModule="SmartHawker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="lTZ-iC-rZc" customClass="RecordTableViewCell" customModule="SH" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTZ-iC-rZc" id="WnT-5h-XeC">
@@ -1014,7 +1014,7 @@ this password and admin pin</string>
         <!--Home-->
         <scene sceneID="9f0-zr-LK6">
             <objects>
-                <viewController id="GfR-DB-bth" customClass="MainViewControllerNew" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GfR-DB-bth" customClass="MainViewControllerNew" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ja2-zS-KIP"/>
                         <viewControllerLayoutGuide type="bottom" id="R6F-Ba-oZj"/>
@@ -1196,7 +1196,7 @@ this password and admin pin</string>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.20392156862745098" green="0.74901960784313726" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottomMargin" secondItem="uav-Kg-LBN" secondAttribute="bottom" constant="5" id="9Gt-gi-3U1"/>
                                                     <constraint firstAttribute="height" constant="40" id="JcM-q5-reM"/>
@@ -1349,7 +1349,7 @@ this password and admin pin</string>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.20392156862745098" green="0.74901960784313726" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="nJY-fT-IdH" firstAttribute="leading" secondItem="KkO-T9-5ND" secondAttribute="leadingMargin" constant="5" id="3nD-8z-9y4"/>
                                                     <constraint firstAttribute="height" constant="40" id="8Ea-hW-U83"/>
@@ -1499,7 +1499,7 @@ this password and admin pin</string>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.20392156862745098" green="0.74901960784313726" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="b39-Qj-19A" firstAttribute="leading" secondItem="wu9-q1-a8J" secondAttribute="leadingMargin" constant="5" id="0yZ-CE-RyL"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="b39-Qj-19A" secondAttribute="trailing" constant="5" id="HKb-VY-G6D"/>
@@ -1707,7 +1707,7 @@ this password and admin pin</string>
         <!--mainUI-->
         <scene sceneID="u0m-E2-wvV">
             <objects>
-                <tabBarController id="xvq-Kx-gUH" userLabel="mainUI" customClass="TabBarController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="xvq-Kx-gUH" userLabel="mainUI" customClass="TabBarController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QdD-xH-zlt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1739,7 +1739,7 @@ this password and admin pin</string>
         <!--Calendar-->
         <scene sceneID="0xZ-Cg-vkW">
             <objects>
-                <viewController id="juk-2W-KVC" customClass="CalendarViewController" customModule="SmartHawker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="juk-2W-KVC" customClass="CalendarViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1vn-kv-ARl"/>
                         <viewControllerLayoutGuide type="bottom" id="hk2-lF-h40"/>
@@ -1938,7 +1938,7 @@ this password and admin pin</string>
                                                 <rect key="frame" x="8" y="433" width="398" height="630"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="70" id="juw-cM-3CP" customClass="RecordTableViewCell" customModule="SmartHawker" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="70" id="juw-cM-3CP" customClass="RecordTableViewCell" customModule="SH" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="398" height="70"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="juw-cM-3CP" id="ied-e5-ALz">
