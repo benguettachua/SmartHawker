@@ -243,6 +243,8 @@ class TrendingViewController: UIViewController {
             salesSoFarAmountLabel.text = "$" + yearSales
             salesCategoryAmountLabel.text = "$" + String(formatter.stringFromNumber(todaySales)!)
             categoryLeftAmount.text = String(numOfDays)
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
             endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
             // Changing the Labels
@@ -280,6 +282,8 @@ class TrendingViewController: UIViewController {
             salesSoFarAmountLabel.text = "$" + yearSales
             salesCategoryAmountLabel.text = "$" + weekSales
             categoryLeftAmount.text = String(numOfWeeks)
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
             endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
             // Changing the Labels
@@ -318,6 +322,8 @@ class TrendingViewController: UIViewController {
             salesSoFarAmountLabel.text = "$" + yearSales
             salesCategoryAmountLabel.text = "$" + monthSales
             categoryLeftAmount.text = String(numOfMonths)
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
             endOfYearTrendedAmountLabel.text = formatter.stringFromNumber(endOfYearSales)
             
             // Changing the Labels

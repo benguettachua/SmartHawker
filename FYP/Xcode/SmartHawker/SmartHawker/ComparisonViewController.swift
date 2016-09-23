@@ -123,6 +123,12 @@ class ComparisonViewController: UIViewController {
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         chartDataSet.colors = ChartColorTemplates.joyful()
         chartDataSet.valueFont = UIFont.systemFontOfSize(13)
+        let formatter = NSNumberFormatter()
+        
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        
+        chartDataSet.valueFormatter = formatter
         let chartData = BarChartData(xVals: dates, dataSet: chartDataSet)
         combinedChartView.data = chartData
         

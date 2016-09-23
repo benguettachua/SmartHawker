@@ -580,6 +580,8 @@ class SummaryViewController: UIViewController {
         
         lineChartDataSet4.fill = ChartFill.fillWithColor(UIColor.blackColor())
         lineChartDataSet4.drawFilledEnabled = true
+        
+        
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         if oneTrue{
@@ -617,12 +619,13 @@ class SummaryViewController: UIViewController {
         chart.rightAxis.drawLabelsEnabled = false
         chart.leftAxis.drawLabelsEnabled = true
         
+        
+        
         chart.leftAxis.drawLimitLinesBehindDataEnabled = false
         chart.xAxis.drawLimitLinesBehindDataEnabled = true
         chart.rightAxis.drawLimitLinesBehindDataEnabled = false
         chart.leftAxis.axisMinValue = 0
         chart.descriptionText = ""
-        
         chart.legend.enabled = true
     }
 

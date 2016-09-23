@@ -48,6 +48,13 @@ class BestSalesViewController: UIViewController {
             combinedChartView.leftAxis.axisMaxValue = 1.15*valueMax
         }
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
+        let formatter = NSNumberFormatter()
+        
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        
+        chartDataSet.valueFormatter = formatter
+        
         chartDataSet.colors = ChartColorTemplates.joyful()
         chartDataSet.valueFont = UIFont.systemFontOfSize(10)
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
