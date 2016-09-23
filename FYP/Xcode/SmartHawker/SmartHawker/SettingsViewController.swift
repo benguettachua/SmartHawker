@@ -43,7 +43,6 @@ class SettingsViewController: UITableViewController {
     //for translation
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var adminLabel: UILabel!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var faqLabel: UILabel!
@@ -262,7 +261,6 @@ class SettingsViewController: UITableViewController {
                     self.languageLabel.text = "Malay"
                 }
                 self.passwordLabel.text = "Password".localized()
-                self.adminLabel.text = "Admin".localized()
                 self.notificationLabel.text = "Notification".localized()
                 self.privacyLabel.text = "Privacy".localized()
                 self.faqLabel.text = "FAQ".localized()
