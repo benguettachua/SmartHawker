@@ -131,13 +131,13 @@ class MonthRecordTableViewController: UITableViewController {
             var typeString = ""
             if (type == 0) {
                 typeString = "Sales"
-                cell.recordTypeLabel.textColor = UIColor.blueColor()
+                cell.recordTypeLabel.textColor = UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0)
             } else if (type == 1) {
                 typeString = "COGS"
-                cell.recordTypeLabel.textColor = UIColor.orangeColor()
+                cell.recordTypeLabel.textColor = UIColor(red:0.99, green:0.45, blue:0.00, alpha:1.0)
             } else if (type == 2) {
                 typeString = "Expenses"
-                cell.recordTypeLabel.textColor = UIColor.redColor()
+                cell.recordTypeLabel.textColor = UIColor(red:1.00, green:0.00, blue:0.00, alpha:1.0)
             }
             cell.recordTypeLabel.text = typeString.localized()
             
@@ -172,7 +172,7 @@ class MonthRecordTableViewController: UITableViewController {
             cell.descriptionLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 11.0)
             cell.recordTypeLabel.textColor = UIColor.blackColor()
             cell.descriptionLabel.text = "Profit of the day".localized()
-            cell.backgroundColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 0.5)
+            cell.backgroundColor = UIColor(red: 0.0, green: 0.250, blue: 0.0, alpha: 0.1)
             return cell
         }
     }
