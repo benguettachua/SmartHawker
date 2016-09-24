@@ -70,9 +70,25 @@ class RegistrationController {
             return 9
         }
         
-        
+        // email is wrong format
+        if (!isValidEmail(email)) {
+            return 12
+        }
         // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.
         return dao.register(username.lowercaseString, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
+    }
+    
+    //checks for valid email
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        if emailTest.evaluateWithObject(testStr){
+            return true
+        }
+        return false
     }
 }
 
@@ -80,4 +96,5 @@ extension String {
     var isAlphanumeric: Bool {
         return rangeOfString("^[a-zA-Z0-9]+$", options: .RegularExpressionSearch) != nil
     }
+    
 }
