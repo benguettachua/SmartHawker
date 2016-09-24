@@ -25,7 +25,9 @@ class ComparisonViewController: UIViewController {
         super.viewWillAppear(animated)
         comparingString.text = "Comparing of past 6 similar days to:".localized()
         selectDateButton.setTitle("No Date Selected".localized(), forState: UIControlState.Normal)
-        combinedChartView.noDataText = "Please make some records.".localized()
+        combinedChartView.data = nil
+        combinedChartView.noDataText = "Please choose a category or date.".localized()
+        
     }
     
     func getPastSixDays(date: NSDate) {
@@ -122,9 +124,9 @@ class ComparisonViewController: UIViewController {
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Sales".localized())
         chartDataSet.colors = ChartColorTemplates.joyful()
-        chartDataSet.valueFont = UIFont.systemFontOfSize(13)
+        chartDataSet.valueFont = UIFont.systemFontOfSize(9)
         let formatter = NSNumberFormatter()
-        
+        chartDataSet.drawValuesEnabled = true
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
         
@@ -137,6 +139,8 @@ class ComparisonViewController: UIViewController {
         combinedChartView.rightAxis.drawGridLinesEnabled = false
         combinedChartView.leftAxis.drawGridLinesEnabled = true
         
+        combinedChartView.drawValueAboveBarEnabled = true
+        
         combinedChartView.xAxis.drawAxisLineEnabled = false
         combinedChartView.rightAxis.drawAxisLineEnabled = false
         combinedChartView.leftAxis.drawAxisLineEnabled = true
@@ -146,7 +150,7 @@ class ComparisonViewController: UIViewController {
         combinedChartView.rightAxis.drawLabelsEnabled = false
         combinedChartView.leftAxis.drawLabelsEnabled = true
         combinedChartView.xAxis.labelPosition = .Bottom
-        combinedChartView.xAxis.labelFont = UIFont(name: "Avenir-Light", size: 12.0)!
+        combinedChartView.xAxis.labelFont = UIFont(name: "Avenir-Light", size: 10.0)!
         
         combinedChartView.leftAxis.valueFormatter = formatter
         
