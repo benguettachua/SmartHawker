@@ -104,6 +104,8 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         }
         todayLabel.text = selectedDate
         
+        //Change the font of segment control
+        categorySegmentControl.setFontSize(16)
         
     }
     
@@ -129,6 +131,22 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         configureTextField()
         handleTextFieldInterfaces()
         // Setting of image
+        
+        let sortedViews = categorySegmentControl.subviews.sort( { $0.frame.origin.x < $1.frame.origin.x } )
+        for (index, view) in sortedViews.enumerate() {
+            if index == categorySegmentControl.selectedSegmentIndex {
+                if index == 0 {
+                    view.tintColor = hexStringToUIColor("006cff")
+                } else if index == 1 {
+                    view.tintColor = hexStringToUIColor("FD7200")
+                } else if index == 2 {
+                    view.tintColor = hexStringToUIColor("ff0000")
+                }
+                
+            } else {
+                view.tintColor = UIColor.blackColor()
+            }
+        }
         
     }
     
@@ -194,6 +212,22 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             // Expenses
             type = 2
             SGDLabel.textColor = hexStringToUIColor("ff0000")
+        }
+        
+        let sortedViews = categorySegmentControl.subviews.sort( { $0.frame.origin.x < $1.frame.origin.x } )
+        for (index, view) in sortedViews.enumerate() {
+            if index == categorySegmentControl.selectedSegmentIndex {
+                if index == 0 {
+                    view.tintColor = hexStringToUIColor("006cff")
+                } else if index == 1 {
+                    view.tintColor = hexStringToUIColor("FD7200")
+                } else if index == 2 {
+                    view.tintColor = hexStringToUIColor("ff0000")
+                }
+                
+            } else {
+                view.tintColor = UIColor.blackColor()
+            }
         }
     }
     
@@ -417,5 +451,25 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         })
         
         
+    }
+}
+
+extension UISegmentedControl {
+    
+    func setFontSize(fontSize: CGFloat) {
+        
+        let normalTextAttributes: [NSObject : AnyObject] = [
+            NSForegroundColorAttributeName: UIColor.blackColor(),
+            NSFontAttributeName: UIFont.systemFontOfSize(fontSize, weight: UIFontWeightRegular)
+        ]
+        
+        let boldTextAttributes: [NSObject : AnyObject] = [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont.systemFontOfSize(fontSize, weight: UIFontWeightMedium),
+            ]
+        
+        self.setTitleTextAttributes(normalTextAttributes, forState: .Normal)
+        self.setTitleTextAttributes(normalTextAttributes, forState: .Highlighted)
+        self.setTitleTextAttributes(boldTextAttributes, forState: .Selected)
     }
 }

@@ -144,6 +144,9 @@ class MonthRecordTableViewController: UITableViewController {
             // Cell background
             cell.backgroundColor = UIColor(white: 1, alpha: 0.0)
             
+            cell.recordTypeLabel.font = UIFont(name:"HelveticaNeue", size: 14.0)
+            cell.amountLabel.font = UIFont(name:"HelveticaNeue", size: 14.0)
+            cell.descriptionLabel.font = UIFont(name:"HelveticaNeue", size: 11.0)
             
             return cell
         } else {
@@ -164,9 +167,12 @@ class MonthRecordTableViewController: UITableViewController {
             }
             cell.amountLabel.text = formatter.stringFromNumber(profit)
             cell.recordTypeLabel.text = "Profit".localized()
+            cell.recordTypeLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
+            cell.amountLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
+            cell.descriptionLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 11.0)
             cell.recordTypeLabel.textColor = UIColor.blackColor()
             cell.descriptionLabel.text = "Profit of the day".localized()
-            cell.backgroundColor = UIColor(red: 0.0, green: 0.250, blue: 0.0, alpha: 0.1)
+            cell.backgroundColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 0.5)
             return cell
         }
     }

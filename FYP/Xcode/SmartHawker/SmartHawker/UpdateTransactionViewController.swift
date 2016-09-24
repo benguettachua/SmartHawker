@@ -127,6 +127,9 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         descicon.text = String(format: "%C", faicon["fadesc"]!)
         imageicon.font = UIFont(name: "FontAwesome", size: 20)
         imageicon.text = String(format: "%C", faicon["faimage"]!)
+        
+        //Change the font of segment control
+        categorySegmentControl.setFontSize(16)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -137,6 +140,22 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             SGDLabel.textColor = hexStringToUIColor("FD7200")
         }else {
             SGDLabel.textColor = hexStringToUIColor("ff0000")
+        }
+        
+        let sortedViews = categorySegmentControl.subviews.sort( { $0.frame.origin.x < $1.frame.origin.x } )
+        for (index, view) in sortedViews.enumerate() {
+            if index == categorySegmentControl.selectedSegmentIndex {
+                if index == 0 {
+                    view.tintColor = hexStringToUIColor("006cff")
+                } else if index == 1 {
+                    view.tintColor = hexStringToUIColor("FD7200")
+                } else if index == 2 {
+                    view.tintColor = hexStringToUIColor("ff0000")
+                }
+                
+            } else {
+                view.tintColor = UIColor.blackColor()
+            }
         }
         
     }
@@ -187,6 +206,22 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             // Expenses
             type = 2
             SGDLabel.textColor = hexStringToUIColor("ff0000")
+        }
+        
+        let sortedViews = categorySegmentControl.subviews.sort( { $0.frame.origin.x < $1.frame.origin.x } )
+        for (index, view) in sortedViews.enumerate() {
+            if index == categorySegmentControl.selectedSegmentIndex {
+                if index == 0 {
+                    view.tintColor = hexStringToUIColor("006cff")
+                } else if index == 1 {
+                    view.tintColor = hexStringToUIColor("FD7200")
+                } else if index == 2 {
+                    view.tintColor = hexStringToUIColor("ff0000")
+                }
+                
+            } else {
+                view.tintColor = UIColor.blackColor()
+            }
         }
     }
     
