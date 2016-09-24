@@ -127,9 +127,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 case 11:
                     errorMsg = "Username can only consist of number and letters.".localized()
                     
-                case 12:
-                    errorMsg = "Invalid Email.".localized()
-                    
                 case 100:
                     errorMsg = "No network detected.".localized()
                     break
@@ -185,8 +182,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Email is not entered
-        if (email == "" || !isValidEmail(email!)) {
-            emailTextField.text = ""
+        if (email == "") {
             emailTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Email.",
                                                                       attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
@@ -236,17 +232,5 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    //checks for valid email
-    func isValidEmail(testStr:String) -> Bool {
-        // print("validate calendar: \(testStr)")
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        
-        if emailTest.evaluateWithObject(testStr){
-            return true
-        }
-        return false
-    }
     
 }
