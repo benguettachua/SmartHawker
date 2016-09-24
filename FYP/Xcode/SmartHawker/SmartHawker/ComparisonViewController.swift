@@ -138,8 +138,6 @@ class ComparisonViewController: UIViewController {
         combinedChartView.rightAxis.drawGridLinesEnabled = false
         combinedChartView.leftAxis.drawGridLinesEnabled = true
         
-        combinedChartView.getValueByTouchPoint(pt: CGPoint(x: 1.0, y: 1.0), axis: ChartYAxis.AxisDependency.Left)
-        
         combinedChartView.xAxis.drawAxisLineEnabled = false
         combinedChartView.rightAxis.drawAxisLineEnabled = false
         combinedChartView.leftAxis.drawAxisLineEnabled = true
@@ -158,5 +156,9 @@ class ComparisonViewController: UIViewController {
         combinedChartView.rightAxis.drawLimitLinesBehindDataEnabled = false
         combinedChartView.descriptionText = ""
         combinedChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
+        
+        
+        combinedChartView.drawValueAboveBarEnabled = true
+        combinedChartView.getValueByTouchPoint(pt: CGPoint(x: 1.0, y: 1.0), axis: ChartYAxis.AxisDependency.Left)
     }
 }
