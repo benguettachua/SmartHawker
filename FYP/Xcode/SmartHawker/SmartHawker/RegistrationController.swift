@@ -24,9 +24,14 @@ class RegistrationController {
             return 2
         }
         
-        
+        // Check the length of username
         if (username.characters.count < 5) {
             return 10
+        }
+        
+        // Check if username is Alpha-Numeric
+        if (username.isAlphanumeric == false) {
+            return 11
         }
         
         // Email is not entered
@@ -65,7 +70,14 @@ class RegistrationController {
             return 9
         }
         
+        
         // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.
-        return dao.register(username, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
+        return dao.register(username.lowercaseString, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
+    }
+}
+
+extension String {
+    var isAlphanumeric: Bool {
+        return rangeOfString("^[a-zA-Z0-9]+$", options: .RegularExpressionSearch) != nil
     }
 }

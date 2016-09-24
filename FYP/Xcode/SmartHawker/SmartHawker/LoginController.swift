@@ -13,7 +13,14 @@ class LoginController {
     
     // Log in using username and password
     func login(username: String, password: String) -> Bool{
-        return dao.login(username, password: password)
+        
+        let firstLoginAttempt = dao.login(username, password: password)
+        
+        if (firstLoginAttempt == true) {
+            return true
+        } else {
+            return dao.login(username.lowercaseString, password: password)
+        }
     }
     
     // Sends email to reset password

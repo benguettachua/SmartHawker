@@ -124,6 +124,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     errorMsg = "Username must be more than 5 letters.".localized()
                     break
                     
+                case 11:
+                    errorMsg = "Username can only consist of number and letters.".localized()
+                    
                 case 100:
                     errorMsg = "No network detected.".localized()
                     break
