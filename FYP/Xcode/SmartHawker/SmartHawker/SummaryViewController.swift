@@ -82,7 +82,7 @@ class SummaryViewController: UIViewController {
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
         self.week(nil)
         
-    
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,14 +91,14 @@ class SummaryViewController: UIViewController {
         //Here I’m creating the calendar instance that we will operate with:
         
         if (weekMonthYear.text?.characters.count > 4) {
-                var index = weekMonthYear.text!.endIndex.advancedBy(-5)..<weekMonthYear.text!.endIndex
-                let year = weekMonthYear.text![index]
-                
-                index = weekMonthYear.text!.startIndex..<weekMonthYear.text!.endIndex.advancedBy(-5)
-                let weekMonthYearText = weekMonthYear.text![index]
-                weekMonthYear.text! = weekMonthYearText.localized() + year
+            var index = weekMonthYear.text!.endIndex.advancedBy(-5)..<weekMonthYear.text!.endIndex
+            let year = weekMonthYear.text![index]
+            
+            index = weekMonthYear.text!.startIndex..<weekMonthYear.text!.endIndex.advancedBy(-5)
+            let weekMonthYearText = weekMonthYear.text![index]
+            weekMonthYear.text! = weekMonthYearText.localized() + year
         }
-
+        
         
         weekButton.setTitle("Week".localized(), forState: UIControlState.Normal)
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
@@ -122,8 +122,8 @@ class SummaryViewController: UIViewController {
         // set the button for sales graph selection
         if oneTrue{
             salesGraphButton.setTitle("Sales".localized(), forState: UIControlState.Normal)
-        salesGraphButton.layer.borderColor = UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0).CGColor
-
+            salesGraphButton.layer.borderColor = UIColor(red:0.00, green:0.42, blue:1.00, alpha:1.0).CGColor
+            
         }else{
             salesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             salesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -131,7 +131,7 @@ class SummaryViewController: UIViewController {
         // set the button for expenses graph selection
         if twoTrue{
             expensesGraphButton.setTitle("Expenses".localized(), forState: UIControlState.Normal)
-        expensesGraphButton.layer.borderColor = UIColor(red:1.00, green:0.00, blue:0.00, alpha:1.0).CGColor
+            expensesGraphButton.layer.borderColor = UIColor(red:1.00, green:0.00, blue:0.00, alpha:1.0).CGColor
             
         }else{
             expensesGraphButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
@@ -179,12 +179,12 @@ class SummaryViewController: UIViewController {
         var array = [String]()
         for date in daysInWeek{
             if date.containsString("Days"){
-
-            array.append(date)
+                
+                array.append(date)
             }else{
                 let index = date.startIndex..<date.endIndex.advancedBy(-5)
                 let newDate = date[index]
-               array.append(newDate)
+                array.append(newDate)
             }
         }
         setData(array, value1: loadedData.0, value2: loadedData.1, value3: loadedData.2, value4: loadedData.7)
@@ -288,7 +288,7 @@ class SummaryViewController: UIViewController {
             }
             
             weekMonthYear.text = weekMonthYear.text! + correctDateString
-
+            
             loadRecordsWeekly()
             
         }
@@ -434,7 +434,7 @@ class SummaryViewController: UIViewController {
         }
         
         weekMonthYear.text = weekMonthYear.text! + correctDateString
-
+        
         weekButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         monthButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         yearButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
@@ -455,7 +455,7 @@ class SummaryViewController: UIViewController {
             currentMonthString = String(actualMonthDate.month)
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
-
+        
         
         monthButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         weekButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
@@ -470,7 +470,7 @@ class SummaryViewController: UIViewController {
         //Here I’m creating the calendar instance that we will operate with:
         weekMonthYear.text = String(actualYearDate.year)
         dateString = String(actualYearDate.year)
-
+        
         
         yearButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         monthButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
@@ -560,7 +560,7 @@ class SummaryViewController: UIViewController {
         
         lineChartDataSet3.fill = ChartFill.fillWithColor(UIColor.orangeColor())
         lineChartDataSet3.drawFilledEnabled = true
-
+        
         var dataEntries4: [ChartDataEntry] = []
         
         for i in 0..<dataPointsToUse.count {
@@ -597,7 +597,7 @@ class SummaryViewController: UIViewController {
         if twoTrue{
             dataSets.append(lineChartDataSet2)
         }
-
+        
         if fourTrue{
             dataSets.append(lineChartDataSet4)
         }
@@ -633,7 +633,7 @@ class SummaryViewController: UIViewController {
         chart.descriptionText = ""
         chart.legend.enabled = true
     }
-
+    
     @IBAction func salesButton(sender: UIButton){
         oneTrue = !oneTrue
         if summaryType == 1{
@@ -672,7 +672,7 @@ class SummaryViewController: UIViewController {
         }
     }
     @IBAction func COGSButton(sender: UIButton){
-         threeTrue = !threeTrue
+        threeTrue = !threeTrue
         if summaryType == 1{
             loadRecordsMonthly()
         }else if summaryType == 2{

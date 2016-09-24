@@ -36,7 +36,7 @@ class BestSalesViewController: UIViewController {
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
-
+        
         var dataEntries: [BarChartDataEntry] = []
         
         for i in 0..<dataPoints.count {

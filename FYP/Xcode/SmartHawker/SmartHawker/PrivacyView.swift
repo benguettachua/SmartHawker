@@ -33,7 +33,7 @@ class PrivacyView: UIViewController {
         backbtn.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         
         backbtn.setTitle(String(backs), forState: .Normal);
-
+        
         let navigationItem = UINavigationItem.init(title: "Contact Us".localized())
         navigationItem.leftBarButtonItem = navBackBtn
         navBar.items = [navigationItem]

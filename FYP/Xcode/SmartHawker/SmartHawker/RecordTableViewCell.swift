@@ -19,7 +19,7 @@ class RecordTableViewCell: UITableViewCell {
     
     //Image Views
     @IBOutlet weak var buttonImageView: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

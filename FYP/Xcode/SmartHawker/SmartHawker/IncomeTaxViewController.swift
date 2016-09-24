@@ -215,7 +215,7 @@ class IncomeTaxViewController: UITableViewController, UITextFieldDelegate {
             dateFormatter.dateFormat = "dd/MM/yyyy, hh.mm a"
             lastUpdatedLabel.text = "Last updated: ".localized() + dateFormatter.stringFromDate(lastUpdated)
         } else {
-            print("error")
+            // Error
         }
         
         formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle

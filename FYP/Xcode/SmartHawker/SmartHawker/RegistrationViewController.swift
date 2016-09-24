@@ -132,7 +132,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     errorMsg = "Username is taken.".localized()
                     
                     self.usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username taken.",
-                                                                                 attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+                                                                                      attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
                     break
                     
                 case 203:
@@ -158,7 +158,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checksForEmpty(){
-    
+        
         let name = nameTextField.text
         let username = usernameTextField.text
         let email = emailTextField.text?.lowercaseString
@@ -169,7 +169,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         
         if (name == "") {
             nameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Name.",
-                                                       attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+                                                                     attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Username is not entered

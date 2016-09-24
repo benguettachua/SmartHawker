@@ -13,15 +13,15 @@ import UIKit
 
 
 class SignUpPageOneViewController: UIViewController {
-
+    
     
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var cancelbtn: UIButton!
     override func viewDidLoad() {
         
-    super.viewDidLoad()
+        super.viewDidLoad()
         
-         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         var faicon = [String: UniChar]()
         faicon["facross"] = 0xf00d
@@ -31,16 +31,16 @@ class SignUpPageOneViewController: UIViewController {
         cancelbtn.setTitle(String(format: "%C", faicon["facross"]!), forState: .Normal)
         
         
-    let phoneNumber = TextField()
-    phoneNumber.placeholder = "Enter your phone number"
-    
-    phoneNumber.detail = "Enter 8 digits."
+        let phoneNumber = TextField()
+        phoneNumber.placeholder = "Enter your phone number"
         
-    //if phone number format wrong then show this
-    //phoneNumber.detail = "Error. Please enter correct phone number format."
-    //
+        phoneNumber.detail = "Enter 8 digits."
         
-    view.layout(phoneNumber).top(100).horizontally(left: 20, right: 20)
+        //if phone number format wrong then show this
+        //phoneNumber.detail = "Error. Please enter correct phone number format."
+        //
+        
+        view.layout(phoneNumber).top(100).horizontally(left: 20, right: 20)
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -49,6 +49,6 @@ class SignUpPageOneViewController: UIViewController {
         }
         sender.cancelsTouchesInView = false
     }
-
-
+    
+    
 }

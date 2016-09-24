@@ -25,7 +25,7 @@ class EnquiryViewController: UIViewController {
     
     @IBOutlet weak var faq: UIButton!
     @IBOutlet weak var contactUs: UIButton!
-
+    
     
     //MARK: Action
     @IBAction func Logout(sender: UIBarButtonItem) {

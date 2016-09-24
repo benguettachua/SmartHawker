@@ -257,24 +257,17 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             businessAddress.placeholder = "Empty Business Address field."
             errorMsg.append(errorString)
         }
-
+        
         
         
         if error == 0 {
             
-            print(newName)
-            print(newEmail)
-            print(newPhoneNumber)
-            print(newPINNumber)
-            print(newBusinessAddress)
-            print(newBusinessRegNo)
-            print(imageFile)
             let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: imageFile)
             if edited == true{
-            let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Edit Successful", message: "Edits are made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.dismissViewControllerAnimated(true, completion: {})}))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
                 
             }else{
                 let alert = UIAlertController(title: "Edit Unsuccessful", message: "Edits are not made to the profile details", preferredStyle: UIAlertControllerStyle.Alert)
@@ -282,8 +275,8 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-
-
+            
+            
             
             
         }else{

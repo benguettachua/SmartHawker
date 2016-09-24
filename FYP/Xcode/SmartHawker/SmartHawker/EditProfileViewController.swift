@@ -39,7 +39,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var updated = false
     
     var errorMsg = [String]()
- 
+    
     @IBOutlet weak var backbtn: UIButton!
     @IBOutlet weak var donebtn: UIButton!
     
@@ -54,7 +54,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePicture.userInteractionEnabled = true
         
         self.navigationController?.topViewController?.title="Edit".localized();
-
+        
         changeProfilePicButton.setTitle("Change Profile Picture".localized(), forState: UIControlState.Normal)
         information.text = "Choose image within 10MB".localized()
         
@@ -153,8 +153,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         adminPIN.text = user!["adminPin"] as? String
         
         view.layout(adminPIN).top(450).horizontally(left: 20, right: 20).height(22)
-
-
+        
+        
         
         self.title = "Edit Profile".localized()
     }
@@ -368,7 +368,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 
                 
                 if error == 0 {
-                
+                    
                     let edited = connectionDAO().edit(newName, email: newEmail, phoneNumber: newPhoneNumber, adminPIN: newPINNumber, businessAddress: newBusinessAddress, businessName: newBusinessName, businessNumber: newBusinessRegNo, profilePicture: self.imageFile)
                     if edited == true{
                         self.dismissViewControllerAnimated(true, completion: {
@@ -496,7 +496,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //MARK: - Delegates
     //What to do when the picker returns with a photo
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
+        
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(chosenImage, 0)
         if imageData!.length < 9999999{
@@ -507,7 +507,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             updated = true
             self.information.textColor = UIColor.blackColor()
             information.text = "Image Uploaded".localized()
-
+            
         }else{
             
             // Inform the user that size limit exceeded

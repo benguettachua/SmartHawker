@@ -273,7 +273,7 @@ class TrendingViewController: UIViewController {
                 weekSales.removeAtIndex(weekSales.startIndex)
             }
             let numOfWeeks = components.day/7
-
+            
             formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
             let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + Double(formatter.numberFromString(weekSales)!) * (Double(numOfWeeks))
             

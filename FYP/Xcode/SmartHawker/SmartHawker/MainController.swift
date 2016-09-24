@@ -177,7 +177,7 @@ class MainController{
                         }
                     }
                 }
-
+                
                 
             }
             
@@ -194,31 +194,31 @@ class MainController{
     }
     
     func thisWeekDates(){
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let periodComponents = NSDateComponents()
-            let stringDayOfWeek = moment(NSDate()).weekdayName
-            var dayOfWeek = 0
-            if stringDayOfWeek.containsString("Sunday"){
-                dayOfWeek = 7
-            }else if stringDayOfWeek.containsString("Monday"){
-                dayOfWeek = 1
-            }else if stringDayOfWeek.containsString("Tuesday"){
-                dayOfWeek = 2
-            }else if stringDayOfWeek.containsString("Wednesday"){
-                dayOfWeek = 3
-            }else if stringDayOfWeek.containsString("Thursday"){
-                dayOfWeek = 4
-            }else if stringDayOfWeek.containsString("Friday"){
-                dayOfWeek = 5
-            }else if stringDayOfWeek.containsString("Saturday"){
-                dayOfWeek = 6
-            }
-            periodComponents.day = 1 - dayOfWeek
-            firstDay = calendar!.dateByAddingComponents(
-                periodComponents,
-                toDate: NSDate(),
-                options: [])!
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let periodComponents = NSDateComponents()
+        let stringDayOfWeek = moment(NSDate()).weekdayName
+        var dayOfWeek = 0
+        if stringDayOfWeek.containsString("Sunday"){
+            dayOfWeek = 7
+        }else if stringDayOfWeek.containsString("Monday"){
+            dayOfWeek = 1
+        }else if stringDayOfWeek.containsString("Tuesday"){
+            dayOfWeek = 2
+        }else if stringDayOfWeek.containsString("Wednesday"){
+            dayOfWeek = 3
+        }else if stringDayOfWeek.containsString("Thursday"){
+            dayOfWeek = 4
+        }else if stringDayOfWeek.containsString("Friday"){
+            dayOfWeek = 5
+        }else if stringDayOfWeek.containsString("Saturday"){
+            dayOfWeek = 6
+        }
+        periodComponents.day = 1 - dayOfWeek
+        firstDay = calendar!.dateByAddingComponents(
+            periodComponents,
+            toDate: NSDate(),
+            options: [])!
         
         periodComponents.day = 0 - dayOfWeek
         firstDayOfWeek = calendar!.dateByAddingComponents(
@@ -231,8 +231,6 @@ class MainController{
             periodComponents,
             toDate: NSDate(),
             options: [])!
-        
-        print(firstDay)
     }
     
 }

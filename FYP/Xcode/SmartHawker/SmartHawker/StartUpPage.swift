@@ -16,7 +16,7 @@ class StartUpPage: UITableViewController{
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewControllerWithIdentifier("Main")
-       
+        
         
         if indexPath.row == 0{
             Localize.setCurrentLanguage("en")

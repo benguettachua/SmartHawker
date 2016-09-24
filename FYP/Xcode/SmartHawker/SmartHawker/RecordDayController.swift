@@ -31,37 +31,6 @@ class RecordDayController {
             for record in PFRecords! {
                 
                 records.append(record)
-//                let date = record["date"] as! String
-//                let type = record["type"] as! Int
-//                let amount = record["amount"] as! Double
-//                var localIdentifierString = record["subUser"]
-//                var recordedBy = record["subuser"]
-//                if (recordedBy == nil) {
-//                    recordedBy = ""
-//                }
-//                var typeString = ""
-//                if (type == 0) {
-//                    typeString = "Sales"
-//                } else if (type == 1) {
-//                    typeString = "COGS"
-//                } else if (type == 2) {
-//                    typeString = "Expenses"
-//                } else if (type == 3){
-//                    typeString = "Fixed Monthly Expenses"
-//                }
-//                
-//                var description = record["description"]
-//                
-//                if (description == nil || description as! String == "") {
-//                    description = "No description"
-//                }
-//                
-//                if (localIdentifierString == nil) {
-//                    localIdentifierString = NSUUID().UUIDString
-//                }
-//                
-//                let newRecord = RecordTable(date: date, type: typeString, amount: amount, localIdentifier: localIdentifierString! as! String, description: description as! String, recordedUser: recordedBy as! String)
-//                records.append(newRecord)
             }
         }
         return records

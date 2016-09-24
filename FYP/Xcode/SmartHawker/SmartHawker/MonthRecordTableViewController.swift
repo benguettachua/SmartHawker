@@ -71,7 +71,7 @@ class MonthRecordTableViewController: UITableViewController {
                 }
             }
             
-        self.navigationController?.topViewController?.title="Monthly Record".localized();
+            self.navigationController?.topViewController?.title="Monthly Record".localized();
         }
         
         // Sort the section array to be increasing date.

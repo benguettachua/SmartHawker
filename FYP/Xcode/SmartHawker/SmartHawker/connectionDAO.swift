@@ -291,16 +291,14 @@ class connectionDAO{
         toRecord["subuser"] = subuser
         toRecord["description"] = description
         toRecord["subUser"] = NSUUID().UUIDString
-        print("HI")
+        
         if (receipt != nil) {
             toRecord["receipt"] = receipt
         }
         do{
             if (receipt == nil) {
-                print ("PINNING")
                 try toRecord.pin()
             } else {
-                print ("SAVING")
                 try toRecord.pin()
                 try toRecord.save()
             }
@@ -330,16 +328,13 @@ class connectionDAO{
             
             if (receipt == nil) {
                 if (hasReceipt == false) {
-                    print ("PINNING")
                     try recordToUpdate.pin()
                 } else {
-                    print ("SAVING123")
                     recordToUpdate.removeObjectForKey("receipt")
                     try recordToUpdate.pin()
                     try recordToUpdate.save()
                 }
             } else {
-                print ("SAVING456")
                 try recordToUpdate.pin()
                 try recordToUpdate.save()
             }
@@ -415,7 +410,6 @@ class connectionDAO{
         query.whereKey("email", containedIn: array)
         do{
             emails = try query.findObjects()
-            print(emails)
             if emails.count == 1{
                 // false means email is taken
                 return false
@@ -485,7 +479,6 @@ class connectionDAO{
                     try newRecord.pin()
                     return newRecord
                 } catch {
-                    print("Fail to create")
                     return nil
                 }
             } else {
@@ -501,14 +494,12 @@ class connectionDAO{
         query.whereKey("type", equalTo: 5)
         query.fromLocalDatastore()
         do {
-            print("updating")
             let ABE = try query.getFirstObject()
             ABE["amount"] = amount
             ABE["lastUpdated"] = NSDate()
             try ABE.pin()
             return ABE
         } catch {
-            print("error")
             return nil
         }
         

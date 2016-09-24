@@ -122,7 +122,7 @@ class SettingsViewController: UITableViewController {
         // Option 3: Cancel the logging out.
         logoutAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Cancel, handler: nil))
         self.presentViewController(logoutAlert, animated: true, completion: nil)
-
+        
         
     }
     
@@ -145,7 +145,7 @@ class SettingsViewController: UITableViewController {
         }else{
             self.languageLabel.text = "Malay"
         }
-
+        
         self.title = "Settings".localized()
         
     }
@@ -237,7 +237,7 @@ class SettingsViewController: UITableViewController {
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             defaults.setBool(true, forKey: "notification")
         } else {
-           UIApplication.sharedApplication().cancelAllLocalNotifications()
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
             defaults.setBool(false, forKey: "notification")
         }
     }

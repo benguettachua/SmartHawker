@@ -103,7 +103,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
             selectedDate = dateFormatter.stringFromDate(NSDate())
         }
         todayLabel.text = selectedDate
-
+        
         
     }
     

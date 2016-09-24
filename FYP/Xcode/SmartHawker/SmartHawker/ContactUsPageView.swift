@@ -9,7 +9,7 @@
 import UIKit
 
 class ContactUsPage: UIViewController {
- 
+    
     //MARK properties
     @IBOutlet weak var navBackBtn: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -36,12 +36,12 @@ class ContactUsPage: UIViewController {
         let navigationItem = UINavigationItem.init(title: "Contact Us".localized())
         navigationItem.leftBarButtonItem = navBackBtn
         navBar.items = [navigationItem]
-
+        
     }
     
     @IBAction func back(sender: UIBarButtonItem){
         self.dismissViewControllerAnimated(true, completion: {})
     }
-
+    
     
 }

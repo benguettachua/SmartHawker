@@ -37,7 +37,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     // Segment Control
     @IBOutlet weak var categorySegmentControl: UISegmentedControl!
     
-
+    
     
     
     // View

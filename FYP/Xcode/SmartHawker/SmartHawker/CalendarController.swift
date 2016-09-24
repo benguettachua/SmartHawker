@@ -11,11 +11,11 @@ import Foundation
 class CalendarController{
     
     var toShared = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
-
+    
     var records = [PFObject]()
     
     func loadRecords(){
-       
+        
         records = connectionDAO().loadRecords()
         
     }

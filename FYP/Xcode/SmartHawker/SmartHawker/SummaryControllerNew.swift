@@ -177,7 +177,7 @@ class SummaryControllerNew {
                 let date = record["date"] as! String
                 let type = record["type"] as! Int
                 let amount = record["amount"] as! Double
-
+                
                 if date.containsString(stringToCheck){
                     if (type == 0) {
                         salesAmount += amount
@@ -205,5 +205,5 @@ class SummaryControllerNew {
         let profit = formatter.stringFromNumber(totalSalesAmount - totalExpensesAmount - totalCOGSAmount)
         return (series1, series2, series3, sales!, expenses!, profit!, COGS!, series4)
     }
-
+    
 }

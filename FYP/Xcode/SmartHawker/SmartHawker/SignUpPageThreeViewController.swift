@@ -14,7 +14,7 @@ import UIKit
 
 class SignUpPageThreeViewController: UIViewController {
     
-
+    
     @IBOutlet weak var backbtn: UIButton!
     
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class SignUpPageThreeViewController: UIViewController {
         //adminpin.detail = "Error. Please enter correct adminpin format."
         //
         view.layout(adminpin).top(375).horizontally(left: 20, right: 20)
-
+        
     }
     func handleTap(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {

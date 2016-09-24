@@ -243,7 +243,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         records.sortInPlace { $0["type"]as!Int == $1["type"]as!Int ? $0.createdAt < $1.createdAt : $1["type"]as!Int > $0["type"]as!Int }
         
         
-    
+        
         // Reload the table to show any ammendments made to the data.
         tableView.reloadData()
         tableView!.delegate = self
@@ -406,7 +406,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                 records.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             } else {
-                print("Delete failed.")
+                // Delete failed.
             }
         }
     }

@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
                     
                     // Set just logged in to true to prompt to retrieve record
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "justLoggedIn")
+                    NSUserDefaults.standardUserDefaults().setObject(password, forKey: "password")
                     
                     // Logging in success, logging in alert is dissmissed, scene is moved to admin page.
                     loggingInAlert.dismissViewControllerAnimated(false, completion: {
