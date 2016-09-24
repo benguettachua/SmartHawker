@@ -174,63 +174,64 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let adminPIN = adminPINTextField.text
         
         if (name == "") {
-            nameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Name.",
+            nameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Name.".localized(),
                                                                      attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Username is not entered
         if (username == "") {
-            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Username.",
+            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Username.".localized(),
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Email is not entered
         if (email == "" || !isValidEmail(email!)) {
             emailTextField.text = ""
-            emailTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Email.",
+            emailTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Email.".localized(),
                                                                       attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Phone is not entered
         if (phone == "") {
-            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Phone Number.",
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Phone Number.".localized(),
                                                                             attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Phone does not starts with 8 or 9
         let phoneInt = Int(phone!)
         if (phoneInt < 80000000 || phoneInt > 99999999) {
-            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Phone Numer.",
+            phoneNumberTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Phone Number.".localized(),
                                                                             attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Password is not entered
         if (password == "" || password!.characters.count < 8) {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Password.",
+            passwordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Password.".localized(),
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Password does not match confirm password.
         if (password != confirmPassword || confirmPassword == "" || confirmPassword!.characters.count < 8) {
-            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Confirm Password.",
+            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Confirm Password.".localized(),
                                                                                 attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Admin PIN is not entered
         if (adminPIN == "") {
-            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Admin PIN.",
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Admin PIN.".localized(),
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         // Admin PIN is not 4 digit
         if (adminPIN!.characters.count != 4) {
-            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Admin PIN.",
+            adminPINTextField.text = ""
+            adminPINTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Admin PIN.".localized(),
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
         if (username!.characters.count < 5) {
             usernameTextField.text = ""
-            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Username.",
+            usernameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Username.".localized(),
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
