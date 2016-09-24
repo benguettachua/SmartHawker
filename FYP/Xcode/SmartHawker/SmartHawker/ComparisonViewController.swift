@@ -157,8 +157,7 @@ class ComparisonViewController: UIViewController {
         combinedChartView.descriptionText = ""
         combinedChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
         
-        
-        combinedChartView.drawValueAboveBarEnabled = true
-        combinedChartView.getValueByTouchPoint(pt: CGPoint(x: 1.0, y: 1.0), axis: ChartYAxis.AxisDependency.Left)
+        combinedChartView.getHighlightByTouchPoint(CGPoint(x: 0.5, y: 0.5))
+        combinedChartView.getYValueByTouchPoint(pt: CGPoint(x: 0.5, y: 0.5), axis: ChartYAxis.AxisDependency.Left)
     }
 }
