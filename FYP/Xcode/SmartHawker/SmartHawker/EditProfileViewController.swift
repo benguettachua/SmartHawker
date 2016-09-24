@@ -157,6 +157,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         
         self.title = "Edit Profile".localized()
+        
+        // Make admin PIN secure text entry.
+        adminPIN.secureTextEntry = true
     }
     override func viewDidLoad(){
         super.viewDidLoad()
