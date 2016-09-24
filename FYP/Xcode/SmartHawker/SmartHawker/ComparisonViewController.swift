@@ -126,7 +126,6 @@ class ComparisonViewController: UIViewController {
         chartDataSet.colors = ChartColorTemplates.joyful()
         chartDataSet.valueFont = UIFont.systemFontOfSize(9)
         let formatter = NSNumberFormatter()
-        chartDataSet.drawValuesEnabled = true
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
         
@@ -139,7 +138,7 @@ class ComparisonViewController: UIViewController {
         combinedChartView.rightAxis.drawGridLinesEnabled = false
         combinedChartView.leftAxis.drawGridLinesEnabled = true
         
-        combinedChartView.drawValueAboveBarEnabled = true
+        combinedChartView.getValueByTouchPoint(pt: CGPoint(x: 1.0, y: 1.0), axis: ChartYAxis.AxisDependency.Left)
         
         combinedChartView.xAxis.drawAxisLineEnabled = false
         combinedChartView.rightAxis.drawAxisLineEnabled = false
