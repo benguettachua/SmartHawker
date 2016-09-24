@@ -86,49 +86,63 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 switch registerSuccess {
                 case 1:
                     errorMsg = "Name cannot be empty.".localized()
+                    self.nameTextField.text = ""
                     break
                     
                 case 2:
                     errorMsg = "Username cannot be empty.".localized()
+                    self.usernameTextField.text = ""
                     break
                     
                 case 3:
                     errorMsg = "Email cannot be empty.".localized()
+                    self.emailTextField.text = ""
                     break
                     
                 case 4:
                     errorMsg = "Phone number cannot be empty.".localized()
+                    self.phoneNumberTextField.text = ""
                     break
                     
                 case 5:
                     errorMsg = "Please enter a valid Singapore phone number.".localized()
+                    self.phoneNumberTextField.text = ""
                     break
                     
                 case 6:
                     errorMsg = "Password Must be more than 8 digits long.".localized()
+                    self.passwordTextField.text = ""
                     break
                     
                 case 7:
                     errorMsg = "Password does not match confirm password.".localized()
+                    self.passwordTextField.text = ""
                     break
                     
                 case 8:
                     errorMsg = "Admin PIN cannot be empty.".localized()
+                    self.adminPINTextField.text = ""
                     break
                     
                 case 9:
                     errorMsg = "Admin PIN must be 4 digits long.".localized()
+                    self.adminPINTextField.text = ""
                     break
                     
                 case 10:
                     errorMsg = "Username must be more than 5 letters.".localized()
+                    self.usernameTextField.text = ""
                     break
                     
                 case 11:
                     errorMsg = "Username can only consist of number and letters.".localized()
+                    self.usernameTextField.text = ""
+                    break
                     
                 case 12:
                     errorMsg = "Invalid Email.".localized()
+                    self.emailTextField.text = ""
+                    break
                     
                 case 100:
                     errorMsg = "No network detected.".localized()
@@ -136,13 +150,14 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     
                 case 202:
                     errorMsg = "Username is taken.".localized()
-                    
+                    self.usernameTextField.text = ""
                     self.usernameTextField.attributedPlaceholder = NSAttributedString(string:"Username taken.",
                                                                                       attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
                     break
                     
                 case 203:
                     errorMsg = "Email is taken.".localized()
+                    self.emailTextField.text = ""
                     break
                     
                 default:
