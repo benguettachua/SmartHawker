@@ -45,6 +45,8 @@ class LoginViewController: UIViewController {
                 let username = self.usernameTextField.text
                 let password = self.passwordTextField.text
                 
+                self.passwordTextField.text = ""
+                self.passwordTextField.placeholder = "Password".localized()
                 // Calls controller to log in using the entered parameters.
                 let loginSuccess = self.loginController.login(username!, password: password!)
                 if (loginSuccess) {

@@ -1,3 +1,4 @@
+
 # Uncomment this line to define a global platform for your project
 # platform :ios, '9.0'
 
@@ -7,12 +8,12 @@ target 'SmartHawker' do
 
   # Pods for SmartHawker
   pod 'SwiftMoment'
-  pod 'Localize-Swift', '~> 1.5’
+  pod 'Localize-Swift', '1.5’
   pod 'Charts'
-  pod 'IQKeyboardManagerSwift'
-  pod 'Material', '~> 1.0'
+  pod 'IQKeyboardManagerSwift', '4.0.5'
   pod 'FontAwesome-iOS'
   pod 'JTAppleCalendar'
+  pod 'Material’, :git => 'https://github.com/CosmicMind/Material.git', :branch => 'swift-2.3'
 
   target 'SmartHawkerTests' do
     inherit! :search_paths
@@ -24,4 +25,12 @@ target 'SmartHawker' do
     # Pods for testing
   end
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = ‘2.3’
+    end
+  end
 end

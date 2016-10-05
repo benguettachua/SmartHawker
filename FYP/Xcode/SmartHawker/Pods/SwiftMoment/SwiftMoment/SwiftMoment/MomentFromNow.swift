@@ -102,13 +102,13 @@ extension Moment {
 
       let bundleName = "MomentFromNow.bundle"
       let path = NSURL(fileURLWithPath:resourcePath).URLByAppendingPathComponent(bundleName)
-      guard let bundle = NSBundle(URL: path) else {
+      guard let bundle = NSBundle(URL: path!) else {
         return ""
       }
 
       let localeIdentifer = self.locale.localeIdentifier
       guard let languagePath = bundle.pathForResource(localeIdentifer, ofType: "lproj"),
-        languageBundle = NSBundle(path: languagePath)
+        let languageBundle = NSBundle(path: languagePath)
         else {
           return ""
       }
