@@ -14,6 +14,8 @@ class connectionDAO{
     
     var toShare = ShareData.sharedInstance // This is to share the date selected to RecordViewController.
     
+    let default1 = NSUserDefaults.standardUserDefaults()
+    
     //load records into controller
     func loadRecords() -> [PFObject]{
         let query = PFQuery(className: "Record")
@@ -302,6 +304,10 @@ class connectionDAO{
                 try toRecord.pin()
                 try toRecord.save()
             }
+            if default1.boolForKey("autoSync"){
+                saveRecordsIntoDatabase()
+                return true
+            }
             return true
         } catch {
             return false
@@ -337,6 +343,11 @@ class connectionDAO{
             } else {
                 try recordToUpdate.pin()
                 try recordToUpdate.save()
+            }
+            
+            if default1.boolForKey("autoSync"){
+                saveRecordsIntoDatabase()
+                return true
             }
             return true
         } catch {
@@ -375,6 +386,11 @@ class connectionDAO{
             
             // Delete it eventually.
             recordToDelete.deleteEventually()
+            
+            if default1.boolForKey("autoSync"){
+                saveRecordsIntoDatabase()
+                return true
+            }
             return true
         } catch {
             return false

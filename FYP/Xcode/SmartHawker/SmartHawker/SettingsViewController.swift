@@ -243,6 +243,16 @@ class SettingsViewController: UITableViewController {
     }
     
     
+    @IBAction func autoSyncOnOrOff(sender: UISwitch) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if notificationMode.on {
+            
+            defaults.setBool(true, forKey: "autoSync")
+        } else {
+            defaults.setBool(false, forKey: "autoSync")
+        }
+    }
+    
     func doChangeLanguage() {
         actionSheet = UIAlertController(title: nil, message: "Switch Language".localized(), preferredStyle: UIAlertControllerStyle.ActionSheet)
         for language in availableLanguages {
