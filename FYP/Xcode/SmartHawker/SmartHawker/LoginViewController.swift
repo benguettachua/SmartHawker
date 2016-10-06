@@ -10,7 +10,6 @@ import UIKit
 import Material
 import FontAwesome_iOS
 import Localize_Swift
-
 class LoginViewController: UIViewController {
     
     // MARK: Properties

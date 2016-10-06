@@ -303,7 +303,7 @@ class SettingsViewController: UITableViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Yes".localized(), style: .Default, handler: { (action: UIAlertAction!) in
             self.shared.clearData()
-            connectionDAO().unloadRecords()
+            //connectionDAO().unloadRecords()
             self.logout()
         }))
         refreshAlert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { (action: UIAlertAction!) in

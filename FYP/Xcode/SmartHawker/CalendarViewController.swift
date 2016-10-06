@@ -8,6 +8,7 @@
 
 import JTAppleCalendar
 import SwiftMoment
+import Firebase
 
 class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     var numberOfRows = 6
@@ -58,6 +59,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         
+        FIRAnalytics.logEventWithName("calendar", parameters: nil)
         
         formatter.dateFormat = "yyyy MM dd"
         testCalendar.timeZone = NSTimeZone(abbreviation: "GMT")!
@@ -163,7 +165,6 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         
         //Setting day labels
-        
         sunLabel.text = "SUN".localized()
         monLabel.text = "MON".localized()
         tuesLabel.text = "TUE".localized()

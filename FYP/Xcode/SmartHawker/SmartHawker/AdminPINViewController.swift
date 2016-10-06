@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import FontAwesome_iOS
+import Firebase
 
 class AdminPINViewController: UIViewController {
     
@@ -46,6 +47,8 @@ class AdminPINViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FIRAnalytics.logEventWithName("appusage", parameters: nil)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         // Activity Indicator
         shared.dateString = nil
@@ -70,9 +73,8 @@ class AdminPINViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
     

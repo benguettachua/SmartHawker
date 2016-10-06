@@ -50,6 +50,7 @@
 		6AF9C5171D1840A7000533E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5161D1840A7000533E0 /* LoginViewController.swift */; };
 		6AF9C5181D1840A7000533E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9C5161D1840A7000533E0 /* LoginViewController.swift */; };
 		A293FC791D6D81410032A037 /* TransactionFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293FC781D6D81410032A037 /* TransactionFinalViewController.swift */; };
+		AF14292D1DA6586300D6E073 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF14292C1DA6586300D6E073 /* GoogleService-Info.plist */; };
 		AF194A3E1D61A8B4005F3B29 /* SummaryControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF194A3D1D61A8B4005F3B29 /* SummaryControllerNew.swift */; };
 		AF194A401D61A8C3005F3B29 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF194A3F1D61A8C3005F3B29 /* SummaryViewController.swift */; };
 		AF5439DE1D719854004A9BDA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5439DC1D719854004A9BDA /* CellView.swift */; };
@@ -162,6 +163,7 @@
 		74ECE5D979F1DE9D0C9E6132 /* Pods-SmartHawkerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHawkerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		951B5187DD3010188E4852CC /* Pods-SmartHawkerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHawkerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHawkerUITests/Pods-SmartHawkerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A293FC781D6D81410032A037 /* TransactionFinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFinalViewController.swift; sourceTree = "<group>"; };
+		AF14292C1DA6586300D6E073 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AF194A3D1D61A8B4005F3B29 /* SummaryControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryControllerNew.swift; sourceTree = "<group>"; };
 		AF194A3F1D61A8C3005F3B29 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		AF318C7D1D803C0A007F5D62 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				AF577CFF1D28D7F800816782 /* EditViewController.swift */,
 				6A6834AF1D05C95E00E9A0AD /* Assets.xcassets */,
 				6A6834B41D05C95F00E9A0AD /* Info.plist */,
+				AF14292C1DA6586300D6E073 /* GoogleService-Info.plist */,
 				6AB754351D110EC800DFB0B2 /* Bridging.m */,
 				6AB7542F1D105B2E00DFB0B2 /* SmartHawker-Bridging-Header.h */,
 			);
@@ -538,6 +541,11 @@
 					6A6834A41D05C95E00E9A0AD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YQ2R4CCYLS;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					6A6834B81D05C95F00E9A0AD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -588,6 +596,7 @@
 				AFC9FB6D1D329DBD00F7EE54 /* Localizable.strings in Resources */,
 				AFBA17CD1D59D07F00B65EB9 /* Report.storyboard in Resources */,
 				6A6834B01D05C95E00E9A0AD /* Assets.xcassets in Resources */,
+				AF14292D1DA6586300D6E073 /* GoogleService-Info.plist in Resources */,
 				AF99B0501D59D4B300685285 /* Analytics.storyboard in Resources */,
 				DCE6AEA51D6B123D005822C5 /* fontawesome-webfont.ttf in Resources */,
 				6A6834AE1D05C95E00E9A0AD /* Main.storyboard in Resources */,

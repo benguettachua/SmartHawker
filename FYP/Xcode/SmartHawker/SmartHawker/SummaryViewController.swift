@@ -9,6 +9,7 @@
 import UIKit
 import SwiftMoment
 import Charts
+import Firebase
 
 class SummaryViewController: UIViewController {
     
@@ -82,12 +83,12 @@ class SummaryViewController: UIViewController {
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
         self.week(nil)
         
+        FIRAnalytics.logEventWithName("report", parameters: nil)
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         //Here I’m creating the calendar instance that we will operate with:
         
         if (weekMonthYear.text?.characters.count > 4) {

@@ -9,6 +9,7 @@
 
 import UIKit
 import FontAwesome_iOS
+import Firebase
 
 class TransactionFinalViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -256,6 +257,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         
         if (saveSuccess) {
             
+            FIRAnalytics.logEventWithName("recordsMade", parameters: nil)
             // Updates controller
             recordController.loadDatesToCalendar()
             
