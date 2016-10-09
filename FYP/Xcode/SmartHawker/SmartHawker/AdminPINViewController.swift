@@ -124,7 +124,7 @@ class AdminPINViewController: UIViewController {
                             self.presentViewController(alert, animated: true,completion: {
                                 
                                 self.shared.clearData()
-                                connectionDAO().unloadRecords()
+                                //connectionDAO().unloadRecords()
                                 connectionDAO().logout()
                                 self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
                             })
