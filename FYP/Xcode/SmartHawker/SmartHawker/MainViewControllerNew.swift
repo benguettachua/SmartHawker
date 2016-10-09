@@ -57,6 +57,7 @@ class MainViewControllerNew: UIViewController{
     @IBOutlet weak var todayEntryLabel: UILabel!
     @IBOutlet weak var monthlyTargetLabel: UILabel!
     @IBOutlet weak var syncButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
     
     @IBOutlet weak var monthCOGSAmountLabel: UILabel!
     @IBOutlet weak var monthlyTargetAmountLabel: UILabel!
@@ -103,6 +104,20 @@ class MainViewControllerNew: UIViewController{
         syncButton.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
         
         syncButton.setTitle(String(sync), forState: .Normal);
+        
+        infoButton.titleLabel?.lineBreakMode
+        infoButton.titleLabel?.numberOfLines = 2
+        infoButton.titleLabel!.textAlignment = .Center
+        
+        var info = String(format: "%C", faicon["fainfo"]!)
+        
+        info += "\n"
+        
+        info += "Info".localized()
+        
+        infoButton.titleLabel!.font = UIFont(name: "FontAwesome", size: 15)
+        
+        infoButton.setTitle(String(info), forState: .Normal);
         
         //set labels for translation
         //lowestSalesLabel.text = "Lowest".localized()

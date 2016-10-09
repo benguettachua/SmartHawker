@@ -16,6 +16,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     let registrationController = RegistrationController()
     let loginController = LoginController()
     
+    @IBOutlet weak var userIcon: UILabel!
+    @IBOutlet weak var passIcon: UILabel!
+    @IBOutlet weak var conPassIcon: UILabel!
+    @IBOutlet weak var emailIcon: UILabel!
+    @IBOutlet weak var phoneIcon: UILabel!
+    @IBOutlet weak var adminIcon: UILabel!
+    
     // Text Fields
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -23,8 +30,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    @IBOutlet weak var adminPINTextField: UITextField!
     
+    @IBOutlet weak var adminPINTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     // MARK: Action
@@ -41,6 +48,31 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         cancelButton.setTitle("Cancel".localized(), forState: UIControlState.Normal)
         registerButton.setTitle("REGISTER".localized(), forState: UIControlState.Normal)
         
+        var faicon = [String: UniChar]()
+        faicon["fauser"] = 0xf007
+        faicon["fapassword"] = 0xf023
+        faicon["faemail"] = 0xf0e0
+        faicon["faphone"] = 0xf098
+        faicon["faadmin"] = 0xf00a
+       
+        
+        userIcon.font = UIFont(name: "FontAwesome", size: 30)
+        userIcon.text = String(format: "%C", faicon["fauser"]!)
+        
+        passIcon.font = UIFont(name: "FontAwesome", size: 30)
+        passIcon.text = String(format: "%C", faicon["fapassword"]!)
+        
+        conPassIcon.font = UIFont(name: "FontAwesome", size: 30)
+        conPassIcon.text = String(format: "%C", faicon["fapassword"]!)
+        
+        emailIcon.font = UIFont(name: "FontAwesome", size: 30)
+        emailIcon.text = String(format: "%C", faicon["faemail"]!)
+        
+        phoneIcon.font = UIFont(name: "FontAwesome", size: 30)
+        phoneIcon.text = String(format: "%C", faicon["faphone"]!)
+        
+        adminIcon.font = UIFont(name: "FontAwesome", size: 30)
+        adminIcon.text = String(format: "%C", faicon["faadmin"]!)
     }
     
     @IBAction func registerAccount(sender: UIButton) {
