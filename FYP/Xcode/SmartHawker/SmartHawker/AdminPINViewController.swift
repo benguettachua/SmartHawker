@@ -10,6 +10,7 @@ import UIKit
 import Material
 import FontAwesome_iOS
 import Firebase
+import LocalAuthentication
 
 class AdminPINViewController: UIViewController {
     
@@ -75,7 +76,87 @@ class AdminPINViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Ask the user for fingerprint authentication, if the device has touch id set up.
+        // 1. Create a authentication context
+        let authenticationContext = LAContext()
+        
+        // 2. Check if the device has a fingerprint sensor
+        var error:NSError?
+        // If not, show the user an alert view and bail out!
+        guard authenticationContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            
+            // The device does not have touch id sensor, thus dont show the touch ID.
+            return
+        }
+        
+        // 3. Check the fingerprint
+        authenticationContext.evaluatePolicy(
+            .DeviceOwnerAuthenticationWithBiometrics,
+            localizedReason: "Enter securely using your fingerprint.".localized(),
+            reply: { [unowned self] (success, error) -> Void in
+                
+                if( success ) {
+                    
+                    // Fingerprint recognized
+                    // Go to view controller
+                    self.navigateToAuthenticatedViewController()
+                    
+                }else {
+                    
+                    // Check if there is an error
+                    if let error = error {
+                        
+                        let message = self.errorMessageForLAErrorCode(error.code)
+                        self.showAlertViewAfterEvaluatingPolicyWithMessage(message)
+                        
+                    }
+                    
+                }
+                
+            })
     }
+    
+    // *****************************
+    // Fingerprint Methods START
+    // *****************************
+    
+    func showAlertViewAfterEvaluatingPolicyWithMessage( message:String ){
+        
+        showAlertWithTitle("", message: message)
+        
+    }
+    
+    func showAlertWithTitle( title:String, message:String ) {
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
+        alertVC.addAction(okAction)
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            
+            self.presentViewController(alertVC, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    func navigateToAuthenticatedViewController(){
+        adminPINController.loadDatesToCalendar()
+        self.performSegueWithIdentifier("toMain", sender: self)
+    }
+    
+    func errorMessageForLAErrorCode( errorCode:Int ) -> String{
+        
+        var message = "Please enter using your PIN.".localized()
+        
+        return message
+        
+    }
+    
+    // *****************************
+    // Fingerprint Methods END
+    // *****************************
     
     // MARK: Action
     @IBAction func submitPIN(sender: UIButton) {
