@@ -389,14 +389,19 @@ class SettingsViewController: UITableViewController {
             else if (row == 1) {
                 // Nothing to do in this
             }
+            
+                // Auto-sync
+            else if (row == 2) {
+                // Do anything inside here to configure autosync or not.
+            }
                 
                 // Language
-            else if (row == 2) {
+            else if (row == 3) {
                 doChangeLanguage()
             }
                 
                 // Privacy
-            else if (row == 3) {
+            else if (row == 4) {
                 self.performSegueWithIdentifier("toPrivacy", sender: self)
             }
         }
