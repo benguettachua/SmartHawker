@@ -303,6 +303,7 @@ class connectionDAO{
                 try toRecord.pin()
                 try toRecord.save()
             }
+            
             if default1.boolForKey("autoSync"){
                 saveRecordsIntoDatabase()
                 return true

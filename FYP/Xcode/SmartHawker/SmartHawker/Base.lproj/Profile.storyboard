@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="HOc-0T-eCr">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="HOc-0T-eCr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -87,7 +87,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YJn-iV-fON">
                                                     <connections>
-                                                        <action selector="switchOnOrOff:" destination="ynC-ht-eSj" eventType="valueChanged" id="jns-NK-O2p"/>
+                                                        <action selector="autoSyncOnOrOff:" destination="ynC-ht-eSj" eventType="valueChanged" id="jGH-LW-ori"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -270,6 +270,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="autoSyncModeSwitch" destination="YJn-iV-fON" id="wc0-RE-Gkn"/>
                         <outlet property="backbtn" destination="i1E-aj-vLE" id="dbK-n7-YSX"/>
                         <outlet property="contactUsLabel" destination="OqX-NW-AJ9" id="cbH-QD-lZK"/>
                         <outlet property="contactusicon" destination="yS1-R0-mkn" id="8qi-YG-kJU"/>
@@ -2119,7 +2120,7 @@ Cg
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Sbb-EA-fim">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KZp-5b-geU">
-                                <rect key="frame" x="234" y="7" width="70" height="30"/>
+                                <rect key="frame" x="289" y="7" width="70" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Button">
@@ -2148,7 +2149,7 @@ Cg
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="41k-kG-Jy2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wyg-Ll-eRz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wyg-Ll-eRz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2168,7 +2169,7 @@ Cg
                     <tabBarItem key="tabBarItem" title="Profile" image="tab-profile" id="qfs-Tf-fvg"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bm8-tQ-umn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bm8-tQ-umn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2917,7 +2918,7 @@ Content may not be submitted to </string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lbt-FK-Mos" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="e8b-13-JNU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="e8b-13-JNU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

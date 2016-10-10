@@ -19,8 +19,11 @@ class SettingsViewController: UITableViewController {
     let availableLanguages = Localize.availableLanguages()
     @IBOutlet weak var languageLabel: UILabel!
     
-    //for notification
+    // UI Switch
     @IBOutlet weak var notificationMode: UISwitch!
+    @IBOutlet weak var autoSyncModeSwitch: UISwitch!
+    
+    
     //for privacy
     @IBOutlet weak var privacyButton: UIButton!
     
@@ -205,6 +208,8 @@ class SettingsViewController: UITableViewController {
         // Set the Notification switch on/off based on the setting.
         notificationMode.on = defaults.boolForKey("notification")
         
+        autoSyncModeSwitch.on = defaults.boolForKey("autoSync")
+        
     }
     
     
@@ -246,8 +251,6 @@ class SettingsViewController: UITableViewController {
             defaults.setBool(false, forKey: "notification")
         }
     }
-    
-    
     @IBAction func autoSyncOnOrOff(sender: UISwitch) {
         let defaults = NSUserDefaults.standardUserDefaults()
         if notificationMode.on {
@@ -257,6 +260,8 @@ class SettingsViewController: UITableViewController {
             defaults.setBool(false, forKey: "autoSync")
         }
     }
+
+
     
     func doChangeLanguage() {
         actionSheet = UIAlertController(title: nil, message: "Switch Language".localized(), preferredStyle: UIAlertControllerStyle.ActionSheet)
