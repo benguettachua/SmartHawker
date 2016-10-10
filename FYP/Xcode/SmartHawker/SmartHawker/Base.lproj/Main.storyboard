@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -644,9 +644,6 @@ this password and admin pin</string>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="modal" id="AUI-Zx-Ext"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zl-nJ-TME">
                                 <color key="backgroundColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -661,7 +658,7 @@ this password and admin pin</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NN4-oK-Jb1"/>
+                                    <action selector="registerAccount:" destination="AMS-1f-dqZ" eventType="touchUpInside" id="daC-rI-Rcw"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainview-whitebg" translatesAutoresizingMaskIntoConstraints="NO" id="WeR-cg-VAG">
@@ -888,11 +885,12 @@ this password and admin pin</string>
                         <outlet property="registerButton" destination="1Zl-nJ-TME" id="A2a-6M-OtR"/>
                         <outlet property="userIcon" destination="js3-il-Bp5" id="30j-cg-tSO"/>
                         <outlet property="usernameTextField" destination="RlN-On-DzD" id="pzc-hS-D71"/>
+                        <segue destination="xvq-Kx-gUH" kind="modal" identifier="registerSuccess" id="xvq-N2-em9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8F-vM-dZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="299" y="2073"/>
+            <point key="canvasLocation" x="244" y="2148"/>
         </scene>
         <!--Monthly Record-->
         <scene sceneID="0ap-TT-BAv">
@@ -905,7 +903,7 @@ this password and admin pin</string>
                         <color key="separatorColor" red="0.72640224358974359" green="0.7230444659804679" blue="0.70906174365660768" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="lTZ-iC-rZc" customClass="RecordTableViewCell" customModule="SH" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTZ-iC-rZc" id="WnT-5h-XeC">
                                     <frame key="frameInset" width="375" height="59"/>
@@ -2053,9 +2051,9 @@ this password and admin pin</string>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AUI-Zx-Ext"/>
-        <segue reference="FKB-a4-dJ9"/>
         <segue reference="YqZ-aV-GNs"/>
+        <segue reference="xvq-N2-em9"/>
+        <segue reference="FKB-a4-dJ9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

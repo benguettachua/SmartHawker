@@ -14,7 +14,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     // MARK: Properties
     // Variables
     let registrationController = RegistrationController()
-    let loginController = LoginController()
     
     @IBOutlet weak var userIcon: UILabel!
     @IBOutlet weak var passIcon: UILabel!
@@ -24,7 +23,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var adminIcon: UILabel!
     
     // Text Fields
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -38,7 +36,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.placeholder = "Name".localized()
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
         confirmPasswordTextField.placeholder = "Confirm Password".localized()
@@ -76,9 +73,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerAccount(sender: UIButton) {
-        
         // Variables to register account.
-        let name = nameTextField.text
         let username = usernameTextField.text
         let email = emailTextField.text?.lowercaseString
         let phone = phoneNumberTextField.text
@@ -89,7 +84,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         // Shows a popup to inform the user that the registration is currently being processed.
         let registeringAlert = UIAlertController(title: "Registration".localized(), message: "Processing your registration, please wait.".localized(), preferredStyle: .Alert)
         self.presentViewController(registeringAlert, animated: true) {
-            let registerSuccess = self.registrationController.register(name!, username: username!, email: email!, phone: phone!, password: password!, confirmPassword: confirmPassword!, adminPIN: adminPIN!)
+            let registerSuccess = self.registrationController.register(username!, email: email!, phone: phone!, password: password!, confirmPassword: confirmPassword!, adminPIN: adminPIN!)
             if (registerSuccess == 0) {
                 
                 // Register success, dismiss the processing registration popup and show a popup to inform user that registration succeeded.
@@ -116,11 +111,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 var errorMsg = ""
                 self.checksForEmpty()
                 switch registerSuccess {
-                case 1:
-                    errorMsg = "Name cannot be empty.".localized()
-                    self.nameTextField.text = ""
-                    break
-                    
                 case 2:
                     errorMsg = "Username cannot be empty.".localized()
                     self.usernameTextField.text = ""
@@ -212,18 +202,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     func checksForEmpty(){
         
-        let name = nameTextField.text
         let username = usernameTextField.text
         let email = emailTextField.text?.lowercaseString
         let phone = phoneNumberTextField.text
         let password = passwordTextField.text
         let confirmPassword = confirmPasswordTextField.text
         let adminPIN = adminPINTextField.text
-        
-        if (name == "") {
-            nameTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Name.".localized(),
-                                                                     attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
-        }
         
         // Username is not entered
         if (username == "") {

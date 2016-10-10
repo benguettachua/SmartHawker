@@ -12,12 +12,7 @@ class RegistrationController {
     let dao = connectionDAO()
     
     // Register a new account with infomration in parameter, return true if success, else false.
-    func register (name: String, username: String, email: String, phone: String, password: String, confirmPassword: String, adminPIN: String) -> Int {
-        
-        // Name is not entered
-        if (name == "") {
-            return 1
-        }
+    func register (username: String, email: String, phone: String, password: String, confirmPassword: String, adminPIN: String) -> Int {
         
         // Username is not entered
         if (username == "") {
@@ -75,7 +70,7 @@ class RegistrationController {
             return 12
         }
         // Return 0 if regisration success, 202 if username is taken, 203 if email is taken.
-        return dao.register(username.lowercaseString, password: password, name: name, email: email, phoneNumber: phone, adminPIN: adminPIN)
+        return dao.register(username.lowercaseString, password: password, email: email, phoneNumber: phone, adminPIN: adminPIN)
     }
     
     //checks for valid email
