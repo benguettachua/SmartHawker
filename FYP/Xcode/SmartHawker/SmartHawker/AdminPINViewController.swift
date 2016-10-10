@@ -182,7 +182,7 @@ class AdminPINViewController: UIViewController {
     @IBAction func cancel(sender: UIButton) {
         
         // Red message to capture attention and warn user.
-        let attributedString = NSAttributedString(string: "All records that are not synced will be lost.".localized(), attributes: [
+        let attributedString = NSAttributedString(string: "Records that are not synced may be lost.".localized(), attributes: [
             NSForegroundColorAttributeName : UIColor.redColor()
             ])
         // Alert to warn user about logging out.
