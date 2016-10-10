@@ -211,6 +211,11 @@ class SettingsViewController: UITableViewController {
     @IBAction func switchOnOrOff(sender: UISwitch) {
         let defaults = NSUserDefaults.standardUserDefaults()
         if notificationMode.on {
+            
+            // Clear all notifications in place to prevent duplication of notifications.
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+            
+            // Set a new notification.
             let notification = UILocalNotification()
             
             /* Time and timezone settings */

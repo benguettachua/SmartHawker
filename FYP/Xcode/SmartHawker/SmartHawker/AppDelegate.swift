@@ -44,9 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else {
             print("First launch, setting NSUserDefault.")
             
-            // When the app is first launched, set notification to be off.
+            // When the app is first launched, set notification to be on.
             defaults.setBool(true, forKey: "notification")
             
+            // Clear all notifications in place to prevent duplication of notifications.
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+            
+            // Set a new notification.
             let notification = UILocalNotification()
             
             /* Time and timezone settings */
