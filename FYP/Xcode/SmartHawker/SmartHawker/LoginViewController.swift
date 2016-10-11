@@ -197,10 +197,17 @@ class LoginViewController: UIViewController {
         passwordicon.font = UIFont(name: "FontAwesome", size: 40)
         
         passwordicon.text = String(format: "%C", faicon["fapassword"]!)
+        
+
+        
+
     }
+    
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
         usernameTextField.placeholder = "Username".localized()
@@ -236,6 +243,10 @@ class LoginViewController: UIViewController {
             view.endEditing(true)
         }
         sender.cancelsTouchesInView = false
+    }
+    
+    override func preferredStatusBarStyle()->UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     @IBAction func doChangeLanguage() {

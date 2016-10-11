@@ -34,6 +34,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var registerButton: UIButton!
     // MARK: Action
     
+    override func preferredStatusBarStyle()->UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameTextField.placeholder = "Username".localized()

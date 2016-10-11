@@ -78,12 +78,6 @@ class MainViewControllerNew: UIViewController{
     
     @IBOutlet weak var overview: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
