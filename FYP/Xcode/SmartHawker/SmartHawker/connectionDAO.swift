@@ -304,7 +304,7 @@ class connectionDAO{
                 try toRecord.save()
             }
             
-            if default1.boolForKey("autoSync"){
+            if toShare.autoSync{
                 saveRecordsIntoDatabase()
                 return true
             }
@@ -345,7 +345,7 @@ class connectionDAO{
                 try recordToUpdate.save()
             }
             
-            if default1.boolForKey("autoSync"){
+            if toShare.autoSync{
                 saveRecordsIntoDatabase()
                 return true
             }
@@ -387,7 +387,7 @@ class connectionDAO{
             // Delete it eventually.
             recordToDelete.deleteEventually()
             
-            if default1.boolForKey("autoSync"){
+            if toShare.autoSync{
                 saveRecordsIntoDatabase()
                 return true
             }

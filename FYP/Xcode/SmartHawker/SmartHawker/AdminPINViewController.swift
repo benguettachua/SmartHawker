@@ -9,7 +9,6 @@
 import UIKit
 import Material
 import FontAwesome_iOS
-import Firebase
 import LocalAuthentication
 
 class AdminPINViewController: UIViewController {
@@ -48,7 +47,6 @@ class AdminPINViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FIRAnalytics.logEventWithName("appusage", parameters: nil)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         // Activity Indicator
         shared.dateString = nil

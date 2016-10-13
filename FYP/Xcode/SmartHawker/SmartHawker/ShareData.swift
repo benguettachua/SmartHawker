@@ -24,6 +24,7 @@ class ShareData {
     }
     
     func clearData(){
+        autoSync = true
         isSubUser = false
         subuser = nil
         storeDate = nil
@@ -37,7 +38,7 @@ class ShareData {
         datesWithRecords = [String]()
         stringsWithAutoFill = nil
     }
-    
+    var autoSync = true
     var isSubUser = false
     var subuser: String!
     var storeDate: Moment!

@@ -208,7 +208,7 @@ class SettingsViewController: UITableViewController {
         // Set the Notification switch on/off based on the setting.
         notificationMode.on = defaults.boolForKey("notification")
         
-        autoSyncModeSwitch.on = defaults.boolForKey("autoSync")
+        autoSyncModeSwitch.on = shared.autoSync
         
     }
     
@@ -252,12 +252,12 @@ class SettingsViewController: UITableViewController {
         }
     }
     @IBAction func autoSyncOnOrOff(sender: UISwitch) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if notificationMode.on {
+        var autoSync = shared.autoSync
+        if autoSyncModeSwitch.on {
             
-            defaults.setBool(true, forKey: "autoSync")
+            autoSync = true
         } else {
-            defaults.setBool(false, forKey: "autoSync")
+            autoSync = false
         }
     }
 
