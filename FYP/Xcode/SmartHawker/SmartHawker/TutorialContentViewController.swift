@@ -10,10 +10,16 @@ import UIKit
 
 class TutorialContentViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var pageIndex: Int!
+    var imageFile: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.imageView.image = UIImage(named: self.imageFile)
     }
 
     override func didReceiveMemoryWarning() {

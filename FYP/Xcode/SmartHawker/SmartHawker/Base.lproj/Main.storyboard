@@ -1090,10 +1090,10 @@ this password and admin pin</string>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                 <state key="normal" title="Info"/>
+                                                <connections>
+                                                    <segue destination="mS2-ki-QlZ" kind="modal" id="11H-zV-3kn"/>
+                                                </connections>
                                             </button>
-                                            <connections>
-                                                <segue destination="mS2-ki-QlZ" kind="modal" id="YYQ-2e-ZZL"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -2098,7 +2098,7 @@ this password and admin pin</string>
             <objects>
                 <navigationController storyboardIdentifier="PageSeven" automaticallyAdjustsScrollViewInsets="NO" id="3HQ-u4-Bft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N6I-vi-Pgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="N6I-vi-Pgx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2116,7 +2116,7 @@ this password and admin pin</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="2ox-kq-k7V" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RUi-a6-0Nb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RUi-a6-0Nb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2171,7 +2171,7 @@ this password and admin pin</string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="WlX-fp-t6G" id="1kP-CH-Ldn"/>
+                        <outlet property="imageView" destination="WlX-fp-t6G" id="Yt5-rf-N9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hij-Ie-m1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2193,7 +2193,7 @@ this password and admin pin</string>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZN-T7-eFl">
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <action selector="skipOnboard:" destination="mS2-ki-QlZ" eventType="touchUpInside" id="9Cz-Sx-SMN"/>
+                                    <action selector="Done:" destination="mS2-ki-QlZ" eventType="touchUpInside" id="9v0-Pj-0wn"/>
                                 </connections>
                             </button>
                         </subviews>
