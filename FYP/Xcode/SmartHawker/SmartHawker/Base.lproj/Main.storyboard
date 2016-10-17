@@ -394,10 +394,10 @@ this password and admin pin</string>
             </objects>
             <point key="canvasLocation" x="-1399.5" y="1943.5"/>
         </scene>
-        <!--Onboarding Page View Contoller-->
+        <!--Page View Controller-->
         <scene sceneID="Txd-dj-Nka">
             <objects>
-                <pageViewController storyboardIdentifier="OnboardPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hBc-O9-BQH" customClass="OnboardingPageViewContoller" customModule="SH" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="OnboardPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hBc-O9-BQH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEW-Tj-9Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-928" y="1170"/>
@@ -1091,6 +1091,9 @@ this password and admin pin</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                 <state key="normal" title="Info"/>
                                             </button>
+                                            <connections>
+                                                <segue destination="mS2-ki-QlZ" kind="modal" id="YYQ-2e-ZZL"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -2095,7 +2098,7 @@ this password and admin pin</string>
             <objects>
                 <navigationController storyboardIdentifier="PageSeven" automaticallyAdjustsScrollViewInsets="NO" id="3HQ-u4-Bft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="N6I-vi-Pgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N6I-vi-Pgx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2113,7 +2116,7 @@ this password and admin pin</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="2ox-kq-k7V" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RUi-a6-0Nb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RUi-a6-0Nb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2144,6 +2147,75 @@ this password and admin pin</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQt-Ed-URf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="583.5" y="1228.5"/>
+        </scene>
+        <!--Tutorial Content View Controller-->
+        <scene sceneID="5hb-Ia-yG0">
+            <objects>
+                <viewController storyboardIdentifier="TutorialContentViewController" id="Wu2-jA-hsd" customClass="TutorialContentViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="igG-DT-G4u"/>
+                        <viewControllerLayoutGuide type="bottom" id="xCF-Re-D0Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3KN-IZ-Jxl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WlX-fp-t6G"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WlX-fp-t6G" firstAttribute="trailing" secondItem="3KN-IZ-Jxl" secondAttribute="trailingMargin" id="ShH-Ph-AmX"/>
+                            <constraint firstItem="xCF-Re-D0Y" firstAttribute="top" secondItem="WlX-fp-t6G" secondAttribute="bottom" constant="58" id="Zc0-Nn-JRV"/>
+                            <constraint firstItem="WlX-fp-t6G" firstAttribute="leading" secondItem="3KN-IZ-Jxl" secondAttribute="leadingMargin" id="aGM-bB-yNA"/>
+                            <constraint firstItem="WlX-fp-t6G" firstAttribute="top" secondItem="igG-DT-G4u" secondAttribute="bottom" id="i6b-tx-qrl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="WlX-fp-t6G" id="1kP-CH-Ldn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hij-Ie-m1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4576" y="223"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="WMQ-Wa-eHa">
+            <objects>
+                <viewController id="mS2-ki-QlZ" customClass="TutorialViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jLb-Ur-ZYU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wf8-Zd-adz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kh8-w3-Ios">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZN-T7-eFl">
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="skipOnboard:" destination="mS2-ki-QlZ" eventType="touchUpInside" id="9Cz-Sx-SMN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sZN-T7-eFl" firstAttribute="bottom" secondItem="Wf8-Zd-adz" secondAttribute="top" id="Toq-PR-pVt"/>
+                            <constraint firstItem="sZN-T7-eFl" firstAttribute="leading" secondItem="Kh8-w3-Ios" secondAttribute="leading" id="xWB-oO-dnl"/>
+                            <constraint firstAttribute="trailing" secondItem="sZN-T7-eFl" secondAttribute="trailing" id="xad-9B-0xP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z46-6O-8pR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4105" y="223"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="pdF-Kj-acA">
+            <objects>
+                <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dKw-0h-an4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tZ-R0-IMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4576" y="-552"/>
         </scene>
     </scenes>
     <resources>

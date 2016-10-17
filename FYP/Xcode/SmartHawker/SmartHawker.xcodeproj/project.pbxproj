@@ -19,9 +19,10 @@
 		6A475E7E1D62B6FD008E8D0A /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A475E7D1D62B6FD008E8D0A /* RecordController.swift */; };
 		6A475E851D645EAB008E8D0A /* IncomeTaxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A475E841D645EAB008E8D0A /* IncomeTaxController.swift */; };
 		6A50DD391D732FBB00B3E03D /* MonthRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A50DD381D732FBB00B3E03D /* MonthRecordTableViewController.swift */; };
-		6A525CD61DB4EC1500A426E1 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A525CD51DB4EC1500A426E1 /* OnboardingPageViewController.swift */; };
 		6A525CD81DB507A800A426E1 /* OnboardContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A525CD71DB507A800A426E1 /* OnboardContentViewController.swift */; };
 		6A525CDA1DB50C1D00A426E1 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A525CD91DB50C1D00A426E1 /* OnboardViewController.swift */; };
+		6A525CDE1DB5160300A426E1 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A525CDD1DB5160300A426E1 /* TutorialViewController.swift */; };
+		6A525CE01DB5161600A426E1 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A525CDF1DB5161600A426E1 /* TutorialContentViewController.swift */; };
 		6A61FF471D394FB600996C65 /* AdminPINViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A61FF461D394FB600996C65 /* AdminPINViewController.swift */; };
 		6A6834A91D05C95E00E9A0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6834A81D05C95E00E9A0AD /* AppDelegate.swift */; };
 		6A6834AB1D05C95E00E9A0AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6834AA1D05C95E00E9A0AD /* ViewController.swift */; };
@@ -128,9 +129,10 @@
 		6A475E7D1D62B6FD008E8D0A /* RecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
 		6A475E841D645EAB008E8D0A /* IncomeTaxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeTaxController.swift; sourceTree = "<group>"; };
 		6A50DD381D732FBB00B3E03D /* MonthRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthRecordTableViewController.swift; sourceTree = "<group>"; };
-		6A525CD51DB4EC1500A426E1 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		6A525CD71DB507A800A426E1 /* OnboardContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardContentViewController.swift; sourceTree = "<group>"; };
 		6A525CD91DB50C1D00A426E1 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		6A525CDD1DB5160300A426E1 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		6A525CDF1DB5161600A426E1 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
 		6A61FF461D394FB600996C65 /* AdminPINViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminPINViewController.swift; sourceTree = "<group>"; };
 		6A6834A51D05C95E00E9A0AD /* SH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6834A81D05C95E00E9A0AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -272,6 +274,24 @@
 			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
+		6A525CDB1DB5155400A426E1 /* Onboarding VCs */ = {
+			isa = PBXGroup;
+			children = (
+				6A525CD91DB50C1D00A426E1 /* OnboardViewController.swift */,
+				6A525CD71DB507A800A426E1 /* OnboardContentViewController.swift */,
+			);
+			name = "Onboarding VCs";
+			sourceTree = "<group>";
+		};
+		6A525CDC1DB515ED00A426E1 /* Tutorial VCs */ = {
+			isa = PBXGroup;
+			children = (
+				6A525CDD1DB5160300A426E1 /* TutorialViewController.swift */,
+				6A525CDF1DB5161600A426E1 /* TutorialContentViewController.swift */,
+			);
+			name = "Tutorial VCs";
+			sourceTree = "<group>";
+		};
 		6A68349C1D05C95E00E9A0AD = {
 			isa = PBXGroup;
 			children = (
@@ -311,9 +331,6 @@
 				AF8F72701D61B179009A149E /* Storyboard */,
 				6A6834A81D05C95E00E9A0AD /* AppDelegate.swift */,
 				6A6834AA1D05C95E00E9A0AD /* ViewController.swift */,
-				6A525CD51DB4EC1500A426E1 /* OnboardingPageViewController.swift */,
-				6A525CD91DB50C1D00A426E1 /* OnboardViewController.swift */,
-				6A525CD71DB507A800A426E1 /* OnboardContentViewController.swift */,
 				AFBA17D11D59D29A00B65EB9 /* DAO */,
 				AF3C0EB01D618231008E5FAB /* View */,
 				AF3C0EAF1D6181BD008E5FAB /* Controllers */,
@@ -411,13 +428,13 @@
 				6AD8B21E1D840CBA00D262DC /* ComparisonViewController.swift */,
 				AF8F726C1D61B162009A149E /* ContactUsPageView.swift */,
 				DC6EA50F1D740B8900316FE0 /* EditProfileViewController.swift */,
-				AFD06A261D855C7E00E83E42 /* StartUpPage.swift */,
 				DC7F68031D1E61D400F2C2B1 /* EnquiryViewController.swift */,
 				AF8F726E1D61B16B009A149E /* FAQPageView.swift */,
 				DC7F67FF1D1E604F00F2C2B1 /* IncomeTaxViewController.swift */,
 				6AF9C5161D1840A7000533E0 /* LoginViewController.swift */,
 				AF8F72711D61B760009A149E /* MainViewControllerNew.swift */,
 				6A50DD381D732FBB00B3E03D /* MonthRecordTableViewController.swift */,
+				6A525CDB1DB5155400A426E1 /* Onboarding VCs */,
 				AF9AF5251D51CDFB0057935F /* ProfileViewController.swift */,
 				AF5B28071D74317100058AD6 /* PrivacyView.swift */,
 				6AF9C5131D16BC68000533E0 /* RegistrationViewController.swift */,
@@ -426,9 +443,11 @@
 				DCE6AEA21D6B02B9005822C5 /* SignUpPageOneViewController.swift */,
 				DC50CFA41D6C01D0005AC278 /* SignUpPageTwoViewController.swift */,
 				DC91B5531D6C328A00C60BE2 /* SignUpPageThreeViewController.swift */,
+				AFD06A261D855C7E00E83E42 /* StartUpPage.swift */,
 				AF194A3F1D61A8C3005F3B29 /* SummaryViewController.swift */,
 				A293FC781D6D81410032A037 /* TransactionFinalViewController.swift */,
 				6A857AE61D82FFA800E5BE71 /* TrendingViewController.swift */,
+				6A525CDC1DB515ED00A426E1 /* Tutorial VCs */,
 				6AA37BD11D7452F0007E34EA /* UpdateTransactionViewController.swift */,
 			);
 			name = View;
@@ -763,6 +782,7 @@
 				AF9167E11D66F097006ED668 /* AnalyticsController.swift in Sources */,
 				6AF9C5171D1840A7000533E0 /* LoginViewController.swift in Sources */,
 				AF8F72721D61B760009A149E /* MainViewControllerNew.swift in Sources */,
+				6A525CDE1DB5160300A426E1 /* TutorialViewController.swift in Sources */,
 				AF5439E11D71986F004A9BDA /* AnimationClass.swift in Sources */,
 				AFD899451D834EB700EAA1F1 /* AutoCompleteTextField.swift in Sources */,
 				AF8F726D1D61B162009A149E /* ContactUsPageView.swift in Sources */,
@@ -789,7 +809,6 @@
 				AF194A3E1D61A8B4005F3B29 /* SummaryControllerNew.swift in Sources */,
 				6A016B861D53931F007C38E4 /* SubuserTableViewCell.swift in Sources */,
 				6A0E199F1D61854A00564FF3 /* AdminPINController.swift in Sources */,
-				6A525CD61DB4EC1500A426E1 /* OnboardingPageViewController.swift in Sources */,
 				DC50CFA51D6C01D0005AC278 /* SignUpPageTwoViewController.swift in Sources */,
 				DC7F67FE1D1E5EC700F2C2B1 /* CalendarViewController.swift in Sources */,
 				6A475E851D645EAB008E8D0A /* IncomeTaxController.swift in Sources */,
@@ -804,6 +823,7 @@
 				6A096BFF1D22C79A007BF9EB /* ShareData.swift in Sources */,
 				AFD06A271D855C7E00E83E42 /* StartUpPage.swift in Sources */,
 				6A525CDA1DB50C1D00A426E1 /* OnboardViewController.swift in Sources */,
+				6A525CE01DB5161600A426E1 /* TutorialContentViewController.swift in Sources */,
 				DC91B5541D6C328A00C60BE2 /* SignUpPageThreeViewController.swift in Sources */,
 				6A14349A1D5F0AC800D19A7A /* LoginController.swift in Sources */,
 				AF8F72791D61DEE3009A149E /* MainController.swift in Sources */,
