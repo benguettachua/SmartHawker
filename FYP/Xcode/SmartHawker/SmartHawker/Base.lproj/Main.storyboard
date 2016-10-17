@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -260,7 +260,7 @@ this password and admin pin</string>
         <!--Select language-->
         <scene sceneID="XWC-2k-f9J">
             <objects>
-                <tableViewController id="8MO-iI-UGe" customClass="StartUpPage" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="lang" id="8MO-iI-UGe" customClass="StartUpPage" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ac7-po-UcT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -331,7 +331,76 @@ this password and admin pin</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uqy-gf-0k0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="1170"/>
+            <point key="canvasLocation" x="-421" y="1944"/>
+        </scene>
+        <!--Onboard Content View Controller-->
+        <scene sceneID="CeI-eq-8fc">
+            <objects>
+                <viewController storyboardIdentifier="OnboardContentViewController" id="e5r-hN-Ila" customClass="OnboardContentViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fZ1-nG-R2v"/>
+                        <viewControllerLayoutGuide type="bottom" id="kEQ-V3-odG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jys-GG-et1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z6m-Lk-yhT"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kEQ-V3-odG" firstAttribute="top" secondItem="z6m-Lk-yhT" secondAttribute="bottom" constant="58" id="DFh-jC-ffc"/>
+                            <constraint firstItem="z6m-Lk-yhT" firstAttribute="leading" secondItem="jys-GG-et1" secondAttribute="leadingMargin" id="Irk-ca-4ip"/>
+                            <constraint firstItem="z6m-Lk-yhT" firstAttribute="trailing" secondItem="jys-GG-et1" secondAttribute="trailingMargin" id="cvD-Kx-8D7"/>
+                            <constraint firstItem="z6m-Lk-yhT" firstAttribute="top" secondItem="fZ1-nG-R2v" secondAttribute="bottom" id="p44-WT-hNQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="z6m-Lk-yhT" id="545-8T-4NA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NVL-3a-BpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-928.5" y="1943.5"/>
+        </scene>
+        <!--Onboard View Controller-->
+        <scene sceneID="t91-fB-LPV">
+            <objects>
+                <viewController storyboardIdentifier="Onboard" id="E9l-xV-k1u" customClass="OnboardViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zER-pn-b7g"/>
+                        <viewControllerLayoutGuide type="bottom" id="4jJ-ek-dzQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2xm-wa-h3D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vD-92-40D">
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="skipOnboard:" destination="E9l-xV-k1u" eventType="touchUpInside" id="vTl-Xf-Xka"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0vD-92-40D" firstAttribute="bottom" secondItem="4jJ-ek-dzQ" secondAttribute="top" id="IhG-ub-Il1"/>
+                            <constraint firstAttribute="trailing" secondItem="0vD-92-40D" secondAttribute="trailing" id="MMw-9R-pFy"/>
+                            <constraint firstItem="0vD-92-40D" firstAttribute="leading" secondItem="2xm-wa-h3D" secondAttribute="leading" id="RdS-qp-CR6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QxT-tJ-vWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1399.5" y="1943.5"/>
+        </scene>
+        <!--Onboarding Page View Contoller-->
+        <scene sceneID="Txd-dj-Nka">
+            <objects>
+                <pageViewController storyboardIdentifier="OnboardPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hBc-O9-BQH" customClass="OnboardingPageViewContoller" customModule="SH" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HEW-Tj-9Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-928" y="1170"/>
         </scene>
         <!--welcomePage-->
         <scene sceneID="tne-QT-ifu">
@@ -2024,7 +2093,7 @@ this password and admin pin</string>
         <!--Navigation Controller-->
         <scene sceneID="ADG-2I-Wey">
             <objects>
-                <navigationController storyboardIdentifier="lang" automaticallyAdjustsScrollViewInsets="NO" id="3HQ-u4-Bft" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PageSeven" automaticallyAdjustsScrollViewInsets="NO" id="3HQ-u4-Bft" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="N6I-vi-Pgx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2037,14 +2106,14 @@ this password and admin pin</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4HG-ra-heH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="2402"/>
+            <point key="canvasLocation" x="-421" y="1170"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ei0-Ui-UWQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="2ox-kq-k7V" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RUi-a6-0Nb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RUi-a6-0Nb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2063,7 +2132,7 @@ this password and admin pin</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hwo-01-lSa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JWT-8z-B6I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JWT-8z-B6I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

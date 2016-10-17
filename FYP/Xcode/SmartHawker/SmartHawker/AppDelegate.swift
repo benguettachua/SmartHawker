@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         Parse.setApplicationId("p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht", clientKey: "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt")
         
+        // Settings for Page View Controller
+        let pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageControl.backgroundColor = UIColor.whiteColor()
+        
         // Override point for customization after application launch.
         //***********************************************************
         // START OF INITIAL LAUNCH WILL PROMPT FOR LANGUAGE
@@ -79,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("lang") as! UINavigationController
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Onboard") as! UIViewController
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
