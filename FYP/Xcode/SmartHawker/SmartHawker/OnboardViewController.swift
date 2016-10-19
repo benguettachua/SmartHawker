@@ -17,7 +17,7 @@ class OnboardViewController: UIViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.pageImages = NSArray(objects: "PageOne", "PageTwo", "PageThree", "PageFour", "PageFive", "PageSix")
+        self.pageImages = NSArray(objects: "OnboardPage1", "OnboardPage2", "OnboardPage3", "OnboardPage4", "OnboardPage5", "OnboardPage6")
         
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("OnboardPageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
