@@ -335,6 +335,12 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     func selectNewImageFromPhotoLibrary() {
         let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
         
+        if (imageFile != nil) {
+            refreshAlert.addAction(UIAlertAction(title: "View Image", style: .Default, handler: { (action: UIAlertAction) in
+                print("There is receipt!")
+            }))
+        }
+        
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
             self.shootPhoto()
