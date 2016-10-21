@@ -332,12 +332,25 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     // MARK: Actions
     
     
+    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
+    }
+    
     func selectNewImageFromPhotoLibrary() {
         let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
         
         if (imageFile != nil) {
             refreshAlert.addAction(UIAlertAction(title: "View Image", style: .Default, handler: { (action: UIAlertAction) in
-                print("There is receipt!")
+                
+                let imageView = self.addbtn.imageView
+                let newImageView = UIImageView(image: imageView!.image)
+                newImageView.frame = self.view.frame
+                newImageView.backgroundColor = .blackColor()
+                newImageView.contentMode = .ScaleAspectFit
+                newImageView.userInteractionEnabled = true
+                let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")
+                newImageView.addGestureRecognizer(tap)
+                self.view.addSubview(newImageView)
             }))
         }
         
