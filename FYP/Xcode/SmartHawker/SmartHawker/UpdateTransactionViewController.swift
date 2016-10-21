@@ -336,6 +336,15 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         sender.view?.removeFromSuperview()
     }
     
+    func longPress(sender: UILongPressGestureRecognizer) {
+        let saveAlert = UIAlertController(title: "Save Receipt?", message: nil, preferredStyle: .Alert)
+        saveAlert.addAction(UIAlertAction(title: "Save", style: .Default, handler: { void in
+            UIImageWriteToSavedPhotosAlbum((self.addbtn.imageView?.image)!, nil, nil, nil)
+        }))
+        saveAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(saveAlert, animated: true, completion: nil)
+    }
+    
     func selectNewImageFromPhotoLibrary() {
         let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -350,6 +359,8 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
                 newImageView.userInteractionEnabled = true
                 let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")
                 newImageView.addGestureRecognizer(tap)
+                let longtap = UILongPressGestureRecognizer(target: self, action: "longPress:")
+                newImageView.addGestureRecognizer(longtap)
                 self.view.addSubview(newImageView)
             }))
         }
