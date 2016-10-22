@@ -206,6 +206,7 @@ class SummaryControllerNew {
         let profit = formatter.stringFromNumber(totalSalesAmount - totalExpensesAmount - totalCOGSAmount)
         return (series1, series2, series3, sales!, expenses!, profit!, COGS!, series4)
     }
+    
     func createExportString() -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"

@@ -716,7 +716,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             //getting attachment
             
             let exportString = SummaryControllerNew().createExportString()
-            let exportFilePath = NSTemporaryDirectory() + "Smart Hawker Data.xls"
+            let exportFilePath = NSTemporaryDirectory() + "Smart Hawker Data"
             let exportFileURL = NSURL(fileURLWithPath: exportFilePath)
             NSFileManager.defaultManager().createFileAtPath(exportFilePath, contents: NSData(), attributes: nil)
             var fileHandle: NSFileHandle? = nil
@@ -745,13 +745,12 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             }
             mailComposer.setSubject("Have you heard a swift?")
             mailComposer.setMessageBody("This is what they sound like.", isHTML: false)
-            
-            if let filePath = NSBundle.mainBundle().pathForResource(exportFilePath, ofType: "xls") {
-                print (filePath)
-                if let fileData = NSData(contentsOfFile: filePath) {
+            print("EXPORT FILE PATH")
+            print(exportFilePath)
+                if let fileData = NSData(contentsOfURL: exportFileURL) {
                     mailComposer.addAttachmentData(fileData, mimeType: "application/excel", fileName: "Export Data.xls")
                 }
-            }
+            
             self.presentViewController(mailComposer, animated: true, completion: nil)
         }
     }
