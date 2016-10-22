@@ -10,7 +10,9 @@ import UIKit
 import SwiftMoment
 import Charts
 
-class SummaryViewController: UIViewController {
+import MessageUI
+
+class SummaryViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     var oneTrue = true
     var twoTrue = true
@@ -37,7 +39,6 @@ class SummaryViewController: UIViewController {
     var chosenWeekDate = NSDate()
     var daysInWeek = [String]()
     var months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""]
-    
     @IBOutlet weak var chart: LineChartView!
     
     //1 = monthly, 2 = yearly, 0 = weekly
@@ -69,7 +70,6 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var report: UINavigationItem!
     @IBOutlet weak var navBar: UINavigationBar!
     
-    typealias CompletionHandler = (success:Bool) -> Void
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -709,6 +709,54 @@ class SummaryViewController: UIViewController {
         }
     }
     
+    @IBAction func sendEmail() {
+        //Check to see the device can send email.
+        if( MFMailComposeViewController.canSendMail() ) {
+            
+            //getting attachment
+            
+            let exportString = SummaryControllerNew().createExportString()
+            let exportFilePath = NSTemporaryDirectory() + "Smart Hawker Data.xls"
+            let exportFileURL = NSURL(fileURLWithPath: exportFilePath)
+            NSFileManager.defaultManager().createFileAtPath(exportFilePath, contents: NSData(), attributes: nil)
+            var fileHandle: NSFileHandle? = nil
+            do {
+                fileHandle = try NSFileHandle(forWritingToURL: exportFileURL)
+            } catch {
+                print("Error with fileHandle")
+            }
+            
+            fileHandle!.seekToEndOfFile()
+            let csvData = exportString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            fileHandle!.writeData(csvData!)
+            
+            fileHandle!.closeFile()
+            
+            
+            //end of adding attachment
+            
+            
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            
+            //Set the subject and message of the email
+            mailComposer.setToRecipients(["benguettachua@gmail.com"])
+            mailComposer.setSubject("Have you heard a swift?")
+            mailComposer.setMessageBody("This is what they sound like.", isHTML: false)
+            
+            if let filePath = NSBundle.mainBundle().pathForResource(exportFilePath, ofType: "xls") {
+                
+                if let fileData = NSData(contentsOfFile: filePath) {
+                    mailComposer.addAttachmentData(fileData, mimeType: "application/excel", fileName: "Export Data.xls")
+                }
+            }
+            self.presentViewController(mailComposer, animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 extension Double {
