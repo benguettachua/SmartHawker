@@ -1,11 +1,9 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
 FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Charts" "$PODS_CONFIGURATION_BUILD_DIR/FontAwesome-iOS" "$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManagerSwift" "$PODS_CONFIGURATION_BUILD_DIR/JTAppleCalendar" "$PODS_CONFIGURATION_BUILD_DIR/Localize-Swift" "$PODS_CONFIGURATION_BUILD_DIR/Material" "$PODS_CONFIGURATION_BUILD_DIR/SwiftMoment"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/mailcore2-ios"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/mailcore2-ios/lib"
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Charts/Charts.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/FontAwesome-iOS/FontAwesome_iOS.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/JTAppleCalendar/JTAppleCalendar.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Localize-Swift/Localize_Swift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Material/Material.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftMoment/SwiftMoment.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/mailcore2-ios"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"MailCore-ios" -l"c++" -l"iconv" -l"resolv" -l"xml2" -l"z" -framework "Charts" -framework "FontAwesome_iOS" -framework "IQKeyboardManagerSwift" -framework "JTAppleCalendar" -framework "Localize_Swift" -framework "Material" -framework "SwiftMoment"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Charts/Charts.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/FontAwesome-iOS/FontAwesome_iOS.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/JTAppleCalendar/JTAppleCalendar.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Localize-Swift/Localize_Swift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Material/Material.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftMoment/SwiftMoment.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "Charts" -framework "FontAwesome_iOS" -framework "IQKeyboardManagerSwift" -framework "JTAppleCalendar" -framework "Localize_Swift" -framework "Material" -framework "SwiftMoment"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
