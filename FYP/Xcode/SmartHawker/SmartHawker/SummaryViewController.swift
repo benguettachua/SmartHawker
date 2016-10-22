@@ -740,12 +740,14 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.mailComposeDelegate = self
             
             //Set the subject and message of the email
-            mailComposer.setToRecipients(["benguettachua@gmail.com"])
+            if user?.email != nil{
+                mailComposer.setToRecipients([(user?.email)!])
+            }
             mailComposer.setSubject("Have you heard a swift?")
             mailComposer.setMessageBody("This is what they sound like.", isHTML: false)
             
             if let filePath = NSBundle.mainBundle().pathForResource(exportFilePath, ofType: "xls") {
-                
+                print (filePath)
                 if let fileData = NSData(contentsOfFile: filePath) {
                     mailComposer.addAttachmentData(fileData, mimeType: "application/excel", fileName: "Export Data.xls")
                 }
