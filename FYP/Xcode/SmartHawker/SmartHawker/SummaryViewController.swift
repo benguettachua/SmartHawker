@@ -9,8 +9,10 @@
 import UIKit
 import SwiftMoment
 import Charts
+import MessageUI
+import Foundation
 
-class SummaryViewController: UIViewController {
+class SummaryViewController: UIViewController, MFMailComposeViewControllerDelegate  {
     
     var oneTrue = true
     var twoTrue = true
@@ -80,7 +82,7 @@ class SummaryViewController: UIViewController {
             currentMonthString = String(actualMonthDate.month)
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
-        self.week(nil)
+        self.chooseWeek()
         
         
     }
@@ -196,7 +198,7 @@ class SummaryViewController: UIViewController {
     
     
     //to chnage the week/month/year
-    @IBAction func previous(sender: UIButton) {
+    @IBAction func viewPrevious() {
         if summaryType == 1 {
             let periodComponents = NSDateComponents()
             periodComponents.month = -1
@@ -293,7 +295,7 @@ class SummaryViewController: UIViewController {
         }
         
     }
-    @IBAction func next(sender: UIButton) {
+    @IBAction func viewNext() {
         if summaryType == 1 {
             let periodComponents = NSDateComponents()
             periodComponents.month = +1
@@ -390,7 +392,7 @@ class SummaryViewController: UIViewController {
     }
     
     //to change the category to week/month/year
-    @IBAction func week(sender: AnyObject?) {
+    @IBAction func chooseWeek() {
         daysInWeek.removeAll()
         summaryType = 0
         
@@ -441,7 +443,7 @@ class SummaryViewController: UIViewController {
     }
     
     
-    @IBAction func month(sender: AnyObject?) {
+    @IBAction func chooseMonth() {
         
         summaryType = 1
         
@@ -462,7 +464,7 @@ class SummaryViewController: UIViewController {
         loadRecordsMonthly()
     }
     
-    @IBAction func year(sender: AnyObject?) {
+    @IBAction func chooseYear() {
         
         summaryType = 2
         
@@ -633,7 +635,7 @@ class SummaryViewController: UIViewController {
         chart.legend.enabled = true
     }
     
-    @IBAction func salesButton(sender: UIButton){
+    @IBAction func salesButton(){
         oneTrue = !oneTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -651,7 +653,7 @@ class SummaryViewController: UIViewController {
             salesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
-    @IBAction func expensesButton(sender: UIButton){
+    @IBAction func expensesButton(){
         twoTrue = !twoTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -670,7 +672,7 @@ class SummaryViewController: UIViewController {
             expensesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
-    @IBAction func COGSButton(sender: UIButton){
+    @IBAction func COGSButton(){
         threeTrue = !threeTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -689,7 +691,7 @@ class SummaryViewController: UIViewController {
             COGSGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
-    @IBAction func profitButton(sender: UIButton){
+    @IBAction func profitButton(){
         fourTrue = !fourTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -709,6 +711,136 @@ class SummaryViewController: UIViewController {
         }
     }
     
+    func sendEmail(email: String!) -> Bool {
+        var toReturn = true
+        let smtpSession = MCOSMTPSession()
+        smtpSession.hostname = "smtp.gmail.com"
+        smtpSession.username = "smarthawkerios@gmail.com"
+        smtpSession.password = "edmundmarcus"
+        smtpSession.port = 465
+        smtpSession.authType = MCOAuthType.SASLPlain
+        smtpSession.connectionType = MCOConnectionType.TLS
+        smtpSession.connectionLogger = {(connectionID, type, data) in
+            if data != nil {
+                if let string = NSString(data: data, encoding: NSUTF8StringEncoding){
+                    NSLog("Connectionlogger: \(string)")
+                }
+            }
+        }
+        
+        let builder = MCOMessageBuilder()
+        builder.header.to = [MCOAddress(displayName: email, mailbox: email)]
+        builder.header.from = MCOAddress(displayName: "Smart Hawker", mailbox: "Smart Hawker")
+        builder.header.subject = "Exporting of Smart Hawker Mobile App Data."
+        
+        let exportString = SummaryControllerNew().createExportString()
+        let exportFilePath = NSTemporaryDirectory() + "Smart Hawker Data.xls"
+        let exportFileURL = NSURL(fileURLWithPath: exportFilePath)
+        NSFileManager.defaultManager().createFileAtPath(exportFilePath, contents: NSData(), attributes: nil)
+        var fileHandle: NSFileHandle? = nil
+        do {
+            fileHandle = try NSFileHandle(forWritingToURL: exportFileURL)
+        } catch {
+            print("Error with fileHandle")
+        }
+        
+        fileHandle!.seekToEndOfFile()
+        let csvData = exportString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        fileHandle!.writeData(csvData!)
+        
+        fileHandle!.closeFile()
+        
+        let firstActivityItem = NSURL(fileURLWithPath: exportFilePath)
+        
+        let attachment = MCOAttachment()
+        do{
+            attachment.data = try NSData(contentsOfURL: firstActivityItem, options: NSDataReadingOptions())
+        }catch{
+            print("error")
+        }
+        attachment.mimeType = ""
+        attachment.filename = "Smart Hawker Data.xls"
+        
+        builder.addAttachment(attachment)
+        
+        let rfc822Data = builder.data()
+        let sendOperation = smtpSession.sendOperationWithData(rfc822Data)
+        sendOperation.start { (error) -> Void in
+            if (error != nil) {
+                toReturn = false
+            }
+        }
+        return toReturn
+    }
+    
+    @IBAction func exportData() {
+        let alert = UIAlertController(title: "Export Data".localized(), message: "What is your email?".localized(), preferredStyle: .Alert)
+        let saveAction = UIAlertAction(title: "Send".localized(), style: .Default, handler: { Void in
+            
+            
+            let targetTextField = alert.textFields![0] as UITextField
+            if (targetTextField.text != nil && targetTextField.text != "" && self.isValidEmail(targetTextField.text!)) {
+            // Pop up telling the user that you are currently syncing
+            let popup = UIAlertController(title: "Exporting Report".localized(), message: "Please wait.".localized(), preferredStyle: .Alert)
+            self.presentViewController(popup, animated: true, completion: {
+                let sendSucceed = self.sendEmail(targetTextField.text)
+                if (sendSucceed) {
+                    
+                    // Retrieval succeed, inform the user that records are synced.
+                    popup.dismissViewControllerAnimated(true, completion: {
+                        let alertController = UIAlertController(title: "Export Complete!".localized(), message: "Please proceed.".localized(), preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: { void in
+                            
+                            self.viewWillAppear(true)
+                        })
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    })
+                    
+                } else {
+                    
+                    // Retrieval failed, inform user that he can sync again after he log in.
+                    popup.dismissViewControllerAnimated(true, completion: {
+                        let alertController = UIAlertController(title: "Export Failed!".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+                        let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
+                        alertController.addAction(ok)
+                        self.presentViewController(alertController, animated: true,completion: nil)
+                    })
+                }
+            })
+            
+            
+
+                
+            } else {
+                let alert = UIAlertController(title: "Error".localized(), message: "Email is incorrect.".localized(), preferredStyle: .Alert)
+                alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+        alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
+            targetTextField.placeholder = "Email".localized()
+            targetTextField.keyboardType = UIKeyboardType.DecimalPad
+        })
+        alert.addAction(saveAction)
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { Void in
+            self.viewWillAppear(true)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        if emailTest.evaluateWithObject(testStr) && testStr != user!["email"] as! String{
+            return true
+        }
+        return false
+    }
 }
 
 extension Double {

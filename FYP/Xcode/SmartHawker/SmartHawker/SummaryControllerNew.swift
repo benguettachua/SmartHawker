@@ -16,6 +16,7 @@ class SummaryControllerNew {
     // MARK: Properties
     var records = connectionDAO().loadRecords()
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    var exportMonths = ["empty", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     var calendar = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
     let user = PFUser.currentUser()
     let formatter = NSNumberFormatter()
@@ -204,6 +205,81 @@ class SummaryControllerNew {
         let COGS = formatter.stringFromNumber(totalCOGSAmount)
         let profit = formatter.stringFromNumber(totalSalesAmount - totalExpensesAmount - totalCOGSAmount)
         return (series1, series2, series3, sales!, expenses!, profit!, COGS!, series4)
+    }
+    
+    func createExportString() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        var hashForDates = [ Int: [Int: [PFObject]]]()
+        
+        var yearArray = [Int]()
+        for i in records{
+            let dateString = i["date"] as! String
+            let month = dateString.substringWithRange(Range<String.Index>(start: dateString.startIndex.advancedBy(3), end: dateString.endIndex.advancedBy(-5)))
+            let year = dateString.substringWithRange(Range<String.Index>(start: dateString.startIndex.advancedBy(6), end: dateString.endIndex))
+            let monthNo = Int(month)
+            let yearNo = Int(year)
+            let recordType = i["type"] as! Int
+            if recordType == 0 ||  recordType == 1 || recordType == 2{
+                if hashForDates[yearNo!] == nil{
+                    hashForDates[yearNo!] = [monthNo!: [i]]
+                }else{
+                    if hashForDates[yearNo!]![monthNo!] == nil{
+                        hashForDates[yearNo!]![monthNo!] = [i]
+                    }else{
+                        hashForDates[yearNo!]![monthNo!]!.append(i)
+                    }
+                }
+                
+            }
+        }
+        // Get array of keys
+        
+        yearArray = Array(hashForDates.keys)
+        yearArray.sortInPlace()
+        
+        
+        var export: String = NSLocalizedString("Month\t Date\t Amount\t Description\n", comment: "")
+        for year in yearArray{
+            export += NSLocalizedString(String(year) + "\n", comment: "")
+            var dateArray = Array(hashForDates[year]!.keys)
+            dateArray.sortInPlace()
+            for mon in dateArray{
+                export += NSLocalizedString(exportMonths[mon] + "\n", comment: "")
+                var sales: String = NSLocalizedString("\t Sales\n", comment: "")
+                var COGS: String = NSLocalizedString("\t COGS\n", comment: "")
+                var expenses: String = NSLocalizedString("\t Other Expenses\n", comment: "")
+                var profit: String = NSLocalizedString("\t Net Profit: \t", comment: "")
+                var profits = 0.0;
+                let array = hashForDates[year]![mon]
+                if array?.count != 0{
+                    for object in array!{
+                        
+                        let recordDate = object["date"]  as! String
+                        let recordAmount = object["amount"]  as! Double
+                        let recordType = object["type"]  as! Int
+                        var recordDescription = ""
+                        if object["description"] != nil{
+                            recordDescription = object["description"]  as! String
+                        }
+                        if recordType == 0{
+                            sales += "\t" + recordDate + "\t" + String(recordAmount) + "\t" + recordDescription + "\n"
+                            profits += recordAmount
+                        }else if recordType == 1{
+                            COGS += "\t" + recordDate + "\t" + String(recordAmount) + "\t" + recordDescription + "\n"
+                            profits -= recordAmount
+                        }else if recordType == 2{
+                            expenses += "\t" + recordDate + "\t" + String(recordAmount) + "\t" + recordDescription + "\n"
+                            profits -= recordAmount
+                        }
+                        
+                    }
+                    profit += String(profits)
+                }
+                export += sales + "\n\n" + COGS + "\n\n" + expenses + "\n\n" + profit + "\n\n"
+            }
+        }
+        return export
     }
     
 }
