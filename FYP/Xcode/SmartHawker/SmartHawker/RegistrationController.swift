@@ -50,6 +50,11 @@ class RegistrationController {
             return 6
         }
         
+        // Password is not entered
+        if (password.characters.count < 5) {
+            return 13
+        }
+        
         // Password does not match confirm password.
         if (password != confirmPassword) {
             return 7
