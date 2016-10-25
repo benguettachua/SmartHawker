@@ -349,6 +349,8 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
         
         if (imageFile != nil) {
+            
+            // Ability to View Image if there is
             refreshAlert.addAction(UIAlertAction(title: "View Image", style: .Default, handler: { (action: UIAlertAction) in
                 
                 let imageView = self.addbtn.imageView
@@ -363,7 +365,13 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
                 newImageView.addGestureRecognizer(longtap)
                 self.view.addSubview(newImageView)
             }))
+            
+            // Ability to download the image if there is
+            refreshAlert.addAction(UIAlertAction(title: "Download Receipt", style: .Default, handler: { (action: UIAlertAction) in
+                UIImageWriteToSavedPhotosAlbum((self.addbtn.imageView?.image)!, nil, nil, nil)
+            }))
         }
+        
         
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
