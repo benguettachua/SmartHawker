@@ -109,38 +109,6 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         toShare.storeDate = moment(NSDate())
         selectedDate = NSDate()
         loadRecords(NSDate())
-        
-        var faicon = [String: UniChar]()
-        faicon["falist"] = 0xf0ca
-        faicon["faadd"] = 0xf067
-        
-        list.titleLabel?.lineBreakMode
-        list.titleLabel?.numberOfLines = 2
-        list.titleLabel!.textAlignment = .Center
-        
-        var lists = String(format: "%C", faicon["falist"]!)
-        
-        lists += "\n"
-        
-        lists += "Records".localized()
-        
-        list.titleLabel!.font = UIFont(name: "FontAwesome", size: 14)
-        
-        list.setTitle(String(lists), forState: .Normal);
-        
-        add.titleLabel?.lineBreakMode
-        add.titleLabel?.numberOfLines = 2
-        add.titleLabel!.textAlignment = .Center
-        
-        var adds = String(format: "%C", faicon["faadd"]!)
-        
-        adds += "\n"
-        
-        adds += "Add".localized()
-        
-        add.titleLabel!.font = UIFont(name: "FontAwesome", size: 14)
-        
-        add.setTitle(String(adds), forState: .Normal)
     }
     
     @IBAction func goToPage() {

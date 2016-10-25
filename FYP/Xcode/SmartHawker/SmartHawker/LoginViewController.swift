@@ -177,30 +177,6 @@ class LoginViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(true, forKey: "firstLaunch")
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap(_:))))
-        usernameTextField.placeholder = "Username".localized()
-        passwordTextField.placeholder = "Password".localized()
-        smarthawkerLogo.text? = "Smart Hawker © 2016".localized()
-        loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
-        forgotPasswordButton.setTitle("Forgot Password".localized(), forState: UIControlState.Normal)
-        registerLabel.text = "Don't have an account?".localized()
-        registerButton.setTitle("Sign Up".localized(), forState: UIControlState.Normal)
-        changeLangButton.setTitle("Change Language".localized(), forState: UIControlState.Normal)
-        
-        var faicon = [String: UniChar]()
-        faicon["famobilephone"] = 0xf10b
-        faicon["fapassword"] = 0xf023
-        
-        mobileicon.font = UIFont(name: "FontAwesome", size: 40)
-        
-        mobileicon.text = String(format: "%C", faicon["famobilephone"]!)
-        
-        passwordicon.font = UIFont(name: "FontAwesome", size: 40)
-        
-        passwordicon.text = String(format: "%C", faicon["fapassword"]!)
-        
-
-        
-
     }
     
 
@@ -208,8 +184,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        usernameTextField.placeholder = "Username".localized()
-        passwordTextField.placeholder = "Password".localized()
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
         smarthawkerLogo.text? = "SmartHawker © 2016".localized()
