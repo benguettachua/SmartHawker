@@ -179,7 +179,7 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap(_:))))
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
-        smarthawkerLogo.text? = "SmartHawker © 2016".localized()
+        smarthawkerLogo.text? = "Smart Hawker © 2016".localized()
         loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
         forgotPasswordButton.setTitle("Forgot Password".localized(), forState: UIControlState.Normal)
         registerLabel.text = "Don't have an account?".localized()

@@ -65,6 +65,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var totalCOGS: UILabel!
     @IBOutlet weak var netProfit: UILabel!
     @IBOutlet weak var incomeTax: UIButton!
+    @IBOutlet weak var export: UIButton!
     @IBOutlet weak var COGStext: UILabel!
     
     @IBOutlet weak var report: UINavigationItem!
@@ -103,6 +104,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         monthButton.setTitle("Month".localized(), forState: UIControlState.Normal)
         yearButton.setTitle("Year".localized(), forState: UIControlState.Normal)
         incomeTax.setTitle("Income Tax".localized(), forState: UIControlState.Normal)
+        export.setTitle("Export".localized(), forState: UIControlState.Normal)
         totalSales.text = "Total Sales:".localized()
         totalExpenses.text = "Total Expenses:".localized()
         totalCOGS.text = "Total COGS:".localized()

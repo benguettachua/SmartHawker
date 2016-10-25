@@ -23,7 +23,7 @@ class ComparisonViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        comparingString.text = "Comparing of past 6 similar days to:".localized()
+        comparingString.text = "Comparing of past 5 similar days to:".localized()
         selectDateButton.setTitle("No Date Selected".localized(), forState: UIControlState.Normal)
         combinedChartView.data = nil
         combinedChartView.noDataText = "Please choose a category or date.".localized()

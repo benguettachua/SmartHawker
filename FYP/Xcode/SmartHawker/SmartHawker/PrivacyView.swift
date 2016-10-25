@@ -34,7 +34,7 @@ class PrivacyView: UIViewController {
         
         backbtn.setTitle(String(backs), forState: .Normal);
         
-        let navigationItem = UINavigationItem.init(title: "Contact Us".localized())
+        let navigationItem = UINavigationItem.init(title: "Privacy".localized())
         navigationItem.leftBarButtonItem = navBackBtn
         navBar.items = [navigationItem]
     }
