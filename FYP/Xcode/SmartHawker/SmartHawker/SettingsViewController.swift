@@ -252,12 +252,11 @@ class SettingsViewController: UITableViewController {
         }
     }
     @IBAction func autoSyncOnOrOff(sender: UISwitch) {
-        var autoSync = shared.autoSync
         if autoSyncModeSwitch.on {
             
-            autoSync = true
+            shared.autoSync = true
         } else {
-            autoSync = false
+            shared.autoSync = false
         }
     }
 
