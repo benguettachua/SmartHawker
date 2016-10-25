@@ -69,11 +69,6 @@ class AdminPINViewController: UIViewController {
         
         let records = connectionDAO().loadRecords()
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         // Ask the user for fingerprint authentication, if the device has touch id set up.
         // 1. Create a authentication context
         let authenticationContext = LAContext()
@@ -112,6 +107,7 @@ class AdminPINViewController: UIViewController {
                 }
                 
             })
+        
     }
     
     // *****************************
