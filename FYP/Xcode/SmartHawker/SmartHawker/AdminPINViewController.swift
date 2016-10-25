@@ -82,75 +82,25 @@ class AdminPINViewController: UIViewController {
             return
         }
         
-        // 3. Check the fingerprint
-        authenticationContext.evaluatePolicy(
-            .DeviceOwnerAuthenticationWithBiometrics,
-            localizedReason: "Enter securely using your fingerprint.".localized(),
-            reply: { [unowned self] (success, error) -> Void in
-                
-                if( success ) {
-                    
-                    // Fingerprint recognized
-                    // Go to view controller
-                    self.navigateToAuthenticatedViewController()
-                    
-                }else {
-                    
-                    // Check if there is an error
-                    if let error = error {
-                        
-                        let message = self.errorMessageForLAErrorCode(error.code)
-                        self.showAlertViewAfterEvaluatingPolicyWithMessage(message)
-                        
-                    }
-                    
-                }
-                
-            })
-        
-    }
-    
-    // *****************************
-    // Fingerprint Methods START
-    // *****************************
-    
-    func showAlertViewAfterEvaluatingPolicyWithMessage( message:String ){
-        
-        showAlertWithTitle("", message: message)
-        
-    }
-    
-    func showAlertWithTitle( title:String, message:String ) {
-        
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        
-        let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
-        alertVC.addAction(okAction)
-        
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        // 3. Validate the fingerprint
+        [authenticationContext .evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "Enter securely using your fingerprint.".localized(), reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
             
-            self.presentViewController(alertVC, animated: true, completion: nil)
+            if success {
+                
+                let alertVC = UIAlertController(title: "Success".localized(), message: "", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: { Void in
+                    self.adminPINController.loadDatesToCalendar()
+                    self.performSegueWithIdentifier("toMain", sender: self)
+                })
+                alertVC.addAction(okAction)
+                self.presentViewController(alertVC, animated: true, completion: nil)
+                
+                
+            }
             
-        }
+        })]
         
     }
-    
-    func navigateToAuthenticatedViewController(){
-        adminPINController.loadDatesToCalendar()
-        self.performSegueWithIdentifier("toMain", sender: self)
-    }
-    
-    func errorMessageForLAErrorCode( errorCode:Int ) -> String{
-        
-        var message = "Please enter using your PIN.".localized()
-        
-        return message
-        
-    }
-    
-    // *****************************
-    // Fingerprint Methods END
-    // *****************************
     
     // MARK: Action
     @IBAction func submitPIN(sender: UIButton) {
