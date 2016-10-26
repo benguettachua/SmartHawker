@@ -132,6 +132,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
         categorySegmentControl.setFontSize(16)
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         // Change the Text colour of the Labels
         if (type == 0) {
