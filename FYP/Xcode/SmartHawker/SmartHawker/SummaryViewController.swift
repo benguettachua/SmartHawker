@@ -746,8 +746,8 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
                 mailComposer.setToRecipients([(user?.email)!])
             }
             mailComposer.setSubject("Smart Hawker Records List")
-            mailComposer.setMessageBody("Hello Smart Hawker!\nAttached is the Microsoft Excel backup copy of your records.\nI hope this finds you well.\nWith Regards,\nSmart Hawker Team.", isHTML: false)
-            vprint(exportFilePath)
+            mailComposer.setMessageBody("Hello Smart Hawker!\n\nAttached is the Microsoft Excel backup copy of your records.\n\nWith Regards,\nSmart Hawker Team.", isHTML: false)
+            print(exportFilePath)
                 if let fileData = NSData(contentsOfURL: exportFileURL) {
                     mailComposer.addAttachmentData(fileData, mimeType: "application/excel", fileName: "Export Data.xls")
                 }
