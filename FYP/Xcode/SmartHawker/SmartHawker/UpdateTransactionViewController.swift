@@ -358,7 +358,6 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
                 let newImageView = UIImageView(image: imageView!.image)
                 newImageView.frame = self.view.frame
                 newImageView.backgroundColor = .blackColor()
-                newImageView.contentMode = .ScaleAspectFit
                 newImageView.userInteractionEnabled = true
                 let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")
                 newImageView.addGestureRecognizer(tap)
