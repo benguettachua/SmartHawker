@@ -370,6 +370,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             if(deleteSuccess) {
                 records.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                calendarView.reloadData()
             } else {
                 // Delete failed.
             }
