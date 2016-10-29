@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="L8r-JO-uUd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="L8r-JO-uUd">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -177,7 +178,7 @@
                                 </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0Kx-JH-NFn">
-                                <frame key="frameInset" minX="27" minY="54" width="299" height="33"/>
+                                <frame key="frameInset" minX="27" minY="54" width="298" height="33"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working days per week:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aj-br-d0L">
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -210,7 +211,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kZG-oE-REJ">
-                                <frame key="frameInset" minX="290" minY="100" width="10" height="112"/>
+                                <frame key="frameInset" minX="290" minY="100" width="10" height="111"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6v-ij-nCc">
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -242,7 +243,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ryj-8L-ILb">
-                                <frame key="frameInset" minX="27" minY="100" width="172" height="112"/>
+                                <frame key="frameInset" minX="27" minY="100" width="172" height="111"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This year's sales so far:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSC-i0-mMn">
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -273,7 +274,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="AzD-Rt-b47" secondAttribute="trailing" constant="7" id="WGY-QO-WJM"/>
                             <constraint firstItem="Ryj-8L-ILb" firstAttribute="top" secondItem="0Kx-JH-NFn" secondAttribute="bottom" constant="16" id="cdf-07-jfx"/>
                             <constraint firstItem="Wvj-04-aQl" firstAttribute="trailing" secondItem="XJk-Ma-C7z" secondAttribute="trailingMargin" id="cfy-4p-RWW"/>
-                            <constraint firstItem="AzD-Rt-b47" firstAttribute="top" secondItem="Ryj-8L-ILb" secondAttribute="bottom" constant="8" id="eVD-jQ-rW1"/>
+                            <constraint firstItem="AzD-Rt-b47" firstAttribute="top" secondItem="Ryj-8L-ILb" secondAttribute="bottom" constant="25" id="eVD-jQ-rW1"/>
                             <constraint firstItem="AzD-Rt-b47" firstAttribute="leading" secondItem="XJk-Ma-C7z" secondAttribute="leadingMargin" constant="7" id="jfj-ZL-hgN"/>
                             <constraint firstItem="WyD-1Q-9XM" firstAttribute="top" secondItem="AzD-Rt-b47" secondAttribute="bottom" constant="8" id="p1G-Gn-s3n"/>
                             <constraint firstItem="0Kx-JH-NFn" firstAttribute="centerX" secondItem="XJk-Ma-C7z" secondAttribute="centerX" id="ptI-MQ-Lc6"/>
