@@ -186,7 +186,7 @@ class LoginViewController: UIViewController {
         
         usernameTextField.placeholder = "Username".localized()
         passwordTextField.placeholder = "Password".localized()
-        smarthawkerLogo.text? = "SmartHawker © 2016".localized()
+        smarthawkerLogo.text? = "Smart Hawker © 2016".localized()
         loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
         forgotPasswordButton.setTitle("Forgot Password".localized(), forState: UIControlState.Normal)
         registerLabel.text = "Don't have an account?".localized()
@@ -235,7 +235,7 @@ class LoginViewController: UIViewController {
                 
                 self.usernameTextField.placeholder = "Username".localized()
                 self.passwordTextField.placeholder = "Password".localized()
-                self.smarthawkerLogo.text? = "SmartHawker © 2016".localized()
+                self.smarthawkerLogo.text? = "Smart Hawker © 2016".localized()
                 self.loginButton.setTitle("LOGIN".localized(), forState: UIControlState.Normal)
                 self.forgotPasswordButton.setTitle("Forgot Password".localized(), forState: UIControlState.Normal)
                 self.registerLabel.text = "Don't have an account?".localized()
