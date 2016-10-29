@@ -87,7 +87,7 @@ class AdminPINViewController: UIViewController {
             
             if success {
                 
-                let alertVC = UIAlertController(title: "Success".localized(), message: "", preferredStyle: .Alert)
+                let alertVC = UIAlertController(title: "Authentication Success. Welcome Back!".localized(), message: "", preferredStyle: .Alert)
                 let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: { Void in
                     self.adminPINController.loadDatesToCalendar()
                     self.performSegueWithIdentifier("toMain", sender: self)

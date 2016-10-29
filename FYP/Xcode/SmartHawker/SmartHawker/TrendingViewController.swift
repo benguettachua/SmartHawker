@@ -251,7 +251,7 @@ class TrendingViewController: UIViewController {
             salesSoFarLabel.text = "This year's sales so far:".localized()
             salesCategoryLabel.text = "Today's sales:".localized()
             categoryLeft.text = "Days left this year:".localized()
-            ifEveryCategoryLabel.text = "If every day was like today, end of this year, you will have earned:".localized()
+            ifEveryCategoryLabel.text = "If every day was like today, \nend of this year, you will have earned:".localized()
         } else if (selectedSegment == 1) {
             
             // Format according to what is saved in database.

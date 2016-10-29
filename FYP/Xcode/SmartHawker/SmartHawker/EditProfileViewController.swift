@@ -404,7 +404,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
         }else{
             
-            let alertController = UIAlertController(title: "Please find a internet connection.".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Please find an internet connection.".localized(), message: "Please try again later.".localized(), preferredStyle: .Alert)
             let ok = UIAlertAction(title: "Ok".localized(), style: .Cancel, handler: nil)
             alertController.addAction(ok)
             self.presentViewController(alertController, animated: true,completion: nil)

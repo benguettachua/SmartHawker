@@ -170,7 +170,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     self.emailTextField.text = ""
                     break
                 case 13:
-                    errorMsg = "Password too short.".localized()
+                    errorMsg = "Password should be 5 letters or more.".localized()
                     self.emailTextField.text = ""
                     break
                 case 100:
