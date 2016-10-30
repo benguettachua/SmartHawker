@@ -636,16 +636,6 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
     }
     
-    @IBAction func exportGraph(){
-        chart.saveToCameraRoll()
-        
-        let alertVC = UIAlertController(title: "Image Saved!".localized(), message: "", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
-        
-        alertVC.addAction(okAction)
-        self.presentViewController(alertVC, animated: true, completion: nil)
-    }
-    
     
     @IBAction func salesButton(){
         oneTrue = !oneTrue

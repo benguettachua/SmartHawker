@@ -252,8 +252,10 @@ class SummaryControllerNew {
                 var profit: String = NSLocalizedString("\t Net Profit: \t", comment: "")
                 var profits = 0.0;
                 let array = hashForDates[year]![mon]
+                let arrayToUse = array!.sort({ dateFormatter.dateFromString(($0["date"] as! String))!.compare(dateFormatter.dateFromString($1["date"] as! String)!) == .OrderedAscending })
+                print (arrayToUse)
                 if array?.count != 0{
-                    for object in array!{
+                    for object in arrayToUse{
                         
                         let recordDate = object["date"]  as! String
                         let recordAmount = object["amount"]  as! Double
