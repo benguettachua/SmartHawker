@@ -347,12 +347,12 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     }
     
     func selectNewImageFromPhotoLibrary() {
-        let refreshAlert = UIAlertController(title: "Upload Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Receipt", message: "Uploading receipt will save this record online.", preferredStyle: UIAlertControllerStyle.Alert)
         
         if (imageFile != nil) {
             
             // Ability to View Image if there is
-            refreshAlert.addAction(UIAlertAction(title: "View Image", style: .Default, handler: { (action: UIAlertAction) in
+            refreshAlert.addAction(UIAlertAction(title: "View", style: .Default, handler: { (action: UIAlertAction) in
                 
                 let imageView = self.addbtn.imageView
                 let newImageView = UIImageView(image: imageView!.image)
@@ -367,12 +367,29 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             }))
             
             // Ability to download the image if there is
-            refreshAlert.addAction(UIAlertAction(title: "Download Receipt", style: .Default, handler: { (action: UIAlertAction) in
+            refreshAlert.addAction(UIAlertAction(title: "Download", style: .Default, handler: { (action: UIAlertAction) in
                 UIImageWriteToSavedPhotosAlbum((self.addbtn.imageView?.image)!, nil, nil, nil)
+                
+                
+                let alertVC = UIAlertController(title: "Image Downloaded!".localized(), message: "", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
+                
+                alertVC.addAction(okAction)
+                self.presentViewController(alertVC, animated: true, completion: nil)
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (action: UIAlertAction) in
+                self.imageFile = nil
+                self.addbtn.setImage(nil, forState: .Normal)
+                
+                let alertVC = UIAlertController(title: "Image Deleted!".localized(), message: "", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
+                
+                alertVC.addAction(okAction)
+                self.presentViewController(alertVC, animated: true, completion: nil)
             }))
         }
         
-        
+        if (imageFile == nil) {
         refreshAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (action: UIAlertAction!) in
             
             self.shootPhoto()
@@ -384,12 +401,16 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
             refreshAlert .dismissViewControllerAnimated(true, completion: nil)
             
         }))
-        
-        refreshAlert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (action: UIAlertAction) in
-            self.imageFile = nil
-            self.addbtn.setImage(nil, forState: .Normal)
-        }))
-        
+            if (imageFile != nil){
+                
+                let alertVC = UIAlertController(title: "Image Uploaded!".localized(), message: "", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
+                
+                alertVC.addAction(okAction)
+                self.presentViewController(alertVC, animated: true, completion: nil)
+            }
+
+        }
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
             //            self.information.textColor = UIColor.blackColor()
             //            self.information.text = "Choose image within 10MB"

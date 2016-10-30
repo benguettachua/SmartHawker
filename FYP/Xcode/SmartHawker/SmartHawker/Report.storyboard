@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="lc8-hc-Zbb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="lc8-hc-Zbb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -32,7 +32,8 @@
                                                     <color key="titleColor" red="0.29019607843137252" green="0.30196078431372547" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sendEmail" destination="lc8-hc-Zbb" eventType="touchUpInside" id="fxq-Me-4Rp"/>
+                                                    <action selector="exportGraph" destination="lc8-hc-Zbb" eventType="touchUpInside" id="8K6-yx-1vp"/>
+                                                    <action selector="sendEmail" destination="lc8-hc-Zbb" eventType="touchUpInside" id="m1e-ld-vBz"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -67,7 +68,7 @@
                                                     <color key="titleShadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="week:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="yP8-fY-GbK"/>
+                                                    <action selector="weekChosen" destination="lc8-hc-Zbb" eventType="touchUpInside" id="2Uh-go-zEo"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8o6-9s-fpl">
@@ -76,7 +77,7 @@
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="month:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="H29-vh-e88"/>
+                                                    <action selector="monthChosen" destination="lc8-hc-Zbb" eventType="touchUpInside" id="pEo-ZQ-AAt"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZF-pW-Raz">
@@ -86,7 +87,7 @@
                                                     <color key="titleShadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="year:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="4Kp-dH-C2x"/>
+                                                    <action selector="yearChosen" destination="lc8-hc-Zbb" eventType="touchUpInside" id="WW0-gN-WDi"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -109,7 +110,7 @@
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="previous:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="ibh-T4-VmM"/>
+                                                    <action selector="previousOption" destination="lc8-hc-Zbb" eventType="touchUpInside" id="SuX-By-wxQ"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week/Month/Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2d-4y-REI">
@@ -122,7 +123,7 @@
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="next:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="8Ij-ju-y3L"/>
+                                                    <action selector="nextOption" destination="lc8-hc-Zbb" eventType="touchUpInside" id="I43-ti-Ih1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -256,7 +257,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="salesButton:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="5E6-JQ-UlI"/>
+                                            <action selector="salesButton" destination="lc8-hc-Zbb" eventType="touchUpInside" id="Yqo-dQ-9Pa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sS7-Ce-6z5">
@@ -269,7 +270,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="COGSButton:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="YlB-WX-cqA"/>
+                                            <action selector="COGSButton" destination="lc8-hc-Zbb" eventType="touchUpInside" id="Mcd-vy-Dai"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXi-lS-zM9">
@@ -282,7 +283,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="expensesButton:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="TYz-Ru-2Cu"/>
+                                            <action selector="expensesButton" destination="lc8-hc-Zbb" eventType="touchUpInside" id="MYe-G3-l2m"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9U2-Vp-Mbt">
@@ -295,7 +296,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="profitButton:" destination="lc8-hc-Zbb" eventType="touchUpInside" id="tcQ-qg-yfh"/>
+                                            <action selector="profitButton" destination="lc8-hc-Zbb" eventType="touchUpInside" id="yaZ-og-uoR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -392,7 +393,7 @@
                                         <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SQz-SJ-XCs" id="Fut-MO-eXv">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="FEh-yw-GYY">
@@ -432,7 +433,7 @@
                                         <rect key="frame" x="0.0" y="179" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Mq-VD-x83" id="FBx-im-X9I">
-                                            <frame key="frameInset" width="375" height="57.5"/>
+                                            <frame key="frameInset" width="375" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i18-o0-ze9">
@@ -469,7 +470,7 @@
                                         <rect key="frame" x="0.0" y="237" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qx7-XW-C08" id="WcE-4p-qWH">
-                                            <frame key="frameInset" width="375" height="57.5"/>
+                                            <frame key="frameInset" width="375" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XCd-Sr-upn">
@@ -506,7 +507,7 @@
                                         <rect key="frame" x="0.0" y="295" width="375" height="134"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdg-4n-g7y" id="hV0-4Q-Hdb">
-                                            <frame key="frameInset" width="375" height="133.5"/>
+                                            <frame key="frameInset" width="375" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6i8-d9-Irp">
@@ -550,7 +551,7 @@
                                         <rect key="frame" x="0.0" y="429" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tor-r5-MEP" id="ZPn-be-9LD">
-                                            <frame key="frameInset" width="375" height="61.5"/>
+                                            <frame key="frameInset" width="375" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TWO-Mx-sQf">
@@ -587,7 +588,7 @@
                                         <rect key="frame" x="0.0" y="491" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="var-NT-OyW" id="mNC-C3-PG2">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your estimated tax payable is:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7A-sV-qqF">

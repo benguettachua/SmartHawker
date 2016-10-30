@@ -81,7 +81,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             currentMonthString = String(actualMonthDate.month)
         }
         dateString = currentMonthString + "/" + String(actualMonthDate.year)
-        self.week(nil)
+        self.weekChosen()
         
         
     }
@@ -198,7 +198,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     
     
     //to chnage the week/month/year
-    @IBAction func previous(sender: UIButton) {
+    @IBAction func previousOption() {
         if summaryType == 1 {
             let periodComponents = NSDateComponents()
             periodComponents.month = -1
@@ -295,7 +295,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         }
         
     }
-    @IBAction func next(sender: UIButton) {
+    @IBAction func nextOption() {
         if summaryType == 1 {
             let periodComponents = NSDateComponents()
             periodComponents.month = +1
@@ -392,7 +392,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     //to change the category to week/month/year
-    @IBAction func week(sender: AnyObject?) {
+    @IBAction func weekChosen() {
         daysInWeek.removeAll()
         summaryType = 0
         
@@ -443,7 +443,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     
-    @IBAction func month(sender: AnyObject?) {
+    @IBAction func monthChosen() {
         
         summaryType = 1
         
@@ -464,7 +464,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         loadRecordsMonthly()
     }
     
-    @IBAction func year(sender: AnyObject?) {
+    @IBAction func yearChosen() {
         
         summaryType = 2
         
@@ -633,9 +633,21 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         chart.leftAxis.axisMinValue = 0
         chart.descriptionText = ""
         chart.legend.enabled = true
+        
     }
     
-    @IBAction func salesButton(sender: UIButton){
+    @IBAction func exportGraph(){
+        chart.saveToCameraRoll()
+        
+        let alertVC = UIAlertController(title: "Image Saved!".localized(), message: "", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok".localized(), style: .Default, handler: nil)
+        
+        alertVC.addAction(okAction)
+        self.presentViewController(alertVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func salesButton(){
         oneTrue = !oneTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -653,7 +665,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             salesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
-    @IBAction func expensesButton(sender: UIButton){
+    @IBAction func expensesButton(){
         twoTrue = !twoTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -672,7 +684,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             expensesGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
-    @IBAction func COGSButton(sender: UIButton){
+    @IBAction func COGSButton(){
         threeTrue = !threeTrue
         if summaryType == 1{
             loadRecordsMonthly()
@@ -691,7 +703,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             COGSGraphButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
-    @IBAction func profitButton(sender: UIButton){
+    @IBAction func profitButton(){
         fourTrue = !fourTrue
         if summaryType == 1{
             loadRecordsMonthly()
