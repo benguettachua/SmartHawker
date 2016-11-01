@@ -134,32 +134,33 @@
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                <div class="count" id="totalUser"></div>
+                <div class="count" id="totalUsersHTML">0</div>
                 <h3>Total Sign ups</h3>
+                <p>Since the start of Smart Hawker</p>
               </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-comments-o"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
+                <div class="count" id="totalRecordsHTML">0</div>
+                <h3>Total Records</h3>
+                <p>Since the start of Smart Hawker</p>
               </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                <div class="count">179</div>
+                <div class="count" id="newUsersHTML">0</div>
                 <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
+                <p>For past 7 days.</p>
               </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Lorem ipsum psdea itgum rixt.</p>
+                <div class="count" id="newRecordsHTML">0</div>
+                <h3>New Records</h3>
+                <p>For past 7 days.</p>
               </div>
             </div>
           </div>
@@ -630,35 +631,39 @@
   <!-- Connecting to Parse -->
   <script type="text/javascript">
 
-    Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht', 'btVV82dq324KubAkQ9qtPlIVAex6Me1CEl47LqfI');
+  Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht', 'btVV82dq324KubAkQ9qtPlIVAex6Me1CEl47LqfI');
 
-    <!-- Add test object to DB to test that parse is still connected -->
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-    });
+  // Variables
+  var userArray = new Array();
+  var recordsArray = new Array();
 
-    <!-- Getting users out -->
-    var user = Parse.Object.extend("User");
-    var query = new Parse.Query(user);
-    query.limit(1000);
-    query.find({
-      success: function(results) {
-        // Do something with the returned Parse.Object values
-        var totalUser = document.getElementById("totalUser");
-        totalUser.innerHTML = results.length;
-      },
-      error: function(error) {
-        var totalUser = document.getElementById("totalUser");
-        totalUser.innerHTML = "Error";
-      }
-    });
+  // Getting total users
+  Parse.Cloud.run('retrieveAllObjects', {
+    object_type: "User", // REQUIRED - string: name of your Parse class
+    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+  }).then(function(objects) {
+    /* SUCCESS */
+    // if objects.length > 0 objects can be looped through
+    recordsArray = objects;
+    var totalUsersHTML = document.getElementById("totalUsersHTML");
+    totalUsersHTML.innerHTML = recordsArray.length;
+  });
+
+  // Getting total records
+  Parse.Cloud.run('retrieveAllObjects', {
+    object_type: "Record", // REQUIRED - string: name of your Parse class
+    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+  }).then(function(objects) {
+    /* SUCCESS */
+    // if objects.length > 0 objects can be looped through
+    recordsArray = objects;
+    var totalRecordsHTML = document.getElementById("totalRecordsHTML");
+    totalRecordsHTML.innerHTML = recordsArray.length;
+  });
+
+
 
   </script>
 
