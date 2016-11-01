@@ -636,6 +636,8 @@
   // Variables
   var userArray = new Array();
   var recordsArray = new Array();
+  var d = new Date(); // -> Today's date
+  d.setDate(d.getDate() - 7); // -> Set it to 7 days ago
 
   // Getting total users
   Parse.Cloud.run('retrieveAllObjects', {
@@ -661,6 +663,32 @@
     recordsArray = objects;
     var totalRecordsHTML = document.getElementById("totalRecordsHTML");
     totalRecordsHTML.innerHTML = recordsArray.length;
+  });
+
+  // Getting past week's new signups
+  Parse.Cloud.run('retrieveAllObjects', {
+    object_type: "User", // REQUIRED - string: name of your Parse class
+    created_at: d, // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+  }).then(function(objects) {
+    /* SUCCESS */
+    // if objects.length > 0 objects can be looped through
+    recordsArray = objects;
+    var newUsersHTML = document.getElementById("newUsersHTML");
+    newUsersHTML.innerHTML = recordsArray.length;
+  });
+
+  // Getting past week's new records
+  Parse.Cloud.run('retrieveAllObjects', {
+    object_type: "Record", // REQUIRED - string: name of your Parse class
+    created_at: d, // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+  }).then(function(objects) {
+    /* SUCCESS */
+    // if objects.length > 0 objects can be looped through
+    recordsArray = objects;
+    var newRecordsHTML = document.getElementById("newRecordsHTML");
+    newRecordsHTML.innerHTML = recordsArray.length;
   });
 
 

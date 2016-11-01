@@ -28,6 +28,9 @@ Parse.Cloud.define("retrieveAllObjects", function(request, status) {
         if (request.params.only_objectId) {
             query.select("objectId");
         }
+        if (request.params.created_at) {
+          query.greaterThan("createdAt", request.params.created_at);
+        }
         query.limit(chunk_size);
         query.ascending("objectId");
         query.find().then(function (res) {
