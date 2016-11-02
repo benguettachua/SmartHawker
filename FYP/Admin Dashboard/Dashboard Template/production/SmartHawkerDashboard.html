@@ -169,13 +169,7 @@
             <div class="col-md-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Transaction Summary <small>Weekly progress</small></h2>
-                  <div class="filter">
-                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                      <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                    </div>
-                  </div>
+                  <h2>Last 30 days <small>Weekly progress</small></h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -636,8 +630,6 @@
   // Variables
   var userArray = new Array();
   var recordsArray = new Array();
-  var d = new Date(); // -> Today's date
-  d.setDate(d.getDate() - 7); // -> Set it to 7 days ago
 
   // Getting total users
   Parse.Cloud.run('retrieveAllObjects', {
@@ -668,7 +660,7 @@
   // Getting past week's new signups
   Parse.Cloud.run('retrieveAllObjects', {
     object_type: "User", // REQUIRED - string: name of your Parse class
-    created_at: d, // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    created_at: moment().subtract(7, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
     // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
   }).then(function(objects) {
     /* SUCCESS */
@@ -681,7 +673,7 @@
   // Getting past week's new records
   Parse.Cloud.run('retrieveAllObjects', {
     object_type: "Record", // REQUIRED - string: name of your Parse class
-    created_at: d, // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    created_at: moment().subtract(7, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
     // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
   }).then(function(objects) {
     /* SUCCESS */
@@ -691,111 +683,135 @@
     newRecordsHTML.innerHTML = recordsArray.length;
   });
 
-
-
   </script>
 
   <!-- Flot -->
   <script>
   $(document).ready(function() {
-    //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-    var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
 
-    //generate random number for charts
-    randNum = function() {
-      return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
-    };
-
+    // Variables
+    var recordDictionary = {};
     var d1 = [];
-    //var d2 = [];
 
-    //here we generate data for chart
-    for (var i = 0; i < 30; i++) {
-      d1.push([new Date(Date.today().add(i).days()).getTime(), randNum() + i + i + 10]);
-      //    d2.push([new Date(Date.today().add(i).days()).getTime(), randNum()]);
+
+    for (var i = -29; i < 1; i++) {
+      var day = new Date(Date.today().add(i).days()).getTime();
+      recordDictionary[day] = 0;
     }
 
-    var chartMinDate = d1[0][0]; //first day
-    var chartMaxDate = d1[20][0]; //last day
+    // for (var i = 0; i < 30; i++) {
+    //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
+    //   recordDictionary[day] = 0;
+    // }
 
-    var tickSize = [1, "day"];
-    var tformat = "%d/%m/%y";
-
-    //graph options
-    var options = {
-      grid: {
-        show: true,
-        aboveData: true,
-        color: "#3f3f3f",
-        labelMargin: 10,
-        axisMargin: 0,
-        borderWidth: 0,
-        borderColor: null,
-        minBorderMargin: 5,
-        clickable: true,
-        hoverable: true,
-        autoHighlight: true,
-        mouseActiveRadius: 100
-      },
-      series: {
-        lines: {
-          show: true,
-          fill: true,
-          lineWidth: 2,
-          steps: false
-        },
-        points: {
-          show: true,
-          radius: 4.5,
-          symbol: "circle",
-          lineWidth: 3.0
+    Parse.Cloud.run('retrieveAllObjects', {
+      object_type: "Record", // REQUIRED - string: name of your Parse class
+      created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+      // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+    }).then(function(objects) {
+      /* SUCCESS */
+      // if objects.length > 0 objects can be looped through
+      if (objects.length > 0) {
+        for (var i = 0; i < objects.length; i++) {
+          var object = objects[i];
+          var dateString = object.get("date");
+          var dateParts = dateString.split("/");
+          var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]).getTime();
+          recordDictionary[dateObject] = recordDictionary[dateObject] + 1;
         }
-      },
-      legend: {
-        position: "ne",
-        margin: [0, -25],
-        noColumns: 0,
-        labelBoxBorderColor: null,
-        labelFormatter: function(label, series) {
-          // just add some space to labes
-          return label + '&nbsp;&nbsp;';
-        },
-        width: 40,
-        height: 1
-      },
-      colors: chartColours,
-      shadowSize: 0,
-      tooltip: true, //activate tooltip
-      tooltipOpts: {
-        content: "%s: %y.0",
-        xDateFormat: "%d/%m",
-        shifts: {
-          x: -30,
-          y: -50
-        },
-        defaultTheme: false
-      },
-      yaxis: {
-        min: 0
-      },
-      xaxis: {
-        mode: "time",
-        minTickSize: tickSize,
-        timeformat: tformat,
-        min: chartMinDate,
-        max: chartMaxDate
+
+        for (var key in recordDictionary) {
+          if (recordDictionary[key] >= 0) {
+            d1.push([key, recordDictionary[key]]);
+          }
+
+        }
+        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+
+        var chartMinDate = d1[0][0]; //first day
+        var chartMaxDate = d1[d1.length-1][0]; //last day
+
+        var tickSize = [1, "day"];
+        var tformat = "%d/%m/%y";
+
+        //graph options
+        var options = {
+          grid: {
+            show: true,
+            aboveData: true,
+            color: "#3f3f3f",
+            labelMargin: 10,
+            axisMargin: 0,
+            borderWidth: 0,
+            borderColor: null,
+            minBorderMargin: 5,
+            clickable: true,
+            hoverable: true,
+            autoHighlight: true,
+            mouseActiveRadius: 100
+          },
+          series: {
+            lines: {
+              show: true,
+              fill: true,
+              lineWidth: 2,
+              steps: false
+            },
+            points: {
+              show: true,
+              radius: 4.5,
+              symbol: "circle",
+              lineWidth: 3.0
+            }
+          },
+          legend: {
+            position: "ne",
+            margin: [0, -25],
+            noColumns: 0,
+            labelBoxBorderColor: null,
+            labelFormatter: function(label, series) {
+              // just add some space to labes
+              return label + '&nbsp;&nbsp;';
+            },
+            width: 40,
+            height: 1
+          },
+          colors: chartColours,
+          shadowSize: 0,
+          tooltip: true, //activate tooltip
+          tooltipOpts: {
+            content: "%s: %y.0",
+            xDateFormat: "%d/%m",
+            shifts: {
+              x: -30,
+              y: -50
+            },
+            defaultTheme: false
+          },
+          yaxis: {
+            min: 0
+          },
+          xaxis: {
+            mode: "time",
+            minTickSize: tickSize,
+            timeformat: tformat,
+            min: chartMinDate,
+            max: chartMaxDate
+          }
+        };
+        var plot = $.plot($("#placeholder33x"), [{
+          label: "Records made",
+          data: d1,
+          lines: {
+            fillColor: "rgba(150, 202, 89, 0.12)"
+          }, //#96CA59 rgba(150, 202, 89, 0.42)
+          points: {
+            fillColor: "#fff"
+          }
+        }], options);
       }
-    };
-    var plot = $.plot($("#placeholder33x"), [{
-      label: "Email Sent",
-      data: d1,
-      lines: {
-        fillColor: "rgba(150, 202, 89, 0.12)"
-      }, //#96CA59 rgba(150, 202, 89, 0.42)
-      points: {
-        fillColor: "#fff"
-      }
-    }], options);
+    });
   });
   </script>
   <!-- /Flot -->
