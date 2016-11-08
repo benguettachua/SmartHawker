@@ -5,6 +5,7 @@
   <!-- Include parse at the Header to link to Parse -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+  <!-- To change this after migration -->
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
@@ -22,6 +23,14 @@
   <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
   <!-- bootstrap-daterangepicker -->
   <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  <!-- Datatables -->
+  <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+  <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+  <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+  <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom Theme Style -->
   <link href="../build/css/custom.min.css" rel="stylesheet">
@@ -101,906 +110,858 @@
                     <div class="demo-container" style="height:280px">
                       <div id="placeholder33x" class="demo-placeholder"></div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-122">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>New registraton for the past 30 days</h2>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="demo-container" style="height:280px">
-                      <div id="placeholderUser" class="demo-placeholder"></div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Weekly Summary <small>Activity shares</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-
-                  <div class="row" style="border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;">
-                    <div class="col-md-7" style="overflow:hidden;">
-                      <span class="sparkline_one" style="height: 160px; padding: 10px 25px;">
-                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                      </span>
-                      <h4 style="margin:18px">Weekly sales progress</h4>
-                    </div>
-
-                    <div class="col-md-5">
-                      <div class="row" style="text-align: center;">
-                        <div class="col-md-4">
-                          <canvas id="canvas1i" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
-                          <h4 style="margin:0">Bounce Rates</h4>
-                        </div>
-                        <div class="col-md-4">
-                          <canvas id="canvas1i2" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
-                          <h4 style="margin:0">New Traffic</h4>
-                        </div>
-                        <div class="col-md-4">
-                          <canvas id="canvas1i3" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
-                          <h4 style="margin:0">Device Share</h4>
-                        </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-122">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>New registraton for the past 30 days</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="demo-container" style="height:280px">
+                        <div id="placeholderUser" class="demo-placeholder"></div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="clearfix"></div>
+
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Inactive Users</h2>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <p class="text-muted font-13 m-b-30">
+                        DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
+                      </p>
+                      <table id="datatable" class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                          </tr>
+                        </thead>
+
+
+                        <tbody id="inactiveUserHTML">
+                          <!-- Inactive users will be input by JS -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Reset Password</h2>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                      <article class="media event">
+                        <a class="pull-left date">
+                          <p class="month">April</p>
+                          <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                          <a class="title" href="#">Item Two Title</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                      </article>
+                      <article class="media event">
+                        <a class="pull-left date">
+                          <p class="month">April</p>
+                          <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                          <a class="title" href="#">Item Two Title</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                      </article>
+                      <article class="media event">
+                        <a class="pull-left date">
+                          <p class="month">April</p>
+                          <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                          <a class="title" href="#">Item Two Title</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                      </article>
+                      <article class="media event">
+                        <a class="pull-left date">
+                          <p class="month">April</p>
+                          <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                          <a class="title" href="#">Item Three Title</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                      </article>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Top Profiles <small>Sessions</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item One Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Three Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Top Profiles <small>Sessions</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item One Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Three Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Top Profiles <small>Sessions</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item One Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Two Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                  <article class="media event">
-                    <a class="pull-left date">
-                      <p class="month">April</p>
-                      <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                      <a class="title" href="#">Item Three Title</a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- /page content -->
         </div>
       </div>
-      <!-- /page content -->
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-    </div>
-  </div>
+      <!-- jQuery -->
+      <script src="../vendors/jquery/dist/jquery.min.js"></script>
+      <!-- Bootstrap -->
+      <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- FastClick -->
+      <script src="../vendors/fastclick/lib/fastclick.js"></script>
+      <!-- NProgress -->
+      <script src="../vendors/nprogress/nprogress.js"></script>
+      <!-- Chart.js -->
+      <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+      <!-- jQuery Sparklines -->
+      <script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+      <!-- Flot -->
+      <script src="../vendors/Flot/jquery.flot.js"></script>
+      <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+      <script src="../vendors/Flot/jquery.flot.time.js"></script>
+      <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+      <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+      <!-- Flot plugins -->
+      <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+      <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+      <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+      <!-- DateJS -->
+      <script src="../vendors/DateJS/build/date.js"></script>
+      <!-- bootstrap-daterangepicker -->
+      <script src="../vendors/moment/min/moment.min.js"></script>
+      <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+      <!-- Datatables -->
+      <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+      <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+      <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+      <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+      <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+      <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+      <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+      <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+      <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+      <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+      <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+      <script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+      <script src="../vendors/jszip/dist/jszip.min.js"></script>
+      <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+      <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+      <!-- iCheck -->
+      <script src="../vendors/iCheck/icheck.min.js"></script>
 
-  <!-- jQuery -->
-  <script src="../vendors/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- FastClick -->
-  <script src="../vendors/fastclick/lib/fastclick.js"></script>
-  <!-- NProgress -->
-  <script src="../vendors/nprogress/nprogress.js"></script>
-  <!-- Chart.js -->
-  <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-  <!-- jQuery Sparklines -->
-  <script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-  <!-- Flot -->
-  <script src="../vendors/Flot/jquery.flot.js"></script>
-  <script src="../vendors/Flot/jquery.flot.pie.js"></script>
-  <script src="../vendors/Flot/jquery.flot.time.js"></script>
-  <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-  <script src="../vendors/Flot/jquery.flot.resize.js"></script>
-  <!-- Flot plugins -->
-  <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-  <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-  <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
-  <!-- DateJS -->
-  <script src="../vendors/DateJS/build/date.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="../vendors/moment/min/moment.min.js"></script>
-  <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+      <!-- Custom Theme Scripts -->
+      <script src="../build/js/custom.min.js"></script>
 
-  <!-- Custom Theme Scripts -->
-  <script src="../build/js/custom.min.js"></script>
+      <!-- Connecting to Parse -->
+      <script type="text/javascript">
 
-  <!-- Connecting to Parse -->
-  <script type="text/javascript">
+      Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht', 'btVV82dq324KubAkQ9qtPlIVAex6Me1CEl47LqfI');
 
-  Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht', 'btVV82dq324KubAkQ9qtPlIVAex6Me1CEl47LqfI');
+      // Variables
+      var userArray = new Array();
+      var recordsArray = new Array();
 
-  // Variables
-  var userArray = new Array();
-  var recordsArray = new Array();
+      // Getting total users
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "User", // REQUIRED - string: name of your Parse class
+        // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        recordsArray = objects;
+        var totalUsersHTML = document.getElementById("totalUsersHTML");
+        totalUsersHTML.innerHTML = recordsArray.length;
+      });
 
-  // Getting total users
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "User", // REQUIRED - string: name of your Parse class
-    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var totalUsersHTML = document.getElementById("totalUsersHTML");
-    totalUsersHTML.innerHTML = recordsArray.length;
-  });
+      // Getting total records
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "Record", // REQUIRED - string: name of your Parse class
+        // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        recordsArray = objects;
+        var totalRecordsHTML = document.getElementById("totalRecordsHTML");
+        totalRecordsHTML.innerHTML = recordsArray.length;
+      });
 
-  // Getting total records
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "Record", // REQUIRED - string: name of your Parse class
-    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var totalRecordsHTML = document.getElementById("totalRecordsHTML");
-    totalRecordsHTML.innerHTML = recordsArray.length;
-  });
+      // Getting past 30 days' new signups
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "User", // REQUIRED - string: name of your Parse class
+        created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        recordsArray = objects;
+        var newUsersHTML = document.getElementById("newUsersHTML");
+        newUsersHTML.innerHTML = recordsArray.length;
+      });
 
-  // Getting past 30 days' new signups
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "User", // REQUIRED - string: name of your Parse class
-    created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var newUsersHTML = document.getElementById("newUsersHTML");
-    newUsersHTML.innerHTML = recordsArray.length;
-  });
+      // Getting past 30 days' new records
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "Record", // REQUIRED - string: name of your Parse class
+        created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        recordsArray = objects;
+        var newRecordsHTML = document.getElementById("newRecordsHTML");
+        newRecordsHTML.innerHTML = recordsArray.length;
+      });
 
-  // Getting past 30 days' new records
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "Record", // REQUIRED - string: name of your Parse class
-    created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var newRecordsHTML = document.getElementById("newRecordsHTML");
-    newRecordsHTML.innerHTML = recordsArray.length;
-  });
+      </script>
 
-  </script>
+      <!-- Flot for records -->
+      <script>
+      $(document).ready(function() {
 
-  <!-- Flot for records -->
-  <script>
-  $(document).ready(function() {
-
-    // Variables
-    var recordDictionary = {};
-    var d1 = [];
+        // Variables
+        var recordDictionary = {};
+        var d1 = [];
 
 
-    for (var i = -29; i < 1; i++) {
-      var day = new Date(Date.today().add(i).days()).getTime();
-      recordDictionary[day] = 0;
-    }
-
-    // for (var i = 0; i < 30; i++) {
-    //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
-    //   recordDictionary[day] = 0;
-    // }
-
-    Parse.Cloud.run('retrieveAllObjects', {
-      object_type: "Record", // REQUIRED - string: name of your Parse class
-      created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-      // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-    }).then(function(objects) {
-      /* SUCCESS */
-      // if objects.length > 0 objects can be looped through
-      if (objects.length > 0) {
-        for (var i = 0; i < objects.length; i++) {
-          var object = objects[i];
-          var dateString = object.get("date");
-          var dateParts = dateString.split("/");
-          var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]).getTime();
-          recordDictionary[dateObject] = recordDictionary[dateObject] + 1;
+        for (var i = -29; i < 1; i++) {
+          var day = new Date(Date.today().add(i).days()).getTime();
+          recordDictionary[day] = 0;
         }
 
-        for (var key in recordDictionary) {
-          if (recordDictionary[key] >= 0) {
-            d1.push([key, recordDictionary[key]]);
-          }
+        // for (var i = 0; i < 30; i++) {
+        //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
+        //   recordDictionary[day] = 0;
+        // }
 
-        }
-        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
-
-        var chartMinDate = d1[0][0]; //first day
-        var chartMaxDate = d1[d1.length-1][0]; //last day
-
-        var tickSize = [1, "day"];
-        var tformat = "%d/%m/%y";
-
-        //graph options
-        var options = {
-          grid: {
-            show: true,
-            aboveData: true,
-            color: "#3f3f3f",
-            labelMargin: 10,
-            axisMargin: 0,
-            borderWidth: 0,
-            borderColor: null,
-            minBorderMargin: 5,
-            clickable: true,
-            hoverable: true,
-            autoHighlight: true,
-            mouseActiveRadius: 100
-          },
-          series: {
-            lines: {
-              show: true,
-              fill: true,
-              lineWidth: 2,
-              steps: false
-            },
-            points: {
-              show: true,
-              radius: 4.5,
-              symbol: "circle",
-              lineWidth: 3.0
+        Parse.Cloud.run('retrieveAllObjects', {
+          object_type: "Record", // REQUIRED - string: name of your Parse class
+          created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+          // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+        }).then(function(objects) {
+          /* SUCCESS */
+          // if objects.length > 0 objects can be looped through
+          if (objects.length > 0) {
+            for (var i = 0; i < objects.length; i++) {
+              var object = objects[i];
+              var dateString = object.get("date");
+              var dateParts = dateString.split("/");
+              var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]).getTime();
+              recordDictionary[dateObject] = recordDictionary[dateObject] + 1;
             }
+
+            for (var key in recordDictionary) {
+              if (recordDictionary[key] >= 0) {
+                d1.push([key, recordDictionary[key]]);
+              }
+
+            }
+            //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+            var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+
+            var chartMinDate = d1[0][0]; //first day
+            var chartMaxDate = d1[d1.length-1][0]; //last day
+
+            var tickSize = [1, "day"];
+            var tformat = "%d/%m/%y";
+
+            //graph options
+            var options = {
+              grid: {
+                show: true,
+                aboveData: true,
+                color: "#3f3f3f",
+                labelMargin: 10,
+                axisMargin: 0,
+                borderWidth: 0,
+                borderColor: null,
+                minBorderMargin: 5,
+                clickable: true,
+                hoverable: true,
+                autoHighlight: true,
+                mouseActiveRadius: 100
+              },
+              series: {
+                lines: {
+                  show: true,
+                  fill: true,
+                  lineWidth: 2,
+                  steps: false
+                },
+                points: {
+                  show: true,
+                  radius: 4.5,
+                  symbol: "circle",
+                  lineWidth: 3.0
+                }
+              },
+              legend: {
+                position: "ne",
+                margin: [0, -25],
+                noColumns: 0,
+                labelBoxBorderColor: null,
+                labelFormatter: function(label, series) {
+                  // just add some space to labes
+                  return label + '&nbsp;&nbsp;';
+                },
+                width: 40,
+                height: 1
+              },
+              colors: chartColours,
+              shadowSize: 0,
+              tooltip: true, //activate tooltip
+              tooltipOpts: {
+                content: "%s: %y.0",
+                xDateFormat: "%d/%m",
+                shifts: {
+                  x: -30,
+                  y: -50
+                },
+                defaultTheme: false
+              },
+              yaxis: {
+                min: 0
+              },
+              xaxis: {
+                mode: "time",
+                minTickSize: tickSize,
+                timeformat: tformat,
+                min: chartMinDate,
+                max: chartMaxDate
+              }
+            };
+            var plot = $.plot($("#placeholder33x"), [{
+              data: d1,
+              lines: {
+                fillColor: "rgba(150, 202, 89, 0.12)"
+              }, //#96CA59 rgba(150, 202, 89, 0.42)
+              points: {
+                fillColor: "#fff"
+              }
+            }], options);
+          }
+        });
+      });
+      </script>
+      <!-- /Flot -->
+
+      <!-- Flot for user registration -->
+      <script>
+      $(document).ready(function() {
+
+        // Variables
+        var recordDictionary = {};
+        var d1 = [];
+
+
+        for (var i = -29; i < 1; i++) {
+          var day = new Date(Date.today().add(i).days()).getTime();
+          recordDictionary[day] = 0;
+        }
+
+        // for (var i = 0; i < 30; i++) {
+        //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
+        //   recordDictionary[day] = 0;
+        // }
+
+        Parse.Cloud.run('retrieveAllObjects', {
+          object_type: "User", // REQUIRED - string: name of your Parse class
+          created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+          // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+        }).then(function(objects) {
+          /* SUCCESS */
+          // if objects.length > 0 objects can be looped through
+          if (objects.length > 0) {
+            for (var i = 0; i < objects.length; i++) {
+              var object = objects[i];
+              var dateObject = object.get("createdAt");
+              dateObject.setHours(0,0,0,0);
+              var dateComparable = dateObject.getTime();
+              recordDictionary[dateComparable] = recordDictionary[dateComparable] + 1;
+            }
+
+            for (var key in recordDictionary) {
+              if (recordDictionary[key] >= 0) {
+                d1.push([key, recordDictionary[key]]);
+              }
+
+            }
+            //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+            var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+
+            var chartMinDate = d1[0][0]; //first day
+            var chartMaxDate = d1[d1.length-1][0]; //last day
+
+            var tickSize = [1, "day"];
+            var tformat = "%d/%m/%y";
+
+            //graph options
+            var options = {
+              grid: {
+                show: true,
+                aboveData: true,
+                color: "#3f3f3f",
+                labelMargin: 10,
+                axisMargin: 0,
+                borderWidth: 0,
+                borderColor: null,
+                minBorderMargin: 5,
+                clickable: true,
+                hoverable: true,
+                autoHighlight: true,
+                mouseActiveRadius: 100
+              },
+              series: {
+                lines: {
+                  show: true,
+                  fill: true,
+                  lineWidth: 2,
+                  steps: false
+                },
+                points: {
+                  show: true,
+                  radius: 4.5,
+                  symbol: "circle",
+                  lineWidth: 3.0
+                }
+              },
+              legend: {
+                position: "ne",
+                margin: [0, -25],
+                noColumns: 0,
+                labelBoxBorderColor: null,
+                labelFormatter: function(label, series) {
+                  // just add some space to labes
+                  return label + '&nbsp;&nbsp;';
+                },
+                width: 40,
+                height: 1
+              },
+              colors: chartColours,
+              shadowSize: 0,
+              tooltip: true, //activate tooltip
+              tooltipOpts: {
+                content: "%s: %y.0",
+                xDateFormat: "%d/%m",
+                shifts: {
+                  x: -30,
+                  y: -50
+                },
+                defaultTheme: false
+              },
+              yaxis: {
+                min: 0
+              },
+              xaxis: {
+                mode: "time",
+                minTickSize: tickSize,
+                timeformat: tformat,
+                min: chartMinDate,
+                max: chartMaxDate
+              }
+            };
+            var plot = $.plot($("#placeholderUser"), [{
+              data: d1,
+              lines: {
+                fillColor: "rgba(150, 202, 89, 0.12)"
+              }, //#96CA59 rgba(150, 202, 89, 0.42)
+              points: {
+                fillColor: "#fff"
+              }
+            }], options);
+          }
+        });
+      });
+      </script>
+      <!-- /Flot -->
+
+      <script>
+        // Steps to get inactive users
+        // Step 1: Get active users.
+        // step 2: Get all users.
+        // Step 3: Remove active users from all users.
+
+        // Step 1: Get active users.
+
+        // Step 1a: Get all records within the past 7 days.
+        var activeRecords = new Array();
+        Parse.Cloud.run('retrieveAllObjects', {
+          object_type: "Record", // REQUIRED - string: name of your Parse class
+          created_at: moment().subtract(7, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+          // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+        }).then(function(objects) {
+          /* SUCCESS */
+          // if objects.length > 0 objects can be looped through
+          if (objects.length > 0) {
+            activeRecords = objects;
+            // Step 1b: Loop through active records to find unique active users.
+            var unique = {};
+            var distinct = [];
+            for( var i in activeRecords ) {
+              if( typeof(unique[activeRecords[i].get("subuser")]) == "undefined"){
+                distinct.push(activeRecords[i].get("subuser"));
+              }
+              unique[activeRecords[i].get("subuser")] = 0;
+            }
+            // Step 2: Retrieve all users.
+            Parse.Cloud.run('retrieveAllObjects', {
+              object_type: "User", // REQUIRED - string: name of your Parse class
+              // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+              // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+            }).then(function(objects) {
+              /* SUCCESS */
+              // if objects.length > 0 objects can be looped through
+              var inactiveUserHTML = document.getElementById("inactiveUserHTML");
+              var inactiveHTMLText = "";
+              for (var i = 0; i < objects.length; i++) {
+                var user = objects[i];
+
+                if ((distinct.indexOf(user.get("username")) != -1)){
+                  objects.splice(i, 1);
+                }
+              }
+              for (var i = 0; i < objects.length; i++) {
+                var user = objects[i];
+
+                if ((distinct.indexOf(user.get("username")) != -1)){
+                  objects.splice(i, 1);
+                }
+                inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> </tr>';
+              }
+              inactiveUserHTML.innerHTML = inactiveHTMLText;
+
+            });
+          }
+        });
+
+
+
+      </script>
+
+      <!-- jQuery Sparklines -->
+      <script>
+      $(document).ready(function() {
+        $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+          type: 'bar',
+          height: '125',
+          barWidth: 13,
+          colorMap: {
+            '7': '#a1a1a1'
           },
-          legend: {
-            position: "ne",
-            margin: [0, -25],
-            noColumns: 0,
-            labelBoxBorderColor: null,
-            labelFormatter: function(label, series) {
-              // just add some space to labes
-              return label + '&nbsp;&nbsp;';
-            },
-            width: 40,
-            height: 1
+          barSpacing: 2,
+          barColor: '#26B99A'
+        });
+
+        $(".sparkline11").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3], {
+          type: 'bar',
+          height: '40',
+          barWidth: 8,
+          colorMap: {
+            '7': '#a1a1a1'
           },
-          colors: chartColours,
-          shadowSize: 0,
-          tooltip: true, //activate tooltip
-          tooltipOpts: {
-            content: "%s: %y.0",
-            xDateFormat: "%d/%m",
-            shifts: {
-              x: -30,
-              y: -50
-            },
-            defaultTheme: false
+          barSpacing: 2,
+          barColor: '#26B99A'
+        });
+
+        $(".sparkline22").sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6], {
+          type: 'line',
+          height: '40',
+          width: '200',
+          lineColor: '#26B99A',
+          fillColor: '#ffffff',
+          lineWidth: 3,
+          spotColor: '#34495E',
+          minSpotColor: '#34495E'
+        });
+      });
+      </script>
+      <!-- /jQuery Sparklines -->
+
+      <!-- Doughnut Chart -->
+      <script>
+      $(document).ready(function() {
+        var canvasDoughnut,
+        options = {
+          legend: false,
+          responsive: false
+        };
+
+        new Chart(document.getElementById("canvas1i"), {
+          type: 'doughnut',
+          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+          data: {
+            labels: [
+              "Symbian",
+              "Blackberry",
+              "Other",
+              "Android",
+              "IOS"
+            ],
+            datasets: [{
+              data: [15, 20, 30, 10, 30],
+              backgroundColor: [
+                "#BDC3C7",
+                "#9B59B6",
+                "#E74C3C",
+                "#26B99A",
+                "#3498DB"
+              ],
+              hoverBackgroundColor: [
+                "#CFD4D8",
+                "#B370CF",
+                "#E95E4F",
+                "#36CAAB",
+                "#49A9EA"
+              ]
+
+            }]
           },
-          yaxis: {
-            min: 0
+          options: options
+        });
+
+        new Chart(document.getElementById("canvas1i2"), {
+          type: 'doughnut',
+          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+          data: {
+            labels: [
+              "Symbian",
+              "Blackberry",
+              "Other",
+              "Android",
+              "IOS"
+            ],
+            datasets: [{
+              data: [15, 20, 30, 10, 30],
+              backgroundColor: [
+                "#BDC3C7",
+                "#9B59B6",
+                "#E74C3C",
+                "#26B99A",
+                "#3498DB"
+              ],
+              hoverBackgroundColor: [
+                "#CFD4D8",
+                "#B370CF",
+                "#E95E4F",
+                "#36CAAB",
+                "#49A9EA"
+              ]
+
+            }]
           },
-          xaxis: {
-            mode: "time",
-            minTickSize: tickSize,
-            timeformat: tformat,
-            min: chartMinDate,
-            max: chartMaxDate
+          options: options
+        });
+
+        new Chart(document.getElementById("canvas1i3"), {
+          type: 'doughnut',
+          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+          data: {
+            labels: [
+              "Symbian",
+              "Blackberry",
+              "Other",
+              "Android",
+              "IOS"
+            ],
+            datasets: [{
+              data: [15, 20, 30, 10, 30],
+              backgroundColor: [
+                "#BDC3C7",
+                "#9B59B6",
+                "#E74C3C",
+                "#26B99A",
+                "#3498DB"
+              ],
+              hoverBackgroundColor: [
+                "#CFD4D8",
+                "#B370CF",
+                "#E95E4F",
+                "#36CAAB",
+                "#49A9EA"
+              ]
+
+            }]
+          },
+          options: options
+        });
+      });
+      </script>
+      <!-- /Doughnut Chart -->
+
+      <!-- bootstrap-daterangepicker -->
+      <script type="text/javascript">
+      $(document).ready(function() {
+
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
           }
         };
-        var plot = $.plot($("#placeholder33x"), [{
-          data: d1,
-          lines: {
-            fillColor: "rgba(150, 202, 89, 0.12)"
-          }, //#96CA59 rgba(150, 202, 89, 0.42)
-          points: {
-            fillColor: "#fff"
-          }
-        }], options);
-      }
-    });
-  });
-  </script>
-  <!-- /Flot -->
-
-  <!-- Flot for user registration -->
-  <script>
-  $(document).ready(function() {
-
-    // Variables
-    var recordDictionary = {};
-    var d1 = [];
-
-
-    for (var i = -29; i < 1; i++) {
-      var day = new Date(Date.today().add(i).days()).getTime();
-      recordDictionary[day] = 0;
-    }
-
-    // for (var i = 0; i < 30; i++) {
-    //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
-    //   recordDictionary[day] = 0;
-    // }
-
-    Parse.Cloud.run('retrieveAllObjects', {
-      object_type: "User", // REQUIRED - string: name of your Parse class
-      created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-      // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-    }).then(function(objects) {
-      /* SUCCESS */
-      // if objects.length > 0 objects can be looped through
-      if (objects.length > 0) {
-        for (var i = 0; i < objects.length; i++) {
-          var object = objects[i];
-          var dateObject = object.get("createdAt");
-          dateObject.setHours(0,0,0,0);
-          var dateComparable = dateObject.getTime();
-          recordDictionary[dateComparable] = recordDictionary[dateComparable] + 1;
-        }
-
-        for (var key in recordDictionary) {
-          if (recordDictionary[key] >= 0) {
-            d1.push([key, recordDictionary[key]]);
-          }
-
-        }
-        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
-
-        var chartMinDate = d1[0][0]; //first day
-        var chartMaxDate = d1[d1.length-1][0]; //last day
-
-        var tickSize = [1, "day"];
-        var tformat = "%d/%m/%y";
-
-        //graph options
-        var options = {
-          grid: {
-            show: true,
-            aboveData: true,
-            color: "#3f3f3f",
-            labelMargin: 10,
-            axisMargin: 0,
-            borderWidth: 0,
-            borderColor: null,
-            minBorderMargin: 5,
-            clickable: true,
-            hoverable: true,
-            autoHighlight: true,
-            mouseActiveRadius: 100
-          },
-          series: {
-            lines: {
-              show: true,
-              fill: true,
-              lineWidth: 2,
-              steps: false
-            },
-            points: {
-              show: true,
-              radius: 4.5,
-              symbol: "circle",
-              lineWidth: 3.0
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+      </script>
+      <!-- /bootstrap-daterangepicker -->
+      <!-- Datatables -->
+      <script>
+        $(document).ready(function() {
+          var handleDataTableButtons = function() {
+            if ($("#datatable-buttons").length) {
+              $("#datatable-buttons").DataTable({
+                dom: "Bfrtip",
+                buttons: [
+                  {
+                    extend: "copy",
+                    className: "btn-sm"
+                  },
+                  {
+                    extend: "csv",
+                    className: "btn-sm"
+                  },
+                  {
+                    extend: "excel",
+                    className: "btn-sm"
+                  },
+                  {
+                    extend: "pdfHtml5",
+                    className: "btn-sm"
+                  },
+                  {
+                    extend: "print",
+                    className: "btn-sm"
+                  },
+                ],
+                responsive: true
+              });
             }
-          },
-          legend: {
-            position: "ne",
-            margin: [0, -25],
-            noColumns: 0,
-            labelBoxBorderColor: null,
-            labelFormatter: function(label, series) {
-              // just add some space to labes
-              return label + '&nbsp;&nbsp;';
-            },
-            width: 40,
-            height: 1
-          },
-          colors: chartColours,
-          shadowSize: 0,
-          tooltip: true, //activate tooltip
-          tooltipOpts: {
-            content: "%s: %y.0",
-            xDateFormat: "%d/%m",
-            shifts: {
-              x: -30,
-              y: -50
-            },
-            defaultTheme: false
-          },
-          yaxis: {
-            min: 0
-          },
-          xaxis: {
-            mode: "time",
-            minTickSize: tickSize,
-            timeformat: tformat,
-            min: chartMinDate,
-            max: chartMaxDate
-          }
-        };
-        var plot = $.plot($("#placeholderUser"), [{
-          data: d1,
-          lines: {
-            fillColor: "rgba(150, 202, 89, 0.12)"
-          }, //#96CA59 rgba(150, 202, 89, 0.42)
-          points: {
-            fillColor: "#fff"
-          }
-        }], options);
-      }
-    });
-  });
-  </script>
-  <!-- /Flot -->
+          };
 
-  <!-- jQuery Sparklines -->
-  <script>
-  $(document).ready(function() {
-    $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
-      type: 'bar',
-      height: '125',
-      barWidth: 13,
-      colorMap: {
-        '7': '#a1a1a1'
-      },
-      barSpacing: 2,
-      barColor: '#26B99A'
-    });
+          TableManageButtons = function() {
+            "use strict";
+            return {
+              init: function() {
+                handleDataTableButtons();
+              }
+            };
+          }();
 
-    $(".sparkline11").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3], {
-      type: 'bar',
-      height: '40',
-      barWidth: 8,
-      colorMap: {
-        '7': '#a1a1a1'
-      },
-      barSpacing: 2,
-      barColor: '#26B99A'
-    });
+          $('#datatable').dataTable();
 
-    $(".sparkline22").sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6], {
-      type: 'line',
-      height: '40',
-      width: '200',
-      lineColor: '#26B99A',
-      fillColor: '#ffffff',
-      lineWidth: 3,
-      spotColor: '#34495E',
-      minSpotColor: '#34495E'
-    });
-  });
-  </script>
-  <!-- /jQuery Sparklines -->
+          $('#datatable-keytable').DataTable({
+            keys: true
+          });
 
-  <!-- Doughnut Chart -->
-  <script>
-  $(document).ready(function() {
-    var canvasDoughnut,
-    options = {
-      legend: false,
-      responsive: false
-    };
+          $('#datatable-responsive').DataTable();
 
-    new Chart(document.getElementById("canvas1i"), {
-      type: 'doughnut',
-      tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-      data: {
-        labels: [
-          "Symbian",
-          "Blackberry",
-          "Other",
-          "Android",
-          "IOS"
-        ],
-        datasets: [{
-          data: [15, 20, 30, 10, 30],
-          backgroundColor: [
-            "#BDC3C7",
-            "#9B59B6",
-            "#E74C3C",
-            "#26B99A",
-            "#3498DB"
-          ],
-          hoverBackgroundColor: [
-            "#CFD4D8",
-            "#B370CF",
-            "#E95E4F",
-            "#36CAAB",
-            "#49A9EA"
-          ]
+          $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+          });
 
-        }]
-      },
-      options: options
-    });
+          $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+          });
 
-    new Chart(document.getElementById("canvas1i2"), {
-      type: 'doughnut',
-      tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-      data: {
-        labels: [
-          "Symbian",
-          "Blackberry",
-          "Other",
-          "Android",
-          "IOS"
-        ],
-        datasets: [{
-          data: [15, 20, 30, 10, 30],
-          backgroundColor: [
-            "#BDC3C7",
-            "#9B59B6",
-            "#E74C3C",
-            "#26B99A",
-            "#3498DB"
-          ],
-          hoverBackgroundColor: [
-            "#CFD4D8",
-            "#B370CF",
-            "#E95E4F",
-            "#36CAAB",
-            "#49A9EA"
-          ]
+          var $datatable = $('#datatable-checkbox');
 
-        }]
-      },
-      options: options
-    });
+          $datatable.dataTable({
+            'order': [[ 1, 'asc' ]],
+            'columnDefs': [
+              { orderable: false, targets: [0] }
+            ]
+          });
+          $datatable.on('draw.dt', function() {
+            $('input').iCheck({
+              checkboxClass: 'icheckbox_flat-green'
+            });
+          });
 
-    new Chart(document.getElementById("canvas1i3"), {
-      type: 'doughnut',
-      tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-      data: {
-        labels: [
-          "Symbian",
-          "Blackberry",
-          "Other",
-          "Android",
-          "IOS"
-        ],
-        datasets: [{
-          data: [15, 20, 30, 10, 30],
-          backgroundColor: [
-            "#BDC3C7",
-            "#9B59B6",
-            "#E74C3C",
-            "#26B99A",
-            "#3498DB"
-          ],
-          hoverBackgroundColor: [
-            "#CFD4D8",
-            "#B370CF",
-            "#E95E4F",
-            "#36CAAB",
-            "#49A9EA"
-          ]
+          TableManageButtons.init();
+        });
+      </script>
+      <!-- /Datatables -->
 
-        }]
-      },
-      options: options
-    });
-  });
-  </script>
-  <!-- /Doughnut Chart -->
-
-  <!-- bootstrap-daterangepicker -->
-  <script type="text/javascript">
-  $(document).ready(function() {
-
-    var cb = function(start, end, label) {
-      console.log(start.toISOString(), end.toISOString(), label);
-      $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-    };
-
-    var optionSet1 = {
-      startDate: moment().subtract(29, 'days'),
-      endDate: moment(),
-      minDate: '01/01/2012',
-      maxDate: '12/31/2015',
-      dateLimit: {
-        days: 60
-      },
-      showDropdowns: true,
-      showWeekNumbers: true,
-      timePicker: false,
-      timePickerIncrement: 1,
-      timePicker12Hour: true,
-      ranges: {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      },
-      opens: 'left',
-      buttonClasses: ['btn btn-default'],
-      applyClass: 'btn-small btn-primary',
-      cancelClass: 'btn-small',
-      format: 'MM/DD/YYYY',
-      separator: ' to ',
-      locale: {
-        applyLabel: 'Submit',
-        cancelLabel: 'Clear',
-        fromLabel: 'From',
-        toLabel: 'To',
-        customRangeLabel: 'Custom',
-        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        firstDay: 1
-      }
-    };
-    $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-    $('#reportrange').daterangepicker(optionSet1, cb);
-    $('#reportrange').on('show.daterangepicker', function() {
-      console.log("show event fired");
-    });
-    $('#reportrange').on('hide.daterangepicker', function() {
-      console.log("hide event fired");
-    });
-    $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-      console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-    });
-    $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-      console.log("cancel event fired");
-    });
-    $('#options1').click(function() {
-      $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-    });
-    $('#options2').click(function() {
-      $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-    });
-    $('#destroy').click(function() {
-      $('#reportrange').data('daterangepicker').remove();
-    });
-  });
-  </script>
-  <!-- /bootstrap-daterangepicker -->
-</body>
-</html>
+    </body>
+    </html>
