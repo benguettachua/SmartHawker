@@ -153,6 +153,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone Number</th>
+                            <th>Last Active</th>
                           </tr>
                         </thead>
 
@@ -624,8 +625,7 @@
             }).then(function(objects) {
               /* SUCCESS */
               // if objects.length > 0 objects can be looped through
-              var inactiveUserHTML = document.getElementById("inactiveUserHTML");
-              var inactiveHTMLText = "";
+
               for (var i = 0; i < objects.length; i++) {
                 var user = objects[i];
 
@@ -633,16 +633,48 @@
                   objects.splice(i, 1);
                 }
               }
-              for (var i = 0; i < objects.length; i++) {
-                var user = objects[i];
 
-                if ((distinct.indexOf(user.get("username")) != -1)){
-                  objects.splice(i, 1);
+              // Save all inactive users in an array.
+              var inactiveUsers = objects;
+              var lastUpdated = {};
+
+              // Step 3: Retrieve all records, this sorted by Updated_at to get the last active date.
+              Parse.Cloud.run('retrieveAllObjectsSortedByUpdatedAt', {
+                object_type: "Record",
+              }).then(function(objects) {
+                for (var i = 0; i < objects.length; i++) {
+                  var currentRecord = objects[i];
+                  var recordUser = currentRecord.get("user");
+
+                  // Inactive User
+                  if(inactiveUsers.indexOf(recordUser) == -1) {
+
+                    // Last updated not saved yet
+                    if( typeof(lastUpdated[currentRecord.get("subuser")]) == "undefined") {
+                      lastUpdated[currentRecord.get("subuser")] = currentRecord.get("updatedAt");
+                    }
+                  }
                 }
-                inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> </tr>';
-              }
-              inactiveUserHTML.innerHTML = inactiveHTMLText;
-              $('#datatable').dataTable();
+
+                var inactiveUserHTML = document.getElementById("inactiveUserHTML");
+                var inactiveHTMLText = "";
+                for (var i = 0; i < inactiveUsers.length; i++) {
+                  var user = inactiveUsers[i];
+
+                  if (typeof(lastUpdated[user.get("username")]) == "undefined") {
+                    lastUpdated[user.get("username")] = "Never Active";
+                  } else {
+                    var lastActiveDate = lastUpdated[user.get("username")];
+                    var lastActiveDateMoment = moment(lastActiveDate);
+                    var todayDateMoment = moment(new Date(Date.today()));
+                    var daysInactive = todayDateMoment.diff(lastActiveDateMoment, 'days');
+                    lastUpdated[user.get("username")] = daysInactive + " days ago";
+                  }
+                  inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> <td>' + lastUpdated[user.get("username")] + '</td> </tr>' ;
+                }
+                inactiveUserHTML.innerHTML = inactiveHTMLText;
+                $('#datatable').dataTable();
+              });
             });
           }
         });
