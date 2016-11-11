@@ -207,7 +207,7 @@
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>
-                      
+
                     </form>
                   </div>
                 </div>
@@ -664,6 +664,7 @@
           for (var i = 0; i < inactiveUsers.length; i++) {
             var user = inactiveUsers[i];
 
+            // Format the last active date into better looking format. "dd/mm/yyyy" or "Never Active"
             if (typeof(lastUpdated[user.get("username")]) == "undefined") {
               lastUpdated[user.get("username")] = "Never Active";
             } else {
@@ -675,6 +676,7 @@
             }
             inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> <td>' + lastUpdated[user.get("username")] + '</td> </tr>' ;
           }
+          
           inactiveUserHTML.innerHTML = inactiveHTMLText;
           $('#datatable').dataTable();
         });
