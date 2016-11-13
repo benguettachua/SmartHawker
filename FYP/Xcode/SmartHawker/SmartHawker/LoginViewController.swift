@@ -223,6 +223,14 @@ class LoginViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
+    @IBAction func contactUs() {
+
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle:nil)
+        
+        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("contactUsPage") as UIViewController
+        self.presentViewController(resultViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func doChangeLanguage() {
         actionSheet = UIAlertController(title: nil, message: "Switch Language".localized(), preferredStyle: UIAlertControllerStyle.ActionSheet)
         for language in availableLanguages {
