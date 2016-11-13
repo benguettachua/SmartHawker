@@ -28,7 +28,8 @@ class AdminPINViewController: UIViewController {
     // Buttons
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var cancelAndLogout: UIButton!
-    
+    @IBOutlet weak var resetWithEmail: UIButton!
+    @IBOutlet weak var resetWithPhone: UIButton!
     // Labels
     @IBOutlet weak var adminPINLabel: UILabel!
     
@@ -57,6 +58,8 @@ class AdminPINViewController: UIViewController {
         self.navigationController?.topViewController?.title="Admin Pin".localized();
         
         cancelAndLogout.setTitle("Cancel".localized(), forState: .Normal)
+        resetWithEmail.setTitle("Reset PIN with Email".localized(), forState: .Normal)
+        resetWithPhone.setTitle("Reset PIN with Phone Number".localized(), forState: .Normal)
         
         adminPINTextField.placeholder = "Enter your admin pin".localized()
         
@@ -103,7 +106,7 @@ class AdminPINViewController: UIViewController {
     }
     
     // MARK: Action
-    @IBAction func submitPIN(sender: UIButton) {
+    @IBAction func submitPIN() {
         
         let adminPin = user!["adminPin"] as! String
         let pinEntered = adminPINTextField.text
@@ -122,8 +125,116 @@ class AdminPINViewController: UIViewController {
         }
     }
     
+    @IBAction func forgotPINWithPhone() {
+        
+        let phoneNo = user!["phoneNumber"] as! String
+        
+        let alert = UIAlertController(title: "Reset PIN".localized(), message: "What is Your Phone Number?".localized(), preferredStyle: .Alert)
+        let saveAction = UIAlertAction(title: "Proceed".localized(), style: .Default, handler: { Void in
+            
+            let targetTextField = alert.textFields![0] as UITextField
+            if (targetTextField.text != nil && targetTextField.text != "") {
+                //puts a method to reset the adminPIN for the user after checking if the phone number is correct or not
+                if (targetTextField.text == phoneNo) {
+                    self.resetAdminPIN()
+                }else{
+                    let alert = UIAlertController(title: "Error".localized(), message: "Phone Number is incorrect.".localized(), preferredStyle: .Alert)
+                    alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                
+            } else {
+                let alert = UIAlertController(title: "Error".localized(), message: "Phone Number cannot be empty.".localized(), preferredStyle: .Alert)
+                alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+        
+        alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
+            targetTextField.placeholder = "Enter your Phone Number".localized()
+            targetTextField.keyboardType = UIKeyboardType.DecimalPad
+        })
+        
+        alert.addAction(saveAction)
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { Void in
+            self.viewWillAppear(true)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func forgotPINWithEmail() {
+        
+        let email = user!["email"] as! String
+        
+        let alert = UIAlertController(title: "Reset PIN".localized(), message: "What is Your Email?".localized(), preferredStyle: .Alert)
+        let saveAction = UIAlertAction(title: "Proceed".localized(), style: .Default, handler: { Void in
+            
+            let targetTextField = alert.textFields![0] as UITextField
+            if (targetTextField.text != nil && targetTextField.text != "") {
+                //puts a method to reset the adminPIN for the user after checking if the phone number is correct or not
+                if (targetTextField.text == email) {
+                    self.resetAdminPIN()
+                }else{
+                    let alert = UIAlertController(title: "Error".localized(), message: "Email is incorrect.".localized(), preferredStyle: .Alert)
+                    alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                
+            } else {
+                let alert = UIAlertController(title: "Error".localized(), message: "Email cannot be empty.".localized(), preferredStyle: .Alert)
+                alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+        
+        alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
+            targetTextField.placeholder = "Enter your Email".localized()
+        })
+        
+        alert.addAction(saveAction)
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { Void in
+            self.viewWillAppear(true)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func resetAdminPIN(){
+        
+        let alert = UIAlertController(title: "Reset PIN".localized(), message: "What is Your New PIN?".localized(), preferredStyle: .Alert)
+        let saveAction = UIAlertAction(title: "Change".localized(), style: .Default, handler: { Void in
+            
+            let targetTextField = alert.textFields![0] as UITextField
+            if (targetTextField.text != nil && targetTextField.text != "") {
+                //puts a method to reset the adminPIN for the user after checking if the phone number is correct or not
+            
+                connectionDAO().edit(targetTextField.text!)
+            } else {
+                let alert = UIAlertController(title: "Error".localized(), message: "PIN cannot be empty.".localized(), preferredStyle: .Alert)
+                alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+        
+        alert.addTextFieldWithConfigurationHandler({ (targetTextField) in
+            targetTextField.placeholder = "Enter your New PIN".localized()
+            targetTextField.secureTextEntry = true
+            targetTextField.keyboardType = UIKeyboardType.DecimalPad
+        })
+        
+        alert.addAction(saveAction)
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .Default, handler: { Void in
+            self.viewWillAppear(true)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     // Logs the user out if they are click Cancel
-    @IBAction func cancel(sender: UIButton) {
+    @IBAction func cancel() {
         
         // Red message to capture attention and warn user.
         let attributedString = NSAttributedString(string: "Records that are not synced may be lost.".localized(), attributes: [

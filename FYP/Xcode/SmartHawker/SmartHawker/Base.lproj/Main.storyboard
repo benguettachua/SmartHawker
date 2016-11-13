@@ -8,256 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sign Up Page One View Controller-->
-        <scene sceneID="YJg-6x-9ex">
-            <objects>
-                <viewController id="eTl-4s-0qY" customClass="SignUpPageOneViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8g1-dL-epr"/>
-                        <viewControllerLayoutGuide type="bottom" id="nwV-5E-g7t"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xMY-0Q-k6U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="491-hd-z8y">
-                                <frame key="frameInset" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Sign Up" id="5Zf-fb-lyz">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Fn0-Jb-pPJ">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RFY-E0-5is">
-                                                <rect key="frame" x="348" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="btn"/>
-                                                <connections>
-                                                    <segue destination="hwo-01-lSa" kind="modal" id="Qfp-Op-bEZ"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TB7-Vx-KjK">
-                                <frame key="frameInset" minX="26" minY="78" width="362" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfX-x1-HWw">
-                                <frame key="frameInset" minX="20" minY="179" width="374" height="39"/>
-                                <color key="backgroundColor" red="0.99215686274509807" green="0.44705882352941173" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="NEXT">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="UwT-UI-dcx" kind="modal" id="ee8-T8-QJN"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="By continuing, you are indicating that you agree to the Privacy Policy and Terms" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbP-jy-BXn">
-                                <frame key="frameInset" minX="20" minY="238" width="373" height="43"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="491-hd-z8y" firstAttribute="leading" secondItem="xMY-0Q-k6U" secondAttribute="leadingMargin" constant="-20" id="3xq-OJ-QQQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TB7-Vx-KjK" secondAttribute="trailing" constant="6" id="6Rz-J2-fVf"/>
-                            <constraint firstItem="vfX-x1-HWw" firstAttribute="top" secondItem="TB7-Vx-KjK" secondAttribute="bottom" constant="71" id="CsV-fN-HLg"/>
-                            <constraint firstItem="491-hd-z8y" firstAttribute="top" secondItem="xMY-0Q-k6U" secondAttribute="topMargin" constant="20" id="Lmc-CZ-3zd"/>
-                            <constraint firstItem="vfX-x1-HWw" firstAttribute="trailing" secondItem="xMY-0Q-k6U" secondAttribute="trailingMargin" id="NpY-kF-zcz"/>
-                            <constraint firstItem="TB7-Vx-KjK" firstAttribute="leading" secondItem="xMY-0Q-k6U" secondAttribute="leadingMargin" constant="6" id="Xbd-Nj-C2u"/>
-                            <constraint firstItem="vfX-x1-HWw" firstAttribute="leading" secondItem="xMY-0Q-k6U" secondAttribute="leadingMargin" id="ZwH-Ko-DjQ"/>
-                            <constraint firstItem="TB7-Vx-KjK" firstAttribute="top" secondItem="491-hd-z8y" secondAttribute="bottom" constant="34" id="aMo-hD-BmG"/>
-                            <constraint firstItem="JbP-jy-BXn" firstAttribute="leading" secondItem="xMY-0Q-k6U" secondAttribute="leadingMargin" id="azV-eb-EcQ"/>
-                            <constraint firstItem="JbP-jy-BXn" firstAttribute="top" secondItem="vfX-x1-HWw" secondAttribute="bottom" constant="20" id="dRj-sy-hwJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="JbP-jy-BXn" secondAttribute="trailing" constant="1" id="vJQ-5a-oIY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="491-hd-z8y" secondAttribute="trailing" constant="-20" id="yqO-KA-dad"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="cancelbtn" destination="RFY-E0-5is" id="Vbt-TL-xqc"/>
-                        <outlet property="phoneNumber" destination="TB7-Vx-KjK" id="PL4-Cm-Jvn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6dH-cE-hAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="216" y="289"/>
-        </scene>
-        <!--Sign Up Page Two View Controller-->
-        <scene sceneID="rja-1f-0cU">
-            <objects>
-                <viewController id="UwT-UI-dcx" customClass="SignUpPageTwoViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y7C-Lo-euW"/>
-                        <viewControllerLayoutGuide type="bottom" id="69S-qz-NtF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dbM-JJ-n7D">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptb-dG-5iF">
-                                <frame key="frameInset" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Sign Up" id="yO1-Fp-dj5">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="6fE-d1-46V">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C4q-Ng-6jx">
-                                                <rect key="frame" x="20" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="btn"/>
-                                                <connections>
-                                                    <segue destination="eTl-4s-0qY" kind="modal" id="ndA-ih-qca"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Verification code has been sent to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Eg-H9S">
-                                <frame key="frameInset" minX="59" minY="65" width="297" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <color key="textColor" red="0.43137254901960786" green="0.42745098039215684" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jid-cV-QwF">
-                                <frame key="frameInset" minX="20" minY="155" width="260" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="RESEND (30)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQS-HC-XLM">
-                                <frame key="frameInset" minX="295" minY="159" width="99" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.27450980392156865" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbM-5b-2fX">
-                                <frame key="frameInset" minX="20" minY="199" width="374" height="39"/>
-                                <color key="backgroundColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="SUBMIT">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="vfn-8w-cJh" kind="modal" id="fID-41-hmf"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-f2-Mna">
-                                <frame key="frameInset" minX="105" minY="94" width="205" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <color key="textColor" red="0.43137254901960786" green="0.42745098039215684" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ud1-Eg-H9S" firstAttribute="top" secondItem="ptb-dG-5iF" secondAttribute="bottom" constant="32" id="1WE-Sm-9LB"/>
-                            <constraint firstItem="pbM-5b-2fX" firstAttribute="trailing" secondItem="dbM-JJ-n7D" secondAttribute="trailingMargin" id="7ux-KF-aao"/>
-                            <constraint firstItem="ud1-Eg-H9S" firstAttribute="centerX" secondItem="dbM-JJ-n7D" secondAttribute="centerX" id="CW8-mX-WTp"/>
-                            <constraint firstItem="dQS-HC-XLM" firstAttribute="top" secondItem="Olf-f2-Mna" secondAttribute="bottom" constant="36" id="Dag-bs-Qlj"/>
-                            <constraint firstItem="dQS-HC-XLM" firstAttribute="trailing" secondItem="dbM-JJ-n7D" secondAttribute="trailingMargin" constant="-14" id="Fli-tK-bP7"/>
-                            <constraint firstItem="Olf-f2-Mna" firstAttribute="centerX" secondItem="dbM-JJ-n7D" secondAttribute="centerX" id="FmC-zZ-WtD"/>
-                            <constraint firstItem="dQS-HC-XLM" firstAttribute="leading" secondItem="jid-cV-QwF" secondAttribute="trailing" constant="15" id="HJi-Ev-Cyl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ptb-dG-5iF" secondAttribute="trailing" constant="-20" id="IuF-Vc-1aF"/>
-                            <constraint firstItem="ptb-dG-5iF" firstAttribute="leading" secondItem="dbM-JJ-n7D" secondAttribute="leadingMargin" constant="-20" id="J3Q-IS-imA"/>
-                            <constraint firstItem="jid-cV-QwF" firstAttribute="leading" secondItem="dbM-JJ-n7D" secondAttribute="leadingMargin" id="YFz-UY-Tf7"/>
-                            <constraint firstItem="pbM-5b-2fX" firstAttribute="top" secondItem="jid-cV-QwF" secondAttribute="bottom" constant="12" id="dbv-Bd-BfA"/>
-                            <constraint firstItem="pbM-5b-2fX" firstAttribute="leading" secondItem="dbM-JJ-n7D" secondAttribute="leadingMargin" id="f7z-7y-sjJ"/>
-                            <constraint firstItem="jid-cV-QwF" firstAttribute="top" secondItem="Olf-f2-Mna" secondAttribute="bottom" constant="39" id="iXK-Zm-6j5"/>
-                            <constraint firstItem="Olf-f2-Mna" firstAttribute="top" secondItem="ud1-Eg-H9S" secondAttribute="bottom" constant="5" id="oMN-DV-UBI"/>
-                            <constraint firstItem="ptb-dG-5iF" firstAttribute="top" secondItem="dbM-JJ-n7D" secondAttribute="topMargin" constant="20" id="tbl-ez-9Vj"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backbtn" destination="C4q-Ng-6jx" id="Uhh-8x-Wba"/>
-                        <outlet property="verCode" destination="jid-cV-QwF" id="xng-bQ-azA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IIa-Yf-hfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="721" y="289"/>
-        </scene>
-        <!--Sign Up Page Three View Controller-->
-        <scene sceneID="y2E-CS-MXt">
-            <objects>
-                <viewController id="vfn-8w-cJh" customClass="SignUpPageThreeViewController" customModule="SH" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1Cs-1r-iWo"/>
-                        <viewControllerLayoutGuide type="bottom" id="gHB-I9-Wr8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7SD-7U-ot7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Wo-XK-t4i">
-                                <frame key="frameInset" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Set Password" id="E5n-gR-Y0g">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="6tQ-w0-q0T">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="afE-jZ-y9f">
-                                                <rect key="frame" x="20" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="btn"/>
-                                                <connections>
-                                                    <segue destination="UwT-UI-dcx" kind="modal" id="YqZ-aV-GNs"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHo-78-UNv">
-                                <frame key="frameInset" minX="48" minY="69" width="318" height="53"/>
-                                <string key="text">Login to SmartHawker with your phone number,
-this password and admin pin</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="0.71372549019607845" green="0.69803921568627447" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhh-hz-iLh">
-                                <frame key="frameInset" minX="20" minY="514" width="374" height="39"/>
-                                <color key="backgroundColor" red="0.99215686270000003" green="0.44705882349999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="CONFIRM">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Mhh-hz-iLh" firstAttribute="trailing" secondItem="7SD-7U-ot7" secondAttribute="trailingMargin" id="68H-5R-TCZ"/>
-                            <constraint firstItem="Mhh-hz-iLh" firstAttribute="top" secondItem="HHo-78-UNv" secondAttribute="bottom" constant="325" id="CJF-pg-JaF"/>
-                            <constraint firstItem="9Wo-XK-t4i" firstAttribute="top" secondItem="7SD-7U-ot7" secondAttribute="topMargin" constant="20" id="ScK-eE-Jwu"/>
-                            <constraint firstItem="HHo-78-UNv" firstAttribute="centerX" secondItem="7SD-7U-ot7" secondAttribute="centerX" id="WAK-6X-UPP"/>
-                            <constraint firstItem="9Wo-XK-t4i" firstAttribute="leading" secondItem="7SD-7U-ot7" secondAttribute="leadingMargin" constant="-20" id="YbQ-iS-J5g"/>
-                            <constraint firstItem="HHo-78-UNv" firstAttribute="top" secondItem="9Wo-XK-t4i" secondAttribute="bottom" constant="15" id="bGt-PU-Fb6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Wo-XK-t4i" secondAttribute="trailing" constant="-20" id="kN9-su-nJ6"/>
-                            <constraint firstItem="Mhh-hz-iLh" firstAttribute="leading" secondItem="7SD-7U-ot7" secondAttribute="leadingMargin" id="xMX-k4-wgQ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backbtn" destination="afE-jZ-y9f" id="9XO-Er-z2f"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DCO-Ma-kYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1208" y="289"/>
-        </scene>
         <!--Select language-->
         <scene sceneID="XWC-2k-f9J">
             <objects>
@@ -273,11 +23,11 @@ this password and admin pin</string>
                                         <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VPb-5t-Wng" id="QLo-8F-7kb">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Afm-vN-dHo">
-                                                    <frame key="frameInset" minX="15" width="345" height="43.5"/>
+                                                    <frame key="frameInset" minX="15" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -290,7 +40,7 @@ this password and admin pin</string>
                                         <rect key="frame" x="0.0" y="143" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOC-uf-gHy" id="XmM-gf-dvM">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="简体中文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4z-7Ek">
@@ -307,7 +57,7 @@ this password and admin pin</string>
                                         <rect key="frame" x="0.0" y="187" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bd-NI-S76" id="VeU-pP-Pkf">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Bahasa Melayu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDb-JG-riL">
@@ -616,7 +366,7 @@ this password and admin pin</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="submitPIN:" destination="JUl-IL-xm2" eventType="touchUpInside" id="adk-dX-D4n"/>
+                                    <action selector="submitPIN" destination="JUl-IL-xm2" eventType="touchUpInside" id="jxe-VM-zI9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYv-TV-D8G">
@@ -652,6 +402,22 @@ this password and admin pin</string>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2u-34-cRk">
+                                <frame key="frameInset" minX="36" minY="259" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset with Email"/>
+                                <connections>
+                                    <action selector="forgotPINWithEmail" destination="JUl-IL-xm2" eventType="touchUpInside" id="Ok4-02-J30"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oA-Ve-AjF">
+                                <frame key="frameInset" minX="159" minY="273" width="179" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset with Phone Number"/>
+                                <connections>
+                                    <action selector="forgotPINWithPhone" destination="JUl-IL-xm2" eventType="touchUpInside" id="eXg-h1-gdh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -682,7 +448,7 @@ this password and admin pin</string>
                                     <color key="titleColor" red="0.2901960784" green="0.30196078430000001" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancel:" destination="JUl-IL-xm2" eventType="touchUpInside" id="OpZ-9r-HZR"/>
+                                    <action selector="cancel" destination="JUl-IL-xm2" eventType="touchUpInside" id="mVZ-mg-1dC"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -691,6 +457,8 @@ this password and admin pin</string>
                         <outlet property="adminPINTextField" destination="rAi-zC-waW" id="rpu-LU-y1r"/>
                         <outlet property="adminpinicon" destination="cYv-TV-D8G" id="zco-Lu-hkp"/>
                         <outlet property="cancelAndLogout" destination="nKx-rL-Ikq" id="hDe-aH-rDs"/>
+                        <outlet property="resetWithEmail" destination="l2u-34-cRk" id="kFs-s4-ruK"/>
+                        <outlet property="resetWithPhone" destination="0oA-Ve-AjF" id="yPe-Ei-Ij1"/>
                         <outlet property="submitButton" destination="ToA-rb-EoN" id="y9P-rl-JsJ"/>
                         <segue destination="xvq-Kx-gUH" kind="modal" identifier="toMain" id="tPZ-ny-ePW"/>
                     </connections>
@@ -980,10 +748,10 @@ this password and admin pin</string>
                         <color key="separatorColor" red="0.72640224358974359" green="0.7230444659804679" blue="0.70906174365660768" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="lTZ-iC-rZc" customClass="RecordTableViewCell" customModule="SH" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lTZ-iC-rZc" id="WnT-5h-XeC">
-                                    <frame key="frameInset" width="375" height="59.5"/>
+                                    <frame key="frameInset" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESe-rV-w3y">
@@ -1904,7 +1672,7 @@ this password and admin pin</string>
                                                         <rect key="frame" x="0.0" y="28" width="398" height="70"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="juw-cM-3CP" id="ied-e5-ALz">
-                                                            <frame key="frameInset" width="398" height="69.5"/>
+                                                            <frame key="frameInset" width="398" height="69"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Record Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unf-56-xJZ">
@@ -2237,9 +2005,8 @@ this password and admin pin</string>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tPZ-ny-ePW"/>
-        <segue reference="YqZ-aV-GNs"/>
         <segue reference="47q-Zj-VmP"/>
+        <segue reference="tPZ-ny-ePW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

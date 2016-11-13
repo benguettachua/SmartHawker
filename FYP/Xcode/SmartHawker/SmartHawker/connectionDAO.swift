@@ -280,7 +280,18 @@ class connectionDAO{
         }
         return false
     }
-    
+    // Edit user's AdminPIN
+    func edit(adminPIN: String) -> Bool {
+        let user = PFUser.currentUser()
+        user!["adminPin"] = adminPIN
+        do {
+            try user!.save()
+            return true
+        } catch {
+            return false
+        }
+        return false
+    }
     // Save record to local datastore
     func addRecord(date: String, amount: Double, type: Int, subuser: String, description: String, receipt: PFFile?) -> Bool {
         let toRecord = PFObject(className: "Record")
