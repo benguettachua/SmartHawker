@@ -92,12 +92,12 @@ class connectionDAO{
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         var records = [PFObject]()
         var counter = 0
+        var descriptions = [String]()
+        
         while (records.count >= counter * 1000) {
             query.skip = 1000 * counter
             do{
                 let array = try query.findObjects()
-                var descriptions = [String]()
-                
                 for object in array {
                     if object["description"] != nil {
                         let description = object["description"] as! String
@@ -106,13 +106,13 @@ class connectionDAO{
                         }
                     }
                 }
-                toShare.stringsWithAutoFill = descriptions
                 records += array
                 counter += 1
             } catch {
                 
             }
         }
+        toShare.stringsWithAutoFill = descriptions
     }
     
     

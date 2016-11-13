@@ -20,7 +20,7 @@ class UpdateTransactionViewController: UIViewController, UIImagePickerController
     
     // TextField
     @IBOutlet weak var amountTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: AutoCompleteTextField!
     
     // Buttons
     @IBOutlet weak var backbtn: UIButton!

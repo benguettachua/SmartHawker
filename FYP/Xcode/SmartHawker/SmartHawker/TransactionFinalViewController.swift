@@ -415,7 +415,7 @@ class TransactionFinalViewController: UIViewController, UIImagePickerControllerD
         descriptionTextField.autoCompleteTextColor = UIColor(red: 128.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
         descriptionTextField.autoCompleteTextFont = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
         descriptionTextField.autoCompleteCellHeight = 35.0
-        descriptionTextField.maximumAutoCompleteCount = 1
+        descriptionTextField.maximumAutoCompleteCount = 2
         descriptionTextField.hidesWhenSelected = true
         descriptionTextField.hidesWhenEmpty = true
         descriptionTextField.enableAttributedText = true
