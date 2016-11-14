@@ -235,9 +235,15 @@ class TrendingViewController: UIViewController {
             }
             let numOfDays = components.day
             let numOfWeeks = components.day/7
+            var spewOverDays = numOfDays - (numOfWeeks * 7)
             
+            if spewOverDays > workingDayPerWeek{
+                spewOverDays = workingDayPerWeek!
+            }
+            
+            let extrapolatedSales = (todaySales * (Double(numOfWeeks) * Double(workingDayPerWeek!) + Double(spewOverDays)))
             formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-            let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + (todaySales * Double(numOfWeeks) * Double(workingDayPerWeek!))
+            let endOfYearSales = Double(formatter.numberFromString(yearSales)!) + extrapolatedSales
             
             // Populating the UI with necessary information
             salesSoFarAmountLabel.text = "$" + yearSales
