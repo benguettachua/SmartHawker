@@ -210,8 +210,18 @@ class AdminPINViewController: UIViewController {
             let targetTextField = alert.textFields![0] as UITextField
             if (targetTextField.text != nil && targetTextField.text != "") {
                 //puts a method to reset the adminPIN for the user after checking if the phone number is correct or not
-            
-                connectionDAO().edit(targetTextField.text!)
+                
+                if connectionDAO().isConnectedToNetwork() {
+                    connectionDAO().edit(targetTextField.text!)
+                    let alert = UIAlertController(title: "Reset Success!".localized(), message: "PIN reset successful.".localized(), preferredStyle: .Alert)
+                    alert.addAction((UIAlertAction(title: "OK".localized(), style: .Default, handler: nil)))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }else{
+                    
+                    let alert = UIAlertController(title: "Please find an internet connection.".localized(), message: "PIN reset unsuccessful.".localized(), preferredStyle: .Alert)
+                    alert.addAction((UIAlertAction(title: "OK".localized(), style: .Default, handler: nil)))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
             } else {
                 let alert = UIAlertController(title: "Error".localized(), message: "PIN cannot be empty.".localized(), preferredStyle: .Alert)
                 alert.addAction((UIAlertAction(title: "Try again".localized(), style: .Default, handler: nil)))
