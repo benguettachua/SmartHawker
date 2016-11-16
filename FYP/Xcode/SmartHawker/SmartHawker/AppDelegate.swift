@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             /* Schedule the notification */
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             defaults.setBool(true, forKey: "notification")
-            
+            defaults.setBool(true, forKey: "firstLaunch")
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
