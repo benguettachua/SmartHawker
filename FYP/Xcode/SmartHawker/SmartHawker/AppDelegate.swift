@@ -14,8 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Parse.enableLocalDatastore()
-        Parse.setApplicationId("p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht", clientKey: "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt")
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht"
+            $0.clientKey = "RyMdMeTL5hzX4qxDntNn4UlR2CJAXWXfWT26pjWt"
+            $0.server = "https://cloud.smarthawker.com:1337/parse"
+            $0.localDatastoreEnabled = true
+        }
+        Parse.initializeWithConfiguration(configuration)
         
         // Settings for Page View Controller
         let pageControl = UIPageControl.appearance()
