@@ -60,6 +60,10 @@ class AdminPINViewController: UIViewController {
         cancelAndLogout.setTitle("Cancel".localized(), forState: .Normal)
         resetWithEmail.setTitle("Reset PIN with Email".localized(), forState: .Normal)
         resetWithPhone.setTitle("Reset PIN with Phone Number".localized(), forState: .Normal)
+        resetWithEmail.layer.borderColor = UIColor(red:1.00, green:114/255, blue:0, alpha:1.0).CGColor
+        resetWithPhone.layer.borderColor = UIColor(red:1.00, green:114/255, blue:0, alpha:1.0).CGColor
+
+        
         
         adminPINTextField.placeholder = "Enter your admin pin".localized()
         
