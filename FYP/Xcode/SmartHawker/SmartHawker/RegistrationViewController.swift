@@ -243,7 +243,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Password is not entered
-        if (password == "" || password!.characters.count < 8) {
+        if (password == "" || password!.characters.count < 5) {
             passwordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Password.".localized(),
                                                                          attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
