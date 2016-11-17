@@ -87,3 +87,29 @@ Parse.Cloud.define("retrieveAllObjectsSortedByUpdatedAt", function(request, stat
   };
   process(false);
 });
+
+Parse.Cloud.define("resetPassword", function(request, status) {
+  Parse.Cloud.useMasterKey();
+
+  var user = Parse.Object.extend("User");
+  var query = new Parse.Query(user);
+  if (request.params.email) {
+    query.equalTo("email", request.params.email);
+  }
+  if (request.params.username) {
+    query.equalTo("username", request.params.username);
+  }
+
+  query.first({
+    success: function (Contact) {
+      Contact.save(null, {
+        success: function (contact) {
+          contact.set("password", request.params.password);
+          contact.save();
+          location.reload();
+        }
+      });
+    }
+  });
+
+});
