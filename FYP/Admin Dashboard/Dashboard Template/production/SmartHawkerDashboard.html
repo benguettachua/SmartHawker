@@ -138,21 +138,19 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Inactive Users</h2>
+                      <h2>Users</h2>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                    </p>
+
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
                           <th>Phone Number</th>
-                          <th>Last Active</th>
+                          <th>Last Active (Days ago)</th>
                         </tr>
                       </thead>
 
@@ -601,87 +599,60 @@
   // Step 1: Get active users.
 
   // Step 1a: Get all records within the past 7 days.
-  var activeRecords = new Array();
+  // Step 2: Retrieve all users.
   Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "Record", // REQUIRED - string: name of your Parse class
-    created_at: moment().subtract(7, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+    object_type: "User", // REQUIRED - string: name of your Parse class
+    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
     // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
   }).then(function(objects) {
     /* SUCCESS */
     // if objects.length > 0 objects can be looped through
-    if (objects.length > 0) {
-      activeRecords = objects;
-      // Step 1b: Loop through active records to find unique active users.
-      var unique = {};
-      var distinct = [];
-      for( var i in activeRecords ) {
-        if( typeof(unique[activeRecords[i].get("subuser")]) == "undefined"){
-          distinct.push(activeRecords[i].get("subuser"));
+
+    // Save all inactive users in an array.
+    var inactiveUsers = objects;
+    var lastUpdated = {};
+
+    // Step 3: Retrieve all records, this sorted by Updated_at to get the last active date.
+    Parse.Cloud.run('retrieveAllObjectsSortedByUpdatedAt', {
+      object_type: "Record",
+    }).then(function(objects) {
+      for (var i = 0; i < objects.length; i++) {
+        var currentRecord = objects[i];
+        var recordUser = currentRecord.get("user");
+
+        // Inactive User
+        if(inactiveUsers.indexOf(recordUser) == -1) {
+
+          // Last updated not saved yet
+          if( typeof(lastUpdated[currentRecord.get("subuser")]) == "undefined") {
+            lastUpdated[currentRecord.get("subuser")] = currentRecord.get("updatedAt");
+          }
         }
-        unique[activeRecords[i].get("subuser")] = 0;
       }
-      // Step 2: Retrieve all users.
-      Parse.Cloud.run('retrieveAllObjects', {
-        object_type: "User", // REQUIRED - string: name of your Parse class
-        // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-      }).then(function(objects) {
-        /* SUCCESS */
-        // if objects.length > 0 objects can be looped through
 
-        for (var i = 0; i < objects.length; i++) {
-          var user = objects[i];
+      var inactiveUserHTML = document.getElementById("inactiveUserHTML");
+      var inactiveHTMLText = "";
+      for (var i = 0; i < inactiveUsers.length; i++) {
+        var user = inactiveUsers[i];
+        var lastActiveDate = new Date(Date.today());
+        // Format the last active date into better looking format. "dd/mm/yyyy" or "Never Active"
+        if (typeof(lastUpdated[user.get("username")]) == "undefined") {
 
-          if ((distinct.indexOf(user.get("username")) != -1)){
-            objects.splice(i, 1);
-          }
+          lastActiveDate = user.createdAt;
+        } else {
+          lastActiveDate = lastUpdated[user.get("username")];
         }
+          var lastActiveDateMoment = moment(lastActiveDate);
+          var todayDateMoment = moment(new Date(Date.today()));
+          var daysInactive = todayDateMoment.diff(lastActiveDateMoment, 'days');
+          lastUpdated[user.get("username")] = daysInactive;
 
-        // Save all inactive users in an array.
-        var inactiveUsers = objects;
-        var lastUpdated = {};
+        inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> <td>' + lastUpdated[user.get("username")] + '</td> </tr>' ;
+      }
 
-        // Step 3: Retrieve all records, this sorted by Updated_at to get the last active date.
-        Parse.Cloud.run('retrieveAllObjectsSortedByUpdatedAt', {
-          object_type: "Record",
-        }).then(function(objects) {
-          for (var i = 0; i < objects.length; i++) {
-            var currentRecord = objects[i];
-            var recordUser = currentRecord.get("user");
-
-            // Inactive User
-            if(inactiveUsers.indexOf(recordUser) == -1) {
-
-              // Last updated not saved yet
-              if( typeof(lastUpdated[currentRecord.get("subuser")]) == "undefined") {
-                lastUpdated[currentRecord.get("subuser")] = currentRecord.get("updatedAt");
-              }
-            }
-          }
-
-          var inactiveUserHTML = document.getElementById("inactiveUserHTML");
-          var inactiveHTMLText = "";
-          for (var i = 0; i < inactiveUsers.length; i++) {
-            var user = inactiveUsers[i];
-
-            // Format the last active date into better looking format. "dd/mm/yyyy" or "Never Active"
-            if (typeof(lastUpdated[user.get("username")]) == "undefined") {
-              lastUpdated[user.get("username")] = "Never Active";
-            } else {
-              var lastActiveDate = lastUpdated[user.get("username")];
-              var lastActiveDateMoment = moment(lastActiveDate);
-              var todayDateMoment = moment(new Date(Date.today()));
-              var daysInactive = todayDateMoment.diff(lastActiveDateMoment, 'days');
-              lastUpdated[user.get("username")] = daysInactive + " days ago";
-            }
-            inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> <td>' + lastUpdated[user.get("username")] + '</td> </tr>' ;
-          }
-
-          inactiveUserHTML.innerHTML = inactiveHTMLText;
-          $('#datatable').dataTable();
-        });
-      });
-    }
+      inactiveUserHTML.innerHTML = inactiveHTMLText;
+      $('#datatable').dataTable();
+    });
   });
   </script>
 
