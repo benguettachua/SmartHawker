@@ -272,6 +272,17 @@
   Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht');
   Parse.serverURL = 'https://cloud.smarthawker.com:1337/parse';
 
+
+  var currentUser = Parse.User.current();
+  if (currentUser == null) {
+    window.location.replace("loginSmartHawker.html");
+  }
+  var currentUsername = currentUser.get('username');
+
+  if (currentUsername != 'smarthawkeradmin') {
+    window.location.replace("loginSmartHawker.html");
+  }
+
   // Variables
   var userArray = new Array();
   var recordsArray = new Array();
@@ -279,6 +290,7 @@
   // Getting total users
   Parse.Cloud.run('retrieveAllObjects', {
     object_type: "User", // REQUIRED - string: name of your Parse class
+    created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
     // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
     // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
   }).then(function(objects) {
@@ -292,6 +304,7 @@
   // Getting total records
   Parse.Cloud.run('retrieveAllObjects', {
     object_type: "Record", // REQUIRED - string: name of your Parse class
+    created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
     // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
     // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
   }).then(function(objects) {
@@ -602,6 +615,7 @@
   // Step 2: Retrieve all users.
   Parse.Cloud.run('retrieveAllObjects', {
     object_type: "User", // REQUIRED - string: name of your Parse class
+    created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
     // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
     // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
   }).then(function(objects) {
@@ -615,6 +629,7 @@
     // Step 3: Retrieve all records, this sorted by Updated_at to get the last active date.
     Parse.Cloud.run('retrieveAllObjectsSortedByUpdatedAt', {
       object_type: "Record",
+      created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
     }).then(function(objects) {
       for (var i = 0; i < objects.length; i++) {
         var currentRecord = objects[i];
@@ -676,7 +691,7 @@
   function deleteUser() {
     var usernameValue = document.getElementById("reset-username").value;
     var emailValue = document.getElementById("reset-email").value;
-    
+
     Parse.Cloud.run('deleteUser', {
       username: usernameValue,
       email: emailValue,
