@@ -147,7 +147,7 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Name</th>
+                          <th>Username</th>
                           <th>Email</th>
                           <th>Phone Number</th>
                           <th>Last Active (Days ago)</th>
@@ -168,40 +168,40 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Reset Password</small></h2>
+                    <h2>Change Password / Delete User</small></h2>
 
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="reset-password" data-parsley-validate class="form-horizontal form-label-left" action="javascript:resetPassword()">
+                    <form id="reset-password" data-parsley-validate class="form-horizontal form-label-left" >
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Username
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Username
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="reset-username" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="reset-email" name="reset-email" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="reset-new-password" class="form-control col-md-7 col-xs-12" type="text" name="reset-new-password" required="required">
+                          <input id="reset-new-password" class="form-control col-md-7 col-xs-12" type="text" name="reset-new-password">
                         </div>
                       </div>
 
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Cancel</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
+                          <button type="submit" class="btn btn-success" formaction="javascript:resetPassword()">Change Password</button>
+                          <button type="submit" class="btn btn-success" formaction="javascript:deleteUser()">Delete User</button>
                         </div>
                       </div>
 
@@ -651,32 +651,41 @@
       }
 
       inactiveUserHTML.innerHTML = inactiveHTMLText;
-      $('#datatable').dataTable();
+      $('#datatable').dataTable({ "order": [[ 3, 'asc' ]] });
     });
   });
   </script>
 
   <script>
-
   function resetPassword() {
     var usernameValue = document.getElementById("reset-username").value;
     var emailValue = document.getElementById("reset-email").value;
     var newPasswordValue = document.getElementById("reset-new-password").value;
+
     Parse.Cloud.run('resetPassword', {
       username: usernameValue,
       email: emailValue,
       password: newPasswordValue,
     }).then(function(success) {
-
       if (success){
         alert("Password changed successfully!");
       }
-
     });
   }
 
-
-
+  function deleteUser() {
+    var usernameValue = document.getElementById("reset-username").value;
+    var emailValue = document.getElementById("reset-email").value;
+    
+    Parse.Cloud.run('deleteUser', {
+      username: usernameValue,
+      email: emailValue,
+    }).then(function(success) {
+      if(success) {
+        alert("User is deleted.");
+      }
+    });
+  }
   </script>
 </body>
 </html>

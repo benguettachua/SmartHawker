@@ -42,7 +42,6 @@ Parse.Cloud.define("retrieveAllObjects", function(request, status) {
   process(false);
 });
 
-
 // Method to retrieve everything out from a table, SORTED BY UPDATED_AT.
 Parse.Cloud.define("retrieveAllObjectsSortedByUpdatedAt", function(request, status) {
 
@@ -87,7 +86,6 @@ Parse.Cloud.define("retrieveAllObjectsSortedByUpdatedAt", function(request, stat
   };
   process(false);
 });
-
 Parse.Cloud.define("resetPassword", function(request, status) {
   Parse.Cloud.useMasterKey();
 
@@ -106,10 +104,59 @@ Parse.Cloud.define("resetPassword", function(request, status) {
         success: function (contact) {
           contact.set("password", request.params.password);
           contact.save();
-          location.reload();
+          status.success(true);
         }
       });
     }
   });
 
+});
+
+
+Parse.Cloud.define("adminLogin", function(request, status) {
+
+  var user = Parse.Object.extend("User");
+  var query = new Parse.Query(user);
+  if (request.params.username=="admin" && request.params.password=="admin2345" ) {
+    status.success(true);
+
+  }else{
+    status.success(false);
+  }
+});
+
+// Deletes a user and all of his records.
+Parse.Cloud.define("deleteUser", function(request, status){
+
+  var record = Parse.Object.extend("Record");
+  var user = Parse.Object.extend("User");
+
+  var recordQuery = new Parse.Query(record);
+  var userQuery = new Parse.Query(user);
+
+  if (request.params.email) {
+    userQuery.equalTo("email", request.params.email);
+  }
+  if (request.params.username) {
+    userQuery.equalTo("username", request.params.username);
+  }
+
+  var username = "";
+  userQuery.first({
+    success: function(userToDelete) {
+      username = userToDelete.get('username');
+      userToDelete.destroy({});
+
+      recordQuery.equalTo("subuser", username);
+      recordQuery.find({
+        success: function(results) {
+          for (var i = 0; i < results.length; i++) {
+            var record = results[i];
+            record.destroy({});
+          }
+          status.success(true);
+        }
+      })
+    }
+  });
 });
