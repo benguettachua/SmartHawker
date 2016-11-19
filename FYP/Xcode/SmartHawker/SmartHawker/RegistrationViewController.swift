@@ -249,7 +249,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Password does not match confirm password.
-        if (password != confirmPassword || confirmPassword == "" || confirmPassword!.characters.count < 8) {
+        if (password != confirmPassword || confirmPassword == "" || confirmPassword!.characters.count < 5) {
             confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Invalid Confirm Password.".localized(),
                                                                                 attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
