@@ -151,6 +151,7 @@
                           <th>Email</th>
                           <th>Phone Number</th>
                           <th>Last Active (Days ago)</th>
+                          <th>Activity</th>
                         </tr>
                       </thead>
 
@@ -165,350 +166,174 @@
             </div>
 
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-sm-12 col-xs-122">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Change Password / Delete User</small></h2>
-
+                    <h2 id="userActivityHeader">User Activity</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <br />
-                    <form id="reset-password" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return confirm('Are you sure?');">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="demo-container" style="height:280px">
+                        <div id="userActivity" class="demo-placeholder"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Username
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="reset-username" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="reset-email" name="reset-email" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="reset-new-password" class="form-control col-md-7 col-xs-12" type="text" name="reset-new-password">
-                        </div>
-                      </div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Change Password / Delete User</small></h2>
 
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-success" formaction="javascript:resetPassword()">Change Password</button>
-                          <button type="submit" class="btn btn-success" formaction="javascript:deleteUser()">Delete User</button>
-                        </div>
-                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <br />
+                      <form id="reset-password" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return confirm('Are you sure?');">
 
-                    </form>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Username
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="reset-username" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="reset-email" name="reset-email" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="reset-new-password" class="form-control col-md-7 col-xs-12" type="text" name="reset-new-password">
+                          </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-success" formaction="javascript:resetPassword()">Change Password</button>
+                            <button type="submit" class="btn btn-success" formaction="javascript:deleteUser()">Delete User</button>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- /page content -->
       </div>
-      <!-- /page content -->
     </div>
-  </div>
 
-  <!-- jQuery -->
-  <script src="../dashboard/vendors/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../dashboard/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- FastClick -->
-  <script src="../dashboard/vendors/fastclick/lib/fastclick.js"></script>
-  <!-- NProgress -->
-  <script src="../dashboard/vendors/nprogress/nprogress.js"></script>
-  <!-- Chart.js -->
-  <script src="../dashboard/vendors/Chart.js/dist/Chart.min.js"></script>
-  <!-- jQuery Sparklines -->
-  <script src="../dashboard/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-  <!-- Flot -->
-  <script src="../dashboard/vendors/Flot/jquery.flot.js"></script>
-  <script src="../dashboard/vendors/Flot/jquery.flot.pie.js"></script>
-  <script src="../dashboard/vendors/Flot/jquery.flot.time.js"></script>
-  <script src="../dashboard/vendors/Flot/jquery.flot.stack.js"></script>
-  <script src="../dashboard/vendors/Flot/jquery.flot.resize.js"></script>
-  <!-- Flot plugins -->
-  <script src="../dashboard/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-  <script src="../dashboard/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-  <script src="../dashboard/vendors/flot.curvedlines/curvedLines.js"></script>
-  <!-- DateJS -->
-  <script src="../dashboard/vendors/DateJS/build/date.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="../dashboard/vendors/moment/min/moment.min.js"></script>
-  <script src="../dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <!-- Datatables -->
-  <script src="../dashboard/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="../dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="../dashboard/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
-  <script src="../dashboard/vendors/jszip/dist/jszip.min.js"></script>
-  <script src="../dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
-  <script src="../dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
-  <!-- iCheck -->
-  <script src="../dashboard/vendors/iCheck/icheck.min.js"></script>
+    <!-- jQuery -->
+    <script src="../dashboard/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../dashboard/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../dashboard/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../dashboard/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../dashboard/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- jQuery Sparklines -->
+    <script src="../dashboard/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- Flot -->
+    <script src="../dashboard/vendors/Flot/jquery.flot.js"></script>
+    <script src="../dashboard/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../dashboard/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../dashboard/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../dashboard/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../dashboard/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../dashboard/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../dashboard/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../dashboard/vendors/DateJS/build/date.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../dashboard/vendors/moment/min/moment.min.js"></script>
+    <script src="../dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Datatables -->
+    <script src="../dashboard/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../dashboard/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="../dashboard/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- iCheck -->
+    <script src="../dashboard/vendors/iCheck/icheck.min.js"></script>
 
-  <!-- Custom Theme Scripts -->
-  <script src="../dashboard/build/js/custom.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../dashboard/build/js/custom.min.js"></script>
 
-  <!-- Connecting to Parse -->
-  <script type="text/javascript">
+    <!-- Connecting to Parse -->
+    <script type="text/javascript">
 
-  Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht');
-  Parse.serverURL = 'https://cloud.smarthawker.com:1337/parse';
+    Parse.initialize('p5eYUBJtyvgCZrQM5pcOGLwaorWAUJn9q95Iwwht');
+    Parse.serverURL = 'https://cloud.smarthawker.com:1337/parse';
 
 
-  var currentUser = Parse.User.current();
-  if (currentUser == null) {
-    window.location.replace("index.html");
-  }
-  var currentUsername = currentUser.get('username');
-
-  if (currentUsername != 'smarthawkeradmin') {
-    window.location.replace("index.html");
-  }
-
-  // Variables
-  var userArray = new Array();
-  var recordsArray = new Array();
-
-  // Getting total users
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "User", // REQUIRED - string: name of your Parse class
-    created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
-    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var totalUsersHTML = document.getElementById("totalUsersHTML");
-    totalUsersHTML.innerHTML = recordsArray.length;
-  });
-
-  // Getting total records
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "Record", // REQUIRED - string: name of your Parse class
-    created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
-    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var totalRecordsHTML = document.getElementById("totalRecordsHTML");
-    totalRecordsHTML.innerHTML = recordsArray.length;
-  });
-
-  // Getting past 30 days' new signups
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "User", // REQUIRED - string: name of your Parse class
-    created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = objects;
-    var newUsersHTML = document.getElementById("newUsersHTML");
-    newUsersHTML.innerHTML = recordsArray.length;
-  });
-
-  // Getting past 30 days' new records
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "Record", // REQUIRED - string: name of your Parse class
-    // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-    recordsArray = [];
-
-    for (var i = 0; i < objects.length; i++) {
-      var currentRecord = objects[i];
-      var currentRecordDateString = currentRecord.get('date');
-      var currentRecordDateYear = currentRecordDateString.substring(6, 10);
-      var currentRecordDateMonth = currentRecordDateString.substring(3, 5);
-      var currentRecordDateDay = currentRecordDateString.substring(0, 2);
-
-      var currentRecordDate = new Date(currentRecordDateYear, currentRecordDateMonth, currentRecordDateDay, 0, 0, 0);
-
-      var currentRecordDateMoment = moment(currentRecordDate);
-      var todayDateMoment = moment(new Date(Date.today()));
-      var daysAgoRecordMade = todayDateMoment.diff(currentRecordDateMoment, 'days');
-      if (daysAgoRecordMade < 30) {
-        recordsArray.push(currentRecord);
-      }
+    var currentUser = Parse.User.current();
+    if (currentUser == null) {
+      window.location.replace("index.html");
     }
-    var newRecordsHTML = document.getElementById("newRecordsHTML");
-    newRecordsHTML.innerHTML = recordsArray.length;
-  });
+    var currentUsername = currentUser.get('username');
 
-  </script>
-
-  <!-- Flot for records -->
-  <script>
-  $(document).ready(function() {
+    if (currentUsername != 'smarthawkeradmin') {
+      window.location.replace("index.html");
+    }
 
     // Variables
-    var recordDictionary = {};
-    var d1 = [];
+    var userArray = new Array();
+    var recordsArray = new Array();
 
-
-    for (var i = -29; i < 1; i++) {
-      var day = new Date(Date.today().add(i).days()).getTime();
-      recordDictionary[day] = 0;
-    }
-
-    // for (var i = 0; i < 30; i++) {
-    //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
-    //   recordDictionary[day] = 0;
-    // }
-
+    // Getting total users
     Parse.Cloud.run('retrieveAllObjects', {
-      object_type: "Record", // REQUIRED - string: name of your Parse class
-      created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+      object_type: "User", // REQUIRED - string: name of your Parse class
+      created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
+      // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
       // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
     }).then(function(objects) {
       /* SUCCESS */
       // if objects.length > 0 objects can be looped through
-      if (objects.length > 0) {
-        for (var i = 0; i < objects.length; i++) {
-          var object = objects[i];
-          var dateString = object.get("date");
-          var dateParts = dateString.split("/");
-          var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]).getTime();
-          recordDictionary[dateObject] = recordDictionary[dateObject] + 1;
-        }
-
-        for (var key in recordDictionary) {
-          if (recordDictionary[key] >= 0) {
-            d1.push([key, recordDictionary[key]]);
-          }
-
-        }
-        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
-
-        var chartMinDate = d1[0][0]; //first day
-        var chartMaxDate = d1[d1.length-1][0]; //last day
-
-        var tickSize = [1, "day"];
-        var tformat = "%d/%m/%y";
-
-        //graph options
-        var options = {
-          grid: {
-            show: true,
-            aboveData: true,
-            color: "#3f3f3f",
-            labelMargin: 10,
-            axisMargin: 0,
-            borderWidth: 0,
-            borderColor: null,
-            minBorderMargin: 5,
-            clickable: true,
-            hoverable: true,
-            autoHighlight: true,
-            mouseActiveRadius: 100
-          },
-          series: {
-            lines: {
-              show: true,
-              fill: true,
-              lineWidth: 2,
-              steps: false
-            },
-            points: {
-              show: true,
-              radius: 4.5,
-              symbol: "circle",
-              lineWidth: 3.0
-            }
-          },
-          legend: {
-            position: "ne",
-            margin: [0, -25],
-            noColumns: 0,
-            labelBoxBorderColor: null,
-            labelFormatter: function(label, series) {
-              // just add some space to labes
-              return label + '&nbsp;&nbsp;';
-            },
-            width: 40,
-            height: 1
-          },
-          colors: chartColours,
-          shadowSize: 0,
-          tooltip: true, //activate tooltip
-          tooltipOpts: {
-            content: "%s: %y.0",
-            xDateFormat: "%d/%m",
-            shifts: {
-              x: -30,
-              y: -50
-            },
-            defaultTheme: false
-          },
-          yaxis: {
-            min: 0
-          },
-          xaxis: {
-            mode: "time",
-            minTickSize: tickSize,
-            timeformat: tformat,
-            min: chartMinDate,
-            max: chartMaxDate
-          }
-        };
-        var plot = $.plot($("#placeholder33x"), [{
-          data: d1,
-          lines: {
-            fillColor: "rgba(150, 202, 89, 0.12)"
-          }, //#96CA59 rgba(150, 202, 89, 0.42)
-          points: {
-            fillColor: "#fff"
-          }
-        }], options);
-      }
+      recordsArray = objects;
+      var totalUsersHTML = document.getElementById("totalUsersHTML");
+      totalUsersHTML.innerHTML = recordsArray.length;
     });
-  });
-  </script>
-  <!-- /Flot -->
 
-  <!-- Flot for user registration -->
-  <script>
-  $(document).ready(function() {
+    // Getting total records
+    Parse.Cloud.run('retrieveAllObjects', {
+      object_type: "Record", // REQUIRED - string: name of your Parse class
+      created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
+      // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+      // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+    }).then(function(objects) {
+      /* SUCCESS */
+      // if objects.length > 0 objects can be looped through
+      recordsArray = objects;
+      var totalRecordsHTML = document.getElementById("totalRecordsHTML");
+      totalRecordsHTML.innerHTML = recordsArray.length;
+    });
 
-    // Variables
-    var recordDictionary = {};
-    var d1 = [];
-
-
-    for (var i = -29; i < 1; i++) {
-      var day = new Date(Date.today().add(i).days()).getTime();
-      recordDictionary[day] = 0;
-    }
-
-    // for (var i = 0; i < 30; i++) {
-    //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
-    //   recordDictionary[day] = 0;
-    // }
-
+    // Getting past 30 days' new signups
     Parse.Cloud.run('retrieveAllObjects', {
       object_type: "User", // REQUIRED - string: name of your Parse class
       created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
@@ -516,208 +341,541 @@
     }).then(function(objects) {
       /* SUCCESS */
       // if objects.length > 0 objects can be looped through
-      if (objects.length > 0) {
-        for (var i = 0; i < objects.length; i++) {
-          var object = objects[i];
-          var dateObject = object.get("createdAt");
-          dateObject.setHours(0,0,0,0);
-          var dateComparable = dateObject.getTime();
-          recordDictionary[dateComparable] = recordDictionary[dateComparable] + 1;
-        }
-
-        for (var key in recordDictionary) {
-          if (recordDictionary[key] >= 0) {
-            d1.push([key, recordDictionary[key]]);
-          }
-
-        }
-        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
-
-        var chartMinDate = d1[0][0]; //first day
-        var chartMaxDate = d1[d1.length-1][0]; //last day
-
-        var tickSize = [1, "day"];
-        var tformat = "%d/%m/%y";
-
-        //graph options
-        var options = {
-          grid: {
-            show: true,
-            aboveData: true,
-            color: "#3f3f3f",
-            labelMargin: 10,
-            axisMargin: 0,
-            borderWidth: 0,
-            borderColor: null,
-            minBorderMargin: 5,
-            clickable: true,
-            hoverable: true,
-            autoHighlight: true,
-            mouseActiveRadius: 100
-          },
-          series: {
-            lines: {
-              show: true,
-              fill: true,
-              lineWidth: 2,
-              steps: false
-            },
-            points: {
-              show: true,
-              radius: 4.5,
-              symbol: "circle",
-              lineWidth: 3.0
-            }
-          },
-          legend: {
-            position: "ne",
-            margin: [0, -25],
-            noColumns: 0,
-            labelBoxBorderColor: null,
-            labelFormatter: function(label, series) {
-              // just add some space to labes
-              return label + '&nbsp;&nbsp;';
-            },
-            width: 40,
-            height: 1
-          },
-          colors: chartColours,
-          shadowSize: 0,
-          tooltip: true, //activate tooltip
-          tooltipOpts: {
-            content: "%s: %y.0",
-            xDateFormat: "%d/%m",
-            shifts: {
-              x: -30,
-              y: -50
-            },
-            defaultTheme: false
-          },
-          yaxis: {
-            min: 0
-          },
-          xaxis: {
-            mode: "time",
-            minTickSize: tickSize,
-            timeformat: tformat,
-            min: chartMinDate,
-            max: chartMaxDate
-          }
-        };
-        var plot = $.plot($("#placeholderUser"), [{
-          data: d1,
-          lines: {
-            fillColor: "rgba(150, 202, 89, 0.12)"
-          }, //#96CA59 rgba(150, 202, 89, 0.42)
-          points: {
-            fillColor: "#fff"
-          }
-        }], options);
-      }
+      recordsArray = objects;
+      var newUsersHTML = document.getElementById("newUsersHTML");
+      newUsersHTML.innerHTML = recordsArray.length;
     });
-  });
-  </script>
-  <!-- /Flot -->
 
-  <script>
-  // Steps to get inactive users
-  // Step 1: Get active users.
-  // step 2: Get all users.
-  // Step 3: Remove active users from all users.
-
-  // Step 1: Get active users.
-
-  // Step 1a: Get all records within the past 7 days.
-  // Step 2: Retrieve all users.
-  Parse.Cloud.run('retrieveAllObjects', {
-    object_type: "User", // REQUIRED - string: name of your Parse class
-    created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
-    // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
-    // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
-  }).then(function(objects) {
-    /* SUCCESS */
-    // if objects.length > 0 objects can be looped through
-
-    // Save all inactive users in an array.
-    var inactiveUsers = objects;
-    var lastUpdated = {};
-
-    // Step 3: Retrieve all records, this sorted by Updated_at to get the last active date.
-    Parse.Cloud.run('retrieveAllObjectsSortedByUpdatedAt', {
-      object_type: "Record",
-      created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
+    // Getting past 30 days' new records
+    Parse.Cloud.run('retrieveAllObjects', {
+      object_type: "Record", // REQUIRED - string: name of your Parse class
+      // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+      // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
     }).then(function(objects) {
+      /* SUCCESS */
+      // if objects.length > 0 objects can be looped through
+      recordsArray = [];
+
       for (var i = 0; i < objects.length; i++) {
         var currentRecord = objects[i];
-        var recordUser = currentRecord.get("user");
+        var currentRecordDateString = currentRecord.get('date');
+        var currentRecordDateYear = currentRecordDateString.substring(6, 10);
+        var currentRecordDateMonth = currentRecordDateString.substring(3, 5);
+        var currentRecordDateDay = currentRecordDateString.substring(0, 2);
 
-        // Inactive User
-        if(inactiveUsers.indexOf(recordUser) == -1) {
+        var currentRecordDate = new Date(currentRecordDateYear, currentRecordDateMonth, currentRecordDateDay, 0, 0, 0);
 
-          // Last updated not saved yet
-          if( typeof(lastUpdated[currentRecord.get("subuser")]) == "undefined") {
-            lastUpdated[currentRecord.get("subuser")] = currentRecord.get("updatedAt");
-          }
+        var currentRecordDateMoment = moment(currentRecordDate);
+        var todayDateMoment = moment(new Date(Date.today()));
+        var daysAgoRecordMade = todayDateMoment.diff(currentRecordDateMoment, 'days');
+        if (daysAgoRecordMade < 30) {
+          recordsArray.push(currentRecord);
         }
       }
+      var newRecordsHTML = document.getElementById("newRecordsHTML");
+      newRecordsHTML.innerHTML = recordsArray.length;
+    });
 
-      var inactiveUserHTML = document.getElementById("inactiveUserHTML");
-      var inactiveHTMLText = "";
-      for (var i = 0; i < inactiveUsers.length; i++) {
-        var user = inactiveUsers[i];
-        var lastActiveDate = new Date(Date.today());
-        // Format the last active date into better looking format. "dd/mm/yyyy" or "Never Active"
-        if (typeof(lastUpdated[user.get("username")]) == "undefined") {
+    </script>
 
-          lastActiveDate = user.createdAt;
-        } else {
-          lastActiveDate = lastUpdated[user.get("username")];
+    <!-- Flot for records -->
+    <script>
+    $(document).ready(function() {
+
+      // Variables
+      var recordDictionary = {};
+      var d1 = [];
+
+
+      for (var i = -29; i < 1; i++) {
+        var day = new Date(Date.today().add(i).days()).getTime();
+        recordDictionary[day] = 0;
+      }
+
+      // for (var i = 0; i < 30; i++) {
+      //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
+      //   recordDictionary[day] = 0;
+      // }
+
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "Record", // REQUIRED - string: name of your Parse class
+        created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        if (objects.length > 0) {
+          for (var i = 0; i < objects.length; i++) {
+            var object = objects[i];
+            var dateString = object.get("date");
+            var dateParts = dateString.split("/");
+            var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]).getTime();
+            recordDictionary[dateObject] = recordDictionary[dateObject] + 1;
+          }
+
+          for (var key in recordDictionary) {
+            if (recordDictionary[key] >= 0) {
+              d1.push([key, recordDictionary[key]]);
+            }
+
+          }
+          //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+          var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+
+          var chartMinDate = d1[0][0]; //first day
+          var chartMaxDate = d1[d1.length-1][0]; //last day
+
+          var tickSize = [1, "day"];
+          var tformat = "%d/%m/%y";
+
+          //graph options
+          var options = {
+            grid: {
+              show: true,
+              aboveData: true,
+              color: "#3f3f3f",
+              labelMargin: 10,
+              axisMargin: 0,
+              borderWidth: 0,
+              borderColor: null,
+              minBorderMargin: 5,
+              clickable: true,
+              hoverable: true,
+              autoHighlight: true,
+              mouseActiveRadius: 100
+            },
+            series: {
+              lines: {
+                show: true,
+                fill: true,
+                lineWidth: 2,
+                steps: false
+              },
+              points: {
+                show: true,
+                radius: 4.5,
+                symbol: "circle",
+                lineWidth: 3.0
+              }
+            },
+            legend: {
+              position: "ne",
+              margin: [0, -25],
+              noColumns: 0,
+              labelBoxBorderColor: null,
+              labelFormatter: function(label, series) {
+                // just add some space to labes
+                return label + '&nbsp;&nbsp;';
+              },
+              width: 40,
+              height: 1
+            },
+            colors: chartColours,
+            shadowSize: 0,
+            tooltip: true, //activate tooltip
+            tooltipOpts: {
+              content: "%s: %y.0",
+              xDateFormat: "%d/%m",
+              shifts: {
+                x: -30,
+                y: -50
+              },
+              defaultTheme: false
+            },
+            yaxis: {
+              min: 0
+            },
+            xaxis: {
+              mode: "time",
+              minTickSize: tickSize,
+              timeformat: tformat,
+              min: chartMinDate,
+              max: chartMaxDate
+            }
+          };
+          var plot = $.plot($("#placeholder33x"), [{
+            data: d1,
+            lines: {
+              fillColor: "rgba(150, 202, 89, 0.12)"
+            }, //#96CA59 rgba(150, 202, 89, 0.42)
+            points: {
+              fillColor: "#fff"
+            }
+          }], options);
         }
+      });
+    });
+    </script>
+    <!-- /Flot -->
+
+    <!-- Flot for user registration -->
+    <script>
+    $(document).ready(function() {
+
+      // Variables
+      var recordDictionary = {};
+      var d1 = [];
+
+
+      for (var i = -29; i < 1; i++) {
+        var day = new Date(Date.today().add(i).days()).getTime();
+        recordDictionary[day] = 0;
+      }
+
+      // for (var i = 0; i < 30; i++) {
+      //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
+      //   recordDictionary[day] = 0;
+      // }
+
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "User", // REQUIRED - string: name of your Parse class
+        created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        if (objects.length > 0) {
+          for (var i = 0; i < objects.length; i++) {
+            var object = objects[i];
+            var dateObject = object.get("createdAt");
+            dateObject.setHours(0,0,0,0);
+            var dateComparable = dateObject.getTime();
+            recordDictionary[dateComparable] = recordDictionary[dateComparable] + 1;
+          }
+
+          for (var key in recordDictionary) {
+            if (recordDictionary[key] >= 0) {
+              d1.push([key, recordDictionary[key]]);
+            }
+
+          }
+          //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+          var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+
+          var chartMinDate = d1[0][0]; //first day
+          var chartMaxDate = d1[d1.length-1][0]; //last day
+
+          var tickSize = [1, "day"];
+          var tformat = "%d/%m/%y";
+
+          //graph options
+          var options = {
+            grid: {
+              show: true,
+              aboveData: true,
+              color: "#3f3f3f",
+              labelMargin: 10,
+              axisMargin: 0,
+              borderWidth: 0,
+              borderColor: null,
+              minBorderMargin: 5,
+              clickable: true,
+              hoverable: true,
+              autoHighlight: true,
+              mouseActiveRadius: 100
+            },
+            series: {
+              lines: {
+                show: true,
+                fill: true,
+                lineWidth: 2,
+                steps: false
+              },
+              points: {
+                show: true,
+                radius: 4.5,
+                symbol: "circle",
+                lineWidth: 3.0
+              }
+            },
+            legend: {
+              position: "ne",
+              margin: [0, -25],
+              noColumns: 0,
+              labelBoxBorderColor: null,
+              labelFormatter: function(label, series) {
+                // just add some space to labes
+                return label + '&nbsp;&nbsp;';
+              },
+              width: 40,
+              height: 1
+            },
+            colors: chartColours,
+            shadowSize: 0,
+            tooltip: true, //activate tooltip
+            tooltipOpts: {
+              content: "%s: %y.0",
+              xDateFormat: "%d/%m",
+              shifts: {
+                x: -30,
+                y: -50
+              },
+              defaultTheme: false
+            },
+            yaxis: {
+              min: 0
+            },
+            xaxis: {
+              mode: "time",
+              minTickSize: tickSize,
+              timeformat: tformat,
+              min: chartMinDate,
+              max: chartMaxDate
+            }
+          };
+          var plot = $.plot($("#placeholderUser"), [{
+            data: d1,
+            lines: {
+              fillColor: "rgba(150, 202, 89, 0.12)"
+            }, //#96CA59 rgba(150, 202, 89, 0.42)
+            points: {
+              fillColor: "#fff"
+            }
+          }], options);
+        }
+      });
+    });
+    </script>
+    <!-- /Flot -->
+
+    <script>
+    // Steps to get inactive users
+    // Step 1: Get active users.
+    // step 2: Get all users.
+    // Step 3: Remove active users from all users.
+
+    // Step 1: Get active users.
+
+    // Step 1a: Get all records within the past 7 days.
+    // Step 2: Retrieve all users.
+    Parse.Cloud.run('retrieveAllObjects', {
+      object_type: "User", // REQUIRED - string: name of your Parse class
+      created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
+      // update_at: moment().toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+      // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+    }).then(function(objects) {
+      /* SUCCESS */
+      // if objects.length > 0 objects can be looped through
+
+      // Save all inactive users in an array.
+      var inactiveUsers = objects;
+      var lastUpdated = {};
+
+      // Step 3: Retrieve all records, this sorted by Updated_at to get the last active date.
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "Record",
+        created_at: new Date(2016, 8, 8, 0, 0, 0, 0)
+      }).then(function(objects) {
+        objects.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(b.get('updatedAt')) - new Date(a.get('updatedAt'));
+        });
+
+        for (var i = 0; i < objects.length; i++) {
+          var currentRecord = objects[i];
+          var recordUser = currentRecord.get("user");
+
+          // Inactive User
+          if(inactiveUsers.indexOf(recordUser) == -1) {
+
+            // Last updated not saved yet
+            if( typeof(lastUpdated[currentRecord.get("subuser")]) == "undefined") {
+              lastUpdated[currentRecord.get("subuser")] = currentRecord.get("updatedAt");
+            }
+          }
+        }
+
+        var inactiveUserHTML = document.getElementById("inactiveUserHTML");
+        var inactiveHTMLText = "";
+        for (var i = 0; i < inactiveUsers.length; i++) {
+          var user = inactiveUsers[i];
+          ;
+          // Format the last active date into better looking format. "dd/mm/yyyy" or "Never Active"
+          if (typeof(lastUpdated[user.get("username")]) == "undefined") {
+
+            var lastActiveDate = user.createdAt;
+          } else {
+            var lastActiveDate = lastUpdated[user.get("username")];
+          }
+
           var lastActiveDateMoment = moment(lastActiveDate);
           var todayDateMoment = moment(new Date(Date.today()));
           var daysInactive = todayDateMoment.diff(lastActiveDateMoment, 'days');
           lastUpdated[user.get("username")] = daysInactive;
+          var userUsername = user.get("username");
 
-        inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> <td>' + lastUpdated[user.get("username")] + '</td> </tr>' ;
+          inactiveHTMLText += '<tr> <td>' + user.get("username") + '</td> <td>' + user.get("email") + '</td> <td>' + user.get("phoneNumber") + '</td> <td>' + daysInactive;
+          inactiveHTMLText += '<td/>' + '<button onclick=userActivity(' + '"' + userUsername + '"' + ')> View Activity </button>' + '</tr>' ;
+        }
+
+        inactiveUserHTML.innerHTML = inactiveHTMLText;
+        $('#datatable').dataTable({ "order": [[ 3, 'asc' ]] });
+      });
+    });
+    </script>
+
+    <script>
+    function resetPassword() {
+      var usernameValue = document.getElementById("reset-username").value;
+      var emailValue = document.getElementById("reset-email").value;
+      var newPasswordValue = document.getElementById("reset-new-password").value;
+
+      Parse.Cloud.run('resetPassword', {
+        username: usernameValue,
+        email: emailValue,
+        password: newPasswordValue,
+      }).then(function(success) {
+        if (success){
+          alert("Password changed successfully!");
+        }
+      });
+    }
+
+    function deleteUser() {
+      var usernameValue = document.getElementById("reset-username").value;
+      var emailValue = document.getElementById("reset-email").value;
+
+      Parse.Cloud.run('deleteUser', {
+        username: usernameValue,
+        email: emailValue,
+      }).then(function(success) {
+        if(success) {
+          alert("User is deleted.");
+        }
+      });
+    }
+
+    function userActivity(username) {
+
+      var userActivityHeader = document.getElementById("userActivityHeader");
+      userActivityHeader.innerHTML = "User Activity for " + username;
+
+
+      // Variables
+      var recordDictionary = {};
+      var d1 = [];
+
+
+      for (var i = -29; i < 1; i++) {
+        var day = new Date(Date.today().add(i).days()).getTime();
+        recordDictionary[day] = 0;
       }
 
-      inactiveUserHTML.innerHTML = inactiveHTMLText;
-      $('#datatable').dataTable({ "order": [[ 3, 'asc' ]] });
-    });
-  });
-  </script>
+      // for (var i = 0; i < 30; i++) {
+      //   var day = moment(moment().format('l')).add(i-30, 'days').toDate();
+      //   recordDictionary[day] = 0;
+      // }
 
-  <script>
-  function resetPassword() {
-    var usernameValue = document.getElementById("reset-username").value;
-    var emailValue = document.getElementById("reset-email").value;
-    var newPasswordValue = document.getElementById("reset-new-password").value;
+      Parse.Cloud.run('retrieveAllObjects', {
+        object_type: "Record", // REQUIRED - string: name of your Parse class
+        created_at: moment().subtract(30, 'days').toDate(), // OPTIONAL - JS Date object: Only retrieve objects where update_at is higher than...
+        username: username,
+        // only_objectId: true|false // OPTIONAL - boolean: the result will only be composed by objectId + date fields, otherwise all attributes are returned.
+      }).then(function(objects) {
+        /* SUCCESS */
+        // if objects.length > 0 objects can be looped through
+        
+          for (var i = 0; i < objects.length; i++) {
+            var object = objects[i];
+            var dateString = object.get("date");
+            var dateParts = dateString.split("/");
+            var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]).getTime();
+            recordDictionary[dateObject] = recordDictionary[dateObject] + 1;
+          }
 
-    Parse.Cloud.run('resetPassword', {
-      username: usernameValue,
-      email: emailValue,
-      password: newPasswordValue,
-    }).then(function(success) {
-      if (success){
-        alert("Password changed successfully!");
-      }
-    });
-  }
+          for (var key in recordDictionary) {
+            if (recordDictionary[key] >= 0) {
+              d1.push([key, recordDictionary[key]]);
+            }
 
-  function deleteUser() {
-    var usernameValue = document.getElementById("reset-username").value;
-    var emailValue = document.getElementById("reset-email").value;
+          }
+          //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+          var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
 
-    Parse.Cloud.run('deleteUser', {
-      username: usernameValue,
-      email: emailValue,
-    }).then(function(success) {
-      if(success) {
-        alert("User is deleted.");
-      }
-    });
-  }
-  </script>
-</body>
-</html>
+          var chartMinDate = d1[0][0]; //first day
+          var chartMaxDate = d1[d1.length-1][0]; //last day
+
+          var tickSize = [1, "day"];
+          var tformat = "%d/%m/%y";
+
+          //graph options
+          var options = {
+            grid: {
+              show: true,
+              aboveData: true,
+              color: "#3f3f3f",
+              labelMargin: 10,
+              axisMargin: 0,
+              borderWidth: 0,
+              borderColor: null,
+              minBorderMargin: 5,
+              clickable: true,
+              hoverable: true,
+              autoHighlight: true,
+              mouseActiveRadius: 100
+            },
+            series: {
+              lines: {
+                show: true,
+                fill: true,
+                lineWidth: 2,
+                steps: false
+              },
+              points: {
+                show: true,
+                radius: 4.5,
+                symbol: "circle",
+                lineWidth: 3.0
+              }
+            },
+            legend: {
+              position: "ne",
+              margin: [0, -25],
+              noColumns: 0,
+              labelBoxBorderColor: null,
+              labelFormatter: function(label, series) {
+                // just add some space to labes
+                return label + '&nbsp;&nbsp;';
+              },
+              width: 40,
+              height: 1
+            },
+            colors: chartColours,
+            shadowSize: 0,
+            tooltip: true, //activate tooltip
+            tooltipOpts: {
+              content: "%s: %y.0",
+              xDateFormat: "%d/%m",
+              shifts: {
+                x: -30,
+                y: -50
+              },
+              defaultTheme: false
+            },
+            yaxis: {
+              min: 0
+            },
+            xaxis: {
+              mode: "time",
+              minTickSize: tickSize,
+              timeformat: tformat,
+              min: chartMinDate,
+              max: chartMaxDate
+            }
+          };
+          var plot = $.plot($("#userActivity"), [{
+            data: d1,
+            lines: {
+              fillColor: "rgba(150, 202, 89, 0.12)"
+            }, //#96CA59 rgba(150, 202, 89, 0.42)
+            points: {
+              fillColor: "#fff"
+            }
+          }], options);
+
+      });
+    }
+    </script>
+  </body>
+  </html>

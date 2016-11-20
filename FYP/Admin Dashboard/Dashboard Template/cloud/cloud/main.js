@@ -31,6 +31,9 @@ Parse.Cloud.define("retrieveAllObjects", function(request, status) {
     if (request.params.created_at) {
       query.greaterThan("createdAt", request.params.created_at);
     }
+    if (request.params.username) {
+      query.equalTo("subuser", request.params.username);
+    }
     query.limit(chunk_size);
     query.ascending("objectId");
     query.find().then(function (res) {
@@ -86,6 +89,7 @@ Parse.Cloud.define("retrieveAllObjectsSortedByUpdatedAt", function(request, stat
   };
   process(false);
 });
+
 Parse.Cloud.define("resetPassword", function(request, status) {
   Parse.Cloud.useMasterKey();
 
@@ -110,19 +114,6 @@ Parse.Cloud.define("resetPassword", function(request, status) {
     }
   });
 
-});
-
-
-Parse.Cloud.define("adminLogin", function(request, status) {
-
-  var user = Parse.Object.extend("User");
-  var query = new Parse.Query(user);
-  if (request.params.username=="admin" && request.params.password=="admin2345" ) {
-    status.success(true);
-
-  }else{
-    status.success(false);
-  }
 });
 
 // Deletes a user and all of his records.
