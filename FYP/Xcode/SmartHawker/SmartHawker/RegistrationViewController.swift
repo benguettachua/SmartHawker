@@ -171,7 +171,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     break
                 case 13:
                     errorMsg = "Password should be 5 letters or more.".localized()
-                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
+                    self.confirmPasswordTextField.text = ""
                     break
                 case 100:
                     errorMsg = "No network detected.".localized()
