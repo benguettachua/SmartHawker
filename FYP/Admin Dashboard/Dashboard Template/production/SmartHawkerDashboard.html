@@ -420,7 +420,7 @@
 
           }
           //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-          var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+          var chartColours = ['#BDBDBD', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
 
           var chartMinDate = d1[0][0]; //first day
           var chartMaxDate = d1[d1.length-1][0]; //last day
@@ -496,7 +496,7 @@
           var plot = $.plot($("#placeholder33x"), [{
             data: d1,
             lines: {
-              fillColor: "rgba(150, 202, 89, 0.12)"
+              fillColor: "rgba(253, 114, 0, 0.12)" // Colour below the graph
             }, //#96CA59 rgba(150, 202, 89, 0.42)
             points: {
               fillColor: "#fff"
@@ -550,7 +550,7 @@
 
           }
           //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-          var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+          var chartColours = ['#BDBDBD', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
 
           var chartMinDate = d1[0][0]; //first day
           var chartMaxDate = d1[d1.length-1][0]; //last day
@@ -626,7 +626,7 @@
           var plot = $.plot($("#placeholderUser"), [{
             data: d1,
             lines: {
-              fillColor: "rgba(150, 202, 89, 0.12)"
+              fillColor: "rgba(253, 114, 0, 0.12)"
             }, //#96CA59 rgba(150, 202, 89, 0.42)
             points: {
               fillColor: "#fff"
@@ -775,7 +775,7 @@
       }).then(function(objects) {
         /* SUCCESS */
         // if objects.length > 0 objects can be looped through
-        
+
           for (var i = 0; i < objects.length; i++) {
             var object = objects[i];
             var dateString = object.get("date");
@@ -791,7 +791,7 @@
 
           }
           //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-          var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+          var chartColours = ['#BDBDBD', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
 
           var chartMinDate = d1[0][0]; //first day
           var chartMaxDate = d1[d1.length-1][0]; //last day
@@ -867,7 +867,7 @@
           var plot = $.plot($("#userActivity"), [{
             data: d1,
             lines: {
-              fillColor: "rgba(150, 202, 89, 0.12)"
+              fillColor: "rgba(253, 114, 0, 0.12)"
             }, //#96CA59 rgba(150, 202, 89, 0.42)
             points: {
               fillColor: "#fff"
